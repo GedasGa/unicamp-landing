@@ -1,4 +1,6 @@
 .idea
 .next
+.vercel
 .env
 node_modules
+tsconfig.tsbuildinfo
