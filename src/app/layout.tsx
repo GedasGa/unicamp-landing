@@ -45,27 +45,29 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang={lang ?? 'en'} suppressHydrationWarning>
-      <body>
-        <InitColorSchemeScript
-          defaultMode={schemeConfig.defaultMode}
-          modeStorageKey={schemeConfig.modeStorageKey}
-        />
+      <CSPostHogProvider>
+        <body>
+          <InitColorSchemeScript
+            defaultMode={schemeConfig.defaultMode}
+            modeStorageKey={schemeConfig.modeStorageKey}
+          />
 
-        <I18nProvider lang={CONFIG.isStaticExport ? undefined : lang}>
-          <LocalizationProvider>
+          <I18nProvider lang={CONFIG.isStaticExport ? undefined : lang}>
+            <LocalizationProvider>
               <SettingsProvider settings={defaultSettings}>
                 <ThemeProvider>
                   <MotionLazy>
-                      <Snackbar />
-                      <ProgressBar />
-                      <SettingsDrawer />
-                      {children}
+                    <Snackbar />
+                    <ProgressBar />
+                    <SettingsDrawer />
+                    {children}
                   </MotionLazy>
                 </ThemeProvider>
               </SettingsProvider>
-          </LocalizationProvider>
-        </I18nProvider>
-      </body>
+            </LocalizationProvider>
+          </I18nProvider>
+        </body>
+      </CSPostHogProvider>
     </html>
   );
 }

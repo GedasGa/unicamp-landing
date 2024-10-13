@@ -29,6 +29,7 @@ import { varFade, MotionContainer } from 'src/components/animate';
 
 import { HeroBackground } from './components/hero-background';
 import { useCountdownDate } from '../../hooks/use-countdown';
+import posthog from 'posthog-js';
 
 // ----------------------------------------------------------------------
 
@@ -143,6 +144,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           variant="contained"
           href="mailto:info@unicamp.co?subject=Registracija į kursus&body=Sveiki,%0D%0A%0D%0Anoriu%20gauti%20nemokamą%20konsultaciją"
           startIcon={<Iconify icon="fluent:mail-24-filled" />}
+          onClick={() => posthog.capture('hero_cta_clicked')}
         >
           Gaukite nemokamą IT karjeros konsultaciją
         </Button>
