@@ -215,7 +215,6 @@ export function Texts({ sx, ...other }: BoxProps) {
         left: 0,
         width: 1,
         bottom: 0,
-        zIndex: 99,
         height: 200,
         position: 'absolute',
         ...sx,
@@ -246,7 +245,7 @@ export function Texts({ sx, ...other }: BoxProps) {
           animate={{ x: ['0%', '-50%'] }}
           transition={{ duration: 64, ease: 'linear', repeat: Infinity }}
         >
-          Minimal Design System Minimal Design System
+          unicamp academy
         </m.text>
       </Box>
     </Box>
@@ -312,7 +311,7 @@ export function Dots() {
   return (
     <>
       <Dot
-        color="error"
+        color="warning"
         animate={{ x: 24 }}
         sx={{ width: 14, height: 14, transform: 'translate(calc(50% - 457px), calc(50% - 259px))' }}
       />
@@ -324,19 +323,19 @@ export function Dots() {
       />
 
       <Dot
-        color="info"
+        color="secondary"
         animate={{ x: 24 }}
         sx={{ transform: 'translate(calc(50% + 332px), calc(50% + 135px))' }}
       />
 
       <Dot
-        color="secondary"
+        color="warning"
         animate={{ x: 24 }}
         sx={{ transform: 'translate(calc(50% + 430px), calc(50% - 160px))' }}
       />
 
       <Dot
-        color="success"
+        color="primary"
         animate={{ y: 24 }}
         sx={{ transform: 'translate(calc(50% + 136px), calc(50% + 332px))' }}
       />

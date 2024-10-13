@@ -28,6 +28,7 @@ import { SvgColor } from 'src/components/svg-color';
 import { varFade, MotionContainer } from 'src/components/animate';
 
 import { HeroBackground } from './components/hero-background';
+import { useCountdownDate } from '../../hooks/use-countdown';
 
 // ----------------------------------------------------------------------
 
@@ -37,9 +38,8 @@ const lgKey = 'lg';
 
 export function HomeHero({ sx, ...other }: BoxProps) {
   const theme = useTheme();
-
   const scroll = useScrollPercent();
-
+  const countdown = useCountdownDate(new Date('2024-11-04 08:00'));
   const mdUp = useResponsive('up', mdKey);
 
   const distance = mdUp ? scroll.percent : 0;
@@ -48,7 +48,6 @@ export function HomeHero({ sx, ...other }: BoxProps) {
   const y2 = useTransformY(scroll.scrollY, distance * -6);
   const y3 = useTransformY(scroll.scrollY, distance * -5);
   const y4 = useTransformY(scroll.scrollY, distance * -4);
-  const y5 = useTransformY(scroll.scrollY, distance * -3);
 
   const opacity: MotionValue<number> = useTransform(
     scroll.scrollY,
@@ -73,9 +72,9 @@ export function HomeHero({ sx, ...other }: BoxProps) {
         }}
       >
         <Box component="span" sx={{ width: 1, opacity: 0.24 }}>
-          Boost your building
+          Užtikrintas kelias
         </Box>
-        process with
+        į IT rinką su{' '}
         <Box
           component={m.span}
           animate={{ backgroundPosition: '200% center' }}
@@ -93,7 +92,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
             ml: { xs: 0.75, md: 1, xl: 1.5 },
           }}
         >
-          Minimal
+          unicamp
         </Box>
       </Box>
     </AnimatedDiv>
@@ -109,31 +108,28 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           [theme.breakpoints.up(lgKey)]: { fontSize: 20, lineHeight: '36px' },
         }}
       >
-        {`The starting point for your next project is based on MUI. \nEasy customization helps you build apps faster and better.`}
+        {`Jokių pažadų apie greitus rezultatus. \nRealūs projektai, komandinė patirtis, 1:1 konsultacijos ir top specialistai.`}
       </Typography>
     </AnimatedDiv>
   );
 
-  const renderRatings = (
+  const renderCountdown = (
     <AnimatedDiv>
-      <Box
-        gap={1.5}
-        display="flex"
-        flexWrap="wrap"
-        alignItems="center"
-        justifyContent="center"
-        sx={{ typography: 'subtitle2' }}
-      >
-        <AvatarGroup sx={{ [`& .${avatarClasses.root}`]: { width: 32, height: 32 } }}>
-          {[...Array(3)].map((_, index) => (
-            <Avatar
-              key={_mock.fullName(index + 1)}
-              alt={_mock.fullName(index + 1)}
-              src={_mock.image.avatar(index + 1)}
-            />
-          ))}
-        </AvatarGroup>
-        160+ Happy customers
+      <Box>
+        <Typography variant="body1" sx={{ color: 'text.secondary', typography: 'body1' }}>
+          Naujos akademijos startas už
+        </Typography>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          divider={<Box sx={{ mx: { xs: 1, sm: 2.5 } }}>:</Box>}
+          sx={{ typography: 'h2' }}
+        >
+          <TimeBlock label="dienos" value={countdown.days} />
+          <TimeBlock label="valandos" value={countdown.hours} />
+          <TimeBlock label="minutės" value={countdown.minutes} />
+          <TimeBlock label="sekundės" value={countdown.seconds} />
+        </Stack>
       </Box>
     </AnimatedDiv>
   );
@@ -141,59 +137,14 @@ export function HomeHero({ sx, ...other }: BoxProps) {
   const renderButtons = (
     <Box display="flex" flexWrap="wrap" justifyContent="center" gap={{ xs: 1.5, sm: 2 }}>
       <AnimatedDiv>
-        <Stack alignItems="center" spacing={2.5}>
-          <Button
-            component={RouterLink}
-            href={paths.dashboard.root}
-            color="inherit"
-            size="large"
-            variant="contained"
-            startIcon={<Iconify width={24} icon="iconoir:flash" />}
-          >
-            <span>
-              Live preview
-              <Box
-                component="small"
-                sx={{
-                  mt: '-3px',
-                  opacity: 0.64,
-                  display: 'flex',
-                  fontSize: theme.typography.pxToRem(10),
-                  fontWeight: theme.typography.fontWeightMedium,
-                }}
-              >
-                v{CONFIG.appVersion}
-              </Box>
-            </span>
-          </Button>
-
-          <Link
-            color="inherit"
-            variant="body2"
-            target="_blank"
-            rel="noopener"
-            href={paths.freeUI}
-            underline="always"
-            sx={{ gap: 0.5, alignItems: 'center', display: 'inline-flex' }}
-          >
-            Get free version
-            <Iconify width={16} icon="eva:external-link-fill" />
-          </Link>
-        </Stack>
-      </AnimatedDiv>
-
-      <AnimatedDiv>
         <Button
           color="inherit"
           size="large"
-          variant="outlined"
-          target="_blank"
-          rel="noopener"
-          href={paths.figmaUrl}
-          startIcon={<Iconify width={24} icon="solar:figma-outline" />}
-          sx={{ borderColor: 'text.primary' }}
+          variant="contained"
+          href="mailto:info@unicamp.co?subject=Registracija į kursus&body=Sveiki,%0D%0A%0D%0Anoriu%20gauti%20nemokamą%20konsultaciją"
+          startIcon={<Iconify icon="fluent:mail-24-filled" />}
         >
-          Figma preview
+          Gaukite nemokamą IT karjeros konsultaciją
         </Button>
       </AnimatedDiv>
     </Box>
@@ -279,10 +230,9 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           <Stack spacing={3} sx={{ textAlign: 'center' }}>
             <m.div style={{ y: y1 }}>{renderHeading}</m.div>
             <m.div style={{ y: y2 }}>{renderText}</m.div>
+            <m.div style={{ y: y3 }}>{renderCountdown}</m.div>
           </Stack>
-          <m.div style={{ y: y3 }}>{renderRatings}</m.div>
           <m.div style={{ y: y4 }}>{renderButtons}</m.div>
-          <m.div style={{ y: y5 }}>{renderIcons}</m.div>
         </Container>
 
         <HeroBackground />
@@ -338,4 +288,20 @@ function useScrollPercent() {
   });
 
   return { elementRef, percent, scrollY };
+}
+
+// ----------------------------------------------------------------------
+
+type TimeBlockProps = {
+  label: string;
+  value: string;
+};
+
+function TimeBlock({ label, value }: TimeBlockProps) {
+  return (
+    <div>
+      <div> {value} </div>
+      <Box sx={{ color: 'text.secondary', typography: 'body1' }}>{label}</Box>
+    </div>
+  );
 }

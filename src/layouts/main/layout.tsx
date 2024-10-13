@@ -21,7 +21,6 @@ import { Footer, HomeFooter } from './footer';
 import { MenuButton } from '../components/menu-button';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
-import { navData as mainNavData } from '../config-nav-main';
 import { SignInButton } from '../components/sign-in-button';
 import { SettingsButton } from '../components/settings-button';
 
@@ -51,7 +50,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
 
   const layoutQuery: Breakpoint = 'md';
 
-  const navData = data?.nav ?? mainNavData;
+  const navData = data?.nav ?? [];
 
   return (
     <LayoutSection
@@ -84,8 +83,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                   open={mobileNavOpen.value}
                   onClose={mobileNavOpen.onFalse}
                 />
-                {/* -- Logo -- */}
-                <Logo />
+                <Logo isSingle={false} width={160} />
               </>
             ),
             rightArea: (
@@ -98,25 +96,6 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                     [theme.breakpoints.up(layoutQuery)]: { mr: 2.5, display: 'flex' },
                   }}
                 />
-                <Box display="flex" alignItems="center" gap={{ xs: 1, sm: 1.5 }}>
-                  {/* -- Settings button -- */}
-                  <SettingsButton />
-                  {/* -- Sign in button -- */}
-                  <SignInButton />
-                  {/* -- Purchase button -- */}
-                  <Button
-                    variant="contained"
-                    rel="noopener"
-                    target="_blank"
-                    href={paths.minimalStore}
-                    sx={{
-                      display: 'none',
-                      [theme.breakpoints.up(layoutQuery)]: { display: 'inline-flex' },
-                    }}
-                  >
-                    Purchase
-                  </Button>
-                </Box>
               </>
             ),
           }}
