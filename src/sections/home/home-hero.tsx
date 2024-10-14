@@ -75,7 +75,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
         <Box component="span" sx={{ width: 1, opacity: 0.24 }}>
           Užtikrintas kelias
         </Box>
-        į IT rinką su{' '}
+        <Box component="span">į IT rinką su </Box>
         <Box
           component={m.span}
           animate={{ backgroundPosition: '200% center' }}
@@ -90,10 +90,10 @@ export function HomeHero({ sx, ...other }: BoxProps) {
               `300deg, ${theme.vars.palette.primary.main} 0%, ${theme.vars.palette.warning.main} 25%, ${theme.vars.palette.primary.main} 50%, ${theme.vars.palette.warning.main} 75%, ${theme.vars.palette.primary.main} 100%`
             ),
             backgroundSize: '400%',
-            ml: { xs: 0.75, md: 1, xl: 1.5 },
+            ml: { xs: 0.75, md: 1.25, xl: 1.5 },
           }}
         >
-          unicamp
+          Unicamp
         </Box>
       </Box>
     </AnimatedDiv>
@@ -109,7 +109,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           [theme.breakpoints.up(lgKey)]: { fontSize: 20, lineHeight: '36px' },
         }}
       >
-        {`Jokių pažadų apie greitus rezultatus. \nRealūs projektai, komandinė patirtis, 1:1 konsultacijos ir top specialistai.`}
+        {`Jokių pažadų apie greitus rezultatus. \nRealūs projektai, darbas komandoje, 1:1 konsultacijos ir Top specialistai.`}
       </Typography>
     </AnimatedDiv>
   );
