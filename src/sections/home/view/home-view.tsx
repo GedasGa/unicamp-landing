@@ -22,8 +22,6 @@ export function HomeView() {
         sx={{ position: 'fixed' }}
       />
 
-      <BackToTop />
-
       <HomeHero />
     </>
   );
