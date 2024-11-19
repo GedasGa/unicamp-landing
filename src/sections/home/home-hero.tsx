@@ -40,7 +40,7 @@ const lgKey = 'lg';
 export function HomeHero({ sx, ...other }: BoxProps) {
   const theme = useTheme();
   const scroll = useScrollPercent();
-  const countdown = useCountdownDate(new Date('2024-11-11 08:00'));
+  const countdown = useCountdownDate(new Date('2024-11-25 08:00'));
   const mdUp = useResponsive('up', mdKey);
 
   const distance = mdUp ? scroll.percent : 0;
