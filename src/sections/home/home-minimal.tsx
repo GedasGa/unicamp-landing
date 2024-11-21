@@ -19,6 +19,33 @@ import { CircleSvg, FloatLine, FloatPlusIcon } from './components/svg-elements';
 
 // ----------------------------------------------------------------------
 
+const ITEMS = [
+  {
+    icon: `${CONFIG.assetsDir}/assets/icons/home/ic-make-brand.svg`,
+    title: 'Realūs naudingi projetkai',
+    description: 'Kursite realius projektus bei įrankius, o ne butaforinę svetainę',
+  },
+  {
+    icon: `${CONFIG.assetsDir}/assets/icons/home/ic-design.svg`,
+    title: 'Projektą paleisite gyvai',
+    description:
+      'Projektai paleisime gyvai (juos galės pasiekti bet kas) ir pasidalinsime producthunt.com platformoje',
+  },
+  {
+    icon: `${CONFIG.assetsDir}/assets/icons/home/ic-development.svg`,
+    title: 'Papildysite savo LinkedIn',
+    description: 'Bus ką parodyti bei pasakoti būsinam darbaviui',
+  },
+];
+
+// ----------------------------------------------------------------------
+
+interface HomeMinimalProps extends BoxProps {
+  caption?: string;
+  title?: string;
+  textGradient?: string;
+}
+
 export function HomeMinimal({ sx, ...other }: BoxProps) {
   const renderLines = (
     <>
@@ -33,9 +60,8 @@ export function HomeMinimal({ sx, ...other }: BoxProps) {
   const renderDescription = (
     <>
       <SectionTitle
-        caption="Visualizing Success"
-        title="What's in"
-        txtGradient="Minimal?"
+        caption="Tik unicamp"
+        title="Kursite realius projektus"
         sx={{ mb: { xs: 5, md: 8 }, textAlign: { xs: 'center', md: 'left' } }}
       />
 
@@ -131,23 +157,3 @@ export function HomeMinimal({ sx, ...other }: BoxProps) {
     </Box>
   );
 }
-
-// ----------------------------------------------------------------------
-
-const ITEMS = [
-  {
-    icon: `${CONFIG.assetsDir}/assets/icons/home/ic-make-brand.svg`,
-    title: 'Branding',
-    description: 'Consistent design makes it easy to brand your own.',
-  },
-  {
-    icon: `${CONFIG.assetsDir}/assets/icons/home/ic-design.svg`,
-    title: 'UI & UX design',
-    description: 'The kit is built on the principles of the atomic design system.',
-  },
-  {
-    icon: `${CONFIG.assetsDir}/assets/icons/home/ic-development.svg`,
-    title: 'Development',
-    description: 'Easy to customize and extend, saving you time and money.',
-  },
-];

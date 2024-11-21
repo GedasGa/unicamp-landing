@@ -225,10 +225,6 @@ export function ArrowButton({
           opacity: 0.4,
         },
         ...sx,
-        ...(options?.direction === 'rtl' && {
-          ...(arrowPrev && { right: -16, left: 'auto' }),
-          ...(arrowNext && { left: -16, right: 'auto' }),
-        }),
       }}
       {...other}
     >
@@ -238,7 +234,6 @@ export function ArrowButton({
           width: svgSize ?? 20,
           height: svgSize ?? 20,
           ...(options?.axis === 'y' && { transform: ' rotate(90deg)' }),
-          ...(options?.direction === 'rtl' && { transform: ' scaleX(-1)' }),
         }}
       >
         {arrowPrev ? prevSvg : nextSvg}

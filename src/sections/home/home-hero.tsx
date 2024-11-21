@@ -5,21 +5,14 @@ import { useRef, useState } from 'react';
 import { m, useScroll, useSpring, useTransform, useMotionValueEvent } from 'framer-motion';
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import AvatarGroup from '@mui/material/AvatarGroup';
-import Avatar, { avatarClasses } from '@mui/material/Avatar';
-
-import { paths } from 'src/routes/paths';
-import { RouterLink } from 'src/routes/components';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { _mock } from 'src/_mock';
 import { CONFIG } from 'src/config-global';
 import { textGradient } from 'src/theme/styles';
 
@@ -30,6 +23,7 @@ import { varFade, MotionContainer } from 'src/components/animate';
 import { HeroBackground } from './components/hero-background';
 import { useCountdownDate } from '../../hooks/use-countdown';
 import posthog from 'posthog-js';
+import { useTranslate } from '../../locales';
 
 // ----------------------------------------------------------------------
 
@@ -38,6 +32,7 @@ const mdKey = 'md';
 const lgKey = 'lg';
 
 export function HomeHero({ sx, ...other }: BoxProps) {
+  const { t } = useTranslate('home');
   const theme = useTheme();
   const scroll = useScrollPercent();
   const countdown = useCountdownDate(new Date('2024-11-25 08:00'));
@@ -73,9 +68,9 @@ export function HomeHero({ sx, ...other }: BoxProps) {
         }}
       >
         <Box component="span" sx={{ width: 1, opacity: 0.24 }}>
-          Užtikrintas kelias
+          {t('hero.heading.prefix')}
         </Box>
-        <Box component="span">į IT rinką su </Box>
+        <Box component="span">{t('hero.heading.root')} </Box>
         <Box
           component={m.span}
           animate={{ backgroundPosition: '200% center' }}
@@ -109,7 +104,8 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           [theme.breakpoints.up(lgKey)]: { fontSize: 20, lineHeight: '36px' },
         }}
       >
-        {`Jokių pažadų apie greitus rezultatus. \nRealūs projektai, darbas komandoje, 1:1 konsultacijos ir Top specialistai.`}
+        {t('hero.subtitle.firstRow')} <br />
+        {t('hero.subtitle.secondRow')} <br />
       </Typography>
     </AnimatedDiv>
   );
@@ -118,7 +114,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
     <AnimatedDiv>
       <Box>
         <Typography variant="body1" sx={{ color: 'text.secondary', typography: 'body1' }}>
-          Naujos akademijos startas už
+          {t('hero.subtitle.launchesIn')}
         </Typography>
         <Stack
           direction="row"
@@ -126,10 +122,10 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           divider={<Box sx={{ mx: { xs: 1, sm: 2.5 } }}>:</Box>}
           sx={{ typography: 'h2' }}
         >
-          <TimeBlock label="dienos" value={countdown.days} />
-          <TimeBlock label="valandos" value={countdown.hours} />
-          <TimeBlock label="minutės" value={countdown.minutes} />
-          <TimeBlock label="sekundės" value={countdown.seconds} />
+          <TimeBlock label={t('hero.timer.days')} value={countdown.days} />
+          <TimeBlock label={t('hero.timer.hours')} value={countdown.hours} />
+          <TimeBlock label={t('hero.timer.minutes')} value={countdown.minutes} />
+          <TimeBlock label={t('hero.timer.seconds')} value={countdown.seconds} />
         </Stack>
       </Box>
     </AnimatedDiv>
@@ -146,41 +142,38 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           startIcon={<Iconify icon="fluent:mail-24-filled" />}
           onClick={() => posthog.capture('hero_cta_clicked')}
         >
-          Gaukite nemokamą IT karjeros konsultaciją
+          {t('hero.cta.text')}
         </Button>
       </AnimatedDiv>
     </Box>
   );
+  <Stack spacing={3} sx={{ textAlign: 'center' }}>
+    <AnimatedDiv>
+      <Typography variant="overline" sx={{ opacity: 0.4 }}>
+        Available For
+      </Typography>
+    </AnimatedDiv>
 
-  const renderIcons = (
-    <Stack spacing={3} sx={{ textAlign: 'center' }}>
-      <AnimatedDiv>
-        <Typography variant="overline" sx={{ opacity: 0.4 }}>
-          Available For
-        </Typography>
-      </AnimatedDiv>
-
-      <Stack spacing={2.5} direction="row">
-        {['js', 'ts', 'nextjs', 'vite', 'figma'].map((platform) => (
-          <AnimatedDiv key={platform}>
-            {platform === 'nextjs' ? (
-              <SvgColor
-                src={`${CONFIG.assetsDir}/assets/icons/platforms/ic-${platform}.svg`}
-                sx={{ width: 24, height: 24 }}
-              />
-            ) : (
-              <Box
-                component="img"
-                alt={platform}
-                src={`${CONFIG.assetsDir}/assets/icons/platforms/ic-${platform}.svg`}
-                sx={{ width: 24, height: 24 }}
-              />
-            )}
-          </AnimatedDiv>
-        ))}
-      </Stack>
+    <Stack spacing={2.5} direction="row">
+      {['js', 'ts', 'nextjs', 'vite', 'figma'].map((platform) => (
+        <AnimatedDiv key={platform}>
+          {platform === 'nextjs' ? (
+            <SvgColor
+              src={`${CONFIG.assetsDir}/assets/icons/platforms/ic-${platform}.svg`}
+              sx={{ width: 24, height: 24 }}
+            />
+          ) : (
+            <Box
+              component="img"
+              alt={platform}
+              src={`${CONFIG.assetsDir}/assets/icons/platforms/ic-${platform}.svg`}
+              sx={{ width: 24, height: 24 }}
+            />
+          )}
+        </AnimatedDiv>
+      ))}
     </Stack>
-  );
+  </Stack>;
 
   return (
     <Box
@@ -232,7 +225,6 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           <Stack spacing={3} sx={{ textAlign: 'center' }}>
             <m.div style={{ y: y1 }}>{renderHeading}</m.div>
             <m.div style={{ y: y2 }}>{renderText}</m.div>
-            <m.div style={{ y: y3 }}>{renderCountdown}</m.div>
           </Stack>
           <m.div style={{ y: y4 }}>{renderButtons}</m.div>
         </Container>

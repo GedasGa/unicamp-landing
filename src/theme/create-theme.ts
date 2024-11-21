@@ -3,7 +3,7 @@ import type { SettingsState } from 'src/components/settings';
 
 import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
 
-import { setFont } from './styles/utils';
+import { setFont } from './styles';
 import { overridesTheme } from './overrides-theme';
 import { shadows, typography, components, colorSchemes, customShadows } from './core';
 import { updateCoreWithSettings, updateComponentsWithSettings } from './with-settings/update-theme';
@@ -20,7 +20,6 @@ export function createTheme(
     colorSchemes,
     shadows: shadows(settings.colorScheme),
     customShadows: customShadows(settings.colorScheme),
-    direction: settings.direction,
     shape: { borderRadius: 8 },
     components,
     typography: {
@@ -55,7 +54,6 @@ function shouldSkipGeneratingVar(keys: string[], value: string | number): boolea
   const skipGlobalKeys = [
     'mixins',
     'overlays',
-    'direction',
     'breakpoints',
     'cssVarPrefix',
     'unstable_sxConfig',

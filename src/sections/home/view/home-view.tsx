@@ -8,6 +8,9 @@ import { ScrollProgress, useScrollProgress } from 'src/components/animate/scroll
 import { HomeHero } from '../home-hero';
 import { HomeFAQs } from '../home-faqs';
 import { HomeMinimal } from '../home-minimal';
+import { HomeHugePackElements } from '../home-hugepack-elements';
+import { HomeAdvertisement } from '../home-advertisement';
+import { HomePricing } from '../home-pricing';
 
 // ----------------------------------------------------------------------
 
@@ -23,6 +26,13 @@ export function HomeView() {
       />
 
       <HomeHero />
+
+      <Stack sx={{ position: 'relative', bgcolor: 'background.default' }}>
+        <HomeMinimal />
+        <HomePricing />
+        <HomeFAQs />
+        <HomeAdvertisement />
+      </Stack>
     </>
   );
 }

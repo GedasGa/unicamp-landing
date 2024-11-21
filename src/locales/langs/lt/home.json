@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "heading": {
+      "prefix": "Užtikrintas kelias",
+      "root": "į IT rinką su"
+    },
+    "subtitle": {
+      "firstRow": "Jokių pažadų apie greitus rezultatus.",
+      "secondRow": "Realūs projektai, darbas komandoje, 1:1 konsultacijos ir Top specialistai."
+    },
+    "timer": {
+      "launchesIn": "Naujos akademijos startas už",
+      "days": "dienos",
+      "hours": "valandos",
+      "minutes": "minutės",
+      "seconds": "sekundės"
+    },
+    "cta": {
+      "text": "Gaukite nemokamą IT karjeros konsultaciją"
+    },
+    "svg": {
+      "text": "unicamp akademija"
+    }
+  }
+}

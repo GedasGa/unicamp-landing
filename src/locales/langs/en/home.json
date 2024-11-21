@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "heading": {
+      "prefix": "A Sure Path",
+      "root": "to the IT Market with"
+    },
+    "subtitle": {
+      "firstRow": "No promises of quick results.",
+      "secondRow": "Real projects, teamwork, 1:1 consultations, and Top specialists."
+    },
+    "timer": {
+      "launchesIn": "New academy starts in",
+      "days": "days",
+      "hours": "hours",
+      "minutes": "minutes",
+      "seconds": "seconds"
+    },
+    "cta": {
+      "text": "Get a free IT career consultation"
+    },
+    "svg": {
+      "text": "unicamp academy"
+    }
+  }
+}

@@ -39,7 +39,8 @@ export function ThemeProvider({ children }: Props) {
         modeStorageKey={schemeConfig.modeStorageKey}
       >
         <CssBaseline />
-        <RTL direction={settings.direction}>{children}</RTL>
+        {/*TODO: Figure out why it doesn't load without it*/}
+        <RTL direction={'lrt'}>{children}</RTL>
       </CssVarsProvider>
     </AppRouterCacheProvider>
   );

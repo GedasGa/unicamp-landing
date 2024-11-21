@@ -14,6 +14,4 @@ export type ThemeComponents = CssVarsThemeOptions['components'];
 
 export type ThemeColorScheme = 'light' | 'dark';
 
-export type ThemeDirection = 'ltr' | 'rtl';
-
 export type ThemeLocaleComponents = { components: ThemeComponents };

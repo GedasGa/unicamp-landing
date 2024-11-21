@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import { stylesMode } from 'src/theme/styles';
 
 import { varFade } from 'src/components/animate';
+import { useTranslate } from '../../../locales';
 
 // ----------------------------------------------------------------------
 
@@ -207,6 +208,8 @@ export function PlusIcon() {
 // ----------------------------------------------------------------------
 
 export function Texts({ sx, ...other }: BoxProps) {
+  const { t } = useTranslate('home');
+
   return (
     <Box
       component={m.div}
@@ -245,7 +248,7 @@ export function Texts({ sx, ...other }: BoxProps) {
           animate={{ x: ['0%', '-50%'] }}
           transition={{ duration: 64, ease: 'linear', repeat: Infinity }}
         >
-          unicamp academy
+          {t('hero.svg.text')}
         </m.text>
       </Box>
     </Box>

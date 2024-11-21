@@ -1,5 +1,5 @@
 import type { Theme, SxProps } from '@mui/material/styles';
-import type { ThemeDirection, ThemeColorScheme } from 'src/theme/types';
+import type { ThemeColorScheme } from 'src/theme/types';
 
 // ----------------------------------------------------------------------
 
@@ -12,7 +12,6 @@ export type SettingsDrawerProps = {
   hidePresets?: boolean;
   hideNavColor?: boolean;
   hideContrast?: boolean;
-  hideDirection?: boolean;
   hideNavLayout?: boolean;
   hideColorScheme?: boolean;
 };
@@ -20,7 +19,6 @@ export type SettingsDrawerProps = {
 export type SettingsState = {
   fontFamily: string;
   compactLayout: boolean;
-  direction: ThemeDirection;
   colorScheme: ThemeColorScheme;
   contrast: 'default' | 'hight';
   navColor: 'integrate' | 'apparent';
