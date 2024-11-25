@@ -44,10 +44,10 @@ type Props = {
 export const runtime = 'edge';
 
 export default async function RootLayout({ children }: Props) {
-  const lang = CONFIG.isStaticExport ? 'en' : await detectLanguage();
+  const lang = CONFIG.isStaticExport ? 'lt' : await detectLanguage();
 
   return (
-    <html lang={lang ?? 'en'} dir="ltr" suppressHydrationWarning>
+    <html lang={lang ?? 'lt'} dir="ltr" suppressHydrationWarning>
       <body>
         <InitColorSchemeScript
           defaultMode={schemeConfig.defaultMode}
