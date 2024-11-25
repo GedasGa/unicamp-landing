@@ -15,9 +15,9 @@
     "rm:all": "rm -rf node_modules .next out dist build",
     "re:start": "npm rm:all && npm install && npm dev",
     "re:build": "npm run rm:all && npm install && npm run build",
-    "dev:ts": "npm dev & npm ts:watch",
-    "ts": "tsc --noEmit --incremental",
-    "ts:watch": "npm ts --watch",
+    "dev:tsc": "npm run dev & npm run tsc:watch",
+    "tsc": "tsc --noEmit --incremental",
+    "tsc:watch": "npm run tsc -- --watch",
     "start:out": "npx serve@latest out -p 8082"
   },
   "engines": {
@@ -104,7 +104,6 @@
     "simplebar-react": "^3.2.6",
     "sonner": "^1.5.0",
     "stylis": "^4.3.2",
-    "stylis-plugin-rtl": "^2.1.1",
     "swr": "^2.2.5",
     "turndown": "^7.2.0",
     "yet-another-react-lightbox": "^3.21.4",

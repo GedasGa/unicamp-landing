@@ -13,11 +13,26 @@ import { Logo } from 'src/components/logo';
 
 import { Main } from './main';
 import { NavDesktop } from './nav/desktop';
-import { Footer, HomeFooter } from './footer';
+import { Footer } from './footer';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
+import { navData as mainNavData } from '../config-nav-main';
+import { MenuButton } from '../components/menu-button';
 
 import type { NavMainProps } from './nav/types';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import { NavMobile } from './nav/mobile';
+import { LanguagePopover } from '../components/language-popover';
+import { allLangs, useTranslate } from '../../locales';
+import { Iconify } from '../../components/iconify';
+import Link from 'next/link';
+import { useState } from 'react';
+import { paths } from '../../routes/paths';
+import { useLocalStorage } from '../../hooks/use-local-storage';
+import type { SettingsState } from '../../components/settings';
+import { STORAGE_KEY } from '../../components/settings';
+import type { ThemeColorScheme } from '../../theme/types';
 
 // ----------------------------------------------------------------------
 
@@ -32,54 +47,98 @@ export type MainLayoutProps = {
   };
 };
 
+export type LayoutState = {
+  showAlert: boolean;
+};
+
 export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
   const theme = useTheme();
-
   const pathname = usePathname();
-
   const mobileNavOpen = useBoolean();
+  const { t } = useTranslate('navbar');
+
+  const localStorage = useLocalStorage<LayoutState>('layout-settings', {
+    showAlert: false,
+  });
 
   const homePage = pathname === '/';
-
   const layoutQuery: Breakpoint = 'md';
-
+  // FIXME: Change navbar once we have more than 1 page
   const navData = data?.nav ?? [];
+
+  const dismissAlert = () => {
+    localStorage.setState({ showAlert: false });
+    localStorage.setField('layout-settings', { showAlert: false });
+  };
 
   return (
     <LayoutSection
-      /** **************************************
-       * Header
-       *************************************** */
       headerSection={
         <HeaderSection
           layoutQuery={layoutQuery}
           sx={header?.sx}
           slots={{
-            topArea: (
-              <Alert severity="info" sx={{ display: 'none', borderRadius: 0 }}>
-                This is an info Alert.
+            bottomArea: localStorage.state.showAlert && (
+              <Alert
+                icon={<Iconify icon="ic:outline-campaign" />}
+                severity="warning"
+                action={
+                  <Button color="inherit" size="small" onClick={dismissAlert}>
+                    Dismiss
+                  </Button>
+                }
+              >
+                Courses financed by kursuok.lt have already started! Sign{' '}
+                <Link href={'https://kursuok.lt/'}>here</Link>
               </Alert>
             ),
-            leftArea: <Logo isSingle={false} width={160} />,
+            leftArea: (
+              <>
+                <MenuButton
+                  onClick={mobileNavOpen.onTrue}
+                  sx={{
+                    mr: 1,
+                    ml: -1,
+                    [theme.breakpoints.up(layoutQuery)]: { display: 'none' },
+                  }}
+                />
+                <NavMobile
+                  data={navData}
+                  open={mobileNavOpen.value}
+                  onClose={mobileNavOpen.onFalse}
+                />
+                <Logo onlyLogo={false} width={160} />
+              </>
+            ),
             rightArea: (
-              <NavDesktop
-                data={navData}
-                sx={{
-                  display: 'none',
-                  [theme.breakpoints.up(layoutQuery)]: { mr: 2.5, display: 'flex' },
-                }}
-              />
+              <>
+                <NavDesktop
+                  data={navData}
+                  sx={{
+                    display: 'none',
+                    [theme.breakpoints.up(layoutQuery)]: { mr: 2.5, display: 'flex' },
+                  }}
+                />
+                <Box display="flex" alignItems="center" gap={{ xs: 1, sm: 1.5 }}>
+                  <LanguagePopover data={allLangs} />
+                  <Button
+                    variant="outlined"
+                    rel="noopener"
+                    href={paths.courses}
+                    sx={{
+                      display: 'none',
+                      [theme.breakpoints.up(layoutQuery)]: { display: 'inline-flex' },
+                    }}
+                  >
+                    {t('cta.text')}
+                  </Button>
+                </Box>
+              </>
             ),
           }}
         />
       }
-      /** **************************************
-       * Footer
-       *************************************** */
-      footerSection={homePage ? <HomeFooter /> : <Footer layoutQuery={layoutQuery} />}
-      /** **************************************
-       * Style
-       *************************************** */
+      footerSection={<Footer layoutQuery={layoutQuery} />}
       sx={sx}
     >
       <Main>{children}</Main>

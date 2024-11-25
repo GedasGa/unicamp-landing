@@ -1,15 +1,9 @@
-import type { MotionProps } from 'framer-motion';
 import type { BoxProps } from '@mui/material/Box';
-import type { ColorType } from 'src/theme/core/palette';
-import type { Theme, SxProps } from '@mui/material/styles';
 
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
-
-import { stylesMode } from 'src/theme/styles';
-
-import { varFade } from 'src/components/animate';
+import { CONFIG } from '../../../config-global';
 
 // ----------------------------------------------------------------------
 
@@ -206,139 +200,59 @@ export function PlusIcon() {
 
 // ----------------------------------------------------------------------
 
-export function Texts({ sx, ...other }: BoxProps) {
+export function Companies({ sx, ...other }: BoxProps) {
+  const logos = [
+    'speechify.svg',
+    'european-commission.svg',
+    'ovoko.svg',
+    'eeas.svg',
+    'khu.svg',
+    'ipl.svg',
+    'ktu.svg',
+    'vilnius-tech.svg',
+  ];
+
   return (
     <Box
-      component={m.div}
-      variants={varFade().in}
+      component="section"
       sx={{
         left: 0,
         width: 1,
         bottom: 0,
-        height: 200,
+        height: 150,
         position: 'absolute',
         ...sx,
       }}
       {...other}
     >
-      <Box
-        component="svg"
-        width="100%"
-        height="100%"
-        sx={{
-          '& text': {
-            fill: 'none',
-            fontSize: 200,
-            fontWeight: 800,
-            strokeDasharray: 4,
-            textTransform: 'uppercase',
-            stroke: 'var(--hero-text-stroke-color)',
-            strokeWidth: 'var(--hero-text-stroke-width)',
-            fontFamily: (theme) => theme.typography.fontSecondaryFamily,
-          },
+      <m.div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          whiteSpace: 'nowrap',
+        }}
+        animate={{ x: ['0%', '-100%'] }}
+        transition={{
+          duration: 64,
+          ease: 'linear',
+          repeat: Infinity,
         }}
       >
-        <m.text
-          x="0"
-          y="12px"
-          dominantBaseline="hanging"
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 64, ease: 'linear', repeat: Infinity }}
-        >
-          unicamp academy
-        </m.text>
-      </Box>
+        {/* Render the logo images */}
+        {[...logos, ...logos].map((logo, index) => (
+          <Box
+            key={index}
+            component="img"
+            src={`${CONFIG.assetsDir}/assets/images/home/companies/${logo}`}
+            alt={`${logo.replace('.svg', '')} logo`}
+            sx={{
+              height: 48,
+              marginRight: 6, // Adjust spacing as needed
+            }}
+          />
+        ))}
+      </m.div>
     </Box>
-  );
-}
-
-// ----------------------------------------------------------------------
-
-type DotProps = {
-  color?: ColorType;
-  sx?: SxProps<Theme>;
-  animate: MotionProps['animate'];
-  transition?: MotionProps['transition'];
-};
-
-function Dot({ color = 'primary', animate, transition, sx, ...other }: DotProps) {
-  return (
-    <Box
-      component={m.div}
-      variants={{
-        initial: { opacity: 0 },
-        animate: { opacity: 1, transition: { duration: 0.64, ease: [0.43, 0.13, 0.23, 0.96] } },
-      }}
-      sx={{
-        width: 12,
-        height: 12,
-        top: '50%',
-        left: '50%',
-        position: 'absolute',
-        ...sx,
-      }}
-      {...other}
-    >
-      <Box
-        component={m.div}
-        animate={animate}
-        transition={
-          transition ?? {
-            duration: 6,
-            ease: 'linear',
-            repeat: Infinity,
-            repeatType: 'reverse',
-          }
-        }
-        sx={{
-          width: 1,
-          height: 1,
-          borderRadius: '50%',
-          boxShadow: (theme) => `0px -2px 4px 0px ${theme.vars.palette[color].main} inset`,
-          background: (theme) =>
-            `linear-gradient(135deg, ${theme.vars.palette[color].lighter}, ${theme.vars.palette[color].light})`,
-          [stylesMode.dark]: {
-            boxShadow: (theme) => `0px -2px 4px 0px ${theme.vars.palette[color].dark} inset`,
-          },
-          ...sx,
-        }}
-      />
-    </Box>
-  );
-}
-
-export function Dots() {
-  return (
-    <>
-      <Dot
-        color="warning"
-        animate={{ x: 24 }}
-        sx={{ width: 14, height: 14, transform: 'translate(calc(50% - 457px), calc(50% - 259px))' }}
-      />
-
-      <Dot
-        color="warning"
-        animate={{ y: 24 }}
-        sx={{ transform: 'translate(calc(50% - 356px), calc(50% + 37px))' }}
-      />
-
-      <Dot
-        color="secondary"
-        animate={{ x: 24 }}
-        sx={{ transform: 'translate(calc(50% + 332px), calc(50% + 135px))' }}
-      />
-
-      <Dot
-        color="warning"
-        animate={{ x: 24 }}
-        sx={{ transform: 'translate(calc(50% + 430px), calc(50% - 160px))' }}
-      />
-
-      <Dot
-        color="primary"
-        animate={{ y: 24 }}
-        sx={{ transform: 'translate(calc(50% + 136px), calc(50% + 332px))' }}
-      />
-    </>
   );
 }

@@ -17,26 +17,45 @@ import { _socials } from 'src/_mock';
 import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from 'src/assets/icons';
 
 import { Logo } from 'src/components/logo';
+import { useTranslate } from '../../locales';
 
 // ----------------------------------------------------------------------
 
 const LINKS = [
   {
-    headline: 'Minimal',
-    children: [
-      { name: 'About us', href: paths.about },
-      { name: 'Contact us', href: paths.contact },
-      { name: 'FAQs', href: paths.faqs },
-    ],
+    headline: 'links.legal.headline',
+    children: [{ name: 'links.legal.children.privacy', href: paths.privacyPolicy }],
   },
   {
-    headline: 'Legal',
+    headline: 'links.contact.headline',
     children: [
-      { name: 'Terms and condition', href: '#' },
-      { name: 'Privacy policy', href: '#' },
+      { name: 'info@unicamp.lt', href: 'mailto:info@unicamp.lt' },
+      { name: '+370 630 47670', href: 'tel:+37063047670' },
     ],
   },
-  { headline: 'Contact', children: [{ name: 'support@minimals.cc', href: '#' }] },
+];
+
+const SOCIALS = [
+  {
+    value: 'facebook',
+    label: 'Facebook',
+    link: 'https://www.facebook.com/profile.php?id=61568514785007',
+  },
+  {
+    value: 'instagram',
+    label: 'Instagram',
+    link: 'https://www.instagram.com/unicamplt',
+  },
+  {
+    value: 'linkedin',
+    label: 'Linkedin',
+    link: 'https://www.linkedin.com/company/105553068',
+  },
+  {
+    value: 'twitter',
+    label: 'Twitter',
+    link: 'https://x.com/unicamplt',
+  },
 ];
 
 // ----------------------------------------------------------------------
@@ -48,6 +67,7 @@ export type FooterProps = {
 
 export function Footer({ layoutQuery, sx }: FooterProps) {
   const theme = useTheme();
+  const { t } = useTranslate('footer');
 
   return (
     <Box component="footer" sx={{ position: 'relative', bgcolor: 'background.default', ...sx }}>
@@ -80,8 +100,7 @@ export function Footer({ layoutQuery, sx }: FooterProps) {
                 [theme.breakpoints.up(layoutQuery)]: { mx: 'unset' },
               }}
             >
-              The starting point for your next project with Minimal UI Kit, built on the newest
-              version of Material-UI ©, ready to be customized to your style.
+              {t('description')}
             </Typography>
 
             <Stack
@@ -93,8 +112,14 @@ export function Footer({ layoutQuery, sx }: FooterProps) {
                 [theme.breakpoints.up(layoutQuery)]: { mb: 0, justifyContent: 'flex-start' },
               }}
             >
-              {_socials.map((social) => (
-                <IconButton key={social.label} color="inherit">
+              {SOCIALS.map((social) => (
+                <IconButton
+                  key={social.label}
+                  href={social.link}
+                  color="inherit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {social.value === 'twitter' && <TwitterIcon />}
                   {social.value === 'facebook' && <FacebookIcon />}
                   {social.value === 'instagram' && <InstagramIcon />}
@@ -123,7 +148,7 @@ export function Footer({ layoutQuery, sx }: FooterProps) {
                   }}
                 >
                   <Typography component="div" variant="overline">
-                    {list.headline}
+                    {t(list.headline)}
                   </Typography>
 
                   {list.children.map((link) => (
@@ -134,7 +159,7 @@ export function Footer({ layoutQuery, sx }: FooterProps) {
                       color="inherit"
                       variant="body2"
                     >
-                      {link.name}
+                      {t(link.name)}
                     </Link>
                   ))}
                 </Stack>
@@ -144,7 +169,7 @@ export function Footer({ layoutQuery, sx }: FooterProps) {
         </Grid>
 
         <Typography variant="body2" sx={{ mt: 10 }}>
-          © All rights reserved.
+          © {t('allRightsReserved')}
         </Typography>
       </Container>
     </Box>
@@ -171,7 +196,7 @@ export function HomeFooter({ sx }: HomeFooterProps) {
     >
       <Container>
         <Logo />
-        <Box sx={{ mt: 1, typography: 'caption' }}>© Visos teisės saugomos.</Box>
+        <Box sx={{ mt: 1, typography: 'caption' }}>© {t('allRightsReserved')}</Box>
       </Container>
     </Box>
   );

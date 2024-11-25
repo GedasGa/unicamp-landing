@@ -32,11 +32,17 @@ export function NotFoundView() {
           </Typography>
         </m.div>
 
-        <m.div variants={varBounce().in}>
-          <PageNotFoundIllustration sx={{ my: { xs: 5, sm: 10 } }} />
-        </m.div>
+        {/*<m.div variants={varBounce().in}>*/}
+        {/*  <PageNotFoundIllustration sx={{ my: { xs: 5, sm: 10 } }} />*/}
+        {/*</m.div>*/}
 
-        <Button component={RouterLink} href="/" size="large" variant="contained">
+        <Button
+          component={RouterLink}
+          href="/"
+          size="large"
+          variant="contained"
+          sx={{ mt: { xs: 5, sm: 10 } }}
+        >
           Go to home
         </Button>
       </Container>

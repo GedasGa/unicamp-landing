@@ -101,38 +101,6 @@ export const _notifications = [...Array(9)].map((_, index) => ({
 
 // ----------------------------------------------------------------------
 
-export const _mapContact = [
-  { latlng: [33, 65], address: _mock.fullAddress(1), phoneNumber: _mock.phoneNumber(1) },
-  { latlng: [-12.5, 18.5], address: _mock.fullAddress(2), phoneNumber: _mock.phoneNumber(2) },
-];
-
-// ----------------------------------------------------------------------
-
-export const _socials = [
-  {
-    value: 'facebook',
-    label: 'Facebook',
-    path: 'https://www.facebook.com/caitlyn.kerluke',
-  },
-  {
-    value: 'instagram',
-    label: 'Instagram',
-    path: 'https://www.instagram.com/caitlyn.kerluke',
-  },
-  {
-    value: 'linkedin',
-    label: 'Linkedin',
-    path: 'https://www.linkedin.com/caitlyn.kerluke',
-  },
-  {
-    value: 'twitter',
-    label: 'Twitter',
-    path: 'https://www.twitter.com/caitlyn.kerluke',
-  },
-];
-
-// ----------------------------------------------------------------------
-
 export const _pricingPlans = [
   {
     subscription: 'basic',

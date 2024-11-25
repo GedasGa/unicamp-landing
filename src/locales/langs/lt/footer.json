@@ -1,0 +1,16 @@
+{
+  "description": "Nauja ir drąsi IT akademija, kuri padės jums pasiekti karjeros tikslų su pasitikėjimu.",
+  "links": {
+    "legal": {
+      "headline": "Teisinė informacija",
+      "children": {
+        "terms": "Paslaugų teikimo sąlygos",
+        "privacy": "Privatumo politika"
+      }
+    },
+    "contact": {
+      "headline": "Kontaktai"
+    }
+  },
+  "allRightsReserved": "Visos teisės saugomos."
+}

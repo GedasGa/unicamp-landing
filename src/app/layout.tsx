@@ -19,8 +19,6 @@ import { ProgressBar } from 'src/components/progress-bar';
 import { MotionLazy } from 'src/components/animate/motion-lazy';
 import { SettingsDrawer, defaultSettings, SettingsProvider } from 'src/components/settings';
 import { CSPostHogProvider } from './providers';
-import Head from 'next/head';
-import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 
@@ -49,7 +47,7 @@ export default async function RootLayout({ children }: Props) {
   const lang = CONFIG.isStaticExport ? 'en' : await detectLanguage();
 
   return (
-    <html lang={lang ?? 'en'} suppressHydrationWarning>
+    <html lang={lang ?? 'en'} dir="ltr" suppressHydrationWarning>
       <body>
         <InitColorSchemeScript
           defaultMode={schemeConfig.defaultMode}

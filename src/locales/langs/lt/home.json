@@ -1,0 +1,149 @@
+{
+  "hero": {
+    "heading": "Aukščiausios kokybės kursai, praktiniai projektai ir pasiruošimo darbui sertifikatų programos",
+    "cta": {
+      "viewCourses": "Peržiūrėti kursus",
+      "text": "Gauk nemokamą konsultaciją",
+      "description": "Nežinai, nuo ko pradėti?"
+    },
+    "svg": {
+      "text": "unicamp akademija"
+    }
+  },
+  "unicamp": {
+    "caption": "Kodėl?",
+    "title": "Kodėl Unicamp?",
+    "description": "Esame profesionalų komanda, aistringai siekianti mokyti ir padėti kitiems. Mes čia tam, kad padėtume tau pasiekti sėkmę.",
+    "reasons": {
+      "qualityCourses": "Kokybiški kursai",
+      "getScholarships": "100% stipendijos",
+      "realProjects": "Tikri projektai",
+      "certificate": "Unicamp sertifikatas"
+    }
+  },
+  "features": {
+    "caption": "Unicamp siūlo",
+    "sections": {
+      "realProjects": {
+        "heading": "Tikri projektai",
+        "items": [
+          {
+            "title": "Praktinė patirtis",
+            "description": "Dirbk su projektais, kurie atspindi realaus pasaulio iššūkius, naudojant pramonėje patikimas priemones."
+          },
+          {
+            "title": "Parodyk savo darbą gyvai",
+            "description": "Pristatyk savo projektą tikriems vartotojams ir sužavėk darbdavius apčiuopiamais rezultatais. Nė viena kita akademija to nedaro."
+          },
+          {
+            "title": "Sustiprink savo portfolio",
+            "description": "Papildyk savo LinkedIn tikrais projektais ir pritrauk platesnę auditoriją."
+          }
+        ]
+      },
+      "teamWork": {
+        "heading": "Mokykis dirbdamas komandoje",
+        "items": [
+          {
+            "title": "Prisijunk prie smalsių ir motyvuotų žmonių",
+            "description": "Apsupk save tais, kurie įkvepia augti ir kurti."
+          },
+          {
+            "title": "Bendradarbiauk su programuotojais ir UX dizaineriais",
+            "description": "Dirbk su kryžminėmis komandomis – kitais programuotojais ir dizaineriais."
+          },
+          {
+            "title": "Plėsk savo tinklą",
+            "description": "Užmegzk ryšius su bendraminčiais, kurie įkvepia, palaiko ir padeda augti tiek profesinėje, tiek asmeninėje srityje."
+          }
+        ]
+      },
+      "1on1": {
+        "heading": "Asmeninės konsultacijos su mentoriumi",
+        "items": [
+          {
+            "title": "Dedikuotas mentorius",
+            "description": "Žmogus, su kuriuo gali pasidalyti tiek pergalėmis, tiek iššūkiais, gaunant patarimus ir palaikymą visų kursų metu."
+          },
+          {
+            "title": "Karjeros patarimai",
+            "description": "Pasikalbėk apie tikslus, suplanuok ateitį ir gauk patarimų, kaip patekti į IT industriją."
+          }
+        ]
+      }
+    }
+  },
+  "team": {
+    "heading": "Unicamp komanda",
+    "description": "Esame profesionalų komanda, aistringai siekianti mokyti ir padėti kitiems. Kelerius metus dirbome IT srityje ir nusprendėme atidaryti akademiją, kurioje dalijamės įžvalgomis.",
+    "members": [
+      {
+        "name": "Gedas Gardauskas",
+        "role": "CEO ir web programavimo dėstytojas"
+      },
+      {
+        "name": "Mindaugas Pažereckas",
+        "role": "Operacijos ir marketingas"
+      },
+      {
+        "name": "Aistė Gerdzevičiūtė",
+        "role": "Produktų dizainerė ir UX/UI dėstytoja"
+      },
+      {
+        "name": "Toschi",
+        "role": "Mindės draugas"
+      }
+    ]
+  },
+  "programs": {
+    "title": "Unicamp programos",
+    "description": "Pasirink kursą ir pradėk savo geriausią IT karjerą.",
+    "cta": {
+      "apply": "Registruotis dabar",
+      "viewProgram": "Peržiūrėti programą"
+    },
+    "list": {
+      "specializations": "Tapk",
+      "tools": "Įrankiai",
+      "topics": "Temos"
+    },
+    "levels": {
+      "beginner": "Pradedantysis",
+      "intermediate": "Vidutinis",
+      "advanced": "Pažengęs"
+    },
+    "programs": {
+      "webDevelopment": {
+        "title": "Web programavimas",
+        "caption": "1 mėnuo",
+        "description": "Mūsų web programavimo programa padės įgyti įgūdžių, reikalingų sėkmei IT srityje. Siūlome įvairius kursus, kurie padės pasiruošti profesionaliai karjerai.",
+        "specializations": ["Frontend programuotojas", "React programuotojas", "Next.js programuotojas"],
+        "tools": ["HTML", "CSS", "JavaScript", "React", "Next.js", "Firebase", "VSCode", "GitHub", "Copilot", "LLMs (ChatGPT, Claude)"],
+        "topics": ["HTML ir CSS pagrindai", "Responsyvus dizainas", "Įvadas į JavaScript", "TypeScript", "React pagrindai", "React Hooks", "React Context", "Next.js", "Backend-as-a-Service", "Git ir GitHub", "Domeno ir hostingo įsigijimas", "Produktyvumo įrankiai su AI"]
+      },
+      "productDesign": {
+        "title": "UX/UI dizainas",
+        "caption": "1 mėnuo",
+        "description": "Mūsų UX/UI dizaino programa padės įgyti įgūdžių, reikalingų sėkmingai karjerai dizaino srityje. Siūlome įvairias temas, kurios praplės tavo žinias ir patirtį.",
+        "specializations": ["UX/UI dizaineris", "UX tyrėjas", "Produktų dizaineris", "Vizualinis dizaineris"],
+        "tools": ["Figma", "FigJam", "AI įrankiai (ChatGPT, Claude, Midjourney, DaVinchi AI)"],
+        "topics": ["Vartotojo patirtis (UX)", "Vartotojo sąsaja (UI)", "UX tyrimai", "Naudotojų testavimas", "Wireframing", "Prototipų kūrimas", "Dizaino sistemos", "AI įrankiai dizaineriams"]
+      }
+    }
+  },
+  "faqs": {
+    "caption": "DUK",
+    "title": "Turime atsakymus",
+    "contact": {
+      "heading": "Vis dar kyla klausimų?",
+      "description": "Aprašyk savo situaciją, kad gautum tiksliausią atsakymą.",
+      "cta": "Susisiek su mumis"
+    },
+    "questions": [
+      {
+        "question": "Ar kursai tikrai nemokami?",
+        "answer": "Taip, visi mūsų kursai yra 100% nemokami. Tikime, kad kiekvienas turi teisę į kokybišką išsilavinimą."
+      }
+    ]
+  }
+}
