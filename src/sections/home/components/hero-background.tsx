@@ -12,7 +12,7 @@ import { varAlpha, stylesMode } from 'src/theme/styles';
 
 import { MotionContainer, varFade } from 'src/components/animate';
 
-import { Dots, Lines, Companies, Circles, PlusIcon } from './hero-svg';
+import { Lines, Companies, Circles, PlusIcon } from './hero-svg';
 
 // ----------------------------------------------------------------------
 

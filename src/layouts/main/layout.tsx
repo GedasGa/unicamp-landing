@@ -68,7 +68,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
 
   const dismissAlert = () => {
     localStorage.setState({ showAlert: false });
-    localStorage.setField('layout-settings', { showAlert: false });
+    localStorage.setField('showAlert', false);
   };
 
   return (

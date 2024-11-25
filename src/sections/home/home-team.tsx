@@ -8,7 +8,6 @@ import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
-import { _socials } from 'src/_mock';
 import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from 'src/assets/icons';
 
 import { Image } from 'src/components/image';
@@ -106,7 +105,7 @@ export function HomeTeam({ sx, ...other }: BoxProps) {
           <Carousel carousel={carousel} sx={{ px: 0.5 }}>
             {MEMBERS.map((member) => (
               <Box
-                key={member.id}
+                key={member.name}
                 component={m.div}
                 variants={varFade().in}
                 sx={{ py: { xs: 8, md: 10 } }}

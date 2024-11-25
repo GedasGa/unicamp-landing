@@ -6,11 +6,9 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
-import { _socials, _carouselsMembers } from 'src/_mock';
-import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from 'src/assets/icons';
+import { _carouselsMembers } from 'src/_mock';
 
 import { Image } from 'src/components/image';
 import { Iconify } from 'src/components/iconify';
@@ -98,17 +96,6 @@ function MemberCard({ member }: MemberCardProps) {
 
       <Box sx={{ px: 1 }}>
         <Image alt={member.name} src={member.avatarUrl} ratio="1/1" sx={{ borderRadius: 2 }} />
-      </Box>
-
-      <Box display="flex" alignItems="center" justifyContent="center" sx={{ p: 2 }}>
-        {_socials.map((social) => (
-          <IconButton key={social.label} color="inherit">
-            {social.value === 'facebook' && <FacebookIcon />}
-            {social.value === 'instagram' && <InstagramIcon />}
-            {social.value === 'linkedin' && <LinkedinIcon />}
-            {social.value === 'twitter' && <TwitterIcon />}
-          </IconButton>
-        ))}
       </Box>
     </Card>
   );

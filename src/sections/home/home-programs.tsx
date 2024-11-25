@@ -164,7 +164,6 @@ export function ProgramCard({ program, sx, ...other }: Props) {
     title,
     caption,
     icon,
-    label,
     price,
     originalPrice,
     specializations,
@@ -274,8 +273,8 @@ export function ProgramCard({ program, sx, ...other }: Props) {
         fullWidth
         size="large"
         variant="contained"
-        // @ts-ignore Injected to document object
         onClick={() => {
+          // @ts-ignore Injected to document object
           OpenWidget.call('maximize', { feature: 'form-contact' });
         }}
       >

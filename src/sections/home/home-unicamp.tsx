@@ -51,7 +51,7 @@ export function HomeUnicamp({ sx, ...other }: BoxProps) {
       <Stack spacing={1} alignItems={'center'}>
         <Icon icon="material-symbols:developer-guide-outline-rounded" width={32} />
         <Stack direction="row" spacing={1}>
-          <Icon icon="material-symbols:new-releases" width={20} sx={{ color: 'primary.main' }} />
+          <Icon icon="material-symbols:new-releases" width={20} />
           <Typography variant="subtitle1">{t('unicamp.reasons.certificate')}</Typography>
         </Stack>
       </Stack>

@@ -9,7 +9,6 @@ import { HomeFAQs } from '../home-faqs';
 import { HomeFeatures } from '../home-features';
 import { HomePrograms } from '../home-programs';
 import { HomeTeam } from '../home-team';
-import { HomeTestimonials } from '../home-testimonials';
 import { HomeContact } from '../home-contact';
 import { HomeUnicamp } from '../home-unicamp';
 
