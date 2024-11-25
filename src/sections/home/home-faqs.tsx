@@ -20,114 +20,27 @@ import { varFade, MotionViewport } from 'src/components/animate';
 
 import { SectionTitle } from './components/section-title';
 import { FloatLine, FloatPlusIcon, FloatTriangleDownIcon } from './components/svg-elements';
+import { useTranslate } from '../../locales';
+import Divider from '@mui/material/Divider';
+import { TFunction } from 'i18next';
 
 // ----------------------------------------------------------------------
 
-const FAQs = [
+const FAQs = (t: TFunction<string | 'translation', undefined>) => [
   {
-    question: 'How can I get the update?',
-    answer: (
-      <Typography>
-        You will get 12 months of free
-        <Link
-          href="https://support.mui.com/hc/en-us/articles/360008775240-How-do-I-get-access-to-an-item-I-purchased"
-          target="_blank"
-          rel="noopener"
-          sx={{ mx: 0.5 }}
-        >
-          updates
-        </Link>
-        with the purchase. Please renew your license to get updates after that.
-      </Typography>
-    ),
-  },
-  {
-    question: 'Which license is right for you?',
-    answer: (
-      <Box component="ul" sx={{ pl: 3, listStyleType: 'disc' }}>
-        <li> All licenses do not apply to open source.</li>
-        <li> One licenses / one end product (3 licenses / 3 products...).</li>
-        <li>
-          <strong>Standard / Plus</strong> license used in free products (Internal management...).
-        </li>
-        <li>
-          <strong>Extended</strong> license used in charge products, collect fees from users
-          (SAAS...).
-        </li>
-        <li>
-          Learn more about the
-          <Link
-            href="https://docs.minimals.cc/package/"
-            target="_blank"
-            rel="noopener"
-            sx={{ mx: 0.5 }}
-          >
-            package & license
-          </Link>
-        </li>
-      </Box>
-    ),
-  },
-  {
-    question: 'How long is my license valid for?',
-    answer: (
-      <Box component="ul" sx={{ pl: 3, listStyleType: 'disc' }}>
-        <li> The license is lifetime.</li>
-        <li> You get 12 months of free updates.</li>
-      </Box>
-    ),
-  },
-  {
-    question: 'Which platforms will the template support?',
-    answer: (
-      <Typography>
-        {`The components in MUI are designed to work in the latest, stable releases of all major browsers, including Chrome, Firefox, Safari, and Edge. We don't support Internet Explorer 11. `}
-        Learn more about the
-        <Link
-          href="https://mui.com/material-ui/getting-started/supported-platforms/"
-          target="_blank"
-          rel="noopener"
-          sx={{ mx: 0.5 }}
-        >
-          supported platforms
-        </Link>
-      </Typography>
-    ),
-  },
-  {
-    question: 'For what kind of projects is the Standard license intended?',
-    answer: (
-      <Typography>
-        The Standard license is designed for internal applications in which staff will access the
-        application. An example could be the back-office dashboard of a public-facing e-commerce
-        website in which staff would sign in and manage inventory, customers, etc.
-      </Typography>
-    ),
-  },
-  {
-    question: 'Do you have a free demo to review the code before purchasing?',
-    answer: (
-      <Typography>
-        Yes, you can check out our
-        <Link
-          href="https://mui.com/store/items/minimal-dashboard-free/"
-          target="_blank"
-          rel="noopener"
-          sx={{ mx: 0.5 }}
-        >
-          open source
-        </Link>
-        dashboard template which should give you an overview of the code quality and folder
-        structure. Keep in mind that some aspects may differ from this Paid version.
-      </Typography>
-    ),
+    question: t('faqs.questions.0.question'),
+    answer: <Typography>{t('faqs.questions.0.answer')}</Typography>,
   },
 ];
 
 // ----------------------------------------------------------------------
 
 export function HomeFAQs({ sx, ...other }: BoxProps) {
-  const [expanded, setExpanded] = useState<string | false>(FAQs[0].question);
+  const { t } = useTranslate('home');
+
+  const questions = FAQs(t);
+
+  const [expanded, setExpanded] = useState<string | false>(questions[0].question);
 
   const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false);
@@ -135,9 +48,8 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
 
   const renderDescription = (
     <SectionTitle
-      caption="FAQs"
-      title="We’ve got the"
-      txtGradient="answers"
+      caption={t('faqs.caption')}
+      title={t('faqs.title')}
       sx={{ textAlign: 'center' }}
     />
   );
@@ -152,7 +64,7 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
         mb: { xs: 5, md: 8 },
       }}
     >
-      {FAQs.map((item, index) => (
+      {questions.map((item, index) => (
         <Accordion
           key={item.question}
           component={m.div}
@@ -218,12 +130,12 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
       }}
     >
       <m.div variants={varFade().in}>
-        <Typography variant="h4">Still have questions?</Typography>
+        <Typography variant="h4">{t('faqs.contact.heading')}</Typography>
       </m.div>
 
       <m.div variants={varFade().in}>
         <Typography sx={{ mt: 2, mb: 3, color: 'text.secondary' }}>
-          Please describe your case to receive the most accurate advice
+          {t('faqs.contact.description')}
         </Typography>
       </m.div>
 
@@ -231,10 +143,13 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
         <Button
           color="inherit"
           variant="contained"
-          href="mailto:support@minimals.cc?subject=[Feedback] from Customer"
+          onClick={() => {
+            // @ts-ignore Injected to document object
+            OpenWidget.call('maximize', { feature: 'form-contact' });
+          }}
           startIcon={<Iconify icon="fluent:mail-24-filled" />}
         >
-          Contact us
+          {t('faqs.contact.cta')}
         </Button>
       </m.div>
     </Stack>

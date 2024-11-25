@@ -1,25 +1,149 @@
 {
   "hero": {
-    "heading": {
-      "prefix": "A Sure Path",
-      "root": "to the IT Market with"
-    },
-    "subtitle": {
-      "firstRow": "No promises of quick results.",
-      "secondRow": "Real projects, teamwork, 1:1 consultations, and Top specialists."
-    },
-    "timer": {
-      "launchesIn": "New academy starts in",
-      "days": "days",
-      "hours": "hours",
-      "minutes": "minutes",
-      "seconds": "seconds"
-    },
+    "heading": "High end courses, hands-on projects, and job-ready certificate programs",
     "cta": {
-      "text": "Get a free IT career consultation"
+      "viewCourses": "View courses",
+      "text": "Get free consultation",
+      "description": "Not sure where to start?"
     },
     "svg": {
       "text": "unicamp academy"
     }
+  },
+  "unicamp": {
+    "caption": "Why?",
+    "title": "Why Unicamp?",
+    "description": "We are a team of professionals who are passionate about teaching and helping others. We are here to help you succeed.",
+    "reasons": {
+      "qualityCourses": "Quality courses",
+      "getScholarships": "100% scholarships",
+      "realProjects":  "Real projects",
+      "certificate": "Unicamp certificate"
+    }
+  },
+  "features": {
+    "caption": "At Unicamp",
+    "sections": {
+      "realProjects": {
+        "heading": "Real-world projects",
+        "items": [
+          {
+            "title": "Gain hands-on experience",
+            "description": "Work on projects that mirror real-world challenges, using tools the industry trusts."
+          },
+          {
+            "title": "Showcase your work live",
+            "description": "Launch your project to real users and impress potential employers with tangible results. No other academy really delivers on that."
+          },
+          {
+            "title": "Boost your portfolio",
+            "description": "Add real-world projects to your LinkedIn and get noticed by a wider audience."
+          }
+        ]
+      },
+      "teamWork": {
+        "heading": "Learn through teamwork",
+        "items": [
+          {
+            "title": "Join a curious and driven community",
+            "description": "Surround yourself with people who inspire growth and creativity."
+          },
+          {
+            "title": "Collaborate with developers and UX designers students",
+            "description": "Work in cross functional teams with other developers and designers."
+          },
+          {
+            "title": "Growth your network",
+            "description": "Connect with like-minded people who inspire, support and help you to grow both professionally and personally."
+          }
+        ]
+      },
+      "1on1": {
+        "heading": "1-on-1 with your mentor",
+        "items": [
+          {
+            "title": "Dedicated mentor",
+            "description": "A person to share both the triumphs and challenges with, offering guidance and support throughout your courses."
+          },
+          {
+            "title": "Career-focused advice",
+            "description": "Discuss your goals, map out your future, and get insider tips on breaking into the IT industry."
+          }
+        ]
+      }
+    }
+  },
+  "team": {
+    "heading": "Unicamp team",
+    "description": "We are a team of professionals who are passionate about teaching and helping others. We were in this industry for several years and decided to open our IT academy offering all the insights",
+    "members": [
+      {
+        "name": "Gedas Gardauskas",
+        "role": "CEO & Web Development lecturer"
+      },
+      {
+        "name": "Mindaugas Pazereckas",
+        "role": "Operations & Marketing"
+      },
+      {
+        "name": "Aiste Gerdzeviciute",
+        "role": "Product Designer & UX/UI lecturer"
+      },
+      {
+        "name": "Toschi",
+        "role": "Mindės dawg"
+      }
+    ]
+  },
+  "programs": {
+    "title": "Unicamp programs",
+    "description": "Choose your course and kick off your best IT career.",
+    "cta": {
+      "apply": "Apply now",
+      "viewProgram": "View program"
+    },
+    "list": {
+      "specializations": "Become",
+      "tools": "Tools",
+      "topics": "Topics"
+    },
+    "levels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "programs": {
+      "webDevelopment": {
+        "title": "Web Development",
+        "caption": "1 month",
+        "description": "Our web development program is designed to help you learn the skills you need to succeed as a web developer. We offer a variety of courses to help you learn the skills you need to succeed in the IT field.",
+        "specializations": ["Frontend developer", "React developer", "Next.js developer"],
+        "tools": ["HTML", "CSS", "JavaScript", "React", "Next.js", "Firebase", "VSCode", "GitHub", "Copilot", "LLMs (ChatGPT, Claude)"],
+        "topics": ["HTML & CSS Basic", "Responsive Web Design", "Introduction to JavaScript", "TypeScript", "React Basics", "React Hooks", "React Context", "Next.js", "Backend as a Service", "Git & GitHub", "Buy domain & hosting", "Productivity hacks with AI tools"]
+      },
+      "productDesign": {
+        "title": "UX/UI Design",
+        "caption": "1 month",
+        "description": "Our web development program is designed to help you learn the skills you need to succeed as a web developer. We offer a variety of courses to help you learn the skills you need to succeed in the IT field.",
+        "specializations": ["UX/UI designer", "UX Researcher", "UX Designer", "Product Designer", "Visual Designer"],
+        "tools": ["Figma", "FigJam", "AI Tools (ChatGPT, Claude, Midjourney, DaVinchi AI)"],
+        "topics": ["User Experience (UX)", "User Interface (UI)", "UX Research", "Usability Testing", "Wireframing", "Prototyping", "Design Systems", "AI Tools for Designers"]
+      }
+    }
+  },
+  "faqs": {
+    "caption": "FAQs",
+    "title": "We've got the answers",
+    "contact": {
+      "heading": "Still have questions?",
+      "description": "Please describe your case to receive the most accurate advice",
+      "cta": "Contact us"
+    },
+    "questions": [
+      {
+        "question": "Are the courses really free?",
+        "answer": "Yes, all our courses are 100% free. We believe that everyone should have access to quality education."
+      }
+    ]
   }
 }

@@ -16,13 +16,25 @@ import { CONFIG } from '../../config-global';
 
 export type LogoProps = BoxProps & {
   href?: string;
-  isSingle?: boolean;
+  onlyLogo?: boolean;
   disableLink?: boolean;
+  onBlack?: boolean;
 };
 
+// TODO: Change logo based on theme
 export const Logo = forwardRef<HTMLDivElement, LogoProps>(
   (
-    { width, href = '/', height, isSingle = true, disableLink = false, className, sx, ...other },
+    {
+      width,
+      href = '/',
+      height,
+      onlyLogo = true,
+      disableLink = false,
+      onBlack = false,
+      className,
+      sx,
+      ...other
+    },
     ref
   ) => {
     const theme = useTheme();
@@ -30,6 +42,16 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>(
     const singleLogo = (
       <Box
         alt="Single logo"
+        component="img"
+        src={`${CONFIG.assetsDir}/logo/logo-single.svg`}
+        width="100%"
+        height="100%"
+      />
+    );
+
+    const singleLogoOnBlack = (
+      <Box
+        alt="Single logo on black"
         component="img"
         src={`${CONFIG.assetsDir}/logo/logo-single.svg`}
         width="100%"
@@ -50,7 +72,7 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>(
     const baseSize = {
       width: width ?? 40,
       height: height ?? 40,
-      ...(!isSingle && {
+      ...(!onlyLogo && {
         width: width ?? 102,
         height: height ?? 36,
       }),
@@ -73,7 +95,7 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>(
         }}
         {...other}
       >
-        {isSingle ? singleLogo : fullLogo}
+        {onlyLogo ? singleLogo : fullLogo}
       </Box>
     );
   }

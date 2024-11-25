@@ -1,0 +1,56 @@
+{
+  "title": "Privacy Policy",
+  "effectiveDate": "Effective Date",
+  "updatedDate": "Last Updated",
+  "introduction": "Unicamp is committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and protect your information in compliance with the General Data Protection Regulation (GDPR) and other applicable laws.",
+  "sections": {
+    "whoWeAre": {
+      "header": "1. Who We Are",
+      "content": "Website Name: Unicamp\nWebsite Address: www.unicamp.lt\nContact Email: info@unicamp.co\nData Controller: UAB Unicamp \nIf you have questions about this Privacy Policy or your rights under GDPR, please contact us at info@unicamp.co."
+    },
+    "informationWeCollect": {
+      "header": "2. Information We Collect",
+      "content": "We may collect the following types of personal data:\n\na. Information You Provide to Us\n- Name, email address, phone number, and mailing address (e.g., when you fill out forms, make purchases, or subscribe to newsletters).\n\nb. Information Automatically Collected\n- When you use our website, we may collect:\n  - Cookies and Tracking Data: Information about your browsing behavior (e.g., pages visited, time spent).\n  - Device Information: IP address, browser type, operating system, and device type.\n\nc. Third-Party Sources\n- We may receive data from:\n  - Advertising networks\n  - Analytics providers (e.g., Google Analytics)\n  - Social media platforms"
+    },
+    "howWeUseYourInformation": {
+      "header": "3. How We Use Your Information",
+      "content": "We use your information to:\n- Provide and improve our services.\n- Process payments and fulfill orders.\n- Communicate with you about updates, promotions, or customer service issues.\n- Personalize your experience on our website.\n- Comply with legal obligations."
+    },
+    "legalBasisForProcessing": {
+      "header": "4. Legal Basis for Processing",
+      "content": "We process your personal data based on the following lawful grounds:\n- Consent: When you opt-in (e.g., subscribing to emails, accepting cookies).\n- Contractual Necessity: To fulfill a contract (e.g., processing payments).\n- Legal Obligations: For compliance with applicable laws (e.g., tax regulations).\n- Legitimate Interests: To improve our website and services."
+    },
+    "cookies": {
+      "header": "5. Cookies and Tracking Technologies",
+      "content": "We use cookies to enhance your experience.\n\na. Types of Cookies We Use\n- Necessary Cookies: Enable website functionality.\n- Preference Cookies: Remember settings like language and location.\n- Analytics Cookies: Track website usage for improvement.\n- Marketing Cookies: Deliver tailored ads.\n\nb. Consent for Cookies\n- Non-essential cookies will only be activated after obtaining your explicit consent through a cookie banner. You can manage your preferences at any time via our [Cookie Settings Page].\n\nc. Third-Party Services\n- We use third-party services (e.g., Google Analytics, Facebook Pixel) that may set their own cookies. For more information, visit their privacy policies."
+    },
+    "dataSharing": {
+      "header": "6. Data Sharing and Transfers",
+      "content": "We may share your information with:\n- Service Providers: For payment processing, analytics, hosting, and customer support.\n- Advertising Partners: To deliver personalized ads.\n- Legal Authorities: When required by law or to protect our legal rights.\n\nInternational Transfers:\n- If data is transferred outside the European Economic Area (EEA), we ensure adequate safeguards, such as:\n  - EU-approved Standard Contractual Clauses.\n  - Data transfer agreements."
+    },
+    "dataProtection": {
+      "header": "7. How We Protect Your Data",
+      "content": "We use industry-standard security measures, such as:\n- SSL encryption for data transmission.\n- Firewalls and access controls to secure servers.\n- Regular monitoring for potential vulnerabilities."
+    },
+    "dataRetention": {
+      "header": "8. Data Retention",
+      "content": "We keep your data only as long as necessary for the purposes outlined in this policy or as required by law. For example:\n- Order Data: Retained for 7 years for tax compliance.\n- Marketing Data: Retained until you withdraw consent."
+    },
+    "yourRights": {
+      "header": "9. Your GDPR Rights",
+      "content": "Under the GDPR, you have the following rights:\n- Access: Request a copy of your personal data.\n- Rectification: Correct inaccurate or incomplete data.\n- Erasure (\"Right to be Forgotten\"): Request deletion of your data.\n- Restriction: Limit how your data is processed.\n- Data Portability: Receive your data in a machine-readable format.\n- Objection: Opt-out of specific processing activities, such as direct marketing.\n- Withdraw Consent: Withdraw consent at any time, where applicable.\n\nTo exercise these rights, contact us at [Your Email]."
+    },
+    "childrenPrivacy": {
+      "header": "10. Children's Privacy",
+      "content": "Our website is not intended for children under 16 years of age. We do not knowingly collect personal data from children. If you believe we have inadvertently collected such data, please contact us, and we will delete it promptly."
+    },
+    "policyChanges": {
+      "header": "11. Changes to This Policy",
+      "content": "We may update this Privacy Policy from time to time. Changes will be posted on this page, with an updated revision date. Please review periodically for updates."
+    },
+    "contact": {
+      "header": "12. Contact Information",
+      "content": "If you have questions or concerns about this Privacy Policy or our data practices, contact us:\n- Email: info@unicamp.co\n- Phone: +370 630 47670\n- Address: Konsitucijos pr. 15-121, Vilnius, Lithuania"
+    }
+  }
+}

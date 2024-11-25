@@ -14,6 +14,7 @@ import { Scrollbar } from 'src/components/scrollbar';
 import { NavList } from './nav-mobile-list';
 
 import type { NavMainProps } from '../types';
+import { useTranslate } from '../../../../locales';
 
 // ----------------------------------------------------------------------
 
@@ -28,6 +29,7 @@ export type NavMobileProps = NavMainProps & {
 
 export function NavMobile({ data, open, onClose, slots, sx }: NavMobileProps) {
   const pathname = usePathname();
+  const { t } = useTranslate('navbar');
 
   useEffect(() => {
     if (open) {
@@ -67,14 +69,8 @@ export function NavMobile({ data, open, onClose, slots, sx }: NavMobileProps) {
 
       {slots?.bottomArea ?? (
         <Box gap={1.5} display="flex" sx={{ px: 2.5, py: 3 }}>
-          <Button
-            fullWidth
-            variant="contained"
-            rel="noopener"
-            target="_blank"
-            href={paths.minimalStore}
-          >
-            Purchase
+          <Button fullWidth variant="contained" href={paths.courses}>
+            {t('cta.text')}
           </Button>
         </Box>
       )}

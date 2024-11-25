@@ -2,15 +2,16 @@
 
 import Stack from '@mui/material/Stack';
 
-import { BackToTop } from 'src/components/animate/back-to-top';
 import { ScrollProgress, useScrollProgress } from 'src/components/animate/scroll-progress';
 
 import { HomeHero } from '../home-hero';
 import { HomeFAQs } from '../home-faqs';
-import { HomeMinimal } from '../home-minimal';
-import { HomeHugePackElements } from '../home-hugepack-elements';
-import { HomeAdvertisement } from '../home-advertisement';
-import { HomePricing } from '../home-pricing';
+import { HomeFeatures } from '../home-features';
+import { HomePrograms } from '../home-programs';
+import { HomeTeam } from '../home-team';
+import { HomeTestimonials } from '../home-testimonials';
+import { HomeContact } from '../home-contact';
+import { HomeUnicamp } from '../home-unicamp';
 
 // ----------------------------------------------------------------------
 
@@ -28,10 +29,12 @@ export function HomeView() {
       <HomeHero />
 
       <Stack sx={{ position: 'relative', bgcolor: 'background.default' }}>
-        <HomeMinimal />
-        <HomePricing />
-        <HomeFAQs />
-        <HomeAdvertisement />
+        <HomeUnicamp />
+        <HomeFeatures />
+        {/*<HomeTeam />*/}
+        <HomePrograms id="courses" />
+        {/*<HomeContact />*/}
+        {/*<HomeFAQs />*/}
       </Stack>
     </>
   );

@@ -1,0 +1,16 @@
+{
+  "description": "A fresh and bold academy redefining the way you grow and succeed.",
+  "links": {
+    "legal": {
+      "headline": "Legal",
+      "children": {
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy"
+      }
+    },
+    "contact": {
+      "headline": "Contact"
+    }
+  },
+  "allRightsReserved": "All rights reserved."
+}

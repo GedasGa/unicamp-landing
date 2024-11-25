@@ -10,15 +10,14 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { CONFIG } from 'src/config-global';
 import { varAlpha, stylesMode } from 'src/theme/styles';
 
-import { MotionContainer } from 'src/components/animate';
+import { MotionContainer, varFade } from 'src/components/animate';
 
-import { Dots, Lines, Texts, Circles, PlusIcon } from './hero-svg';
+import { Dots, Lines, Companies, Circles, PlusIcon } from './hero-svg';
 
 // ----------------------------------------------------------------------
 
 export function HeroBackground({ sx, ...other }: BoxProps) {
   const theme = useTheme();
-
   const upMd = useResponsive('up', 'md');
 
   const strokeCount = 12;
@@ -58,9 +57,7 @@ export function HeroBackground({ sx, ...other }: BoxProps) {
       }}
       {...other}
     >
-      <Dots />
-
-      {upMd && <Texts />}
+      {upMd && <Companies />}
 
       <Box
         component={m.svg}

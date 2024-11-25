@@ -18,7 +18,7 @@ export function AboutHero({ sx, ...other }: BoxProps) {
       component="section"
       sx={{
         height: { md: 560 },
-        py: { xs: 10, md: 0 },
+        my: { xs: 10, md: 0 },
         overflow: 'hidden',
         position: 'relative',
         backgroundSize: 'cover',
