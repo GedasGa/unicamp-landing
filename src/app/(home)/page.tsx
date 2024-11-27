@@ -25,7 +25,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@unicamp',
+    site: '@unicamplt',
     title: 'Unicamp IT Akademija',
     description:
       'Web programavimo mokymai ir UX/UI dizaino kursai su realia praktika ir projektais!',
