@@ -40,10 +40,7 @@ export function SettingsProvider({
 
   const memoizedValue = useMemo(
     () => ({
-      ...{
-        ...values.state,
-        colorScheme: 'light', // force light theme
-      },
+      ...values.state,
       canReset: values.canReset,
       onReset: values.resetState,
       onUpdate: values.setState,
