@@ -28,7 +28,7 @@ const MEMBERS = [
       {
         label: 'Linkedin',
         value: 'linkedin',
-        link: 'hhttps://www.linkedin.com/in/gedas-gardauskas',
+        link: 'https://www.linkedin.com/in/gedas-gardauskas',
       },
     ],
   },
