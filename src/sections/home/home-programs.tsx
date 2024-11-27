@@ -311,11 +311,11 @@ export function ProgramCard({ program, sx, ...other }: Props) {
       }}
       {...other}
     >
-      {/*{renderIcon}*/}
+      {renderIcon}
 
-      {/*{renderSubscription}*/}
+      {renderSubscription}
 
-      {/*{renderPrice}*/}
+      {renderPrice}
 
       {renderSpecializations}
 
