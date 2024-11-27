@@ -36,7 +36,7 @@ export function ThemeProvider({ children }: Props) {
       <CssVarsProvider
         theme={theme}
         defaultMode={schemeConfig.defaultMode}
-        modeStorageKey={schemeConfig.modeStorageKey}
+        // modeStorageKey={schemeConfig.modeStorageKey} Force light theme
       >
         <CssBaseline />
         {/*TODO: Figure out why it doesn't load without it*/}

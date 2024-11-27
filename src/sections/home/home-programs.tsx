@@ -223,7 +223,7 @@ export function ProgramCard({ program, sx, ...other }: Props) {
       <Typography variant="h6" sx={{ textTransform: 'capitalize' }}>
         {t('programs.list.specializations')}
       </Typography>
-      <Stack direction="row" spacing={2}>
+      <Stack direction="row" spacing={2} flexWrap="wrap">
         {specializations.map((specialization) => (
           <Label key={specialization}>{t(specialization)}</Label>
         ))}
@@ -311,11 +311,11 @@ export function ProgramCard({ program, sx, ...other }: Props) {
       }}
       {...other}
     >
-      {renderIcon}
+      {/*{renderIcon}*/}
 
-      {renderSubscription}
+      {/*{renderSubscription}*/}
 
-      {renderPrice}
+      {/*{renderPrice}*/}
 
       {renderSpecializations}
 

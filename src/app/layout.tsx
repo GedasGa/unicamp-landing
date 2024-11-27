@@ -51,7 +51,7 @@ export default async function RootLayout({ children }: Props) {
       <body>
         <InitColorSchemeScript
           defaultMode={schemeConfig.defaultMode}
-          modeStorageKey={schemeConfig.modeStorageKey}
+          // modeStorageKey={schemeConfig.modeStorageKey} Force light theme
         />
 
         <CSPostHogProvider>

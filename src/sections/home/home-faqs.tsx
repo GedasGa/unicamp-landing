@@ -31,6 +31,58 @@ const FAQs = (t: TFunction<string | 'translation', undefined>) => [
     question: t('faqs.questions.0.question'),
     answer: <Typography>{t('faqs.questions.0.answer')}</Typography>,
   },
+  {
+    question: t('faqs.questions.1.question'),
+    answer: <Typography>{t('faqs.questions.1.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.2.question'),
+    answer: <Typography>{t('faqs.questions.2.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.3.question'),
+    answer: <Typography>{t('faqs.questions.3.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.4.question'),
+    answer: <Typography>{t('faqs.questions.4.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.5.question'),
+    answer: <Typography>{t('faqs.questions.5.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.6.question'),
+    answer: <Typography>{t('faqs.questions.6.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.7.question'),
+    answer: <Typography>{t('faqs.questions.7.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.8.question'),
+    answer: <Typography>{t('faqs.questions.8.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.9.question'),
+    answer: <Typography>{t('faqs.questions.9.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.10.question'),
+    answer: <Typography>{t('faqs.questions.10.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.11.question'),
+    answer: <Typography>{t('faqs.questions.11.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.12.question'),
+    answer: <Typography>{t('faqs.questions.12.answer')}</Typography>,
+  },
+  {
+    question: t('faqs.questions.13.question'),
+    answer: <Typography>{t('faqs.questions.13.answer')}</Typography>,
+  },
 ];
 
 // ----------------------------------------------------------------------
@@ -58,10 +110,9 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
     <Stack
       spacing={1}
       sx={{
-        mt: 8,
         mx: 'auto',
         maxWidth: 720,
-        mb: { xs: 5, md: 8 },
+        my: { xs: 5, md: 10 },
       }}
     >
       {questions.map((item, index) => (

@@ -30,10 +30,10 @@ export function HomeView() {
       <Stack sx={{ position: 'relative', bgcolor: 'background.default' }}>
         <HomeUnicamp />
         <HomeFeatures />
-        {/*<HomeTeam />*/}
+        <HomeTeam />
         <HomePrograms id="courses" />
         {/*<HomeContact />*/}
-        {/*<HomeFAQs />*/}
+        <HomeFAQs />
       </Stack>
     </>
   );

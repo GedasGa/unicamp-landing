@@ -7198,7 +7198,7 @@ Real\u016Bs projektai, komandin\u0117 patirtis, 1:1 konsultacijos ir top special
                     color: 'inherit',
                     size: 'large',
                     variant: 'contained',
-                    href: 'mailto:info@unicamp.co?subject=Registracija \u012F kursus&body=Sveiki,%0D%0A%0D%0Anoriu%20gauti%20nemokam\u0105%20konsultacij\u0105',
+                    href: 'mailto:info@unicamp.lt?subject=Registracija \u012F kursus&body=Sveiki,%0D%0A%0D%0Anoriu%20gauti%20nemokam\u0105%20konsultacij\u0105',
                     startIcon: (0, a.jsx)(I.Ir, { icon: 'fluent:mail-24-filled' }),
                     onClick: () => be.ZP.capture('hero_cta_clicked'),
                     children: 'Gaukite nemokam\u0105 IT karjeros konsultacij\u0105',

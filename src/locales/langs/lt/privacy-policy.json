@@ -6,7 +6,7 @@
   "sections": {
     "whoWeAre": {
       "header": "1. Kas mes esame",
-      "content": "Svetainės pavadinimas: Unicamp\nSvetainės adresas: www.unicamp.lt\nKontaktinis el. paštas: info@unicamp.co\nDuomenų valdytojas: UAB Unicamp\nJei turite klausimų apie šią privatumo politiką ar savo teises pagal BDAR, susisiekite su mumis el. paštu info@unicamp.co."
+      "content": "Svetainės pavadinimas: Unicamp\nSvetainės adresas: www.unicamp.lt\nKontaktinis el. paštas: info@unicamp.lt\nDuomenų valdytojas: UAB Unicamp\nJei turite klausimų apie šią privatumo politiką ar savo teises pagal BDAR, susisiekite su mumis el. paštu info@unicamp.lt."
     },
     "informationWeCollect": {
       "header": "2. Informacija, kurią renkame",
@@ -22,7 +22,7 @@
     },
     "cookies": {
       "header": "5. Slapukai ir sekimo technologijos",
-      "content": "Mes naudojame slapukus, kad pagerintume jūsų patirtį.\n\na. Naudojamų slapukų tipai\n- Būtini slapukai: Užtikrina svetainės funkcionalumą.\n- Nuostatų slapukai: Įsimena kalbą ir vietos nustatymus.\n- Analizės slapukai: Stebi svetainės naudojimą siekiant patobulinimų.\n- Rinkodaros slapukai: Teikia pritaikytas reklamas.\n\nb. Sutikimas dėl slapukų\n- Nebūtini slapukai bus aktyvuoti tik gavus jūsų aiškų sutikimą per slapukų reklamjuostę. Savo nuostatas galite bet kada pakeisti mūsų [Slapukų nustatymų puslapyje].\n\nc. Trečiųjų šalių paslaugos\n- Naudojame trečiųjų šalių paslaugas (pvz., „Google Analytics“, „Facebook Pixel“), kurios gali naudoti savo slapukus. Daugiau informacijos rasite jų privatumo politikose."
+      "content": "Mes naudojame slapukus, kad pagerintume jūsų patirtį.\n\na. Naudojamų slapukų tipai\n- Būtini slapukai: Užtikrina svetainės funkcionalumą.\n- Nuostatų slapukai: Įsimena kalbą ir vietos nustatymus.\n- Analizės slapukai: Stebi svetainės naudojimą siekiant patobulinimų.\n- Rinkodaros slapukai: Teikia pritaikytas reklamas.\n\nb. Sutikimas dėl slapukų\n- Nebūtini slapukai bus aktyvuoti tik gavus jūsų aiškų sutikimą per slapukų reklamjuostę. \n\nc. Trečiųjų šalių paslaugos\n- Naudojame trečiųjų šalių paslaugas (pvz., „Google Analytics“, „Facebook Pixel“), kurios gali naudoti savo slapukus. Daugiau informacijos rasite jų privatumo politikose."
     },
     "dataSharing": {
       "header": "6. Duomenų dalijimasis ir perdavimas",
@@ -38,7 +38,7 @@
     },
     "yourRights": {
       "header": "9. Jūsų BDAR teisės",
-      "content": "Pagal BDAR jūs turite šias teises:\n- Prieiga: Prašyti savo asmens duomenų kopijos.\n- Taisymas: Ištaisyti netikslius ar neišsamius duomenis.\n- Ištrynimas („teisė būti pamirštam“): Prašyti ištrinti jūsų duomenis.\n- Apribojimas: Apriboti, kaip jūsų duomenys tvarkomi.\n- Duomenų perkeliamumas: Gauti savo duomenis mašininiu būdu skaitomu formatu.\n- Prieštaravimas: Atsisakyti tam tikros tvarkymo veiklos, pvz., tiesioginės rinkodaros.\n- Sutikimo atšaukimas: Bet kada atšaukti sutikimą, kai tai taikoma.\n\nNorėdami pasinaudoti šiomis teisėmis, susisiekite su mumis el. paštu [Jūsų el. paštas]."
+      "content": "Pagal BDAR jūs turite šias teises:\n- Prieiga: Prašyti savo asmens duomenų kopijos.\n- Taisymas: Ištaisyti netikslius ar neišsamius duomenis.\n- Ištrynimas („teisė būti pamirštam“): Prašyti ištrinti jūsų duomenis.\n- Apribojimas: Apriboti, kaip jūsų duomenys tvarkomi.\n- Duomenų perkeliamumas: Gauti savo duomenis mašininiu būdu skaitomu formatu.\n- Prieštaravimas: Atsisakyti tam tikros tvarkymo veiklos, pvz., tiesioginės rinkodaros.\n- Sutikimo atšaukimas: Bet kada atšaukti sutikimą, kai tai taikoma.\n\nNorėdami pasinaudoti šiomis teisėmis, susisiekite su mumis el. paštu info@unicamp.lt."
     },
     "childrenPrivacy": {
       "header": "10. Vaikų privatumas",
@@ -50,7 +50,7 @@
     },
     "contact": {
       "header": "12. Kontaktinė informacija",
-      "content": "Jei turite klausimų ar rūpesčių dėl šios privatumo politikos ar mūsų duomenų tvarkymo praktikos, susisiekite su mumis:\n- El. paštas: info@unicamp.co\n- Telefonas: +370 630 47670\n- Adresas: Konstitucijos pr. 15-121, Vilnius, Lietuva"
+      "content": "Jei turite klausimų ar rūpesčių dėl šios privatumo politikos ar mūsų duomenų tvarkymo praktikos, susisiekite su mumis:\n- El. paštas: info@unicamp.lt\n- Telefonas: +370 630 47670\n- Adresas: Konstitucijos pr. 15-121, Vilnius, Lietuva"
     }
   }
 }

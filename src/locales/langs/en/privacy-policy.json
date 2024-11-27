@@ -6,7 +6,7 @@
   "sections": {
     "whoWeAre": {
       "header": "1. Who We Are",
-      "content": "Website Name: Unicamp\nWebsite Address: www.unicamp.lt\nContact Email: info@unicamp.co\nData Controller: UAB Unicamp \nIf you have questions about this Privacy Policy or your rights under GDPR, please contact us at info@unicamp.co."
+      "content": "Website Name: Unicamp\nWebsite Address: www.unicamp.lt\nContact Email: info@unicamp.lt\nData Controller: UAB Unicamp \nIf you have questions about this Privacy Policy or your rights under GDPR, please contact us at info@unicamp.lt."
     },
     "informationWeCollect": {
       "header": "2. Information We Collect",
@@ -22,7 +22,7 @@
     },
     "cookies": {
       "header": "5. Cookies and Tracking Technologies",
-      "content": "We use cookies to enhance your experience.\n\na. Types of Cookies We Use\n- Necessary Cookies: Enable website functionality.\n- Preference Cookies: Remember settings like language and location.\n- Analytics Cookies: Track website usage for improvement.\n- Marketing Cookies: Deliver tailored ads.\n\nb. Consent for Cookies\n- Non-essential cookies will only be activated after obtaining your explicit consent through a cookie banner. You can manage your preferences at any time via our [Cookie Settings Page].\n\nc. Third-Party Services\n- We use third-party services (e.g., Google Analytics, Facebook Pixel) that may set their own cookies. For more information, visit their privacy policies."
+      "content": "We use cookies to enhance your experience.\n\na. Types of Cookies We Use\n- Necessary Cookies: Enable website functionality.\n- Preference Cookies: Remember settings like language and location.\n- Analytics Cookies: Track website usage for improvement.\n- Marketing Cookies: Deliver tailored ads.\n\nb. Consent for Cookies\n- Non-essential cookies will only be activated after obtaining your explicit consent through a cookie banner. \n\nc. Third-Party Services\n- We use third-party services (e.g., Google Analytics, Facebook Pixel) that may set their own cookies. For more information, visit their privacy policies."
     },
     "dataSharing": {
       "header": "6. Data Sharing and Transfers",
@@ -38,7 +38,7 @@
     },
     "yourRights": {
       "header": "9. Your GDPR Rights",
-      "content": "Under the GDPR, you have the following rights:\n- Access: Request a copy of your personal data.\n- Rectification: Correct inaccurate or incomplete data.\n- Erasure (\"Right to be Forgotten\"): Request deletion of your data.\n- Restriction: Limit how your data is processed.\n- Data Portability: Receive your data in a machine-readable format.\n- Objection: Opt-out of specific processing activities, such as direct marketing.\n- Withdraw Consent: Withdraw consent at any time, where applicable.\n\nTo exercise these rights, contact us at [Your Email]."
+      "content": "Under the GDPR, you have the following rights:\n- Access: Request a copy of your personal data.\n- Rectification: Correct inaccurate or incomplete data.\n- Erasure (\"Right to be Forgotten\"): Request deletion of your data.\n- Restriction: Limit how your data is processed.\n- Data Portability: Receive your data in a machine-readable format.\n- Objection: Opt-out of specific processing activities, such as direct marketing.\n- Withdraw Consent: Withdraw consent at any time, where applicable.\n\nTo exercise these rights, contact us at info@unicamp.lt."
     },
     "childrenPrivacy": {
       "header": "10. Children's Privacy",
@@ -50,7 +50,7 @@
     },
     "contact": {
       "header": "12. Contact Information",
-      "content": "If you have questions or concerns about this Privacy Policy or our data practices, contact us:\n- Email: info@unicamp.co\n- Phone: +370 630 47670\n- Address: Konsitucijos pr. 15-121, Vilnius, Lithuania"
+      "content": "If you have questions or concerns about this Privacy Policy or our data practices, contact us:\n- Email: info@unicamp.lt\n- Phone: +370 630 47670\n- Address: Konsitucijos pr. 15-121, Vilnius, Lithuania"
     }
   }
 }

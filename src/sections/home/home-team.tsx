@@ -21,7 +21,7 @@ import { Logo } from '../../components/logo';
 
 const MEMBERS = [
   {
-    avatarUrl: `${CONFIG.assetsDir}/assets/illustrations/illustration-real-projects.svg`,
+    avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Gedas.png`,
     name: 'team.members.0.name',
     role: 'team.members.0.role',
     socials: [
@@ -33,7 +33,7 @@ const MEMBERS = [
     ],
   },
   {
-    avatarUrl: `${CONFIG.assetsDir}/assets/illustrations/illustration-team-work.svg`,
+    avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Mindaugas.png`,
     name: 'team.members.1.name',
     role: 'team.members.1.role',
     socials: [
@@ -45,7 +45,7 @@ const MEMBERS = [
     ],
   },
   {
-    avatarUrl: `${CONFIG.assetsDir}/assets/illustrations/illustration-1-on-1.svg`,
+    avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Aiste.png`,
     name: 'team.members.2.name',
     role: 'team.members.2.role',
     socials: [
@@ -57,7 +57,7 @@ const MEMBERS = [
     ],
   },
   {
-    avatarUrl: `${CONFIG.assetsDir}/assets/illustrations/illustration-1-on-1.svg`,
+    avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Toshi.png`,
     name: 'team.members.3.name',
     role: 'team.members.3.role',
     socials: [
@@ -139,7 +139,12 @@ function MemberCard({ member }: MemberCardProps) {
       </Typography>
 
       <Box sx={{ px: 1 }}>
-        <Image alt={t(member.name)} src={member.avatarUrl} ratio="1/1" sx={{ borderRadius: 2 }} />
+        <Image
+          alt={t(member.name)}
+          src={member.avatarUrl}
+          ratio="1/1.25"
+          sx={{ borderRadius: 2 }}
+        />
       </Box>
 
       <Box display="flex" alignItems="center" justifyContent="center" sx={{ p: 2 }}>

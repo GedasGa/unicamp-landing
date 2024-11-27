@@ -79,7 +79,7 @@
     "members": [
       {
         "name": "Gedas Gardauskas",
-        "role": "CEO ir web programavimo dėstytojas"
+        "role": "CEO ir Web programavimo dėstytojas"
       },
       {
         "name": "Mindaugas Pažereckas",
@@ -126,7 +126,7 @@
         "caption": "1 mėnuo",
         "description": "Mūsų UX/UI dizaino programa padės įgyti įgūdžių, reikalingų sėkmingai karjerai dizaino srityje. Siūlome įvairias temas, kurios praplės tavo žinias ir patirtį.",
         "specializations": ["UX/UI dizaineris", "UX tyrėjas", "Produktų dizaineris", "Vizualinis dizaineris"],
-        "tools": ["Figma", "FigJam", "AI įrankiai (ChatGPT, Claude, Midjourney, DaVinchi AI)"],
+        "tools": ["Figma", "FigJam", "AI įrankiai"],
         "topics": ["Vartotojo patirtis (UX)", "Vartotojo sąsaja (UI)", "UX tyrimai", "Naudotojų testavimas", "Wireframing", "Prototipų kūrimas", "Dizaino sistemos", "AI įrankiai dizaineriams"]
       }
     }
@@ -142,7 +142,59 @@
     "questions": [
       {
         "question": "Ar kursai tikrai nemokami?",
-        "answer": "Taip, visi mūsų kursai yra 100% nemokami. Tikime, kad kiekvienas turi teisę į kokybišką išsilavinimą."
+        "answer": "Taip, jie 100% nemokami, jei atitinkate finansavimo kriterijus – jokių paslėptų mokesčių, jokių staigmenų."
+      },
+      {
+        "question": "Kokios finansavimo galimybės yra dirbantiems pilnu etatu?",
+        "answer": "Mes suprantame – suderinti darbą ir mokymąsi gali būti iššūkis. Todėl siūlome lanksčias finansavimo galimybes, kurios atitiks jūsų grafiką ir biudžetą. Susisiekite, ir rasime sprendimą kartu."
+      },
+      {
+        "question": "Kokie yra finansavimo reikalavimai?",
+        "answer": "Norėdami gauti finansavimą, turite atitikti šiuos kriterijus:\n- Būti 18–65 metų amžiaus\n- Dirbti pagal darbo sutartį arba būti savarankiškai dirbantis\n- Turėti aukštąjį išsilavinimą ar lygiavertę kvalifikaciją\n- Būti Lietuvos pilietis arba užsienietis su leidimu gyventi Lietuvoje\n- Lankomumas: bent 80%"
+      },
+      {
+        "question": "Ar galiu kreiptis, jei neatitinku visų kriterijų?",
+        "answer": "Žinoma! Net jei neatitinkate visų reikalavimų, mums svarbiausias jūsų potencialas. Pateikite paraišką – peržiūrėsime ją ir įvertinsime, ar tai jums tinkama."
+      },
+      {
+        "question": "Kiek trunka kursai?",
+        "answer": "Dauguma programų trunka kelis mėnesius (paprastai nuo 3 iki 6 mėnesių). Peržiūrėkite kurso aprašymą, kad tiksliai žinotumėte laikotarpį – viskas aišku nuo pat pradžių."
+      },
+      {
+        "question": "Kaip vyksta kursai?",
+        "answer": "100% internetu. Tiesioginės sesijos, kuriose galite užduoti klausimus savo mentoriui realiu laiku."
+      },
+      {
+        "question": "Kokie mano įsipareigojimai prisijungus prie kursų?",
+        "answer": "Tiesiog įsitraukite, dalyvaukite ir būkite įsipareigoję. Jei bus papildomų reikalavimų, pvz., stažuočių, viską paaiškinsime prieš pradedant."
+      },
+      {
+        "question": "Ar gausiu sertifikatą?",
+        "answer": "Žinoma! Baigę kursą gausite sertifikatą, kuriuo galėsite didžiuotis ir švęsti savo pasiekimus."
+      },
+      {
+        "question": "Esu naujokas IT srityje. Ar galiu prisijungti prie kursų?",
+        "answer": "Be abejo! Daugelis mūsų kursų yra skirti pradedantiesiems. Mes pasiruošę jus palaikyti jūsų pirmuosiuose žingsniuose IT pasaulyje."
+      },
+      {
+        "question": "Kiek laiko turėčiau skirti kursams?",
+        "answer": "Reikalingas laikas priklauso nuo programos ir jūsų tempo. Kursai paprastai vyksta 2–3 kartus per savaitę, tačiau bendras įsipareigojimo laikas priklausys nuo jūsų pačių ritmo. Geriausia dalis? Galite pritaikyti grafiką pagal save, o mes padėsime išlikti kelyje."
+      },
+      {
+        "question": "Kaip atrodo baigiamieji vertinimai?",
+        "answer": "Baigiamieji vertinimai skirti parodyti, ką išmokote. Tai gali būti projektai, testai ar praktinės užduotys. Nesijaudinkite – mes pasirūpinsime, kad būtumėte pasiruošę."
+      },
+      {
+        "question": "Kokiais atvejais turėčiau grąžinti visą kurso kainą?",
+        "answer": "Jei neužbaigsite mokymų programos arba per 5 darbo dienas po programos pabaigos nepateiksite vertinimo anketos, turėsite padengti programos kainą. Jei neišlaikysite baigiamojo egzamino, jūsų Unicamp sertifikate atsiras žyma „Neišlaikyta“. Bet nesijaudinkite – nereikės mokėti iš naujo. Susikaupkite, sekite medžiagą, konsultuokitės su mentoriumi, ir viskas bus gerai. ;)"
+      },
+      {
+        "question": "Ką daryti, jei negaliu dalyvauti kai kuriose pamokose?",
+        "answer": "Nieko tokio. Dauguma sesijų yra įrašomos, tad galėsite jas peržiūrėti vėliau. Jei tai tiesioginė sesija, tiesiog praneškite mums, ir padėsime išlikti kelyje."
+      },
+      {
+        "question": "Ar galėsiu naudotis mokymosi medžiaga po kurso pabaigos?",
+        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias."
       }
     ]
   }

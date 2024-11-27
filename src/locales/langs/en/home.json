@@ -126,7 +126,7 @@
         "caption": "1 month",
         "description": "Our web development program is designed to help you learn the skills you need to succeed as a web developer. We offer a variety of courses to help you learn the skills you need to succeed in the IT field.",
         "specializations": ["UX/UI designer", "UX Researcher", "UX Designer", "Product Designer", "Visual Designer"],
-        "tools": ["Figma", "FigJam", "AI Tools (ChatGPT, Claude, Midjourney, DaVinchi AI)"],
+        "tools": ["Figma", "FigJam", "AI Tools"],
         "topics": ["User Experience (UX)", "User Interface (UI)", "UX Research", "Usability Testing", "Wireframing", "Prototyping", "Design Systems", "AI Tools for Designers"]
       }
     }
@@ -142,7 +142,59 @@
     "questions": [
       {
         "question": "Are the courses really free?",
-        "answer": "Yes, all our courses are 100% free. We believe that everyone should have access to quality education."
+        "answer": "Yes, they're 100% free if you meet the criteria for financing—no hidden fees, no surprises."
+      },
+      {
+        "question": "What financing options are available for full-time working professionals?",
+        "answer": "We get it—juggling work and learning can be tricky. That's why we offer flexible financing options to fit your schedule and budget. Reach out, and we'll figure it out together."
+      },
+      {
+        "question": "What are the requirements for the financing?",
+        "answer": "To qualify for financing, you'll need to meet these criteria:\n- Be between 18 and 65 years old\n- Employed with a work contract or self-employed\n- Hold higher education or an equivalent qualification\n- Be a citizen of Lithuania or a foreigner with a residence permit in Lithuania\n- Attendance: At least 80%"
+      },
+      {
+        "question": "Can I apply if I don't meet all the criteria?",
+        "answer": "Absolutely! Even if you don't meet every requirement, we're more interested in your potential. Go ahead and apply—we'll review your application to see if it's a good fit."
+      },
+      {
+        "question": "How long do the courses last?",
+        "answer": "Most of our programs run for a few months (typically 3 to 6 months). Check the course details for the exact timeline—you'll know what to expect from the start."
+      },
+      {
+        "question": "How are the courses conducted?",
+        "answer": "100% online. Live sessions where you can ask your mentor questions in real time."
+      },
+      {
+        "question": "What are my obligations after joining the courses?",
+        "answer": "Just dive in, participate, and stay committed. If there are extra requirements like internships, we'll spell everything out before you start."
+      },
+      {
+        "question": "Will I receive a certificate?",
+        "answer": "Absolutely! You'll get a certificate to show off and celebrate your achievements once you've completed the course."
+      },
+      {
+        "question": "I'm new to the IT field. Can I still join the courses?",
+        "answer": "Of course! Many of our courses are designed with beginners in mind. We've got your back as you take your first steps into the IT world."
+      },
+      {
+        "question": "How much time should I dedicate to the courses?",
+        "answer": "How much time you'll need depends on the program and how fast you want to go. Courses usually happen 2–3 times a week, but your total time commitment will vary based on the program and your own pace. The good news? You can adjust your schedule to make it work for you, and we'll be here to help you stay on track."
+      },
+      {
+        "question": "What do the final assessments look like?",
+        "answer": "Finals are all about showing what you've learned. They could be projects, quizzes, or hands-on tasks. Don't worry—we'll make sure you're ready."
+      },
+      {
+        "question": "In what cases would I need to repay the full course price?",
+        "answer": "If you haven't completed the learning program or filled out the evaluation questionnaire within 5 working days after the program ends, you'll need to cover the program's cost. If you don't pass the final exam, 'Not Passed' will appear on your Unicamp certificate. But don't stress—you won't need to pay again. Just stay focused, keep up with the material, reach out to your mentor and all be fine;)"
+      },
+      {
+        "question": "What if I can't attend classes on some days?",
+        "answer": "No worries. Most sessions are recorded, so you can catch up later. For anything live, just let us know, and we'll help you stay on track."
+      },
+      {
+        "question": "Can I access the learning materials after the course ends?",
+        "answer": "Yes, after the course ends, you will have access to all the learning materials for another 180 days. This will allow you to review key topics and reinforce the knowledge you've gained."
       }
     ]
   }
