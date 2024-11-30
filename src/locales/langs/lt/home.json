@@ -1,9 +1,9 @@
 {
   "hero": {
-    "heading": "Aukščiausios kokybės kursai, praktiniai projektai ir pasiruošimo darbui sertifikatų programos",
+    "heading": "Aukščiausios kokybės IT kursai ir mokymai pagrįsti darbu komandoje su realiais projektais",
     "cta": {
-      "viewCourses": "Peržiūrėti kursus",
-      "text": "Gauk nemokamą konsultaciją",
+      "viewCourses": "Peržiūrėkite kursus",
+      "text": "Gaukite nemokamą konsultaciją",
       "description": "Nežinai, nuo ko pradėti?"
     },
     "svg": {
@@ -11,13 +11,12 @@
     }
   },
   "unicamp": {
-    "caption": "Kodėl?",
     "title": "Kodėl Unicamp?",
-    "description": "Esame profesionalų komanda, aistringai siekianti mokyti ir padėti kitiems. Mes čia tam, kad padėtume tau pasiekti sėkmę.",
+    "description": "Esame profesionalų komanda, sukaupusi ilgametę patirtį tarptautinėse IT įmonėse ir dėstymo srityje. Mūsų komandos nariai jau yra dėstę tokiose platformose ir akademijose kaip Udacity, Coursera, Software Development Academy, buildup.am ir CodeAcademy (FastTrack). Todėl šiandien esame pasiruošę jums pasiūlyti aukščiausios kokybės kursus. Su kursuok.lt galite gauti finansavimą ir pradėti mokytis nemokamai jau dabar!",
     "reasons": {
       "qualityCourses": "Kokybiški kursai",
       "getScholarships": "100% stipendijos",
-      "realProjects": "Tikri projektai",
+      "realProjects": "Realūs projektai",
       "certificate": "Unicamp sertifikatas"
     }
   },
@@ -25,36 +24,36 @@
     "caption": "Unicamp siūlo",
     "sections": {
       "realProjects": {
-        "heading": "Tikri projektai",
+        "heading": "Realūs projektai",
         "items": [
           {
-            "title": "Praktinė patirtis",
-            "description": "Dirbk su projektais, kurie atspindi realaus pasaulio iššūkius, naudojant pramonėje patikimas priemones."
+            "title": "Įgaukite praktinės patirties",
+            "description": "Dirbkite su projektais, kurie atspindi realaus pasaulio iššūkius ir naudoja populiariausius įrankius bei technologijas."
           },
           {
-            "title": "Parodyk savo darbą gyvai",
-            "description": "Pristatyk savo projektą tikriems vartotojams ir sužavėk darbdavius apčiuopiamais rezultatais. Nė viena kita akademija to nedaro."
+            "title": "Parodykite savo darbą kitiem",
+            "description": "Pristatykite savo projektą realiems vartotojams ir sužavėkite darbdavius konkrečiais, apčiuopiamais rezultatais. Tokios galimybės nesiūlo jokia kita akademija."
           },
           {
-            "title": "Sustiprink savo portfolio",
-            "description": "Papildyk savo LinkedIn tikrais projektais ir pritrauk platesnę auditoriją."
+            "title": "Sustiprinkite savo portfolio",
+            "description": "Papildykite savo LinkedIn tikrais, profesionaliais projektais ir patraukt darbdavių dėmesį."
           }
         ]
       },
       "teamWork": {
-        "heading": "Mokykis dirbdamas komandoje",
+        "heading": "Mokykitės dirbdami komandoje",
         "items": [
           {
-            "title": "Prisijunk prie smalsių ir motyvuotų žmonių",
-            "description": "Apsupk save tais, kurie įkvepia augti ir kurti."
+            "title": "Prisijunkite prie smalsių ir motyvuotų žmonių",
+            "description": "Būkite apsuptas tų, kurie skatina augti ir siekti daugiau."
           },
           {
-            "title": "Bendradarbiauk su programuotojais ir UX dizaineriais",
-            "description": "Dirbk su kryžminėmis komandomis – kitais programuotojais ir dizaineriais."
+            "title": "Bendradarbiaukite su programuotojais ir UX dizaineriais",
+            "description": "Dirbkite komandose su kitais programuotojais ir dizaineriais."
           },
           {
-            "title": "Plėsk savo tinklą",
-            "description": "Užmegzk ryšius su bendraminčiais, kurie įkvepia, palaiko ir padeda augti tiek profesinėje, tiek asmeninėje srityje."
+            "title": "Plėskite savo pažinčių ratą",
+            "description": "Užmegzkite ryšius su bendraminčiais, kurie palaiko, įkvepia ir padeda tobulėti profesinėje bei asmeninėje srityse."
           }
         ]
       },
@@ -63,11 +62,11 @@
         "items": [
           {
             "title": "Dedikuotas mentorius",
-            "description": "Žmogus, su kuriuo gali pasidalyti tiek pergalėmis, tiek iššūkiais, gaunant patarimus ir palaikymą visų kursų metu."
+            "description": "Mentorius, su kuriuo galėsitre dalintis tiek pergalėmis, tiek iššūkiais, ir gausite palaikymą viso kurso metu."
           },
           {
             "title": "Karjeros patarimai",
-            "description": "Pasikalbėk apie tikslus, suplanuok ateitį ir gauk patarimų, kaip patekti į IT industriją."
+            "description": "Aptarkite savo tikslus, suplanuokite ateities žingsnius ir gaukite vertingų įžvalgų, kaip įsitvirtinti IT srityje."
           }
         ]
       }
@@ -75,22 +74,22 @@
   },
   "team": {
     "heading": "Unicamp komanda",
-    "description": "Esame profesionalų komanda, aistringai siekianti mokyti ir padėti kitiems. Kelerius metus dirbome IT srityje ir nusprendėme atidaryti akademiją, kurioje dalijamės įžvalgomis.",
+    "description": "Esame IT entuziastų komanda, siekianti dalintis žiniomis ir padėti kiekvienam atrasti savo vietą technologijų pasaulyje.",
     "members": [
       {
         "name": "Gedas Gardauskas",
-        "role": "CEO ir Web programavimo dėstytojas"
+        "role": "CEO | Web programavimo dėstytojas"
       },
       {
         "name": "Mindaugas Pažereckas",
-        "role": "Operacijos ir marketingas"
+        "role": "Bendraįkūrėjas | Operacijos ir marketingas"
       },
       {
         "name": "Aistė Gerdzevičiūtė",
-        "role": "Produktų dizainerė ir UX/UI dėstytoja"
+        "role": "Bendraįkūrėja | Produkto dizainerė ir UX/UI dėstytoja"
       },
       {
-        "name": "Toschi",
+        "name": "Toshi",
         "role": "Mindės draugas"
       }
     ]
@@ -103,31 +102,29 @@
       "viewProgram": "Peržiūrėti programą"
     },
     "list": {
-      "specializations": "Tapk",
+      "specializations": "Karjeros galimybės",
       "tools": "Įrankiai",
       "topics": "Temos"
     },
     "levels": {
-      "beginner": "Pradedantysis",
-      "intermediate": "Vidutinis",
-      "advanced": "Pažengęs"
+      "beginner": "Pradedantiesiems",
+      "intermediate": "Pažengusiems",
+      "advanced": "Ekspertams"
     },
     "programs": {
       "webDevelopment": {
         "title": "Web programavimas",
-        "caption": "1 mėnuo",
-        "description": "Mūsų web programavimo programa padės įgyti įgūdžių, reikalingų sėkmei IT srityje. Siūlome įvairius kursus, kurie padės pasiruošti profesionaliai karjerai.",
-        "specializations": ["Frontend programuotojas", "React programuotojas", "Next.js programuotojas"],
+        "caption": "12 savaičių (108 val.)",
+        "specializations": ["Frontend programuotojas", "Programinės įrangos kūrėjas", "React/Next.js programuotojas"],
         "tools": ["HTML", "CSS", "JavaScript", "React", "Next.js", "Firebase", "VSCode", "GitHub", "Copilot", "LLMs (ChatGPT, Claude)"],
         "topics": ["HTML ir CSS pagrindai", "Responsyvus dizainas", "Įvadas į JavaScript", "TypeScript", "React pagrindai", "React Hooks", "React Context", "Next.js", "Backend-as-a-Service", "Git ir GitHub", "Domeno ir hostingo įsigijimas", "Produktyvumo įrankiai su AI"]
       },
       "productDesign": {
         "title": "UX/UI dizainas",
-        "caption": "1 mėnuo",
-        "description": "Mūsų UX/UI dizaino programa padės įgyti įgūdžių, reikalingų sėkmingai karjerai dizaino srityje. Siūlome įvairias temas, kurios praplės tavo žinias ir patirtį.",
-        "specializations": ["UX/UI dizaineris", "UX tyrėjas", "Produktų dizaineris", "Vizualinis dizaineris"],
+        "caption": "12 savaičių (108 val.)",
+        "specializations": ["UX/UI dizaineris", "UX tyrėjas", "Produkto dizaineris"],
         "tools": ["Figma", "FigJam", "AI įrankiai"],
-        "topics": ["Vartotojo patirtis (UX)", "Vartotojo sąsaja (UI)", "UX tyrimai", "Naudotojų testavimas", "Wireframing", "Prototipų kūrimas", "Dizaino sistemos", "AI įrankiai dizaineriams"]
+        "topics": ["Vartotojo patirtis (UX)", "Vartotojo sąsaja (UI)", "UX tyrimai", "Vartotojų testavimas", "Wireframing", "Prototipų kūrimas", "Dizaino sistemos", "AI įrankiai dizaineriams"]
       }
     }
   },
@@ -136,65 +133,65 @@
     "title": "Turime atsakymus",
     "contact": {
       "heading": "Vis dar kyla klausimų?",
-      "description": "Aprašyk savo situaciją, kad gautum tiksliausią atsakymą.",
-      "cta": "Susisiek su mumis"
+      "description": "Užduokite rūpimus klausimus ir gaukite atsakymą per 12 valandų.",
+      "cta": "Parašykite su mumis"
     },
     "questions": [
       {
         "question": "Ar kursai tikrai nemokami?",
-        "answer": "Taip, jie 100% nemokami, jei atitinkate finansavimo kriterijus – jokių paslėptų mokesčių, jokių staigmenų."
+        "answer": "Taip, kursai yra 100% nemokami, jei atitinkate finansavimo kriterijus – jokių paslėptų mokesčių ar staigmenų."
       },
       {
-        "question": "Kokios finansavimo galimybės yra dirbantiems pilnu etatu?",
-        "answer": "Mes suprantame – suderinti darbą ir mokymąsi gali būti iššūkis. Todėl siūlome lanksčias finansavimo galimybes, kurios atitiks jūsų grafiką ir biudžetą. Susisiekite, ir rasime sprendimą kartu."
+        "question": "Kokios yra finansavimo galimybės?",
+        "answer": "kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenins (pagal darbo sutartį, vykdantiems indivualią veiklą, arba verslo liudijimą)."
       },
       {
         "question": "Kokie yra finansavimo reikalavimai?",
-        "answer": "Norėdami gauti finansavimą, turite atitikti šiuos kriterijus:\n- Būti 18–65 metų amžiaus\n- Dirbti pagal darbo sutartį arba būti savarankiškai dirbantis\n- Turėti aukštąjį išsilavinimą ar lygiavertę kvalifikaciją\n- Būti Lietuvos pilietis arba užsienietis su leidimu gyventi Lietuvoje\n- Lankomumas: bent 80%"
+        "answer": "Norėdami gauti finansavimą, turite atitikti šiuos kriterijus:\n- Būti 18–65 metų amžiaus\n- Dirbti pagal darbo sutartį arba būti savarankiškai dirbantis\n- Turėti aukštąjį išsilavinimą arba profesinį išsilavinimą\n- Būti Lietuvos pilietis arba užsienietis su leidimu gyventi Lietuvoje\n- Dar nepasinaudojote kursuok.lt finansavimu"
       },
       {
-        "question": "Ar galiu kreiptis, jei neatitinku visų kriterijų?",
-        "answer": "Žinoma! Net jei neatitinkate visų reikalavimų, mums svarbiausias jūsų potencialas. Pateikite paraišką – peržiūrėsime ją ir įvertinsime, ar tai jums tinkama."
+        "question": "Ar galiu mokytis, jeigu neatitinku visų finansavimo reikalavimų?",
+        "answer": "Taip, žinoma! Net jei neatitinkate visų reikalavimų, susisiekite su Jumis. Motyvuotiems studentams skiriame 100% finansavimą iš savo kišenės, net jeigu ir negalime pasiūlyti finansavimo iš kursuok.lt."
       },
       {
-        "question": "Kiek trunka kursai?",
-        "answer": "Dauguma programų trunka kelis mėnesius (paprastai nuo 3 iki 6 mėnesių). Peržiūrėkite kurso aprašymą, kad tiksliai žinotumėte laikotarpį – viskas aišku nuo pat pradžių."
+        "question": "Kokiais atvejais reikėtų grąžinti visą kurso kainą?",
+        "answer": "Tik tais atvejais, jei nebaigiate kurso (t.y. nelankote paskaitų ir nedalyvaujate atsiskaityme) arba jei per 5 darbo dienas nuo mokymosi programos pabaigos neužpildote mokymosi programos vertinimo anketos."
       },
       {
         "question": "Kaip vyksta kursai?",
-        "answer": "100% internetu. Tiesioginės sesijos, kuriose galite užduoti klausimus savo mentoriui realiu laiku."
+        "answer": "Kursai vyksta nuotoliniu būdu per Zoom su kurso dėstytoju. Taip pat vyksta praktiniai užsiėmimai, kuriuose dirbsite su realiais projektai."
+      },
+      {
+        "question": "Kiek trunka kursai?",
+        "answer": "Kursai truka apie 12 savaičių, iš viso 108 akademines valandas. Paskaitos vyksta 3 kartus per savaitę po 3 valandas."
       },
       {
         "question": "Kokie mano įsipareigojimai prisijungus prie kursų?",
-        "answer": "Tiesiog įsitraukite, dalyvaukite ir būkite įsipareigoję. Jei bus papildomų reikalavimų, pvz., stažuočių, viską paaiškinsime prieš pradedant."
-      },
-      {
-        "question": "Ar gausiu sertifikatą?",
-        "answer": "Žinoma! Baigę kursą gausite sertifikatą, kuriuo galėsite didžiuotis ir švęsti savo pasiekimus."
+        "answer": "Įsitraukti, strengtis ir aktyviai dalyvauti paskaitose."
       },
       {
         "question": "Esu naujokas IT srityje. Ar galiu prisijungti prie kursų?",
-        "answer": "Be abejo! Daugelis mūsų kursų yra skirti pradedantiesiems. Mes pasiruošę jus palaikyti jūsų pirmuosiuose žingsniuose IT pasaulyje."
+        "answer": "Tikrai taip! Mūsų kursai nereikalauja specifinių IT ir yra pritaikyti pradendantiesiams. Reikia tik kompiuterinio raštingumo ir anglų žinių."
       },
       {
         "question": "Kiek laiko turėčiau skirti kursams?",
         "answer": "Reikalingas laikas priklauso nuo programos ir jūsų tempo. Kursai paprastai vyksta 2–3 kartus per savaitę, tačiau bendras įsipareigojimo laikas priklausys nuo jūsų pačių ritmo. Geriausia dalis? Galite pritaikyti grafiką pagal save, o mes padėsime išlikti kelyje."
       },
       {
-        "question": "Kaip atrodo baigiamieji vertinimai?",
-        "answer": "Baigiamieji vertinimai skirti parodyti, ką išmokote. Tai gali būti projektai, testai ar praktinės užduotys. Nesijaudinkite – mes pasirūpinsime, kad būtumėte pasiruošę."
+        "question": "Kaip atrodo baigiamieji atsiskaitymai ar yra vertinimai?",
+        "answer": "Mūsų akademijoje baigiamasis atsiskaitymas yra projektas. Atsiskaitymų nevertiname pažymiais. Studentai sėkmingai atlikę projektą gauną įskaita ir sėkmingai baigia kursą."
       },
       {
-        "question": "Kokiais atvejais turėčiau grąžinti visą kurso kainą?",
-        "answer": "Jei neužbaigsite mokymų programos arba per 5 darbo dienas po programos pabaigos nepateiksite vertinimo anketos, turėsite padengti programos kainą. Jei neišlaikysite baigiamojo egzamino, jūsų Unicamp sertifikate atsiras žyma „Neišlaikyta“. Bet nesijaudinkite – nereikės mokėti iš naujo. Susikaupkite, sekite medžiagą, konsultuokitės su mentoriumi, ir viskas bus gerai. ;)"
+        "question": "Ar gausiu sertifikatą?",
+        "answer": "Taip! Baigę kursą gausite Unicamp sertifikatą."
       },
       {
         "question": "Ką daryti, jei negaliu dalyvauti kai kuriose pamokose?",
-        "answer": "Nieko tokio. Dauguma sesijų yra įrašomos, tad galėsite jas peržiūrėti vėliau. Jei tai tiesioginė sesija, tiesiog praneškite mums, ir padėsime išlikti kelyje."
+        "answer": "Nesijaudinkite. Dauguma sesijų įrašomos, todėl galėsite peržiūrėti jas vėliau. O jeigu reikės papildomos pagalbos - padės mūsų dėstytojai."
       },
       {
         "question": "Ar galėsiu naudotis mokymosi medžiaga po kurso pabaigos?",
-        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias."
+        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias. Taip pat, turėsite galimybę susisiekti su dėstytojais ir gauti atsakymus į klausimus."
       }
     ]
   }
