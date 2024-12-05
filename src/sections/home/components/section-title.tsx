@@ -56,7 +56,7 @@ export function SectionTitle({
         variants={slotProps?.title?.variants ?? varFade({ distance: 24 }).inUp}
         sx={slotProps?.title?.sx}
       >
-        {`${title} `}
+        {`${title}`}
         <Box
           component="span"
           sx={(theme) => ({
