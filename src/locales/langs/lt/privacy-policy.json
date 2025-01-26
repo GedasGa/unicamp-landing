@@ -36,20 +36,24 @@
       "header": "8. Duomenų saugojimas",
       "content": "Jūsų duomenis saugome tik tiek laiko, kiek būtina šioje politikoje numatytais tikslais arba kaip reikalauja įstatymai. Pavyzdžiui:\n- Užsakymų duomenys: Saugojami 7 metus mokesčių reikalavimams užtikrinti.\n- Rinkodaros duomenys: Saugojami, kol atšauksite savo sutikimą."
     },
+    "useOfAnalyticsTools": {
+      "header": "9. Analitikos įrankių naudojimas",
+      "content": "Norėdami pagerinti mūsų svetainės funkcionalumą ir vartotojo patirtį, mes naudojame PostHog – analitikos platformą. PostHog padeda mums suprasti, kaip vartotojai sąveikauja su mūsų svetaine, kad galėtume priimti geriausius sprendimus dėl svetainės gerinimo.\n\nKokius duomenis renka PostHog?\nPostHog renka anoniminius duomenis, įskaitant:\n- Informaciją apie lankytus puslapius ir atliktus veiksmus (pvz., mygtukų paspaudimus, naršymo modelius).\n- Jūsų įrenginio tipą, naršyklės tipą ir bendrą geografinę vietą (pvz., šalį ar regioną).\n\nKaip mes naudojame šiuos duomenis?\nMes naudojame šiuos duomenis:\n- Svetainės naudojimo ir funkcionalumo analizei bei tobulinimui.\n- Techninių problemų identifikavimui ir sprendimui.\n\nDuomenų apsaugos priemonės\nVisi PostHog surinkti duomenys yra anonimizuoti ir neturi asmeninių identifikatorių, tokių kaip jūsų vardas, el. paštas ar IP adresas.\nSurinkti duomenys naudojami tik analizės tikslais ir nėra dalijami su trečiosiomis šalimis.\n\nJei turite klausimų apie mūsų naudojamus analizės įrankius, galite susisiekti su mumis el. paštu info@unicamp.lt."
+    },
     "yourRights": {
-      "header": "9. Jūsų BDAR teisės",
-      "content": "Pagal BDAR jūs turite šias teises:\n- Prieiga: Prašyti savo asmens duomenų kopijos.\n- Taisymas: Ištaisyti netikslius ar neišsamius duomenis.\n- Ištrynimas („teisė būti pamirštam“): Prašyti ištrinti jūsų duomenis.\n- Apribojimas: Apriboti, kaip jūsų duomenys tvarkomi.\n- Duomenų perkeliamumas: Gauti savo duomenis mašininiu būdu skaitomu formatu.\n- Prieštaravimas: Atsisakyti tam tikros tvarkymo veiklos, pvz., tiesioginės rinkodaros.\n- Sutikimo atšaukimas: Bet kada atšaukti sutikimą, kai tai taikoma.\n\nNorėdami pasinaudoti šiomis teisėmis, susisiekite su mumis el. paštu info@unicamp.lt."
+      "header": "10. Jūsų BDAR teisės",
+      "content": "Pagal BDAR jūs turite šias teises:\n- Prieiga: Prašyti savo asmens duomenų kopijos.\n- Taisymas: Ištaisyti netikslius ar neišsamius duomenis.\n- Ištrynimas (\"teisė būti pamirštam\"): Prašyti ištrinti jūsų duomenis.\n- Apribojimas: Apriboti, kaip jūsų duomenys tvarkomi.\n- Duomenų perkeliamumas: Gauti savo duomenis mašininiu būdu skaitomu formatu.\n- Prieštaravimas: Atsisakyti tam tikros tvarkymo veiklos, pvz., tiesioginės rinkodaros.\n- Sutikimo atšaukimas: Bet kada atšaukti sutikimą, kai tai taikoma.\n\nNorėdami pasinaudoti šiomis teisėmis, susisiekite su mumis el. paštu info@unicamp.lt."
     },
     "childrenPrivacy": {
-      "header": "10. Vaikų privatumas",
+      "header": "11. Vaikų privatumas",
       "content": "Mūsų svetainė nėra skirta jaunesniems nei 16 metų vaikams. Mes sąmoningai nerenkame vaikų asmens duomenų. Jei manote, kad netyčia surinkome tokius duomenis, prašome susisiekti su mumis ir mes juos nedelsdami ištrinsime."
     },
     "policyChanges": {
-      "header": "11. Politikos pakeitimai",
+      "header": "12. Politikos pakeitimai",
       "content": "Galime periodiškai atnaujinti šią privatumo politiką. Pakeitimai bus paskelbti šiame puslapyje su atnaujinta peržiūros data. Prašome periodiškai ją peržiūrėti."
     },
     "contact": {
-      "header": "12. Kontaktinė informacija",
+      "header": "13. Kontaktinė informacija",
       "content": "Jei turite klausimų ar rūpesčių dėl šios privatumo politikos ar mūsų duomenų tvarkymo praktikos, susisiekite su mumis:\n- El. paštas: info@unicamp.lt\n- Telefonas: +370 630 47670\n- Adresas: Konstitucijos pr. 15-121, Vilnius, Lietuva"
     }
   }

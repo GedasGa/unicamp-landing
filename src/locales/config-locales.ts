@@ -1,9 +1,9 @@
 // ----------------------------------------------------------------------
 
-export type LanguageValue = 'en' | 'fr' | 'lt';
+export type LanguageValue = 'lt' | 'en';
 
-export const fallbackLng = 'en';
-export const languages = ['en', 'fr', 'lt'];
+export const fallbackLng = 'lt';
+export const languages = ['lt', 'en', 'fr'];
 export const defaultNS = 'common';
 export const cookieName = 'i18next';
 
@@ -31,11 +31,6 @@ export const changeLangMessages: Record<
     success: 'Language has been changed!',
     error: 'Error changing language!',
     loading: 'Loading...',
-  },
-  fr: {
-    success: 'La langue a été changée!',
-    error: 'Erreur lors du changement de langue!',
-    loading: 'Chargement...',
   },
   lt: {
     success: 'Kalba pakeista!',

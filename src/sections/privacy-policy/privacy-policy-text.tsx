@@ -57,6 +57,11 @@ export function PrivacyPolicyText({ sx, ...other }: BoxProps) {
       content: t('sections.dataRetention.content'),
     },
     {
+      key: 'useOfAnalyticsTools',
+      header: t('sections.useOfAnalyticsTools.header'),
+      content: t('sections.useOfAnalyticsTools.content'),
+    },
+    {
       key: 'yourRights',
       header: t('sections.yourRights.header'),
       content: t('sections.yourRights.content'),
@@ -84,7 +89,7 @@ export function PrivacyPolicyText({ sx, ...other }: BoxProps) {
     <Stack spacing={4} mt={10}>
       <Stack spacing={2}>
         <Typography variant="h6">{t('effectiveDate')}: 2024-11-11</Typography>
-        <Typography variant="h6">{t('updatedDate')}: 2024-11-25</Typography>
+        <Typography variant="h6">{t('updatedDate')}: 2025-01-26</Typography>
         <Typography variant="body1"></Typography>
       </Stack>
 

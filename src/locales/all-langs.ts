@@ -7,24 +7,24 @@ import { enUS as enUSDataGrid, frFR as frFRDataGrid } from '@mui/x-data-grid/loc
 
 export const allLangs = [
   {
-    value: 'en',
-    label: 'English',
-    countryCode: 'GB',
-    adapterLocale: 'en',
-    numberFormat: { code: 'en-US', currency: 'USD' },
-    systemValue: {
-      components: { ...enUSDate.components, ...enUSDataGrid.components },
-    },
-  },
-  {
     value: 'lt',
-    label: 'Lithuanian',
+    label: 'Lietuvių',
     countryCode: 'LT',
     adapterLocale: 'lt',
     numberFormat: { code: 'lt-LT', currency: 'EUR' },
     systemValue: {
       // TODO: MUI components localization for Lithuanian language
       components: { ...frFRCore.components, ...frFRDate.components, ...frFRDataGrid.components },
+    },
+  },
+  {
+    value: 'en',
+    label: 'English',
+    countryCode: 'GB',
+    adapterLocale: 'en',
+    numberFormat: { code: 'en-US', currency: 'EUR' },
+    systemValue: {
+      components: { ...enUSDate.components, ...enUSDataGrid.components },
     },
   },
   // {
