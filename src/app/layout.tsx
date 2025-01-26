@@ -23,6 +23,8 @@ import {GoogleTagManager} from "@next/third-parties/google";
 
 import { AuthProvider } from 'src/auth/context/supabase';
 
+import { AuthProvider } from 'src/auth/context/supabase';
+
 // ----------------------------------------------------------------------
 
 export const viewport: Viewport = {
