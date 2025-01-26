@@ -21,6 +21,8 @@ import { SettingsDrawer, defaultSettings, SettingsProvider } from 'src/component
 import { CSPostHogProvider } from './providers';
 import {GoogleTagManager} from "@next/third-parties/google";
 
+import { AuthProvider } from 'src/auth/context/supabase';
+
 // ----------------------------------------------------------------------
 
 export const viewport: Viewport = {
@@ -59,18 +61,20 @@ export default async function RootLayout({ children }: Props) {
 
         <CSPostHogProvider>
           <I18nProvider lang={CONFIG.isStaticExport ? undefined : lang}>
-            <LocalizationProvider>
-              <SettingsProvider settings={defaultSettings}>
-                <ThemeProvider>
-                  <MotionLazy>
-                    <Snackbar />
-                    <ProgressBar />
-                    <SettingsDrawer />
-                    {children}
-                  </MotionLazy>
-                </ThemeProvider>
-              </SettingsProvider>
-            </LocalizationProvider>
+            <AuthProvider>
+              <LocalizationProvider>
+                <SettingsProvider settings={defaultSettings}>
+                  <ThemeProvider>
+                    <MotionLazy>
+                      <Snackbar />
+                      <ProgressBar />
+                      <SettingsDrawer />
+                      {children}
+                    </MotionLazy>
+                  </ThemeProvider>
+                </SettingsProvider>
+              </LocalizationProvider>
+            </AuthProvider>
           </I18nProvider>
         </CSPostHogProvider>
 
