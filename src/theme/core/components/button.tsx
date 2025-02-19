@@ -36,7 +36,9 @@ const MuiButtonBase: Components<Theme>['MuiButtonBase'] = {
   /** **************************************
    * STYLE
    *************************************** */
-  styleOverrides: { root: ({ theme }) => ({ fontFamily: theme.typography.fontFamily }) },
+  styleOverrides: {
+    root: ({ theme }) => ({ fontFamily: theme.typography.fontFamily }),
+  },
 };
 
 // ----------------------------------------------------------------------
@@ -92,6 +94,9 @@ const MuiButton: Components<Theme>['MuiButton'] = {
    * STYLE
    *************************************** */
   styleOverrides: {
+    root: {
+      borderRadius: '500px',
+    },
     /**
      * @variant contained
      */
@@ -154,6 +159,7 @@ const MuiButton: Components<Theme>['MuiButton'] = {
       };
       return { ...styled.inheritColor };
     },
+
     /**
      * @size
      */

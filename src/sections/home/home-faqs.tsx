@@ -21,7 +21,6 @@ import { varFade, MotionViewport } from 'src/components/animate';
 import { SectionTitle } from './components/section-title';
 import { FloatLine, FloatPlusIcon, FloatTriangleDownIcon } from './components/svg-elements';
 import { useTranslate } from '../../locales';
-import Divider from '@mui/material/Divider';
 import { TFunction } from 'i18next';
 
 // ----------------------------------------------------------------------
