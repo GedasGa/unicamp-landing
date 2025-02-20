@@ -21,18 +21,22 @@ export function ProgramFeatures({ sx, ...other }: BoxProps) {
   const { t } = useTranslate('programs');
 
   return (
-    <Box component="section" sx={{ ...sx }} {...other}>
-      <Container>
+    <Box
+      component="section"
+      sx={{
+        py: { xs: 2, sm: 6 },
+        px: { xs: 2, sm: 15 },
+        ...sx,
+      }}
+      {...other}
+    >
+      <Container disableGutters>
         <Stack
-          spacing={2}
+          spacing={3}
           direction={{ xs: 'column', sm: 'row' }}
           flexWrap="wrap"
           alignItems={{ xs: 'flex-start', sm: 'center' }}
           justifyContent="space-between"
-          sx={{
-            my: { xs: 2, sm: 6 },
-            mx: { xs: 2, sm: 15 },
-          }}
         >
           <Stack alignItems={{ xs: 'flex-start', sm: 'center' }} flex={1}>
             <Typography variant="h4">104h</Typography>

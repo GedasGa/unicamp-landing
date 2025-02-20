@@ -53,19 +53,6 @@ export function NavList({ data }: NavListProps) {
             slotProps={{ rootItem: { sx: { minHeight: 36 } } }}
             sx={{
               px: 1.5,
-              [`& .${navSectionClasses.item.root}`]: {
-                '&[aria-label="Dashboard"]': {
-                  [`& .${navSectionClasses.item.title}`]: { display: 'none' },
-                  height: 180,
-                  borderRadius: 1.5,
-                  backgroundSize: 'auto 88%',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundImage: `url(${CONFIG.assetsDir}/assets/illustrations/illustration-dashboard.webp)`,
-                  border: (theme) =>
-                    `solid 1px ${varAlpha(theme.palette.grey['500Channel'], 0.12)}`,
-                },
-              },
             }}
           />
         </Collapse>

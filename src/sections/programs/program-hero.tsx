@@ -6,10 +6,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { MotionViewport } from 'src/components/animate';
 
-import { SectionTitle } from '../home/components/section-title';
-import { FloatLine, FloatTriangleDownIcon } from '../home/components/svg-elements';
 import { useTranslate } from '../../locales';
-import { Icon } from '@iconify/react';
 import Button from '@mui/material/Button';
 import posthog from 'posthog-js';
 import { Chip } from '@mui/material';
@@ -120,9 +117,13 @@ export function ProgramHero({ sx, ...other }: BoxProps) {
   );
 
   return (
-    <Box component="section" sx={{ ...sx }} {...other}>
+    <Box
+      component="section"
+      sx={{ py: { xs: 4, sm: 15 }, px: { xs: 2, sm: 15 }, ...sx }}
+      {...other}
+    >
       <MotionViewport sx={{ position: 'relative' }}>
-        <Container sx={{ py: { xs: 4, sm: 15 } }}>
+        <Container disableGutters>
           <Typography component="h1" variant="h1" textAlign="center">
             {t('ux.title')}
           </Typography>

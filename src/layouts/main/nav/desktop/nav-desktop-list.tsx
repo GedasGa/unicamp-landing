@@ -2,10 +2,8 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
-import Stack from '@mui/material/Stack';
 import Portal from '@mui/material/Portal';
 import { useTheme } from '@mui/material/styles';
-import ListSubheader from '@mui/material/ListSubheader';
 
 import { usePathname } from 'src/routes/hooks';
 import { useActiveLink } from 'src/routes/hooks/use-active-link';
@@ -15,9 +13,9 @@ import { paper } from 'src/theme/styles';
 
 import { NavLi, NavUl } from 'src/components/nav-section';
 
-import { NavItem, NavItemDashboard } from './nav-desktop-item';
+import { NavItem } from './nav-desktop-item';
 
-import type { NavListProps, NavSubListProps } from '../types';
+import type { NavListProps } from '../types';
 
 // ----------------------------------------------------------------------
 

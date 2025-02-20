@@ -1,6 +1,28 @@
 {
   "ux": {
-    "title": "Become certified UX design professional"
+    "title": "Become certified UX design professional",
+    "modules": [
+      {
+        "title": "Foundations of Digital Design",
+        "description": "Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
+        "skills": ["Figma", "Design Process"]
+      },
+      {
+        "title": "Crafting seemless experiences",
+        "description": "Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
+        "skills": ["UX", "Accessibility", "User Personas"]
+      },
+      {
+        "title": "Designing Visual Languages",
+        "description": "Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
+        "skills": ["UI", "Design Systems", "Colors"]
+      },
+      {
+        "title": "From Concept to Creation",
+        "description": "Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
+        "skills": ["AI tools", "Project"]
+      }
+    ]
   },
   "hero": {
     "cta": {

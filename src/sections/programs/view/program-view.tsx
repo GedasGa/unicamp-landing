@@ -6,6 +6,7 @@ import { ProgramHero } from '../program-hero';
 import { ProgramCertificate } from '../program-certificate';
 import { ProgramFeatures } from '../program-features';
 import { ProgramBanner } from '../program-banner';
+import { ProgramSyllabus } from '../program-syllabus';
 
 // ----------------------------------------------------------------------
 
@@ -24,15 +25,7 @@ export function ProgramView() {
       <ProgramFeatures />
       <ProgramCertificate />
       <ProgramBanner />
-
-      {/*<Stack sx={{ position: 'relative', bgcolor: 'background.default' }}>*/}
-      {/*  <HomeUnicamp />*/}
-      {/*  <HomeFeatures />*/}
-      {/*  <HomeTeam />*/}
-      {/*  <HomePrograms id="courses" />*/}
-      {/*  /!*<HomeContact />*!/*/}
-      {/*  <HomeFAQs />*/}
-      {/*</Stack>*/}
+      <ProgramSyllabus />
     </>
   );
 }

@@ -16,7 +16,7 @@ export function ProgramCertificate({ sx, ...other }: BoxProps) {
   return (
     <Box
       component="section"
-      sx={{ py: { xs: 4, sm: 15 }, pl: { xs: 4, sm: 15 }, backgroundColor: 'grey.100', ...sx }}
+      sx={{ py: { xs: 4, sm: 20 }, pl: { xs: 2, sm: 15 }, backgroundColor: 'grey.100', ...sx }}
       {...other}
     >
       <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" spacing={{ xs: 2, sm: 9 }}>
