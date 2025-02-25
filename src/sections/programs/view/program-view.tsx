@@ -7,6 +7,7 @@ import { ProgramCertificate } from '../program-certificate';
 import { ProgramFeatures } from '../program-features';
 import { ProgramBanner } from '../program-banner';
 import { ProgramSyllabus } from '../program-syllabus';
+import { ProgramExpectations } from '../program-expectations';
 
 // ----------------------------------------------------------------------
 
@@ -26,6 +27,7 @@ export function ProgramView() {
       <ProgramCertificate />
       <ProgramBanner />
       <ProgramSyllabus />
+      <ProgramExpectations />
     </>
   );
 }

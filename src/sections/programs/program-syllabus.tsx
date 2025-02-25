@@ -10,8 +10,6 @@ import { Iconify } from '../../components/iconify';
 import Card, { type CardProps } from '@mui/material/Card';
 import { Image } from '../../components/image';
 import { CONFIG } from '../../config-global';
-import { Label } from '../../components/label';
-import { ProgramCard, PROGRAMS } from '../home/home-programs';
 
 // ----------------------------------------------------------------------
 
@@ -56,32 +54,32 @@ export function ProgramSyllabus({ sx, ...other }: BoxProps) {
       <Stack spacing={{ xs: 2, sm: 7 }}>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
-          alignItems="center"
+          alignItems={{ xs: 'flex-start', sm: 'center' }}
           justifyContent="space-between"
           spacing={2}
         >
           <Typography variant="h1">Syllabus</Typography>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
+            sx={{ width: { xs: '100%', sm: 'inherit' } }}
+          >
             <Button
               variant="outlined"
               size="large"
               startIcon={<Iconify icon="solar:download-bold" />}
-              sx={{ px: 4, width: { xs: '100%', sm: 'inherit' } }}
+              sx={{ px: 4 }}
             >
               Download whole syllabus
             </Button>
-            <Button
-              variant="contained"
-              size="large"
-              sx={{ px: 4, width: { xs: '100%', sm: 'inherit' } }}
-            >
+            <Button variant="contained" size="large" sx={{ px: 4 }}>
               Register to program
             </Button>
           </Stack>
         </Stack>
         <Stack spacing={4}>
-          {MODULES.map((module, index) => (
-            <ModuleCard key={module.id} module={module} index={index} />
+          {MODULES.map((module) => (
+            <ModuleCard key={module.title} module={module} />
           ))}
         </Stack>
       </Stack>
