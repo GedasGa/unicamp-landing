@@ -29,7 +29,7 @@ const LINKS = [
     headline: 'links.contact.headline',
     children: [
       { name: 'info@unicamp.lt', href: 'mailto:info@unicamp.lt' },
-      { name: '+370 630 47670', href: 'tel:+37063047670' },
+      { name: '+370 610 08080', href: 'tel:+3706100808' },
     ],
   },
 ];

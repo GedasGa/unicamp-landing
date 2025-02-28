@@ -4,7 +4,7 @@
     "cta": {
       "viewCourses": "Peržiūrėkite kursus",
       "text": "Gaukite nemokamą konsultaciją",
-      "description": "Nežinai, nuo ko pradėti?"
+      "description": "Nežinote, nuo ko pradėti?"
     },
     "svg": {
       "text": "unicamp akademija"
@@ -130,7 +130,7 @@
   },
   "faqs": {
     "caption": "DUK",
-    "title": "Turime atsakymus",
+    "title": "Atsakymai į dažnus klausimus",
     "contact": {
       "heading": "Vis dar kyla klausimų?",
       "description": "Užduokite rūpimus klausimus ir gaukite atsakymą per 12 valandų.",
