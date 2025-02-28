@@ -8,6 +8,7 @@ import { ProgramFeatures } from '../program-features';
 import { ProgramBanner } from '../program-banner';
 import { ProgramSyllabus } from '../program-syllabus';
 import { ProgramExpectations } from '../program-expectations';
+import { ProgramMentor } from '../program-mentor';
 
 // ----------------------------------------------------------------------
 
@@ -28,6 +29,7 @@ export function ProgramView() {
       <ProgramBanner />
       <ProgramSyllabus />
       <ProgramExpectations />
+      <ProgramMentor />
     </>
   );
 }

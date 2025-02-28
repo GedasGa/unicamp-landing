@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import { Iconify } from '../../components/iconify';
 import Card, { type CardProps } from '@mui/material/Card';
 import Link from '@mui/material/Link';
+import { paths } from '../../routes/paths';
 
 // ---------------------------------------------------------------------
 const EXPECTATIONS = [
@@ -51,7 +52,11 @@ export function ProgramExpectations({ sx, ...other }: BoxProps) {
             Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin.
           </Typography>
         </Stack>
-        <Stack spacing={3} flexDirection={{ xs: 'column', sm: 'row' }}           sx={{ width: { xs: '100%', sm: 'inherit' } }}>
+        <Stack
+          spacing={3}
+          flexDirection={{ xs: 'column', sm: 'row' }}
+          sx={{ width: { xs: '100%', sm: 'inherit' } }}
+        >
           {EXPECTATIONS.map((expectation) => (
             <ExpectationsCard key={expectation.title} expectation={expectation} />
           ))}
@@ -87,17 +92,17 @@ const ExpectationsCard = ({ expectation, sx, ...other }: ExpectationsCardProps) 
             {t(expectation.description)}
           </Typography>
           {expectation?.link && (
-            <Link
+            <Button
               component={Button}
               sx={{ color: 'primary.main' }}
               size="large"
               href={t(expectation.link.url)}
-              target="_blank"
+              // target="_blank"
             >
               <Stack direction="row" spacing={0.75}>
                 {t(expectation.link.text)} <Iconify icon="solar:arrow-right-up-linear" />
               </Stack>
-            </Link>
+            </Button>
           )}
         </Stack>
       </Stack>

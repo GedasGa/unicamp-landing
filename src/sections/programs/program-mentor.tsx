@@ -10,29 +10,6 @@ import { Iconify } from '../../components/iconify';
 import Card, { type CardProps } from '@mui/material/Card';
 import Link from '@mui/material/Link';
 
-// ---------------------------------------------------------------------
-const EXPECTATIONS = [
-  {
-    icon: 'material-symbols:analytics-outline',
-    title: 'ux.expectations.0.title',
-    description: 'ux.expectations.0.description',
-    link: {
-      text: 'ux.expectations.0.link.text',
-      url: 'ux.expectations.0.link.url',
-    },
-  },
-  {
-    icon: 'material-symbols:analytics-outline',
-    title: 'ux.expectations.1.title',
-    description: 'ux.expectations.1.description',
-  },
-  {
-    icon: 'material-symbols:analytics-outline',
-    title: 'ux.expectations.2.title',
-    description: 'ux.expectations.2.description',
-  },
-];
-
 // ----------------------------------------------------------------------
 
 export function ProgramMentor({ sx, ...other }: BoxProps) {
@@ -41,66 +18,36 @@ export function ProgramMentor({ sx, ...other }: BoxProps) {
   return (
     <Box
       component="section"
-      sx={{ py: { xs: 4, sm: 10 }, px: { xs: 2, sm: 15 }, ...sx }}
+      sx={{
+        py: { xs: 4, sm: 10 },
+        px: { xs: 2, sm: 15 },
+        bgcolor: 'common.black',
+        ...sx,
+      }}
       {...other}
     >
-      <Stack spacing={{ xs: 2, sm: 7 }} alignItems={{ xs: 'flex-start', sm: 'center' }}>
-        <Stack spacing={2} textAlign={{ xs: 'left', sm: 'center' }}>
-          <Typography variant="h2">What expect after courses?</Typography>
+      <Stack spacing={{ xs: 2, sm: 3 }} alignItems={{ xs: 'center', sm: 'flex-start' }}>
+        <Typography variant="h2" color="common.white">
+          Meet your mentor
+        </Typography>
+        <Stack spacing={1}>
+          <Typography variant="subtitle1" color="common.white">
+            Aistė Gerdzevičiūtė
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Co-Founder | Product Designer
+          </Typography>
           <Typography variant="body1" color="text.secondary">
-            Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin.
+            Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal
+            yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee
+            kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm
+            baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.
           </Typography>
         </Stack>
-        <Stack spacing={3} flexDirection={{ xs: 'column', sm: 'row' }}>
-          {EXPECTATIONS.map((expectation) => (
-            <ExpectationsCard key={expectation.title} expectation={expectation} />
-          ))}
-        </Stack>
-        <Button
-          variant="contained"
-          size="large"
-          sx={{ px: 4, width: { xs: '100%', sm: 'fit-content' } }}
-        >
-          Register to program
+        <Button size="large" sx={{ color: 'common.black', bgcolor: 'common.white' }}>
+          Connect on LinkedIn
         </Button>
       </Stack>
     </Box>
   );
 }
-
-// ----------------------------------------------------------------------
-
-type ExpectationsCardProps = CardProps & {
-  expectation: (typeof EXPECTATIONS)[number];
-};
-
-const ExpectationsCard = ({ expectation, sx, ...other }: ExpectationsCardProps) => {
-  const { t } = useTranslate('programs');
-
-  return (
-    <Card sx={{ p: 3, bgcolor: 'grey.100', ...sx }} {...other}>
-      <Stack spacing={2}>
-        <Iconify icon={expectation.icon} />
-        <Stack spacing={0.75} alignItems="flex-start">
-          <Typography variant="h4">{t(expectation.title)}</Typography>
-          <Typography variant="body1" color="text.secondary">
-            {t(expectation.description)}
-          </Typography>
-          {expectation?.link && (
-            <Link
-              component={Button}
-              sx={{ color: 'primary.main' }}
-              size="large"
-              href={t(expectation.link.url)}
-              target="_blank"
-            >
-              <Stack direction="row" spacing={0.75}>
-                {t(expectation.link.text)} <Iconify icon="solar:arrow-right-up-linear" />
-              </Stack>
-            </Link>
-          )}
-        </Stack>
-      </Stack>
-    </Card>
-  );
-};
