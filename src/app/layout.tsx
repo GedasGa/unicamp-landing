@@ -19,6 +19,7 @@ import { ProgressBar } from 'src/components/progress-bar';
 import { MotionLazy } from 'src/components/animate/motion-lazy';
 import { SettingsDrawer, defaultSettings, SettingsProvider } from 'src/components/settings';
 import { CSPostHogProvider } from './providers';
+import {GoogleTagManager} from "@next/third-parties/google";
 
 // ----------------------------------------------------------------------
 
@@ -48,6 +49,8 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang={lang ?? 'lt'} dir="ltr" suppressHydrationWarning>
+      <GoogleTagManager gtmId="AW-16868873802" />
+
       <body>
         <InitColorSchemeScript
           defaultMode={schemeConfig.defaultMode}
