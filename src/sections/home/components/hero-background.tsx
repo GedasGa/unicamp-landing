@@ -13,6 +13,7 @@ import { varAlpha, stylesMode } from 'src/theme/styles';
 import { MotionContainer, varFade } from 'src/components/animate';
 
 import { Lines, Companies, Circles, PlusIcon } from './hero-svg';
+import { useEffect, useState } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -21,6 +22,18 @@ export function HeroBackground({ sx, ...other }: BoxProps) {
   const upMd = useResponsive('up', 'md');
 
   const strokeCount = 12;
+
+  const [showCompanies, setShowCompanies] = useState(false);
+
+  useEffect(() => {
+    const checkViewport = () => {
+      setShowCompanies(upMd && window.innerHeight > 800);
+    };
+
+    checkViewport();
+    window.addEventListener('resize', checkViewport);
+    return () => window.removeEventListener('resize', checkViewport);
+  }, [upMd]);
 
   return (
     <Box
@@ -57,7 +70,7 @@ export function HeroBackground({ sx, ...other }: BoxProps) {
       }}
       {...other}
     >
-      {upMd && <Companies />}
+      {showCompanies && <Companies />}
 
       <Box
         component={m.svg}
