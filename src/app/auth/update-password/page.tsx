@@ -1,11 +1,11 @@
 import { CONFIG } from 'src/config-global';
 
-import { CenteredUpdatePasswordView } from 'src/auth/view/auth-demo/centered';
+import { SupabaseUpdatePasswordView } from 'src/auth/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `Update password | Layout centered - ${CONFIG.appName}` };
+export const metadata = { title: `Update password | ${CONFIG.appName}` };
 
 export default function Page() {
-  return <CenteredUpdatePasswordView />;
+  return <SupabaseUpdatePasswordView />;
 }

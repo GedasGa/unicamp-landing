@@ -1,11 +1,11 @@
 import { CONFIG } from 'src/config-global';
 
-import { CenteredResetPasswordView } from 'src/auth/view/auth-demo/centered';
+import { SupabaseResetPasswordView } from 'src/auth/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `Reset password | Layout centered - ${CONFIG.appName}` };
+export const metadata = { title: `Reset password | ${CONFIG.appName}` };
 
 export default function Page() {
-  return <CenteredResetPasswordView />;
+  return <SupabaseResetPasswordView />;
 }

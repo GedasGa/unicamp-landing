@@ -1,11 +1,11 @@
 import { CONFIG } from 'src/config-global';
 
-import { CenteredSignUpView } from 'src/auth/view/auth-demo/centered';
+import { SupabaseSignUpView } from 'src/auth/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `Sign up | Layout centered - ${CONFIG.appName}` };
+export const metadata = { title: `Sign up |  ${CONFIG.appName}` };
 
 export default function Page() {
-  return <CenteredSignUpView />;
+  return <SupabaseSignUpView />;
 }

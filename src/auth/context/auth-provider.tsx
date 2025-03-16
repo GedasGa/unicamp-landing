@@ -8,9 +8,9 @@ import axios from 'src/utils/axios';
 
 import { supabase } from 'src/lib/supabase';
 
-import { AuthContext } from '../auth-context';
+import { AuthContext } from './auth-context';
 
-import type { AuthState } from '../../types';
+import type { AuthState } from '../types';
 
 // ----------------------------------------------------------------------
 

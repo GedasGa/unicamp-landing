@@ -21,9 +21,9 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { Iconify } from 'src/components/iconify';
 import { Form, Field } from 'src/components/hook-form';
 
-import { signUp } from '../../context/supabase';
-import { FormHead } from '../../components/form-head';
-import { SignUpTerms } from '../../components/sign-up-terms';
+import { signUp } from '../context';
+import { FormHead } from '../components/form-head';
+import { SignUpTerms } from '../components/sign-up-terms';
 
 // ----------------------------------------------------------------------
 
