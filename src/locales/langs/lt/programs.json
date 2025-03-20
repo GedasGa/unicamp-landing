@@ -40,8 +40,21 @@
         "title": "Flexibility",
         "description": "Summer all year? No problem"
       }
+    ],
+    "nextGroups": [
+      {
+        "date": "April 10",
+        "spots": "5 spots left",
+        "deadline": "April 5"
+      },
+      {
+        "date": "April 22",
+        "spots": "5 spots left",
+        "deadline": "April 17"
+      }
     ]
   },
+  "deadlineForApplication": "Deadline for applications",
   "hero": {
     "cta": {
       "title": "Register to program",

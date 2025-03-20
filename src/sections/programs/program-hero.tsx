@@ -65,6 +65,7 @@ export function ProgramHero({ sx, ...other }: BoxProps) {
 
   const renderCta = (
     <Box display="flex" alignItems="center" flexDirection="column" gap={{ xs: 1.5, sm: 2 }}>
+      {/* @ts-ignore Complain about target */}
       <Button
         color="inherit"
         size="large"

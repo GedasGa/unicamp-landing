@@ -44,7 +44,14 @@ export function ProgramMentor({ sx, ...other }: BoxProps) {
             baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.
           </Typography>
         </Stack>
-        <Button size="large" sx={{ color: 'common.black', bgcolor: 'common.white' }}>
+        <Button
+          size="large"
+          sx={{
+            color: 'common.black',
+            bgcolor: 'common.white',
+            '&:hover': { bgcolor: 'grey.200' },
+          }}
+        >
           Connect on LinkedIn
         </Button>
       </Stack>

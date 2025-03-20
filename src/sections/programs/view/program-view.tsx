@@ -10,6 +10,8 @@ import { ProgramSyllabus } from '../program-syllabus';
 import { ProgramExpectations } from '../program-expectations';
 import { ProgramMentor } from '../program-mentor';
 import { ProgramPricing } from '../program-pricing';
+import { ProgramNextGroups } from '../program-next-groups';
+import { HomeFAQs } from '../../home/home-faqs';
 
 // ----------------------------------------------------------------------
 
@@ -32,6 +34,8 @@ export function ProgramView() {
       <ProgramExpectations />
       <ProgramMentor />
       <ProgramPricing />
+      <ProgramNextGroups />
+      <HomeFAQs />
     </>
   );
 }

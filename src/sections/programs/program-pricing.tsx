@@ -52,6 +52,7 @@ export function ProgramPricing({ sx, ...other }: BoxProps) {
             icon={<Iconify icon="solar:shield-check-bold" />}
             label={'14 days money back guarantee'}
             color="success"
+            sx={{ maxWidth: 'fit-content' }}
           />
         </Stack>
         <Stack
@@ -60,7 +61,7 @@ export function ProgramPricing({ sx, ...other }: BoxProps) {
           sx={{ width: { xs: '100%' } }}
         >
           {PRICES.map((price) => (
-            <PriceCardProps key={price.title} price={price} sx={{ flex: 1 }}/>
+            <PriceCardProps key={price.title} price={price} sx={{ flex: 1 }} />
           ))}
         </Stack>
       </Stack>
