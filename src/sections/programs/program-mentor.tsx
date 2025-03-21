@@ -28,20 +28,17 @@ export function ProgramMentor({ sx, ...other }: BoxProps) {
     >
       <Stack spacing={{ xs: 2, sm: 3 }} alignItems={{ xs: 'center', sm: 'flex-start' }}>
         <Typography variant="h2" color="common.white">
-          Meet your mentor
+          {t('ux.mentor.title')}
         </Typography>
         <Stack spacing={1}>
           <Typography variant="subtitle1" color="common.white">
-            Aistė Gerdzevičiūtė
+            {t('ux.mentor.name')}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Co-Founder | Product Designer
+            {t('ux.mentor.role')}
           </Typography>
           <Typography variant="body1" color="text.secondary">
-            Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal
-            yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee
-            kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm
-            baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.
+            {t('ux.mentor.description')}
           </Typography>
         </Stack>
         <Button
@@ -52,7 +49,7 @@ export function ProgramMentor({ sx, ...other }: BoxProps) {
             '&:hover': { bgcolor: 'grey.200' },
           }}
         >
-          Connect on LinkedIn
+          {t('ux.mentor.cta')}
         </Button>
       </Stack>
     </Box>

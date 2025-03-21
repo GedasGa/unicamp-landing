@@ -58,7 +58,7 @@ export function ProgramSyllabus({ sx, ...other }: BoxProps) {
           justifyContent="space-between"
           spacing={2}
         >
-          <Typography variant="h1">Syllabus</Typography>
+          <Typography variant="h1">{t('ux.syllabus.title')}</Typography>
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             spacing={2}
@@ -70,10 +70,10 @@ export function ProgramSyllabus({ sx, ...other }: BoxProps) {
               startIcon={<Iconify icon="solar:download-bold" />}
               sx={{ px: 4 }}
             >
-              Download whole syllabus
+              {t('ux.syllabus.cta.download')}
             </Button>
             <Button variant="contained" size="large" sx={{ px: 4 }}>
-              Register to program
+              {t('ux.syllabus.cta.register')}
             </Button>
           </Stack>
         </Stack>

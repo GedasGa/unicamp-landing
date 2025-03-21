@@ -39,26 +39,26 @@ export function ProgramFeatures({ sx, ...other }: BoxProps) {
           justifyContent="space-between"
         >
           <Stack alignItems={{ xs: 'flex-start', sm: 'center' }} flex={1}>
-            <Typography variant="h4">104h</Typography>
-            <Typography variant="caption">Course duration</Typography>
+            <Typography variant="h4">{t('hero.features.courseDuration.description')}</Typography>
+            <Typography variant="caption">{t('hero.features.courseDuration.title')}</Typography>
           </Stack>
           <Stack alignItems={{ xs: 'flex-start', sm: 'center' }} flex={1}>
-            <Typography variant="h4">20</Typography>
-            <Typography variant="caption">Group size</Typography>
+            <Typography variant="h4">{t('hero.features.groupSize.description')}</Typography>
+            <Typography variant="caption">{t('hero.features.groupSize.title')}</Typography>
           </Stack>
           <Stack alignItems={{ xs: 'flex-start', sm: 'center' }} flex={1}>
             <Stack direction="row" alignItems="center" spacing={1}>
               <Typography variant="h4" fontWeight="bold">
-                1 <span></span>
+                {t('hero.features.project.description')}
               </Typography>
               <Chip
                 size="small"
-                label="Share on LinkedIn"
+                label={t('hero.features.project.chip')}
                 sx={{ transform: 'translateY(-2px)' }}
                 color="primary"
               />
             </Stack>
-            <Typography variant="caption">Project</Typography>
+            <Typography variant="caption">{t('hero.features.project.title')}</Typography>
           </Stack>
         </Stack>
       </Container>

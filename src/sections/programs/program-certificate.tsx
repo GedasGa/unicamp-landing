@@ -21,11 +21,8 @@ export function ProgramCertificate({ sx, ...other }: BoxProps) {
     >
       <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" spacing={{ xs: 2, sm: 9 }}>
         <Stack spacing={2} flex={1}>
-          <Typography variant="h2">Showcase your skills with certifacte</Typography>
-          <Typography variant="body1">
-            This program guides you through the key stages of UX/UI design, from user needs analysis
-            to interactive prototypes.
-          </Typography>
+          <Typography variant="h2">{t('ux.certificate.title')}</Typography>
+          <Typography variant="body1">{t('ux.certificate.description')}</Typography>
         </Stack>
         <Box
           component="img"
@@ -34,7 +31,7 @@ export function ProgramCertificate({ sx, ...other }: BoxProps) {
           sx={{
             width: '100%',
             maxWidth: '600px',
-            flex: 1, // Ensures equal space sharing
+            flex: 1,
             overflow: 'hidden',
           }}
         />

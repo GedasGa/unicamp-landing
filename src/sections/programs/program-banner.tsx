@@ -74,13 +74,8 @@ export function ProgramBanner({ sx, ...other }: BoxProps) {
           }}
         >
           <Stack spacing={2}>
-            <Typography variant="h2">About the program</Typography>
-            <Typography variant="body1">
-              This program guides you through the key stages of UX/UI design, from user needs
-              analysis to interactive prototypes. You'll gain both theoretical knowledge and
-              practical skills to create modern design solutions, focusing on trends like dark mode,
-              responsive design.
-            </Typography>
+            <Typography variant="h2">{t('ux.banner.title')}</Typography>
+            <Typography variant="body1">{t('ux.banner.description')}</Typography>
           </Stack>
         </Box>
 

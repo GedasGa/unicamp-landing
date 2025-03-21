@@ -15,22 +15,22 @@ import { paths } from '../../routes/paths';
 const EXPECTATIONS = [
   {
     icon: 'material-symbols:analytics-outline',
-    title: 'ux.expectations.0.title',
-    description: 'ux.expectations.0.description',
+    title: 'ux.expectations.cards.0.title',
+    description: 'ux.expectations.cards.0.description',
     link: {
-      text: 'ux.expectations.0.link.text',
-      url: 'ux.expectations.0.link.url',
+      text: 'ux.expectations.cards.0.link.text',
+      url: 'ux.expectations.cards.0.link.url',
     },
   },
   {
     icon: 'material-symbols:analytics-outline',
-    title: 'ux.expectations.1.title',
-    description: 'ux.expectations.1.description',
+    title: 'ux.expectations.cards.1.title',
+    description: 'ux.expectations.cards.1.description',
   },
   {
     icon: 'material-symbols:analytics-outline',
-    title: 'ux.expectations.2.title',
-    description: 'ux.expectations.2.description',
+    title: 'ux.expectations.cards.2.title',
+    description: 'ux.expectations.cards.2.description',
   },
 ];
 
@@ -47,9 +47,9 @@ export function ProgramExpectations({ sx, ...other }: BoxProps) {
     >
       <Stack spacing={{ xs: 2, sm: 7 }} alignItems="center">
         <Stack spacing={2} textAlign={{ xs: 'left', sm: 'center' }}>
-          <Typography variant="h2">What expect after courses?</Typography>
+          <Typography variant="h2">{t('ux.expectations.title')}</Typography>
           <Typography variant="body1" color="text.secondary">
-            Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin.
+            {t('ux.expectations.description')}
           </Typography>
         </Stack>
         <Stack
@@ -66,7 +66,7 @@ export function ProgramExpectations({ sx, ...other }: BoxProps) {
           size="large"
           sx={{ px: 4, width: { xs: '100%', sm: 'fit-content' } }}
         >
-          Register to program
+          {t('ux.expectations.cta')}
         </Button>
       </Stack>
     </Box>

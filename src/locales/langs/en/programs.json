@@ -1,6 +1,28 @@
 {
   "ux": {
     "title": "Become certified UX design professional",
+    "skills": {
+      "figma": "Figma",
+      "openai": "OpenAI",
+      "uxResearch": "UX Research",
+      "accessibility": "Accessibility",
+      "designSystems": "Design System"
+    },
+    "certificate": {
+      "title": "Showcase your skills with certificate",
+      "description": "This program guides you through the key stages of UX/UI design, from user needs analysis to interactive prototypes."
+    },
+    "banner": {
+      "title": "About the program",
+      "description": "This program guides you through the key stages of UX/UI design, from user needs\n              analysis to interactive prototypes. You'll gain both theoretical knowledge and\n              practical skills to create modern design solutions, focusing on trends like dark mode,\n              responsive design."
+    },
+    "syllabus": {
+      "title": "Syllabus",
+      "cta": {
+        "download": "Download whole syllabus",
+        "register": "Register to program"
+      }
+    },
     "modules": [
       {
         "title": "Foundations of Digital Design",
@@ -23,24 +45,36 @@
         "skills": ["AI tools", "Project"]
       }
     ],
-    "expectations": [
-      {
-        "title": "Competitive salary",
-        "description": "432O EUR per month",
-        "link": {
-          "url": "https://www.google.com",
-          "text": "Source"
+    "expectations": {
+      "title": "What to expect after course?",
+      "description": "You know the fundamentals of UX/UI design, can create interactive prototypes, and have a certificate to prove your skills.",
+      "cta": "Register to program",
+      "cards": [
+        {
+          "title": "Competitive salary",
+          "description": "432O EUR per month",
+          "link": {
+            "url": "https://www.google.com",
+            "text": "Source"
+          }
+        },
+        {
+          "title": "Work at top companies",
+          "description": "NordSecurity, Vinted, Surfshark"
+        },
+        {
+          "title": "Flexibility",
+          "description": "Summer all year? No problem"
         }
-      },
-      {
-        "title": "Work at top companies",
-        "description": "NordSecurity, Vinted, Surfshark"
-      },
-      {
-        "title": "Flexibility",
-        "description": "Summer all year? No problem"
-      }
-    ],
+      ]
+    },
+  "mentor": {
+      "title": "Meet your mentor",
+      "name": "Aistė Gerdzevičiūtė",
+      "role": "Co-founder | Product designer and UX/UI instructor",
+      "description": "Aistė is a co-founder of Unicamp and a product designer with 5 years of experience. She has worked with startups and corporations, helping them to create user-friendly products. Aistė is passionate about design systems and AI tools for designers.",
+      "cta": "Connect on LinkedIn"
+    },
     "prices": [
       {
         "title": "One-time",
@@ -64,6 +98,21 @@
     "cta": {
       "title": "Register to program",
       "subtitle": "Starts April 10"
+    },
+    "features": {
+      "courseDuration": {
+        "title": "Course duration",
+        "description": "12 weeks (108 hours)"
+      },
+      "groupSize": {
+        "title": "Group size",
+        "description": "20"
+      },
+      "project": {
+        "title": "Project",
+        "description": "1",
+        "chip": "Share on LinkedIn"
+      }
     }
   }
 }

@@ -32,31 +32,31 @@ export function ProgramHero({ sx, ...other }: BoxProps) {
     >
       <Chip
         icon={<Iconify icon="logos:figma" />}
-        label="Figma"
+        label={t('ux.skills.figma')}
         variant="outlined"
         sx={{ borderRadius: '500px' }}
       />
       <Chip
         icon={<Iconify icon="logos:openai-icon" />}
-        label="OpenAI"
+        label={t('ux.skills.openai')}
         variant="outlined"
         sx={{ borderRadius: '500px' }}
       />
       <Chip
         icon={<Iconify icon="mdi:clipboard-text-outline" />}
-        label="UX Research"
+        label={t('ux.skills.uxResearch')}
         variant="outlined"
         sx={{ borderRadius: '500px' }}
       />
       <Chip
         icon={<Iconify icon="mdi:accessibility" />}
-        label="Accessiblity"
+        label={t('ux.skills.accessibility')}
         variant="outlined"
         sx={{ borderRadius: '500px' }}
       />
       <Chip
         icon={<Iconify icon="mdi:puzzle-outline" />}
-        label="Design Systems"
+        label={t('ux.skills.designSystems')}
         variant="outlined"
         sx={{ borderRadius: '500px' }}
       />
@@ -78,43 +78,6 @@ export function ProgramHero({ sx, ...other }: BoxProps) {
       </Button>
       <Typography variant="caption">{t('hero.cta.subtitle')}</Typography>
     </Box>
-  );
-
-  const renderFeatures = (
-    <Stack
-      spacing={2}
-      direction={{ xs: 'column', sm: 'row' }}
-      flexWrap="wrap"
-      alignItems={{ xs: 'flex-start', sm: 'center' }}
-      justifyContent="space-between"
-      sx={{
-        my: { xs: 2, sm: 6 },
-        mx: { xs: 2, sm: 15 },
-      }}
-    >
-      <Stack alignItems={{ xs: 'flex-start', sm: 'center' }}>
-        <Typography variant="h4">104h</Typography>
-        <Typography variant="caption">Course duration</Typography>
-      </Stack>
-      <Stack alignItems={{ xs: 'flex-start', sm: 'center' }}>
-        <Typography variant="h4">20</Typography>
-        <Typography variant="caption">Group size</Typography>
-      </Stack>
-      <Stack alignItems={{ xs: 'flex-start', sm: 'center' }}>
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <Typography variant="h4" fontWeight="bold">
-            1
-          </Typography>
-          <Chip
-            size="small"
-            label="Share on LinkedIn"
-            sx={{ transform: 'translateY(-2px)' }}
-            color="primary"
-          />
-        </Stack>
-        <Typography variant="caption">Project</Typography>
-      </Stack>
-    </Stack>
   );
 
   return (
