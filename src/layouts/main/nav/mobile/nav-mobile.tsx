@@ -29,7 +29,7 @@ export type NavMobileProps = NavMainProps & {
 
 export function NavMobile({ data, open, onClose, slots, sx }: NavMobileProps) {
   const pathname = usePathname();
-  const { t } = useTranslate('navbar');
+  const { t } = useTranslate('nav');
 
   useEffect(() => {
     if (open) {

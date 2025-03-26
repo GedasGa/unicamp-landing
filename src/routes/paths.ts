@@ -20,8 +20,8 @@ export const paths = {
   lecturers: '#lecturers',
   privacyPolicy: '/privacy-policy',
 
-  program: {
-    root: '#courses',
+  programs: {
+    root: '/programs',
     ux: `/programs/ux`,
     fe: `/programs/fe`,
   },

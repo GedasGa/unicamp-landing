@@ -51,7 +51,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
   const theme = useTheme();
   const pathname = usePathname();
   const mobileNavOpen = useBoolean();
-  const { t } = useTranslate('navbar');
+  const { t } = useTranslate('nav');
 
   const localStorage = useLocalStorage<LayoutState>('layout-settings', {
     showAlert: false,
@@ -119,7 +119,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                   <Button
                     variant="outlined"
                     rel="noopener"
-                    href={paths.courses}
+                    href={paths.programs}
                     sx={{
                       display: 'none',
                       [theme.breakpoints.up(layoutQuery)]: { display: 'inline-flex' },
