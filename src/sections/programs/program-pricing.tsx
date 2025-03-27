@@ -5,39 +5,43 @@ import Box from '@mui/material/Box';
 import { useTranslate } from '../../locales';
 import { Chip, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { Iconify } from '../../components/iconify';
 import Card, { type CardProps } from '@mui/material/Card';
-import Link from '@mui/material/Link';
-import { paths } from '../../routes/paths';
 
 // ---------------------------------------------------------------------
 const PRICES = [
   {
-    title: 'ux.prices.0.title',
-    description: 'ux.prices.0.description',
-    price: 'ux.prices.0.price',
+    title: 'prices.0.title',
+    description: 'prices.0.description',
+    price: 'prices.0.price',
     discount: {
-      originalPrice: 'ux.prices.0.originalPrice',
+      originalPrice: 'prices.0.originalPrice',
       percentage: '-50%',
     },
   },
   {
-    title: 'ux.prices.1.title',
-    description: 'ux.prices.1.description',
-    price: 'ux.prices.1.price',
+    title: 'prices.1.title',
+    description: 'prices.1.description',
+    price: 'prices.1.price',
+    discount: {
+      originalPrice: 'prices.1.originalPrice',
+      percentage: '-50%',
+    },
   },
   {
-    title: 'ux.prices.2.title',
-    description: 'ux.prices.2.description',
-    price: 'ux.prices.2.price',
+    title: 'prices.2.title',
+    description: 'prices.2.description',
+    price: 'prices.2.price',
   },
 ];
 
 // ----------------------------------------------------------------------
+interface ProgramPricingProps extends BoxProps {
+  programName: string;
+}
 
-export function ProgramPricing({ sx, ...other }: BoxProps) {
-  const { t } = useTranslate('programs');
+export function ProgramPricing({ programName, sx, ...other }: ProgramPricingProps) {
+  const { t } = useTranslate(programName, { keyPrefix: 'pricing' });
 
   return (
     <Box
@@ -47,10 +51,10 @@ export function ProgramPricing({ sx, ...other }: BoxProps) {
     >
       <Stack spacing={{ xs: 2, sm: 7 }} alignItems="center">
         <Stack spacing={2} alignSelf="start">
-          <Typography variant="h2">Pricing options</Typography>
+          <Typography variant="h2">{t('title')}</Typography>
           <Chip
             icon={<Iconify icon="solar:shield-check-bold" />}
-            label={'14 days money back guarantee'}
+            label={t('chip')}
             color="success"
             sx={{ maxWidth: 'fit-content' }}
           />
@@ -61,7 +65,12 @@ export function ProgramPricing({ sx, ...other }: BoxProps) {
           sx={{ width: { xs: '100%' } }}
         >
           {PRICES.map((price) => (
-            <PriceCardProps key={price.title} price={price} sx={{ flex: 1 }} />
+            <PriceCardProps
+              key={price.title}
+              price={price}
+              programName={programName}
+              sx={{ flex: 1 }}
+            />
           ))}
         </Stack>
       </Stack>
@@ -73,10 +82,11 @@ export function ProgramPricing({ sx, ...other }: BoxProps) {
 
 type PriceCardProps = CardProps & {
   price: (typeof PRICES)[number];
+  programName: string;
 };
 
-const PriceCardProps = ({ price, sx, ...other }: PriceCardProps) => {
-  const { t } = useTranslate('programs');
+const PriceCardProps = ({ price, programName, sx, ...other }: PriceCardProps) => {
+  const { t } = useTranslate(programName, { keyPrefix: 'pricing' });
 
   return (
     <Card sx={{ p: 3, bgcolor: 'grey.100', ...sx }} {...other}>

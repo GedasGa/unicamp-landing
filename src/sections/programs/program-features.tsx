@@ -4,21 +4,18 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { MotionViewport } from 'src/components/animate';
 
-import { SectionTitle } from '../home/components/section-title';
-import { FloatLine, FloatTriangleDownIcon } from '../home/components/svg-elements';
 import { useTranslate } from '../../locales';
-import { Icon } from '@iconify/react';
-import Button from '@mui/material/Button';
-import posthog from 'posthog-js';
 import { Chip } from '@mui/material';
-import { Iconify } from '../../components/iconify';
 
 // ----------------------------------------------------------------------
 
-export function ProgramFeatures({ sx, ...other }: BoxProps) {
-  const { t } = useTranslate('programs');
+interface ProgramFeaturesProps extends BoxProps {
+  programName: string;
+}
+
+export function ProgramFeatures({ programName, sx, ...other }: ProgramFeaturesProps) {
+  const { t } = useTranslate(programName);
 
   return (
     <Box

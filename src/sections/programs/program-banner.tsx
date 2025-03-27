@@ -2,29 +2,22 @@ import type { BoxProps } from '@mui/material/Box';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { MotionViewport } from 'src/components/animate';
 
-import { SectionTitle } from '../home/components/section-title';
-import { FloatLine, FloatTriangleDownIcon } from '../home/components/svg-elements';
 import { useTranslate } from '../../locales';
-import { Icon } from '@iconify/react';
-import Button from '@mui/material/Button';
-import posthog from 'posthog-js';
-import { Chip } from '@mui/material';
-import { Iconify } from '../../components/iconify';
 import { CONFIG } from '../../config-global';
-import Paper from '@mui/material/Paper';
 import { bgBlur, varAlpha } from '../../theme/styles';
 import { useTheme } from '@mui/material/styles';
-import { useResponsive } from '../../hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
-export function ProgramBanner({ sx, ...other }: BoxProps) {
+interface ProgramBannerProps extends BoxProps {
+  programName: string;
+}
+
+export function ProgramBanner({ sx, programName, ...other }: ProgramBannerProps) {
   const theme = useTheme();
-  const { t } = useTranslate('programs');
+  const { t } = useTranslate(programName);
 
   return (
     <Box component="section" sx={{ ...sx }} {...other}>
@@ -74,8 +67,8 @@ export function ProgramBanner({ sx, ...other }: BoxProps) {
           }}
         >
           <Stack spacing={2}>
-            <Typography variant="h2">{t('ux.banner.title')}</Typography>
-            <Typography variant="body1">{t('ux.banner.description')}</Typography>
+            <Typography variant="h2">{t('banner.title')}</Typography>
+            <Typography variant="body1">{t('banner.description')}</Typography>
           </Stack>
         </Box>
 

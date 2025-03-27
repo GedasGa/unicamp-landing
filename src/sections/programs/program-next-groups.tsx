@@ -15,19 +15,23 @@ import { bgBlur, varAlpha } from '../../theme/styles';
 // ---------------------------------------------------------------------
 const NEXT_GROUPS = [
   {
-    date: 'ux.nextGroups.0.date',
-    deadline: '2025-03-03',
+    date: 'groups.0.date',
+    deadline: 'groups.0.deadline',
   },
   {
-    date: 'ux.nextGroups.1.date',
-    deadline: '2025-03-20',
+    date: 'groups.1.date',
+    deadline: 'groups.0.deadline',
   },
 ];
 
 // ----------------------------------------------------------------------
 
-export function ProgramNextGroups({ sx, ...other }: BoxProps) {
-  const { t } = useTranslate('programs');
+interface ProgramNextGroupsProps extends BoxProps {
+  programName: string;
+}
+
+export function ProgramNextGroups({ programName, sx, ...other }: ProgramNextGroupsProps) {
+  const { t } = useTranslate(programName, { keyPrefix: 'nextGroups' });
 
   return (
     <Box
@@ -43,10 +47,10 @@ export function ProgramNextGroups({ sx, ...other }: BoxProps) {
       <Stack spacing={{ xs: 2, sm: 7 }} alignItems="center">
         <Stack spacing={2} textAlign={{ xs: 'left', sm: 'center' }}>
           <Typography variant="h2" color="common.white">
-            Limited seats. Apply now!
+            {t('title')}
           </Typography>
           <Typography variant="body1" color="common.white">
-            Reserver your seat before group closes.
+            {t('subtitle')}
           </Typography>
         </Stack>
         <Stack
@@ -55,7 +59,7 @@ export function ProgramNextGroups({ sx, ...other }: BoxProps) {
           sx={{ width: { xs: '100%', sm: 'inherit' } }}
         >
           {NEXT_GROUPS.map((group) => (
-            <NextGroupCard key={group.date} group={group} />
+            <NextGroupCard key={group.date} group={group} programName={programName} />
           ))}
         </Stack>
       </Stack>
@@ -67,10 +71,11 @@ export function ProgramNextGroups({ sx, ...other }: BoxProps) {
 
 type NextGroupCardProps = CardProps & {
   group: (typeof NEXT_GROUPS)[number];
+  programName: string;
 };
 
-const NextGroupCard = ({ group, sx, ...other }: NextGroupCardProps) => {
-  const { t } = useTranslate('programs');
+const NextGroupCard = ({ group, programName, sx, ...other }: NextGroupCardProps) => {
+  const { t } = useTranslate(programName, { keyPrefix: 'nextGroups' });
   const theme = useTheme();
 
   return (
@@ -91,7 +96,7 @@ const NextGroupCard = ({ group, sx, ...other }: NextGroupCardProps) => {
             {t(group.date)}
           </Typography>
           <Typography variant="body1" color="common.white">
-            {t('deadlineForApplication')}: {t(group.deadline)}
+            {t(group.deadline)}
           </Typography>
         </Stack>
         <Button
@@ -105,7 +110,7 @@ const NextGroupCard = ({ group, sx, ...other }: NextGroupCardProps) => {
             '&:hover': { bgcolor: 'grey.200' },
           }}
         >
-          Apply now!
+          {t('cta')}
         </Button>
       </Stack>
     </Card>

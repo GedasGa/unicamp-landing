@@ -13,9 +13,66 @@ import { Chip } from '@mui/material';
 import { Iconify } from '../../components/iconify';
 
 // ----------------------------------------------------------------------
+const SKILLS = {
+  ux: {
+    skills: [
+      {
+        icon: 'logos:figma',
+        text: 'hero.skills.0',
+      },
+      {
+        icon: 'logos:openai-icon',
+        text: 'hero.skills.1',
+      },
+      {
+        icon: 'mdi:clipboard-text-outline',
+        text: 'hero.skills.2',
+      },
+      {
+        icon: 'mdi:accessibility',
+        text: 'hero.skills.3',
+      },
+      {
+        icon: 'mdi:puzzle-outline',
+        text: 'hero.skills.4',
+      },
+    ],
+  },
+  fe: {
+    skills: [
+      {
+        icon: 'logos:figma',
+        text: 'hero.skills.0',
+      },
+      {
+        icon: 'logos:openai-icon',
+        text: 'hero.skills.1',
+      },
+      {
+        icon: 'mdi:clipboard-text-outline',
+        text: 'hero.skills.2',
+      },
+      {
+        icon: 'mdi:accessibility',
+        text: 'hero.skills.3',
+      },
+      {
+        icon: 'mdi:puzzle-outline',
+        text: 'hero.skills.4',
+      },
+    ],
+  },
+} as const;
 
-export function ProgramHero({ sx, ...other }: BoxProps) {
-  const { t } = useTranslate('programs');
+// ----------------------------------------------------------------------
+interface ProgramHeroProps extends BoxProps {
+  programName: string;
+}
+
+export function ProgramHero({ programName, sx, ...other }: ProgramHeroProps) {
+  const { t } = useTranslate(programName);
+
+  console.log(t('skills'));
 
   const renderChips = (
     <Stack
@@ -30,36 +87,15 @@ export function ProgramHero({ sx, ...other }: BoxProps) {
         mb: { xs: 5, md: 8 },
       }}
     >
-      <Chip
-        icon={<Iconify icon="logos:figma" />}
-        label={t('ux.skills.figma')}
-        variant="outlined"
-        sx={{ borderRadius: '500px' }}
-      />
-      <Chip
-        icon={<Iconify icon="logos:openai-icon" />}
-        label={t('ux.skills.openai')}
-        variant="outlined"
-        sx={{ borderRadius: '500px' }}
-      />
-      <Chip
-        icon={<Iconify icon="mdi:clipboard-text-outline" />}
-        label={t('ux.skills.uxResearch')}
-        variant="outlined"
-        sx={{ borderRadius: '500px' }}
-      />
-      <Chip
-        icon={<Iconify icon="mdi:accessibility" />}
-        label={t('ux.skills.accessibility')}
-        variant="outlined"
-        sx={{ borderRadius: '500px' }}
-      />
-      <Chip
-        icon={<Iconify icon="mdi:puzzle-outline" />}
-        label={t('ux.skills.designSystems')}
-        variant="outlined"
-        sx={{ borderRadius: '500px' }}
-      />
+      {/* @ts-ignore */}
+      {SKILLS[programName].skills.map((skill) => (
+        <Chip
+          icon={<Iconify icon={skill.icon} />}
+          label={t(skill.text)}
+          variant="outlined"
+          sx={{ borderRadius: '500px' }}
+        />
+      ))}
     </Stack>
   );
 
@@ -89,7 +125,7 @@ export function ProgramHero({ sx, ...other }: BoxProps) {
       <MotionViewport sx={{ position: 'relative' }}>
         <Container disableGutters>
           <Typography component="h1" variant="h1" textAlign="center">
-            {t('ux.title')}
+            {t('hero.title')}
           </Typography>
           {renderChips}
           {renderCta}

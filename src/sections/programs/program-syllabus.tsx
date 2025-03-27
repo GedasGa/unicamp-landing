@@ -16,34 +16,37 @@ import { CONFIG } from '../../config-global';
 const MODULES = [
   {
     illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-foundation.png`,
-    title: 'ux.modules.0.title',
-    description: 'ux.modules.0.description',
-    skills: ['ux.modules.0.skills.0', 'ux.modules.0.skills.1'],
+    title: 'modules.0.title',
+    description: 'modules.0.description',
+    skills: ['modules.0.skills.0', 'modules.0.skills.1'],
   },
   {
     illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-seamless-experiences.png`,
-    title: 'ux.modules.1.title',
-    description: 'ux.modules.1.description',
-    skills: ['ux.modules.1.skills.0', 'ux.modules.1.skills.1', 'ux.modules.1.skills.2'],
+    title: 'modules.1.title',
+    description: 'modules.1.description',
+    skills: ['modules.1.skills.0', 'modules.1.skills.1', 'modules.1.skills.2'],
   },
   {
     illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-visual-language.png`,
-    title: 'ux.modules.2.title',
-    description: 'ux.modules.2.description',
-    skills: ['ux.modules.2.skills.0', 'ux.modules.2.skills.1', 'ux.modules.2.skills.2'],
+    title: 'modules.2.title',
+    description: 'modules.2.description',
+    skills: ['modules.2.skills.0', 'modules.2.skills.1', 'modules.2.skills.2'],
   },
   {
     illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-from-concept-to-creation.png`,
-    title: 'ux.modules.3.title',
-    description: 'ux.modules.3.description',
-    skills: ['ux.modules.3.skills.0', 'ux.modules.3.skills.1'],
+    title: 'modules.3.title',
+    description: 'modules.3.description',
+    skills: ['modules.3.skills.0', 'modules.3.skills.1'],
   },
 ];
 
 // ----------------------------------------------------------------------
+interface ProgramSyllabusProps extends BoxProps {
+  programName: string;
+}
 
-export function ProgramSyllabus({ sx, ...other }: BoxProps) {
-  const { t } = useTranslate('programs');
+export function ProgramSyllabus({ programName, sx, ...other }: ProgramSyllabusProps) {
+  const { t } = useTranslate(programName);
 
   return (
     <Box
@@ -58,7 +61,7 @@ export function ProgramSyllabus({ sx, ...other }: BoxProps) {
           justifyContent="space-between"
           spacing={2}
         >
-          <Typography variant="h1">{t('ux.syllabus.title')}</Typography>
+          <Typography variant="h1">{t('syllabus.title')}</Typography>
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             spacing={2}
@@ -70,16 +73,16 @@ export function ProgramSyllabus({ sx, ...other }: BoxProps) {
               startIcon={<Iconify icon="solar:download-bold" />}
               sx={{ px: 4 }}
             >
-              {t('ux.syllabus.cta.download')}
+              {t('syllabus.cta.download')}
             </Button>
             <Button variant="contained" size="large" sx={{ px: 4 }}>
-              {t('ux.syllabus.cta.register')}
+              {t('syllabus.cta.register')}
             </Button>
           </Stack>
         </Stack>
         <Stack spacing={4}>
           {MODULES.map((module) => (
-            <ModuleCard key={module.title} module={module} />
+            <ModuleCard key={module.title} module={module} programName={programName} />
           ))}
         </Stack>
       </Stack>
@@ -91,10 +94,11 @@ export function ProgramSyllabus({ sx, ...other }: BoxProps) {
 
 type ModuleCardProps = CardProps & {
   module: (typeof MODULES)[number];
+  programName: string;
 };
 
-const ModuleCard = ({ module, sx, ...other }: ModuleCardProps) => {
-  const { t } = useTranslate('programs');
+const ModuleCard = ({ module, programName, sx, ...other }: ModuleCardProps) => {
+  const { t } = useTranslate(programName);
 
   return (
     <Card sx={{ p: 3, ...sx }} {...other}>

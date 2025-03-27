@@ -15,29 +15,33 @@ import { paths } from '../../routes/paths';
 const EXPECTATIONS = [
   {
     icon: 'material-symbols:analytics-outline',
-    title: 'ux.expectations.cards.0.title',
-    description: 'ux.expectations.cards.0.description',
+    title: 'expectations.cards.0.title',
+    description: 'expectations.cards.0.description',
     link: {
-      text: 'ux.expectations.cards.0.link.text',
-      url: 'ux.expectations.cards.0.link.url',
+      text: 'expectations.cards.0.link.text',
+      url: 'expectations.cards.0.link.url',
     },
   },
   {
     icon: 'material-symbols:analytics-outline',
-    title: 'ux.expectations.cards.1.title',
-    description: 'ux.expectations.cards.1.description',
+    title: 'expectations.cards.1.title',
+    description: 'expectations.cards.1.description',
   },
   {
     icon: 'material-symbols:analytics-outline',
-    title: 'ux.expectations.cards.2.title',
-    description: 'ux.expectations.cards.2.description',
+    title: 'expectations.cards.2.title',
+    description: 'expectations.cards.2.description',
   },
 ];
 
 // ----------------------------------------------------------------------
 
-export function ProgramExpectations({ sx, ...other }: BoxProps) {
-  const { t } = useTranslate('programs');
+interface ProgramExpectationsProps extends BoxProps {
+  programName: string;
+}
+
+export function ProgramExpectations({ sx, programName, ...other }: ProgramExpectationsProps) {
+  const { t } = useTranslate(programName);
 
   return (
     <Box
@@ -47,9 +51,9 @@ export function ProgramExpectations({ sx, ...other }: BoxProps) {
     >
       <Stack spacing={{ xs: 2, sm: 7 }} alignItems="center">
         <Stack spacing={2} textAlign={{ xs: 'left', sm: 'center' }}>
-          <Typography variant="h2">{t('ux.expectations.title')}</Typography>
+          <Typography variant="h2">{t('expectations.title')}</Typography>
           <Typography variant="body1" color="text.secondary">
-            {t('ux.expectations.description')}
+            {t('expectations.description')}
           </Typography>
         </Stack>
         <Stack
@@ -58,7 +62,11 @@ export function ProgramExpectations({ sx, ...other }: BoxProps) {
           sx={{ width: { xs: '100%', sm: 'inherit' } }}
         >
           {EXPECTATIONS.map((expectation) => (
-            <ExpectationsCard key={expectation.title} expectation={expectation} />
+            <ExpectationsCard
+              key={expectation.title}
+              expectation={expectation}
+              programName={programName}
+            />
           ))}
         </Stack>
         <Button
@@ -66,7 +74,7 @@ export function ProgramExpectations({ sx, ...other }: BoxProps) {
           size="large"
           sx={{ px: 4, width: { xs: '100%', sm: 'fit-content' } }}
         >
-          {t('ux.expectations.cta')}
+          {t('expectations.cta')}
         </Button>
       </Stack>
     </Box>
@@ -76,11 +84,12 @@ export function ProgramExpectations({ sx, ...other }: BoxProps) {
 // ----------------------------------------------------------------------
 
 type ExpectationsCardProps = CardProps & {
+  programName: string;
   expectation: (typeof EXPECTATIONS)[number];
 };
 
-const ExpectationsCard = ({ expectation, sx, ...other }: ExpectationsCardProps) => {
-  const { t } = useTranslate('programs');
+const ExpectationsCard = ({ expectation, programName, sx, ...other }: ExpectationsCardProps) => {
+  const { t } = useTranslate(programName);
 
   return (
     <Card sx={{ p: 3, bgcolor: 'grey.100', ...sx }} {...other}>

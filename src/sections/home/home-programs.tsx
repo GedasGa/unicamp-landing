@@ -24,7 +24,6 @@ import { SectionTitle } from './components/section-title';
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
 import { SvgColor } from '../../components/svg-color';
-import SvgIcon from '@mui/material/SvgIcon';
 
 // ----------------------------------------------------------------------
 

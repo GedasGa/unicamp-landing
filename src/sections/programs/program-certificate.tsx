@@ -1,7 +1,6 @@
 import type { BoxProps } from '@mui/material/Box';
 
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 
 import { useTranslate } from '../../locales';
 import { Stack } from '@mui/material';
@@ -10,8 +9,12 @@ import { CONFIG } from '../../config-global';
 
 // ----------------------------------------------------------------------
 
-export function ProgramCertificate({ sx, ...other }: BoxProps) {
-  const { t } = useTranslate('programs');
+interface ProgramCertificateProps extends BoxProps {
+  programName: string;
+}
+
+export function ProgramCertificate({ sx, programName, ...other }: ProgramCertificateProps) {
+  const { t } = useTranslate(programName);
 
   return (
     <Box
@@ -21,8 +24,8 @@ export function ProgramCertificate({ sx, ...other }: BoxProps) {
     >
       <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" spacing={{ xs: 2, sm: 9 }}>
         <Stack spacing={2} flex={1}>
-          <Typography variant="h2">{t('ux.certificate.title')}</Typography>
-          <Typography variant="body1">{t('ux.certificate.description')}</Typography>
+          <Typography variant="h2">{t('certificate.title')}</Typography>
+          <Typography variant="body1">{t('certificate.description')}</Typography>
         </Stack>
         <Box
           component="img"

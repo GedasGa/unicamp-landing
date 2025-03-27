@@ -1,0 +1,144 @@
+{
+  "hero":{
+    "title":"Become certified UX design professional",
+    "cta":{
+      "title":"Register to program",
+      "subtitle":"Starts April 10"
+    },
+    "skills": ["Figma", "OpenAI", "UX Research", "Accessibility", "Design System"],
+    "features":{
+      "courseDuration":{
+        "title":"Course duration",
+        "description":"12 weeks (108 hours)"
+      },
+      "groupSize":{
+        "title":"Group size",
+        "description":"20"
+      },
+      "project":{
+        "title":"Project",
+        "description":"1",
+        "chip":"Share on LinkedIn"
+      }
+    }
+  },
+  "certificate":{
+    "title":"Showcase your skills with certificate",
+    "description":"This program guides you through the key stages of UX/UI design, from user needs analysis to interactive prototypes."
+  },
+  "banner":{
+    "title":"About the program",
+    "description":"This program guides you through the key stages of UX/UI design, from user needs\n              analysis to interactive prototypes. You'll gain both theoretical knowledge and\n              practical skills to create modern design solutions, focusing on trends like dark mode,\n              responsive design."
+  },
+  "syllabus":{
+    "title":"Syllabus",
+    "cta":{
+      "download":"Download whole syllabus",
+      "register":"Register to program"
+    }
+  },
+  "modules":[
+    {
+      "title":"Foundations of Digital Design",
+      "description":"Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
+      "skills":[
+        "Figma",
+        "Design Process"
+      ]
+    },
+    {
+      "title":"Crafting seemless experiences",
+      "description":"Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
+      "skills":[
+        "UX",
+        "Accessibility",
+        "User Personas"
+      ]
+    },
+    {
+      "title":"Designing Visual Languages",
+      "description":"Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
+      "skills":[
+        "UI",
+        "Design Systems",
+        "Colors"
+      ]
+    },
+    {
+      "title":"From Concept to Creation",
+      "description":"Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
+      "skills":[
+        "AI tools",
+        "Project"
+      ]
+    }
+  ],
+  "expectations":{
+    "title":"What to expect after course?",
+    "description":"You know the fundamentals of UX/UI design, can create interactive prototypes, and have a certificate to prove your skills.",
+    "cta":"Register to program",
+    "cards":[
+      {
+        "title":"Competitive salary",
+        "description":"432O EUR per month",
+        "link":{
+          "url":"https://www.google.com",
+          "text":"Source"
+        }
+      },
+      {
+        "title":"Work at top companies",
+        "description":"NordSecurity, Vinted, Surfshark"
+      },
+      {
+        "title":"Flexibility",
+        "description":"Summer all year? No problem"
+      }
+    ]
+  },
+  "mentor":{
+    "title":"Meet your mentor",
+    "name":"Aistė Gerdzevičiūtė",
+    "role":"Co-founder | Product designer and UX/UI instructor",
+    "description":"Aistė is a co-founder of Unicamp and a product designer with 5 years of experience. She has worked with startups and corporations, helping them to create user-friendly products. Aistė is passionate about design systems and AI tools for designers.",
+    "cta":"Connect on LinkedIn"
+  },
+  "pricing": {
+    "title": "Pricing",
+    "chip": "14 days money back guarantee",
+    "prices": [
+      {
+        "title": "One-time",
+        "price": "250€",
+        "originalPrice": "500€",
+        "description": "Pay full price and don’t worry about next payments."
+      },
+      {
+        "title": "Monthly",
+        "price": "90€/month",
+        "originalPrice": "180€/month",
+        "description": "Pay in 3 months, total 270€."
+      },
+      {
+        "title": "Financial aid",
+        "price": "Free",
+        "description": "Apply for financial aid and have opportunity to lear for free."
+      }
+    ]
+  },
+  "nextGroups": {
+    "title": "Limited seats. Apply now!",
+    "subtitle": "Choose your seat before group closes.",
+    "cta": "Apply now!",
+    "groups": [
+      {
+        "date": "April 22",
+        "deadline": "Deadline for applications: 2025-04-18"
+      },
+      {
+        "date": "April 23",
+        "deadline": "Deadline for applications: 2025-04-19"
+      }
+    ]
+  }
+}

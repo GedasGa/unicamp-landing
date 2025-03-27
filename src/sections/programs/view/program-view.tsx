@@ -15,7 +15,11 @@ import { HomeFAQs } from '../../home/home-faqs';
 
 // ----------------------------------------------------------------------
 
-export function ProgramView() {
+interface ProgramViewProps {
+  programName: string;
+}
+
+export function ProgramView({ programName }: ProgramViewProps) {
   const pageProgress = useScrollProgress();
 
   return (
@@ -26,15 +30,15 @@ export function ProgramView() {
         sx={{ position: 'fixed' }}
       />
 
-      <ProgramHero />
-      <ProgramFeatures />
-      <ProgramCertificate />
-      <ProgramBanner />
-      <ProgramSyllabus />
-      <ProgramExpectations />
-      <ProgramMentor />
-      <ProgramPricing />
-      <ProgramNextGroups />
+      <ProgramHero programName={programName} />
+      <ProgramFeatures programName={programName} />
+      <ProgramCertificate programName={programName} />
+      <ProgramBanner programName={programName} />
+      <ProgramSyllabus programName={programName} />
+      <ProgramExpectations programName={programName} />
+      <ProgramMentor programName={programName} />
+      <ProgramPricing programName={programName} />
+      <ProgramNextGroups programName={programName} />
       <HomeFAQs />
     </>
   );
