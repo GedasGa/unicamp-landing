@@ -71,7 +71,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
       <Button
         size="large"
         variant="contained"
-        href={paths.courses}
+        href="/#courses"
         onClick={() => posthog.capture('hero_cta_clicked')}
         endIcon={<Iconify icon="ic:round-arrow-downward" />}
       >

@@ -1,8 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 
-import Box from '@mui/material/Box';
-import Fade from '@mui/material/Fade';
-import Portal from '@mui/material/Portal';
 import { useTheme } from '@mui/material/styles';
 
 import { usePathname } from 'src/routes/hooks';

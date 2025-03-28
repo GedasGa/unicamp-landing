@@ -26,13 +26,9 @@ import { LanguagePopover } from '../components/language-popover';
 import { allLangs, useTranslate } from '../../locales';
 import { Iconify } from '../../components/iconify';
 import Link from 'next/link';
-import { paths } from '../../routes/paths';
-import { useLocalStorage } from '../../hooks/use-local-storage';
-import type { SettingsState } from '../../components/settings';
-import { STORAGE_KEY } from '../../components/settings';
-import type { ThemeColorScheme } from '../../theme/types';
 import Container from '@mui/material/Container';
 import { defaultNavData } from './nav/config';
+import { useState } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -94,11 +90,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                   </Link>
                   {', '}
                   {t('email')}{' '}
-                  <Link
-                    href={'mailto:info@unicamp.lt?subject=Kursuok'}
-                  >
-                    info@unicamp.lt
-                  </Link>{' '}
+                  <Link href={'mailto:info@unicamp.lt?subject=Kursuok'}>info@unicamp.lt</Link>{' '}
                   {t('or')} {t('phone')} <Link href={'tel:+37061008080'}>+370 610 08080</Link>
                 </Alert>
               </Container>
