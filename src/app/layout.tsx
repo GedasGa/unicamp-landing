@@ -19,7 +19,7 @@ import { ProgressBar } from 'src/components/progress-bar';
 import { MotionLazy } from 'src/components/animate/motion-lazy';
 import { SettingsDrawer, defaultSettings, SettingsProvider } from 'src/components/settings';
 import { CSPostHogProvider } from './providers';
-import {GoogleTagManager} from "@next/third-parties/google";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 // ----------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Become certified UX design professional",
+    "title": "Become a certified UX design professional",
     "cta": {
       "title": "Register to program",
       "subtitle": "Starts April 22"
@@ -23,8 +23,8 @@
     }
   },
   "certificate": {
-    "title": "Showcase your skills with certificate",
-    "description": "Demonstrate your expertise and dedication with a professional certificate. Proudly display your achievements and boost your career with proof of your skills and knowledge in UX/UI design."
+    "title": "Certificate – Proof of Your Skills",
+    "description": "Gain not only skills but also a professional Unicamp certificate."
   },
   "banner": {
     "title": "About the program",
@@ -39,35 +39,35 @@
   },
   "modules": [
     {
-      "title": "Foundations of Digital Design",
-      "description": "Learn the essential principles of digital design, from typography and layout to color theory and visual hierarchy. Master Figma and explore the complete design process to build visually appealing and user-friendly interfaces.",
+      "title": "Fundamentals of Digital Design",
+      "description": "You will get acquainted with the basics of UX and UI design and understand the differences between them. You will learn typography principles and how to apply them in professional design, gain insights into color psychology fundamentals, color harmony rules, and the use of AI tools such as Khroma and Huemint. You will analyze Gestalt principles and their importance in UX/UI design, as well as master the 8-pixel rule to maintain consistent spacing between elements. Additionally, you will explore Figma's 'Auto-layout' feature and learn how to apply it to design element positioning through practical exercises.",
       "skills": ["Figma", "Design Process"]
     },
     {
-      "title": "Crafting Seamless Experiences",
-      "description": "Discover how to create intuitive and accessible user experiences by understanding user personas and accessibility best practices. Learn to build interfaces that feel natural and effortless for users.",
+      "title": "Creating Smooth Experiences",
+      "description": "You will master essential aspects of UX design and research methods, including competitor analysis, the Double Diamond process, and best practices for accessibility. You will develop UX personas, map user journeys, and utilize the Crazy 8 methodology for generating creative ideas. You will learn how to create low-fidelity wireframes and understand the characteristics of both low-fidelity and high-fidelity prototypes. Finally, you will conduct usability testing on your own design mockups to improve their effectiveness and user experience.",
       "skills": ["UX", "Accessibility", "User Personas"]
     },
     {
-      "title": "Designing Visual Languages",
-      "description": "Develop your skills in visual storytelling by mastering UI design systems, color schemes, and consistent visual languages. Learn how to create cohesive and modern digital products.",
+      "title": "Building Visual Languages",
+      "description": "You will learn how to create high-fidelity design mockups and adapt them for various devices using responsive design principles. You will acquire skills in prototyping, creating interactions, and animation techniques, applying them through practical tasks. You will delve into component creation and properties, including dynamic button and input field design. Additionally, you will explore the benefits of design systems and how to implement them for consistency and efficiency. Finally, you will leverage artificial intelligence tools to optimize design processes and speed up your workflow.",
       "skills": ["UI", "Design Systems", "Colors"]
     },
     {
-      "title": "From Concept to Creation",
-      "description": "Turn your design ideas into reality with practical projects and AI-driven design tools. Develop prototypes and bring your concepts to life using cutting-edge technology. Implement the design together with our Programming course students.",
-      "skills": ["AI tools", "Project"]
+      "title": "From Idea to Realization",
+      "description": "This team project will integrate all acquired knowledge and skills, including user needs analysis, user interface design, and implementation stages. The work will be done under the guidance of a mentor to ensure high quality and practical application. Later, you will implement this project together with programming students.",
+      "skills": ["AI Tools", "Project"]
     }
   ],
   "expectations": {
-    "title": "What to expect after course?",
+    "title": "What to expect after the course?",
     "description": "You know the fundamentals of UX/UI design, can create interactive prototypes, and have a certificate to prove your skills.",
     "cta": "Register to program",
     "cards": [
       {
         "title": "Competitive salary",
-        "description": "432O EUR per month",
-        "link": { "url": "", "text": "Based on mano alga data" }
+        "description": "3000 EUR per month",
+        "link": { "url": "https://www.manoalga.lt/en/salaryinfo/information-technology/web-designer", "text": "Based on mano alga data" }
       },
       {
         "title": "Work at top companies",

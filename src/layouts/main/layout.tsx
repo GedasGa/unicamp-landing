@@ -53,7 +53,8 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
   const mobileNavOpen = useBoolean();
   const { t } = useTranslate('nav');
 
-  const [showAlert, setShowAlert] = useState(true);
+  // Disabled until next kursuok.lt financing round
+  const [showAlert, setShowAlert] = useState(false);
 
   const homePage = pathname === '/';
   const layoutQuery: Breakpoint = 'md';

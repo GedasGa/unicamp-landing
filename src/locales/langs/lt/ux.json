@@ -10,7 +10,7 @@
     }
   },
   "certificate": {
-    "title": "Įrodykite savo įgūdžius su sertifikatu",
+    "title": "Sertifikatas – jūsų įgūdžių įrodymas",
     "description": "Įgykite ne tik įgūdžių, bet ir profesionalų Unicamp sertifikatą."
   },
   "banner": {
@@ -29,17 +29,17 @@
     },
     {
       "title": "Sklandžių patirčių kūrimas",
-      "description": "Išmoksite svarbiausius UX dizaino aspektus ir tyrimų metodus, tokius kaip konkurentų analizė, „Double Diamond“ procesas bei prieinamumo geriausios praktikos. Kursite UX personas, vartotojų keliones ir taikysite „Crazy 8“ metodiką kūrybinėms idėjoms generuoti. Sužinosite, kaip rengti žemo detalumo „Wireframes“ maketus bei skirti dėmesį tiek low-fidelity, tiek high-fidelity prototipų ypatybėms. Galiausiai, atliksite panaudojamumo testavimus su savo kurtais dizaino maketais, siekdami pagerinti jų efektyvumą ir naudotojų patirtį.",
+      "description": "Išmoksite svarbiausius UX dizaino aspektus ir tyrimų metodus, tokius kaip konkurentų analizė, „Double Diamond“ procesas bei prieinamumo geriausios praktikos. Kursite UX personas, vartotojų keliones ir taikysite „Crazy 8“ metodiką kūrybinėms idėjoms generuoti. Sužinosite, kaip kurti žemo detalumo „Wireframes“ maketusbei skirti dėmesį tiek low-fidelity, tiek high-fidelity prototipų ypatybėms. Galiausiai, atliksite panaudojamumo testavimus su savo kurtais dizaino maketais, siekdami pagerinti jų efektyvumą ir naudotojų patirtį.",
       "skills": ["UX", "Prieinamumas", "Naudotojų personos"]
     },
     {
       "title": "Vizualinių kalbų kūrimas",
-      "description": "Sužinosite, kaip kurti aukšto detalumo dizaino maketus ir juos pritaikyti įvairiems įrenginiams, naudojant prisitaikančio dizaino principus. Išmoksite prototipavimo pagrindų, interakcijų kūrimo bei animavimo subtilybių, kurias pritaikysite praktinėse užduotyse. Gilinsitės į komponentų kūrimą ir jų savybes, įskaitant dinaminio mygtuko ir įvesties laukelio dizainą. Taip pat, sužinosite apie dizaino sistemų privalumus bei jų taikymą, siekiant nuoseklumo ir efektyvumo. Galiausiai, pasitelksite dirbtinio intelekto įrankius, kurie padės optimizuoti dizaino procesus ir paspartinti darbą.",
+      "description": "Sužinosite, kaip kurti aukšto detalumo dizaino maketus ir juos pritaikyti įvairiems įrenginiams, naudojant prisitaikančio dizaino principus. Išmoksite prototipavimo pagrindų, interakcijų kūrimo bei animavimo subtilybių, kurias pritaikysite praktinėse užduotyse. Gilinsitės į komponentų kūrimą ir jų savybes, įskaitant dinaminio mygtuko bei įvesties laukelio dizainą. Taip pat sužinosite apie dizaino sistemų privalumus bei jų taikymą, siekiant nuoseklumo ir efektyvumo. Galiausiai, pasitelksite dirbtinio intelekto įrankius, kurie padės optimizuoti dizaino procesus ir paspartinti darbą.",
       "skills": ["UI", "Dizaino sistemos", "Spalvos"]
     },
     {
       "title": "Nuo idėjos iki realizacijos",
-      "description": "Komandinis projektas, apjungs visas įgytas žinias ir gebėjimus, įskaitant naudotojų poreikių analizės, vartotojo sąsajos projektavimo bei kūrimo etapus. Darbas atliekamas konsultuojantis su dėstytoju (-a), siekiant užtikrinti aukštą kokybę ir praktinį taikymą. Šį projektą vėliau įgyvendinsite kartu su programavimo studentais.",
+      "description": "Komandinis projektas apjungs visas įgytas žinias ir gebėjimus, įskaitant naudotojų poreikių analizės, vartotojo sąsajos projektavimo bei kūrimo etapus. Darbas atliekamas konsultuojantis su dėstytoju (-a), siekiant užtikrinti aukštą kokybę ir praktinį taikymą. Šį projektą vėliau įgyvendinsite kartu su programavimo studentais.",
       "skills": ["Dirbtinio intelekto įrankiai", "Projektas"]
     }
   ],
@@ -51,14 +51,14 @@
       {
         "title": "Konkurencingas atlyginimas",
         "description": "3000 EUR per mėnesį",
-        "link": { "url": "https://www.manoalga.lt/en/salaryinfo/information-technology/web-designer", "text": "Mano alga duomenimis" }
+        "link": { "url": "https://www.manoalga.lt/atlyginimu-informacija/informacijos-technologijos/tinklalapiu-dizaineris", "text": "Mano alga duomenimis" }
       },
       { "title": "Darbas top įmonėse", "description": "NordSecurity, Vinted, Surfshark" },
       { "title": "Lankstumas", "description": "Darbas iš namų ar Seišelių? Jokių problemų" }
     ]
   },
   "mentor": {
-    "title": "Susipažinkite su mentorė",
+    "title": "Susipažinkite su mentore",
     "name": "Aistė Gerdzevičiūtė",
     "role": "Bendraįkūrėja | Produktų dizainerė ir UX/UI mentorė",
     "description": "Aistė yra Unicamp bendraįkūrėja ir produktų dizainerė Ovoko. Ji turinti gilų supratimą apie skaitmeninių produktų dizainą, vartotojų tyrimus ir dizaino sistemų kūrimą sparčiai augančiose startuolio aplinkose. Ji kuravo ir sukūrė UX/UI dizaino kursą, kurį naudoja CodeAcademy ir FastTrack akademijos.",

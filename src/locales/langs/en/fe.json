@@ -5,7 +5,7 @@
       "title": "Register to program",
       "subtitle": "Starts April 22"
     },
-    "skills": ["JavaScript", "OpenAI", "React & NextJS", "Responsiv design", "Domain & Hosting"],
+    "skills": ["JavaScript", "OpenAI", "React & NextJS", "Responsive design", "Domain & Hosting"],
     "features": {
       "courseDuration": {
         "title": "Course duration",
@@ -23,8 +23,8 @@
     }
   },
   "certificate": {
-    "title": "Showcase your skills with certificate",
-    "description": "Demonstrate your expertise and dedication with a professional certificate. Proudly display your achievements and boost your career with proof of your skills and knowledge in UX/UI design."
+    "title": "Certificate – Proof of Your Skills",
+    "description": "Gain not only skills but also a professional Unicamp certificate."
   },
   "banner": {
     "title": "About the program",
@@ -39,28 +39,58 @@
   },
   "modules": [
     {
-      "title": "Foundations of Digital Design",
-      "description": "Learn the essential principles of digital design, from typography and layout to color theory and visual hierarchy. Master Figma and explore the complete design process to build visually appealing and user-friendly interfaces.",
-      "skills": ["Figma", "Design Process"]
+      "title": "Brief Introduction to Computer Science and Web Programming",
+      "description": "Fundamentals of computer science, principles of how the internet works, and the importance of web programming in the IT field. Frontend vs Backend and the composition of development teams. Installation and configuration of Integrated Development Environments (IDEs).",
+      "skills": ["Computer Science", "Frontend", "Backend", "IDE"]
     },
     {
-      "title": "Crafting Seamless Experiences",
-      "description": "Discover how to create intuitive and accessible user experiences by understanding user personas and accessibility best practices. Learn to build interfaces that feel natural and effortless for users.",
-      "skills": ["UX", "Accessibility", "User Personas"]
+      "title": "HTML and CSS Fundamentals",
+      "description": "Syntax of HTML and CSS and their application in building websites. Key HTML elements, CSS application rules, browser tools, and other nuances. Utilization of AI tools for learning.",
+      "skills": ["HTML", "CSS", "Browser Tools", "AI Tools"]
     },
     {
-      "title": "Designing Visual Languages",
-      "description": "Develop your skills in visual storytelling by mastering UI design systems, color schemes, and consistent visual languages. Learn how to create cohesive and modern digital products.",
-      "skills": ["UI", "Design Systems", "Colors"]
+      "title": "Responsive Design Programming",
+      "description": "Using CSS Flexbox, Grid, and media queries to create responsive designs for various device screens. Mobile-first design approach.",
+      "skills": ["CSS Flexbox", "CSS Grid", "Media Queries", "Mobile-First Design"]
     },
     {
-      "title": "From Concept to Creation",
-      "description": "Turn your design ideas into reality with practical projects and AI-driven design tools. Develop prototypes and bring your concepts to life using cutting-edge technology. Implement the design together with our Programming course students.",
-      "skills": ["AI tools", "Project"]
+      "title": "Accessibility for Web Pages (WCAG Standards)",
+      "description": "Application of WCAG and best practices for making user interfaces accessible to people with disabilities.",
+      "skills": ["WCAG", "Accessibility"]
+    },
+    {
+      "title": "JavaScript Fundamentals",
+      "description": "JavaScript syntax, variables, conditions, arrays, loops, functions, DOM manipulation, event handling, and creating dynamic website functionalities. Asynchronous JavaScript and using external APIs.",
+      "skills": ["JavaScript", "DOM", "Asynchronous JavaScript", "API"]
+    },
+    {
+      "title": "Git Version Control and Terminal",
+      "description": "Using the terminal and its main functions. Git version control system: storage, history tracking, conflict resolution. Using GitHub for team collaboration and code reviews.",
+      "skills": ["Git", "GitHub", "Terminal", "Version Control"]
+    },
+    {
+      "title": "React Fundamentals",
+      "description": "Introduction to JavaScript frameworks and ReactJS. Creating React components, using state, props, and hooks, as well as conditional and list rendering.",
+      "skills": ["React", "State", "Props", "Hooks"]
+    },
+    {
+      "title": "Next.js Fundamentals",
+      "description": "Benefits and key features of Next.js. Server-Side vs Client-Side Rendering. Principles of routing and data management in Next.js.",
+      "skills": ["Next.js", "Server-Side Rendering", "Client-Side Rendering", "Routing"]
+    },
+    {
+      "title": "Domain Management and Website Hosting",
+      "description": "Acquiring and registering domains, DNS configuration, and website hosting using platforms like Vercel and Cloudflare.",
+      "skills": ["Domain Management", "DNS", "Vercel", "Cloudflare"]
+    },
+    {
+      "title": "Project Work",
+      "description": "Team project that consolidates all acquired knowledge and skills, including design, planning, programming, hosting, and testing stages.",
+      "skills": ["Teamwork", "Jira", "Planning", "Testing"]
     }
   ],
   "expectations": {
-    "title": "What to expect after course?",
+    "title": "What to expect after the course?",
     "description": "You know the fundamentals of UX/UI design, can create interactive prototypes, and have a certificate to prove your skills.",
     "cta": "Register to program",
     "cards": [

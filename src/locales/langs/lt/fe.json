@@ -2,7 +2,7 @@
   "hero": {
     "title": "Tapkite sertifikuotu Frontend programuotoju",
     "cta": { "title": "Registruotikės į programą", "subtitle": "Pradžia balandžio 22d." },
-    "skills": ["JavaScript", "OpenAI", "React ir NextJS", "Prisitaikantis dizainas", "Domenai ir talpinimas"],
+    "skills": ["JavaScript", "OpenAI", "React ir NextJS", "Prisitaikantis dizainas", "Domenai ir svetainių talpinimas"],
     "features": {
       "courseDuration": { "title": "Programos trukmė", "description": "12 savaičių (108 valandos)" },
       "groupSize": { "title": "Grupės dydis", "description": "20" },
@@ -10,7 +10,7 @@
     }
   },
   "certificate": {
-    "title": "Įrodykite savo įgūdžius su sertifikatu",
+    "title": "Sertifikatas – jūsų įgūdžių įrodymas",
     "description": "Įgykite ne tik įgūdžių, bet ir profesionalų Unicamp sertifikatą."
   },
   "banner": {
@@ -29,7 +29,7 @@
     },
     {
       "title": "HTML ir CSS pagrindai",
-      "description": "HTML ir CSS sintaksė, jų taikymas kuriant tinklalapius. Pagrindiniai HTML elementai, CSS taikymo taisyklės, naršyklės įrankiai ir kiti niuansai. AI įrankių naudojimas mokymuisi.",
+      "description": "HTML ir CSS sintaksė, jų taikymas kuriant tinklalapius. Pagrindiniai HTML elementai, CSS taikymo taisyklės, naršyklių įrankiai ir kiti niuansai. AI įrankių naudojimas mokymuisi.",
       "skills": ["HTML", "CSS", "Naršyklės įrankiai", "AI įrankiai"]
     },
     {
@@ -44,8 +44,8 @@
     },
     {
       "title": "JavaScript pagrindai",
-      "description": "JavaScript sintaksė, kintamieji, sąlygos, masyvai ir ciklai, funkcijos, DOM manipuliacija, įvykių valdymas, dinaminių funkcionalumų kūrimas tinklalapiuose. Asinchoninis JavaScript ir išorinių API naudojimas.",
-      "skills": ["JavaScript", "DOM", "Asinchoninis JavaScript", "API"]
+      "description": "JavaScript sintaksė, kintamieji, sąlygos, masyvai ir ciklai, funkcijos, DOM manipuliacija, įvykių valdymas, dinaminių funkcionalumų kūrimas tinklalapiuose. Asinchroninis JavaScript ir išorinių API naudojimas.",
+      "skills": ["JavaScript", "DOM", "Asinchroninis JavaScript", "API"]
     },
     {
       "title": "Git versijų kontrolė ir terminalas",
@@ -54,7 +54,7 @@
     },
     {
       "title": "React pagrindai",
-      "description": "Įvadas į JavaScript karkasus ir ReactJS. React komponentų kūrimas, „state“, „props“ ir hooks“ naudojimas, sąlyginis ir sąrašų atvaizdavimas.",
+      "description": "Įvadas į JavaScript karkasus ir ReactJS. React komponentų kūrimas, „state“, „props“ ir „hooks“ naudojimas, sąlyginis ir sąrašų atvaizdavimas.",
       "skills": ["React", "State", "Props", "Hooks"]
     },
     {
