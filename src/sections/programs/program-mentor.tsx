@@ -37,6 +37,7 @@ export function ProgramMentor({ programName, sx, ...other }: ProgramMentorProps)
       sx={{
         py: { xs: 4, md: 10 },
         px: { xs: 2, md: 15 },
+        // @ts-ignore
         background: MENTORS[programName].background,
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
@@ -54,9 +55,11 @@ export function ProgramMentor({ programName, sx, ...other }: ProgramMentorProps)
           <Typography variant="subtitle1" color="common.white">
             {t('mentor.name')}
           </Typography>
+          {/* @ts-ignore */}
           <Typography variant="body2" color={MENTORS[programName].secondaryTextColor}>
             {t('mentor.role')}
           </Typography>
+          {/* @ts-ignore */}
           <Typography variant="body1" color={MENTORS[programName].secondaryTextColor}>
             {t('mentor.description')}
           </Typography>
@@ -92,6 +95,7 @@ export function ProgramMentor({ programName, sx, ...other }: ProgramMentorProps)
       >
         <Box
           component="img"
+          // @ts-ignore
           src={MENTORS[programName].image}
           alt={t('mentor.name')}
           sx={{

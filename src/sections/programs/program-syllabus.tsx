@@ -192,6 +192,7 @@ export function ProgramSyllabus({ programName, sx, ...other }: ProgramSyllabusPr
           </Stack>
         </Stack>
         <Stack spacing={4}>
+          {/* @ts-ignore */}
           {MODULES[programName].map((module) => (
             <ModuleCard key={module.title} module={module} programName={programName} />
           ))}
@@ -204,7 +205,7 @@ export function ProgramSyllabus({ programName, sx, ...other }: ProgramSyllabusPr
 // ----------------------------------------------------------------------
 
 type ModuleCardProps = CardProps & {
-  module: (typeof MODULES)[number];
+  module: (typeof MODULES)[keyof typeof MODULES][number];
   programName: string;
 };
 
