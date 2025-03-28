@@ -41,7 +41,7 @@ const SKILLS = {
   fe: {
     skills: [
       {
-        icon: 'logos:figma',
+        icon: 'mdi:language-javascript',
         text: 'hero.skills.0',
       },
       {
@@ -49,15 +49,15 @@ const SKILLS = {
         text: 'hero.skills.1',
       },
       {
-        icon: 'mdi:clipboard-text-outline',
+        icon: 'mdi:react',
         text: 'hero.skills.2',
       },
       {
-        icon: 'mdi:accessibility',
+        icon: 'mdi:responsive',
         text: 'hero.skills.3',
       },
       {
-        icon: 'mdi:puzzle-outline',
+        icon: 'material-symbols:domain-verification-outline',
         text: 'hero.skills.4',
       },
     ],
@@ -100,15 +100,17 @@ export function ProgramHero({ programName, sx, ...other }: ProgramHeroProps) {
   );
 
   const renderCta = (
-    <Box display="flex" alignItems="center" flexDirection="column" gap={{ xs: 1.5, sm: 2 }}>
-      {/* @ts-ignore Complain about target */}
+    <Box display="flex" alignItems="center" flexDirection="column" gap={{ xs: 1.5, md: 2 }}>
       <Button
         color="inherit"
         size="large"
         variant="contained"
-        target="_blank"
-        sx={{ width: { xs: '100%' }, maxWidth: { sm: '360px' } }}
-        onClick={() => posthog.capture('hero_cta_clicked')}
+        sx={{ width: { xs: '100%' }, maxWidth: { md: '360px' } }}
+        onClick={() => {
+          posthog.capture('hero_cta_clicked', { programName });
+          // @ts-ignore Injected to document object
+          OpenWidget.call('maximize', { feature: 'form-contact' });
+        }}
       >
         {t('hero.cta.title')}
       </Button>
@@ -119,7 +121,7 @@ export function ProgramHero({ programName, sx, ...other }: ProgramHeroProps) {
   return (
     <Box
       component="section"
-      sx={{ py: { xs: 4, sm: 15 }, px: { xs: 2, sm: 15 }, ...sx }}
+      sx={{ py: { xs: 4, md: 15 }, px: { xs: 2, md: 15 }, ...sx }}
       {...other}
     >
       <MotionViewport sx={{ position: 'relative' }}>

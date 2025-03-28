@@ -119,7 +119,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                   <Button
                     variant="outlined"
                     rel="noopener"
-                    href={paths.programs}
+                    href="/#courses"
                     sx={{
                       display: 'none',
                       [theme.breakpoints.up(layoutQuery)]: { display: 'inline-flex' },

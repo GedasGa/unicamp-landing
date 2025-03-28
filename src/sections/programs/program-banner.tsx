@@ -30,8 +30,8 @@ export function ProgramBanner({ sx, programName, ...other }: ProgramBannerProps)
           width: '100%',
           maxHeight: '800px', // Adjust as needed
           overflow: 'hidden',
-          py: { xs: 4, sm: 0 },
-          px: { xs: 2, sm: 0 },
+          py: { xs: 4, md: 0 },
+          px: { xs: 2, md: 0 },
         }}
       >
         {/* Background Image */}
@@ -44,21 +44,22 @@ export function ProgramBanner({ sx, programName, ...other }: ProgramBannerProps)
             width: '100%',
             height: '100%',
             objectFit: 'cover', // Ensures the image covers the container
-            borderRadius: { xs: 2, sm: 0 },
+            borderRadius: { xs: 2, md: 0 },
           }}
         />
 
         {/* Text Overlay */}
         <Box
           sx={{
-            display: { xs: 'none', sm: 'block' },
+            display: { xs: 'none', md: 'block' },
             position: 'absolute',
             bottom: '120px',
             left: '50%',
             transform: 'translateX(-50%)',
+            // FIXME: Might be low contrast
             ...bgBlur({
-              color: varAlpha(theme.vars.palette.background.paperChannel, 0.09),
-              blur: 10,
+              color: 'rgba(35, 37, 53, 0.09)',
+              blur: 20,
             }),
             p: 3,
             borderRadius: 2,
@@ -76,7 +77,7 @@ export function ProgramBanner({ sx, programName, ...other }: ProgramBannerProps)
         <Stack
           spacing={2}
           sx={{
-            display: { xs: 'flex', sm: 'none' }, // Show only on mobile
+            display: { xs: 'flex', md: 'none' }, // Show only on mobile
             paddingX: 2,
           }}
         >

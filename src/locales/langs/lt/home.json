@@ -12,7 +12,7 @@
   },
   "unicamp": {
     "title": "Kodėl Unicamp?",
-    "description": "Esame profesionalų komanda, sukaupusi ilgametę patirtį tarptautinėse IT įmonėse ir dėstymo srityje. Mūsų komandos nariai jau yra dėstę tokiose platformose ir akademijose kaip Udacity, Coursera, Software Development Academy, buildup.am, CodeAcademy ir FastTrack. Todėl šiandien esame pasiruošę jums pasiūlyti aukščiausios kokybės kursus. Su kursuok.lt galite gauti finansavimą ir pradėti mokytis nemokamai jau dabar!",
+    "description": "Esame profesionalų komanda, sukaupusi ilgametę patirtį tarptautinėse IT įmonėse ir švietimo srityje. Mūsų komandos nariai yra dėstę tokiose platformose ir akademijose kaip Udacity, Coursera, Software Development Academy, buildup.am, CodeAcademy ir FastTrack. Kai kurie mūsų komandos kurti kursus vis dar naudoja CodeAcademy ir FastTrack akademijose. Atsižvelgdami į rinkos pokyčius ir išsamiai išanalizavę studentų poreikius, esame pasirengę pasiūlyti aukščiausios kokybės kursus, kurie padės pažinti ir įsitvirtinti į IT rinką.",
     "reasons": {
       "qualityCourses": "Kokybiški kursai",
       "getScholarships": "100% stipendijos",
@@ -62,7 +62,7 @@
         "items": [
           {
             "title": "Dedikuotas mentorius",
-            "description": "Mentorius, su kuriuo galėsitre dalintis tiek pergalėmis, tiek iššūkiais, ir gausite palaikymą viso kurso metu."
+            "description": "Mentorius, su kuriuo galėsite dalintis tiek pergalėmis, tiek iššūkiais, ir gausite palaikymą viso kurso metu."
           },
           {
             "title": "Karjeros patarimai",
@@ -78,15 +78,15 @@
     "members": [
       {
         "name": "Gedas Gardauskas",
-        "role": "CEO | Web programavimo dėstytojas"
+        "role": "CEO | Programuotojas"
       },
       {
         "name": "Mindaugas Pažereckas",
-        "role": "Bendraįkūrėjas | Operacijos ir marketingas"
+        "role": "Bendraįkūrėjas | Verslo administravimas"
       },
       {
         "name": "Aistė Gerdzevičiūtė",
-        "role": "Bendraįkūrėja | Produkto dizainerė ir UX/UI dėstytoja"
+        "role": "Bendraįkūrėja | Produkto dizainerė"
       },
       {
         "name": "Toshi",
@@ -98,7 +98,7 @@
     "title": "Unicamp programos",
     "description": "Pasirink kursą ir pradėk savo geriausią IT karjerą.",
     "cta": {
-      "apply": "Registruotis dabar",
+      "apply": "Registruokitės dabar",
       "viewProgram": "Peržiūrėti programą"
     },
     "list": {
@@ -115,16 +115,53 @@
       "webDevelopment": {
         "title": "Web programavimas",
         "caption": "12 savaičių (108 val.)",
-        "specializations": ["Frontend programuotojas", "Programinės įrangos kūrėjas", "React/Next.js programuotojas"],
-        "tools": ["HTML", "CSS", "JavaScript", "React", "Next.js", "Firebase", "VSCode", "GitHub", "Copilot", "LLMs (ChatGPT, Claude)"],
-        "topics": ["HTML ir CSS pagrindai", "Responsyvus dizainas", "Įvadas į JavaScript", "TypeScript", "React pagrindai", "React Hooks", "React Context", "Next.js", "Backend-as-a-Service", "Git ir GitHub", "Domeno ir hostingo įsigijimas", "Produktyvumo įrankiai su AI"]
+        "specializations": [
+          "Frontend programuotojas",
+          "Programinės įrangos kūrėjas",
+          "React/Next.js programuotojas"
+        ],
+        "tools": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "React",
+          "Next.js",
+          "Firebase",
+          "VSCode",
+          "GitHub",
+          "Copilot",
+          "LLMs (ChatGPT, Claude)"
+        ],
+        "topics": [
+          "HTML ir CSS pagrindai",
+          "Responsyvus dizainas",
+          "Įvadas į JavaScript",
+          "TypeScript",
+          "React pagrindai",
+          "React Hooks",
+          "React Context",
+          "Next.js",
+          "Backend-as-a-Service",
+          "Git ir GitHub",
+          "Domeno ir hostingo įsigijimas",
+          "Produktyvumo įrankiai su AI"
+        ]
       },
       "productDesign": {
         "title": "UX/UI dizainas",
         "caption": "12 savaičių (108 val.)",
         "specializations": ["UX/UI dizaineris", "UX tyrėjas", "Produkto dizaineris"],
         "tools": ["Figma", "FigJam", "AI įrankiai"],
-        "topics": ["Vartotojo patirtis (UX)", "Vartotojo sąsaja (UI)", "UX tyrimai", "Vartotojų testavimas", "Wireframing", "Prototipų kūrimas", "Dizaino sistemos", "AI įrankiai dizaineriams"]
+        "topics": [
+          "Vartotojo patirtis (UX)",
+          "Vartotojo sąsaja (UI)",
+          "UX tyrimai",
+          "Vartotojų testavimas",
+          "Wireframing",
+          "Prototipų kūrimas",
+          "Dizaino sistemos",
+          "AI įrankiai dizaineriams"
+        ]
       }
     }
   },

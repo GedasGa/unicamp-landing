@@ -11,6 +11,7 @@ import Card, { type CardProps } from '@mui/material/Card';
 import Link from '@mui/material/Link';
 import { paths } from '../../routes/paths';
 import { bgBlur, varAlpha } from '../../theme/styles';
+import posthog from 'posthog-js';
 
 // ---------------------------------------------------------------------
 const NEXT_GROUPS = [
@@ -37,15 +38,15 @@ export function ProgramNextGroups({ programName, sx, ...other }: ProgramNextGrou
     <Box
       component="section"
       sx={{
-        py: { xs: 4, sm: 20 },
-        px: { xs: 2, sm: 15 },
+        py: { xs: 4, md: 20 },
+        px: { xs: 2, md: 15 },
         background: 'linear-gradient(96deg, #F84B9F 2.48%, #FF6A35 98.13%)',
         ...sx,
       }}
       {...other}
     >
-      <Stack spacing={{ xs: 2, sm: 7 }} alignItems="center">
-        <Stack spacing={2} textAlign={{ xs: 'left', sm: 'center' }}>
+      <Stack spacing={{ xs: 2, md: 7 }} alignItems="center">
+        <Stack spacing={2} textAlign={{ xs: 'left', md: 'center' }}>
           <Typography variant="h2" color="common.white">
             {t('title')}
           </Typography>
@@ -55,8 +56,8 @@ export function ProgramNextGroups({ programName, sx, ...other }: ProgramNextGrou
         </Stack>
         <Stack
           spacing={3}
-          flexDirection={{ xs: 'column', sm: 'row' }}
-          sx={{ width: { xs: '100%', sm: 'inherit' } }}
+          flexDirection={{ xs: 'column', md: 'row' }}
+          sx={{ width: { xs: '100%', md: 'inherit' } }}
         >
           {NEXT_GROUPS.map((group) => (
             <NextGroupCard key={group.date} group={group} programName={programName} />
@@ -108,6 +109,11 @@ const NextGroupCard = ({ group, programName, sx, ...other }: NextGroupCardProps)
             color: 'common.black',
             bgcolor: 'common.white',
             '&:hover': { bgcolor: 'grey.200' },
+          }}
+          onClick={() => {
+            posthog.capture('next_groups_cta_clicked', { programName, date: t(group.date) });
+            // @ts-ignore Injected to document object
+            OpenWidget.call('maximize', { feature: 'form-contact' });
           }}
         >
           {t('cta')}

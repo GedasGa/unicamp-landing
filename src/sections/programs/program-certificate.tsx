@@ -19,17 +19,17 @@ export function ProgramCertificate({ sx, programName, ...other }: ProgramCertifi
   return (
     <Box
       component="section"
-      sx={{ py: { xs: 4, sm: 20 }, pl: { xs: 2, sm: 15 }, backgroundColor: 'grey.100', ...sx }}
+      sx={{ py: { xs: 4, md: 20 }, pl: { xs: 2, md: 15 }, backgroundColor: 'grey.100', ...sx }}
       {...other}
     >
-      <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" spacing={{ xs: 2, sm: 9 }}>
+      <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" spacing={{ xs: 2, md: 9 }}>
         <Stack spacing={2} flex={1}>
           <Typography variant="h2">{t('certificate.title')}</Typography>
           <Typography variant="body1">{t('certificate.description')}</Typography>
         </Stack>
         <Box
           component="img"
-          src={`${CONFIG.assetsDir}/assets/illustrations/illustration-certificate.png`}
+          src={`${CONFIG.assetsDir}/assets/illustrations/${programName}-certificate.png`}
           alt="Certificate"
           sx={{
             width: '100%',

@@ -46,10 +46,10 @@ export function ProgramPricing({ programName, sx, ...other }: ProgramPricingProp
   return (
     <Box
       component="section"
-      sx={{ py: { xs: 4, sm: 20 }, px: { xs: 2, sm: 15 }, ...sx }}
+      sx={{ py: { xs: 4, md: 20 }, px: { xs: 2, md: 15 }, ...sx }}
       {...other}
     >
-      <Stack spacing={{ xs: 2, sm: 7 }} alignItems="center">
+      <Stack spacing={{ xs: 2, md: 7 }} alignItems="center">
         <Stack spacing={2} alignSelf="start">
           <Typography variant="h2">{t('title')}</Typography>
           <Chip
@@ -61,7 +61,7 @@ export function ProgramPricing({ programName, sx, ...other }: ProgramPricingProp
         </Stack>
         <Stack
           spacing={3}
-          flexDirection={{ xs: 'column', sm: 'row' }}
+          flexDirection={{ xs: 'column', md: 'row' }}
           sx={{ width: { xs: '100%' } }}
         >
           {PRICES.map((price) => (

@@ -1,11 +1,11 @@
 {
   "hero": {
-    "title": "Become certified UX design professional",
+    "title": "Become certified Frontend engineer",
     "cta": {
       "title": "Register to program",
       "subtitle": "Starts April 22"
     },
-    "skills": ["Figma", "OpenAI", "UX Research", "Accessibility", "Design System"],
+    "skills": ["JavaScript", "OpenAI", "React & NextJS", "Responsiv design", "Domain & Hosting"],
     "features": {
       "courseDuration": {
         "title": "Course duration",
@@ -66,8 +66,8 @@
     "cards": [
       {
         "title": "Competitive salary",
-        "description": "432O EUR per month",
-        "link": { "url": "", "text": "Based on mano alga data" }
+        "description": "3000 EUR per month",
+        "link": { "url": "https://www.manoalga.lt/en/salaryinfo/information-technology/javascript-programmer", "text": "Based on manoalga data" }
       },
       {
         "title": "Work at top companies",
@@ -81,12 +81,12 @@
   },
   "mentor": {
     "title": "Meet your mentor",
-    "name": "Aistė Gerdzevičiūtė",
-    "role": "Co-founder | Product designer and UX/UI mentor",
-    "description": "Aistė is a co-founder of Unicamp and a product designer at Ovoko. She is a highly skilled product designer with deep expertise in digital product design, user research, and design system creation within fast-paced startup environments. She curated and developed a comprehensive UX/UI design course for CodeAcademy and FastTrack academies.",
+    "name": "Gedas Gardauskas",
+    "role": "Co-founder | Software engineer and Frontend mentor",
+    "description": "Gedas is a co-founder of Unicamp and an experienced programmer with over 7 years of experience in the IT field. His areas of expertise include MLOps, GCP infrastructure, Node.js, React.js, and other technologies. Gedas has experience in developing text-to-speech (TTS) systems, managing AI model deployment processes, data warehouses, data processing systems, learning platforms, and BI tools. He created highly regarded JavaScript and Python programming programs used by CodeAcademy and FastTrack academies.",
     "cta": {
       "text": "Connect on LinkedIn",
-      "link": "https://www.linkedin.com/in/aistegerd/"
+      "link": "https://www.linkedin.com/in/gedas-gardauskas/"
     }
   },
   "pricing": {

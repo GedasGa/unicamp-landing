@@ -10,11 +10,12 @@ import { Iconify } from '../../components/iconify';
 import Card, { type CardProps } from '@mui/material/Card';
 import Link from '@mui/material/Link';
 import { paths } from '../../routes/paths';
+import posthog from 'posthog-js';
 
 // ---------------------------------------------------------------------
 const EXPECTATIONS = [
   {
-    icon: 'material-symbols:analytics-outline',
+    icon: 'mdi:google-analytics',
     title: 'expectations.cards.0.title',
     description: 'expectations.cards.0.description',
     link: {
@@ -23,12 +24,12 @@ const EXPECTATIONS = [
     },
   },
   {
-    icon: 'material-symbols:analytics-outline',
+    icon: 'mdi:company',
     title: 'expectations.cards.1.title',
     description: 'expectations.cards.1.description',
   },
   {
-    icon: 'material-symbols:analytics-outline',
+    icon: 'mdi:island',
     title: 'expectations.cards.2.title',
     description: 'expectations.cards.2.description',
   },
@@ -46,11 +47,11 @@ export function ProgramExpectations({ sx, programName, ...other }: ProgramExpect
   return (
     <Box
       component="section"
-      sx={{ py: { xs: 4, sm: 20 }, px: { xs: 2, sm: 15 }, ...sx }}
+      sx={{ py: { xs: 4, md: 20 }, px: { xs: 2, md: 15 }, ...sx }}
       {...other}
     >
-      <Stack spacing={{ xs: 2, sm: 7 }} alignItems="center">
-        <Stack spacing={2} textAlign={{ xs: 'left', sm: 'center' }}>
+      <Stack spacing={{ xs: 2, md: 7 }} alignItems="center">
+        <Stack spacing={2} textAlign={{ xs: 'left', md: 'center' }}>
           <Typography variant="h2">{t('expectations.title')}</Typography>
           <Typography variant="body1" color="text.secondary">
             {t('expectations.description')}
@@ -58,8 +59,8 @@ export function ProgramExpectations({ sx, programName, ...other }: ProgramExpect
         </Stack>
         <Stack
           spacing={3}
-          flexDirection={{ xs: 'column', sm: 'row' }}
-          sx={{ width: { xs: '100%', sm: 'inherit' } }}
+          flexDirection={{ xs: 'column', md: 'row' }}
+          sx={{ width: { xs: '100%', md: 'inherit' } }}
         >
           {EXPECTATIONS.map((expectation) => (
             <ExpectationsCard
@@ -72,7 +73,12 @@ export function ProgramExpectations({ sx, programName, ...other }: ProgramExpect
         <Button
           variant="contained"
           size="large"
-          sx={{ px: 4, width: { xs: '100%', sm: 'fit-content' } }}
+          sx={{ px: 4, width: { xs: '100%', md: 'fit-content' } }}
+          onClick={() => {
+            posthog.capture('expectations_cta_clicked', { programName });
+            // @ts-ignore Injected to document object
+            OpenWidget.call('maximize', { feature: 'form-contact' });
+          }}
         >
           {t('expectations.cta')}
         </Button>

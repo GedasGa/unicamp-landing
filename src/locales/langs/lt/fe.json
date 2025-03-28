@@ -1,0 +1,132 @@
+{
+  "hero": {
+    "title": "Tapkite sertifikuotu Frontend programuotoju",
+    "cta": { "title": "Registruotikės į programą", "subtitle": "Pradžia balandžio 22d." },
+    "skills": ["JavaScript", "OpenAI", "React ir NextJS", "Prisitaikantis dizainas", "Domenai ir talpinimas"],
+    "features": {
+      "courseDuration": { "title": "Programos trukmė", "description": "12 savaičių (108 valandos)" },
+      "groupSize": { "title": "Grupės dydis", "description": "20" },
+      "project": { "title": "Projektas", "description": "1", "chip": "Pasidalinsite LinkedIn" }
+    }
+  },
+  "certificate": {
+    "title": "Įrodykite savo įgūdžius su sertifikatu",
+    "description": "Įgykite ne tik įgūdžių, bet ir profesionalų Unicamp sertifikatą."
+  },
+  "banner": {
+    "title": "Apie programą",
+    "description": "Ši programa yra orientuota į Front-End programavimą, ypatingą dėmesį skiriant vartotojo sąsajų (UI) programavimui ir JavaScript programavimo kalbos taikymui. JavaScript kalba yra nepakeičiama kuriant dinamiškas ir interaktyvias tinklalapių funkcijas, o kartu yra plačiai naudojama ir kitose srityse, pavyzdžiui, serverio ar mobiliųjų aplikacijų programavime. Mokymų metu įgysite teorinių žinių ir praktinių įgūdžių, reikalingų kurti funkcionalias ir šiuolaikiškas svetaines. Įsisavinsite HTML, CSS ir JavaScript naudojimo pagrindus. Išmoksite kurti prisitaikančio dizaino puslapius ir adaptuoti juos neįgaliesiems. Dirbsite su pažangiais įrankiais, tokiais kaip React ir Next.js. Be to, susipažinsite su dirbtinio intelekto (AI) sprendimais, kurie padės optimizuoti darbo procesus ir padidinti produktyvumą. Kurso baigiamasis projektas – pilnai funkcionalus tinklalapis, patalpintas internete, kurį sukursite su komanda naudojant Jira ir GitHub – taps Jūsų įgūdžių įrodymu."
+  },
+  "syllabus": {
+    "title": "Programos turinys",
+    "cta": { "download": "Atsisiųsti visą programą", "register": "Registruokitės į programą" }
+  },
+  "modules": [
+    {
+      "title": "Trumpas įvadas į kompiuterių mokslą ir svetainių programavimą",
+      "description": "Kompiuterių mokslo pagrindai, interneto veikimo principai ir svetainių programavimo svarba IT srityje. „Frontend“ vs „Backend“ bei programuotojų komandos sudėtis. Integruotos programavimo aplinkos (angl. IDE) diegimas ir konfigūravimas.",
+      "skills": ["Kompiuterių mokslas", "Frontend", "Backend", "IDE"]
+    },
+    {
+      "title": "HTML ir CSS pagrindai",
+      "description": "HTML ir CSS sintaksė, jų taikymas kuriant tinklalapius. Pagrindiniai HTML elementai, CSS taikymo taisyklės, naršyklės įrankiai ir kiti niuansai. AI įrankių naudojimas mokymuisi.",
+      "skills": ["HTML", "CSS", "Naršyklės įrankiai", "AI įrankiai"]
+    },
+    {
+      "title": "Prisitaikančio dizaino (angl. Responsive Design) programavimas",
+      "description": "CSS „Flexbox“, „Grid“ ir „media queries“ naudojimas kuriant prisitaikantį dizainą, skirtą įvairių įrenginių ekranams. „Mobile-first“ dizainas.",
+      "skills": ["CSS Flexbox", "CSS Grid", "Media queries", "Mobile-first dizainas"]
+    },
+    {
+      "title": "Puslapio pritaikymas neįgaliesiams (WCAG standartai)",
+      "description": "WCAG ir gerųjų praktikų taikymas vartotojo sąsajų pritaikymui neįgaliesiems.",
+      "skills": ["WCAG", "Prieinamumas"]
+    },
+    {
+      "title": "JavaScript pagrindai",
+      "description": "JavaScript sintaksė, kintamieji, sąlygos, masyvai ir ciklai, funkcijos, DOM manipuliacija, įvykių valdymas, dinaminių funkcionalumų kūrimas tinklalapiuose. Asinchoninis JavaScript ir išorinių API naudojimas.",
+      "skills": ["JavaScript", "DOM", "Asinchoninis JavaScript", "API"]
+    },
+    {
+      "title": "Git versijų kontrolė ir terminalas",
+      "description": "Terminalo naudojimos ir pagrindinės funkcijos. Git versijų kontrolės sistema: saugojimas, istorijos sekimas, konfliktų sprendimas. GitHub naudojimas dirbant komandose, kodo peržiūros.",
+      "skills": ["Git", "GitHub", "Terminalas", "Versijų kontrolė"]
+    },
+    {
+      "title": "React pagrindai",
+      "description": "Įvadas į JavaScript karkasus ir ReactJS. React komponentų kūrimas, „state“, „props“ ir hooks“ naudojimas, sąlyginis ir sąrašų atvaizdavimas.",
+      "skills": ["React", "State", "Props", "Hooks"]
+    },
+    {
+      "title": "Next.js pagrindai",
+      "description": "Next.js privalumai ir pagrindinės savybės. „Server Side“ vs „Client Side Rendering“. Next.js maršrutizacijos ir duomenų valdymo principai.",
+      "skills": ["Next.js", "Server Side Rendering", "Client Side Rendering", "Maršrutizacija"]
+    },
+    {
+      "title": "Domenų administravimas ir svetainių talpinimas",
+      "description": "Domenų įsigijimas, registravimas, DNS konfigūravimas, svetainių talpinimas naudojant platformas (pvz., „Vercel“, „Cloudflare“).",
+      "skills": ["Domenų administravimas", "DNS", "Vercel", "Cloudflare"]
+    },
+    {
+      "title": "Projektinis darbas",
+      "description": "Komandinis projektas, apjungiantis visas įgytas žinias ir gebėjimus, įskaitant dizaino, planavimo, programavimo, talpinimo ir testavimo etapus.",
+      "skills": ["Komandinis darbas", "Jira", "Planavimas", "Testavimas"]
+    }
+  ],
+  "expectations": {
+    "title": "Ko tikėtis po kurso?",
+    "description": "Įgysite pagrindinius programavimo įgūdžius, mokėsite kurti ir talpinti svetaines, dirbti su JavaScript ir React, bei turėsite sertifikatą, patvirtinantį jūsų įgūdžius.",
+    "cta": "Registruokitės į programą",
+    "cards": [
+      {
+        "title": "Konkurencingas atlyginimas",
+        "description": "3000 EUR per mėnesį",
+        "link": { "url": "https://www.manoalga.lt/atlyginimu-informacija/informacijos-technologijos/javascript-programuotojas", "text": "Mano algra duomenimis" }
+      },
+      { "title": "Darbas top įmonėse", "description": "NordSecurity, Vinted, Surfshark" },
+      { "title": "Lankstumas", "description": "Darbas iš namų ar Seišelių? Jokių problemų" }
+    ]
+  },
+  "mentor": {
+    "title": "Susipažinkite su mentoriumi",
+    "name": "Gedas Gardauskas",
+    "role": "Bendraįkūrėjas | Programuotojas ir Web programavimo mentorius",
+    "description": "Gedas yra Unicamp bendraįkūrėjas ir patyręs programuotojas, turintis daugiau nei 7 metų patirtį IT srityje. Jo specializacijos sritys apima MLOps, GCP infrastruktūrą, Node.js, React.js ir kitas technologijas. Gedas turi patirties kuriant tekstų į kalbą (TTS) sistemas, valdant AI modelių diegimo procesus, duomenų sandėlius, duomenų apdorojimo sistemas, mokymosi platformas ir BI įrankius. Sukūrė puikiai vertinamas JavaScript ir Python programavimo programas, kurias naudoja CodeAcademy ir FastTrack akademijos.",
+    "cta": {
+      "text": "Peržiūrėti LinkedIn",
+      "link": "https://www.linkedin.com/in/gedas-gardauskas/"
+    }
+  },
+  "pricing": {
+    "title": "Kaina",
+    "chip": "14 dienų pinigų grąžinimo garantija",
+    "prices": [
+      {
+        "title": "Vienkartinis mokėjimas",
+        "price": "250€",
+        "originalPrice": "500€",
+        "description": "Sumokėkite visą sumą iš karto ir nesirūpinkite kitais mokėjimais."
+      },
+      {
+        "title": "Mėnesinis mokėjimas",
+        "price": "90€/mėn",
+        "originalPrice": "180€/mėn",
+        "description": "Mokėkite per 3 mėnesius, bendra suma 270€."
+      },
+      {
+        "title": "Finansinė pagalba",
+        "price": "Nemokamai",
+        "description": "Pateikite paraišką finansinei pagalbai ir turėkite galimybę mokytis nemokamai."
+      }
+    ]
+  },
+  "nextGroups": {
+    "title": "Vietų skaičius ribotas. Registruokitės dabar!",
+    "subtitle": "Rezervuokite vietą iki paraiškų teikimo termino.",
+    "cta": "Registruokitės dabar!",
+    "groups": [
+      { "date": "Balandžio 22d.", "deadline": "Paraiškų teikimo terminas: 2025-04-18" },
+      { "date": "Balandžio 23d.", "deadline": "Paraiškų teikimo terminas: 2025-04-19" }
+    ]
+  }
+}

@@ -21,8 +21,8 @@ export function ProgramFeatures({ programName, sx, ...other }: ProgramFeaturesPr
     <Box
       component="section"
       sx={{
-        py: { xs: 2, sm: 6 },
-        px: { xs: 2, sm: 15 },
+        py: { xs: 2, md: 6 },
+        px: { xs: 2, md: 15 },
         ...sx,
       }}
       {...other}
@@ -30,20 +30,20 @@ export function ProgramFeatures({ programName, sx, ...other }: ProgramFeaturesPr
       <Container disableGutters>
         <Stack
           spacing={3}
-          direction={{ xs: 'column', sm: 'row' }}
+          direction={{ xs: 'column', md: 'row' }}
           flexWrap="wrap"
-          alignItems={{ xs: 'flex-start', sm: 'center' }}
+          alignItems={{ xs: 'flex-start', md: 'center' }}
           justifyContent="space-between"
         >
-          <Stack alignItems={{ xs: 'flex-start', sm: 'center' }} flex={1}>
+          <Stack alignItems={{ xs: 'flex-start', md: 'center' }} flex={1}>
             <Typography variant="h4">{t('hero.features.courseDuration.description')}</Typography>
             <Typography variant="caption">{t('hero.features.courseDuration.title')}</Typography>
           </Stack>
-          <Stack alignItems={{ xs: 'flex-start', sm: 'center' }} flex={1}>
+          <Stack alignItems={{ xs: 'flex-start', md: 'center' }} flex={1}>
             <Typography variant="h4">{t('hero.features.groupSize.description')}</Typography>
             <Typography variant="caption">{t('hero.features.groupSize.title')}</Typography>
           </Stack>
-          <Stack alignItems={{ xs: 'flex-start', sm: 'center' }} flex={1}>
+          <Stack alignItems={{ xs: 'flex-start', md: 'center' }} flex={1}>
             <Stack direction="row" alignItems="center" spacing={1}>
               <Typography variant="h4" fontWeight="bold">
                 {t('hero.features.project.description')}

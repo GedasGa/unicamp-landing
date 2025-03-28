@@ -1,64 +1,102 @@
 {
-  "ux": {
-    "title": "Become certified UX design professional",
-    "modules": [
+  "hero": {
+    "title": "Tapkite sertifikuotu UX dizaino profesionalu",
+    "cta": { "title": "Registruotikės į programą", "subtitle": "Pradžia balandžio 22d." },
+    "skills": ["Figma", "OpenAI", "UX tyrimai", "Prieinamumas", "Dizaino sistema"],
+    "features": {
+      "courseDuration": { "title": "Programos trukmė", "description": "12 savaičių (108 valandos)" },
+      "groupSize": { "title": "Grupės dydis", "description": "20" },
+      "project": { "title": "Projektas", "description": "1", "chip": "Pasidalinsite LinkedIn" }
+    }
+  },
+  "certificate": {
+    "title": "Įrodykite savo įgūdžius su sertifikatu",
+    "description": "Įgykite ne tik įgūdžių, bet ir profesionalų Unicamp sertifikatą."
+  },
+  "banner": {
+    "title": "Apie programą",
+    "description": "Ši programa apima visus pagrindinius UX/UI dizaino proceso etapus – nuo naudotojų poreikių analizės iki interaktyvių prototipų kūrimo. Programos metu įgysite teorinių žinių ir praktinių įgūdžių, reikalingų kurti šiuolaikiškus dizaino sprendimus. Taip pat, susipažinsite su dirbtinio intelekto (AI) sprendimais, kurie padės optimizuoti darbo procesus ir padidinti produktyvumą. Lavinsite komandinio darbo įgūdžius su Jira ir kitais projektų valdymo įrankiais. Po kiekvieno modulio atliksite praktines užduotis, kurios padės pritaikyti įgytas žinias, o kurso pabaigoje parengsite pilną UX/UI projektą, kurį įgyvendinsite kartu su mūsų programavimo studentais – tai taps Jūsų įgūdžių įrodymu."
+  },
+  "syllabus": {
+    "title": "Programos turinys",
+    "cta": { "download": "Atsisiųsti visą programą", "register": "Registruokitės į programą" }
+  },
+  "modules": [
+    {
+      "title": "Skaitmeninio dizaino pagrindai",
+      "description": "Susipažinsite su UX ir UI dizaino pagrindais bei skirtumais tarp jų. Išmoksite tipografijos principų ir jų taikymo kuriant profesionalų dizainą, spalvų psichologijos pagrindų, spalvų suderinamumo taisyklių bei AI įrankių, tokių kaip „Khroma“ ir „Huemint“, panaudojimo. Analizuosite geštalto principus ir jų svarbą UX/UI dizaine, įsisavinsite 8 pikselių taisyklę, padedančią kurti nuoseklų elementų tarpavimą. Be to, susipažinsite su Figma įrankio „Auto-layout“ funkcija ir praktinių užduočių metu išmoksite ją pritaikyti dizaino elementų išdėstymui.",
+      "skills": ["Figma", "Dizaino procesas"]
+    },
+    {
+      "title": "Sklandžių patirčių kūrimas",
+      "description": "Išmoksite svarbiausius UX dizaino aspektus ir tyrimų metodus, tokius kaip konkurentų analizė, „Double Diamond“ procesas bei prieinamumo geriausios praktikos. Kursite UX personas, vartotojų keliones ir taikysite „Crazy 8“ metodiką kūrybinėms idėjoms generuoti. Sužinosite, kaip rengti žemo detalumo „Wireframes“ maketus bei skirti dėmesį tiek low-fidelity, tiek high-fidelity prototipų ypatybėms. Galiausiai, atliksite panaudojamumo testavimus su savo kurtais dizaino maketais, siekdami pagerinti jų efektyvumą ir naudotojų patirtį.",
+      "skills": ["UX", "Prieinamumas", "Naudotojų personos"]
+    },
+    {
+      "title": "Vizualinių kalbų kūrimas",
+      "description": "Sužinosite, kaip kurti aukšto detalumo dizaino maketus ir juos pritaikyti įvairiems įrenginiams, naudojant prisitaikančio dizaino principus. Išmoksite prototipavimo pagrindų, interakcijų kūrimo bei animavimo subtilybių, kurias pritaikysite praktinėse užduotyse. Gilinsitės į komponentų kūrimą ir jų savybes, įskaitant dinaminio mygtuko ir įvesties laukelio dizainą. Taip pat, sužinosite apie dizaino sistemų privalumus bei jų taikymą, siekiant nuoseklumo ir efektyvumo. Galiausiai, pasitelksite dirbtinio intelekto įrankius, kurie padės optimizuoti dizaino procesus ir paspartinti darbą.",
+      "skills": ["UI", "Dizaino sistemos", "Spalvos"]
+    },
+    {
+      "title": "Nuo idėjos iki realizacijos",
+      "description": "Komandinis projektas, apjungs visas įgytas žinias ir gebėjimus, įskaitant naudotojų poreikių analizės, vartotojo sąsajos projektavimo bei kūrimo etapus. Darbas atliekamas konsultuojantis su dėstytoju (-a), siekiant užtikrinti aukštą kokybę ir praktinį taikymą. Šį projektą vėliau įgyvendinsite kartu su programavimo studentais.",
+      "skills": ["Dirbtinio intelekto įrankiai", "Projektas"]
+    }
+  ],
+  "expectations": {
+    "title": "Ko tikėtis po kurso?",
+    "description": "Žinosite UX/UI dizaino pagrindus, gebėsite kurti interaktyvius prototipus ir turėsite sertifikatą, patvirtinantį jūsų įgūdžius.",
+    "cta": "Registruokitės į programą",
+    "cards": [
       {
-        "title": "Foundations of Digital Design",
-        "description": "Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
-        "skills": ["Figma", "Design Process"]
+        "title": "Konkurencingas atlyginimas",
+        "description": "3000 EUR per mėnesį",
+        "link": { "url": "https://www.manoalga.lt/en/salaryinfo/information-technology/web-designer", "text": "Mano alga duomenimis" }
+      },
+      { "title": "Darbas top įmonėse", "description": "NordSecurity, Vinted, Surfshark" },
+      { "title": "Lankstumas", "description": "Darbas iš namų ar Seišelių? Jokių problemų" }
+    ]
+  },
+  "mentor": {
+    "title": "Susipažinkite su mentorė",
+    "name": "Aistė Gerdzevičiūtė",
+    "role": "Bendraįkūrėja | Produktų dizainerė ir UX/UI mentorė",
+    "description": "Aistė yra Unicamp bendraįkūrėja ir produktų dizainerė Ovoko. Ji turinti gilų supratimą apie skaitmeninių produktų dizainą, vartotojų tyrimus ir dizaino sistemų kūrimą sparčiai augančiose startuolio aplinkose. Ji kuravo ir sukūrė UX/UI dizaino kursą, kurį naudoja CodeAcademy ir FastTrack akademijos.",
+    "cta": {
+      "text": "Peržiūrėti LinkedIn",
+      "link": "https://www.linkedin.com/in/aistegerd/"
+    }
+  },
+  "pricing": {
+    "title": "Kaina",
+    "chip": "14 dienų pinigų grąžinimo garantija",
+    "prices": [
+      {
+        "title": "Vienkartinis mokėjimas",
+        "price": "250€",
+        "originalPrice": "500€",
+        "description": "Sumokėkite visą sumą iš karto ir nesirūpinkite kitais mokėjimais."
       },
       {
-        "title": "Crafting seemless experiences",
-        "description": "Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
-        "skills": ["UX", "Accessibility", "User Personas"]
+        "title": "Mėnesinis mokėjimas",
+        "price": "90€/mėn",
+        "originalPrice": "180€/mėn",
+        "description": "Mokėkite per 3 mėnesius, bendra suma 270€."
       },
       {
-        "title": "Designing Visual Languages",
-        "description": "Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
-        "skills": ["UI", "Design Systems", "Colors"]
-      },
-      {
-        "title": "From Concept to Creation",
-        "description": "Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.Hipster ipsum tattooed brunch I'm baby. Echo santo next coffee kombucha pin. Plaid offal yolo mumblecore 90's art.",
-        "skills": ["AI tools", "Project"]
-      }
-    ],
-    "expectations": [
-      {
-        "title": "Competitive salary",
-        "description": "432O EUR per month",
-        "link": {
-            "url": "https://www.google.com",
-            "text": "Source"
-        }
-      },
-      {
-        "title": "Work at top companies",
-        "description": "NordSecurity, Vinted, Surfshark"
-      },
-      {
-        "title": "Flexibility",
-        "description": "Summer all year? No problem"
-      }
-    ],
-    "nextGroups": [
-      {
-        "date": "April 10",
-        "spots": "5 spots left",
-        "deadline": "April 5"
-      },
-      {
-        "date": "April 22",
-        "spots": "5 spots left",
-        "deadline": "April 17"
+        "title": "Finansinė pagalba",
+        "price": "Nemokamai",
+        "description": "Pateikite paraišką finansinei pagalbai ir turėkite galimybę mokytis nemokamai."
       }
     ]
   },
-  "deadlineForApplication": "Deadline for applications",
-  "hero": {
-    "cta": {
-      "title": "Register to program",
-      "subtitle": "Starts April 10"
-    }
+  "nextGroups": {
+    "title": "Vietų skaičius ribotas. Registruokitės dabar!",
+    "subtitle": "Rezervuokite vietą iki paraiškų teikimo termino.",
+    "cta": "Registruokitės dabar!",
+    "groups": [
+      { "date": "Balandžio 22d.", "deadline": "Paraiškų teikimo terminas: 2025-04-18" },
+      { "date": "Balandžio 23d.", "deadline": "Paraiškų teikimo terminas: 2025-04-19" }
+    ]
   }
 }
