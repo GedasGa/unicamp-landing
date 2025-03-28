@@ -28,6 +28,10 @@ import { Iconify } from '../../components/iconify';
 import Link from 'next/link';
 import { paths } from '../../routes/paths';
 import { useLocalStorage } from '../../hooks/use-local-storage';
+import type { SettingsState } from '../../components/settings';
+import { STORAGE_KEY } from '../../components/settings';
+import type { ThemeColorScheme } from '../../theme/types';
+import Container from '@mui/material/Container';
 import { defaultNavData } from './nav/config';
 
 // ----------------------------------------------------------------------
@@ -53,17 +57,14 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
   const mobileNavOpen = useBoolean();
   const { t } = useTranslate('nav');
 
-  const localStorage = useLocalStorage<LayoutState>('layout-settings', {
-    showAlert: false,
-  });
+  const [showAlert, setShowAlert] = useState(true);
 
   const homePage = pathname === '/';
   const layoutQuery: Breakpoint = 'md';
   const navData = data?.nav ?? defaultNavData;
 
   const dismissAlert = () => {
-    localStorage.setState({ showAlert: false });
-    localStorage.setField('showAlert', false);
+    setShowAlert(false);
   };
 
   return (
@@ -73,19 +74,34 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
           layoutQuery={layoutQuery}
           sx={header?.sx}
           slots={{
-            bottomArea: localStorage.state.showAlert && (
-              <Alert
-                icon={<Iconify icon="ic:outline-campaign" />}
-                severity="warning"
-                action={
-                  <Button color="inherit" size="small" onClick={dismissAlert}>
-                    Dismiss
-                  </Button>
-                }
-              >
-                Courses financed by kursuok.lt have already started! Sign{' '}
-                <Link href={'https://kursuok.lt/'}>here</Link>
-              </Alert>
+            bottomArea: showAlert && (
+              <Container>
+                <Alert
+                  icon={<Iconify icon="ic:outline-campaign" />}
+                  severity="warning"
+                  action={
+                    <Button color="inherit" size="small" onClick={dismissAlert}>
+                      {t('dismiss')}
+                    </Button>
+                  }
+                >
+                  {t('kursuok.description')}{' '}
+                  <Link
+                    href={'https://kursuok.lt/mokymai/list/provider/view/uab-unicamp'}
+                    target="_blank"
+                  >
+                    {t('here')}
+                  </Link>
+                  {', '}
+                  {t('email')}{' '}
+                  <Link
+                    href={'mailto:info@unicamp.lt?subject=Kursuok'}
+                  >
+                    info@unicamp.lt
+                  </Link>{' '}
+                  {t('or')} {t('phone')} <Link href={'tel:+37061008080'}>+370 610 08080</Link>
+                </Alert>
+              </Container>
             ),
             leftArea: (
               <>

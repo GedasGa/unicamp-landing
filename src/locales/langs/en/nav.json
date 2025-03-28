@@ -2,6 +2,14 @@
   "cta": {
     "text": "View Courses"
   },
+  "dismiss": "Dismiss",
+  "here": "kursuok.lt",
+  "or": "or",
+  "call": "telefonu",
+  "email": "el. paštu",
+  "kursuok": {
+    "description": "Pre-registration to courses financed by KURSUOK have already started! Sign up"
+  },
   "paths": {
     "home": "Home",
     "courses": "Courses",

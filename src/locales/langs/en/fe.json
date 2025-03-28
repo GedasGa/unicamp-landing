@@ -28,7 +28,7 @@
   },
   "banner": {
     "title": "About the program",
-    "description": "This program guides you through the key stages of UX/UI design, from user needs\n              analysis to interactive prototypes. You'll gain both theoretical knowledge and\n              practical skills to create modern design solutions, focusing on trends like dark mode,\n              responsive design."
+    "description": "This program focuses on Front-End development, emphasizing user interface (UI) programming and JavaScript programming language. JavaScript is indispensable for creating dynamic and interactive websites and is also widely used in other fields, such as server-side and mobile application development. During the training, you will gain theoretical knowledge and practical skills necessary for building functional and modern websites. You will master the basics of HTML, CSS, and JavaScript, learn to create responsive design pages, and make them accessible. You will work with advanced frameworks like React and Next.js. Additionally, you will explore artificial intelligence (AI) solutions that can optimise workflows and enhance productivity. The final project is a fully functional website that is hosted online, developed together with a team using Jira and GitHub. It will serve as evidence of your capabilities."
   },
   "syllabus": {
     "title": "Syllabus",
