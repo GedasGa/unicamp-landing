@@ -73,13 +73,13 @@ const MODULES = {
       ],
     },
     {
-      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-from-concept-to-creation.png`,
+      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/fe-course/fe-accessibility.png`,
       title: 'modules.3.title',
       description: 'modules.3.description',
       skills: ['modules.3.skills.0', 'modules.3.skills.1'],
     },
     {
-      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-from-concept-to-creation.png`,
+      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/fe-course/fe-blank.png`,
       title: 'modules.4.title',
       description: 'modules.4.description',
       skills: [
@@ -90,7 +90,7 @@ const MODULES = {
       ],
     },
     {
-      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-from-concept-to-creation.png`,
+      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/fe-course/fe-blank.png`,
       title: 'modules.5.title',
       description: 'modules.5.description',
       skills: [
@@ -101,7 +101,7 @@ const MODULES = {
       ],
     },
     {
-      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-from-concept-to-creation.png`,
+      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/fe-course/fe-blank.png`,
       title: 'modules.6.title',
       description: 'modules.6.description',
       skills: [
@@ -113,7 +113,7 @@ const MODULES = {
     },
 
     {
-      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-from-concept-to-creation.png`,
+      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/fe-course/fe-blank.png`,
       title: 'modules.7.title',
       description: 'modules.7.description',
       skills: [
@@ -124,7 +124,7 @@ const MODULES = {
       ],
     },
     {
-      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-from-concept-to-creation.png`,
+      illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/fe-course/fe-blank.png`,
       title: 'modules.8.title',
       description: 'modules.8.description',
       skills: [
@@ -190,7 +190,7 @@ export function ProgramSyllabus({ programName, sx, ...other }: ProgramSyllabusPr
           </Stack>
         </Stack>
         <Stack spacing={4}>
-          {/* @ts-ignore */}
+          {/* */}
           {MODULES[programName].map((module) => (
             <ModuleCard key={module.title} module={module} programName={programName} />
           ))}
