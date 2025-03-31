@@ -5,8 +5,6 @@ import Box from '@mui/material/Box';
 import { useTranslate } from '../../locales';
 import { Chip, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { Iconify } from '../../components/iconify';
 import Card, { type CardProps } from '@mui/material/Card';
 import { Image } from '../../components/image';
 import { CONFIG } from '../../config-global';
@@ -166,16 +164,16 @@ export function ProgramSyllabus({ programName, sx, ...other }: ProgramSyllabusPr
     >
       <Stack spacing={{ xs: 2, md: 7 }}>
         <Stack
-          direction={{ xs: 'column', md: 'row' }}
-          alignItems={{ xs: 'flex-start', md: 'center' }}
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems={{ xs: 'flex-start', sm: 'center' }}
           justifyContent="space-between"
           spacing={2}
         >
           <Typography variant="h1">{t('syllabus.title')}</Typography>
           <Stack
-            direction={{ xs: 'column', md: 'row' }}
+            direction={{ xs: 'column', sm: 'row' }}
             spacing={2}
-            sx={{ width: { xs: '100%', md: 'inherit' } }}
+            sx={{ width: { xs: '100%', sm: 'inherit' } }}
           >
             {/* TODO: Re-enable once ready*/}
             {/*<Button*/}
@@ -214,14 +212,15 @@ const ModuleCard = ({ module, programName, sx, ...other }: ModuleCardProps) => {
 
   return (
     <Card sx={{ p: 3, ...sx }} {...other}>
-      <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
         <Image
           alt={`${t(module.title)} illustration`}
           src={module.illustrationUrl}
           ratio="1/1"
           sx={{ borderRadius: 2, maxWidth: { xs: '100%', md: '160px' } }}
+          flex={1}
         />
-        <Stack spacing={1.5}>
+        <Stack spacing={1.5} flex={4}>
           <Typography variant="h6">{t(module.title)}</Typography>
           <Stack spacing={2} direction="row" flexWrap="wrap">
             {module.skills.map((skill) => (
