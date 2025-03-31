@@ -24,7 +24,7 @@ import { SectionTitle } from './components/section-title';
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
 import { SvgColor } from '../../components/svg-color';
-import SvgIcon from '@mui/material/SvgIcon';
+import { paths } from '../../routes/paths';
 
 // ----------------------------------------------------------------------
 
@@ -36,6 +36,7 @@ export const PROGRAMS = [
     icon: `${CONFIG.assetsDir}/assets/icons/programs/web-development.svg`,
     levelIcon: `${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`,
     level: 'programs.levels.beginner',
+    link: paths.programs.fe,
     price: 0,
     originalPrice: 500,
     specializations: [
@@ -77,6 +78,7 @@ export const PROGRAMS = [
     icon: `${CONFIG.assetsDir}/assets/icons/programs/product-design.svg`,
     levelIcon: `${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`,
     level: 'programs.levels.beginner',
+    link: paths.programs.ux,
     price: 0,
     originalPrice: 500,
     specializations: [
@@ -148,6 +150,7 @@ type Props = CardProps & {
     icon: string;
     levelIcon: string;
     level: string;
+    link: string;
     price: number;
     originalPrice: number;
     specializations: string[];
@@ -171,6 +174,7 @@ export function ProgramCard({ program, sx, ...other }: Props) {
     topics,
     levelIcon,
     level,
+    link,
   } = program;
 
   const renderIcon = (
@@ -281,10 +285,9 @@ export function ProgramCard({ program, sx, ...other }: Props) {
         {t('programs.cta.apply')}
       </Button>
 
-      {/*TODO: Add view programs later*/}
-      {/*<Button fullWidth size="large" variant="outlined">*/}
-      {/*  {t('programs.cta.viewProgram')}*/}
-      {/*</Button>*/}
+      <Button fullWidth size="large" variant="outlined" href={link}>
+        {t('programs.cta.viewProgram')}
+      </Button>
     </Stack>
   );
 

@@ -2,21 +2,22 @@ import { useState, useCallback } from 'react';
 
 import Collapse from '@mui/material/Collapse';
 
-import { isExternalLink } from 'src/routes/utils';
+import { isExternalLink, removeLastSlash } from 'src/routes/utils';
 import { useActiveLink } from 'src/routes/hooks/use-active-link';
 
-import { CONFIG } from 'src/config-global';
-import { varAlpha } from 'src/theme/styles';
-
-import { NavLi, navSectionClasses, NavSectionVertical } from 'src/components/nav-section';
+import { NavLi, navSectionClasses, NavSectionVertical, NavUl } from 'src/components/nav-section';
 
 import { NavItem } from './nav-mobile-item';
 
 import type { NavListProps } from '../types';
+import { useTranslate } from '../../../../locales';
+import { usePathname } from '../../../../routes/hooks';
 
 // ----------------------------------------------------------------------
 
 export function NavList({ data }: NavListProps) {
+  const pathname = usePathname();
+  const { t } = useTranslate('nav');
   const active = useActiveLink(data.path, !!data.children);
 
   const [openMenu, setOpenMenu] = useState(false);
@@ -27,12 +28,14 @@ export function NavList({ data }: NavListProps) {
     }
   }, [data.children]);
 
+  console.log('NavList', data);
+
   const renderNavItem = (
     <NavItem
       // slots
       path={data.path}
       icon={data.icon}
-      title={data.title}
+      title={t(data.title)}
       // state
       active={active}
       hasChild={!!data.children}
@@ -48,26 +51,22 @@ export function NavList({ data }: NavListProps) {
       <NavLi>
         {renderNavItem}
         <Collapse in={openMenu}>
-          <NavSectionVertical
-            data={data.children}
-            slotProps={{ rootItem: { sx: { minHeight: 36 } } }}
+          <NavUl
             sx={{
               px: 1.5,
-              [`& .${navSectionClasses.item.root}`]: {
-                '&[aria-label="Dashboard"]': {
-                  [`& .${navSectionClasses.item.title}`]: { display: 'none' },
-                  height: 180,
-                  borderRadius: 1.5,
-                  backgroundSize: 'auto 88%',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundImage: `url(${CONFIG.assetsDir}/assets/illustrations/illustration-dashboard.webp)`,
-                  border: (theme) =>
-                    `solid 1px ${varAlpha(theme.palette.grey['500Channel'], 0.12)}`,
-                },
-              },
             }}
-          />
+          >
+            {data.children.map((child) => (
+              <NavLi key={child.title} sx={{ my: 1 }}>
+                <NavItem
+                  subItem
+                  title={t(child.title)}
+                  path={child.path}
+                  active={child.path === removeLastSlash(pathname)}
+                />
+              </NavLi>
+            ))}
+          </NavUl>
         </Collapse>
       </NavLi>
     );

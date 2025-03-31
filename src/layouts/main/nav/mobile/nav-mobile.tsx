@@ -29,7 +29,7 @@ export type NavMobileProps = NavMainProps & {
 
 export function NavMobile({ data, open, onClose, slots, sx }: NavMobileProps) {
   const pathname = usePathname();
-  const { t } = useTranslate('navbar');
+  const { t } = useTranslate('nav');
 
   useEffect(() => {
     if (open) {
@@ -44,6 +44,7 @@ export function NavMobile({ data, open, onClose, slots, sx }: NavMobileProps) {
       onClose={onClose}
       PaperProps={{
         sx: {
+          backgroundColor: 'common.white',
           display: 'flex',
           flexDirection: 'column',
           width: 'var(--layout-nav-mobile-width)',
@@ -69,7 +70,7 @@ export function NavMobile({ data, open, onClose, slots, sx }: NavMobileProps) {
 
       {slots?.bottomArea ?? (
         <Box gap={1.5} display="flex" sx={{ px: 2.5, py: 3 }}>
-          <Button fullWidth variant="contained" href={paths.courses}>
+          <Button fullWidth variant="contained" href="/#courses">
             {t('cta.text')}
           </Button>
         </Box>

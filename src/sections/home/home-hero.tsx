@@ -71,7 +71,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
       <Button
         size="large"
         variant="contained"
-        href={paths.courses}
+        href="/#courses"
         onClick={() => posthog.capture('hero_cta_clicked')}
         endIcon={<Iconify icon="ic:round-arrow-downward" />}
       >
@@ -81,7 +81,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
   );
 
   const renderFreeConsultation = (
-    <Box display="flex" flexWrap="wrap" gap={{ xs: 1.5, sm: 2 }}>
+    <Box display="flex" flexWrap="wrap" gap={{ xs: 1.5, md: 2 }}>
       <AnimatedDiv>
         <p>{t('hero.cta.description')}</p>
         <Button

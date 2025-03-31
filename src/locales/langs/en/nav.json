@@ -1,0 +1,19 @@
+{
+  "cta": {
+    "text": "View Courses"
+  },
+  "dismiss": "Dismiss",
+  "here": "kursuok.lt",
+  "or": "or",
+  "phone": "phone",
+  "email": "email",
+  "kursuok": {
+    "description": "Pre-registration to courses financed by KURSUOK have already started! Sign up"
+  },
+  "paths": {
+    "home": "Home",
+    "courses": "Courses",
+    "uxProgram": "UX/UI Web Design basics using Figma",
+    "feProgram": "Frontend Web development basics with JavaScript and React"
+  }
+}

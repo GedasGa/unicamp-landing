@@ -1,0 +1,130 @@
+{
+  "hero": {
+    "title": "Become a certified UX design professional",
+    "cta": {
+      "title": "Register to program",
+      "subtitle": "Starts April 22"
+    },
+    "skills": ["Figma", "OpenAI", "UX Research", "Accessibility", "Design System"],
+    "features": {
+      "courseDuration": {
+        "title": "Course duration",
+        "description": "12 weeks (108 hours)"
+      },
+      "groupSize": {
+        "title": "Group size",
+        "description": "20"
+      },
+      "project": {
+        "title": "Project",
+        "description": "1",
+        "chip": "Share on LinkedIn"
+      }
+    }
+  },
+  "certificate": {
+    "title": "Certificate – Proof of Your Skills",
+    "description": "Gain not only skills but also a professional Unicamp certificate."
+  },
+  "banner": {
+    "title": "About the program",
+    "description": "This program covers all the fundamental stages of the UX/UI design process - from user needs analysis to creating interactive prototypes. You will acquire theoretical knowledge and practical skills needed to develop modern design solutions. Special focus is given to the latest UX/UI design trends, such as dark mode, responsive design, micro-interactions, and design systems. You will work with industry-leading tools like Figma and FigJam, and explore artificial intelligence (AI) solutions to optimize workflows and boost productivity. Additionally, you will enhance your teamwork skills using Jira and other project management tools. After each module, you will complete practical tasks to apply and reinforce your knowledge. At the end of the course, you will showcase your skills by designing a website that will be implemented by our programming students."
+  },
+  "syllabus": {
+    "title": "Syllabus",
+    "cta": {
+      "download": "Download whole syllabus",
+      "register": "Register to program"
+    }
+  },
+  "modules": [
+    {
+      "title": "Fundamentals of Digital Design",
+      "description": "You will get acquainted with the basics of UX and UI design and understand the differences between them. You will learn typography principles and how to apply them in professional design, gain insights into color psychology fundamentals, color harmony rules, and the use of AI tools such as Khroma and Huemint. You will analyze Gestalt principles and their importance in UX/UI design, as well as master the 8-pixel rule to maintain consistent spacing between elements. Additionally, you will explore Figma's 'Auto-layout' feature and learn how to apply it to design element positioning through practical exercises.",
+      "skills": ["Figma", "Design Process"]
+    },
+    {
+      "title": "Creating Smooth Experiences",
+      "description": "You will master essential aspects of UX design and research methods, including competitor analysis, the Double Diamond process, and best practices for accessibility. You will develop UX personas, map user journeys, and utilize the Crazy 8 methodology for generating creative ideas. You will learn how to create low-fidelity wireframes and understand the characteristics of both low-fidelity and high-fidelity prototypes. Finally, you will conduct usability testing on your own design mockups to improve their effectiveness and user experience.",
+      "skills": ["UX", "Accessibility", "User Personas"]
+    },
+    {
+      "title": "Building Visual Languages",
+      "description": "You will learn how to create high-fidelity design mockups and adapt them for various devices using responsive design principles. You will acquire skills in prototyping, creating interactions, and animation techniques, applying them through practical tasks. You will delve into component creation and properties, including dynamic button and input field design. Additionally, you will explore the benefits of design systems and how to implement them for consistency and efficiency. Finally, you will leverage artificial intelligence tools to optimize design processes and speed up your workflow.",
+      "skills": ["UI", "Design Systems", "Colors"]
+    },
+    {
+      "title": "From Idea to Realization",
+      "description": "This team project will integrate all acquired knowledge and skills, including user needs analysis, user interface design, and implementation stages. The work will be done under the guidance of a mentor to ensure high quality and practical application. Later, you will implement this project together with programming students.",
+      "skills": ["AI Tools", "Project"]
+    }
+  ],
+  "expectations": {
+    "title": "What to expect after the course?",
+    "description": "You know the fundamentals of UX/UI design, can create interactive prototypes, and have a certificate to prove your skills.",
+    "cta": "Register to program",
+    "cards": [
+      {
+        "title": "Competitive salary",
+        "description": "3000 EUR per month",
+        "link": { "url": "https://www.manoalga.lt/en/salaryinfo/information-technology/web-designer", "text": "Based on mano alga data" }
+      },
+      {
+        "title": "Work at top companies",
+        "description": "NordSecurity, Vinted, Surfshark"
+      },
+      {
+        "title": "Flexibility",
+        "description": "Work from home or Seychelles? No problem"
+      }
+    ]
+  },
+  "mentor": {
+    "title": "Meet your mentor",
+    "name": "Aistė Gerdzevičiūtė",
+    "role": "Co-founder | Product designer and UX/UI mentor",
+    "description": "Aistė is a co-founder of Unicamp and a product designer at Ovoko. She is a highly skilled product designer with deep expertise in digital product design, user research, and design system creation within fast-paced startup environments. She curated and developed a comprehensive UX/UI design course for CodeAcademy and FastTrack academies.",
+    "cta": {
+      "text": "Connect on LinkedIn",
+      "link": "https://www.linkedin.com/in/aistegerd/"
+    }
+  },
+  "pricing": {
+    "title": "Pricing",
+    "chip": "14 days money back guarantee",
+    "prices": [
+      {
+        "title": "One-time",
+        "price": "250€",
+        "originalPrice": "500€",
+        "description": "Pay full price and don’t worry about next payments."
+      },
+      {
+        "title": "Monthly",
+        "price": "90€/month",
+        "originalPrice": "180€/month",
+        "description": "Pay in 3 months, total 270€."
+      },
+      {
+        "title": "Financial aid",
+        "price": "Free",
+        "description": "Apply for financial aid and have opportunity to lear for free."
+      }
+    ]
+  },
+  "nextGroups": {
+    "title": "Limited seats. Apply now!",
+    "subtitle": "Reserve your seat before deadline for applications.",
+    "cta": "Apply now!",
+    "groups": [
+      {
+        "date": "April 22",
+        "deadline": "Deadline for applications: 2025-04-18"
+      },
+      {
+        "date": "April 23",
+        "deadline": "Deadline for applications: 2025-04-19"
+      }
+    ]
+  }
+}

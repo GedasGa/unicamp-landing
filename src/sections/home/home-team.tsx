@@ -126,7 +126,7 @@ type MemberCardProps = {
   member: (typeof MEMBERS)[number];
 };
 
-function MemberCard({ member }: MemberCardProps) {
+const MemberCard = ({ member }: MemberCardProps) => {
   const { t } = useTranslate('home');
   return (
     <Card>
@@ -165,4 +165,4 @@ function MemberCard({ member }: MemberCardProps) {
       </Box>
     </Card>
   );
-}
+};

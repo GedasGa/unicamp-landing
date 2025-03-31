@@ -202,7 +202,7 @@ type PaperProps = {
 export function paper({ theme, color, dropdown }: PaperProps) {
   return {
     ...bgBlur({
-      color: color ?? varAlpha(theme.vars.palette.background.paperChannel, 0.9),
+      color: color ?? varAlpha(theme.vars.palette.background.paperChannel, 0.09),
       blur: 20,
     }),
     backgroundImage: `url(${CONFIG.assetsDir}/assets/core/cyan-blur.png), url(${CONFIG.assetsDir}/assets/core/red-blur.png)`,

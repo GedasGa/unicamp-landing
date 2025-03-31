@@ -1,0 +1,19 @@
+{
+  "cta": {
+    "text": "Peržiūrėkite programas"
+  },
+  "dismiss": "Uždaryti",
+  "here": "kursuok.lt",
+  "or": "arba",
+  "phone": "telefonu",
+  "email": "el. paštu",
+  "kursuok": {
+    "description": "Išankstinė registracija į KURSUOK finansuojamus kursus jau prasidėjo! Registruokitės"
+  },
+  "paths": {
+    "home": "Pagrindinis",
+    "courses": "Programos",
+    "uxProgram": "UX/UI Web Dizaino pagrindai su Figma",
+    "feProgram": "Frontend Web programavimo pagrindai su JavaScript ir React"
+  }
+}

@@ -2,7 +2,7 @@
 
 import dayjs from 'dayjs';
 import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, UseTranslationOptions } from 'react-i18next';
 
 import { useRouter } from 'src/routes/hooks';
 
@@ -15,10 +15,10 @@ import type { LanguageValue } from './config-locales';
 
 // ----------------------------------------------------------------------
 
-export function useTranslate(ns?: string) {
+export function useTranslate(ns?: string, options?: UseTranslationOptions<string>) {
   const router = useRouter();
 
-  const { t, i18n } = useTranslation(ns);
+  const { t, i18n } = useTranslation(ns, options);
 
   const fallback = allLangs.filter((lang) => lang.value === fallbackLng)[0];
 
