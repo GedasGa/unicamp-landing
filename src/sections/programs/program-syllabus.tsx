@@ -190,7 +190,7 @@ export function ProgramSyllabus({ programName, sx, ...other }: ProgramSyllabusPr
           </Stack>
         </Stack>
         <Stack spacing={4}>
-          {/* */}
+          {/* @ts-ignore */}
           {MODULES[programName].map((module) => (
             <ModuleCard key={module.title} module={module} programName={programName} />
           ))}
