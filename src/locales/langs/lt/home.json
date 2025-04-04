@@ -2,7 +2,7 @@
   "hero": {
     "heading": "Aukščiausios kokybės IT kursai ir mokymai pagrįsti darbu komandoje su realiais projektais",
     "cta": {
-      "viewCourses": "Peržiūrėkite kursus",
+      "viewCourses": "Peržiūrėkite programas",
       "text": "Gaukite nemokamą konsultaciją",
       "description": "Nežinote, nuo ko pradėti?"
     },
@@ -171,7 +171,7 @@
     "contact": {
       "heading": "Vis dar kyla klausimų?",
       "description": "Užduokite rūpimus klausimus ir gaukite atsakymą per 12 valandų.",
-      "cta": "Parašykite su mumis"
+      "cta": "Parašykite mums"
     },
     "questions": [
       {
