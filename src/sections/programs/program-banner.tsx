@@ -81,12 +81,8 @@ export function ProgramBanner({ sx, programName, ...other }: ProgramBannerProps)
             paddingX: 2,
           }}
         >
-          <Typography variant="h2">About the program</Typography>
-          <Typography variant="body1">
-            This program guides you through the key stages of UX/UI design, from user needs analysis
-            to interactive prototypes. You'll gain both theoretical knowledge and practical skills
-            to create modern design solutions.
-          </Typography>
+          <Typography variant="h2">{t('banner.title')}</Typography>
+          <Typography variant="body1">{t('banner.description')}</Typography>
         </Stack>
       </Stack>
     </Box>
