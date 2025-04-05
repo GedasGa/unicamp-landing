@@ -37,7 +37,7 @@ export const PROGRAMS = [
     levelIcon: `${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`,
     level: 'programs.levels.beginner',
     link: paths.programs.fe,
-    price: 0,
+    price: 250,
     originalPrice: 500,
     specializations: [
       'programs.programs.webDevelopment.specializations.0',
@@ -79,7 +79,7 @@ export const PROGRAMS = [
     levelIcon: `${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`,
     level: 'programs.levels.beginner',
     link: paths.programs.ux,
-    price: 0,
+    price: 250,
     originalPrice: 500,
     specializations: [
       'programs.programs.productDesign.specializations.0',
