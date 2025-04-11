@@ -171,60 +171,48 @@
     },
     "questions": [
       {
-        "question": "Are the courses really free?",
-        "answer": "Yes, the courses are 100% free if you meet the funding criteria—no hidden fees or surprises."
-      },
-      {
-        "question": "What funding options are available?",
-        "answer": "The kursuok.lt platform offers funding up to €500 for individuals employed under a contract, self-employed, or holding a business license."
-      },
-      {
-        "question": "What are the funding requirements?",
-        "answer": "To qualify for funding, you must meet the following criteria:\n- Be between 18 and 65 years old\n- Be employed under a contract or self-employed\n- Have higher education or vocational qualifications\n- Be a Lithuanian citizen or a foreigner with a residence permit in Lithuania\n- Not have previously used funding from kursuok.lt"
-      },
-      {
-        "question": "Can I join if I don’t meet all the funding requirements?",
-        "answer": "Yes, absolutely! Even if you don’t meet all the criteria, contact us. For motivated students, we provide 100% funding out of our own pocket, even if funding through kursuok.lt isn’t available."
-      },
-      {
-        "question": "In what cases would I need to repay the full course cost?",
-        "answer": "Only if you don't complete the course (e.g., fail to attend sessions or participate in evaluations) or if you don't fill out the course feedback form within 5 business days of program completion."
+        "question": "What are the funding options?",
+        "answer": "The kursuok.lt platform offers funding up to 500 EUR for employed individuals (under an employment contract, self-employed, or with a business license).\n\n However, Kursuok is currently undergoing an audit, and funding has been paused. Kursuok funding will be renewed in the fall of 2025 (https://kursuok.lt/naujienos/paaiskejo-kada-bus-papildytas-kursuok-biudzetas).\n\nIf you would like to receive funding, please fill out the application, and we will contact you as soon as funding is renewed."
       },
       {
         "question": "How are the courses conducted?",
-        "answer": "Courses are held online via Zoom with an instructor. There are also practical sessions where you'll work on real projects."
+        "answer": "The courses are held remotely via Zoom with the course instructor. There are also practical sessions where you will work on real projects."
       },
       {
         "question": "How long do the courses last?",
-        "answer": "Courses last approximately 12 weeks, totaling 108 academic hours. Classes are held three times a week for 3 hours each session."
+        "answer": "The courses last about 12 weeks, totaling 108 academic hours."
       },
       {
-        "question": "What are my commitments when joining the courses?",
-        "answer": "Engage, put in effort, and actively participate in classes."
+        "question": "What is the course schedule?",
+        "answer": "Courses take place 2–3 times a week, depending on the program. Typically, courses are held on Wednesdays from 18:30 to 21:30 and Saturdays from 9:00 to 12:00, or Mondays, Tuesdays, and Thursdays from 18:30 to 21:30."
       },
       {
-        "question": "I’m new to IT. Can I join the courses?",
-        "answer": "Absolutely! Our courses don’t require specific IT knowledge and are designed for beginners. You only need basic computer skills and English proficiency."
+        "question": "What are my obligations when joining the courses?",
+        "answer": "Engage, strive, and actively participate in the classes."
+      },
+      {
+        "question": "I am a beginner in IT. Can I join the courses?",
+        "answer": "Absolutely! Our courses do not require specific IT knowledge and are designed for beginners. All you need is basic computer literacy and some knowledge of English."
       },
       {
         "question": "How much time should I dedicate to the courses?",
-        "answer": "The time required depends on the program and your pace. Courses are typically 2–3 times a week, but the overall commitment depends on your rhythm. The best part? You can adapt the schedule to your needs, and we’ll help you stay on track."
+        "answer": "The time required depends on the program and your pace. Classes are held 2–3 times a week, but the total amount of self-study time will depend on you. The best part? We will always help you, even after the classes."
       },
       {
-        "question": "What are the final assessments like? Are there grades?",
-        "answer": "In our academy, the final assessment is a project. We don’t grade with marks. Students who successfully complete their project receive a pass and graduate from the course."
+        "question": "What do the final assessments look like, or is there grading?",
+        "answer": "In our academy, the final assessment is a project. We do not grade assessments with marks. Students who successfully complete the project receive a pass and successfully finish the course."
       },
       {
         "question": "Will I receive a certificate?",
-        "answer": "Yes! Upon completing the course, you will receive a Unicamp certificate."
+        "answer": "Yes! After completing the course, you will receive a Unicamp certificate."
       },
       {
-        "question": "What if I can’t attend some classes?",
-        "answer": "No worries. Most sessions are recorded, so you can watch them later. If you need extra help, our instructors will support you."
+        "question": "What if I cannot attend some of the lessons?",
+        "answer": "Don’t worry. All classes are recorded, so you can review them later. If you need additional help, our instructors will assist you."
       },
       {
-        "question": "Can I access the course materials after the course ends?",
-        "answer": "Yes, you’ll have access to all course materials for 180 days after the course ends. This will allow you to review key topics and strengthen your knowledge. Additionally, you can contact instructors with any questions."
+        "question": "Will I be able to access the learning materials after the course ends?",
+        "answer": "Yes, after the course ends, you will have access to all the learning materials for another 180 days. This will allow you to review key topics and strengthen your acquired knowledge. Additionally, you will be able to contact the instructors and get answers to your questions."
       }
     ]
   }

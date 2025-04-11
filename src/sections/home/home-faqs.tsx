@@ -70,18 +70,6 @@ const FAQs = (t: TFunction<string | 'translation', undefined>) => [
     question: t('faqs.questions.10.question'),
     answer: <Typography>{t('faqs.questions.10.answer')}</Typography>,
   },
-  {
-    question: t('faqs.questions.11.question'),
-    answer: <Typography>{t('faqs.questions.11.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.12.question'),
-    answer: <Typography>{t('faqs.questions.12.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.13.question'),
-    answer: <Typography>{t('faqs.questions.13.answer')}</Typography>,
-  },
 ];
 
 // ----------------------------------------------------------------------

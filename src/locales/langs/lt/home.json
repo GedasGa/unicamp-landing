@@ -175,24 +175,8 @@
     },
     "questions": [
       {
-        "question": "Ar kursai tikrai nemokami?",
-        "answer": "Taip, kursai yra 100% nemokami, jei atitinkate finansavimo kriterijus – jokių paslėptų mokesčių ar staigmenų."
-      },
-      {
         "question": "Kokios yra finansavimo galimybės?",
-        "answer": "kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenins (pagal darbo sutartį, vykdantiems indivualią veiklą, arba verslo liudijimą)."
-      },
-      {
-        "question": "Kokie yra finansavimo reikalavimai?",
-        "answer": "Norėdami gauti finansavimą, turite atitikti šiuos kriterijus:\n- Būti 18–65 metų amžiaus\n- Dirbti pagal darbo sutartį arba būti savarankiškai dirbantis\n- Turėti aukštąjį išsilavinimą arba profesinį išsilavinimą\n- Būti Lietuvos pilietis arba užsienietis su leidimu gyventi Lietuvoje\n- Dar nepasinaudojote kursuok.lt finansavimu"
-      },
-      {
-        "question": "Ar galiu mokytis, jeigu neatitinku visų finansavimo reikalavimų?",
-        "answer": "Taip, žinoma! Net jei neatitinkate visų reikalavimų, susisiekite su mumis. Motyvuotiems studentams skiriame 100% finansavimą iš savo kišenės, net jeigu ir negalime pasiūlyti finansavimo iš kursuok.lt."
-      },
-      {
-        "question": "Kokiais atvejais reikėtų grąžinti visą kurso kainą?",
-        "answer": "Tik tais atvejais, jei nebaigiate kurso (t.y. nelankote paskaitų ir nedalyvaujate atsiskaityme) arba jei per 5 darbo dienas nuo mokymosi programos pabaigos neužpildote mokymosi programos vertinimo anketos."
+        "answer": "kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenins (pagal darbo sutartį, vykdantiems indivualią veiklą, arba verslo liudijimą).\n\n Tačiau šiuo metu yra akliekamas Kursuok auditas ir finansavimas yra sustabdytas. Kursuok finansavimas bus atnaujintas 2025 m. rudenį (https://kursuok.lt/naujienos/paaiskejo-kada-bus-papildytas-kursuok-biudzetas). \n\nJei norite gauti finansavimą, užpildykite paraišką ir mes su jumis susisieksime, kai tik finansavimas bus atnaujintas."
       },
       {
         "question": "Kaip vyksta kursai?",
@@ -200,7 +184,11 @@
       },
       {
         "question": "Kiek trunka kursai?",
-        "answer": "Kursai truka apie 12 savaičių, iš viso 108 akademines valandas. Paskaitos vyksta 3 kartus per savaitę po 3 valandas."
+        "answer": "Kursai truka apie 12 savaičių, iš viso 108 akademines valandas."
+      },
+      {
+        "question": "Koks kursų tvarkaraštis kursai?",
+        "answer": "Kursai vyksta 2–3 kartus per savaitę, priklausomai nuo programos. Įprastai kursai vyksta trečiadieniais 18:30-21:30 ir šeštadieniais 9:00-12:00 arba pirmadieniais, antradieniais, ketvirtadieniais 18:30-21:30."
       },
       {
         "question": "Kokie mano įsipareigojimai prisijungus prie kursų?",
@@ -212,7 +200,7 @@
       },
       {
         "question": "Kiek laiko turėčiau skirti kursams?",
-        "answer": "Reikalingas laikas priklauso nuo programos ir jūsų tempo. Kursai paprastai vyksta 2–3 kartus per savaitę, tačiau bendras įsipareigojimo laikas priklausys nuo jūsų pačių ritmo. Geriausia dalis? Galite pritaikyti grafiką pagal save, o mes padėsime išlikti kelyje."
+        "answer": "Reikalingas laikas priklauso nuo programos ir jūsų tempo. Paskaitos vyksta 2–3 kartus per savaitę, tačiau bendras savarankiško darbo laikas priklausys nuo jūsų pačių. Geriausia dalis? Mes visada jums padėsime ir po paskaitų."
       },
       {
         "question": "Kaip atrodo baigiamieji atsiskaitymai ar yra vertinimai?",
@@ -223,8 +211,8 @@
         "answer": "Taip! Baigę kursą gausite Unicamp sertifikatą."
       },
       {
-        "question": "Ką daryti, jei negaliu dalyvauti kai kuriose pamokose?",
-        "answer": "Nesijaudinkite. Dauguma sesijų įrašomos, todėl galėsite peržiūrėti jas vėliau. O jeigu reikės papildomos pagalbos - padės mūsų dėstytojai."
+        "question": "Ką daryti, jei negaliu dalyvauti kai kuriose paskaitose?",
+        "answer": "Nesijaudinkite. Visos paskaitos įrašomos, todėl galėsite peržiūrėti jas vėliau. O jeigu reikės papildomos pagalbos - padės mūsų dėstytojai."
       },
       {
         "question": "Ar galėsiu naudotis mokymosi medžiaga po kurso pabaigos?",
