@@ -1,23 +1,24 @@
 import { ProgramView } from '../../../sections/programs/view';
 
 export const metadata = {
-  title: 'Frontend Web programavimo pagrindai su JavaScript ir React',
+  title: 'Frontend Web Programavimo Pagrindai su JavaScript ir React',
   description:
-    '108 valandų kursas - sužinokite HTML, CSS ir Next.js pagrindus bei įgykite praktinių Frontend programavimo įgūdžių.',
+    '108 valandų kursas, skirtas sužinoti HTML, CSS, JavaScript ir React pagrindus bei įgyti praktinių Frontend programavimo įgūdžių su realiais projektais.',
   keywords:
-    'IT akademija, Web programavimas, JavaScript mokymai, React mokymai, Frontend kursai, web programavimo kursai Lietuvoje, web programavimo mokymai Lietuvoje',
+    'IT akademija, Frontend kursai, Web programavimas, JavaScript kursai, React kursai, frontend mokymai, web programavimo mokymai, avaScript mokymai, React mokymai, Frontend programavimo kursai internetu, web programavimo kursai internetu, frontend mokymai internetu, HTML kursai, CSS kursai, React mokymai Lietuvoje, frontend dizainas, web dizaino kursai Lietuvoje',
   author: 'Unicamp IT Akademija',
   robots: 'index, follow',
   openGraph: {
-    title: 'Unicamp IT Akademija: Mokykitės Web Programavimo ir UX/UI Dizaino Lietuvoje',
-    description: 'Inovatyvūs kursai, tikra praktika ir realūs projektai IT karjeros pradžiai!',
+    title: 'Unicamp IT Akademija: UX/UI Dizaino ir Web Programavimo Kursai',
+    description:
+      'Sužinokite UX/UI dizainą ir web programavimą su realiais projektais bei praktiniais užsiėmimais.',
     url: 'https://unicamp.lt',
     type: 'website',
     locale: 'lt_LT',
     site_name: 'Unicamp',
     images: [
       {
-        alt: 'Unicamp IT Akademija – Web Programavimas ir UX/UI Dizainas',
+        alt: 'Unicamp IT Akademija – Web Programavimas ir UX/UI Dizainas su Figma',
       },
     ],
   },
@@ -26,7 +27,7 @@ export const metadata = {
     site: '@unicamplt',
     title: 'Unicamp IT Akademija',
     description:
-      'Web programavimo mokymai ir UX/UI dizaino kursai su realia praktika ir projektais!',
+      'Web programavimo mokymai ir UX/UI dizaino kursai su realia praktika, AI įrankais ir projektais!',
   },
 };
 
