@@ -64,13 +64,17 @@ export function ApplyToProgram({ open, onClose, course, ...other }: ApplyToProgr
   const {
     handleSubmit,
     formState: { isSubmitting },
+    reset,
   } = methods;
 
   useEffect(() => {
     if (isSubmitted) {
       const timer = setTimeout(() => {
-        onClose(); // Close the modal after 5 seconds
-      }, 5000);
+        // Reset form and close the modal after 5 seconds
+        onClose();
+        setIsSubmitted(false);
+        reset();
+      }, 6000);
 
       return () => clearTimeout(timer); // Cleanup timeout if component unmounts
     }
