@@ -12,6 +12,7 @@ import Alert from '@mui/material/Alert';
 import { paths } from '../../routes/paths';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import { sendGAEvent, sendGTMEvent } from '@next/third-parties/google';
 
 // ----------------------------------------------------------------------
 
@@ -99,6 +100,11 @@ export function ApplyToProgram({ open, onClose, course, ...other }: ApplyToProgr
 
       const responseData = await response.json();
       setIsSubmitted(true);
+      sendGAEvent('event', 'conversion', {
+        send_to: 'AW-16969899641/8LsECNyz1rIaEPm88Js_',
+        value: 1.0,
+        currency: 'EUR',
+      });
     } catch (error) {
       console.error('Error:', error);
       setErrorMsg(typeof error === 'string' ? error : error.message);
