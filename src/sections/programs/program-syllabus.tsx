@@ -12,7 +12,7 @@ import { CONFIG } from '../../config-global';
 // ----------------------------------------------------------------------
 
 const MODULES = {
-  ux: [
+  productDesign: [
     {
       illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-foundation.png`,
       title: 'modules.0.title',
@@ -38,7 +38,7 @@ const MODULES = {
       skills: ['modules.3.skills.0', 'modules.3.skills.1'],
     },
   ],
-  fe: [
+  webDevelopment: [
     {
       illustrationUrl: `${CONFIG.assetsDir}/assets/illustrations/ux-course/ux-foundation.png`,
       title: 'modules.0.title',
@@ -150,11 +150,11 @@ const MODULES = {
 
 // ----------------------------------------------------------------------
 interface ProgramSyllabusProps extends BoxProps {
-  programName: string;
+  programId: string;
 }
 
-export function ProgramSyllabus({ programName, sx, ...other }: ProgramSyllabusProps) {
-  const { t } = useTranslate(programName);
+export function ProgramSyllabus({ programId, sx, ...other }: ProgramSyllabusProps) {
+  const { t } = useTranslate(programId);
 
   return (
     <Box
@@ -191,8 +191,8 @@ export function ProgramSyllabus({ programName, sx, ...other }: ProgramSyllabusPr
         </Stack>
         <Stack spacing={4}>
           {/* @ts-ignore */}
-          {MODULES[programName].map((module) => (
-            <ModuleCard key={module.title} module={module} programName={programName} />
+          {MODULES[programId].map((module) => (
+            <ModuleCard key={module.title} module={module} programId={programId} />
           ))}
         </Stack>
       </Stack>
@@ -204,11 +204,11 @@ export function ProgramSyllabus({ programName, sx, ...other }: ProgramSyllabusPr
 
 type ModuleCardProps = CardProps & {
   module: (typeof MODULES)[keyof typeof MODULES][number];
-  programName: string;
+  programId: string;
 };
 
-const ModuleCard = ({ module, programName, sx, ...other }: ModuleCardProps) => {
-  const { t } = useTranslate(programName);
+const ModuleCard = ({ module, programId, sx, ...other }: ModuleCardProps) => {
+  const { t } = useTranslate(programId);
 
   return (
     <Card sx={{ p: 3, ...sx }} {...other}>

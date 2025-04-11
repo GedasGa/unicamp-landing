@@ -12,12 +12,12 @@ import { useTheme } from '@mui/material/styles';
 // ----------------------------------------------------------------------
 
 interface ProgramBannerProps extends BoxProps {
-  programName: string;
+  programId: string;
 }
 
-export function ProgramBanner({ sx, programName, ...other }: ProgramBannerProps) {
+export function ProgramBanner({ sx, programId, ...other }: ProgramBannerProps) {
   const theme = useTheme();
-  const { t } = useTranslate(programName);
+  const { t } = useTranslate(programId);
 
   return (
     <Box component="section" sx={{ ...sx }} {...other}>

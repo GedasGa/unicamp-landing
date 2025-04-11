@@ -28,8 +28,6 @@ export function NavList({ data }: NavListProps) {
     }
   }, [data.children]);
 
-  console.log('NavList', data);
-
   const renderNavItem = (
     <NavItem
       // slots

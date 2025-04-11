@@ -95,7 +95,7 @@ export const PhoneInput = forwardRef<HTMLDivElement, PhoneInputProps>(
           country={selectedCountry}
           inputComponent={CustomInput}
           InputLabelProps={{ shrink: true }}
-          placeholder={placeholder ?? 'Enter phone number'}
+          placeholder={placeholder}
           InputProps={{
             endAdornment: cleanValue && (
               <InputAdornment position="end">

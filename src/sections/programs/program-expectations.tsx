@@ -38,11 +38,17 @@ const EXPECTATIONS = [
 // ----------------------------------------------------------------------
 
 interface ProgramExpectationsProps extends BoxProps {
-  programName: string;
+  programId: string;
+  openApplyDialog: () => void;
 }
 
-export function ProgramExpectations({ sx, programName, ...other }: ProgramExpectationsProps) {
-  const { t } = useTranslate(programName);
+export function ProgramExpectations({
+  programId,
+  openApplyDialog,
+  sx,
+  ...other
+}: ProgramExpectationsProps) {
+  const { t } = useTranslate(programId);
 
   return (
     <Box
@@ -66,7 +72,7 @@ export function ProgramExpectations({ sx, programName, ...other }: ProgramExpect
             <ExpectationsCard
               key={expectation.title}
               expectation={expectation}
-              programName={programName}
+              programId={programId}
             />
           ))}
         </Stack>
@@ -74,11 +80,7 @@ export function ProgramExpectations({ sx, programName, ...other }: ProgramExpect
           variant="contained"
           size="large"
           sx={{ px: 4, width: { xs: '100%', md: 'fit-content' } }}
-          onClick={() => {
-            posthog.capture('expectations_cta_clicked', { programName });
-            // @ts-ignore Injected to document object
-            OpenWidget.call('maximize', { feature: 'form-contact' });
-          }}
+          onClick={openApplyDialog}
         >
           {t('expectations.cta')}
         </Button>
@@ -90,12 +92,12 @@ export function ProgramExpectations({ sx, programName, ...other }: ProgramExpect
 // ----------------------------------------------------------------------
 
 type ExpectationsCardProps = CardProps & {
-  programName: string;
+  programId: string;
   expectation: (typeof EXPECTATIONS)[number];
 };
 
-const ExpectationsCard = ({ expectation, programName, sx, ...other }: ExpectationsCardProps) => {
-  const { t } = useTranslate(programName);
+const ExpectationsCard = ({ expectation, programId, sx, ...other }: ExpectationsCardProps) => {
+  const { t } = useTranslate(programId);
 
   return (
     <Card sx={{ p: 3, bgcolor: 'grey.100', ...sx }} {...other}>

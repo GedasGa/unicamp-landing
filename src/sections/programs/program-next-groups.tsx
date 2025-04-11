@@ -28,11 +28,17 @@ const NEXT_GROUPS = [
 // ----------------------------------------------------------------------
 
 interface ProgramNextGroupsProps extends BoxProps {
-  programName: string;
+  programId: string;
+  openApplyDialog: () => void;
 }
 
-export function ProgramNextGroups({ programName, sx, ...other }: ProgramNextGroupsProps) {
-  const { t } = useTranslate(programName, { keyPrefix: 'nextGroups' });
+export function ProgramNextGroups({
+  programId,
+  openApplyDialog,
+  sx,
+  ...other
+}: ProgramNextGroupsProps) {
+  const { t } = useTranslate(programId, { keyPrefix: 'nextGroups' });
 
   return (
     <Box
@@ -60,7 +66,12 @@ export function ProgramNextGroups({ programName, sx, ...other }: ProgramNextGrou
           sx={{ width: { xs: '100%', md: 'inherit' } }}
         >
           {NEXT_GROUPS.map((group) => (
-            <NextGroupCard key={group.date} group={group} programName={programName} />
+            <NextGroupCard
+              key={group.date}
+              group={group}
+              programId={programId}
+              openApplyDialog={openApplyDialog}
+            />
           ))}
         </Stack>
       </Stack>
@@ -72,11 +83,12 @@ export function ProgramNextGroups({ programName, sx, ...other }: ProgramNextGrou
 
 type NextGroupCardProps = CardProps & {
   group: (typeof NEXT_GROUPS)[number];
-  programName: string;
+  programId: string;
+  openApplyDialog: () => void;
 };
 
-const NextGroupCard = ({ group, programName, sx, ...other }: NextGroupCardProps) => {
-  const { t } = useTranslate(programName, { keyPrefix: 'nextGroups' });
+const NextGroupCard = ({ group, programId, openApplyDialog, sx, ...other }: NextGroupCardProps) => {
+  const { t } = useTranslate(programId, { keyPrefix: 'nextGroups' });
   const theme = useTheme();
 
   return (
@@ -110,11 +122,7 @@ const NextGroupCard = ({ group, programName, sx, ...other }: NextGroupCardProps)
             bgcolor: 'common.white',
             '&:hover': { bgcolor: 'grey.200' },
           }}
-          onClick={() => {
-            posthog.capture('next_groups_cta_clicked', { programName, date: t(group.date) });
-            // @ts-ignore Injected to document object
-            OpenWidget.call('maximize', { feature: 'form-contact' });
-          }}
+          onClick={openApplyDialog}
         >
           {t('cta')}
         </Button>

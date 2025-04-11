@@ -11,12 +11,12 @@ import { CONFIG } from '../../config-global';
 // ----------------------------------------------------------------------
 
 const MENTORS = {
-  ux: {
+  productDesign: {
     background: '#0E100F',
     image: `${CONFIG.assetsDir}/assets/images/programs/mentors/Aiste.png`,
     secondaryTextColor: 'text.secondary',
   },
-  fe: {
+  webDevelopment: {
     background: 'linear-gradient(270deg, #929C9D 0%, #888D91 62.02%, #90989A 100%)',
     image: `${CONFIG.assetsDir}/assets/images/programs/mentors/Gedas.png`,
     secondaryTextColor: 'common.white',
@@ -25,11 +25,11 @@ const MENTORS = {
 
 // ----------------------------------------------------------------------
 interface ProgramMentorProps extends BoxProps {
-  programName: string;
+  programId: string;
 }
 
-export function ProgramMentor({ programName, sx, ...other }: ProgramMentorProps) {
-  const { t } = useTranslate(programName);
+export function ProgramMentor({ programId, sx, ...other }: ProgramMentorProps) {
+  const { t } = useTranslate(programId);
 
   return (
     <Box
@@ -38,7 +38,7 @@ export function ProgramMentor({ programName, sx, ...other }: ProgramMentorProps)
         py: { xs: 4, md: 10 },
         px: { xs: 2, md: 15 },
         // @ts-ignore
-        background: MENTORS[programName].background,
+        background: MENTORS[programId].background,
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
         alignItems: 'bottom',
@@ -56,11 +56,11 @@ export function ProgramMentor({ programName, sx, ...other }: ProgramMentorProps)
             {t('mentor.name')}
           </Typography>
           {/* @ts-ignore */}
-          <Typography variant="body2" color={MENTORS[programName].secondaryTextColor}>
+          <Typography variant="body2" color={MENTORS[programId].secondaryTextColor}>
             {t('mentor.role')}
           </Typography>
           {/* @ts-ignore */}
-          <Typography variant="body1" color={MENTORS[programName].secondaryTextColor}>
+          <Typography variant="body1" color={MENTORS[programId].secondaryTextColor}>
             {t('mentor.description')}
           </Typography>
         </Stack>
@@ -96,7 +96,7 @@ export function ProgramMentor({ programName, sx, ...other }: ProgramMentorProps)
         <Box
           component="img"
           // @ts-ignore
-          src={MENTORS[programName].image}
+          src={MENTORS[programId].image}
           alt={t('mentor.name')}
           sx={{
             position: 'relative',

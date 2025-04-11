@@ -11,11 +11,11 @@ import { Chip } from '@mui/material';
 // ----------------------------------------------------------------------
 
 interface ProgramFeaturesProps extends BoxProps {
-  programName: string;
+  programId: string;
 }
 
-export function ProgramFeatures({ programName, sx, ...other }: ProgramFeaturesProps) {
-  const { t } = useTranslate(programName);
+export function ProgramFeatures({ programId, sx, ...other }: ProgramFeaturesProps) {
+  const { t } = useTranslate(programId);
 
   return (
     <Box

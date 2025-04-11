@@ -1,7 +1,5 @@
 import type { BoxProps } from '@mui/material/Box';
 
-import { m } from 'framer-motion';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -10,8 +8,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import type { CardProps } from '@mui/material/Card';
-
-import Link from '@mui/material/Link';
 
 import { stylesMode } from 'src/theme/styles';
 
@@ -25,6 +21,8 @@ import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
 import { SvgColor } from '../../components/svg-color';
 import { paths } from '../../routes/paths';
+import { useCallback, useState } from 'react';
+import { ApplyToProgram } from '../cta/apply-to-program';
 
 // ----------------------------------------------------------------------
 
@@ -162,6 +160,16 @@ type Props = CardProps & {
 export function ProgramCard({ program, sx, ...other }: Props) {
   const { t } = useTranslate('home');
 
+  const [isApplyDialogOpen, setIsApplyDialogOpen] = useState<boolean>(false);
+
+  const openApplyDialog = useCallback(() => {
+    setIsApplyDialogOpen(true);
+  }, []);
+
+  const closeApplyDialog = useCallback(() => {
+    setIsApplyDialogOpen(false);
+  }, []);
+
   const {
     id,
     title,
@@ -273,15 +281,8 @@ export function ProgramCard({ program, sx, ...other }: Props) {
 
   const renderCTA = (
     <Stack spacing={2}>
-      <Button
-        fullWidth
-        size="large"
-        variant="contained"
-        onClick={() => {
-          // @ts-ignore Injected to document object
-          OpenWidget.call('maximize', { feature: 'form-contact' });
-        }}
-      >
+      <ApplyToProgram open={isApplyDialogOpen} onClose={closeApplyDialog} course={program.id} />
+      <Button fullWidth size="large" variant="contained" onClick={openApplyDialog}>
         {t('programs.cta.apply')}
       </Button>
 

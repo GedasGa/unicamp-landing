@@ -10,11 +10,11 @@ import { CONFIG } from '../../config-global';
 // ----------------------------------------------------------------------
 
 interface ProgramCertificateProps extends BoxProps {
-  programName: string;
+  programId: string;
 }
 
-export function ProgramCertificate({ sx, programName, ...other }: ProgramCertificateProps) {
-  const { t } = useTranslate(programName);
+export function ProgramCertificate({ sx, programId, ...other }: ProgramCertificateProps) {
+  const { t } = useTranslate(programId);
 
   return (
     <Box
@@ -29,7 +29,7 @@ export function ProgramCertificate({ sx, programName, ...other }: ProgramCertifi
         </Stack>
         <Box
           component="img"
-          src={`${CONFIG.assetsDir}/assets/illustrations/${programName}-certificate.png`}
+          src={`${CONFIG.assetsDir}/assets/illustrations/${programId}-certificate.png`}
           alt="Certificate"
           sx={{
             width: '100%',

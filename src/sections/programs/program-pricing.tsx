@@ -37,11 +37,11 @@ const PRICES = [
 
 // ----------------------------------------------------------------------
 interface ProgramPricingProps extends BoxProps {
-  programName: string;
+  programId: string;
 }
 
-export function ProgramPricing({ programName, sx, ...other }: ProgramPricingProps) {
-  const { t } = useTranslate(programName, { keyPrefix: 'pricing' });
+export function ProgramPricing({ programId, sx, ...other }: ProgramPricingProps) {
+  const { t } = useTranslate(programId, { keyPrefix: 'pricing' });
 
   return (
     <Box
@@ -68,7 +68,7 @@ export function ProgramPricing({ programName, sx, ...other }: ProgramPricingProp
             <PriceCardProps
               key={price.title}
               price={price}
-              programName={programName}
+              programId={programId}
               sx={{ flex: 1 }}
             />
           ))}
@@ -82,11 +82,11 @@ export function ProgramPricing({ programName, sx, ...other }: ProgramPricingProp
 
 type PriceCardProps = CardProps & {
   price: (typeof PRICES)[number];
-  programName: string;
+  programId: string;
 };
 
-const PriceCardProps = ({ price, programName, sx, ...other }: PriceCardProps) => {
-  const { t } = useTranslate(programName, { keyPrefix: 'pricing' });
+const PriceCardProps = ({ price, programId, sx, ...other }: PriceCardProps) => {
+  const { t } = useTranslate(programId, { keyPrefix: 'pricing' });
 
   return (
     <Card sx={{ p: 3, bgcolor: 'grey.100', ...sx }} {...other}>

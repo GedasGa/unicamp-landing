@@ -14,7 +14,7 @@ import { Iconify } from '../../components/iconify';
 
 // ----------------------------------------------------------------------
 const SKILLS = {
-  ux: {
+  productDesign: {
     skills: [
       {
         icon: 'logos:figma',
@@ -38,7 +38,7 @@ const SKILLS = {
       },
     ],
   },
-  fe: {
+  webDevelopment: {
     skills: [
       {
         icon: 'mdi:language-javascript',
@@ -66,13 +66,12 @@ const SKILLS = {
 
 // ----------------------------------------------------------------------
 interface ProgramHeroProps extends BoxProps {
-  programName: string;
+  programId: string;
+  openApplyDialog: () => void;
 }
 
-export function ProgramHero({ programName, sx, ...other }: ProgramHeroProps) {
-  const { t } = useTranslate(programName);
-
-  console.log(t('skills'));
+export function ProgramHero({ programId, openApplyDialog, sx, ...other }: ProgramHeroProps) {
+  const { t } = useTranslate(programId);
 
   const renderChips = (
     <Stack
@@ -88,7 +87,7 @@ export function ProgramHero({ programName, sx, ...other }: ProgramHeroProps) {
       }}
     >
       {/* @ts-ignore */}
-      {SKILLS[programName].skills.map((skill) => (
+      {SKILLS[programId].skills.map((skill) => (
         <Chip
           icon={<Iconify icon={skill.icon} />}
           label={t(skill.text)}
@@ -106,11 +105,7 @@ export function ProgramHero({ programName, sx, ...other }: ProgramHeroProps) {
         size="large"
         variant="contained"
         sx={{ width: { xs: '100%' }, maxWidth: { md: '360px' } }}
-        onClick={() => {
-          posthog.capture('hero_cta_clicked', { programName });
-          // @ts-ignore Injected to document object
-          OpenWidget.call('maximize', { feature: 'form-contact' });
-        }}
+        onClick={openApplyDialog}
       >
         {t('hero.cta.title')}
       </Button>
