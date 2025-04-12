@@ -176,47 +176,47 @@
     "questions": [
       {
         "question": "Kokios yra finansavimo galimybės?",
-        "answer": "kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenins (pagal darbo sutartį, vykdantiems indivualią veiklą, arba verslo liudijimą).\n\n Tačiau šiuo metu yra akliekamas Kursuok auditas ir finansavimas yra sustabdytas. Kursuok finansavimas bus atnaujintas 2025 m. rudenį (https://kursuok.lt/naujienos/paaiskejo-kada-bus-papildytas-kursuok-biudzetas). \n\nJei norite gauti finansavimą, užpildykite paraišką ir mes su jumis susisieksime, kai tik finansavimas bus atnaujintas."
+        "answer": "Kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenims (pagal darbo sutartį, vykdantiems individualią veiklą arba turintiems verslo liudijimą). Tačiau šiuo metu atliekamas Kursuok auditas ir finansavimas yra sustabdytas. Kursuok finansavimas bus atnaujintas 2025 m. rudenį (https://kursuok.lt/naujienos/paaiskejo-kada-bus-papildytas-kursuok-biudzetas). Jei norite gauti finansavimą, užpildykite paraišką ir mes su jumis susisieksime, kai tik finansavimas bus atnaujintas."
       },
       {
         "question": "Kaip vyksta kursai?",
-        "answer": "Kursai vyksta nuotoliniu būdu per Zoom su kurso dėstytoju. Taip pat vyksta praktiniai užsiėmimai, kuriuose dirbsite su realiais projektai."
+        "answer": "Kursai vyksta nuotoliniu būdu per Zoom su dėstytoju, todėl galite prisijungti iš bet kurios pasaulio vietos. Taip pat vyksta praktiniai užsiėmimai, kuriuose dirbsite su realiais projektai, 1:1 video susitikimai su mentoriais."
       },
       {
         "question": "Kiek trunka kursai?",
-        "answer": "Kursai truka apie 12 savaičių, iš viso 108 akademines valandas."
+        "answer": "Kursai trunka apie 12 savaičių, iš viso 108 akademines valandas."
       },
       {
-        "question": "Koks kursų tvarkaraštis kursai?",
-        "answer": "Kursai vyksta 2–3 kartus per savaitę, priklausomai nuo programos. Įprastai kursai vyksta trečiadieniais 18:30-21:30 ir šeštadieniais 9:00-12:00 arba pirmadieniais, antradieniais, ketvirtadieniais 18:30-21:30."
+        "question": "Koks yra kursų tvarkaraštis?",
+        "answer": "Kursai vyksta 2–3 kartus per savaitę, priklausomai nuo programos. Įprastai paskaitos organizuojamos trečiadieniais 18:30–21:30 ir šeštadieniais 9:00–12:00 arba pirmadieniais, antradieniais ir ketvirtadieniais 18:30–21:30."
       },
       {
         "question": "Kokie mano įsipareigojimai prisijungus prie kursų?",
-        "answer": "Įsitraukti, strengtis ir aktyviai dalyvauti paskaitose."
+        "answer": "Įsitraukti, stengtis ir aktyviai dalyvauti paskaitose."
       },
       {
         "question": "Esu naujokas IT srityje. Ar galiu prisijungti prie kursų?",
-        "answer": "Tikrai taip! Mūsų kursai nereikalauja specifinių IT ir yra pritaikyti pradendantiesiams. Reikia tik kompiuterinio raštingumo ir anglų žinių."
+        "answer": "Tikrai taip! Mūsų kursai nereikalauja specifinių IT žinių ir yra pritaikyti pradedantiesiems. Reikia tik bazinio kompiuterinio raštingumo ir anglų kalbos pagrindų."
       },
       {
         "question": "Kiek laiko turėčiau skirti kursams?",
-        "answer": "Reikalingas laikas priklauso nuo programos ir jūsų tempo. Paskaitos vyksta 2–3 kartus per savaitę, tačiau bendras savarankiško darbo laikas priklausys nuo jūsų pačių. Geriausia dalis? Mes visada jums padėsime ir po paskaitų."
+        "answer": "Reikalingas laikas priklauso nuo programos ir jūsų tempo. Paskaitos vyksta 2–3 kartus per savaitę, tačiau savarankiško darbo apimtis priklausys nuo jūsų. Geriausia dalis? Mes visada padėsime ir po paskaitų."
       },
       {
-        "question": "Kaip atrodo baigiamieji atsiskaitymai ar yra vertinimai?",
-        "answer": "Mūsų akademijoje baigiamasis atsiskaitymas yra projektas. Atsiskaitymų nevertiname pažymiais. Studentai sėkmingai atlikę projektą gauną įskaita ir sėkmingai baigia kursą."
+        "question": "Kaip atrodo baigiamieji atsiskaitymai? Ar yra vertinimai?",
+        "answer": "Mūsų akademijoje baigiamasis atsiskaitymas yra projektas. Atsiskaitymai nevertinami pažymiais. Studentai, sėkmingai atlikę projektą, gauna įskaitą ir baigia kursą."
       },
       {
         "question": "Ar gausiu sertifikatą?",
-        "answer": "Taip! Baigę kursą gausite Unicamp sertifikatą."
+        "answer": "Taip! Baigę kursą gausite „Unicamp“ sertifikatą."
       },
       {
         "question": "Ką daryti, jei negaliu dalyvauti kai kuriose paskaitose?",
-        "answer": "Nesijaudinkite. Visos paskaitos įrašomos, todėl galėsite peržiūrėti jas vėliau. O jeigu reikės papildomos pagalbos - padės mūsų dėstytojai."
+        "answer": "Nesijaudinkite. Visos paskaitos yra įrašomos, todėl galėsite jas peržiūrėti vėliau. Jei prireiks papildomos pagalbos – padės mūsų dėstytojai."
       },
       {
         "question": "Ar galėsiu naudotis mokymosi medžiaga po kurso pabaigos?",
-        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias. Taip pat, turėsite galimybę susisiekti su dėstytojais ir gauti atsakymus į klausimus."
+        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias. Taip pat galėsite susisiekti su dėstytojais ir gauti atsakymus į klausimus."
       }
     ]
   }
