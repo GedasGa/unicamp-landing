@@ -3,7 +3,7 @@
     "title": "Become certified Frontend engineer",
     "cta": {
       "title": "Register to program",
-      "subtitle": "Starts April 22"
+      "subtitle": "Starts May 12"
     },
     "skills": ["JavaScript", "OpenAI", "React & NextJS", "Responsive design", "Domain & Hosting"],
     "features": {
@@ -148,12 +148,12 @@
     "cta": "Apply now!",
     "groups": [
       {
-        "date": "April 22",
-        "deadline": "Deadline for applications: 2025-04-18"
+        "date": "May 12",
+        "deadline": "Deadline for applications: 2025-05-09"
       },
       {
-        "date": "April 23",
-        "deadline": "Deadline for applications: 2025-04-19"
+        "date": "May 14",
+        "deadline": "Deadline for applications: 2025-05-12"
       }
     ]
   }

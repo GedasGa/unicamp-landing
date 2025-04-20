@@ -5,7 +5,7 @@ export const metadata = {
   description:
     '108 valandų kursas, apimantis UX/UI dizaino pagrindus, Figma įrankio naudojimą, prototipų kūrimą ir prieinamumo geriausias praktikas. Įgykite praktinių įgūdžių kuriant sklandžias ir patogias naudotojo patirtis.',
   keywords:
-    'IT akademija, UX dizainas, UX kursai, UX mokymai, UI dizainas, UI kursai, UI mokymai, Figma kursai, web dizaino kursai internetu, UX/UI dizainas internetu, dizaino kursai internetu, dizaino mokymai, dizaino sistemos, prototipavimas, skaitmeninis dizainas, naudotojų testavimai, web programavimas, UX/UI dizaino kursai Lietuvoje, naudotojų patirtis',,
+    'IT akademija, UX dizainas, UX kursai, UX mokymai, UI dizainas, UI kursai, UI mokymai, Figma kursai, web dizaino kursai internetu, UX/UI dizainas internetu, dizaino kursai internetu, dizaino mokymai, dizaino sistemos, prototipavimas, skaitmeninis dizainas, naudotojų testavimai, web programavimas, UX/UI dizaino kursai Lietuvoje, naudotojų patirtis',
   author: 'Unicamp IT Akademija',
   robots: 'index, follow',
   openGraph: {

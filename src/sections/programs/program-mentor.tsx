@@ -14,12 +14,10 @@ const MENTORS = {
   productDesign: {
     background: '#0E100F',
     image: `${CONFIG.assetsDir}/assets/images/programs/mentors/Aiste.png`,
-    secondaryTextColor: 'text.secondary',
   },
   webDevelopment: {
     background: 'linear-gradient(270deg, #929C9D 0%, #888D91 62.02%, #90989A 100%)',
     image: `${CONFIG.assetsDir}/assets/images/programs/mentors/Gedas.png`,
-    secondaryTextColor: 'common.white',
   },
 };
 
@@ -56,11 +54,11 @@ export function ProgramMentor({ programId, sx, ...other }: ProgramMentorProps) {
             {t('mentor.name')}
           </Typography>
           {/* @ts-ignore */}
-          <Typography variant="body2" color={MENTORS[programId].secondaryTextColor}>
+          <Typography variant="body2" color="common.white">
             {t('mentor.role')}
           </Typography>
           {/* @ts-ignore */}
-          <Typography variant="body1" color={MENTORS[programId].secondaryTextColor}>
+          <Typography variant="body1" color="common.white">
             {t('mentor.description')}
           </Typography>
         </Stack>

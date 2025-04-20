@@ -21,7 +21,7 @@ const NEXT_GROUPS = [
   },
   {
     date: 'groups.1.date',
-    deadline: 'groups.0.deadline',
+    deadline: 'groups.1.deadline',
   },
 ];
 

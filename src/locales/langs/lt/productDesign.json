@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Tapkite sertifikuotu UX dizaino profesionalu",
-    "cta": { "title": "Registruotikės į programą", "subtitle": "Pradžia balandžio 22d." },
+    "cta": { "title": "Registruotikės į programą", "subtitle": "Pradžia gegužės 12d." },
     "skills": ["Figma", "OpenAI", "UX tyrimai", "Prieinamumas", "Dizaino sistema"],
     "features": {
       "courseDuration": { "title": "Programos trukmė", "description": "12 savaičių (108 valandos)" },
@@ -95,8 +95,8 @@
     "subtitle": "Rezervuokite vietą iki paraiškų teikimo termino.",
     "cta": "Registruokitės dabar!",
     "groups": [
-      { "date": "Balandžio 22d.", "deadline": "Paraiškų teikimo terminas: 2025-04-18" },
-      { "date": "Balandžio 23d.", "deadline": "Paraiškų teikimo terminas: 2025-04-19" }
+      { "date": "Gegužės 12d.", "deadline": "Paraiškų teikimo terminas: 2025-05-09" },
+      { "date": "Gegužės 14d.", "deadline": "Paraiškų teikimo terminas: 2025-05-12" }
     ]
   }
 }
