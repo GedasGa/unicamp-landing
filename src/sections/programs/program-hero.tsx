@@ -89,6 +89,7 @@ export function ProgramHero({ programId, openApplyDialog, sx, ...other }: Progra
       {/* @ts-ignore */}
       {SKILLS[programId].skills.map((skill) => (
         <Chip
+          key={skill.text}
           icon={<Iconify icon={skill.icon} />}
           label={t(skill.text)}
           variant="outlined"
