@@ -12,6 +12,7 @@
   },
   "paths": {
     "home": "Home",
+    "blog": "Blog",
     "courses": "Courses",
     "uxProgram": "UX/UI Web Design basics using Figma",
     "feProgram": "Frontend Web development basics with JavaScript and React"

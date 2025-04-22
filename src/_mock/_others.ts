@@ -33,6 +33,31 @@ export const _addressBooks = [...Array(24)].map((_, index) => ({
 
 // ----------------------------------------------------------------------
 
+export const _socials = [
+  {
+    value: 'facebook',
+    label: 'Facebook',
+    path: 'https://www.facebook.com/caitlyn.kerluke',
+  },
+  {
+    value: 'instagram',
+    label: 'Instagram',
+    path: 'https://www.instagram.com/caitlyn.kerluke',
+  },
+  {
+    value: 'linkedin',
+    label: 'Linkedin',
+    path: 'https://www.linkedin.com/caitlyn.kerluke',
+  },
+  {
+    value: 'twitter',
+    label: 'Twitter',
+    path: 'https://www.twitter.com/caitlyn.kerluke',
+  },
+];
+
+// ----------------------------------------------------------------------
+
 export const _contacts = [...Array(20)].map((_, index) => {
   const status =
     (index % 2 && 'online') || (index % 3 && 'offline') || (index % 4 && 'alway') || 'busy';

@@ -39,10 +39,9 @@ export const paths = {
   page500: '/error/500',
   components: '/components',
 
-  post: {
-    root: `/post`,
-    details: (title: string) => `/post/${paramCase(title)}`,
-    demo: { details: `/post/${paramCase(MOCK_TITLE)}` },
+  blog: {
+    root: `/blog`,
+    details: (title: string) => `/blog/${paramCase(title)}`,
   },
   // AUTH
   auth: {

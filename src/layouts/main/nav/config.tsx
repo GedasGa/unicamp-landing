@@ -15,4 +15,9 @@ export const defaultNavData = [
       { title: 'paths.feProgram', path: paths.programs.fe },
     ],
   },
+  {
+    title: 'paths.blog',
+    path: paths.blog.root,
+    icon: <Iconify width={22} icon="solar:posts-carousel-vertical-bold-duotone" />,
+  },
 ];

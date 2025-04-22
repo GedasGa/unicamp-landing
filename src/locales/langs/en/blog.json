@@ -1,0 +1,9 @@
+{
+  "title": "Blog",
+  "recent_posts": "Recent posts",
+  "sort_by": {
+    "title": "Sort by",
+    "latest": "Latest",
+    "oldest": "Oldest"
+  }
+}
