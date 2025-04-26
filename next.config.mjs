@@ -2,7 +2,7 @@
  * @type {import('next').NextConfig}
  */
 
-const isStaticExport = 'true';
+const isStaticExport = 'false';
 
 const nextConfig = {
   trailingSlash: true,

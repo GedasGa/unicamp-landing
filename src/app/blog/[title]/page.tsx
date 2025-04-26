@@ -1,18 +1,45 @@
 import { paramCase } from 'src/utils/change-case';
-import axios, { endpoints } from 'src/utils/axios';
 
 import { CONFIG } from 'src/config-global';
 import { getPost, getLatestPosts, getPosts } from 'src/actions/blog-ssr';
 
 import { PostDetailsHomeView } from 'src/sections/blog/view';
+import { Metadata, ResolvingMetadata } from 'next';
 
 // ----------------------------------------------------------------------
-
-export const metadata = { title: `Blog - ${CONFIG.appName}` };
 
 type Props = {
   params: { title: string };
 };
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { title } = params;
+
+  const post = await getPost(title);
+
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: post?.metaTitle,
+    description: post?.metaDescription,
+    keywords: post?.metaKeywords,
+    author: 'Unicamp IT Akademija',
+    openGraph: {
+      title: post?.metaTitle,
+      description: post?.metaDescription,
+      images: post?.coverUrl || '',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post?.metaTitle,
+      description: post?.metaDescription || 'Default blog post description',
+      images: post?.coverUrl,
+    },
+  };
+}
 
 export default async function Page({ params }: Props) {
   const { title } = params;
@@ -39,7 +66,7 @@ export { dynamic };
  */
 export async function generateStaticParams() {
   if (CONFIG.isStaticExport) {
-    const posts = await getPosts();
+    const posts = getPosts();
     return posts.map((post: { title: string }) => ({ title: paramCase(post.title) }));
   }
   return [];
