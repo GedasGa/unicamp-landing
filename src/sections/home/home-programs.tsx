@@ -15,6 +15,7 @@ import { Label } from 'src/components/label';
 import { varAlpha } from 'src/theme/styles';
 import { Iconify } from 'src/components/iconify';
 import { MotionViewport } from 'src/components/animate';
+import { Image } from 'src/components/image';
 
 import { SectionTitle } from './components/section-title';
 import { useTranslate } from '../../locales';
@@ -190,7 +191,7 @@ export function ProgramCard({ program, sx, ...other }: Props) {
       <SvgColor src={icon} width={76} />
 
       <Stack direction="row" alignItems="center" spacing={1}>
-        <Box alt={`${t(level)} icon`} component="img" src={levelIcon} width={24} height={24} />
+        <Image alt={`${t(level)} icon`} src={levelIcon} width={24} height={24} />
         <Typography variant="subtitle1" color="text.secondary" autoCapitalize="on">
           {t(level)}
         </Typography>
