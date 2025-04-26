@@ -8,7 +8,7 @@ export const metadata = {
     'Unicamp IT Akademija siūlo platų praktinių IT kursų pasirinkimą – Web programavimas, UX/UI dizainas, JavaScript, React, Frontend, Backend, ir kitų technologijų mokymai. Pasiruoškite IT karjerai su realiais projektais ir komandiniais darbais.',
   keywords:
     'IT akademija, IT kursai internetu, Web programavimas, JavaScript kursai, React kursai, UX/UI dizainas, frontend mokymai, backend mokymai, programavimo kursai Lietuvoje, JavaScript mokymai, dizaino kursai Lietuvoje, UX mokymai, UI mokymai, komandiniai projektai, praktinė IT patirtis, IT karjera, web dizainas, web development, programavimo mokymai, programavimas, mokymai Lietuvoje, Figma kursai, HTML mokymai, CSS mokymai, Next.js mokymai, React.js, Node.js, IT mokymai, skaitmeninė karjera, IT specialistai, web dizaino kursai, UX dizaino kursai, UI dizaino kursai, front-end development, back-end development, JavaScript development, web programming courses, front-end courses, back-end courses',
-  author: 'Unicamp IT Akademija',
+  authors: 'Unicamp IT Akademija',
   robots: 'index, follow',
   openGraph: {
     title: 'Unicamp IT Akademija: UX/UI Dizaino ir Web Programavimo Kursai',

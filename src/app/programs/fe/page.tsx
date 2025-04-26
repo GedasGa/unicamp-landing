@@ -6,7 +6,7 @@ export const metadata = {
     '108 valandų kursas, skirtas sužinoti HTML, CSS, JavaScript ir React pagrindus bei įgyti praktinių Frontend programavimo įgūdžių su realiais projektais.',
   keywords:
     'IT akademija, Frontend kursai, Web programavimas, JavaScript kursai, React kursai, frontend mokymai, web programavimo mokymai, avaScript mokymai, React mokymai, Frontend programavimo kursai internetu, web programavimo kursai internetu, frontend mokymai internetu, HTML kursai, CSS kursai, React mokymai Lietuvoje, frontend dizainas, web dizaino kursai Lietuvoje',
-  author: 'Unicamp IT Akademija',
+  authors: 'Unicamp IT Akademija',
   robots: 'index, follow',
   openGraph: {
     title: 'Unicamp IT Akademija: UX/UI Dizaino ir Web Programavimo Kursai',

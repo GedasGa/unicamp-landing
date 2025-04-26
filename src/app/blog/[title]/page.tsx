@@ -26,11 +26,12 @@ export async function generateMetadata(
     title: post?.metaTitle,
     description: post?.metaDescription,
     keywords: post?.metaKeywords,
-    author: 'Unicamp IT Akademija',
+    authors: post?.author,
     openGraph: {
       title: post?.metaTitle,
       description: post?.metaDescription,
-      images: post?.coverUrl || '',
+      // @ts-ignore
+      images: post?.coverUrl,
     },
     twitter: {
       card: 'summary_large_image',
