@@ -35,7 +35,7 @@ export const CONFIG: ConfigValue = {
   appVersion: packageJson.version,
   serverUrl: process.env.NEXT_PUBLIC_SERVER_URL ?? '',
   assetsDir: process.env.NEXT_PUBLIC_ASSETS_DIR ?? '',
-  isStaticExport: JSON.parse(`${process.env.BUILD_STATIC_EXPORT}`),
+  isStaticExport: true,
   /**
    * Auth
    * @method jwt | amplify | firebase | supabase | auth0
