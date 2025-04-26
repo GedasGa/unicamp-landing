@@ -6,8 +6,6 @@ export * from './_user';
 
 export * from './_tour';
 
-export * from './_blog';
-
 export * from './assets';
 
 export * from './_files';
