@@ -185,7 +185,11 @@ export function ProgramCard({ program, sx, ...other }: Props) {
       <Typography variant="h5" color="text.secondary">
         {t(caption)}
       </Typography>
-      <Stack direction="row" alignItems="center" spacing={1}>
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        alignItems={{ xs: 'start', sm: 'center' }}
+        spacing={1}
+      >
         <Chip
           icon={<Iconify icon="solar:shield-check-bold" />}
           label={t('programs.chips.moneyBackGuarantee')}
@@ -228,7 +232,11 @@ export function ProgramCard({ program, sx, ...other }: Props) {
           {t('programs.pricing.paidMonthly')}
         </Typography>
       </Stack>
-      <Stack direction="row" alignItems="center" spacing={1}>
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        alignItems={{ xs: 'start', sm: 'center' }}
+        spacing={1}
+      >
         {id === 'productDesign' && (
           <Label
             variant="filled"
