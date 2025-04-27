@@ -28,11 +28,12 @@ const PRICES = [
       percentage: '-50%',
     },
   },
-  {
-    title: 'prices.2.title',
-    description: 'prices.2.description',
-    price: 'prices.2.price',
-  },
+  // TODO: Uncomment once financial aid is available
+  // {
+  //   title: 'prices.2.title',
+  //   description: 'prices.2.description',
+  //   price: 'prices.2.price',
+  // },
 ];
 
 // ----------------------------------------------------------------------
@@ -95,10 +96,19 @@ const PriceCardProps = ({ price, programId, sx, ...other }: PriceCardProps) => {
           <Typography variant="h4">{t(price.title)}</Typography>
           {price.discount && <Chip label={price.discount.percentage} color="error" />}
         </Stack>
-        <Stack spacing={1} flexDirection={'row'} alignItems={'center'}>
-          <Typography variant="h5">{t(price.price)} </Typography>
+        <Stack spacing={1} flexDirection={'row'} alignItems={'end'}>
+          <Box
+            sx={(theme) => ({
+              px: 1,
+              borderRight: `3px solid ${theme.palette.error.main}`,
+              borderBottom: `3px solid ${theme.palette.error.main}`,
+              background: theme.palette.warning.light,
+            })}
+          >
+            <Typography variant="h5">{t(price.price)}</Typography>
+          </Box>
           {price.discount && (
-            <Typography component="h6" color="error" sx={{ textDecoration: 'line-through' }}>
+            <Typography variant="h6" color="error" sx={{ textDecoration: 'line-through' }}>
               {t(price.discount.originalPrice)}
             </Typography>
           )}
