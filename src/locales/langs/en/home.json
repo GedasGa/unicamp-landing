@@ -6,12 +6,12 @@
     },
     "cta": {
       "viewCourses": {
-        "description": "Explore our courses and find the right one for you",
+        "description": "Choose your desired program and start pursuing a new career today.",
         "buttonText": "View Courses"
       },
       "consultation": {
-        "description": "Not sure where to start?",
-        "buttonText": "Get a Free Consultation"
+        "description": "Don't know where to start? Register and we'll help you.",
+        "buttonText": "Get a FREE Consultation"
       }
     },
     "svg": {
@@ -105,66 +105,48 @@
   "programs": {
     "title": "Unicamp Programs",
     "description": "Choose a course and start your best IT career today.",
+    "reviews": "reviews",
     "cta": {
       "apply": "Register Now",
       "viewProgram": "View Program"
-    },
-    "list": {
-      "specializations": "Career Opportunities",
-      "tools": "Tools",
-      "topics": "Topics"
     },
     "levels": {
       "beginner": "Beginner",
       "intermediate": "Intermediate",
       "advanced": "Advanced"
     },
+    "chips": {
+      "moneyBackGuarantee": "7-Day Money-Back Guarantee",
+      "approvedByKursuok": "Verified by Kursuok.lt",
+      "compatibleWithHolidays": "Holiday-Friendly Learning",
+      "limitedSpaces": "Only 4 places left!"
+    },
+    "pricing": {
+      "paidMonthly": "x3 months"
+    },
     "programs": {
       "webDevelopment": {
         "title": "Web Development",
-        "caption": "12 Weeks (108 Hours)",
-        "specializations": ["Frontend Developer", "Software engineer", "React/Next.js Developer"],
-        "tools": [
-          "HTML",
-          "CSS",
-          "JavaScript",
-          "React",
-          "Next.js",
-          "Firebase",
-          "VSCode",
-          "GitHub",
-          "Copilot",
-          "LLMs (ChatGPT, Claude)"
-        ],
-        "topics": [
-          "HTML and CSS Basics",
-          "Responsive Design",
-          "Introduction to JavaScript",
-          "TypeScript",
-          "React Basics",
-          "React Hooks",
-          "React Context",
-          "Next.js",
-          "Backend-as-a-Service",
-          "Git and GitHub",
-          "Domain and Hosting Setup",
-          "Productivity Tools with AI"
+        "caption": "108 hrs (3 months) | Starts May 14.",
+        "features": [
+          "35+ lectures and real-world projects",
+          "1-on-1 consultations",
+          "AI tools",
+          "Unlimited access to all course materials for 6 months",
+          "Repeat the course for FREE once"
         ]
       },
       "productDesign": {
         "title": "UX/UI Design",
-        "caption": "12 Weeks (108 Hours)",
+        "caption": "108 hrs (3 months) | Starts May 14.",
         "specializations": ["UX/UI Designer", "UX Researcher", "Product Designer"],
         "tools": ["Figma", "FigJam", "AI Tools"],
-        "topics": [
-          "User Experience (UX)",
-          "User Interface (UI)",
-          "UX Research",
-          "User Testing",
-          "Wireframing",
-          "Prototyping",
-          "Design Systems",
-          "AI Tools for Designers"
+        "features": [
+          "35+ lectures and real-world projects",
+          "1-on-1 consultations",
+          "AI tools",
+          "Unlimited access to all course materials for 6 months",
+          "Repeat the course for FREE once"
         ]
       }
     }

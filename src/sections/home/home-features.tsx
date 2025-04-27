@@ -20,7 +20,7 @@ import { Iconify } from '../../components/iconify';
 
 const FEATURES = [
   {
-    illustration: `${CONFIG.assetsDir}/assets/illustrations/illustration-real-projects.svg`,
+    illustration: `${CONFIG.assetsDir}/assets/illustrations/illustration-real-projects.png`,
     title: 'features.sections.realProjects.heading',
     items: [
       {
@@ -41,7 +41,7 @@ const FEATURES = [
     ],
   },
   {
-    illustration: `${CONFIG.assetsDir}/assets/illustrations/illustration-team-work.svg`,
+    illustration: `${CONFIG.assetsDir}/assets/illustrations/illustration-team-work.png`,
     title: 'features.sections.teamWork.heading',
     items: [
       {
@@ -62,7 +62,7 @@ const FEATURES = [
     ],
   },
   {
-    illustration: `${CONFIG.assetsDir}/assets/illustrations/illustration-1-on-1.svg`,
+    illustration: `${CONFIG.assetsDir}/assets/illustrations/illustration-1-on-1.png`,
     title: 'features.sections.1on1.heading',
     items: [
       {

@@ -6,12 +6,12 @@
     },
     "cta": {
       "viewCourses": {
-        "description": "Pasirink savo norimą programą ir pradėk siekti naujos karjeros šiandien.",
+        "description": "Pasirinkite savo norimą programą ir pradėkite siekti naujos karjeros šiandien.",
         "buttonText": "Peržiūrėti programas"
       },
       "consultation": {
         "description": "Nežinote nuo ko pradėti? Registruokitės ir padėsime",
-        "buttonText": "Registruotis nemokamai konsultacijai"
+        "buttonText": "Registruotis NEMOKAMAI konsultacijai"
       }
     },
     "svg": {
@@ -104,71 +104,47 @@
   },
   "programs": {
     "title": "Unicamp programos",
-    "description": "Pasirink kursą ir pradėk savo geriausią IT karjerą.",
+    "description": "Pasirink kursą ir pradėk savo geriausią žingsnį į IT karjerą.",
+    "reviews": "įvertinimai",
     "cta": {
       "apply": "Registruokitės dabar",
       "viewProgram": "Peržiūrėti programą"
     },
-    "list": {
-      "specializations": "Karjeros galimybės",
-      "tools": "Įrankiai",
-      "topics": "Temos"
+    "chips": {
+      "moneyBackGuarantee": "7 dienų pinigų grąžinimo garantija",
+      "approvedByKursuok": "Patvirtinta Kursuok.lt",
+      "compatibleWithHolidays": "Suderinama su atostogomis",
+      "limitedSpaces": "Liko tik 4 vietos!"
     },
     "levels": {
       "beginner": "Pradedantiesiems",
       "intermediate": "Pažengusiems",
       "advanced": "Ekspertams"
     },
+    "pricing": {
+      "paidMonthly": "x3 mėn."
+    },
     "programs": {
       "webDevelopment": {
         "title": "Web programavimas",
-        "caption": "12 savaičių (108 val.)",
-        "specializations": [
-          "Frontend programuotojas",
-          "Programinės įrangos kūrėjas",
-          "React/Next.js programuotojas"
-        ],
-        "tools": [
-          "HTML",
-          "CSS",
-          "JavaScript",
-          "React",
-          "Next.js",
-          "Firebase",
-          "VSCode",
-          "GitHub",
-          "Copilot",
-          "LLMs (ChatGPT, Claude)"
-        ],
-        "topics": [
-          "HTML ir CSS pagrindai",
-          "Responsyvus dizainas",
-          "Įvadas į JavaScript",
-          "TypeScript",
-          "React pagrindai",
-          "React Hooks",
-          "React Context",
-          "Next.js",
-          "Backend-as-a-Service",
-          "Git ir GitHub",
-          "Domeno ir hostingo įsigijimas",
-          "Produktyvumo įrankiai su AI"
+        "caption": "108 valandos (3 mėn.) | Pradžia gegužės 14d.",
+        "features": [
+          "35+ paskaitos ir realūs projektai",
+          "1-on-1 konsultacijos",
+          "AI įrankiai",
+          "6 mėn. pasiekiama visa mokymosi medžiaga",
+          "Nemokamas kurso pakartojimas"
         ]
       },
       "productDesign": {
         "title": "UX/UI dizainas",
-        "caption": "12 savaičių (108 val.)",
-        "specializations": ["UX/UI dizaineris", "UX tyrėjas", "Produkto dizaineris"],
-        "tools": ["Figma", "FigJam", "AI įrankiai"],
-        "topics": [
-          "Vartotojo patirtis (UX)",
-          "Vartotojo sąsaja (UI)",
-          "UX tyrimai",
-          "Vartotojų testavimas",
-          "Wireframing",
-          "Prototipų kūrimas",
-          "Dizaino sistemos",
-          "AI įrankiai dizaineriams"
+        "caption": "108 valandos (3 mėn.) | Pradžia gegužės 14d.",
+        "features": [
+          "35+ paskaitos ir realūs projektai",
+          "1-on-1 konsultacijos",
+          "AI įrankiai",
+          "6 mėn. pasiekiama visa mokymosi medžiaga",
+          "Nemokamas kurso pakartojimas"
         ]
       }
     }

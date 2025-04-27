@@ -24,6 +24,8 @@ import { SvgColor } from '../../components/svg-color';
 import { paths } from '../../routes/paths';
 import { useCallback, useState } from 'react';
 import { ApplyToProgram } from '../cta/apply-to-program';
+import Rating from '@mui/material/Rating';
+import { Chip } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -36,38 +38,16 @@ export const PROGRAMS = [
     levelIcon: `${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`,
     level: 'programs.levels.beginner',
     link: paths.programs.fe,
+    monthlyPrice: 90,
     price: 250,
     originalPrice: 500,
-    specializations: [
-      'programs.programs.webDevelopment.specializations.0',
-      'programs.programs.webDevelopment.specializations.1',
-      'programs.programs.webDevelopment.specializations.2',
-    ],
-    tools: [
-      'programs.programs.webDevelopment.tools.0',
-      'programs.programs.webDevelopment.tools.1',
-      'programs.programs.webDevelopment.tools.2',
-      'programs.programs.webDevelopment.tools.3',
-      'programs.programs.webDevelopment.tools.4',
-      'programs.programs.webDevelopment.tools.5',
-      'programs.programs.webDevelopment.tools.6',
-      'programs.programs.webDevelopment.tools.7',
-      'programs.programs.webDevelopment.tools.8',
-      'programs.programs.webDevelopment.tools.9',
-    ],
-    topics: [
-      'programs.programs.webDevelopment.topics.0',
-      'programs.programs.webDevelopment.topics.1',
-      'programs.programs.webDevelopment.topics.2',
-      'programs.programs.webDevelopment.topics.3',
-      'programs.programs.webDevelopment.topics.4',
-      'programs.programs.webDevelopment.topics.5',
-      'programs.programs.webDevelopment.topics.6',
-      'programs.programs.webDevelopment.topics.7',
-      'programs.programs.webDevelopment.topics.8',
-      'programs.programs.webDevelopment.topics.9',
-      'programs.programs.webDevelopment.topics.10',
-      'programs.programs.webDevelopment.topics.11',
+    reviews: 6,
+    features: [
+      'programs.programs.webDevelopment.features.0',
+      'programs.programs.webDevelopment.features.1',
+      'programs.programs.webDevelopment.features.2',
+      'programs.programs.webDevelopment.features.3',
+      'programs.programs.webDevelopment.features.4',
     ],
   },
   {
@@ -78,27 +58,16 @@ export const PROGRAMS = [
     levelIcon: `${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`,
     level: 'programs.levels.beginner',
     link: paths.programs.ux,
+    monthlyPrice: 90,
     price: 250,
     originalPrice: 500,
-    specializations: [
-      'programs.programs.productDesign.specializations.0',
-      'programs.programs.productDesign.specializations.1',
-      'programs.programs.productDesign.specializations.2',
-    ],
-    tools: [
-      'programs.programs.productDesign.tools.0',
-      'programs.programs.productDesign.tools.1',
-      'programs.programs.productDesign.tools.2',
-    ],
-    topics: [
-      'programs.programs.productDesign.topics.0',
-      'programs.programs.productDesign.topics.1',
-      'programs.programs.productDesign.topics.2',
-      'programs.programs.productDesign.topics.3',
-      'programs.programs.productDesign.topics.4',
-      'programs.programs.productDesign.topics.5',
-      'programs.programs.productDesign.topics.6',
-      'programs.programs.productDesign.topics.7',
+    reviews: 4,
+    features: [
+      'programs.programs.webDevelopment.features.0',
+      'programs.programs.webDevelopment.features.1',
+      'programs.programs.webDevelopment.features.2',
+      'programs.programs.webDevelopment.features.3',
+      'programs.programs.webDevelopment.features.4',
     ],
   },
 ];
@@ -151,10 +120,10 @@ type Props = CardProps & {
     level: string;
     link: string;
     price: number;
+    monthlyPrice: number;
+    reviews: number;
     originalPrice: number;
-    specializations: string[];
-    tools: string[];
-    topics: string[];
+    features: string[];
   };
 };
 
@@ -177,18 +146,18 @@ export function ProgramCard({ program, sx, ...other }: Props) {
     caption,
     icon,
     price,
+    monthlyPrice,
     originalPrice,
-    specializations,
-    tools,
-    topics,
+    features,
     levelIcon,
     level,
     link,
+    reviews,
   } = program;
 
   const renderIcon = (
     <Stack direction="row" alignItems="center" justifyContent="space-between">
-      <SvgColor src={icon} width={76} />
+      <SvgColor src={icon} width={76} bgcolor={'primary'} />
 
       <Stack direction="row" alignItems="center" spacing={1}>
         <Image alt={`${t(level)} icon`} src={levelIcon} width={24} height={24} />
@@ -196,6 +165,15 @@ export function ProgramCard({ program, sx, ...other }: Props) {
           {t(level)}
         </Typography>
       </Stack>
+    </Stack>
+  );
+
+  const renderRating = (
+    <Stack direction="row" alignItems="center" spacing={1} sx={{ typography: 'subtitle2' }}>
+      <Rating size="small" name="read-only" value={5} precision={0.5} readOnly />
+      <Typography variant="subtitle2" color="text.secondary">
+        ({reviews} {t('programs.reviews')})
+      </Typography>
     </Stack>
   );
 
@@ -207,74 +185,84 @@ export function ProgramCard({ program, sx, ...other }: Props) {
       <Typography variant="h5" color="text.secondary">
         {t(caption)}
       </Typography>
+      <Stack direction="row" alignItems="center" spacing={1}>
+        <Chip
+          icon={<Iconify icon="solar:shield-check-bold" />}
+          label={t('programs.chips.moneyBackGuarantee')}
+          color="success"
+          sx={{ maxWidth: 'fit-content' }}
+        />
+        <Chip
+          icon={<Iconify icon="solar:verified-check-bold" />}
+          label={t('programs.chips.approvedByKursuok')}
+          color="primary"
+          sx={{ maxWidth: 'fit-content' }}
+        />
+      </Stack>
     </Stack>
   );
 
   const renderPrice = (
-    <Stack direction="row">
-      <Typography variant="h2" color="error.main">
-        {price}€
-      </Typography>
-
-      <Typography
-        component="span"
-        sx={{
-          alignSelf: 'flex-end',
-          color: 'text.disabled',
-          textDecoration: 'line-through',
-          ml: 1,
-          typography: 'h3',
-        }}
-      >
-        {originalPrice}€
-      </Typography>
-    </Stack>
-  );
-
-  const renderSpecializations = (
-    <Stack direction="column" spacing={1}>
-      <Typography variant="h6" sx={{ textTransform: 'capitalize' }}>
-        {t('programs.list.specializations')}
-      </Typography>
-      <Stack direction="row" spacing={2} flexWrap="wrap">
-        {specializations.map((specialization) => (
-          <Label key={specialization}>{t(specialization)}</Label>
-        ))}
-      </Stack>
-    </Stack>
-  );
-
-  const renderTools = (
-    <Stack direction="column" spacing={1}>
-      <Typography variant="h6" sx={{ textTransform: 'capitalize' }}>
-        {t('programs.list.tools')}
-      </Typography>
-      <Stack direction="row" spacing={2} flexWrap="wrap">
-        {tools.map((tool) => (
-          <Label key={tool}>{t(tool)}</Label>
-        ))}
-      </Stack>
-    </Stack>
-  );
-
-  const renderTopics = (
-    <Stack spacing={2}>
-      <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <Box component="span" sx={{ typography: 'overline' }}>
-          {t('programs.list.topics')}
+    <Stack direction="column" spacing={1.5}>
+      <Stack direction="row">
+        <Box
+          sx={(theme) => ({
+            px: 1,
+            borderRight: `3px solid ${theme.palette.error.main}`,
+            borderBottom: `3px solid ${theme.palette.error.main}`,
+            background: theme.palette.warning.light,
+          })}
+        >
+          <Typography variant="h2">{monthlyPrice}€</Typography>
         </Box>
-      </Stack>
 
-      {topics.map((topic) => (
+        <Typography
+          component="span"
+          sx={{
+            alignSelf: 'flex-end',
+            color: 'text.secondary',
+            ml: 1,
+            typography: 'h5',
+          }}
+        >
+          {t('programs.pricing.paidMonthly')}
+        </Typography>
+      </Stack>
+      <Stack direction="row" alignItems="center" spacing={1}>
+        {id === 'productDesign' && (
+          <Label
+            variant="filled"
+            color="error"
+            startIcon={<Iconify icon="eva:checkmark-fill" />}
+            sx={{ maxWidth: 'fit-content' }}
+          >
+            {t('programs.chips.limitedSpaces')}
+          </Label>
+        )}
+        <Label
+          variant="soft"
+          color="success"
+          startIcon={<Iconify icon="eva:checkmark-fill" />}
+          sx={{ maxWidth: 'fit-content' }}
+        >
+          {t('programs.chips.compatibleWithHolidays')}
+        </Label>
+      </Stack>
+    </Stack>
+  );
+
+  const renderFeatures = (
+    <Stack spacing={2}>
+      {features.map((feature) => (
         <Stack
-          key={topic}
+          key={feature}
           spacing={1}
           direction="row"
           alignItems="center"
           sx={{ typography: 'body2' }}
         >
           <Iconify icon="eva:checkmark-fill" width={16} sx={{ mr: 1 }} />
-          {t(topic)}
+          {t(feature)}
         </Stack>
       ))}
     </Stack>
@@ -318,17 +306,13 @@ export function ProgramCard({ program, sx, ...other }: Props) {
     >
       {renderIcon}
 
+      {renderRating}
+
       {renderSubscription}
 
       {renderPrice}
 
-      {renderSpecializations}
-
-      {renderTools}
-
-      <Divider sx={{ borderStyle: 'dashed' }} />
-
-      {renderTopics}
+      {renderFeatures}
 
       {renderCTA}
     </Stack>
