@@ -44,7 +44,7 @@ export function HomeCompanies({ sx, ...other }: HomeCompaniesProps) {
       }}
       {...other}
     >
-      <Container sx={{ position: 'relative' }}>
+      <Container sx={{ position: 'relative' }} maxWidth="xl">
         <Box component="section" {...other}>
           <Stack
             alignItems="center"
