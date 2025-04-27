@@ -115,7 +115,7 @@ export function NavList({ data }: NavListProps) {
         >
           <Paper
             className={navSectionClasses.paper}
-            sx={{ minWidth: 180, ...paper({ theme, dropdown: true }) }}
+            sx={{ minWidth: 180, ...paper({ theme, isBlur: false, dropdown: true }) }}
           >
             <NavUl sx={{ gap: 1, width: 1, flexWrap: 'wrap', flexDirection: 'column' }}>
               {data.children.map((child) => (
