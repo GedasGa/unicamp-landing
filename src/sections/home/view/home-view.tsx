@@ -11,6 +11,7 @@ import { HomePrograms } from '../home-programs';
 import { HomeTeam } from '../home-team';
 import { HomeContact } from '../home-contact';
 import { HomeUnicamp } from '../home-unicamp';
+import { HomeTestimonials } from '../home-testimonials';
 
 // ----------------------------------------------------------------------
 
@@ -30,8 +31,9 @@ export function HomeView() {
       <Stack sx={{ position: 'relative', bgcolor: 'background.default' }}>
         <HomeUnicamp />
         <HomeFeatures />
-        <HomeTeam />
         <HomePrograms id="courses" />
+        <HomeTestimonials />
+        <HomeTeam />
         {/*<HomeContact />*/}
         <HomeFAQs />
       </Stack>

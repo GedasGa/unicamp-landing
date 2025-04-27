@@ -165,6 +165,9 @@
       }
     }
   },
+  "testimonials": {
+    "title": "Sklinda kalbos..."
+  },
   "faqs": {
     "caption": "DUK",
     "title": "Atsakymai į dažnus klausimus",

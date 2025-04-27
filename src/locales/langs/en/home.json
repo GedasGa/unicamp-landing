@@ -161,6 +161,9 @@
       }
     }
   },
+  "testimonials": {
+    "title": "Students saying..."
+  },
   "faqs": {
     "caption": "FAQs",
     "title": "We Have Answers",
