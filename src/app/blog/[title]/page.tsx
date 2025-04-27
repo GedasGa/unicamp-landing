@@ -30,8 +30,7 @@ export async function generateMetadata(
     openGraph: {
       title: post?.metaTitle,
       description: post?.metaDescription,
-      // @ts-ignore
-      images: post?.coverUrl,
+      images: post?.coverUrl || '',
     },
     twitter: {
       card: 'summary_large_image',
