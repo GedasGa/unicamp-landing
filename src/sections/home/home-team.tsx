@@ -16,6 +16,7 @@ import { Carousel, useCarousel, CarouselArrowFloatButtons } from 'src/components
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
 import { Logo } from '../../components/logo';
+import { Label } from '../../components/label';
 
 // ----------------------------------------------------------------------
 
@@ -24,6 +25,7 @@ const MEMBERS = [
     avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Gedas.png`,
     name: 'team.members.0.name',
     role: 'team.members.0.role',
+    isMentor: true,
     socials: [
       {
         label: 'Linkedin',
@@ -36,6 +38,7 @@ const MEMBERS = [
     avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Mindaugas.png`,
     name: 'team.members.1.name',
     role: 'team.members.1.role',
+    isMentor: false,
     socials: [
       {
         label: 'Linkedin',
@@ -48,6 +51,7 @@ const MEMBERS = [
     avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Aiste.png`,
     name: 'team.members.2.name',
     role: 'team.members.2.role',
+    isMentor: true,
     socials: [
       {
         label: 'Linkedin',
@@ -60,6 +64,7 @@ const MEMBERS = [
     avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Toshi.png`,
     name: 'team.members.3.name',
     role: 'team.members.3.role',
+    isMentor: false,
     socials: [
       {
         label: 'Instagram',
@@ -138,7 +143,20 @@ const MemberCard = ({ member }: MemberCardProps) => {
         {t(member.role)}
       </Typography>
 
-      <Box sx={{ px: 1 }}>
+      <Box sx={{ position: 'relative', px: 1 }}>
+        {member.isMentor && (
+          <Label
+            sx={{
+              position: 'absolute',
+              top: 10,
+              left: 20,
+              zIndex: 1,
+            }}
+            variant="filled"
+          >
+            {t('team.mentor')}
+          </Label>
+        )}
         <Image
           alt={t(member.name)}
           src={member.avatarUrl}

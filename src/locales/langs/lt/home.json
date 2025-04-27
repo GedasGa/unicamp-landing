@@ -83,6 +83,7 @@
   "team": {
     "heading": "Unicamp komanda",
     "description": "Esame IT entuziastų komanda, siekianti dalintis žiniomis ir padėti kiekvienam atrasti savo vietą technologijų pasaulyje.",
+    "mentor": "Mentorius",
     "members": [
       {
         "name": "Gedas Gardauskas",
@@ -105,7 +106,7 @@
   "programs": {
     "title": "Unicamp programos",
     "description": "Pasirink kursą ir pradėk savo geriausią žingsnį į IT karjerą.",
-    "reviews": "įvertinimai",
+    "reviews": "atsiliepimai",
     "cta": {
       "apply": "Registruokitės dabar",
       "viewProgram": "Peržiūrėti programą"

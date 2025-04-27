@@ -83,6 +83,7 @@
   "team": {
     "heading": "Unicamp Team",
     "description": "We are a team of IT enthusiasts passionate about sharing knowledge and helping everyone find their place in the world of technology.",
+    "mentor": "Mentor",
     "members": [
       {
         "name": "Gedas Gardauskas",
