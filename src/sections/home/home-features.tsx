@@ -9,13 +9,10 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import { CONFIG } from 'src/config-global';
-import { varAlpha, stylesMode } from 'src/theme/styles';
 
-import { SvgColor } from 'src/components/svg-color';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 import { SectionTitle } from './components/section-title';
-import { CircleSvg, FloatLine, FloatPlusIcon } from './components/svg-elements';
 import { useTranslate } from '../../locales';
 import { Iconify } from '../../components/iconify';
 
@@ -91,7 +88,6 @@ export function HomeFeatures({ sx, ...other }: HomeFeaturesProps) {
 
   return (
     <Box
-      id="home-minimal"
       component="section"
       sx={{
         overflow: 'hidden',

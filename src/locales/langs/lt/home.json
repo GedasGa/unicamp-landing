@@ -1,10 +1,18 @@
 {
   "hero": {
-    "heading": "Aukščiausios kokybės IT kursai ir mokymai pagrįsti darbu komandoje su realiais projektais",
+    "heading": {
+      "firstLine": "Išnaudok savo vasarą ",
+      "secondLine": "produktyviai"
+    },
     "cta": {
-      "viewCourses": "Peržiūrėkite programas",
-      "text": "Gaukite nemokamą konsultaciją",
-      "description": "Nežinote, nuo ko pradėti?"
+      "viewCourses": {
+        "description": "Pasirink savo norimą programą ir pradėk siekti naujos karjeros šiandien.",
+        "buttonText": "Peržiūrėti programas"
+      },
+      "consultation": {
+        "description": "Nežinote nuo ko pradėti? Registruokitės ir padėsime",
+        "buttonText": "Registruotis nemokamai konsultacijai"
+      }
     },
     "svg": {
       "text": "unicamp akademija"

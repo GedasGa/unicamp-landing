@@ -1,10 +1,18 @@
 {
   "hero": {
-    "heading": "Top-Quality IT Courses and Training Focused on Teamwork and Real-World Projects",
+    "heading": {
+      "firstLine": "Make the most of your ",
+      "secondLine": "summer"
+    },
     "cta": {
-      "viewCourses": "View Courses",
-      "text": "Get a Free Consultation",
-      "description": "Not sure where to start?"
+      "viewCourses": {
+        "description": "Explore our courses and find the right one for you",
+        "buttonText": "View Courses"
+      },
+      "consultation": {
+        "description": "Not sure where to start?",
+        "buttonText": "Get a Free Consultation"
+      }
     },
     "svg": {
       "text": "Unicamp Academy"

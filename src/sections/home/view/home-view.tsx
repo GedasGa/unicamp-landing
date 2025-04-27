@@ -12,6 +12,7 @@ import { HomeTeam } from '../home-team';
 import { HomeContact } from '../home-contact';
 import { HomeUnicamp } from '../home-unicamp';
 import { HomeTestimonials } from '../home-testimonials';
+import { HomeCompanies } from '../home-companies';
 
 // ----------------------------------------------------------------------
 
@@ -29,6 +30,7 @@ export function HomeView() {
       <HomeHero />
 
       <Stack sx={{ position: 'relative', bgcolor: 'background.default' }}>
+        <HomeCompanies />
         <HomeUnicamp />
         <HomeFeatures />
         <HomePrograms id="courses" />
