@@ -11,7 +11,7 @@ import { RouterLink } from 'src/routes/components';
 
 import { logoClasses } from './classes';
 import { CONFIG } from '../../config-global';
-import { Image } from 'src/components/Image';
+import { Image } from 'src/components/image';
 
 // ----------------------------------------------------------------------
 
