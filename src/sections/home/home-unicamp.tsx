@@ -61,43 +61,11 @@ export function HomeUnicamp({ sx, ...other }: BoxProps) {
   return (
     <Box component="section" sx={{ ...sx }} {...other}>
       <MotionViewport sx={{ pt: 10, position: 'relative' }}>
-        <TopLines />
-
         <Container>
           {renderDescription}
           {renderContent}
         </Container>
       </MotionViewport>
     </Box>
-  );
-}
-
-// ----------------------------------------------------------------------
-
-function TopLines() {
-  return (
-    <>
-      <Stack
-        spacing={8}
-        alignItems="center"
-        sx={{
-          top: 64,
-          left: 80,
-          position: 'absolute',
-          transform: 'translateX(-15px)',
-        }}
-      >
-        <FloatTriangleDownIcon sx={{ position: 'static', opacity: 0.12 }} />
-        <FloatTriangleDownIcon
-          sx={{
-            position: 'static',
-            opacity: 0.24,
-            width: 30,
-            height: 15,
-          }}
-        />
-      </Stack>
-      <FloatLine vertical sx={{ top: 0, left: 80 }} />
-    </>
   );
 }
