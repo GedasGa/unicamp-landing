@@ -106,6 +106,7 @@ export function HomeFeatures({ sx, ...other }: HomeFeaturesProps) {
                 container
                 key={feature.title}
                 columnSpacing={{ xs: 0, md: 8 }}
+                rowGap={{ xs: 2, md: 0 }}
                 sx={{ position: 'relative', zIndex: 9, mb: { xs: 10, md: 20 } }}
               >
                 <Grid xs={12} md={6} lg={7} order={{ xs: 1, md: isEven ? 1 : 2 }}>

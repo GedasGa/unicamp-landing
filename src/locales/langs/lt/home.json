@@ -105,11 +105,11 @@
   },
   "programs": {
     "title": "Unicamp programos",
-    "description": "Pasirink kursą ir pradėk savo geriausią žingsnį į IT karjerą.",
+    "description": "Pasirinkite programą ir pradėkite savo geriausią žingsnį į IT karjerą.",
     "reviews": "atsiliepimai",
     "cta": {
       "apply": "Registruokitės dabar",
-      "viewProgram": "Peržiūrėti programą"
+      "viewProgram": "Daugiau apie šią programą"
     },
     "chips": {
       "moneyBackGuarantee": "7 dienų pinigų grąžinimo garantija",

@@ -9,12 +9,12 @@ import Typography from '@mui/material/Typography';
 
 import type { CardProps } from '@mui/material/Card';
 
-import { stylesMode } from 'src/theme/styles';
+import { maxLine, stylesMode } from 'src/theme/styles';
 
 import { Label } from 'src/components/label';
 import { varAlpha } from 'src/theme/styles';
 import { Iconify } from 'src/components/iconify';
-import { MotionViewport } from 'src/components/animate';
+import { MotionViewport, varFade } from 'src/components/animate';
 import { Image } from 'src/components/image';
 
 import { SectionTitle } from './components/section-title';
@@ -26,6 +26,14 @@ import { useCallback, useState } from 'react';
 import { ApplyToProgram } from '../cta/apply-to-program';
 import Rating from '@mui/material/Rating';
 import { Chip } from '@mui/material';
+import {
+  Carousel,
+  CarouselArrowBasicButtons,
+  carouselBreakpoints,
+  CarouselDotButtons,
+  useCarousel,
+} from '../../components/carousel';
+import { m } from 'framer-motion';
 
 // ----------------------------------------------------------------------
 
@@ -41,13 +49,45 @@ export const PROGRAMS = [
     monthlyPrice: 90,
     price: 250,
     originalPrice: 500,
-    reviews: 6,
+    reviews: 5,
     features: [
       'programs.programs.webDevelopment.features.0',
       'programs.programs.webDevelopment.features.1',
       'programs.programs.webDevelopment.features.2',
       'programs.programs.webDevelopment.features.3',
       'programs.programs.webDevelopment.features.4',
+    ],
+    testimonials: [
+      {
+        name: 'Simona G.',
+        rating: 5,
+        content: `Prieš mokymus nežinojau, kad ux yra tokia plati sritis..wow. Supratau, kad svarbu testuoti savo dizainus, o ne tiesiog „gražiai padaryti“.`,
+        course: 'Frontend',
+      },
+      {
+        name: 'Edgaras K.',
+        rating: 5,
+        content: `Didelis ačiū Gedui. Labai patogu, kad viskas buvo online, galėjau mokytis iš namų ir dar dirbt.`,
+        course: 'Frontend',
+      },
+      {
+        name: 'Julius V.',
+        rating: 5,
+        content: `Patiko, kad dirbom prie savo projektų, kam kas įdomu, o ne šiaip sausos užduotėlės kaip kitur.`,
+        course: 'Frontend',
+      },
+      {
+        name: 'Evelina Ž.',
+        rating: 5,
+        content: `Kartais būdavo sunku. Tikrai nemeluosiu 😄 Bet dėstytojas Gedas viską ramiai dar kartą paaiškindavo ir pavykdavo. Tas jausmas nerealus 🙏`,
+        course: 'Frontend',
+      },
+      {
+        name: 'Giedrius Č.',
+        rating: 5,
+        content: `Kursai labai geri, bet sakyčiau reikia turėt šiek tiek kantrybės, kol pradedi jaust progresą.`,
+        course: 'Frontend',
+      },
     ],
   },
   {
@@ -69,6 +109,32 @@ export const PROGRAMS = [
       'programs.programs.webDevelopment.features.3',
       'programs.programs.webDevelopment.features.4',
     ],
+    testimonials: [
+      {
+        name: 'Aleksandra Z.',
+        rating: 5,
+        content: `Viskas super! Kaip tik ieškojau kursų kur galėčiau pasibandyti. Tikrai tiem kas dar bandotes ir ieškote savęs labai rekomenduoju.`,
+        course: 'UX/UI',
+      },
+      {
+        name: 'Monika J.',
+        rating: 5,
+        content: `Realiai neisivaizdavau, kad taip itrauks:)) Kursai nebuvo sausi, viskas su pavyzdziais ir praktika.`,
+        course: 'UX/UI',
+      },
+      {
+        name: 'Justė P.',
+        rating: 5,
+        content: `Patiko! Ačiū! 😍`,
+        course: 'UX/UI',
+      },
+      {
+        name: 'Liepa P.',
+        rating: 5,
+        content: `Pati pradžia buvo kosmosas, galvojau kad neištempsiu, bet paskui susigaudžiau ir dabar dėkoju sau kad nesustojau:)`,
+        course: 'UX/UI',
+      },
+    ],
   },
 ];
 
@@ -80,27 +146,63 @@ export function HomePrograms({ sx, ...other }: BoxProps) {
   return (
     <Box
       component="section"
-      sx={{ my: { xs: 10, md: 15 }, position: 'relative', ...sx }}
+      sx={{
+        py: { xs: 10, md: 15 },
+        position: 'relative',
+        background: (theme) =>
+          `linear-gradient(270deg, ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)}, ${varAlpha(theme.vars.palette.grey['500Channel'], 0)})`,
+        ...sx,
+      }}
       {...other}
     >
       <MotionViewport>
         <Container sx={{ position: 'relative' }}>
-          <SectionTitle
-            title={t('programs.title')}
-            description={t('programs.description')}
-            sx={{ mb: 8, textAlign: 'center' }}
-          />
+          <Stack gap={5}>
+            <SectionTitle
+              title={t('programs.title')}
+              description={t('programs.description')}
+              sx={{ mb: 5, textAlign: 'center' }}
+            />
 
-          <Box
-            gap={{ xs: 3, md: 0 }}
-            display="grid"
-            alignItems={{ md: 'center' }}
-            gridTemplateColumns={{ md: 'repeat(2, 1fr)' }}
-          >
-            {PROGRAMS.map((program, index) => (
-              <ProgramCard key={program.id} program={program} index={index} />
-            ))}
-          </Box>
+            <Box
+              gap={{ xs: 3, md: 0 }}
+              display="grid"
+              alignItems={{ md: 'center' }}
+              gridTemplateColumns={{ md: 'repeat(2, 1fr)' }}
+            >
+              {PROGRAMS.map((program, index) => (
+                <ProgramCard key={program.id} program={program} index={index} />
+              ))}
+            </Box>
+
+            <Stack alignItems="center" pt={8} gap={5}>
+              <Typography variant="h4">Kursų metu naudosime</Typography>
+              <Stack sx={{ width: '100%' }}>
+                <Stack
+                  direction={{ sm: 'column', md: 'row' }}
+                  alignItems="center"
+                  justifyContent="space-between"
+                  gap={{ xs: 4, sm: 8 }}
+                >
+                  <Image
+                    alt="Slack"
+                    src={`${CONFIG.assetsDir}/assets/images/programs/tools/slack.png`}
+                    sx={{ height: { xs: 36, sm: 48, lg: 64 } }}
+                  />
+                  <Image
+                    alt="Unicamp learning platform"
+                    src={`${CONFIG.assetsDir}/assets/images/programs/tools/unicamp-learning.png`}
+                    sx={{ height: { xs: 36, sm: 48, lg: 64 } }}
+                  />
+                  <Image
+                    alt="Google Meet"
+                    src={`${CONFIG.assetsDir}/assets/images/programs/tools/google-meet.png`}
+                    sx={{ height: { xs: 36, sm: 48, lg: 64 } }}
+                  />
+                </Stack>
+              </Stack>
+            </Stack>
+          </Stack>
         </Container>
       </MotionViewport>
     </Box>
@@ -124,11 +226,27 @@ type Props = CardProps & {
     reviews: number;
     originalPrice: number;
     features: string[];
+    testimonials: {
+      name: string;
+      rating: number;
+      content: string;
+      course: string;
+    }[];
   };
 };
 
 export function ProgramCard({ program, sx, ...other }: Props) {
   const { t } = useTranslate('home');
+
+  const carousel = useCarousel({
+    align: 'start',
+    slidesToShow: { xs: 1 },
+    breakpoints: {
+      [carouselBreakpoints.sm]: { slideSpacing: '24px' },
+      [carouselBreakpoints.md]: { slideSpacing: '32px' },
+      [carouselBreakpoints.lg]: { slideSpacing: '48px' },
+    },
+  });
 
   const [isApplyDialogOpen, setIsApplyDialogOpen] = useState<boolean>(false);
 
@@ -153,6 +271,7 @@ export function ProgramCard({ program, sx, ...other }: Props) {
     level,
     link,
     reviews,
+    testimonials,
   } = program;
 
   const renderIcon = (
@@ -289,6 +408,56 @@ export function ProgramCard({ program, sx, ...other }: Props) {
     </Stack>
   );
 
+  const renderTestimonials = (
+    <Stack sx={{ position: 'relative', py: { xs: 5, md: 8 } }}>
+      <Carousel carousel={carousel}>
+        {testimonials.map((item) => (
+          <Stack key={item.name} component={m.div} variants={varFade().in}>
+            <Stack spacing={1} sx={{ typography: 'subtitle2' }}>
+              <Rating size="small" name="read-only" value={item.rating} precision={0.5} readOnly />
+            </Stack>
+
+            <Typography
+              sx={(theme) => ({
+                ...maxLine({ line: 4, persistent: theme.typography.body1 }),
+                mt: 2,
+                mb: 3,
+              })}
+            >
+              {item.content}
+            </Typography>
+
+            <Stack direction="column" spacing={2}>
+              <Typography variant="subtitle1">{item.name}</Typography>
+              <Label
+                color={item.course === 'UX/UI' ? 'primary' : 'default'}
+                sx={{ alignSelf: 'start', width: 'auto' }}
+              >
+                {item.course}
+              </Label>
+            </Stack>
+          </Stack>
+        ))}
+      </Carousel>
+
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        sx={{ mt: { xs: 5, md: 8 } }}
+      >
+        <CarouselDotButtons
+          variant="rounded"
+          scrollSnaps={carousel.dots.scrollSnaps}
+          selectedIndex={carousel.dots.selectedIndex}
+          onClickDot={carousel.dots.onClickDot}
+        />
+
+        <CarouselArrowBasicButtons {...carousel.arrows} options={carousel.options} />
+      </Stack>
+    </Stack>
+  );
+
   return (
     <Stack
       spacing={4}
@@ -323,6 +492,9 @@ export function ProgramCard({ program, sx, ...other }: Props) {
       {renderFeatures}
 
       {renderCTA}
+
+      {/* FIXME: Fix display and uncomment */}
+      {/*{renderTestimonials}*/}
     </Stack>
   );
 }

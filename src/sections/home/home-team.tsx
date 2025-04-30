@@ -90,7 +90,7 @@ export function HomeTeam({ sx, ...other }: BoxProps) {
     <Box component="section" sx={{ overflow: 'hidden', ...sx }} {...other}>
       <Container component={MotionViewport} sx={{ textAlign: 'center', pt: { xs: 10, md: 0 } }}>
         <m.div variants={varFade().inDown}>
-          <Logo onlyLogo />
+          <Logo />
         </m.div>
         <m.div variants={varFade().inUp}>
           <Typography variant="h2" sx={{ my: 3 }}>

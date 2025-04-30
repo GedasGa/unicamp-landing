@@ -49,8 +49,13 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang={lang ?? 'lt'} dir="ltr" suppressHydrationWarning>
+      <script
+        id="usercentrics-cmp"
+        data-settings-id="tGqJjqeAyiUam6"
+        src="https://web.cmp.usercentrics.eu/ui/loader.js"
+      ></script>
+
       <GoogleTagManager gtmId="GTM-MFMRN6WN" />
-      <GoogleAnalytics gaId="AW-16969899641" />
 
       <body>
         <InitColorSchemeScript
