@@ -1,12 +1,12 @@
 {
   "hero": {
     "heading": {
-      "firstLine": "Make the most of your ",
-      "secondLine": "summer"
+      "firstLine": "Learn tech skills ",
+      "secondLine": "Advance your career"
     },
     "cta": {
       "viewCourses": {
-        "description": "Choose your desired program and start pursuing a new career today.",
+        "description": "Choose your desired program.",
         "buttonText": "View Courses"
       },
       "consultation": {
@@ -119,8 +119,8 @@
     "chips": {
       "moneyBackGuarantee": "7-Day Money-Back Guarantee",
       "approvedByKursuok": "Verified by Kursuok.lt",
-      "compatibleWithHolidays": "Holiday-Friendly Learning",
-      "limitedSpaces": "Only 4 places left!"
+      "availableFinancing": "Financed by kursuok.lt",
+      "limitedSpaces": "Limited Spaces"
     },
     "pricing": {
       "paidMonthly": "x3 months"
@@ -128,7 +128,7 @@
     "programs": {
       "webDevelopment": {
         "title": "Web Development",
-        "caption": "108 hrs (3 months) | Starts May 14.",
+        "caption": "108 hrs (3 months) | Registration from November",
         "features": [
           "35+ lectures and real-world projects",
           "1-on-1 consultations",
@@ -139,7 +139,7 @@
       },
       "productDesign": {
         "title": "UX/UI Design",
-        "caption": "108 hrs (3 months) | Starts May 14.",
+        "caption": "108 hrs (3 months) | Registration from November",
         "specializations": ["UX/UI Designer", "UX Researcher", "Product Designer"],
         "tools": ["Figma", "FigJam", "AI Tools"],
         "features": [

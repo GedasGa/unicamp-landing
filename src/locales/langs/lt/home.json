@@ -1,12 +1,12 @@
 {
   "hero": {
     "heading": {
-      "firstLine": "Išnaudok savo vasarą ",
-      "secondLine": "produktyviai"
+      "firstLine": "Išmokite skaitmeninių įgūdžių ",
+      "secondLine": "Pakilkite karjeros laiptais"
     },
     "cta": {
       "viewCourses": {
-        "description": "Pasirinkite savo norimą programą ir pradėkite siekti naujos karjeros šiandien.",
+        "description": "Pasirinkite savo norimą programą",
         "buttonText": "Peržiūrėti programas"
       },
       "consultation": {
@@ -114,8 +114,8 @@
     "chips": {
       "moneyBackGuarantee": "7 dienų pinigų grąžinimo garantija",
       "approvedByKursuok": "Patvirtinta Kursuok.lt",
-      "compatibleWithHolidays": "Suderinama su atostogomis",
-      "limitedSpaces": "Liko tik 4 vietos!"
+      "availableFinancing": "Finansuojama Kursuok.lt",
+      "limitedSpaces": "Vietų skaičius ribotas"
     },
     "levels": {
       "beginner": "Pradedantiesiems",
@@ -128,7 +128,7 @@
     "programs": {
       "webDevelopment": {
         "title": "Web programavimas",
-        "caption": "108 valandos (3 mėn.) | Pradžia gegužės 14d.",
+        "caption": "108 valandos (3 mėn.) | Registracija nuo lapkričio",
         "features": [
           "35+ paskaitos ir realūs projektai",
           "1-on-1 konsultacijos",
@@ -139,7 +139,7 @@
       },
       "productDesign": {
         "title": "UX/UI dizainas",
-        "caption": "108 valandos (3 mėn.) | Pradžia gegužės 14d.",
+        "caption": "108 valandos (3 mėn.) | Registracija nuo lapkričio",
         "features": [
           "35+ paskaitos ir realūs projektai",
           "1-on-1 konsultacijos",

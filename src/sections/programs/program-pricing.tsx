@@ -14,26 +14,17 @@ const PRICES = [
     title: 'prices.0.title',
     description: 'prices.0.description',
     price: 'prices.0.price',
-    discount: {
-      originalPrice: 'prices.0.originalPrice',
-      percentage: '-50%',
-    },
   },
   {
     title: 'prices.1.title',
     description: 'prices.1.description',
     price: 'prices.1.price',
-    discount: {
-      originalPrice: 'prices.1.originalPrice',
-      percentage: '-50%',
-    },
   },
-  // TODO: Uncomment once financial aid is available
-  // {
-  //   title: 'prices.2.title',
-  //   description: 'prices.2.description',
-  //   price: 'prices.2.price',
-  // },
+  {
+    title: 'prices.2.title',
+    description: 'prices.2.description',
+    price: 'prices.2.price',
+  },
 ];
 
 // ----------------------------------------------------------------------
@@ -94,7 +85,6 @@ const PriceCardProps = ({ price, programId, sx, ...other }: PriceCardProps) => {
       <Stack spacing={1.5} alignItems={'flex-start'}>
         <Stack flexDirection={'row'} justifyContent={'space-between'} sx={{ width: '100%' }}>
           <Typography variant="h4">{t(price.title)}</Typography>
-          {price.discount && <Chip label={price.discount.percentage} color="error" />}
         </Stack>
         <Stack spacing={1} flexDirection={'row'} alignItems={'end'}>
           <Box
@@ -107,11 +97,6 @@ const PriceCardProps = ({ price, programId, sx, ...other }: PriceCardProps) => {
           >
             <Typography variant="h5">{t(price.price)}</Typography>
           </Box>
-          {price.discount && (
-            <Typography variant="h6" color="error" sx={{ textDecoration: 'line-through' }}>
-              {t(price.discount.originalPrice)}
-            </Typography>
-          )}
         </Stack>
 
         <Typography variant="body1" color="text.secondary">

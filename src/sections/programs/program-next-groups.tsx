@@ -60,7 +60,28 @@ export function ProgramNextGroups({
             {t('subtitle')}
           </Typography>
         </Stack>
+
         <Stack
+          spacing={3}
+          flexDirection={{ xs: 'column', md: 'row' }}
+          sx={{ width: { xs: '100%', md: 'inherit' } }}
+        >
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              px: 4,
+              width: '100%',
+              color: 'common.black',
+              bgcolor: 'common.white',
+              '&:hover': { bgcolor: 'grey.200' },
+            }}
+            onClick={openApplyDialog}
+          >
+            {t('cta')}
+          </Button>
+        </Stack>
+        {/* <Stack
           spacing={3}
           flexDirection={{ xs: 'column', md: 'row' }}
           sx={{ width: { xs: '100%', md: 'inherit' } }}
@@ -73,7 +94,7 @@ export function ProgramNextGroups({
               openApplyDialog={openApplyDialog}
             />
           ))}
-        </Stack>
+        </Stack> */}
       </Stack>
     </Box>
   );

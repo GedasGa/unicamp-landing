@@ -2,8 +2,8 @@
   "hero": {
     "title": "Become certified Frontend engineer",
     "cta": {
-      "title": "Register to program",
-      "subtitle": "Starts May 12"
+      "title": "Reserve a seat",
+      "subtitle": "Registration on kursuok.lt opens late November."
     },
     "skills": ["JavaScript", "OpenAI", "React & NextJS", "Responsive design", "Domain & Hosting"],
     "features": {
@@ -96,16 +96,19 @@
     "cards": [
       {
         "title": "Competitive salary",
-        "description": "3000 EUR per month",
-        "link": { "url": "https://www.manoalga.lt/en/salaryinfo/information-technology/javascript-programmer", "text": "Based on manoalga data" }
+        "description": "Up to 3000 EUR per month",
+        "link": {
+          "url": "https://www.manoalga.lt/en/salaryinfo/information-technology/javascript-programmer",
+          "text": "Based on manoalga data"
+        }
       },
       {
         "title": "Work at top companies",
-        "description": "NordSecurity, Vinted, Surfshark"
+        "description": "NordSecurity, Vinted, Surfshark, Ovoko"
       },
       {
         "title": "Flexibility",
-        "description": "Work from home or Seychelles? No problem"
+        "description": "Work from home or Seychelles? It's definitely achievable."
       }
     ]
   },
@@ -125,27 +128,25 @@
     "prices": [
       {
         "title": "One-time",
-        "price": "250€",
-        "originalPrice": "500€",
-        "description": "Pay full price and don’t worry about next payments."
+        "price": "500€",
+        "description": "Pay full price and save 40€."
       },
       {
         "title": "Monthly",
-        "price": "90€/month",
-        "originalPrice": "180€/month",
-        "description": "Pay in 3 months, total 270€."
+        "price": "180€/month",
+        "description": "Pay in 3 months, total 540€."
       },
       {
-        "title": "Financial aid",
+        "title": "Kursuok.lt Financial aid",
         "price": "Free",
-        "description": "Apply for financial aid and have opportunity to lear for free."
+        "description": "Apply for financial aid via Kursuok.lt and have opportunity to learn for free."
       }
     ]
   },
   "nextGroups": {
-    "title": "Limited seats. Apply now!",
-    "subtitle": "Reserve your seat before deadline for applications.",
-    "cta": "Apply now!",
+    "title": "Limited seats. Reserve now!",
+    "subtitle": "Official registration opens late November via Kursuok.lt. However, you can reserve your spot in advance.",
+    "cta": "Reserve a seat now",
     "groups": [
       {
         "date": "May 12",

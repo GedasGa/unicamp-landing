@@ -46,8 +46,8 @@ export const PROGRAMS = [
     levelIcon: `${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`,
     level: 'programs.levels.beginner',
     link: paths.programs.fe,
-    monthlyPrice: 90,
-    price: 250,
+    monthlyPrice: 180,
+    price: 500,
     originalPrice: 500,
     reviews: 5,
     features: [
@@ -98,8 +98,8 @@ export const PROGRAMS = [
     levelIcon: `${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`,
     level: 'programs.levels.beginner',
     link: paths.programs.ux,
-    monthlyPrice: 90,
-    price: 250,
+    monthlyPrice: 180,
+    price: 500,
     originalPrice: 500,
     reviews: 4,
     features: [
@@ -356,23 +356,21 @@ export function ProgramCard({ program, sx, ...other }: Props) {
         alignItems={{ xs: 'start', sm: 'center' }}
         spacing={1}
       >
-        {id === 'productDesign' && (
-          <Label
-            variant="filled"
-            color="error"
-            startIcon={<Iconify icon="eva:checkmark-fill" />}
-            sx={{ maxWidth: 'fit-content' }}
-          >
-            {t('programs.chips.limitedSpaces')}
-          </Label>
-        )}
+        <Label
+          variant="filled"
+          color="error"
+          startIcon={<Iconify icon="eva:checkmark-fill" />}
+          sx={{ maxWidth: 'fit-content' }}
+        >
+          {t('programs.chips.limitedSpaces')}
+        </Label>
         <Label
           variant="soft"
           color="success"
           startIcon={<Iconify icon="eva:checkmark-fill" />}
           sx={{ maxWidth: 'fit-content' }}
         >
-          {t('programs.chips.compatibleWithHolidays')}
+          {t('programs.chips.availableFinancing')}
         </Label>
       </Stack>
     </Stack>
