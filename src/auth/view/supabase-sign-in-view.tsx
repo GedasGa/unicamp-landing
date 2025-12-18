@@ -23,7 +23,9 @@ import { Form, Field } from 'src/components/hook-form';
 
 import { useAuthContext } from '../hooks';
 import { FormHead } from '../components/form-head';
-import { signInWithPassword } from '../context';
+import { FormDivider } from '../components/form-divider';
+import { FormSocials } from '../components/form-socials';
+import { signInWithPassword, signInWithOAuth } from '../context';
 
 // ----------------------------------------------------------------------
 
@@ -78,6 +80,15 @@ export function SupabaseSignInView() {
     }
   });
 
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithOAuth('google');
+    } catch (error) {
+      console.error(error);
+      setErrorMsg(typeof error === 'string' ? error : error.message);
+    }
+  };
+
   const renderForm = (
     <Box gap={3} display="flex" flexDirection="column">
       <Field.Text name="email" label="Email address" InputLabelProps={{ shrink: true }} />
@@ -85,7 +96,7 @@ export function SupabaseSignInView() {
       <Box gap={1.5} display="flex" flexDirection="column">
         <Link
           component={RouterLink}
-          href={paths.auth.supabase.resetPassword}
+          href={paths.auth.resetPassword}
           variant="body2"
           color="inherit"
           sx={{ alignSelf: 'flex-end' }}
@@ -131,8 +142,8 @@ export function SupabaseSignInView() {
         title="Sign in to your account"
         description={
           <>
-            {`Don’t have an account? `}
-            <Link component={RouterLink} href={paths.auth.supabase.signUp} variant="subtitle2">
+            {`Don't have an account? `}
+            <Link component={RouterLink} href={paths.auth.signUp} variant="subtitle2">
               Get started
             </Link>
           </>
@@ -145,6 +156,10 @@ export function SupabaseSignInView() {
           {errorMsg}
         </Alert>
       )}
+
+      <FormSocials signInWithGoogle={handleGoogleSignIn} />
+
+      <FormDivider />
 
       <Form methods={methods} onSubmit={onSubmit}>
         {renderForm}

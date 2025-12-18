@@ -21,8 +21,10 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { Iconify } from 'src/components/iconify';
 import { Form, Field } from 'src/components/hook-form';
 
-import { signUp } from '../context';
+import { signUp, signInWithOAuth } from '../context';
 import { FormHead } from '../components/form-head';
+import { FormDivider } from '../components/form-divider';
+import { FormSocials } from '../components/form-socials';
 import { SignUpTerms } from '../components/sign-up-terms';
 
 // ----------------------------------------------------------------------
@@ -77,12 +79,21 @@ export function SupabaseSignUpView() {
         lastName: data.lastName,
       });
 
-      router.push(paths.auth.supabase.verify);
+      router.push(paths.auth.verify);
     } catch (error) {
       console.error(error);
       setErrorMsg(typeof error === 'string' ? error : error.message);
     }
   });
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithOAuth('google');
+    } catch (error) {
+      console.error(error);
+      setErrorMsg(typeof error === 'string' ? error : error.message);
+    }
+  };
 
   const renderForm = (
     <Box gap={3} display="flex" flexDirection="column">
@@ -131,7 +142,7 @@ export function SupabaseSignUpView() {
         description={
           <>
             {`Already have an account? `}
-            <Link component={RouterLink} href={paths.auth.supabase.signIn} variant="subtitle2">
+            <Link component={RouterLink} href={paths.auth.signIn} variant="subtitle2">
               Get started
             </Link>
           </>
@@ -144,6 +155,10 @@ export function SupabaseSignUpView() {
           {errorMsg}
         </Alert>
       )}
+
+      <FormSocials signInWithGoogle={handleGoogleSignIn} />
+
+      <FormDivider />
 
       <Form methods={methods} onSubmit={onSubmit}>
         {renderForm}

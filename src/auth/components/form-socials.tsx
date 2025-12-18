@@ -22,15 +22,21 @@ export function FormSocials({
 }: FormSocialsProps) {
   return (
     <Box gap={1.5} display="flex" justifyContent="center" sx={sx} {...other}>
-      <IconButton color="inherit" onClick={signInWithGoogle}>
-        <GoogleIcon width={22} />
-      </IconButton>
-      <IconButton color="inherit" onClick={singInWithGithub}>
-        <GithubIcon width={22} />
-      </IconButton>
-      <IconButton color="inherit" onClick={signInWithTwitter}>
-        <TwitterIcon width={22} />
-      </IconButton>
+      {signInWithGoogle && (
+        <IconButton color="inherit" onClick={signInWithGoogle}>
+          <GoogleIcon width={22} />
+        </IconButton>
+      )}
+      {singInWithGithub && (
+        <IconButton color="inherit" onClick={singInWithGithub}>
+          <GithubIcon width={22} />
+        </IconButton>
+      )}
+      {signInWithTwitter && (
+        <IconButton color="inherit" onClick={signInWithTwitter}>
+          <TwitterIcon width={22} />
+        </IconButton>
+      )}
     </Box>
   );
 }

@@ -74,7 +74,7 @@ export const signUp = async ({
     email,
     password,
     options: {
-      emailRedirectTo: `${window.location.origin}${paths.dashboard.root}`,
+      emailRedirectTo: `${window.location.origin}${paths.auth.verify}`,
       data: { display_name: `${firstName} ${lastName}` },
     },
   });
@@ -114,7 +114,7 @@ export const resetPassword = async ({
   email,
 }: ResetPasswordParams): Promise<{ data: {}; error: null } | { data: null; error: AuthError }> => {
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${window.location.origin}${paths.auth.supabase.updatePassword}`,
+    redirectTo: `${window.location.origin}${paths.auth.updatePassword}`,
   });
 
   if (error) {
@@ -130,6 +130,30 @@ export const resetPassword = async ({
  *************************************** */
 export const updatePassword = async ({ password }: UpdatePasswordParams): Promise<UserResponse> => {
   const { data, error } = await supabase.auth.updateUser({ password });
+
+  if (error) {
+    console.error(error);
+    throw error;
+  }
+
+  return { data, error };
+};
+
+/** **************************************
+ * Sign in with OAuth (Google, GitHub, etc.)
+ *************************************** */
+export const signInWithOAuth = async (provider: 'google' | 'github' | 'twitter') => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider,
+    options: {
+      redirectTo: `${window.location.origin}/auth/callback`,
+      // Enable automatic account linking by email
+      queryParams: {
+        access_type: 'offline',
+        prompt: 'consent',
+      },
+    },
+  });
 
   if (error) {
     console.error(error);

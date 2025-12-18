@@ -1,11 +1,11 @@
 import { CONFIG } from 'src/config-global';
 
-import { CenteredVerifyView } from 'src/auth/view/auth-demo/centered';
+import { SupabaseVerifyView } from 'src/auth/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `Verify | Layout centered - ${CONFIG.appName}` };
+export const metadata = { title: `Verify | ${CONFIG.appName}` };
 
 export default function Page() {
-  return <CenteredVerifyView />;
+  return <SupabaseVerifyView />;
 }
