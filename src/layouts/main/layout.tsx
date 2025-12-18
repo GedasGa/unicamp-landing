@@ -16,7 +16,6 @@ import { NavDesktop } from './nav/desktop';
 import { Footer } from './footer';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
-import { navData as mainNavData } from '../config-nav-main';
 import { MenuButton } from '../components/menu-button';
 
 import type { NavMainProps } from './nav/types';
@@ -27,13 +26,9 @@ import { LanguagePopover } from '../components/language-popover';
 import { allLangs, useTranslate } from '../../locales';
 import { Iconify } from '../../components/iconify';
 import Link from 'next/link';
-import { useState } from 'react';
-import { paths } from '../../routes/paths';
-import { useLocalStorage } from '../../hooks/use-local-storage';
-import type { SettingsState } from '../../components/settings';
-import { STORAGE_KEY } from '../../components/settings';
-import type { ThemeColorScheme } from '../../theme/types';
 import Container from '@mui/material/Container';
+import { defaultNavData } from './nav/config';
+import { useState } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -56,14 +51,14 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
   const theme = useTheme();
   const pathname = usePathname();
   const mobileNavOpen = useBoolean();
-  const { t } = useTranslate('navbar');
+  const { t } = useTranslate('nav');
 
-  const [showAlert, setShowAlert] = useState(true);
+  // Disabled until next kursuok.lt financing round
+  const [showAlert, setShowAlert] = useState(false);
 
   const homePage = pathname === '/';
   const layoutQuery: Breakpoint = 'md';
-  // FIXME: Change navbar once we have more than 1 page
-  const navData = data?.nav ?? [];
+  const navData = data?.nav ?? defaultNavData;
 
   const dismissAlert = () => {
     setShowAlert(false);
@@ -96,11 +91,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                   </Link>
                   {', '}
                   {t('email')}{' '}
-                  <Link
-                    href={'mailto:info@unicamp.lt?subject=Kursuok'}
-                  >
-                    info@unicamp.lt
-                  </Link>{' '}
+                  <Link href={'mailto:info@unicamp.lt?subject=Kursuok'}>info@unicamp.lt</Link>{' '}
                   {t('or')} {t('phone')} <Link href={'tel:+37061008080'}>+370 610 08080</Link>
                 </Alert>
               </Container>
@@ -137,7 +128,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                   <Button
                     variant="outlined"
                     rel="noopener"
-                    href={paths.courses}
+                    href="/#courses"
                     sx={{
                       display: 'none',
                       [theme.breakpoints.up(layoutQuery)]: { display: 'inline-flex' },

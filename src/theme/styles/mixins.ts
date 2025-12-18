@@ -195,15 +195,18 @@ export function maxLine({ line, persistent }: MaxLineProps): CSSObject {
  */
 type PaperProps = {
   theme: Theme;
+  isBlur?: boolean;
   color?: string;
   dropdown?: boolean;
 };
 
-export function paper({ theme, color, dropdown }: PaperProps) {
+export function paper({ theme, isBlur = true, color, dropdown }: PaperProps) {
   return {
-    ...bgBlur({
-      color: color ?? varAlpha(theme.vars.palette.background.paperChannel, 0.9),
-      blur: 20,
+    ...(isBlur && {
+      ...bgBlur({
+        color: color ?? varAlpha(theme.vars.palette.background.paperChannel, 0.09),
+        blur: 100,
+      }),
     }),
     backgroundImage: `url(${CONFIG.assetsDir}/assets/core/cyan-blur.png), url(${CONFIG.assetsDir}/assets/core/red-blur.png)`,
     backgroundRepeat: 'no-repeat, no-repeat',

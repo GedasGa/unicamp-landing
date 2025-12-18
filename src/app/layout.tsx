@@ -19,7 +19,7 @@ import { ProgressBar } from 'src/components/progress-bar';
 import { MotionLazy } from 'src/components/animate/motion-lazy';
 import { SettingsDrawer, defaultSettings, SettingsProvider } from 'src/components/settings';
 import { CSPostHogProvider } from './providers';
-import { GoogleTagManager } from '@next/third-parties/google';
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 
 import { AuthProvider } from 'src/auth/context';
 
@@ -51,7 +51,13 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang={lang ?? 'lt'} dir="ltr" suppressHydrationWarning>
-      <GoogleTagManager gtmId="AW-16868873802" />
+      <script
+        id="usercentrics-cmp"
+        data-settings-id="tGqJjqeAyiUam6"
+        src="https://web.cmp.usercentrics.eu/ui/loader.js"
+      ></script>
+
+      <GoogleTagManager gtmId="GTM-MFMRN6WN" />
 
       <body>
         <InitColorSchemeScript

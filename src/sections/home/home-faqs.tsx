@@ -21,7 +21,6 @@ import { varFade, MotionViewport } from 'src/components/animate';
 import { SectionTitle } from './components/section-title';
 import { FloatLine, FloatPlusIcon, FloatTriangleDownIcon } from './components/svg-elements';
 import { useTranslate } from '../../locales';
-import Divider from '@mui/material/Divider';
 import { TFunction } from 'i18next';
 
 // ----------------------------------------------------------------------
@@ -70,18 +69,6 @@ const FAQs = (t: TFunction<string | 'translation', undefined>) => [
   {
     question: t('faqs.questions.10.question'),
     answer: <Typography>{t('faqs.questions.10.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.11.question'),
-    answer: <Typography>{t('faqs.questions.11.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.12.question'),
-    answer: <Typography>{t('faqs.questions.12.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.13.question'),
-    answer: <Typography>{t('faqs.questions.13.answer')}</Typography>,
   },
 ];
 
@@ -209,59 +196,13 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
   return (
     <Box component="section" sx={{ ...sx }} {...other}>
       <MotionViewport sx={{ py: 10, position: 'relative' }}>
-        <TopLines />
-
         <Container>
           {renderDescription}
           {renderContent}
         </Container>
 
-        <Stack sx={{ position: 'relative' }}>
-          <BottomLines />
-          {renderContact}
-        </Stack>
+        {renderContact}
       </MotionViewport>
     </Box>
-  );
-}
-
-// ----------------------------------------------------------------------
-
-function TopLines() {
-  return (
-    <>
-      <Stack
-        spacing={8}
-        alignItems="center"
-        sx={{
-          top: 64,
-          left: 80,
-          position: 'absolute',
-          transform: 'translateX(-15px)',
-        }}
-      >
-        <FloatTriangleDownIcon sx={{ position: 'static', opacity: 0.12 }} />
-        <FloatTriangleDownIcon
-          sx={{
-            position: 'static',
-            opacity: 0.24,
-            width: 30,
-            height: 15,
-          }}
-        />
-      </Stack>
-      <FloatLine vertical sx={{ top: 0, left: 80 }} />
-    </>
-  );
-}
-
-function BottomLines() {
-  return (
-    <>
-      <FloatLine sx={{ top: 0, left: 0 }} />
-      <FloatLine sx={{ bottom: 0, left: 0 }} />
-      <FloatPlusIcon sx={{ top: -8, left: 72 }} />
-      <FloatPlusIcon sx={{ bottom: -8, left: 72 }} />
-    </>
   );
 }

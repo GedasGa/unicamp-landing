@@ -32,6 +32,7 @@ type Props = StackProps & {
   };
 };
 
+// TODO: Move to root components/
 export function SectionTitle({
   title,
   caption,

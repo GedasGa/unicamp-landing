@@ -13,15 +13,12 @@ import { useTheme } from '@mui/material/styles';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { CONFIG } from 'src/config-global';
-
 import { Iconify } from 'src/components/iconify';
-import { SvgColor } from 'src/components/svg-color';
 import { varFade, MotionContainer } from 'src/components/animate';
 
-import { HeroBackground } from './components/hero-background';
 import { useTranslate } from '../../locales';
-import { paths } from '../../routes/paths';
+import { CONFIG } from '../../config-global';
+import Typography from '@mui/material/Typography';
 
 // ----------------------------------------------------------------------
 
@@ -37,83 +34,71 @@ export function HomeHero({ sx, ...other }: BoxProps) {
 
   const distance = mdUp ? scroll.percent : 0;
 
-  const y1 = useTransformY(scroll.scrollY, distance * -7);
-  const y2 = useTransformY(scroll.scrollY, distance * -6);
-  const y3 = useTransformY(scroll.scrollY, distance * -5);
-
-  const opacity: MotionValue<number> = useTransform(
-    scroll.scrollY,
-    [0, 1],
-    [1, mdUp ? Number((1 - scroll.percent / 100).toFixed(1)) : 1]
-  );
-
   const renderHeading = (
     <AnimatedDiv>
       <Box
         component="h1"
         display="flex"
         flexWrap="wrap"
-        // justifyContent="center"
+        flexDirection="column"
         sx={{
           ...theme.typography.h2,
-          my: 0,
+          mt: 10,
+          mb: 0,
           fontFamily: theme.typography.fontSecondaryFamily,
-          // [theme.breakpoints.up(lgKey)]: { fontSize: 72, lineHeight: '90px' },
+          [theme.breakpoints.up(lgKey)]: { fontSize: 72, lineHeight: '90px' },
         }}
       >
-        <Box component="span">{t('hero.heading')} </Box>
+        <Box component="span">{t('hero.heading.firstLine')}</Box>
+        <Box component="span">{t('hero.heading.secondLine')}</Box>
       </Box>
     </AnimatedDiv>
   );
 
   const renderViewCoursesButton = (
     <AnimatedDiv>
+      <Typography variant={'subtitle2'} gutterBottom>
+        {t('hero.cta.viewCourses.description')}
+      </Typography>
       <Button
         size="large"
         variant="contained"
-        href={paths.courses}
+        href="/#courses"
         onClick={() => posthog.capture('hero_cta_clicked')}
         endIcon={<Iconify icon="ic:round-arrow-downward" />}
+        sx={{
+          color: 'common.black',
+          bgcolor: 'common.white',
+          '&:hover': { bgcolor: 'grey.200' },
+        }}
       >
-        {t('hero.cta.viewCourses')}
+        {t('hero.cta.viewCourses.buttonText')}
       </Button>
     </AnimatedDiv>
   );
 
   const renderFreeConsultation = (
-    <Box display="flex" flexWrap="wrap" gap={{ xs: 1.5, sm: 2 }}>
+    <Box display="flex" flexWrap="wrap" gap={{ xs: 1.5, md: 2 }}>
       <AnimatedDiv>
-        <p>{t('hero.cta.description')}</p>
+        <Typography variant={'subtitle2'} gutterBottom>
+          {t('hero.cta.consultation.description')}
+        </Typography>
         <Button
           color="inherit"
           size="large"
-          variant="outlined"
+          variant="contained"
           target="_blank"
           href="https://calendly.com/gedas-gardauskas/15min"
           onClick={() => posthog.capture('hero_cta_clicked')}
+          sx={{
+            color: 'common.black',
+            bgcolor: 'common.white',
+            '&:hover': { bgcolor: 'grey.200' },
+          }}
         >
-          {t('hero.cta.text')}
+          {t('hero.cta.consultation.buttonText')}
         </Button>
       </AnimatedDiv>
-    </Box>
-  );
-
-  const renderIllustration = (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: '1 1 100%', // Default: takes full width on smaller screens
-        [theme.breakpoints.up(mdKey)]: {
-          flex: '1 1 50%', // Takes 50% of the space on larger screens
-        },
-      }}
-    >
-      <SvgColor
-        src={`${CONFIG.assetsDir}/assets/illustrations/illustration-hero.svg`}
-        width="500px"
-      />
     </Box>
   );
 
@@ -124,13 +109,18 @@ export function HomeHero({ sx, ...other }: BoxProps) {
       sx={{
         overflow: 'hidden',
         position: 'relative',
+        backgroundImage: `url(${CONFIG.assetsDir}/assets/illustrations/illustration-hero.png)`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'top',
+        color: 'common.white',
         [theme.breakpoints.up(mdKey)]: {
           minHeight: 760,
-          height: '100vh',
-          maxHeight: 1440,
+          height: '80vh',
+          maxHeight: 1280,
           display: 'block',
           willChange: 'opacity',
-          mt: 'calc(var(--layout-header-desktop-height) * -1)',
+          pt: 'calc(var(--layout-header-desktop-height) * -1)',
         },
         ...sx,
       }}
@@ -138,7 +128,6 @@ export function HomeHero({ sx, ...other }: BoxProps) {
     >
       <Box
         component={m.div}
-        style={{ opacity }}
         sx={{
           width: 1,
           display: 'flex',
@@ -160,19 +149,18 @@ export function HomeHero({ sx, ...other }: BoxProps) {
             [theme.breakpoints.up(mdKey)]: {
               flexDirection: 'row',
               flex: '1 1 auto',
-              justifyContent: 'center',
-              py: 'var(--layout-header-desktop-height)',
+              justifyContent: 'start',
+              alignItems: 'start',
+              my: 'var(--layout-header-desktop-height)',
             },
           }}
         >
           <Stack spacing={3}>
-            <m.div style={{ y: y1 }}>{renderHeading}</m.div>
-            <m.div style={{ y: y2 }}>{renderViewCoursesButton}</m.div>
-            <m.div style={{ y: y3 }}>{renderFreeConsultation}</m.div>
+            {renderHeading}
+            {renderViewCoursesButton}
+            {renderFreeConsultation}
           </Stack>
-          <m.div style={{ y: y2 }}>{renderIllustration}</m.div>
         </Container>
-        <HeroBackground />
       </Box>
     </Box>
   );

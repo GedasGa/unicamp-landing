@@ -1,12 +1,6 @@
 import { _mock } from './_mock';
 
 // ----------------------------------------------------------------------
-
-export const JOB_DETAILS_TABS = [
-  { label: 'Job content', value: 'content' },
-  { label: 'Candidates', value: 'candidates' },
-];
-
 export const JOB_SKILL_OPTIONS = [
   'UI',
   'UX',

@@ -35,7 +35,6 @@ export const CONFIG: ConfigValue = {
     skip: false,
     redirectPath: paths.dashboard.root,
   },
-
   /**
    * Supabase
    */

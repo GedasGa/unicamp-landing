@@ -1,0 +1,23 @@
+{
+  "title": "Registracija į programą",
+  "course": "Programa",
+  "webDevelopment": "Web programavimas",
+  "productDesign": "UX/UI dizainas",
+  "name": "Vardas",
+  "email": "El. paštas",
+  "phone": "Telefono numeris",
+  "message": "Žinutė",
+  "apply": "Registruotis",
+  "cancel": "Atšaukti",
+  "loading": "Siunčiama...",
+  "name_required": "Įveskite vardą",
+  "last_name_required": "Įveskite pavardę",
+  "email_required": "Įveskite el. pašto adresą",
+  "email_invalid": "Įveskite galiojantį el. pašto adresą",
+  "disclaimer_start": "Siunčiant užklausą sutinku su ",
+  "privacy_policy": "Privatumo politika",
+  "form_submitted": {
+    "title": "Registracija išsiųsta!",
+    "description": "Ačiū, kad susisiekėte. Gavome jūsų duomenis ir netrukus susisieksime – įprastai atsakome per valandą."
+  }
+}

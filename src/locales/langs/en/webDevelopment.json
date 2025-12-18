@@ -1,0 +1,161 @@
+{
+  "hero": {
+    "title": "Become certified Frontend engineer",
+    "cta": {
+      "title": "Reserve a seat",
+      "subtitle": "Registration on kursuok.lt opens late November."
+    },
+    "skills": ["JavaScript", "OpenAI", "React & NextJS", "Responsive design", "Domain & Hosting"],
+    "features": {
+      "courseDuration": {
+        "title": "Course duration",
+        "description": "12 weeks (108 hours)"
+      },
+      "groupSize": {
+        "title": "Group size",
+        "description": "20"
+      },
+      "project": {
+        "title": "Project",
+        "description": "1",
+        "chip": "Share on LinkedIn"
+      }
+    }
+  },
+  "certificate": {
+    "title": "Certificate – Proof of Your Skills",
+    "description": "Gain not only skills but also a professional Unicamp certificate."
+  },
+  "banner": {
+    "title": "About the program",
+    "description": "This program focuses on Front-End development, emphasizing user interface (UI) programming and JavaScript programming language. JavaScript is indispensable for creating dynamic and interactive websites and is also widely used in other fields, such as server-side and mobile application development. During the training, you will gain theoretical knowledge and practical skills necessary for building functional and modern websites. You will master the basics of HTML, CSS, and JavaScript, learn to create responsive design pages, and make them accessible. You will work with advanced frameworks like React and Next.js. Additionally, you will explore artificial intelligence (AI) solutions that can optimise workflows and enhance productivity. The final project is a fully functional website that is hosted online, developed together with a team using Jira and GitHub. It will serve as evidence of your capabilities."
+  },
+  "syllabus": {
+    "title": "Syllabus",
+    "cta": {
+      "download": "Download whole syllabus",
+      "register": "Register to program"
+    }
+  },
+  "modules": [
+    {
+      "title": "Brief Introduction to Computer Science and Web Programming",
+      "description": "Fundamentals of computer science, principles of how the internet works, and the importance of web programming in the IT field. Frontend vs Backend and the composition of development teams. Installation and configuration of Integrated Development Environments (IDEs).",
+      "skills": ["Computer Science", "Frontend", "Backend", "IDE"]
+    },
+    {
+      "title": "HTML and CSS Fundamentals",
+      "description": "Syntax of HTML and CSS and their application in building websites. Key HTML elements, CSS application rules, browser tools, and other nuances. Utilization of AI tools for learning.",
+      "skills": ["HTML", "CSS", "Browser Tools", "AI Tools"]
+    },
+    {
+      "title": "Responsive Design Programming",
+      "description": "Using CSS Flexbox, Grid, and media queries to create responsive designs for various device screens. Mobile-first design approach.",
+      "skills": ["CSS Flexbox", "CSS Grid", "Media Queries", "Mobile-First Design"]
+    },
+    {
+      "title": "Accessibility for Web Pages (WCAG Standards)",
+      "description": "Application of WCAG and best practices for making user interfaces accessible to people with disabilities.",
+      "skills": ["WCAG", "Accessibility"]
+    },
+    {
+      "title": "JavaScript Fundamentals",
+      "description": "JavaScript syntax, variables, conditions, arrays, loops, functions, DOM manipulation, event handling, and creating dynamic website functionalities. Asynchronous JavaScript and using external APIs.",
+      "skills": ["JavaScript", "DOM", "Asynchronous JavaScript", "API"]
+    },
+    {
+      "title": "Git Version Control and Terminal",
+      "description": "Using the terminal and its main functions. Git version control system: storage, history tracking, conflict resolution. Using GitHub for team collaboration and code reviews.",
+      "skills": ["Git", "GitHub", "Terminal", "Version Control"]
+    },
+    {
+      "title": "React Fundamentals",
+      "description": "Introduction to JavaScript frameworks and ReactJS. Creating React components, using state, props, and hooks, as well as conditional and list rendering.",
+      "skills": ["React", "State", "Props", "Hooks"]
+    },
+    {
+      "title": "Next.js Fundamentals",
+      "description": "Benefits and key features of Next.js. Server-Side vs Client-Side Rendering. Principles of routing and data management in Next.js.",
+      "skills": ["Next.js", "Server-Side Rendering", "Client-Side Rendering", "Routing"]
+    },
+    {
+      "title": "Domain Management and Website Hosting",
+      "description": "Acquiring and registering domains, DNS configuration, and website hosting using platforms like Vercel and Cloudflare.",
+      "skills": ["Domain Management", "DNS", "Vercel", "Cloudflare"]
+    },
+    {
+      "title": "Project Work",
+      "description": "Team project that consolidates all acquired knowledge and skills, including design, planning, programming, hosting, and testing stages.",
+      "skills": ["Teamwork", "Jira", "Planning", "Testing"]
+    }
+  ],
+  "expectations": {
+    "title": "What to expect after the course?",
+    "description": "You know the fundamentals of UX/UI design, can create interactive prototypes, and have a certificate to prove your skills.",
+    "cta": "Register to program",
+    "cards": [
+      {
+        "title": "Competitive salary",
+        "description": "Up to 3000 EUR per month",
+        "link": {
+          "url": "https://www.manoalga.lt/en/salaryinfo/information-technology/javascript-programmer",
+          "text": "Based on manoalga data"
+        }
+      },
+      {
+        "title": "Work at top companies",
+        "description": "NordSecurity, Vinted, Surfshark, Ovoko"
+      },
+      {
+        "title": "Flexibility",
+        "description": "Work from home or Seychelles? It's definitely achievable."
+      }
+    ]
+  },
+  "mentor": {
+    "title": "Meet your mentor",
+    "name": "Gedas Gardauskas",
+    "role": "Co-founder | Software engineer and Frontend mentor",
+    "description": "Gedas is a co-founder of Unicamp and an experienced programmer with over 7 years of experience in the IT field. His areas of expertise include MLOps, GCP infrastructure, Node.js, React.js, and other technologies. Gedas has experience in developing text-to-speech (TTS) systems, managing AI model deployment processes, data warehouses, data processing systems, learning platforms, and BI tools. He created highly regarded JavaScript and Python programming programs used by CodeAcademy and FastTrack academies.",
+    "cta": {
+      "text": "Connect on LinkedIn",
+      "link": "https://www.linkedin.com/in/gedas-gardauskas/"
+    }
+  },
+  "pricing": {
+    "title": "Pricing",
+    "chip": "7 days money back guarantee",
+    "prices": [
+      {
+        "title": "One-time",
+        "price": "500€",
+        "description": "Pay full price and save 40€."
+      },
+      {
+        "title": "Monthly",
+        "price": "180€/month",
+        "description": "Pay in 3 months, total 540€."
+      },
+      {
+        "title": "Kursuok.lt Financial aid",
+        "price": "Free",
+        "description": "Apply for financial aid via Kursuok.lt and have opportunity to learn for free."
+      }
+    ]
+  },
+  "nextGroups": {
+    "title": "Limited seats. Reserve now!",
+    "subtitle": "Official registration opens late November via Kursuok.lt. However, you can reserve your spot in advance.",
+    "cta": "Reserve a seat now",
+    "groups": [
+      {
+        "date": "May 12",
+        "deadline": "Deadline for applications: 2025-05-09"
+      },
+      {
+        "date": "May 14",
+        "deadline": "Deadline for applications: 2025-05-12"
+      }
+    ]
+  }
+}

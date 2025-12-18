@@ -125,7 +125,11 @@ export function NavList({
         >
           <Paper
             className={navSectionClasses.paper}
-            sx={{ minWidth: 180, ...paper({ theme, dropdown: true }), ...slotProps?.paper }}
+            sx={{
+              minWidth: 180,
+              ...paper({ theme, isBlur: false, dropdown: true }),
+              ...slotProps?.paper,
+            }}
           >
             <NavSubList
               data={data.children}

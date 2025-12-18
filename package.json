@@ -8,10 +8,10 @@
     "dev": "next dev -p 8082",
     "start": "next start -p 8082",
     "build": "next build",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
-    "fm:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
-    "fm:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,json}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx,json}\"",
+    "fm:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json}\"",
+    "fm:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json}\"",
     "rm:all": "rm -rf node_modules .next out dist build",
     "re:start": "npm rm:all && npm install && npm dev",
     "re:build": "npm run rm:all && npm install && npm run build",
@@ -86,7 +86,7 @@
     "mui-one-time-password-input": "^2.0.3",
     "next": "^14.2.5",
     "nprogress": "^0.2.0",
-    "posthog-js": "^1.167.0",
+    "posthog-js": "^1.236.7",
     "react": "^18.3.1",
     "react-apexcharts": "1.4.1",
     "react-dom": "^18.3.1",
@@ -108,7 +108,7 @@
     "swr": "^2.2.5",
     "turndown": "^7.2.0",
     "yet-another-react-lightbox": "^3.21.4",
-    "zod": "^3.23.8"
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

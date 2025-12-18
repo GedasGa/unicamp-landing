@@ -17,10 +17,16 @@ const ROOTS = {
 // ----------------------------------------------------------------------
 
 export const paths = {
-  courses: '#courses',
   lecturers: '#lecturers',
   privacyPolicy: '/privacy-policy',
 
+  programs: {
+    root: '/programs',
+    ux: `/programs/ux`,
+    fe: `/programs/fe`,
+  },
+
+  // FIXME: unused
   comingSoon: '/coming-soon',
   maintenance: '/maintenance',
   pricing: '/pricing',
@@ -32,22 +38,10 @@ export const paths = {
   page404: '/error/404',
   page500: '/error/500',
   components: '/components',
-  docs: 'https://docs.minimals.cc',
-  changelog: 'https://docs.minimals.cc/changelog',
-  zoneStore: 'https://mui.com/store/items/zone-landing-page/',
-  minimalStore: 'https://mui.com/store/items/minimal-dashboard/',
-  freeUI: 'https://mui.com/store/items/minimal-dashboard-free/',
-  figmaUrl: 'https://www.figma.com/design/cAPz4pYPtQEXivqe11EcDE/%5BPreview%5D-Minimal-Web.v6.0.0',
-  product: {
-    root: `/product`,
-    checkout: `/product/checkout`,
-    details: (id: string) => `/product/${id}`,
-    demo: { details: `/product/${MOCK_ID}` },
-  },
-  post: {
-    root: `/post`,
-    details: (title: string) => `/post/${paramCase(title)}`,
-    demo: { details: `/post/${paramCase(MOCK_TITLE)}` },
+
+  blog: {
+    root: `/blog`,
+    details: (title: string) => `/blog/${paramCase(title)}`,
   },
   // AUTH
   auth: {
@@ -79,22 +73,7 @@ export const paths = {
       resetPassword: `${ROOTS.AUTH}/supabase/reset-password`,
     },
   },
-  authDemo: {
-    split: {
-      signIn: `${ROOTS.AUTH_DEMO}/split/sign-in`,
-      signUp: `${ROOTS.AUTH_DEMO}/split/sign-up`,
-      resetPassword: `${ROOTS.AUTH_DEMO}/split/reset-password`,
-      updatePassword: `${ROOTS.AUTH_DEMO}/split/update-password`,
-      verify: `${ROOTS.AUTH_DEMO}/split/verify`,
-    },
-    centered: {
-      signIn: `${ROOTS.AUTH_DEMO}/centered/sign-in`,
-      signUp: `${ROOTS.AUTH_DEMO}/centered/sign-up`,
-      resetPassword: `${ROOTS.AUTH_DEMO}/centered/reset-password`,
-      updatePassword: `${ROOTS.AUTH_DEMO}/centered/update-password`,
-      verify: `${ROOTS.AUTH_DEMO}/centered/verify`,
-    },
-  },
+
   // DASHBOARD
   dashboard: {
     root: ROOTS.DASHBOARD,

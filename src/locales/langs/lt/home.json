@@ -1,10 +1,18 @@
 {
   "hero": {
-    "heading": "Aukščiausios kokybės IT kursai ir mokymai pagrįsti darbu komandoje su realiais projektais",
+    "heading": {
+      "firstLine": "Išmokite skaitmeninių įgūdžių ",
+      "secondLine": "Pakilkite karjeros laiptais"
+    },
     "cta": {
-      "viewCourses": "Peržiūrėkite kursus",
-      "text": "Gaukite nemokamą konsultaciją",
-      "description": "Nežinote, nuo ko pradėti?"
+      "viewCourses": {
+        "description": "Pasirinkite savo norimą programą",
+        "buttonText": "Peržiūrėti programas"
+      },
+      "consultation": {
+        "description": "Nežinote nuo ko pradėti? Registruokitės ir padėsime",
+        "buttonText": "Registruotis NEMOKAMAI konsultacijai"
+      }
     },
     "svg": {
       "text": "unicamp akademija"
@@ -12,7 +20,7 @@
   },
   "unicamp": {
     "title": "Kodėl Unicamp?",
-    "description": "Esame profesionalų komanda, sukaupusi ilgametę patirtį tarptautinėse IT įmonėse ir dėstymo srityje. Mūsų komandos nariai jau yra dėstę tokiose platformose ir akademijose kaip Udacity, Coursera, Software Development Academy, buildup.am, CodeAcademy ir FastTrack. Todėl šiandien esame pasiruošę jums pasiūlyti aukščiausios kokybės kursus. Su kursuok.lt galite gauti finansavimą ir pradėti mokytis nemokamai jau dabar!",
+    "description": "Esame profesionalų komanda, sukaupusi ilgametę patirtį tarptautinėse IT įmonėse ir švietimo srityje. Mūsų komandos nariai yra dėstę tokiose platformose ir akademijose kaip Udacity, Coursera, Software Development Academy, buildup.am, CodeAcademy ir FastTrack. Kai kurie mūsų komandos kurti kursai vis dar naudojami CodeAcademy ir FastTrack akademijose. Atsižvelgdami į rinkos pokyčius ir išsamiai išanalizavę studentų poreikius, esame pasirengę pasiūlyti aukščiausios kokybės kursus, kurie padės pažinti ir įsitvirtinti į IT rinką.",
     "reasons": {
       "qualityCourses": "Kokybiški kursai",
       "getScholarships": "100% stipendijos",
@@ -62,7 +70,7 @@
         "items": [
           {
             "title": "Dedikuotas mentorius",
-            "description": "Mentorius, su kuriuo galėsitre dalintis tiek pergalėmis, tiek iššūkiais, ir gausite palaikymą viso kurso metu."
+            "description": "Mentorius, su kuriuo galėsite dalintis tiek pergalėmis, tiek iššūkiais, ir gausite palaikymą viso kurso metu."
           },
           {
             "title": "Karjeros patarimai",
@@ -75,18 +83,19 @@
   "team": {
     "heading": "Unicamp komanda",
     "description": "Esame IT entuziastų komanda, siekianti dalintis žiniomis ir padėti kiekvienam atrasti savo vietą technologijų pasaulyje.",
+    "mentor": "Mentorius",
     "members": [
       {
         "name": "Gedas Gardauskas",
-        "role": "CEO | Web programavimo dėstytojas"
+        "role": "CEO | Programuotojas"
       },
       {
         "name": "Mindaugas Pažereckas",
-        "role": "Bendraįkūrėjas | Operacijos ir marketingas"
+        "role": "Bendraįkūrėjas | Verslo administravimas"
       },
       {
         "name": "Aistė Gerdzevičiūtė",
-        "role": "Bendraįkūrėja | Produkto dizainerė ir UX/UI dėstytoja"
+        "role": "Bendraįkūrėja | Produkto dizainerė"
       },
       {
         "name": "Toshi",
@@ -96,37 +105,53 @@
   },
   "programs": {
     "title": "Unicamp programos",
-    "description": "Pasirink kursą ir pradėk savo geriausią IT karjerą.",
+    "description": "Pasirinkite programą ir pradėkite savo geriausią žingsnį į IT karjerą.",
+    "reviews": "atsiliepimai",
     "cta": {
-      "apply": "Registruotis dabar",
-      "viewProgram": "Peržiūrėti programą"
+      "apply": "Registruokitės dabar",
+      "viewProgram": "Daugiau apie šią programą"
     },
-    "list": {
-      "specializations": "Karjeros galimybės",
-      "tools": "Įrankiai",
-      "topics": "Temos"
+    "chips": {
+      "moneyBackGuarantee": "7 dienų pinigų grąžinimo garantija",
+      "approvedByKursuok": "Patvirtinta Kursuok.lt",
+      "availableFinancing": "Finansuojama Kursuok.lt",
+      "limitedSpaces": "Vietų skaičius ribotas"
     },
     "levels": {
       "beginner": "Pradedantiesiems",
       "intermediate": "Pažengusiems",
       "advanced": "Ekspertams"
     },
+    "pricing": {
+      "paidMonthly": "x3 mėn."
+    },
     "programs": {
       "webDevelopment": {
         "title": "Web programavimas",
-        "caption": "12 savaičių (108 val.)",
-        "specializations": ["Frontend programuotojas", "Programinės įrangos kūrėjas", "React/Next.js programuotojas"],
-        "tools": ["HTML", "CSS", "JavaScript", "React", "Next.js", "Firebase", "VSCode", "GitHub", "Copilot", "LLMs (ChatGPT, Claude)"],
-        "topics": ["HTML ir CSS pagrindai", "Responsyvus dizainas", "Įvadas į JavaScript", "TypeScript", "React pagrindai", "React Hooks", "React Context", "Next.js", "Backend-as-a-Service", "Git ir GitHub", "Domeno ir hostingo įsigijimas", "Produktyvumo įrankiai su AI"]
+        "caption": "108 valandos (3 mėn.) | Registracija nuo lapkričio",
+        "features": [
+          "35+ paskaitos ir realūs projektai",
+          "1-on-1 konsultacijos",
+          "AI įrankiai",
+          "6 mėn. pasiekiama visa mokymosi medžiaga",
+          "Nemokamas kurso pakartojimas"
+        ]
       },
       "productDesign": {
         "title": "UX/UI dizainas",
-        "caption": "12 savaičių (108 val.)",
-        "specializations": ["UX/UI dizaineris", "UX tyrėjas", "Produkto dizaineris"],
-        "tools": ["Figma", "FigJam", "AI įrankiai"],
-        "topics": ["Vartotojo patirtis (UX)", "Vartotojo sąsaja (UI)", "UX tyrimai", "Vartotojų testavimas", "Wireframing", "Prototipų kūrimas", "Dizaino sistemos", "AI įrankiai dizaineriams"]
+        "caption": "108 valandos (3 mėn.) | Registracija nuo lapkričio",
+        "features": [
+          "35+ paskaitos ir realūs projektai",
+          "1-on-1 konsultacijos",
+          "AI įrankiai",
+          "6 mėn. pasiekiama visa mokymosi medžiaga",
+          "Nemokamas kurso pakartojimas"
+        ]
       }
     }
+  },
+  "testimonials": {
+    "title": "Sklinda kalbos..."
   },
   "faqs": {
     "caption": "DUK",
@@ -134,64 +159,52 @@
     "contact": {
       "heading": "Vis dar kyla klausimų?",
       "description": "Užduokite rūpimus klausimus ir gaukite atsakymą per 12 valandų.",
-      "cta": "Parašykite su mumis"
+      "cta": "Parašykite mums"
     },
     "questions": [
       {
-        "question": "Ar kursai tikrai nemokami?",
-        "answer": "Taip, kursai yra 100% nemokami, jei atitinkate finansavimo kriterijus – jokių paslėptų mokesčių ar staigmenų."
-      },
-      {
         "question": "Kokios yra finansavimo galimybės?",
-        "answer": "kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenins (pagal darbo sutartį, vykdantiems indivualią veiklą, arba verslo liudijimą)."
-      },
-      {
-        "question": "Kokie yra finansavimo reikalavimai?",
-        "answer": "Norėdami gauti finansavimą, turite atitikti šiuos kriterijus:\n- Būti 18–65 metų amžiaus\n- Dirbti pagal darbo sutartį arba būti savarankiškai dirbantis\n- Turėti aukštąjį išsilavinimą arba profesinį išsilavinimą\n- Būti Lietuvos pilietis arba užsienietis su leidimu gyventi Lietuvoje\n- Dar nepasinaudojote kursuok.lt finansavimu"
-      },
-      {
-        "question": "Ar galiu mokytis, jeigu neatitinku visų finansavimo reikalavimų?",
-        "answer": "Taip, žinoma! Net jei neatitinkate visų reikalavimų, susisiekite su mumis. Motyvuotiems studentams skiriame 100% finansavimą iš savo kišenės, net jeigu ir negalime pasiūlyti finansavimo iš kursuok.lt."
-      },
-      {
-        "question": "Kokiais atvejais reikėtų grąžinti visą kurso kainą?",
-        "answer": "Tik tais atvejais, jei nebaigiate kurso (t.y. nelankote paskaitų ir nedalyvaujate atsiskaityme) arba jei per 5 darbo dienas nuo mokymosi programos pabaigos neužpildote mokymosi programos vertinimo anketos."
+        "answer": "Kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenims (pagal darbo sutartį, vykdantiems individualią veiklą arba turintiems verslo liudijimą). Tačiau šiuo metu atliekamas Kursuok auditas ir finansavimas yra sustabdytas. Kursuok finansavimas bus atnaujintas 2025 m. rudenį (https://kursuok.lt/naujienos/paaiskejo-kada-bus-papildytas-kursuok-biudzetas). Jei norite gauti finansavimą, užpildykite paraišką ir mes su jumis susisieksime, kai tik finansavimas bus atnaujintas."
       },
       {
         "question": "Kaip vyksta kursai?",
-        "answer": "Kursai vyksta nuotoliniu būdu per Zoom su kurso dėstytoju. Taip pat vyksta praktiniai užsiėmimai, kuriuose dirbsite su realiais projektai."
+        "answer": "Kursai vyksta nuotoliniu būdu per Zoom su dėstytoju, todėl galite prisijungti iš bet kurios pasaulio vietos. Taip pat vyksta praktiniai užsiėmimai, kuriuose dirbsite su realiais projektai, 1:1 video susitikimai su mentoriais."
       },
       {
         "question": "Kiek trunka kursai?",
-        "answer": "Kursai truka apie 12 savaičių, iš viso 108 akademines valandas. Paskaitos vyksta 3 kartus per savaitę po 3 valandas."
+        "answer": "Kursai trunka apie 12 savaičių, iš viso 108 akademines valandas."
+      },
+      {
+        "question": "Koks yra kursų tvarkaraštis?",
+        "answer": "Kursai vyksta 2–3 kartus per savaitę, priklausomai nuo programos. Įprastai paskaitos organizuojamos trečiadieniais 18:30–21:30 ir šeštadieniais 9:00–12:00 arba pirmadieniais, antradieniais ir ketvirtadieniais 18:30–21:30."
       },
       {
         "question": "Kokie mano įsipareigojimai prisijungus prie kursų?",
-        "answer": "Įsitraukti, strengtis ir aktyviai dalyvauti paskaitose."
+        "answer": "Įsitraukti, stengtis ir aktyviai dalyvauti paskaitose."
       },
       {
         "question": "Esu naujokas IT srityje. Ar galiu prisijungti prie kursų?",
-        "answer": "Tikrai taip! Mūsų kursai nereikalauja specifinių IT ir yra pritaikyti pradendantiesiams. Reikia tik kompiuterinio raštingumo ir anglų žinių."
+        "answer": "Tikrai taip! Mūsų kursai nereikalauja specifinių IT žinių ir yra pritaikyti pradedantiesiems. Reikia tik bazinio kompiuterinio raštingumo ir anglų kalbos pagrindų."
       },
       {
         "question": "Kiek laiko turėčiau skirti kursams?",
-        "answer": "Reikalingas laikas priklauso nuo programos ir jūsų tempo. Kursai paprastai vyksta 2–3 kartus per savaitę, tačiau bendras įsipareigojimo laikas priklausys nuo jūsų pačių ritmo. Geriausia dalis? Galite pritaikyti grafiką pagal save, o mes padėsime išlikti kelyje."
+        "answer": "Reikalingas laikas priklauso nuo programos ir jūsų tempo. Paskaitos vyksta 2–3 kartus per savaitę, tačiau savarankiško darbo apimtis priklausys nuo jūsų. Geriausia dalis? Mes visada padėsime ir po paskaitų."
       },
       {
-        "question": "Kaip atrodo baigiamieji atsiskaitymai ar yra vertinimai?",
-        "answer": "Mūsų akademijoje baigiamasis atsiskaitymas yra projektas. Atsiskaitymų nevertiname pažymiais. Studentai sėkmingai atlikę projektą gauną įskaita ir sėkmingai baigia kursą."
+        "question": "Kaip atrodo baigiamieji atsiskaitymai? Ar yra vertinimai?",
+        "answer": "Mūsų akademijoje baigiamasis atsiskaitymas yra projektas. Atsiskaitymai nevertinami pažymiais. Studentai, sėkmingai atlikę projektą, gauna įskaitą ir baigia kursą."
       },
       {
         "question": "Ar gausiu sertifikatą?",
-        "answer": "Taip! Baigę kursą gausite Unicamp sertifikatą."
+        "answer": "Taip! Baigę kursą gausite „Unicamp“ sertifikatą."
       },
       {
-        "question": "Ką daryti, jei negaliu dalyvauti kai kuriose pamokose?",
-        "answer": "Nesijaudinkite. Dauguma sesijų įrašomos, todėl galėsite peržiūrėti jas vėliau. O jeigu reikės papildomos pagalbos - padės mūsų dėstytojai."
+        "question": "Ką daryti, jei negaliu dalyvauti kai kuriose paskaitose?",
+        "answer": "Nesijaudinkite. Visos paskaitos yra įrašomos, todėl galėsite jas peržiūrėti vėliau. Jei prireiks papildomos pagalbos – padės mūsų dėstytojai."
       },
       {
         "question": "Ar galėsiu naudotis mokymosi medžiaga po kurso pabaigos?",
-        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias. Taip pat, turėsite galimybę susisiekti su dėstytojais ir gauti atsakymus į klausimus."
+        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias. Taip pat galėsite susisiekti su dėstytojais ir gauti atsakymus į klausimus."
       }
     ]
   }

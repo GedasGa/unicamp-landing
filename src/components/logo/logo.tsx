@@ -11,6 +11,7 @@ import { RouterLink } from 'src/routes/components';
 
 import { logoClasses } from './classes';
 import { CONFIG } from '../../config-global';
+import { Image } from 'src/components/image';
 
 // ----------------------------------------------------------------------
 
@@ -40,9 +41,8 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>(
     const theme = useTheme();
 
     const singleLogo = (
-      <Box
+      <Image
         alt="Single logo"
-        component="img"
         src={`${CONFIG.assetsDir}/logo/logo-single.svg`}
         width="100%"
         height="100%"
@@ -50,9 +50,8 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>(
     );
 
     const singleLogoOnBlack = (
-      <Box
+      <Image
         alt="Single logo on black"
-        component="img"
         src={`${CONFIG.assetsDir}/logo/logo-single.svg`}
         width="100%"
         height="100%"
@@ -60,9 +59,8 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>(
     );
 
     const fullLogo = (
-      <Box
+      <Image
         alt="Full logo"
-        component="img"
         src={`${CONFIG.assetsDir}/logo/logo-full.svg`}
         width="100%"
         height="100%"
