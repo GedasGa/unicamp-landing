@@ -1,7 +1,7 @@
 'use client';
 
 import { z as zod } from 'zod';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -52,6 +52,23 @@ export function SupabaseSignUpView() {
   const router = useRouter();
 
   const password = useBoolean();
+
+  // Parse error from URL hash (Supabase redirects with errors in hash)
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const params = new URLSearchParams(hash.substring(1));
+      const error = params.get('error');
+      const errorDescription = params.get('error_description');
+      
+      if (error) {
+        const message = errorDescription 
+          ? decodeURIComponent(errorDescription.replace(/\+/g, ' '))
+          : error;
+        setErrorMsg(message);
+      }
+    }
+  }, []);
 
   const defaultValues = {
     firstName: '',

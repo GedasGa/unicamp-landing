@@ -27,7 +27,6 @@ import { AnimateAvatar } from 'src/components/animate';
 
 import { useAuthContext } from 'src/auth/hooks';
 
-import { UpgradeBlock } from './nav-upgrade';
 import { AccountButton } from './account-button';
 import { SignOutButton } from './sign-out-button';
 
@@ -134,7 +133,7 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
               return (
                 <MenuItem
                   key={option.label}
-                  onClick={() => handleClickItem(option.label === 'Home' ? paths.dashboard.root : option.href)}
+                  onClick={() => handleClickItem(option.label === 'Home' ? paths.app.root : option.href)}
                   sx={{
                     py: 1,
                     color: 'text.secondary',

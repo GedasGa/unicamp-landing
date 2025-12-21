@@ -33,7 +33,7 @@ export const CONFIG: ConfigValue = {
   auth: {
     method: 'supabase',
     skip: false,
-    redirectPath: paths.dashboard.root,
+    redirectPath: paths.app.root,
   },
   /**
    * Supabase

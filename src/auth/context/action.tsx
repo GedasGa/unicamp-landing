@@ -75,7 +75,10 @@ export const signUp = async ({
     password,
     options: {
       emailRedirectTo: `${window.location.origin}${paths.auth.verify}`,
-      data: { display_name: `${firstName} ${lastName}` },
+      data: { 
+        first_name: firstName,
+        last_name: lastName,
+      },
     },
   });
 
@@ -152,6 +155,8 @@ export const signInWithOAuth = async (provider: 'google' | 'github' | 'twitter')
         access_type: 'offline',
         prompt: 'consent',
       },
+      // Request additional scopes to get profile picture
+      scopes: 'profile email https://www.googleapis.com/auth/userinfo.profile',
     },
   });
 
