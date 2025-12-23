@@ -4,16 +4,24 @@
 // Server Actions for Confluence Content
 // =============================================
 
-import { fetchLessonTopics, fetchTopicContent, fetchTopicAttachments } from 'src/lib/confluence';
-
-const CONFLUENCE_ACCESS_TOKEN = process.env.CONFLUENCE_API_TOKEN || '';
-
 /**
  * Server action to fetch topics for a lesson from Confluence
  */
 export async function getConfluenceLessonTopics(lessonConfluenceId: string) {
   try {
-    const topics = await fetchLessonTopics(lessonConfluenceId, CONFLUENCE_ACCESS_TOKEN);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/lessons/${lessonConfluenceId}/topics`,
+      {
+        method: 'GET',
+        cache: 'no-store',
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch topics: ${response.statusText}`);
+    }
+
+    const topics = await response.json();
     return { success: true, data: topics };
   } catch (error) {
     console.error('Error fetching lesson topics:', error);
@@ -29,7 +37,19 @@ export async function getConfluenceLessonTopics(lessonConfluenceId: string) {
  */
 export async function getConfluenceTopicContent(topicId: string) {
   try {
-    const content = await fetchTopicContent(topicId, CONFLUENCE_ACCESS_TOKEN);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/topics/${topicId}`,
+      {
+        method: 'GET',
+        cache: 'no-store',
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch topic content: ${response.statusText}`);
+    }
+
+    const content = await response.json();
     return { success: true, data: content };
   } catch (error) {
     console.error('Error fetching topic content:', error);
@@ -45,7 +65,19 @@ export async function getConfluenceTopicContent(topicId: string) {
  */
 export async function getConfluenceTopicAttachments(topicId: string) {
   try {
-    const attachments = await fetchTopicAttachments(topicId, CONFLUENCE_ACCESS_TOKEN);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/topics/${topicId}/attachments`,
+      {
+        method: 'GET',
+        cache: 'no-store',
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch attachments: ${response.statusText}`);
+    }
+
+    const attachments = await response.json();
     return { success: true, data: attachments };
   } catch (error) {
     console.error('Error fetching topic attachments:', error);

@@ -17,7 +17,15 @@ import Skeleton from '@mui/material/Skeleton';
 import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
 
+import { ReactRenderer } from '@atlaskit/renderer';
+import { SmartCardProvider } from '@atlaskit/link-provider';
+import type { MediaClientConfig } from '@atlaskit/media-core';
+import { setGlobalTheme } from '@atlaskit/tokens';
+import { IntlProvider } from 'react-intl-next';
+
 import { Iconify } from 'src/components/iconify';
+import { LinkPreviewClient } from 'src/lib/link-preview-client';
+import { useSettingsContext } from 'src/components/settings';
 
 import { getConfluenceTopicContent } from 'src/actions/confluence';
 
@@ -36,9 +44,20 @@ export const TopicViewer: FC<TopicViewerProps> = ({
   onBack,
   isCompleted = false,
 }) => {
+  const settings = useSettingsContext();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<any>(null);
+  const [mediaClientConfig, setMediaClientConfig] = useState<MediaClientConfig | undefined>(
+    undefined
+  );
+
+  // Sync Atlassian theme with app theme
+  useEffect(() => {
+    setGlobalTheme({
+      colorMode: settings.colorScheme === 'dark' ? 'dark' : 'light',
+    });
+  }, [settings.colorScheme]);
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -47,9 +66,18 @@ export const TopicViewer: FC<TopicViewerProps> = ({
       
       try {
         const result = await getConfluenceTopicContent(confluencePageId);
-        
         if (result.success && result.data) {
           setContent(result.data);
+          
+          // Set up media client config for Confluence attachments
+          setMediaClientConfig({
+            authProvider: () =>
+              Promise.resolve({
+                clientId: '',
+                token: '',
+                baseUrl: `/api/topics/${confluencePageId}`,
+              }),
+          });
         } else {
           setError(result.error || 'Failed to load content');
         }
@@ -129,27 +157,46 @@ export const TopicViewer: FC<TopicViewerProps> = ({
           </Typography>
         )}
 
-        {/* Render Confluence content */}
-        <Box
-          sx={{
-            '& img': { maxWidth: '100%', height: 'auto' },
-            '& pre': { 
-              bgcolor: 'grey.900', 
-              color: 'common.white',
-              p: 2, 
-              borderRadius: 1,
-              overflow: 'auto',
-            },
-            '& code': {
-              bgcolor: 'grey.100',
-              px: 0.5,
-              py: 0.25,
-              borderRadius: 0.5,
-              fontSize: '0.875rem',
-            },
-          }}
-          dangerouslySetInnerHTML={{ __html: content?.content || '' }}
-        />
+        {/* Render Confluence content using Atlassian ReactRenderer */}
+        {content?.content && (
+          <IntlProvider locale="en">
+            <SmartCardProvider client={new LinkPreviewClient()}>
+              <ReactRenderer
+                document={content.content}
+                appearance="full-width"
+                annotationProvider={null}
+                allowAnnotations={false}
+                allowHeadingAnchorLinks
+                allowPlaceholderText
+                allowCopyToClipboard
+                allowCustomPanels
+                shouldOpenMediaViewer={false}
+                allowUgcScrubber={false}
+                allowSelectAllTrap={false}
+                analyticsEventSeverityTracking={{
+                  enabled: false,
+                  severityNormalThreshold: 0,
+                  severityDegradedThreshold: 0,
+                }}
+                enableSsrInlineScripts={false}
+                unsupportedContentLevelsTracking={{
+                  enabled: false,
+                }}
+                media={
+                  mediaClientConfig && {
+                    allowCaptions: true,
+                    allowLinking: true,
+                    enableSyncMediaCard: false,
+                    ssr: {
+                      mode: 'client',
+                      config: mediaClientConfig,
+                    },
+                  }
+                }
+              />
+            </SmartCardProvider>
+          </IntlProvider>
+        )}
 
         {onComplete && !isCompleted && (
           <Box sx={{ mt: 4, display: 'flex', justifyContent: 'flex-end' }}>

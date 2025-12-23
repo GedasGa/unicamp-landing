@@ -213,7 +213,7 @@ export default function LessonDetailPage({ params }: Props) {
         <Box sx={{ flexGrow: 1 }}>
           {selectedTopic ? (
             <TopicViewer
-              confluencePageId={selectedTopic.confluence_page_id}
+              confluencePageId={selectedTopic.id}
               topicTitle={selectedTopic.title}
               isCompleted={topicProgress.get(selectedTopic.id)?.completed || false}
               onComplete={handleTopicComplete}
