@@ -522,6 +522,77 @@ export async function getLessonVisibility(groupId: string, lessonId: string) {
   return data;
 }
 
+// Check if user has access to a lesson (based on group assignment and visibility)
+export async function checkLessonAccess(userId: string, lessonId: string) {
+  try {
+    // Get lesson with module and course info
+    const { data: lessonData, error: lessonError } = await supabase
+      .from('lessons')
+      .select(`
+        *,
+        module:modules!inner(
+          *,
+          course:courses!inner(*)
+        )
+      `)
+      .eq('id', lessonId)
+      .single();
+
+    if (lessonError) throw lessonError;
+    if (!lessonData) return { accessible: false, reason: 'Lesson not found' };
+
+    const courseId = lessonData.module.course.id;
+
+    // Get user's groups
+    const { data: userGroups, error: groupError } = await supabase
+      .from('group_students')
+      .select('group_id')
+      .eq('student_id', userId);
+
+    if (groupError) throw groupError;
+    if (!userGroups || userGroups.length === 0) {
+      return { accessible: false, reason: 'Not assigned to any groups' };
+    }
+
+    const groupIds = userGroups.map(g => g.group_id);
+
+    // Check if course is assigned to any of user's groups
+    const { data: groupCourses, error: courseError } = await supabase
+      .from('group_courses')
+      .select('*')
+      .in('group_id', groupIds)
+      .eq('course_id', courseId);
+
+    if (courseError) throw courseError;
+    if (!groupCourses || groupCourses.length === 0) {
+      return { accessible: false, reason: 'Course not assigned to your groups' };
+    }
+
+    // Check if lesson is visible to any of user's groups
+    const { data: lessonVisibility, error: visError } = await supabase
+      .from('group_lesson_visibility')
+      .select('*')
+      .in('group_id', groupIds)
+      .eq('lesson_id', lessonId)
+      .eq('is_visible', true);
+
+    if (visError) throw visError;
+    if (!lessonVisibility || lessonVisibility.length === 0) {
+      return { accessible: false, reason: 'Lesson not unlocked' };
+    }
+
+    return { 
+      accessible: true, 
+      lesson: lessonData,
+      course: lessonData.module.course,
+      module: lessonData.module
+    };
+  } catch (error) {
+    console.error('Error checking lesson access:', error);
+    return { accessible: false, reason: 'Error checking access' };
+  }
+}
+
 // =============================================
 // STUDENT PROGRESS FUNCTIONS
 // =============================================

@@ -158,7 +158,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
         )}
 
         {/* Render Confluence content using Atlassian ReactRenderer */}
-        {content?.content && (
+        {content?.content && mediaClientConfig && (
           <IntlProvider locale="en">
             <SmartCardProvider client={new LinkPreviewClient()}>
               <ReactRenderer
@@ -174,19 +174,17 @@ export const TopicViewer: FC<TopicViewerProps> = ({
                 allowUgcScrubber={false}
                 allowSelectAllTrap={false}
                 analyticsEventSeverityTracking={{
-                  enabled: false,
-                  severityNormalThreshold: 0,
-                  severityDegradedThreshold: 0,
+                    enabled: false,
+                    severityNormalThreshold: 0,
+                    severityDegradedThreshold: 0,
                 }}
                 enableSsrInlineScripts={false}
+                noOpSSRInlineScript={true}
                 unsupportedContentLevelsTracking={{
-                  enabled: false,
+                    enabled: false,
                 }}
                 media={
-                  mediaClientConfig && {
-                    allowCaptions: true,
-                    allowLinking: true,
-                    enableSyncMediaCard: false,
+                  {
                     ssr: {
                       mode: 'client',
                       config: mediaClientConfig,

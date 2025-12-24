@@ -3,7 +3,7 @@
 // =============================================
 
 import { CardClient } from '@atlaskit/link-provider';
-import type { JsonLd } from '@atlaskit/json-ld-types';
+import type { JsonLd } from '@atlaskit/linking-common';
 
 type SupportedProviders = 'YouTube' | 'CodeSandbox' | 'JSitor' | 'Figma';
 
@@ -25,12 +25,8 @@ const IMAGES: ProvidersImages = {
   Figma: 'https://static.figma.com/app/icon/1/touch-76.png',
 };
 
-// Setup custom client for link previews
+// Setup custom client which handles YouTube and other embed providers
 export class LinkPreviewClient extends CardClient {
-  constructor() {
-    super();
-  }
-
   private static getProvider(url: string): SupportedProviders | undefined {
     if (url.match(/youtu.be|youtube.com/)) {
       return 'YouTube';
@@ -110,21 +106,21 @@ export class LinkPreviewClient extends CardClient {
     } as JsonLd.Response;
   }
 
-  async fetchData(url: string): Promise<JsonLd.Response> {
+  fetchData(url: string): Promise<JsonLd.Response> {
     const provider = LinkPreviewClient.getProvider(url);
     if (provider) {
-      return LinkPreviewClient.generateLinkPreviewResponse(provider, url);
+      return Promise.resolve(LinkPreviewClient.generateLinkPreviewResponse(provider, url));
     }
-    // Fallback to parent class implementation
+    // Fallback to parent class implementation for other URLs
     return super.fetchData(url);
   }
 
-  async prefetchData(url: string): Promise<JsonLd.Response | undefined> {
+  prefetchData(url: string): Promise<JsonLd.Response | undefined> {
     const provider = LinkPreviewClient.getProvider(url);
     if (provider) {
-      return LinkPreviewClient.generateLinkPreviewResponse(provider, url);
+      return Promise.resolve(LinkPreviewClient.generateLinkPreviewResponse(provider, url));
     }
-    // Fallback to parent class implementation
+    // Fallback to parent class implementation for other URLs
     return super.prefetchData(url);
   }
 }

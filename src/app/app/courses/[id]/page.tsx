@@ -102,7 +102,7 @@ export default function CourseDetailPage({ params }: Props) {
   }, [params.id, user?.id]);
 
   const handleLessonClick = (moduleId: string, lessonId: string) => {
-    router.push(`/learning/courses/${params.id}/modules/${moduleId}/lessons/${lessonId}`);
+    router.push(`/app/courses/${params.id}/modules/${moduleId}/lessons/${lessonId}`);
   };
 
   if (loading) {
