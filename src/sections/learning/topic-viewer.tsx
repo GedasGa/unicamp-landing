@@ -58,6 +58,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
   const mediaClientConfig: MediaClientConfig = {
     initialAuth,
     authProvider: () => Promise.resolve(initialAuth),
+    authProviderTimeoutMs: 10000,
   };
 
   // Sync Atlassian theme with app theme
@@ -158,7 +159,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
         {/* Render Confluence content using Atlassian ReactRenderer */}
         {content?.content && (
           <IntlProvider locale="en">
-            <SmartCardProvider client={new LinkPreviewClient()}>
+            <SmartCardProvider client={new LinkPreviewClient()} >
               <ReactRenderer
                 document={content.content}
                 appearance="full-width"

@@ -3,7 +3,7 @@
 // =============================================
 
 import { CardClient } from '@atlaskit/link-provider';
-import type { JsonLd } from '@atlaskit/linking-common';
+import type { JsonLd } from '@atlaskit/json-ld-types';
 
 type SupportedProviders = 'YouTube' | 'CodeSandbox' | 'JSitor' | 'Figma';
 

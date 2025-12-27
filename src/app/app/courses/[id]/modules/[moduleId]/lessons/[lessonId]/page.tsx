@@ -68,7 +68,7 @@ export default function LessonDetailPage({ params }: Props) {
         
         // Find first incomplete topic or default to first topic
         const firstIncomplete = topicsResult.data.find(
-          (topic) => !progressMap.get(topic.id)?.completed
+          (topic: any) => !progressMap.get(topic.id)?.completed
         );
         const targetTopic = firstIncomplete || topicsResult.data[0];
         

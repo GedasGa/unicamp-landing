@@ -1,5 +1,5 @@
 {
-  "name": "Unicamp Landing page",
+  "name": "unicamp-landing",
   "author": "UAB Unicamp",
   "version": "6.1.0",
   "description": "Next & TypeScript",
@@ -24,6 +24,7 @@
     "node": "20.x"
   },
   "dependencies": {
+    "@atlaskit/json-ld-types": "^1.4.1",
     "@atlaskit/link-provider": "^4.0.7",
     "@atlaskit/media-core": "^37.0.0",
     "@atlaskit/renderer": "^124.22.8",
@@ -141,10 +142,6 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-unused-imports": "^3.2.0",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.4",
-    "vercel": "39.1.1"
-  },
-  "overrides": {
-    "vercel": "$vercel"
+    "typescript": "^5.5.4"
   }
 }

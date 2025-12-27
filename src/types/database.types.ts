@@ -161,22 +161,7 @@ export type Database = {
           joined_at?: string | null
           student_id?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "group_members_group_id_fkey"
-            columns: ["group_id"]
-            isOneToOne: false
-            referencedRelation: "groups"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "group_members_student_id_fkey"
-            columns: ["student_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       group_module_visibility: {
         Row: {
@@ -223,6 +208,84 @@ export type Database = {
           },
         ]
       }
+      group_students: {
+        Row: {
+          created_at: string | null
+          group_id: string
+          id: string
+          joined_at: string | null
+          student_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          group_id: string
+          id?: string
+          joined_at?: string | null
+          student_id: string
+        }
+        Update: {
+          created_at?: string | null
+          group_id?: string
+          id?: string
+          joined_at?: string | null
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_students_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_students_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      group_teachers: {
+        Row: {
+          created_at: string | null
+          group_id: string
+          id: string
+          joined_at: string | null
+          teacher_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          group_id: string
+          id?: string
+          joined_at?: string | null
+          teacher_id: string
+        }
+        Update: {
+          created_at?: string | null
+          group_id?: string
+          id?: string
+          joined_at?: string | null
+          teacher_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_teachers_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_teachers_teacher_id_fkey"
+            columns: ["teacher_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       groups: {
         Row: {
           created_at: string | null
@@ -252,6 +315,51 @@ export type Database = {
           {
             foreignKeyName: "groups_created_by_fkey"
             columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      invitations: {
+        Row: {
+          accepted_at: string | null
+          email: string
+          group_id: string | null
+          id: string
+          invited_at: string | null
+          invited_by: string | null
+          role: Database["public"]["Enums"]["user_role"]
+        }
+        Insert: {
+          accepted_at?: string | null
+          email: string
+          group_id?: string | null
+          id?: string
+          invited_at?: string | null
+          invited_by?: string | null
+          role: Database["public"]["Enums"]["user_role"]
+        }
+        Update: {
+          accepted_at?: string | null
+          email?: string
+          group_id?: string | null
+          id?: string
+          invited_at?: string | null
+          invited_by?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "invitations_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "invitations_invited_by_fkey"
+            columns: ["invited_by"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
@@ -519,7 +627,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_teacher: { Args: never; Returns: boolean }
     }
     Enums: {
       user_role: "teacher" | "student"

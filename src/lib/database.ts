@@ -4,7 +4,7 @@
 
 import { supabase } from 'src/lib/supabase';
 
-import type { Database, UserRole } from 'src/types/database.types';
+import type { Database } from 'src/types/database.types';
 
 type Tables = Database['public']['Tables'];
 type Profile = Tables['profiles']['Row'];
@@ -683,16 +683,6 @@ export async function updateModuleProgress(
     })
     .select()
     .single();
-
-  if (error) throw error;
-  return data;
-}
-
-export async function getStudentProgress(studentId: string) {
-  const { data, error } = await supabase
-    .from('student_available_content')
-    .select('*')
-    .eq('student_id', studentId);
 
   if (error) throw error;
   return data;

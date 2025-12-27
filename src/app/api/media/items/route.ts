@@ -12,11 +12,24 @@ const CONFLUENCE_CONFIG = {
 export async function POST(request: NextRequest) {
   try {
     // Extract topic ID from request body
+    // Body format: { descriptors: [{ collection: "contentId-8486936", ... }] }
     const body = await request.json();
-    const topicId = body.data?.topicId || body.topicId;
+    
+    const descriptors = body.descriptors;
+    
+    if (!Array.isArray(descriptors) || descriptors.length === 0 || !descriptors[0].collection) {
+      console.error('Invalid request body format');
+      console.error('Request body:', body);
+      return NextResponse.json({ error: 'Invalid request body format' }, { status: 400 });
+    }
+    
+    // Extract topicId from collection field (e.g., "contentId-8486936" -> "8486936")
+    const match = descriptors[0].collection.match(/contentId-(.+)/);
+    const topicId = match ? match[1] : null;
     
     if (!topicId) {
-      console.error('Missing topicId in request body');
+      console.error('Missing topicId in collection field');
+      console.error('Collection:', descriptors[0].collection);
       return NextResponse.json({ error: 'Missing topicId' }, { status: 400 });
     }
     
