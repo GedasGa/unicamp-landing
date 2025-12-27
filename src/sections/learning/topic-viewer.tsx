@@ -164,7 +164,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
                 appearance="full-width"
                 annotationProvider={null}
                 allowAnnotations={false}
-                allowHeadingAnchorLinks
+                allowHeadingAnchorLinks={false}
                 allowPlaceholderText
                 allowCopyToClipboard
                 allowCustomPanels
@@ -181,9 +181,28 @@ export const TopicViewer: FC<TopicViewerProps> = ({
                 unsupportedContentLevelsTracking={{
                     enabled: false,
                 }}
+                eventHandlers={{
+                  link: {
+                    onClick: (event, url) => {
+                      if (url) {
+                        event.preventDefault();
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                      }
+                    },
+                  },
+                  smartCard: {
+                    onClick: (event, url) => {
+                      if (url) {
+                        event.preventDefault();
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                      }
+                    },
+                  },
+                }}
                 media={{
                   allowLinking: true,
                   allowCaptions: true,
+                  enableDownloadButton: true,
                   ssr: {
                     mode: 'client',
                     config: mediaClientConfig,
