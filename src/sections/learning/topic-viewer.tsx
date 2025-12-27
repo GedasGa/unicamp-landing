@@ -48,9 +48,17 @@ export const TopicViewer: FC<TopicViewerProps> = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<any>(null);
-  const [mediaClientConfig, setMediaClientConfig] = useState<MediaClientConfig | undefined>(
-    undefined
-  );
+
+  // Set up media client configuration for Confluence attachments
+  const initialAuth = {
+    clientId: 'f41dff68-9c65-4def-803a-13a0b73f3986',
+    token: 'confluence-media-token',
+    baseUrl: 'http://localhost:8082/api/media',
+  };
+  const mediaClientConfig: MediaClientConfig = {
+    initialAuth,
+    authProvider: () => Promise.resolve(initialAuth),
+  };
 
   // Sync Atlassian theme with app theme
   useEffect(() => {
@@ -68,16 +76,6 @@ export const TopicViewer: FC<TopicViewerProps> = ({
         const result = await getConfluenceTopicContent(confluencePageId);
         if (result.success && result.data) {
           setContent(result.data);
-          
-          // Set up media client config for Confluence attachments
-          setMediaClientConfig({
-            authProvider: () =>
-              Promise.resolve({
-                clientId: '',
-                token: '',
-                baseUrl: `/api/topics/${confluencePageId}`,
-              }),
-          });
         } else {
           setError(result.error || 'Failed to load content');
         }
@@ -158,7 +156,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
         )}
 
         {/* Render Confluence content using Atlassian ReactRenderer */}
-        {content?.content && mediaClientConfig && (
+        {content?.content && (
           <IntlProvider locale="en">
             <SmartCardProvider client={new LinkPreviewClient()}>
               <ReactRenderer
@@ -179,18 +177,21 @@ export const TopicViewer: FC<TopicViewerProps> = ({
                     severityDegradedThreshold: 0,
                 }}
                 enableSsrInlineScripts={false}
-                noOpSSRInlineScript={true}
+                noOpSSRInlineScript={false}
                 unsupportedContentLevelsTracking={{
                     enabled: false,
                 }}
-                media={
-                  {
-                    ssr: {
-                      mode: 'client',
-                      config: mediaClientConfig,
-                    },
-                  }
-                }
+                media={{
+                  allowLinking: true,
+                  allowCaptions: true,
+                  ssr: {
+                    mode: 'client',
+                    config: mediaClientConfig,
+                  },
+                }}
+                smartLinks={{
+                  ssr: false,
+                }}
               />
             </SmartCardProvider>
           </IntlProvider>

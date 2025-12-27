@@ -1,5 +1,5 @@
 // =============================================
-// API Route: Get Confluence Topic Attachments
+// API Route: Get Confluence Media Items
 // =============================================
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -9,30 +9,32 @@ const CONFLUENCE_CONFIG = {
   accessToken: process.env.CONFLUENCE_API_TOKEN,
 };
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: NextRequest) {
   try {
-    const topicId = params.id;
+    // Extract topic ID from request body
+    const body = await request.json();
+    const topicId = body.data?.topicId || body.topicId;
     
-    console.log('=== Items API Called ===');
+    if (!topicId) {
+      console.error('Missing topicId in request body');
+      return NextResponse.json({ error: 'Missing topicId' }, { status: 400 });
+    }
+    
+    console.log('=== Media Items API Called ===');
     console.log('Topic ID:', topicId);
     console.log('Request URL:', request.url);
+    console.log('Request body:', body);
 
     const url = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}/child/attachment`;
     console.log('Fetching attachments from:', url);
 
-    const response = await fetch(
-      url,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Basic ${CONFLUENCE_CONFIG.accessToken}`,
-          Accept: 'application/json',
-        },
-      }
-    );
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Basic ${CONFLUENCE_CONFIG.accessToken}`,
+        Accept: 'application/json',
+      },
+    });
 
     if (!response.ok) {
       console.error('Failed to fetch attachments:', response.status, response.statusText);
@@ -77,7 +79,7 @@ export async function POST(
     });
 
     console.log('Returning items:', items.length);
-    console.log('=== Items API Complete ===\n');
+    console.log('=== Media Items API Complete ===\n');
 
     return NextResponse.json({
       data: {
@@ -85,7 +87,7 @@ export async function POST(
       },
     });
   } catch (error) {
-    console.error('=== Items API Error ===');
+    console.error('=== Media Items API Error ===');
     console.error('Error fetching topic attachments:', error);
     console.error('Error stack:', error instanceof Error ? error.stack : 'N/A');
     return NextResponse.json(

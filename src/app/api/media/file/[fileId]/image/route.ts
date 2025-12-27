@@ -11,30 +11,37 @@ const CONFLUENCE_CONFIG = {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string; fileId: string } }
+  { params }: { params: { fileId: string } }
 ) {
   try {
-    const { id: topicId, fileId } = params;
+    const { fileId } = params;
     
-    console.log('=== Image API Called ===');
+    // Extract topic ID from query params
+    const { searchParams } = new URL(request.url);
+    const topicId = searchParams.get('collection')?.replace('contentId-', '');
+    
+    if (!topicId) {
+      console.error('Missing topicId in query params');
+      return NextResponse.json({ error: 'Missing collection/topicId' }, { status: 400 });
+    }
+    
+    console.log('=== Media Image API Called ===');
     console.log('Topic ID:', topicId);
     console.log('File ID:', fileId);
     console.log('Request URL:', request.url);
+    console.log('Query params:', Object.fromEntries(searchParams.entries()));
 
     // First, get the attachment list to find the attachment ID
     const attachmentUrl = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}/child/attachment`;
     console.log('Fetching attachments from:', attachmentUrl);
     
-    const attachmentResponse = await fetch(
-      attachmentUrl,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Basic ${CONFLUENCE_CONFIG.accessToken}`,
-          Accept: 'application/json',
-        },
-      }
-    );
+    const attachmentResponse = await fetch(attachmentUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: `Basic ${CONFLUENCE_CONFIG.accessToken}`,
+        Accept: 'application/json',
+      },
+    });
 
     if (!attachmentResponse.ok) {
       console.error('Failed to fetch attachments:', attachmentResponse.status, attachmentResponse.statusText);
@@ -74,15 +81,12 @@ export async function GET(
     const downloadUrl = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}/child/attachment/${attachment.id}/download`;
     console.log('Downloading from:', downloadUrl);
     
-    const fileResponse = await fetch(
-      downloadUrl,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Basic ${CONFLUENCE_CONFIG.accessToken}`,
-        },
-      }
-    );
+    const fileResponse = await fetch(downloadUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: `Basic ${CONFLUENCE_CONFIG.accessToken}`,
+      },
+    });
 
     if (!fileResponse.ok) {
       console.error('Failed to download file:', fileResponse.status, fileResponse.statusText);
@@ -112,14 +116,14 @@ export async function GET(
     headers.set('Cache-Control', 'public, max-age=31536000, immutable');
 
     console.log('Returning file with headers:', Object.fromEntries(headers.entries()));
-    console.log('=== Image API Complete ===\n');
+    console.log('=== Media Image API Complete ===\n');
 
     return new NextResponse(fileBuffer, {
       status: 200,
       headers,
     });
   } catch (error) {
-    console.error('=== Image API Error ===');
+    console.error('=== Media Image API Error ===');
     console.error('Error fetching file:', error);
     console.error('Error stack:', error instanceof Error ? error.stack : 'N/A');
     return NextResponse.json({ error: 'Failed to fetch file' }, { status: 500 });
