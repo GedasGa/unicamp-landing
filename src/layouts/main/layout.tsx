@@ -29,6 +29,8 @@ import Link from 'next/link';
 import Container from '@mui/material/Container';
 import { defaultNavData } from './nav/config';
 import { useState } from 'react';
+import { useAuthContext } from '../../auth/hooks';
+import { paths } from '../../routes/paths';
 
 // ----------------------------------------------------------------------
 
@@ -52,6 +54,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
   const pathname = usePathname();
   const mobileNavOpen = useBoolean();
   const { t } = useTranslate('nav');
+  const { authenticated } = useAuthContext();
 
   // Disabled until next kursuok.lt financing round
   const [showAlert, setShowAlert] = useState(false);
@@ -128,13 +131,13 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                   <Button
                     variant="outlined"
                     rel="noopener"
-                    href="/#courses"
+                    href={authenticated ? paths.app.root : paths.auth.signIn}
                     sx={{
                       display: 'none',
                       [theme.breakpoints.up(layoutQuery)]: { display: 'inline-flex' },
                     }}
                   >
-                    {t('cta.text')}
+                    {authenticated ? t('cta.goToPlatform') : t('cta.signIn')}
                   </Button>
                 </Box>
               </>

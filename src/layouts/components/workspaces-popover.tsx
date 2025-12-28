@@ -2,43 +2,51 @@
 
 import type { ButtonBaseProps } from '@mui/material/ButtonBase';
 
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
+import { useGroupContext } from 'src/contexts/group-context';
 
 // ----------------------------------------------------------------------
 
 export type WorkspacesPopoverProps = ButtonBaseProps & {
-  data?: {
-    id: string;
-    name: string;
-    logo: string;
-    plan: string;
-  }[];
+  sx?: any;
 };
 
-export function WorkspacesPopover({ data = [], sx, ...other }: WorkspacesPopoverProps) {
+export function WorkspacesPopover({ sx, ...other }: WorkspacesPopoverProps) {
   const popover = usePopover();
+  const { groups, selectedGroup, setSelectedGroup, loading } = useGroupContext();
 
   const mediaQuery = 'sm';
 
-  const [workspace, setWorkspace] = useState(data[0]);
-
   const handleChangeWorkspace = useCallback(
-    (newValue: (typeof data)[0]) => {
-      setWorkspace(newValue);
+    (newValue: typeof selectedGroup) => {
+      setSelectedGroup(newValue);
       popover.onClose();
     },
-    [popover]
+    [popover, setSelectedGroup]
   );
+
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <CircularProgress size={20} />
+      </Box>
+    );
+  }
+
+  if (groups.length === 0) {
+    return null;
+  }
 
   return (
     <>
@@ -52,12 +60,17 @@ export function WorkspacesPopover({ data = [], sx, ...other }: WorkspacesPopover
         }}
         {...other}
       >
-        <Box
-          component="img"
-          alt={workspace?.name}
-          src={workspace?.logo}
-          sx={{ width: 24, height: 24, borderRadius: '50%' }}
-        />
+        <Avatar
+          sx={{
+            width: 24,
+            height: 24,
+            bgcolor: 'primary.main',
+            fontSize: 12,
+            fontWeight: 'bold',
+          }}
+        >
+          {selectedGroup?.name?.charAt(0)?.toUpperCase() || 'G'}
+        </Avatar>
 
         <Box
           component="span"
@@ -66,17 +79,17 @@ export function WorkspacesPopover({ data = [], sx, ...other }: WorkspacesPopover
             display: { xs: 'none', [mediaQuery]: 'inline-flex' },
           }}
         >
-          {workspace?.name}
+          {selectedGroup?.name}
         </Box>
 
         <Label
-          color={workspace?.plan === 'Free' ? 'default' : 'info'}
+          color="default"
           sx={{
             height: 22,
             display: { xs: 'none', [mediaQuery]: 'inline-flex' },
           }}
         >
-          {workspace?.plan}
+          Group
         </Label>
 
         <Iconify width={16} icon="carbon:chevron-sort" sx={{ color: 'text.disabled' }} />
@@ -86,23 +99,33 @@ export function WorkspacesPopover({ data = [], sx, ...other }: WorkspacesPopover
         open={popover.open}
         anchorEl={popover.anchorEl}
         onClose={popover.onClose}
-        slotProps={{ arrow: { placement: 'top-left' } }}
+        slotProps={{ arrow: { hide: true } }}
       >
         <MenuList sx={{ width: 240 }}>
-          {data.map((option) => (
+          {groups.map((option) => (
             <MenuItem
               key={option.id}
-              selected={option.id === workspace?.id}
+              selected={option.id === selectedGroup?.id}
               onClick={() => handleChangeWorkspace(option)}
               sx={{ height: 48 }}
             >
-              <Avatar alt={option.name} src={option.logo} sx={{ width: 24, height: 24 }} />
+              <Avatar
+                sx={{
+                  width: 24,
+                  height: 24,
+                  bgcolor: 'primary.main',
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                }}
+              >
+                {option.name?.charAt(0)?.toUpperCase() || 'G'}
+              </Avatar>
 
               <Box component="span" sx={{ flexGrow: 1 }}>
                 {option.name}
               </Box>
 
-              <Label color={option.plan === 'Free' ? 'default' : 'info'}>{option.plan}</Label>
+              <Label color="default">Group</Label>
             </MenuItem>
           ))}
         </MenuList>

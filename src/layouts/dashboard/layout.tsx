@@ -106,7 +106,6 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
                 />
                 {/* -- Workspace popover -- */}
                 <WorkspacesPopover
-                  data={_workspaces}
                   sx={{ color: 'var(--layout-nav-text-primary-color)' }}
                 />
               </>

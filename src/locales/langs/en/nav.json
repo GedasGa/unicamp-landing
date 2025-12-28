@@ -1,6 +1,8 @@
 {
   "cta": {
-    "text": "View Courses"
+    "text": "View Courses",
+    "goToPlatform": "Go to platform",
+    "signIn": "Sign in"
   },
   "dismiss": "Dismiss",
   "here": "kursuok.lt",

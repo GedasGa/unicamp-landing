@@ -155,12 +155,12 @@ export function SupabaseSignUpView() {
   return (
     <>
       <FormHead
-        title="Get started absolutely free"
+        title="Sign up for free"
         description={
           <>
             {`Already have an account? `}
             <Link component={RouterLink} href={paths.auth.signIn} variant="subtitle2">
-              Get started
+              Sign in
             </Link>
           </>
         }
@@ -173,7 +173,7 @@ export function SupabaseSignUpView() {
         </Alert>
       )}
 
-      <FormSocials signInWithGoogle={handleGoogleSignIn} />
+      <FormSocials signInWithGoogle={handleGoogleSignIn} googleButtonText="Sign up with Google" />
 
       <FormDivider />
 

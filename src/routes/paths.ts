@@ -18,6 +18,7 @@ const ROOTS = {
 export const paths = {
   lecturers: '#lecturers',
   privacyPolicy: '/privacy-policy',
+  termsOfService: '/terms-of-service',
 
   programs: {
     root: '/programs',

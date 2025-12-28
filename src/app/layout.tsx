@@ -22,6 +22,7 @@ import { CSPostHogProvider } from './providers';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 
 import { AuthProvider } from 'src/auth/context';
+import { GroupProvider } from 'src/contexts/group-context';
 
 // ----------------------------------------------------------------------
 
@@ -68,18 +69,20 @@ export default async function RootLayout({ children }: Props) {
         <CSPostHogProvider>
           <I18nProvider lang={CONFIG.isStaticExport ? undefined : lang}>
             <AuthProvider>
-              <LocalizationProvider>
-                <SettingsProvider settings={defaultSettings}>
-                  <ThemeProvider>
-                    <MotionLazy>
-                      <Snackbar />
-                      <ProgressBar />
-                      <SettingsDrawer />
-                      {children}
-                    </MotionLazy>
-                  </ThemeProvider>
-                </SettingsProvider>
-              </LocalizationProvider>
+              <GroupProvider>
+                <LocalizationProvider>
+                  <SettingsProvider settings={defaultSettings}>
+                    <ThemeProvider>
+                      <MotionLazy>
+                        <Snackbar />
+                        <ProgressBar />
+                        <SettingsDrawer />
+                        {children}
+                      </MotionLazy>
+                    </ThemeProvider>
+                  </SettingsProvider>
+                </LocalizationProvider>
+              </GroupProvider>
             </AuthProvider>
           </I18nProvider>
         </CSPostHogProvider>

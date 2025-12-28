@@ -95,4 +95,59 @@ BEGIN
   -- Invite student to group (will be linked when they sign up)
   INSERT INTO invitations (email, role, group_id, invited_at)
   VALUES ('gedas.gardauskas@gmail.com', 'student', v_group_id, NOW());
+
+  -- Insert sample schedule events for the group
+  -- Lessons scheduled for January-February 2026
+  INSERT INTO group_schedule (group_id, lesson_id, title, description, start_time, end_time, mode, meeting_link, created_at)
+  VALUES 
+    -- Week 1
+    (v_group_id, v_lesson1_id, 
+     'Introduction to Digital Design', 
+     'Welcome session and introduction to the course',
+     '2026-01-15 18:00:00+00'::timestamptz,
+     '2026-01-15 20:00:00+00'::timestamptz,
+     'online',
+     'https://meet.google.com/example-1',
+     NOW()),
+    
+    -- Week 2
+    (v_group_id, v_lesson1_id, 
+     'Design Fundamentals - Part 1', 
+     'Core concepts of color and typography',
+     '2026-01-22 18:00:00+00'::timestamptz,
+     '2026-01-22 20:00:00+00'::timestamptz,
+     'online',
+     'https://meet.google.com/example-2',
+     NOW()),
+    
+    -- Week 3
+    (v_group_id, v_lesson2_id, 
+     'Design Fundamentals - Part 2', 
+     'Layout principles and composition',
+     '2026-01-29 18:00:00+00'::timestamptz,
+     '2026-01-29 20:00:00+00'::timestamptz,
+     'online',
+     'https://meet.google.com/example-3',
+     NOW()),
+    
+    -- Week 4
+    (v_group_id, v_lesson2_id, 
+     'Workshop: Applying Design Fundamentals', 
+     'Hands-on practice with design principles',
+     '2026-02-05 18:00:00+00'::timestamptz,
+     '2026-02-05 20:00:00+00'::timestamptz,
+     'online',
+     'https://meet.google.com/example-4',
+     NOW()),
+    
+    -- Week 5
+    (v_group_id, NULL, 
+     'Q&A and Review Session', 
+     'Open discussion and review of Module 1',
+     '2026-02-12 18:00:00+00'::timestamptz,
+     '2026-02-12 20:00:00+00'::timestamptz,
+     'online',
+     'https://meet.google.com/example-5',
+     NOW());
+
 END $$;

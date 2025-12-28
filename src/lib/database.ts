@@ -5,6 +5,7 @@
 import { supabase } from 'src/lib/supabase';
 
 import type { Database } from 'src/types/database.types';
+import type { GroupSchedule, CalendarEvent } from 'src/types/schedule';
 
 type Tables = Database['public']['Tables'];
 type Profile = Tables['profiles']['Row'];
@@ -181,7 +182,7 @@ export async function getGroupMembers(groupId: string) {
 
 export async function getStudentGroups(studentId: string) {
   const { data, error } = await supabase
-    .from('group_members')
+    .from('group_students')
     .select(`
       *,
       group:groups(*)
@@ -190,6 +191,115 @@ export async function getStudentGroups(studentId: string) {
 
   if (error) throw error;
   return data;
+}
+
+export async function getTeacherGroups(teacherId: string) {
+  const { data, error } = await supabase
+    .from('group_teachers')
+    .select(`
+      *,
+      group:groups(*)
+    `)
+    .eq('teacher_id', teacherId);
+
+  if (error) throw error;
+  return data;
+}
+
+export async function getUserGroups(userId: string) {
+  // Try to get groups as student first
+  const studentGroups = await getStudentGroups(userId);
+  if (studentGroups && studentGroups.length > 0) {
+    return studentGroups;
+  }
+  
+  // If no student groups, try as teacher
+  const teacherGroups = await getTeacherGroups(userId);
+  return teacherGroups || [];
+}
+
+// =============================================
+// GROUP SCHEDULE FUNCTIONS
+// =============================================
+
+export async function getGroupSchedule(groupId: string) {
+  const { data, error } = await supabase
+    .from('group_schedule')
+    .select('*')
+    .eq('group_id', groupId)
+    .order('start_time', { ascending: true });
+
+  if (error) throw error;
+  return data as GroupSchedule[];
+}
+
+export async function getUserSchedule(userId: string): Promise<CalendarEvent[]> {
+  // Get user's groups
+  const userGroups = await getUserGroups(userId);
+  if (!userGroups || userGroups.length === 0) {
+    return [];
+  }
+
+  const groupIds = userGroups.map((ug: any) => ug.group_id);
+
+  // Get all schedule events for these groups
+  const { data, error } = await supabase
+    .from('group_schedule')
+    .select('*')
+    .in('group_id', groupIds)
+    .order('start_time', { ascending: true });
+
+  if (error) throw error;
+
+  // Convert to CalendarEvent format
+  const events: CalendarEvent[] = (data as GroupSchedule[]).map((schedule) => ({
+    id: schedule.id,
+    title: schedule.title,
+    start: new Date(schedule.start_time),
+    end: new Date(schedule.end_time),
+    description: schedule.description || undefined,
+    mode: schedule.mode,
+    meetingLink: schedule.meeting_link || undefined,
+    address: schedule.address || undefined,
+    city: schedule.city || undefined,
+    instructions: schedule.instructions || undefined,
+    lessonId: schedule.lesson_id,
+    color: schedule.mode === 'online' ? '#4CAF50' : '#2196F3',
+  }));
+
+  return events;
+}
+
+export async function createScheduleEvent(event: Omit<GroupSchedule, 'id' | 'created_at' | 'updated_at'>) {
+  const { data, error } = await supabase
+    .from('group_schedule')
+    .insert(event)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data as GroupSchedule;
+}
+
+export async function updateScheduleEvent(eventId: string, updates: Partial<GroupSchedule>) {
+  const { data, error } = await supabase
+    .from('group_schedule')
+    .update(updates)
+    .eq('id', eventId)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data as GroupSchedule;
+}
+
+export async function deleteScheduleEvent(eventId: string) {
+  const { error } = await supabase
+    .from('group_schedule')
+    .delete()
+    .eq('id', eventId);
+
+  if (error) throw error;
 }
 
 // =============================================
@@ -225,6 +335,18 @@ export async function getCourses() {
 
   if (error) throw error;
   return data;
+}
+
+export async function getCoursesByGroup(groupId: string) {
+  const { data, error } = await supabase
+    .from('group_courses')
+    .select(`
+      course:courses(*)
+    `)
+    .eq('group_id', groupId);
+
+  if (error) throw error;
+  return data.map(row => row.course).filter(Boolean);
 }
 
 export async function getCourse(courseId: string) {

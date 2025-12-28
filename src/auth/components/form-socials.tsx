@@ -1,6 +1,7 @@
 import type { BoxProps } from '@mui/material/Box';
 
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
 import { GithubIcon, GoogleIcon, TwitterIcon } from 'src/assets/icons';
@@ -9,26 +10,33 @@ import { GithubIcon, GoogleIcon, TwitterIcon } from 'src/assets/icons';
 
 type FormSocialsProps = BoxProps & {
   signInWithGoogle?: () => void;
-  singInWithGithub?: () => void;
+  signInWithGithub?: () => void;
   signInWithTwitter?: () => void;
+  googleButtonText?: string;
 };
 
 export function FormSocials({
   sx,
   signInWithGoogle,
-  singInWithGithub,
+  signInWithGithub,
   signInWithTwitter,
+  googleButtonText = 'Sign in with Google',
   ...other
 }: FormSocialsProps) {
   return (
     <Box gap={1.5} display="flex" justifyContent="center" sx={sx} {...other}>
       {signInWithGoogle && (
-        <IconButton color="inherit" onClick={signInWithGoogle}>
-          <GoogleIcon width={22} />
-        </IconButton>
+        <Button
+          color="inherit"
+          variant="outlined"
+          onClick={signInWithGoogle}
+          startIcon={<GoogleIcon width={22} />}
+        >
+          {googleButtonText}
+        </Button>
       )}
-      {singInWithGithub && (
-        <IconButton color="inherit" onClick={singInWithGithub}>
+      {signInWithGithub && (
+        <IconButton color="inherit" onClick={signInWithGithub}>
           <GithubIcon width={22} />
         </IconButton>
       )}

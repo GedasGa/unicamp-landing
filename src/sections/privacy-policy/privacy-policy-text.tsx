@@ -8,7 +8,6 @@ import { MotionViewport } from 'src/components/animate';
 
 import { SectionTitle } from './components/section-title';
 import { useTranslate } from '../../locales';
-import { Icon } from '@iconify/react';
 
 // ----------------------------------------------------------------------
 

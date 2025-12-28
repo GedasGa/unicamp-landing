@@ -23,7 +23,10 @@ import { useTranslate } from '../../locales';
 const LINKS = [
   {
     headline: 'links.legal.headline',
-    children: [{ name: 'links.legal.children.privacy', href: paths.privacyPolicy }],
+    children: [
+      { name: 'links.legal.children.terms', href: paths.termsOfService },
+      { name: 'links.legal.children.privacy', href: paths.privacyPolicy },
+    ],
   },
   {
     headline: 'links.contact.headline',

@@ -136,33 +136,6 @@ export type Database = {
           },
         ]
       }
-      group_members: {
-        Row: {
-          email: string | null
-          group_id: string
-          id: string
-          invited_at: string | null
-          joined_at: string | null
-          student_id: string | null
-        }
-        Insert: {
-          email?: string | null
-          group_id: string
-          id?: string
-          invited_at?: string | null
-          joined_at?: string | null
-          student_id?: string | null
-        }
-        Update: {
-          email?: string | null
-          group_id?: string
-          id?: string
-          invited_at?: string | null
-          joined_at?: string | null
-          student_id?: string | null
-        }
-        Relationships: []
-      }
       group_module_visibility: {
         Row: {
           created_at: string | null

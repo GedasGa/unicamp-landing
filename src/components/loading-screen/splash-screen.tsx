@@ -5,7 +5,7 @@ import type { BoxProps } from '@mui/material/Box';
 import Box from '@mui/material/Box';
 import Portal from '@mui/material/Portal';
 
-import { AnimateLogo1 } from 'src/components/animate';
+import { AnimateLogo } from 'src/components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ export function SplashScreen({ portal = true, sx, ...other }: Props) {
         }}
         {...other}
       >
-        <AnimateLogo1 />
+        <AnimateLogo />
       </Box>
     </Box>
   );

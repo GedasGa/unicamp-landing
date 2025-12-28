@@ -39,6 +39,7 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>(
     ref
   ) => {
     const theme = useTheme();
+    const isDark = theme.palette.mode === 'dark';
 
     const singleLogo = (
       <Image
@@ -61,7 +62,7 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>(
     const fullLogo = (
       <Image
         alt="Full logo"
-        src={`${CONFIG.assetsDir}/logo/logo-full.svg`}
+        src={`${CONFIG.assetsDir}/logo/${isDark ? 'logo-full-white.svg' : 'logo-full.svg'}`}
         width="100%"
         height="100%"
       />

@@ -165,7 +165,7 @@ export function SupabaseSignInView() {
           <>
             {`Don't have an account? `}
             <Link component={RouterLink} href={paths.auth.signUp} variant="subtitle2">
-              Get started
+              Register
             </Link>
           </>
         }
@@ -178,7 +178,7 @@ export function SupabaseSignInView() {
         </Alert>
       )}
 
-      <FormSocials signInWithGoogle={handleGoogleSignIn} />
+      <FormSocials signInWithGoogle={handleGoogleSignIn} googleButtonText="Sign in with Google" />
 
       <FormDivider />
 

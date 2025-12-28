@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -15,8 +16,10 @@ import { supabase } from 'src/lib/supabase';
 import { DashboardContent } from 'src/layouts/dashboard';
 
 import { Iconify } from 'src/components/iconify';
+import { SplashScreen } from 'src/components/loading-screen';
 
 import { useAuthContext } from 'src/auth/hooks';
+import { CalendarView } from 'src/sections/dashboard/calendar';
 
 import type { Database } from 'src/types/database.types';
 
@@ -223,29 +226,42 @@ export function DashboardView() {
       <Stack spacing={3}>
         <Box>
           <Typography variant="h3" sx={{ mb: 1 }}>
-            Welcome back 👋 {user?.displayName || user?.email}
+            Hi, {user?.displayName || user?.email} 👋 
           </Typography>
           <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-            Continue your learning journey
+            Let's learn something new today!
           </Typography>
         </Box>
 
-        {courses.length === 0 ? (
-          <Card sx={{ p: 5, textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ color: 'text.secondary' }}>
-              No courses assigned yet
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.disabled', mt: 1 }}>
-              Contact your instructor to get started
-            </Typography>
-          </Card>
-        ) : (
-          courses.map((course) => (
-            <Card key={course.id} sx={{ p: 3 }}>
-              <Typography variant="h5" sx={{ mb: 1 }}>
-                {course.title}
+        {/* Calendar Section */}
+        <Box>
+          <Typography variant="h5" sx={{ mb: 2 }}>
+            Schedule
+          </Typography>
+          <CalendarView />
+        </Box>
+
+        {/* Courses Section */}
+        <Box>
+          <Typography variant="h5" sx={{ mb: 2 }}>
+            My Courses
+          </Typography>
+          {courses.length === 0 ? (
+            <Card sx={{ p: 5, textAlign: 'center' }}>
+              <Typography variant="h6" sx={{ color: 'text.secondary' }}>
+                No courses assigned yet
               </Typography>
-              {course.description && (
+              <Typography variant="body2" sx={{ color: 'text.disabled', mt: 1 }}>
+                Contact your instructor to get started
+              </Typography>
+            </Card>
+          ) : (
+            courses.map((course) => (
+              <Card key={course.id} sx={{ p: 3, mb: 2 }}>
+                <Typography variant="h5" sx={{ mb: 1 }}>
+                  {course.title}
+                </Typography>
+                {course.description && (
                 <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3 }}>
                   {course.description}
                 </Typography>
@@ -369,8 +385,9 @@ export function DashboardView() {
                 ))}
               </Stack>
             </Card>
-          ))
-        )}
+            ))
+          )}
+        </Box>
       </Stack>
     </DashboardContent>
   );

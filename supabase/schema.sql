@@ -40,6 +40,7 @@ DROP TABLE IF EXISTS lessons CASCADE;
 DROP TABLE IF EXISTS modules CASCADE;
 DROP TABLE IF EXISTS courses CASCADE;
 DROP TABLE IF EXISTS group_invitations CASCADE;
+DROP TABLE IF EXISTS group_schedule CASCADE;
 DROP TABLE IF EXISTS group_teachers CASCADE;
 DROP TABLE IF EXISTS group_students CASCADE;
 DROP TABLE IF EXISTS groups CASCADE;
@@ -122,6 +123,33 @@ CREATE TABLE group_students (
   created_at TIMESTAMPTZ DEFAULT NOW(),
   UNIQUE(group_id, student_id)
 );
+
+-- =============================================
+-- 3.1. GROUP SCHEDULE
+-- =============================================
+
+-- Group schedule for lessons (individual events)
+CREATE TABLE group_schedule (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  group_id UUID REFERENCES groups(id) ON DELETE CASCADE NOT NULL,
+  lesson_id UUID REFERENCES lessons(id) ON DELETE SET NULL,
+  title TEXT NOT NULL,
+  description TEXT,
+  start_time TIMESTAMPTZ NOT NULL,
+  end_time TIMESTAMPTZ NOT NULL,
+  mode TEXT NOT NULL DEFAULT 'online' CHECK (mode IN ('online', 'live')),
+  meeting_link TEXT,
+  address TEXT,
+  city TEXT,
+  instructions TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_group_schedule_group_id ON group_schedule(group_id);
+CREATE INDEX idx_group_schedule_lesson_id ON group_schedule(lesson_id);
+CREATE INDEX idx_group_schedule_start_time ON group_schedule(start_time);
+CREATE INDEX idx_group_schedule_end_time ON group_schedule(end_time);
 
 -- =============================================
 -- 4. COURSES, MODULES, LESSONS
@@ -321,6 +349,7 @@ ALTER TABLE invitations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE groups ENABLE ROW LEVEL SECURITY;
 ALTER TABLE group_teachers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE group_students ENABLE ROW LEVEL SECURITY;
+ALTER TABLE group_schedule ENABLE ROW LEVEL SECURITY;
 ALTER TABLE courses ENABLE ROW LEVEL SECURITY;
 ALTER TABLE modules ENABLE ROW LEVEL SECURITY;
 ALTER TABLE lessons ENABLE ROW LEVEL SECURITY;
@@ -381,6 +410,26 @@ CREATE POLICY "Teachers manage group students" ON group_students
 
 CREATE POLICY "Students view own membership" ON group_students
   FOR SELECT USING (student_id = auth.uid());
+
+-- Group schedule: Teachers manage, students view their group schedules
+CREATE POLICY "Teachers manage group schedule" ON group_schedule
+  FOR ALL USING (is_teacher());
+
+CREATE POLICY "Students view their group schedules" ON group_schedule
+  FOR SELECT USING (
+    EXISTS (
+      SELECT 1 FROM group_students 
+      WHERE group_id = group_schedule.group_id AND student_id = auth.uid()
+    )
+  );
+
+CREATE POLICY "Teachers view their group schedules" ON group_schedule
+  FOR SELECT USING (
+    EXISTS (
+      SELECT 1 FROM group_teachers
+      WHERE group_id = group_schedule.group_id AND teacher_id = auth.uid()
+    )
+  );
 
 -- Courses: Teachers manage, students view assigned courses
 CREATE POLICY "Teachers manage courses" ON courses
@@ -551,6 +600,9 @@ CREATE TRIGGER update_modules_updated_at BEFORE UPDATE ON modules
   FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
 
 CREATE TRIGGER update_lessons_updated_at BEFORE UPDATE ON lessons
+  FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+CREATE TRIGGER update_group_schedule_updated_at BEFORE UPDATE ON group_schedule
   FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
 
 -- Function to link pending invitations when user signs up

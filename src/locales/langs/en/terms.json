@@ -1,0 +1,47 @@
+{
+  "title": "Terms of Service",
+  "effectiveDate": "Effective Date",
+  "updatedDate": "Last Updated",
+  "sections": {
+    "acceptanceOfTerms": {
+      "header": "1. Acceptance of Terms",
+      "content": "By accessing and using Unicamp's learning platform, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service."
+    },
+    "useLicense": {
+      "header": "2. Use License",
+      "content": "Permission is granted to temporarily access the materials (information or software) on Unicamp's platform for personal, non-commercial educational use only. This is the grant of a license, not a transfer of title, and under this license you may not:\n\n- Modify or copy the materials\n- Use the materials for any commercial purpose or for any public display\n- Attempt to reverse engineer any software contained on Unicamp's platform\n- Remove any copyright or other proprietary notations from the materials\n- Transfer the materials to another person or 'mirror' the materials on any other server"
+    },
+    "userAccount": {
+      "header": "3. User Account",
+      "content": "To access certain features of the platform, you may be required to create an account. You are responsible for maintaining the confidentiality of your account and password and for restricting access to your device. You agree to accept responsibility for all activities that occur under your account or password. Unicamp reserves the right to refuse service, terminate accounts, or remove or edit content at our sole discretion."
+    },
+    "userContent": {
+      "header": "4. User Content",
+      "content": "Users may post, upload, or submit content to the platform. You retain ownership of any intellectual property rights that you hold in that content. By posting content to Unicamp, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, adapt, and publish such content for the purpose of providing and improving our services."
+    },
+    "prohibitedActivities": {
+      "header": "5. Prohibited Activities",
+      "content": "You may not use the platform for any illegal or unauthorized purpose. You agree to comply with all local laws regarding online conduct and acceptable content. You are prohibited from:\n\n- Violating or attempting to violate the security of the platform\n- Accessing data not intended for you\n- Attempting to probe or test the vulnerability of the system\n- Interfering with service to any user or network"
+    },
+    "intellectualProperty": {
+      "header": "6. Intellectual Property",
+      "content": "The content, organization, graphics, design, compilation, digital conversion, and other matters related to the platform are protected under applicable copyrights, trademarks, and other proprietary rights. The copying, redistribution, use, or publication by you of any such matters or any part of the platform is strictly prohibited."
+    },
+    "disclaimer": {
+      "header": "7. Disclaimer",
+      "content": "The materials on Unicamp's platform are provided on an 'as is' basis. Unicamp makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights."
+    },
+    "limitations": {
+      "header": "8. Limitations",
+      "content": "In no event shall Unicamp or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Unicamp's platform, even if Unicamp or an authorized representative has been notified orally or in writing of the possibility of such damage."
+    },
+    "modificationsToTerms": {
+      "header": "9. Modifications to Terms",
+      "content": "Unicamp may revise these terms of service for its platform at any time without notice. By using this platform, you are agreeing to be bound by the then current version of these terms of service. We will notify users of any material changes to these terms through the platform or via email."
+    },
+    "contact": {
+      "header": "10. Contact Information",
+      "content": "If you have questions or concerns about this Privacy Policy or our data practices, contact us:\n- Email: info@unicamp.lt\n- Phone: +370 610 08080\n- Address: Konsitucijos pr. 15-121, Vilnius, Lithuania"
+    }
+  }
+}

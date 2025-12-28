@@ -1,0 +1,47 @@
+{
+  "title": "Paslaugų teikimo sąlygos",
+  "effectiveDate": "Įsigaliojimo data",
+  "updatedDate": "Paskutinį kartą atnaujinta",
+  "sections": {
+    "acceptanceOfTerms": {
+      "header": "1. Sąlygų priėmimas",
+      "content": "Prisijungdami ir naudodamiesi Unicamp mokymosi platforma, jūs sutinkate su šio susitarimo sąlygomis ir nuostatomis. Jei nesutinkate laikytis aukščiau išdėstytų sąlygų, prašome nenaudoti šios paslaugos."
+    },
+    "useLicense": {
+      "header": "2. Naudojimo licencija",
+      "content": "Suteikiama leidimas laikinai pasiekti Unicamp platformos medžiagą (informaciją ar programinę įrangą) tik asmeniniam, nekomerciniam švietimo tikslams. Tai yra licencijos suteikimas, o ne nuosavybės teisių perdavimas. Pagal šią licenciją jums draudžiama:\n\n- Keisti ar kopijuoti medžiagą\n- Naudoti medžiagą komerciniams tikslams ar viešam rodymui\n- Bandyti atkurti bet kokią Unicamp platformoje esančią programinę įrangą\n- Šalinti autorių teisių ar kitų nuosavybės ženklų iš medžiagos\n- Perduoti medžiagą kitam asmeniui ar atspindėti medžiagą kitame serveryje"
+    },
+    "userAccount": {
+      "header": "3. Vartotojo paskyra",
+      "content": "Norėdami pasiekti tam tikras platformos funkcijas, gali tekti susikurti paskyrą. Jūs esate atsakingi už savo paskyros ir slaptažodžio konfidencialumo išsaugojimą bei prieigos prie savo įrenginio ribojimą. Jūs sutinkate prisiimti atsakomybę už visus veiksmus, atliktus naudojant jūsų paskyrą ar slaptažodį. Unicamp pasilieka teisę atsisakyti teikti paslaugą, nutraukti paskyras ar pašalinti ar redaguoti turinį savo nuožiūra."
+    },
+    "userContent": {
+      "header": "4. Vartotojo turinys",
+      "content": "Vartotojai gali skelbti, įkelti ar pateikti turinį platformoje. Jūs išlaikote visas intelektinės nuosavybės teises į tą turinį. Skelbdami turinį Unicamp platformoje, jūs suteikiate mums pasaulinę, neišskirtinę, neapmokamą licenciją naudoti, atkurti, adaptuoti ir skelbti tokį turinį mūsų paslaugų teikimo ir tobulinimo tikslais."
+    },
+    "prohibitedActivities": {
+      "header": "5. Draudžiama veikla",
+      "content": "Jūs negalite naudoti platformos neteisėtiems ar neleistiniems tikslams. Jūs sutinkate laikytis visų vietinių įstatymų, susijusių su elgesiu internete ir priimtinu turiniu. Jums draudžiama:\n\n- Pažeisti ar bandyti pažeisti platformos saugumą\n- Prieiti prie duomenų, kurie jums nėra skirti\n- Bandyti patikrinti ar išbandyti sistemos pažeidžiamumą\n- Trukdyti paslaugai bet kuriam vartotojui ar tinklui"
+    },
+    "intellectualProperty": {
+      "header": "6. Intelektinė nuosavybė",
+      "content": "Turinys, organizacija, grafika, dizainas, kompiliacija, skaitmeninė konversija ir kiti su platforma susiję dalykai yra saugomi taikytinų autorių teisių, prekių ženklų ir kitų nuosavybės teisių. Jūsų kopijuojant, platinant, naudojant ar skelbiamant bet kurį iš šių dalykų ar bet kurią platformos dalį yra griežtai draudžiama."
+    },
+    "disclaimer": {
+      "header": "7. Atsakomybės apribojimas",
+      "content": "Unicamp platformos medžiaga teikiama tokia, kokia yra. Unicamp neteikia jokių garantijų, išreikštų ar numanomų, ir šiuo dokumentu atsisako visų kitų garantijų, įskaitant, bet neapsiribojant, numanomos parduodamumo, tinkamumo konkrečiam tikslui garantijas ar intelektinės nuosavybės nepažeidimo ar kitų teisių pažeidimo garantijas."
+    },
+    "limitations": {
+      "header": "8. Atsakomybės ribojimai",
+      "content": "Jokiu atveju Unicamp ar jos tiekėjai nebus atsakingi už jokią žalą (įskaitant, bet neapsiribojant, žalą dėl duomenų ar pelno praradimo ar dėl verslo nutraukimo), kylančią iš Unicamp platformos medžiagos naudojimo ar negalėjimo naudoti, net jei Unicamp ar įgaliotas atstovas buvo informuotas žodžiu ar raštu apie tokios žalos galimybę."
+    },
+    "modificationsToTerms": {
+      "header": "9. Sąlygų pakeitimai",
+      "content": "Unicamp gali bet kada peržiūrėti šias naudojimosi sąlygas savo platformai be išankstinio įspėjimo. Naudodamiesi šia platforma, jūs sutinkate laikytis tuomet galiojančios šių naudojimosi sąlygų versijos. Apie bet kokius esminius šių sąlygų pakeitimus informuosime vartotojus per platformą ar el. paštu."
+    },
+    "contact": {
+      "header": "10. Kontaktinė informacija",
+      "content": "Jei turite klausimų ar rūpesčių dėl šios privatumo politikos ar mūsų duomenų tvarkymo praktikos, susisiekite su mumis:\n- El. paštas: info@unicamp.lt\n- Telefonas: +370 610 08080\n- Adresas: Konstitucijos pr. 15-121, Vilnius, Lietuva"
+    }
+  }
+}

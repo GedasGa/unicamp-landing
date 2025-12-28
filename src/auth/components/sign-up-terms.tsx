@@ -3,6 +3,9 @@ import type { BoxProps } from '@mui/material/Box';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 
+import { paths } from 'src/routes/paths';
+import { RouterLink } from 'src/routes/components';
+
 // ----------------------------------------------------------------------
 
 export function SignUpTerms({ sx, ...other }: BoxProps) {
@@ -20,11 +23,11 @@ export function SignUpTerms({ sx, ...other }: BoxProps) {
       {...other}
     >
       {'By signing up, I agree to '}
-      <Link underline="always" color="text.primary">
+      <Link component={RouterLink} href={paths.termsOfService} underline="always" color="text.primary">
         Terms of service
       </Link>
       {' and '}
-      <Link underline="always" color="text.primary">
+      <Link component={RouterLink} href={paths.privacyPolicy} underline="always" color="text.primary">
         Privacy policy
       </Link>
       .
