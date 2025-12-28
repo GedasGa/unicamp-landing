@@ -55,12 +55,15 @@ export const paths = {
   // APP
   app: {
     root: ROOTS.APP,
-    // Learning paths - using existing structure
+    // Learning paths - plural structure
     courses: {
       root: `${ROOTS.APP}/courses`,
       details: (id: string) => `${ROOTS.APP}/courses/${id}`,
+      module: (courseId: string, moduleId: string) => 
+        `${ROOTS.APP}/courses/${courseId}/modules/${moduleId}`,
       lesson: (courseId: string, moduleId: string, lessonId: string) => 
         `${ROOTS.APP}/courses/${courseId}/modules/${moduleId}/lessons/${lessonId}`,
+      // Topic handled via query param: ?topic=<topicId>
     },
   },
 };

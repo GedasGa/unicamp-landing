@@ -3,6 +3,8 @@
 import type { NavSectionProps } from 'src/components/nav-section';
 import type { Theme, SxProps, Breakpoint } from '@mui/material/styles';
 
+import { usePathname } from 'next/navigation';
+
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
@@ -14,6 +16,7 @@ import { allLangs } from 'src/locales';
 
 import { Logo } from 'src/components/logo';
 import { useSettingsContext } from 'src/components/settings';
+import { useNavigationContext } from './navigation-context';
 
 import { Main } from './main';
 import { NavMobile } from './nav-mobile';
@@ -47,16 +50,22 @@ export type DashboardLayoutProps = {
 
 export function DashboardLayout({ sx, children, header, data }: DashboardLayoutProps) {
   const theme = useTheme();
+  const pathname = usePathname();
 
   const mobileNavOpen = useBoolean();
 
   const settings = useSettingsContext();
+  const { navData: contextNavData } = useNavigationContext();
 
   const navColorVars = useNavColorVars(theme, settings);
 
   const layoutQuery: Breakpoint = 'lg';
 
-  const navData = data?.nav ?? dashboardNavData;
+  // Use context nav data if available, otherwise fall back to default
+  const navData = contextNavData ?? data?.nav ?? dashboardNavData;
+  
+  // Hide navigation on dashboard page (/app)
+  const shouldShowNav = !pathname?.match(/^\/app\/?$/);
 
   const isNavMini = settings.navLayout === 'mini';
 
@@ -90,20 +99,24 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
             leftArea: (
               <>
                 {/* -- Nav mobile -- */}
-                <MenuButton
-                  onClick={mobileNavOpen.onTrue}
-                  sx={{
-                    mr: 1,
-                    ml: -1,
-                    [theme.breakpoints.up(layoutQuery)]: { display: 'none' },
-                  }}
-                />
-                <NavMobile
-                  data={navData}
-                  open={mobileNavOpen.value}
-                  onClose={mobileNavOpen.onFalse}
-                  cssVars={navColorVars.section}
-                />
+                {shouldShowNav && (
+                  <>
+                    <MenuButton
+                      onClick={mobileNavOpen.onTrue}
+                      sx={{
+                        mr: 1,
+                        ml: -1,
+                        [theme.breakpoints.up(layoutQuery)]: { display: 'none' },
+                      }}
+                    />
+                    <NavMobile
+                      data={navData}
+                      open={mobileNavOpen.value}
+                      onClose={mobileNavOpen.onFalse}
+                      cssVars={navColorVars.section}
+                    />
+                  </>
+                )}
                 {/* -- Workspace popover -- */}
                 <WorkspacesPopover
                   sx={{ color: 'var(--layout-nav-text-primary-color)' }}
@@ -129,18 +142,20 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
        * Sidebar
        *************************************** */
       sidebarSection={
-        <NavVertical
-          data={navData}
-          isNavMini={isNavMini}
-          layoutQuery={layoutQuery}
-          cssVars={navColorVars.section}
-          onToggleNav={() =>
-            settings.onUpdateField(
-              'navLayout',
-              settings.navLayout === 'vertical' ? 'mini' : 'vertical'
-            )
-          }
-        />
+        shouldShowNav ? (
+          <NavVertical
+            data={navData}
+            isNavMini={isNavMini}
+            layoutQuery={layoutQuery}
+            cssVars={navColorVars.section}
+            onToggleNav={() =>
+              settings.onUpdateField(
+                'navLayout',
+                settings.navLayout === 'vertical' ? 'mini' : 'vertical'
+              )
+            }
+          />
+        ) : null
       }
       /** **************************************
        * Footer
@@ -167,7 +182,11 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
               easing: 'var(--layout-transition-easing)',
               duration: 'var(--layout-transition-duration)',
             }),
-            pl: isNavMini ? 'var(--layout-nav-mini-width)' : 'var(--layout-nav-vertical-width)',
+            pl: shouldShowNav
+              ? isNavMini
+                ? 'var(--layout-nav-mini-width)'
+                : 'var(--layout-nav-vertical-width)'
+              : 0,
           },
         },
         ...sx,

@@ -43,9 +43,6 @@ export function DashboardView() {
   const { user } = useAuthContext();
   const [courses, setCourses] = useState<CourseWithModules[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
-  const [selectedModule, setSelectedModule] = useState<string | null>(null);
-  const [lessons, setLessons] = useState<Lesson[]>([]);
 
   useEffect(() => {
     fetchCourses();
@@ -73,7 +70,7 @@ export function DashboardView() {
       // Get courses assigned to these groups
       const { data: groupCourses } = await supabase
         .from('group_courses')
-        .select('course_id, courses(*)')
+        .select('course_id, courses(id, title, description, thumbnail_url, created_at, updated_at)')
         .in('group_id', groupIds)
         .order('order_index', { ascending: true });
 
@@ -86,6 +83,12 @@ export function DashboardView() {
       const coursesWithModules = await Promise.all(
         groupCourses.map(async (gc: any) => {
           const course = gc.courses;
+          
+          // Ensure course has an id
+          if (!course || !course.id) {
+            console.error('Course missing id:', gc);
+            return null;
+          }
 
           // Get modules with visibility through group_module_visibility
           // Fetch all visible modules, then determine locked/unlocked state based on unlocked_at
@@ -105,6 +108,9 @@ export function DashboardView() {
           }
 
           const moduleIds = moduleVisibility.map((mv) => mv.module_id);
+          
+          console.log('Course object before return:', course);
+          console.log('Course ID:', course.id);
 
           // Get module progress
           const { data: moduleProgress } = await supabase
@@ -138,74 +144,11 @@ export function DashboardView() {
         })
       );
 
-      setCourses(coursesWithModules);
+      setCourses(coursesWithModules.filter(Boolean) as CourseWithModules[]);
     } catch (error) {
       console.error('Error fetching courses:', error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const fetchLessons = async (moduleId: string) => {
-    if (!user?.id) return;
-
-    try {
-      // Get user's groups
-      const { data: groupStudents } = await supabase
-        .from('group_students')
-        .select('group_id')
-        .eq('student_id', user.id);
-
-      if (!groupStudents?.length) return;
-
-      const groupIds = groupStudents.map((gs) => gs.group_id);
-
-      // Get lessons with visibility
-      // Fetch all visible lessons, then determine locked/unlocked state based on unlocked_at
-      const { data: lessonVisibility } = await supabase
-        .from('group_lesson_visibility')
-        .select('lesson_id, is_visible, unlocked_at, lessons(*)')
-        .in('group_id', groupIds)
-        .eq('lessons.module_id', moduleId)
-        .eq('is_visible', true);
-
-      console.log('Fetching lessons for module:', moduleId);
-      console.log('Lesson visibility:', lessonVisibility);
-
-      const lessons: Lesson[] =
-        lessonVisibility?.map((lv: any) => {
-          // Lesson is unlocked if unlocked_at is set and in the past
-          const isUnlocked = lv.unlocked_at && new Date(lv.unlocked_at) <= new Date();
-          
-          return {
-            ...lv.lessons,
-            is_visible: isUnlocked, // Use this to determine if clickable
-            unlocked_at: lv.unlocked_at, // Keep this for display
-          };
-        })
-        .sort((a: any, b: any) => a.order_index - b.order_index) || [];
-
-      setLessons(lessons);
-    } catch (error) {
-      console.error('Error fetching lessons:', error);
-    }
-  };
-
-  const handleModuleClick = (courseId: string, moduleId: string) => {
-    if (selectedModule === moduleId) {
-      setSelectedModule(null);
-      setSelectedCourse(null);
-      setLessons([]);
-    } else {
-      setSelectedCourse(courseId);
-      setSelectedModule(moduleId);
-      fetchLessons(moduleId);
-    }
-  };
-
-  const handleLessonClick = (lesson: Lesson, isVisible: boolean) => {
-    if (isVisible && selectedCourse && lesson.module_id) {
-      router.push(paths.app.courses.lesson(selectedCourse, lesson.module_id, lesson.id));
     }
   };
 
@@ -223,172 +166,278 @@ export function DashboardView() {
 
   return (
     <DashboardContent maxWidth="xl">
-      <Stack spacing={3}>
-        <Box>
-          <Typography variant="h3" sx={{ mb: 1 }}>
-            Hi, {user?.displayName || user?.email} 👋 
-          </Typography>
-          <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-            Let's learn something new today!
-          </Typography>
-        </Box>
-
-        {/* Calendar Section */}
-        <Box>
-          <Typography variant="h5" sx={{ mb: 2 }}>
-            Schedule
-          </Typography>
-          <CalendarView />
-        </Box>
-
-        {/* Courses Section */}
-        <Box>
-          <Typography variant="h5" sx={{ mb: 2 }}>
-            My Courses
-          </Typography>
-          {courses.length === 0 ? (
-            <Card sx={{ p: 5, textAlign: 'center' }}>
-              <Typography variant="h6" sx={{ color: 'text.secondary' }}>
-                No courses assigned yet
+      <Grid container spacing={3}>
+        {/* Left Column - Main Content */}
+        <Grid item xs={12} md={8}>
+          <Stack spacing={3}>
+            {/* Greeting */}
+            <Box>
+              <Typography variant="h3" sx={{ mb: 1 }}>
+                Hi, {user?.displayName || user?.email?.split('@')[0] || 'there'} 👋
               </Typography>
-              <Typography variant="body2" sx={{ color: 'text.disabled', mt: 1 }}>
-                Contact your instructor to get started
+              <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+                Let's learn something today!
               </Typography>
-            </Card>
-          ) : (
-            courses.map((course) => (
-              <Card key={course.id} sx={{ p: 3, mb: 2 }}>
-                <Typography variant="h5" sx={{ mb: 1 }}>
-                  {course.title}
-                </Typography>
-                {course.description && (
-                <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3 }}>
-                  {course.description}
-                </Typography>
-              )}
+            </Box>
 
-              <Stack spacing={2}>
-                {course.modules.map((module) => (
-                  <Box key={module.id}>
-                    <Card
+            {/* Continue Section */}
+            <Box>
+              <Typography variant="h5" sx={{ mb: 2 }}>
+                Continue...
+              </Typography>
+              {/* TODO: Show last accessed lesson/topic */}
+              <Card sx={{ p: 3 }}>
+                <Stack direction="row" alignItems="center" justifyContent="space-between">
+                  <Box>
+                    <Typography variant="h6" sx={{ mb: 0.5 }}>
+                      User Personas
+                    </Typography>
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <Iconify icon="solar:book-2-outline" width={16} sx={{ color: 'text.secondary' }} />
+                      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        Reading (5 minutes)
+                      </Typography>
+                    </Stack>
+                  </Box>
+                  <Box>
+                    <Box
+                      component="button"
                       sx={{
-                        p: 2,
-                        cursor: module.is_visible ? 'pointer' : 'default',
-                        bgcolor: module.is_visible ? 'background.paper' : 'action.hover',
-                        opacity: module.is_visible ? 1 : 0.6,
-                        '&:hover': module.is_visible
-                          ? { bgcolor: 'action.hover' }
-                          : {},
+                        px: 2,
+                        py: 1,
+                        borderRadius: 1,
+                        border: 'none',
+                        bgcolor: 'primary.main',
+                        color: 'primary.contrastText',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 0.5,
+                        '&:hover': {
+                          bgcolor: 'primary.dark',
+                        },
                       }}
-                      onClick={() => module.is_visible && handleModuleClick(course.id, module.id)}
                     >
-                      <Stack direction="row" alignItems="center" spacing={2}>
-                        <Box
-                          sx={{
-                            width: 48,
-                            height: 48,
-                            borderRadius: 1.5,
-                            bgcolor: module.is_visible ? 'primary.lighter' : 'action.selected',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                          }}
-                        >
-                          <Iconify
-                            icon={module.is_visible ? 'solar:book-bold' : 'solar:lock-bold'}
-                            width={24}
-                            sx={{ color: module.is_visible ? 'primary.main' : 'text.disabled' }}
-                          />
-                        </Box>
+                      <Typography variant="button">Resume</Typography>
+                      <Iconify icon="eva:arrow-forward-fill" width={16} />
+                    </Box>
+                  </Box>
+                </Stack>
+              </Card>
+            </Box>
 
-                        <Box sx={{ flex: 1 }}>
-                          <Typography variant="subtitle1">{module.title}</Typography>
-                          {module.description && (
-                            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                              {module.description}
-                            </Typography>
-                          )}
-                          {module.is_visible && module.progress_percentage > 0 && (
-                            <Box sx={{ mt: 1 }}>
-                              <Stack direction="row" alignItems="center" spacing={1}>
+            {/* Course Modules Section */}
+            <Box>
+              <Typography variant="h5" sx={{ mb: 2 }}>
+                Course modules
+              </Typography>
+              {courses.length === 0 ? (
+                <Card sx={{ p: 5, textAlign: 'center' }}>
+                  <Typography variant="h6" sx={{ color: 'text.secondary' }}>
+                    No courses assigned yet
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.disabled', mt: 1 }}>
+                    Contact your instructor to get started
+                  </Typography>
+                </Card>
+              ) : (
+                <Stack spacing={2}>
+                  {courses.map((course) =>
+                    course.modules.map((module, index) => (
+                      <Card
+                        key={module.id}
+                        sx={{
+                          p: 3,
+                          cursor: module.is_visible ? 'pointer' : 'default',
+                          bgcolor: module.is_visible
+                            ? 'background.paper'
+                            : 'action.disabledBackground',
+                          opacity: module.is_visible ? 1 : 0.6,
+                          position: 'relative',
+                          '&:hover': module.is_visible ? { bgcolor: 'action.hover' } : {},
+                        }}
+                        onClick={() =>
+                          module.is_visible && router.push(paths.app.courses.module(course.id, module.id))
+                        }
+                      >
+                        <Stack spacing={2}>
+                          <Stack direction="row" alignItems="center" justifyContent="space-between">
+                            <Typography variant="h6">{module.title}</Typography>
+                            {!module.is_visible && (
+                              <Box
+                                sx={{
+                                  position: 'absolute',
+                                  top: 16,
+                                  right: 16,
+                                  width: 40,
+                                  height: 40,
+                                  borderRadius: '50%',
+                                  bgcolor: 'action.selected',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                }}
+                              >
+                                <Iconify icon="solar:lock-bold" width={20} sx={{ color: 'text.disabled' }} />
+                              </Box>
+                            )}
+                            {module.is_visible && module.progress_percentage === 100 && (
+                              <Box
+                                sx={{
+                                  px: 1.5,
+                                  py: 0.5,
+                                  borderRadius: 1,
+                                  bgcolor: 'success.lighter',
+                                  color: 'success.dark',
+                                }}
+                              >
+                                <Typography variant="caption" fontWeight="bold">
+                                  Completed
+                                </Typography>
+                              </Box>
+                            )}
+                          </Stack>
+
+                          {module.is_visible && (
+                            <Box>
+                              <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
                                 <LinearProgress
                                   variant="determinate"
                                   value={module.progress_percentage}
-                                  sx={{ flex: 1, height: 6, borderRadius: 1 }}
+                                  sx={{
+                                    flex: 1,
+                                    height: 8,
+                                    borderRadius: 1,
+                                    bgcolor: 'action.hover',
+                                    '& .MuiLinearProgress-bar': {
+                                      borderRadius: 1,
+                                      bgcolor:
+                                        module.progress_percentage === 100
+                                          ? 'success.main'
+                                          : index === 1
+                                          ? 'secondary.main'
+                                          : 'primary.main',
+                                    },
+                                  }}
                                 />
-                                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                                <Typography
+                                  variant="caption"
+                                  sx={{ color: 'text.secondary', minWidth: 40, textAlign: 'right' }}
+                                >
                                   {module.progress_percentage}%
                                 </Typography>
                               </Stack>
                             </Box>
                           )}
-                        </Box>
+                        </Stack>
+                      </Card>
+                    ))
+                  )}
+                </Stack>
+              )}
+            </Box>
+          </Stack>
+        </Grid>
 
-                        {module.is_visible && (
-                          <Iconify
-                            icon={
-                              selectedModule === module.id
-                                ? 'eva:arrow-up-fill'
-                                : 'eva:arrow-down-fill'
-                            }
-                            width={20}
-                          />
-                        )}
-                      </Stack>
-                    </Card>
+        {/* Right Column - Sidebar */}
+        <Grid item xs={12} md={4}>
+          <Stack spacing={3}>
+            {/* Schedule */}
+            <Box>
+              <Typography variant="h5" sx={{ mb: 2 }}>
+                Schedule
+              </Typography>
+              <Stack spacing={1.5}>
+                <Card sx={{ p: 2 }}>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Box
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: '50%',
+                        bgcolor: 'info.lighter',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Iconify icon="solar:moon-bold" width={20} sx={{ color: 'info.main' }} />
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
+                      <Typography variant="subtitle2">Wednesdays</Typography>
+                    </Box>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                      18:30 – 21:00
+                    </Typography>
+                  </Stack>
+                </Card>
 
-                    {/* Lessons dropdown */}
-                    {selectedModule === module.id && module.is_visible && (
-                      <Stack spacing={1.5} sx={{ pl: 9, pr: 2, pt: 2 }}>
-                        {lessons.map((lesson) => (
-                          <Card
-                            key={lesson.id}
-                            sx={{
-                              p: 2,
-                              cursor: lesson.is_visible ? 'pointer' : 'default',
-                              bgcolor: lesson.is_visible ? 'background.neutral' : 'action.hover',
-                              opacity: lesson.is_visible ? 1 : 0.6,
-                              '&:hover': lesson.is_visible
-                                ? { bgcolor: 'action.selected' }
-                                : {},
-                            }}
-                            onClick={() => handleLessonClick(lesson, lesson.is_visible)}
-                          >
-                            <Stack direction="row" alignItems="center" spacing={2}>
-                              <Iconify
-                                icon={
-                                  lesson.is_visible
-                                    ? 'solar:play-circle-bold'
-                                    : 'solar:lock-bold'
-                                }
-                                width={20}
-                                sx={{
-                                  color: lesson.is_visible ? 'success.main' : 'text.disabled',
-                                }}
-                              />
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  color: lesson.is_visible
-                                    ? 'text.primary'
-                                    : 'text.disabled',
-                                }}
-                              >
-                                {lesson.title}
-                              </Typography>
-                            </Stack>
-                          </Card>
-                        ))}
-                      </Stack>
-                    )}
-                  </Box>
-                ))}
+                <Card sx={{ p: 2 }}>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Box
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: '50%',
+                        bgcolor: 'warning.lighter',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Iconify icon="solar:sun-bold" width={20} sx={{ color: 'warning.main' }} />
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
+                      <Typography variant="subtitle2">Saturdays</Typography>
+                    </Box>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                      09:00 – 12:00
+                    </Typography>
+                  </Stack>
+                </Card>
               </Stack>
-            </Card>
-            ))
-          )}
-        </Box>
-      </Stack>
+            </Box>
+
+            {/* Calendar */}
+            <Box>
+              <CalendarView />
+            </Box>
+
+            {/* Lecturer */}
+            <Box>
+              <Typography variant="h5" sx={{ mb: 2 }}>
+                Lecturer
+              </Typography>
+              <Card sx={{ p: 2 }}>
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <Box
+                    sx={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: '50%',
+                      bgcolor: 'primary.lighter',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <Typography variant="h6" sx={{ color: 'primary.main' }}>
+                      A
+                    </Typography>
+                  </Box>
+                  <Box sx={{ flex: 1 }}>
+                    <Typography variant="subtitle1">Aistė Gerdzeivičiūtė</Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                      Contact me on Slack 👍
+                    </Typography>
+                  </Box>
+                </Stack>
+              </Card>
+            </Box>
+          </Stack>
+        </Grid>
+      </Grid>
     </DashboardContent>
   );
 }

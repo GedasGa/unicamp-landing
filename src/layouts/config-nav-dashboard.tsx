@@ -16,14 +16,6 @@ const ICONS = {
 
 // ----------------------------------------------------------------------
 
-export const navData = [
-  /**
-   * Learning
-   */
-  {
-    subheader: 'Learning',
-    items: [
-      { title: 'Courses', path: paths.app.root, icon: ICONS.course },
-    ],
-  },
-];
+// Navigation is now dynamically set by pages via NavigationProvider
+// This default config is kept for fallback only
+export const navData = [];

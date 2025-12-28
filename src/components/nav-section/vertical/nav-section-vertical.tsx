@@ -49,12 +49,6 @@ export function NavSectionVertical({
 // ----------------------------------------------------------------------
 
 function Group({ items, render, subheader, slotProps, enabledRootRedirect }: NavGroupProps) {
-  const [open, setOpen] = useState(true);
-
-  const handleToggle = useCallback(() => {
-    setOpen((prev) => !prev);
-  }, []);
-
   const renderContent = (
     <NavUl sx={{ gap: 'var(--nav-item-gap)' }}>
       {items.map((list) => (
@@ -76,14 +70,12 @@ function Group({ items, render, subheader, slotProps, enabledRootRedirect }: Nav
         <>
           <Subheader
             data-title={subheader}
-            open={open}
-            onClick={handleToggle}
             sx={slotProps?.subheader}
           >
             {subheader}
           </Subheader>
 
-          <Collapse in={open}>{renderContent}</Collapse>
+          {renderContent}
         </>
       ) : (
         renderContent
