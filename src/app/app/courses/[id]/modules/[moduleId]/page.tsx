@@ -155,8 +155,23 @@ export default function ModuleDetailPage({ params }: Props) {
   if (loading) {
     return (
       <DashboardContent maxWidth="lg">
-        <Skeleton variant="text" width="60%" height={60} />
-        <Skeleton variant="rectangular" height={400} sx={{ mt: 3 }} />
+        {/* Breadcrumbs skeleton */}
+        <Box sx={{ mb: 2 }}>
+          <Skeleton variant="text" width="30%" height={20} />
+        </Box>
+        
+        {/* Heading skeleton */}
+        <Skeleton variant="text" width="50%" height={48} sx={{ mb: 1 }} />
+        
+        {/* Description skeleton */}
+        <Skeleton variant="text" width="70%" height={24} sx={{ mb: 5 }} />
+        
+        {/* Lesson cards skeleton */}
+        <Stack spacing={2}>
+          {[1, 2, 3, 4].map((i) => (
+            <Skeleton key={i} variant="rectangular" height={120} sx={{ borderRadius: 2 }} />
+          ))}
+        </Stack>
       </DashboardContent>
     );
   }

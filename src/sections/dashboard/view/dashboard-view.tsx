@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
+import Skeleton from '@mui/material/Skeleton';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { paths } from 'src/routes/paths';
@@ -131,9 +132,57 @@ export function DashboardView() {
   if (loading) {
     return (
       <DashboardContent maxWidth="xl">
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 400 }}>
-          <CircularProgress />
-        </Box>
+        <Grid container spacing={3}>
+          {/* Left Column Skeleton */}
+          <Grid item xs={12} md={8}>
+            <Stack spacing={3}>
+              {/* Greeting skeleton */}
+              <Box>
+                <Skeleton variant="text" width="40%" height={40} sx={{ mb: 1 }} />
+                <Skeleton variant="text" width="30%" height={24} />
+              </Box>
+
+              {/* Continue section skeleton */}
+              <Box>
+                <Skeleton variant="text" width="20%" height={32} sx={{ mb: 2 }} />
+                <Skeleton variant="rectangular" height={100} sx={{ borderRadius: 2 }} />
+              </Box>
+
+              {/* Course modules skeleton */}
+              <Box>
+                <Skeleton variant="text" width="25%" height={32} sx={{ mb: 2 }} />
+                <Stack spacing={2}>
+                  {[1, 2, 3].map((i) => (
+                    <Skeleton key={i} variant="rectangular" height={150} sx={{ borderRadius: 2 }} />
+                  ))}
+                </Stack>
+              </Box>
+            </Stack>
+          </Grid>
+
+          {/* Right Column Skeleton */}
+          <Grid item xs={12} md={4}>
+            <Stack spacing={3}>
+              {/* Schedule skeleton */}
+              <Box>
+                <Skeleton variant="text" width="30%" height={32} sx={{ mb: 2 }} />
+                <Stack spacing={1.5}>
+                  <Skeleton variant="rectangular" height={72} sx={{ borderRadius: 2 }} />
+                  <Skeleton variant="rectangular" height={72} sx={{ borderRadius: 2 }} />
+                </Stack>
+              </Box>
+
+              {/* Calendar skeleton */}
+              <Skeleton variant="rectangular" height={400} sx={{ borderRadius: 2 }} />
+
+              {/* Lecturer skeleton */}
+              <Box>
+                <Skeleton variant="text" width="30%" height={32} sx={{ mb: 2 }} />
+                <Skeleton variant="rectangular" height={80} sx={{ borderRadius: 2 }} />
+              </Box>
+            </Stack>
+          </Grid>
+        </Grid>
       </DashboardContent>
     );
   }

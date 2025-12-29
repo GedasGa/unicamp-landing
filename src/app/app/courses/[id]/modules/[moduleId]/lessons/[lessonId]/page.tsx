@@ -7,6 +7,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
@@ -217,8 +219,19 @@ export default function LessonPage({ params }: Props) {
   if (loading) {
     return (
       <DashboardContent maxWidth="lg">
-        <Skeleton variant="text" width="60%" height={60} />
-        <Skeleton variant="rectangular" height={600} sx={{ mt: 3 }} />
+        {/* Breadcrumbs skeleton */}
+        <Box sx={{ mb: 2 }}>
+          <Skeleton variant="text" width="40%" height={20} />
+        </Box>
+        
+        {/* Heading skeleton */}
+        <Skeleton variant="text" width="60%" height={48} sx={{ mb: 3 }} />
+        
+        {/* Topic selector skeleton */}
+        <Skeleton variant="rectangular" height={56} sx={{ borderRadius: 1, mb: 3 }} />
+        
+        {/* Content area skeleton */}
+        <Skeleton variant="rectangular" height={500} sx={{ borderRadius: 2 }} />
       </DashboardContent>
     );
   }

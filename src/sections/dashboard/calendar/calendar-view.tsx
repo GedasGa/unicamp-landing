@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-import CircularProgress from '@mui/material/CircularProgress';
+import Skeleton from '@mui/material/Skeleton';
 import { useTheme, styled } from '@mui/material/styles';
 import { varAlpha } from 'src/theme/styles';
 
@@ -298,8 +298,11 @@ export function CalendarView() {
 
   if (loading) {
     return (
-      <Card sx={{ p: 3, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 400 }}>
-        <CircularProgress />
+      <Card sx={{ p: 3, minHeight: 400 }}>
+        <Stack spacing={2}>
+          <Skeleton variant="rectangular" height={60} sx={{ borderRadius: 1 }} />
+          <Skeleton variant="rectangular" height={320} sx={{ borderRadius: 2 }} />
+        </Stack>
       </Card>
     );
   }
