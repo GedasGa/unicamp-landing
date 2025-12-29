@@ -188,6 +188,32 @@ export default function LessonPage({ params }: Props) {
     }
   };
 
+  const handlePreviousTopic = () => {
+    if (!selectedTopicId) return;
+    
+    const currentIndex = topics.findIndex(t => t.id === selectedTopicId);
+    if (currentIndex > 0) {
+      const previousTopic = topics[currentIndex - 1];
+      setSelectedTopicId(previousTopic.id);
+      // Update URL without navigation
+      const url = `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${previousTopic.id}`;
+      window.history.pushState({}, '', url);
+    }
+  };
+
+  const handleNextTopic = () => {
+    if (!selectedTopicId) return;
+    
+    const currentIndex = topics.findIndex(t => t.id === selectedTopicId);
+    if (currentIndex !== -1 && currentIndex < topics.length - 1) {
+      const nextTopic = topics[currentIndex + 1];
+      setSelectedTopicId(nextTopic.id);
+      // Update URL without navigation
+      const url = `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${nextTopic.id}`;
+      window.history.pushState({}, '', url);
+    }
+  };
+
   if (loading) {
     return (
       <DashboardContent maxWidth="lg">
@@ -229,6 +255,9 @@ export default function LessonPage({ params }: Props) {
   }
 
   const selectedTopic = topics.find(t => t.id === selectedTopicId);
+  const currentTopicIndex = selectedTopicId ? topics.findIndex(t => t.id === selectedTopicId) : -1;
+  const hasPreviousTopic = currentTopicIndex > 0;
+  const hasNextTopic = currentTopicIndex !== -1 && currentTopicIndex < topics.length - 1;
 
   return (
     <DashboardContent maxWidth="lg">
@@ -252,6 +281,8 @@ export default function LessonPage({ params }: Props) {
           topicTitle={selectedTopic.title}
           isCompleted={topicProgress.get(selectedTopic.id)?.completed || false}
           onComplete={handleTopicComplete}
+          onPrevious={hasPreviousTopic ? handlePreviousTopic : undefined}
+          onNext={hasNextTopic ? handleNextTopic : undefined}
         />
       ) : topics.length > 0 ? (
         <Alert severity="info">

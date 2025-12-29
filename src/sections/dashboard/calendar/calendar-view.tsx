@@ -94,7 +94,7 @@ function CalendarToolbar({
           </IconButton>
         </Stack>
 
-        <Button size="small" color="error" variant="contained" onClick={onToday}>
+        <Button size="small" color="primary" variant="contained" onClick={onToday}>
           Today
         </Button>
       </Stack>

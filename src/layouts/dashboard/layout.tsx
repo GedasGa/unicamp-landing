@@ -12,8 +12,6 @@ import { useTheme } from '@mui/material/styles';
 import { useBoolean } from 'src/hooks/use-boolean';
 
 import { allLangs } from 'src/locales';
-
-import { useSettingsContext } from 'src/components/settings';
 import { useNavigationContext } from './navigation-context';
 
 import { Main } from './main';
@@ -25,7 +23,7 @@ import { Searchbar } from '../components/searchbar';
 import { MenuButton } from '../components/menu-button';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
-import { StyledDivider, useNavColorVars } from './styles';
+import { useNavColorVars } from './styles';
 import { AccountDrawer } from '../components/account-drawer';
 import { SettingsButton } from '../components/settings-button';
 import { LanguagePopover } from '../components/language-popover';
@@ -48,13 +46,9 @@ export type DashboardLayoutProps = {
 export function DashboardLayout({ sx, children, header, data }: DashboardLayoutProps) {
   const theme = useTheme();
   const pathname = usePathname();
-
   const mobileNavOpen = useBoolean();
-
-  const settings = useSettingsContext();
   const { navData: contextNavData } = useNavigationContext();
-
-  const navColorVars = useNavColorVars(theme, settings);
+  const navColorVars = useNavColorVars(theme);
 
   const layoutQuery: Breakpoint = 'lg';
 

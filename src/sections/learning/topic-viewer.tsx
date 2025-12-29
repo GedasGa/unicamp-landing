@@ -28,12 +28,15 @@ import { LinkPreviewClient } from 'src/lib/link-preview-client';
 import { useSettingsContext } from 'src/components/settings';
 
 import { getConfluenceTopicContent } from 'src/actions/confluence';
+import { fDate } from 'src/utils/format-time';
 
 interface TopicViewerProps {
   confluencePageId: string;
   topicTitle: string;
   onComplete?: () => void;
   onBack?: () => void;
+  onPrevious?: () => void;
+  onNext?: () => void;
   isCompleted?: boolean;
 }
 
@@ -42,6 +45,8 @@ export const TopicViewer: FC<TopicViewerProps> = ({
   topicTitle,
   onComplete,
   onBack,
+  onPrevious,
+  onNext,
   isCompleted = false,
 }) => {
   const settings = useSettingsContext();
@@ -127,15 +132,16 @@ export const TopicViewer: FC<TopicViewerProps> = ({
   return (
     <Card>
       <CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
-          <Box>
-            {onBack && (
-              <IconButton onClick={onBack} sx={{ mr: 1 }}>
-                <Iconify icon="eva:arrow-back-fill" />
-              </IconButton>
+        <Box sx={{ display: 'flex', alignItems: 'top', justifyContent: 'space-between', gap: 2, mb: 3 }}>
+          <Typography variant="h4">
+            {content?.title || topicTitle}
+            {content?.lastUpdated && (
+              <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 3 }}>
+                Last updated: {fDate(content.lastUpdated.when)} by{' '}
+                {content.lastUpdated.by.displayName}
+              </Typography>
             )}
-          </Box>
-          
+          </Typography>
           {isCompleted && (
             <Chip 
               label="Completed" 
@@ -144,17 +150,6 @@ export const TopicViewer: FC<TopicViewerProps> = ({
             />
           )}
         </Box>
-
-        <Typography variant="h4" gutterBottom>
-          {content?.title || topicTitle}
-        </Typography>
-
-        {content?.lastUpdated && (
-          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 3 }}>
-            Last updated: {new Date(content.lastUpdated.when).toLocaleDateString()} by{' '}
-            {content.lastUpdated.by.displayName}
-          </Typography>
-        )}
 
         {/* Render Confluence content using Atlassian ReactRenderer */}
         {content?.content && (
@@ -217,19 +212,44 @@ export const TopicViewer: FC<TopicViewerProps> = ({
           </IntlProvider>
         )}
 
-        {onComplete && !isCompleted && (
-          <Box sx={{ mt: 4, display: 'flex', justifyContent: 'flex-end' }}>
+        <Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between', gap: 2 }}>
+          {onPrevious && (
             <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              endIcon={<Iconify icon="eva:checkmark-circle-2-fill" />}
-              onClick={onComplete}
+              variant="outlined"
+              color="inherit"
+              startIcon={<Iconify icon="eva:arrow-back-fill" />}
+              onClick={onPrevious}
             >
-              Mark as Complete
+              Previous Topic
             </Button>
+          )}
+          
+          <Box sx={{ display: 'flex', gap: 2, ml: 'auto' }}>
+            {onComplete && !isCompleted && (
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                endIcon={<Iconify icon="eva:checkmark-circle-2-fill" />}
+                onClick={onComplete}
+              >
+                Mark as Complete
+              </Button>
+            )}
+            
+            {isCompleted && onNext && (
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                endIcon={<Iconify icon="eva:arrow-forward-fill" />}
+                onClick={onNext}
+              >
+                Next Topic
+              </Button>
+            )}
           </Box>
-        )}
+        </Box>
       </CardContent>
     </Card>
   );

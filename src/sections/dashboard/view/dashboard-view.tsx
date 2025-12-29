@@ -17,9 +17,11 @@ import { DashboardContent } from 'src/layouts/dashboard';
 
 import { Iconify } from 'src/components/iconify';
 import { SplashScreen } from 'src/components/loading-screen';
+import { Image } from 'src/components/image';
 
 import { useAuthContext } from 'src/auth/hooks';
 import { CalendarView } from 'src/sections/dashboard/calendar';
+import { CONFIG } from 'src/config-global';
 
 import type { Database } from 'src/types/database.types';
 
@@ -408,26 +410,29 @@ export function DashboardView() {
               <Typography variant="h5" sx={{ mb: 2 }}>
                 Lecturer
               </Typography>
-              <Card sx={{ p: 2 }}>
+              <Card
+                sx={{
+                  p: 2,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  '&:hover': {
+                    bgcolor: 'action.hover',
+                  },
+                }}
+                onClick={() => window.open('https://unicamplt.slack.com/archives/D07QFV0UJNQ', '_blank')}
+              >
                 <Stack direction="row" spacing={2} alignItems="center">
-                  <Box
+                  <Image
+                    src={`${CONFIG.assetsDir}/assets/images/home/team/Aiste.png`}
+                    alt="Aistė Gerdzevičiūtė"
                     sx={{
                       width: 48,
                       height: 48,
                       borderRadius: '50%',
-                      bgcolor: 'primary.lighter',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      overflow: 'hidden',
                     }}
-                  >
-                    <Typography variant="h6" sx={{ color: 'primary.main' }}>
-                      A
-                    </Typography>
-                  </Box>
+                  />
                   <Box sx={{ flex: 1 }}>
-                    <Typography variant="subtitle1">Aistė Gerdzeivičiūtė</Typography>
+                    <Typography variant="subtitle1">Aistė Gerdzevičiūtė</Typography>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                       Contact me on Slack 👍
                     </Typography>
