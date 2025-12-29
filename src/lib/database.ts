@@ -722,8 +722,7 @@ export async function checkLessonAccess(userId: string, lessonId: string) {
 export async function markTopicComplete(
   studentId: string, 
   lessonId: string,
-  confluencePageId: string, 
-  completed: boolean
+  confluencePageId: string
 ) {
   const { data, error } = await supabase
     .from('student_topic_progress')
@@ -731,8 +730,8 @@ export async function markTopicComplete(
       student_id: studentId, 
       lesson_id: lessonId,
       confluence_page_id: confluencePageId,
-      completed,
-      completed_at: completed ? new Date().toISOString() : null,
+      completed: true,
+      completed_at: new Date().toISOString(),
       last_accessed_at: new Date().toISOString()
     })
     .select()
@@ -788,43 +787,117 @@ export async function updateLessonProgress(
   return data;
 }
 
+/**
+ * @deprecated Module progress is now calculated dynamically from lesson progress.
+ * This function is kept for backward compatibility but does nothing.
+ * Use getStudentModuleProgress() instead to get calculated progress.
+ */
 export async function updateModuleProgress(
   studentId: string,
   moduleId: string,
   progressPercentage: number,
   completed: boolean
 ) {
-  const { data, error } = await supabase
-    .from('student_module_progress')
-    .upsert({ 
-      student_id: studentId, 
-      module_id: moduleId,
-      progress_percentage: progressPercentage,
-      completed,
-      completed_at: completed ? new Date().toISOString() : null
-    })
-    .select()
-    .single();
-
-  if (error) throw error;
-  return data;
+  // No-op: Module progress is now calculated dynamically
+  console.warn('updateModuleProgress is deprecated. Module progress is calculated dynamically from lesson progress.');
+  return null;
 }
 
+/**
+ * @deprecated Use getStudentModuleProgress() instead.
+ * Module progress is now calculated dynamically from lesson progress.
+ */
 export async function getStudentCourseProgress(studentId: string, courseId: string) {
-  const { data, error } = await supabase
-    .from('student_module_progress')
-    .select(`
-      *,
-      module:modules!inner(
-        *,
-        course:courses!inner(id)
-      )
-    `)
-    .eq('student_id', studentId)
-    .eq('module.course.id', courseId);
+  console.warn('getStudentCourseProgress is deprecated. Use getStudentModuleProgress() instead.');
+  
+  // Get modules for course
+  const modules = await getModules(courseId);
+  const moduleIds = modules.map(m => m.id);
+  
+  // Calculate progress dynamically
+  const progressMap = await getStudentModuleProgress(studentId, moduleIds);
+  
+  // Return data in similar format for compatibility
+  return modules.map(module => ({
+    student_id: studentId,
+    module_id: module.id,
+    progress_percentage: progressMap.get(module.id) || 0,
+    completed: (progressMap.get(module.id) || 0) === 100,
+    module,
+  }));
+}
 
-  if (error) throw error;
-  return data;
+// =============================================
+// PROGRESS CASCADE FUNCTIONS
+// Automatically update lesson/module/course progress when topics are completed
+// =============================================
+
+/**
+ * Mark a topic as complete and update lesson progress
+ * This will:
+ * 1. Mark the topic as complete in student_topic_progress
+ * 2. Recalculate and update the lesson progress in student_lesson_progress
+ * 
+ * @param topics - Optional array of topics to avoid fetching from Confluence
+ */
+export async function markTopicCompleteWithCascade(
+  studentId: string,
+  lessonId: string,
+  confluencePageId: string,
+  topics?: Array<{ id: string; title: string }>
+) {
+  // 1. Mark the topic as complete
+  await markTopicComplete(studentId, lessonId, confluencePageId);
+
+  // 2. Recalculate lesson progress
+  await updateLessonProgressFromTopics(studentId, lessonId, topics);
+}
+
+/**
+ * Recalculate and update lesson progress based on completed topics
+ * Fetches actual topic count from Confluence and compares with completed topics
+ * 
+ * @param topics - Optional array of topics to avoid fetching from Confluence
+ */
+export async function updateLessonProgressFromTopics(
+  studentId: string, 
+  lessonId: string,
+  topics?: Array<{ id: string; title: string }>
+) {
+  let allTopics: Array<{ id: string; title: string }>;
+
+  // Use provided topics or fetch from Confluence
+  if (topics && topics.length > 0) {
+    allTopics = topics;
+  } else {
+    // Get lesson to access Confluence ID
+    const lesson = await getLesson(lessonId);
+    
+    // Import Confluence action dynamically
+    const { getConfluenceLessonTopics } = await import('src/actions/confluence');
+    const topicsResult = await getConfluenceLessonTopics(lesson.confluence_parent_page_id);
+    
+    if (!topicsResult.success || !topicsResult.data || topicsResult.data.length === 0) {
+      return;
+    }
+
+    allTopics = topicsResult.data;
+  }
+
+  const totalTopicCount = allTopics.length;
+
+  // Get student's progress
+  const topicProgress = await getLessonTopicProgress(studentId, lessonId);
+  const completedTopicsMap = new Map(
+    topicProgress.filter(tp => tp.completed).map(tp => [tp.confluence_page_id, true])
+  );
+
+  const completedCount = completedTopicsMap.size;
+  const progressPercentage = Math.round((completedCount / totalTopicCount) * 100);
+  const allTopicsComplete = allTopics.every((topic: any) => completedTopicsMap.has(topic.id));
+
+  // Update lesson progress in database
+  await updateLessonProgress(studentId, lessonId, progressPercentage, allTopicsComplete);
 }
 
 // =============================================
@@ -858,25 +931,46 @@ export async function getStudentCourses(studentId: string) {
 }
 
 /**
- * Get module progress for a student
+ * Calculate module progress for a student dynamically from lesson progress
  * Returns a Map of module_id to progress_percentage
+ * Progress is calculated as: (number of completed lessons / total lessons) * 100
  */
 export async function getStudentModuleProgress(studentId: string, moduleIds: string[]) {
   if (!moduleIds?.length) {
     return new Map<string, number>();
   }
 
-  const { data, error } = await supabase
-    .from('student_module_progress')
-    .select('module_id, progress_percentage')
-    .eq('student_id', studentId)
-    .in('module_id', moduleIds);
+  const progressMap = new Map<string, number>();
 
-  if (error) throw error;
+  // For each module, get its lessons and calculate progress based on completed lessons
+  for (const moduleId of moduleIds) {
+    const lessons = await getLessons(moduleId);
+    
+    if (!lessons?.length) {
+      progressMap.set(moduleId, 0);
+      continue;
+    }
 
-  return new Map(
-    data?.map((mp) => [mp.module_id, mp.progress_percentage]) || []
-  );
+    // Get lesson progress for all lessons in this module
+    const { data: lessonProgressData, error } = await supabase
+      .from('student_lesson_progress')
+      .select('completed')
+      .eq('student_id', studentId)
+      .in('lesson_id', lessons.map(l => l.id));
+
+    if (error) throw error;
+
+    // Calculate progress as completed lessons / total lessons
+    if (!lessonProgressData || lessonProgressData.length === 0) {
+      progressMap.set(moduleId, 0);
+    } else {
+      const completedLessons = lessonProgressData.filter(lp => lp.completed).length;
+      const progressPercentage = Math.round((completedLessons / lessons.length) * 100);
+      progressMap.set(moduleId, progressPercentage);
+    }
+  }
+
+  return progressMap;
 }
 
 /**

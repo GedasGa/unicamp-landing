@@ -23,7 +23,7 @@ import {
   getModule,
   getLesson,
   getLessonTopicProgress,
-  markTopicComplete,
+  markTopicCompleteWithCascade,
   checkLessonAccess,
 } from 'src/lib/database';
 
@@ -154,7 +154,9 @@ export default function LessonPage({ params }: Props) {
     if (!currentTopic) return;
     
     try {
-      await markTopicComplete(user.id, params.lessonId, currentTopic.id, true);
+      // Use cascade function to automatically update lesson/module progress
+      // Pass topics array to avoid redundant Confluence API call
+      await markTopicCompleteWithCascade(user.id, params.lessonId, currentTopic.id, topics);
       
       // Update local state
       setTopicProgress(prev => {
@@ -166,9 +168,15 @@ export default function LessonPage({ params }: Props) {
         return newMap;
       });
       
-      // Move to next topic if available
+      // Check if this was the last topic
       const currentIndex = topics.findIndex(t => t.id === selectedTopicId);
-      if (currentIndex !== -1 && currentIndex < topics.length - 1) {
+      const isLastTopic = currentIndex === topics.length - 1;
+      
+      if (isLastTopic) {
+        // Redirect to module page after completing last topic
+        router.push(paths.app.courses.module(params.id, params.moduleId));
+      } else if (currentIndex !== -1) {
+        // Move to next topic if available
         const nextTopic = topics[currentIndex + 1];
         setSelectedTopicId(nextTopic.id);
         // Update URL without navigation

@@ -33,8 +33,9 @@ import {
   getModule,
   getModules,
   getLessons,
-  getLessonTopicProgress,
 } from 'src/lib/database';
+
+import { supabase } from 'src/lib/supabase';
 
 type Props = {
   params: { 
@@ -55,9 +56,7 @@ export default function ModuleDetailPage({ params }: Props) {
   const [accessibleModules, setAccessibleModules] = useState<Set<string>>(new Set());
   const [lessons, setLessons] = useState<any[]>([]);
   const [accessibleLessons, setAccessibleLessons] = useState<Set<string>>(new Set());
-  const [lessonProgress, setLessonProgress] = useState<Map<string, number>>(new Map());
-
-  // Memoize navigation to prevent infinite updates
+      const [lessonProgress, setLessonProgress] = useState<Map<string, { progress: number; completed: boolean }>>(new Map());
   // Show course modules in navigation
   const navigation = useMemo(() => {
     if (!course || modules.length === 0) return null;
@@ -108,17 +107,24 @@ export default function ModuleDetailPage({ params }: Props) {
       const accessibleLess = await getAccessibleLessons(user.id, params.moduleId);
       setAccessibleLessons(accessibleLess);
       
-      // Get progress for each lesson
-      const progressMap = new Map<string, number>();
+      // Get progress for each accessible lesson from student_lesson_progress table
+      const progressMap = new Map<string, { progress: number; completed: boolean }>();
       for (const lesson of lessonsData) {
         if (accessibleLess.has(lesson.id)) {
-          const topicProgress = await getLessonTopicProgress(user.id, lesson.id);
-          if (topicProgress && topicProgress.length > 0) {
-            const completedTopics = topicProgress.filter((p: any) => p.completed).length;
-            const progressPercentage = Math.round((completedTopics / topicProgress.length) * 100);
-            progressMap.set(lesson.id, progressPercentage);
+          const { data: lessonProgress } = await supabase
+            .from('student_lesson_progress')
+            .select('progress_percentage, completed')
+            .eq('student_id', user.id)
+            .eq('lesson_id', lesson.id)
+            .single();
+          
+          if (lessonProgress) {
+            progressMap.set(lesson.id, {
+              progress: lessonProgress.progress_percentage || 0,
+              completed: lessonProgress.completed || false
+            });
           } else {
-            progressMap.set(lesson.id, 0);
+            progressMap.set(lesson.id, { progress: 0, completed: false });
           }
         }
       }
@@ -218,9 +224,11 @@ export default function ModuleDetailPage({ params }: Props) {
           {lessons.map((lesson, index) => {
             const isAccessible = accessibleLessons.has(lesson.id);
             const isLocked = !isAccessible;
-            const progress = lessonProgress.get(lesson.id) || 0;
-            const isCompleted = progress === 100;
-            const isInProgress = progress > 0 && progress < 100;
+            const progressData = lessonProgress.get(lesson.id);
+            const progress = progressData?.progress || 0;
+            const isCompleted = progressData?.completed || false;
+            const isInProgress = !isCompleted && progress > 0;
+            const isNotStarted = !isCompleted && !isInProgress && isAccessible;
 
             return (
               <Card
@@ -253,12 +261,12 @@ export default function ModuleDetailPage({ params }: Props) {
                     </Typography>
                   </Box>
 
-                  {/* Completed - Green checkmark */}
+                  {/* Completed */}
                   {isCompleted && (
                     <Box
                       sx={{
-                        width: 32,
-                        height: 32,
+                        width: 40,
+                        height: 40,
                         borderRadius: '50%',
                         bgcolor: 'success.main',
                         display: 'flex',
@@ -266,47 +274,58 @@ export default function ModuleDetailPage({ params }: Props) {
                         justifyContent: 'center',
                       }}
                     >
-                      <Iconify icon="eva:checkmark-fill" width={20} sx={{ color: 'white' }} />
+                      <Iconify icon="eva:checkmark-circle-fill" width={24} sx={{ color: 'white' }} />
                     </Box>
                   )}
 
-                  {/* In Progress - Resume button with avatar */}
+                  {/* In Progress */}
                   {isInProgress && (
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <Button
-                        variant="contained"
-                        endIcon={<Iconify icon="eva:arrow-forward-fill" />}
-                        sx={{ textTransform: 'none' }}
-                      >
-                        Resume
-                      </Button>
-                      <Avatar
-                        sx={{
-                          width: 32,
-                          height: 32,
-                          bgcolor: 'primary.lighter',
-                          color: 'primary.main',
-                        }}
-                      >
-                        {user?.displayName?.charAt(0) || user?.email?.charAt(0) || 'U'}
-                      </Avatar>
-                    </Stack>
+                    <Box
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: '50%',
+                        bgcolor: 'primary.main',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Iconify icon="eva:clock-fill" width={24} sx={{ color: 'white' }} />
+                    </Box>
+                  )}
+
+                  {/* Not Started */}
+                  {isNotStarted && (
+                    <Box
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: '50%',
+                        bgcolor: 'action.hover',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Iconify icon="eva:radio-button-off-outline" width={24} sx={{ color: 'text.secondary' }} />
+                    </Box>
                   )}
 
                   {/* Locked */}
                   {isLocked && (
                     <Box
                       sx={{
-                        width: 32,
-                        height: 32,
+                        width: 40,
+                        height: 40,
                         borderRadius: '50%',
-                        bgcolor: 'action.selected',
+                        bgcolor: 'action.hover',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}
                     >
-                      <Iconify icon="eva:lock-fill" width={20} sx={{ color: 'text.disabled' }} />
+                      <Iconify icon="eva:lock-fill" width={24} sx={{ color: 'text.disabled' }} />
                     </Box>
                   )}
                 </Stack>
