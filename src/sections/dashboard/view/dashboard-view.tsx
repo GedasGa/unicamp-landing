@@ -7,10 +7,12 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
 import Skeleton from '@mui/material/Skeleton';
 import CircularProgress from '@mui/material/CircularProgress';
+import IconButton from '@mui/material/IconButton';
 
 import { paths } from 'src/routes/paths';
 import { DashboardContent } from 'src/layouts/dashboard';
@@ -19,7 +21,8 @@ import {
   getStudentGroups, 
   getStudentCourses, 
   getStudentModuleProgress,
-  getCourseVisibleModules 
+  getCourseVisibleModules,
+  getLastAccessedContent 
 } from 'src/lib/database';
 
 import { Iconify } from 'src/components/iconify';
@@ -51,10 +54,23 @@ export function DashboardView() {
   const { user } = useAuthContext();
   const [courses, setCourses] = useState<CourseWithModules[]>([]);
   const [loading, setLoading] = useState(true);
+  const [continueData, setContinueData] = useState<any>(null);
 
   useEffect(() => {
     fetchCourses();
+    fetchContinueData();
   }, [user]);
+
+  const fetchContinueData = async () => {
+    if (!user?.id) return;
+
+    try {
+      const data = await getLastAccessedContent(user.id);
+      setContinueData(data);
+    } catch (error) {
+      console.error('Error fetching continue data:', error);
+    }
+  };
 
   const fetchCourses = async () => {
     if (!user?.id) return;
@@ -206,50 +222,64 @@ export function DashboardView() {
             </Box>
 
             {/* Continue Section */}
-            <Box>
-              <Typography variant="h5" sx={{ mb: 2 }}>
-                Continue...
-              </Typography>
-              {/* TODO: Show last accessed lesson/topic */}
-              <Card sx={{ p: 3 }}>
-                <Stack direction="row" alignItems="center" justifyContent="space-between">
-                  <Box>
-                    <Typography variant="h6" sx={{ mb: 0.5 }}>
-                      User Personas
-                    </Typography>
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <Iconify icon="solar:book-2-outline" width={16} sx={{ color: 'text.secondary' }} />
-                      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        Reading (5 minutes)
+            {continueData && (
+              <Box>
+                <Typography variant="h5" sx={{ mb: 2 }}>
+                  Continue...
+                </Typography>
+                <Card 
+                  sx={{ 
+                    p: 3,
+                    cursor: 'pointer',
+                    '&:hover': {
+                      bgcolor: 'action.hover',
+                    },
+                  }}
+                  onClick={() => {
+                    const lesson = continueData.lesson;
+                    const moduleId = lesson.module?.id;
+                    const courseId = lesson.module?.course?.id;
+                    const lessonId = lesson.id;
+                    
+                    if (courseId && moduleId && lessonId) {
+                      router.push(paths.app.courses.lesson(courseId, moduleId, lessonId));
+                    }
+                  }}
+                >
+                  <Stack direction="row" alignItems="center" justifyContent="space-between">
+                    <Box sx={{ flex: 1 }}>
+                      <Typography variant="h6" sx={{ mb: 0.5 }}>
+                        {continueData.lesson?.title}
                       </Typography>
-                    </Stack>
-                  </Box>
-                  <Box>
-                    <Box
-                      component="button"
-                      sx={{
-                        px: 2,
-                        py: 1,
-                        borderRadius: 1,
-                        border: 'none',
-                        bgcolor: 'primary.main',
-                        color: 'primary.contrastText',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 0.5,
-                        '&:hover': {
-                          bgcolor: 'primary.dark',
-                        },
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        <Iconify icon="solar:book-2-outline" width={16} sx={{ color: 'text.secondary' }} />
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                          {continueData.lesson?.module?.course?.title} • {continueData.lesson?.module?.title}
+                        </Typography>
+                      </Stack>
+                    </Box>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      endIcon={<Iconify icon="eva:arrow-forward-fill" />}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const lesson = continueData.lesson;
+                        const moduleId = lesson.module?.id;
+                        const courseId = lesson.module?.course?.id;
+                        const lessonId = lesson.id;
+                        
+                        if (courseId && moduleId && lessonId) {
+                          router.push(paths.app.courses.lesson(courseId, moduleId, lessonId));
+                        }
                       }}
                     >
-                      <Typography variant="button">Resume</Typography>
-                      <Iconify icon="eva:arrow-forward-fill" width={16} />
-                    </Box>
-                  </Box>
-                </Stack>
-              </Card>
-            </Box>
+                      Resume
+                    </Button>
+                  </Stack>
+                </Card>
+              </Box>
+            )}
 
             {/* Course Modules Section */}
             <Box>

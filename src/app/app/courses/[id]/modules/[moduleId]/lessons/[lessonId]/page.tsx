@@ -27,6 +27,7 @@ import {
   getLessonTopicProgress,
   markTopicCompleteWithCascade,
   checkLessonAccess,
+  trackTopicAccess,
 } from 'src/lib/database';
 
 import { getConfluenceLessonTopics } from 'src/actions/confluence';
@@ -71,8 +72,13 @@ export default function LessonPage({ params }: Props) {
     const topicFromUrl = searchParams.get('topic');
     if (topicFromUrl) {
       setSelectedTopicId(topicFromUrl);
+      
+      // Track topic access when viewing
+      if (user?.id && params.lessonId) {
+        trackTopicAccess(user.id, params.lessonId, topicFromUrl);
+      }
     }
-  }, [searchParams]);
+  }, [searchParams, user?.id, params.lessonId]);
 
   useEffect(() => {
     const fetchLessonData = async () => {

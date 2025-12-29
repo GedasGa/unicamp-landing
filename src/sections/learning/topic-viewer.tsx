@@ -212,24 +212,25 @@ export const TopicViewer: FC<TopicViewerProps> = ({
           </IntlProvider>
         )}
 
-        <Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between', gap: 2 }}>
-          {onPrevious && (
+        <Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
+          {onPrevious ? (
             <Button
               variant="outlined"
               color="inherit"
               startIcon={<Iconify icon="eva:arrow-back-fill" />}
               onClick={onPrevious}
             >
-              Previous Topic
+              Previous
             </Button>
+          ) : (
+            <Box sx={{ width: 140 }} />
           )}
           
-          <Box sx={{ display: 'flex', gap: 2, ml: 'auto' }}>
+          <Box sx={{ display: 'flex', gap: 2 }}>
             {onComplete && !isCompleted && (
               <Button
                 variant="contained"
-                color="primary"
-                size="large"
+                color="success"
                 endIcon={<Iconify icon="eva:checkmark-circle-2-fill" />}
                 onClick={onComplete}
               >
@@ -241,11 +242,10 @@ export const TopicViewer: FC<TopicViewerProps> = ({
               <Button
                 variant="contained"
                 color="primary"
-                size="large"
                 endIcon={<Iconify icon="eva:arrow-forward-fill" />}
                 onClick={onNext}
               >
-                Next Topic
+                Next
               </Button>
             )}
           </Box>

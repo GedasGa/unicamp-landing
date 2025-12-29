@@ -989,3 +989,69 @@ export async function getCourseVisibleModules(userId: string, courseId: string, 
 
   return moduleVisibility || [];
 }
+
+/**
+ * Get last accessed content (topic/lesson) for a student
+ * Returns the most recently accessed topic with full context
+ */
+export async function getLastAccessedContent(studentId: string) {
+  const { data, error } = await supabase
+    .from('student_topic_progress')
+    .select(`
+      *,
+      lesson:lessons!inner(
+        id,
+        title,
+        description,
+        confluence_parent_page_id,
+        module:modules!inner(
+          id,
+          title,
+          course:courses!inner(
+            id,
+            title
+          )
+        )
+      )
+    `)
+    .eq('student_id', studentId)
+    .order('last_accessed_at', { ascending: false })
+    .limit(1)
+    .single();
+
+  if (error) {
+    console.error('Error fetching last accessed content:', error);
+    return null;
+  }
+  
+  return data;
+}
+
+/**
+ * Track topic access (updates last_accessed_at timestamp)
+ * Call this when a student views a topic
+ */
+export async function trackTopicAccess(
+  studentId: string,
+  lessonId: string,
+  confluencePageId: string
+) {
+  const { error } = await supabase
+    .from('student_topic_progress')
+    .upsert(
+      {
+        student_id: studentId,
+        lesson_id: lessonId,
+        confluence_page_id: confluencePageId,
+        last_accessed_at: new Date().toISOString(),
+      },
+      {
+        onConflict: 'student_id,lesson_id,confluence_page_id',
+        ignoreDuplicates: false,
+      }
+    );
+
+  if (error) {
+    console.error('Error tracking topic access:', error);
+  }
+}
