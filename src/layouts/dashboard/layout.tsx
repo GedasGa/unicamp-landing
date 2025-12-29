@@ -8,13 +8,11 @@ import { usePathname } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
-import { iconButtonClasses } from '@mui/material/IconButton';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
 import { allLangs } from 'src/locales';
 
-import { Logo } from 'src/components/logo';
 import { useSettingsContext } from 'src/components/settings';
 import { useNavigationContext } from './navigation-context';
 
@@ -24,7 +22,6 @@ import { layoutClasses } from '../classes';
 import { NavVertical } from './nav-vertical';
 import { _account } from '../config-nav-account';
 import { Searchbar } from '../components/searchbar';
-import { _workspaces } from '../config-nav-workspace';
 import { MenuButton } from '../components/menu-button';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
@@ -66,8 +63,6 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
   
   // Hide navigation on dashboard page (/app)
   const shouldShowNav = !pathname?.match(/^\/app\/?$/);
-
-  const isNavMini = settings.navLayout === 'mini';
 
   return (
     <LayoutSection
@@ -145,15 +140,9 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
         shouldShowNav ? (
           <NavVertical
             data={navData}
-            isNavMini={isNavMini}
             layoutQuery={layoutQuery}
             cssVars={navColorVars.section}
-            onToggleNav={() =>
-              settings.onUpdateField(
-                'navLayout',
-                settings.navLayout === 'vertical' ? 'mini' : 'vertical'
-              )
-            }
+            onToggleNav={() => {}}
           />
         ) : null
       }
@@ -168,7 +157,6 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
         ...navColorVars.layout,
         '--layout-transition-easing': 'linear',
         '--layout-transition-duration': '120ms',
-        '--layout-nav-mini-width': '88px',
         '--layout-nav-vertical-width': '300px',
         '--layout-nav-horizontal-height': '64px',
         '--layout-dashboard-content-pt': theme.spacing(1),
@@ -182,11 +170,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
               easing: 'var(--layout-transition-easing)',
               duration: 'var(--layout-transition-duration)',
             }),
-            pl: shouldShowNav
-              ? isNavMini
-                ? 'var(--layout-nav-mini-width)'
-                : 'var(--layout-nav-vertical-width)'
-              : 0,
+            pl: shouldShowNav ? 'var(--layout-nav-vertical-width)' : 0,
           },
         },
         ...sx,

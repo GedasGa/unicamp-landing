@@ -91,10 +91,8 @@ export function useNavColorVars(
             // bullet
             '--nav-bullet-light-color': bulletColor.dark,
             // sub
-            ...(settings.navLayout === 'vertical' && {
-              '--nav-item-sub-active-color': palette.common.white,
-              '--nav-item-sub-open-color': palette.common.white,
-            }),
+            '--nav-item-sub-active-color': palette.common.white,
+            '--nav-item-sub-open-color': palette.common.white,
           },
         };
       default:
@@ -110,6 +108,5 @@ export function useNavColorVars(
     palette.text.primary,
     palette.text.secondary,
     settings.navColor,
-    settings.navLayout,
   ]);
 }

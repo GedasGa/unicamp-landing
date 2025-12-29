@@ -111,21 +111,21 @@ export default function ModuleDetailPage({ params }: Props) {
       const userGroups = await getStudentGroups(user.id);
       const userGroupIds = userGroups.map((g: any) => g.id);
       
-      // Check module visibility for all modules using supabase
+      // Check module visibility using the same logic as dashboard
       const { data: moduleVisibility } = await supabase
         .from('group_module_visibility')
-        .select('module_id, is_visible, unlocked_at')
+        .select('module_id, is_visible, unlocked_at, modules(*)')
         .in('group_id', userGroupIds)
+        .eq('modules.course_id', params.id)
         .eq('is_visible', true);
 
       const accessibleMods = new Set<string>();
       
       if (moduleVisibility) {
         for (const mv of moduleVisibility) {
-          // Module is unlocked if:
-          // 1. unlocked_at is null (no time restriction) OR
-          // 2. unlocked_at is set and the date has passed
-          const isUnlocked = !mv.unlocked_at || new Date(mv.unlocked_at) <= new Date();
+          // Module is unlocked if unlocked_at is set and in the past
+          // This matches the dashboard logic exactly
+          const isUnlocked = mv.unlocked_at && new Date(mv.unlocked_at) <= new Date();
           
           if (isUnlocked) {
             accessibleMods.add(mv.module_id);

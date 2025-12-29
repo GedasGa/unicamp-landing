@@ -16,7 +16,6 @@ import PRIMARY_COLOR from 'src/theme/with-settings/primary-color.json';
 
 import { Iconify } from '../../iconify';
 import { BaseOption } from './base-option';
-import { NavOptions } from './nav-options';
 import { Scrollbar } from '../../scrollbar';
 import { FontOptions } from './font-options';
 import { useSettingsContext } from '../context';
@@ -33,15 +32,11 @@ export function SettingsDrawer({
   hideFont,
   hideCompact,
   hidePresets,
-  hideNavColor,
   hideContrast,
-  hideNavLayout,
   hideColorScheme,
 }: SettingsDrawerProps) {
   const theme = useTheme();
-
   const settings = useSettingsContext();
-
   const { mode, setMode } = useColorScheme();
 
   const renderHead = (
@@ -49,9 +44,7 @@ export function SettingsDrawer({
       <Typography variant="h6" sx={{ flexGrow: 1 }}>
         Settings
       </Typography>
-
       <FullScreenButton />
-
       <Tooltip title="Reset">
         <IconButton
           onClick={() => {
@@ -64,7 +57,6 @@ export function SettingsDrawer({
           </Badge>
         </IconButton>
       </Tooltip>
-
       <Tooltip title="Close">
         <IconButton onClick={settings.onCloseDrawer}>
           <Iconify icon="mingcute:close-line" />
@@ -121,25 +113,6 @@ export function SettingsDrawer({
     />
   );
 
-  const renderNav = (
-    <NavOptions
-      value={{
-        color: settings.navColor,
-        layout: settings.navLayout,
-      }}
-      onClickOption={{
-        color: (newValue) => settings.onUpdateField('navColor', newValue),
-        layout: (newValue) => settings.onUpdateField('navLayout', newValue),
-      }}
-      options={{
-        colors: ['integrate', 'apparent'],
-        layouts: ['vertical', 'horizontal', 'mini'],
-      }}
-      hideNavColor={hideNavColor}
-      hideNavLayout={hideNavLayout}
-    />
-  );
-
   const renderFont = (
     <FontOptions
       value={settings.fontFamily}
@@ -174,7 +147,7 @@ export function SettingsDrawer({
             {!hideContrast && renderContrast}
             {!hideCompact && renderCompact}
           </Box>
-          {!(hideNavLayout && hideNavColor) && renderNav}
+
           {!hidePresets && renderPresets}
           {!hideFont && renderFont}
         </Stack>

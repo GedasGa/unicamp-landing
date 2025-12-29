@@ -72,7 +72,7 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>(
       width: width ?? 40,
       height: height ?? 40,
       ...(!onlyLogo && {
-        width: width ?? 102,
+        width: width ?? 118.5,
         height: height ?? 36,
       }),
     };

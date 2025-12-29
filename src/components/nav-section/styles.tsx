@@ -10,7 +10,7 @@ import { stylesMode } from 'src/theme/styles';
 
 import { navSectionClasses } from './classes';
 import { svgColorClasses } from '../svg-color';
-import { Iconify, iconifyClasses } from '../iconify';
+import { iconifyClasses } from '../iconify';
 
 // ----------------------------------------------------------------------
 
@@ -90,7 +90,6 @@ export function Subheader({
       className={navSectionClasses.subheader}
       sx={{
         gap: 1,
-        cursor: 'pointer',
         alignItems: 'center',
         position: 'relative',
         typography: 'overline',
@@ -103,29 +102,10 @@ export function Subheader({
           theme.transitions.create(['color', 'padding-left'], {
             duration: theme.transitions.duration.standard,
           }),
-        '&:hover': {
-          pl: 2,
-          color: 'var(--nav-subheader-hover-color)',
-          [`& .${iconifyClasses.root}`]: { opacity: 1 },
-        },
         ...sx,
       }}
       {...other}
     >
-      <Iconify
-        width={16}
-        icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
-        sx={{
-          left: -4,
-          opacity: 0,
-          position: 'absolute',
-          transition: (theme) =>
-            theme.transitions.create(['opacity'], {
-              duration: theme.transitions.duration.standard,
-            }),
-        }}
-      />
-
       {children}
     </ListSubheader>
   );
