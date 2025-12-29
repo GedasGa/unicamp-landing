@@ -12,4 +12,5 @@ export const defaultSettings: SettingsState = {
   primaryColor: 'default',
   compactLayout: true,
   fontFamily: defaultFont,
+  fontSize: 'normal',
 } as const;

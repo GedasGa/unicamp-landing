@@ -16,10 +16,11 @@ export type SettingsDrawerProps = {
 
 export type SettingsState = {
   fontFamily: string;
+  fontSize: 'small' | 'normal' | 'large';
   compactLayout: boolean;
   colorScheme: ThemeColorScheme;
   contrast: 'default' | 'hight';
-  primaryColor: 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red';
+  primaryColor: 'default' | 'black' | 'daltonism';
 };
 
 export type SettingsContextValue = SettingsState & {

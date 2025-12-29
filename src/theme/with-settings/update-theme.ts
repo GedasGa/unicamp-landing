@@ -14,11 +14,8 @@ import type { ThemeComponents, ThemeUpdateOptions } from '../types';
 
 const PRIMARY_COLORS = {
   default: COLORS.primary,
-  cyan: PRIMARY_COLOR.cyan,
-  purple: PRIMARY_COLOR.purple,
-  blue: PRIMARY_COLOR.blue,
-  orange: PRIMARY_COLOR.orange,
-  red: PRIMARY_COLOR.red,
+  black: PRIMARY_COLOR.black,
+  daltonism: PRIMARY_COLOR.cyan,
 };
 
 // ----------------------------------------------------------------------

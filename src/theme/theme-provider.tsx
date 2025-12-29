@@ -6,6 +6,8 @@ import type {} from '@mui/x-data-grid/themeAugmentation';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 
+import { useMemo, useEffect } from 'react';
+
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -24,12 +26,24 @@ type Props = {
   children: React.ReactNode;
 };
 
+const fontSizeMap = {
+  small: '14px',
+  normal: '16px',
+  large: '18px',
+};
+
 export function ThemeProvider({ children }: Props) {
   const { currentLang } = useTranslate();
 
   const settings = useSettingsContext();
 
   const theme = createTheme(currentLang?.systemValue, settings);
+
+  // Apply font size to HTML element
+  useEffect(() => {
+    const htmlElement = document.documentElement;
+    htmlElement.style.fontSize = fontSizeMap[settings.fontSize];
+  }, [settings.fontSize]);
 
   return (
     <AppRouterCacheProvider options={{ key: 'css' }}>

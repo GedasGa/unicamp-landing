@@ -2,10 +2,13 @@
 
 import type { BoxProps } from '@mui/material/Box';
 
+import { m } from 'framer-motion';
+
 import Box from '@mui/material/Box';
 import Portal from '@mui/material/Portal';
+import LinearProgress from '@mui/material/LinearProgress';
 
-import { AnimateLogo } from 'src/components/animate';
+import { Logo } from 'src/components/logo';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +35,43 @@ export function SplashScreen({ portal = true, sx, ...other }: Props) {
         }}
         {...other}
       >
-        <AnimateLogo />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 4,
+          }}
+        >
+          <m.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
+            <Logo 
+              disableLink 
+              onlyLogo={false}
+              width={240} 
+              height={72}
+            />
+          </m.div>
+          
+          <Box sx={{ width: 240 }}>
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
+              <LinearProgress 
+                color="primary"
+                sx={{
+                  height: 2,
+                  borderRadius: 1,
+                }}
+              />
+            </m.div>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
@@ -43,3 +82,4 @@ export function SplashScreen({ portal = true, sx, ...other }: Props) {
 
   return content;
 }
+

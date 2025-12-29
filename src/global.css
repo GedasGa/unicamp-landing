@@ -12,9 +12,9 @@
 /** **************************************
 * Fonts: options
 *************************************** */
-@import '@fontsource-variable/dm-sans';
-@import '@fontsource-variable/inter';
-@import '@fontsource-variable/nunito-sans';
+@import '@fontsource-variable/lexend';
+@import '@fontsource/atkinson-hyperlegible';
+@import '@fontsource/opendyslexic';
 
 /** **************************************
 * Plugins

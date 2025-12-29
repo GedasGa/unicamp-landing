@@ -19,6 +19,7 @@ import { BaseOption } from './base-option';
 import { Scrollbar } from '../../scrollbar';
 import { FontOptions } from './font-options';
 import { useSettingsContext } from '../context';
+import { FontSizeOptions } from './font-size-options';
 import { PresetsOptions } from './presets-options';
 import { defaultSettings } from '../config-settings';
 import { FullScreenButton } from './fullscreen-button';
@@ -104,11 +105,8 @@ export function SettingsDrawer({
       onClickOption={(newValue) => settings.onUpdateField('primaryColor', newValue)}
       options={[
         { name: 'default', value: COLORS.primary.main },
-        { name: 'cyan', value: PRIMARY_COLOR.cyan.main },
-        { name: 'purple', value: PRIMARY_COLOR.purple.main },
-        { name: 'blue', value: PRIMARY_COLOR.blue.main },
-        { name: 'orange', value: PRIMARY_COLOR.orange.main },
-        { name: 'red', value: PRIMARY_COLOR.red.main },
+        { name: 'black', value: PRIMARY_COLOR.black.main },
+        { name: 'daltonism', value: PRIMARY_COLOR.cyan.main },
       ]}
     />
   );
@@ -117,7 +115,32 @@ export function SettingsDrawer({
     <FontOptions
       value={settings.fontFamily}
       onClickOption={(newValue) => settings.onUpdateField('fontFamily', newValue)}
-      options={[defaultFont, 'Inter Variable', 'DM Sans Variable', 'Nunito Sans Variable']}
+      options={[
+        { 
+          name: defaultFont, 
+          tooltip: 'Default font' 
+        },
+        { 
+          name: 'Lexend Variable', 
+          tooltip: 'Designed to improve reading proficiency and reduce visual stress for all readers' 
+        },
+        { 
+          name: 'Atkinson Hyperlegible', 
+          tooltip: 'Created for low vision readers with distinct letterforms, helpful for dyslexia' 
+        },
+        { 
+          name: 'OpenDyslexic', 
+          tooltip: 'Specially designed typeface for people with dyslexia with weighted bottoms and unique shapes' 
+        },
+      ]}
+    />
+  );
+
+  const renderFontSize = (
+    <FontSizeOptions
+      value={settings.fontSize}
+      onClickOption={(newValue) => settings.onUpdateField('fontSize', newValue)}
+      options={['small', 'normal', 'large']}
     />
   );
 
@@ -150,6 +173,7 @@ export function SettingsDrawer({
 
           {!hidePresets && renderPresets}
           {!hideFont && renderFont}
+          {renderFontSize}
         </Stack>
       </Scrollbar>
     </Drawer>
