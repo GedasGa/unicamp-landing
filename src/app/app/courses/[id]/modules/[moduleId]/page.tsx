@@ -19,18 +19,20 @@ import Avatar from '@mui/material/Avatar';
 import { Iconify } from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { paths } from 'src/routes/paths';
-import { supabase } from 'src/lib/supabase';
 import { DashboardContent } from 'src/layouts/dashboard';
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
+import { getCourseNavigation } from 'src/layouts/dashboard/nav-utils';
+import { 
+  getAccessibleModules, 
+  getAccessibleLessons, 
+} from 'src/lib/visibility-utils';
 
 import { 
   getCourse,
   getModule,
   getModules,
   getLessons,
-  getLessonVisibility,
-  getStudentGroups,
   getLessonTopicProgress,
 } from 'src/lib/database';
 
@@ -57,25 +59,17 @@ export default function ModuleDetailPage({ params }: Props) {
 
   // Memoize navigation to prevent infinite updates
   // Show course modules in navigation
-  const navigation = useMemo(
-    () => course && modules.length > 0
-      ? [{
-          subheader: course.title,
-          items: modules.map((mod: any) => ({
-            title: mod.title,
-            path: paths.app.courses.module(params.id, mod.id),
-            icon: !accessibleModules.has(mod.id) ? (
-              <Iconify icon="eva:lock-fill" sx={{ color: 'text.disabled' }} />
-            ) : (
-              <Iconify icon="eva:book-outline" sx={{ color: 'primary.main' }} />
-            ),
-            disabled: !accessibleModules.has(mod.id),
-            active: mod.id === params.moduleId,
-          })),
-        }]
-      : null,
-    [course, modules, accessibleModules, params.id, params.moduleId]
-  );
+  const navigation = useMemo(() => {
+    if (!course || modules.length === 0) return null;
+    
+    // Add locked status to modules based on accessibility
+    const modulesWithLockStatus = modules.map((mod: any) => ({
+      ...mod,
+      locked: !accessibleModules.has(mod.id),
+    }));
+    
+    return getCourseNavigation(params.id, course.title, modulesWithLockStatus, params.moduleId);
+  }, [course, modules, accessibleModules, params.id, params.moduleId]);
 
   // Set navigation: Course modules list
   useSetNavigation(navigation);
@@ -107,71 +101,17 @@ export default function ModuleDetailPage({ params }: Props) {
       const lessonsData = await getLessons(params.moduleId);
       setLessons(lessonsData);
       
-      // Get user's groups
-      const userGroups = await getStudentGroups(user.id);
-      const userGroupIds = userGroups.map((g: any) => g.id);
-      
-      // Check module visibility using the same logic as dashboard
-      const { data: moduleVisibility } = await supabase
-        .from('group_module_visibility')
-        .select('module_id, is_visible, unlocked_at, modules(*)')
-        .in('group_id', userGroupIds)
-        .eq('modules.course_id', params.id)
-        .eq('is_visible', true);
-
-      const accessibleMods = new Set<string>();
-      
-      if (moduleVisibility) {
-        for (const mv of moduleVisibility) {
-          // Module is unlocked if unlocked_at is set and in the past
-          // This matches the dashboard logic exactly
-          const isUnlocked = mv.unlocked_at && new Date(mv.unlocked_at) <= new Date();
-          
-          if (isUnlocked) {
-            accessibleMods.add(mv.module_id);
-          }
-        }
-      }
-      
+      // Use centralized visibility logic
+      const accessibleMods = await getAccessibleModules(user.id, params.id);
       setAccessibleModules(accessibleMods);
       
-      // Check lesson visibility for each lesson in current module
-      const accessible = new Set<string>();
-      
-      for (const lesson of lessonsData) {
-        // Check visibility across all user's groups
-        let hasAccessInAnyGroup = false;
-        
-        for (const groupId of userGroupIds) {
-          const visibility = await getLessonVisibility(groupId, lesson.id);
-          
-          if (!visibility) {
-            // No visibility record means accessible by default
-            hasAccessInAnyGroup = true;
-            break;
-          }
-          
-          // Check if lesson is visible and unlocked
-          if (visibility.is_visible) {
-            const isUnlocked = !visibility.unlocked_at || new Date(visibility.unlocked_at) <= new Date();
-            if (isUnlocked) {
-              hasAccessInAnyGroup = true;
-              break;
-            }
-          }
-        }
-        
-        if (hasAccessInAnyGroup) {
-          accessible.add(lesson.id);
-        }
-      }
-      
-      setAccessibleLessons(accessible);
+      const accessibleLess = await getAccessibleLessons(user.id, params.moduleId);
+      setAccessibleLessons(accessibleLess);
       
       // Get progress for each lesson
       const progressMap = new Map<string, number>();
       for (const lesson of lessonsData) {
-        if (accessible.has(lesson.id)) {
+        if (accessibleLess.has(lesson.id)) {
           const topicProgress = await getLessonTopicProgress(user.id, lesson.id);
           if (topicProgress && topicProgress.length > 0) {
             const completedTopics = topicProgress.filter((p: any) => p.completed).length;

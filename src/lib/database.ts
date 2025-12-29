@@ -826,3 +826,72 @@ export async function getStudentCourseProgress(studentId: string, courseId: stri
   if (error) throw error;
   return data;
 }
+
+// =============================================
+// HELPER FUNCTIONS FOR FETCHING ENRICHED DATA
+// =============================================
+
+/**
+ * Get courses assigned to student with their groups
+ * Returns courses ordered by group assignment order
+ */
+export async function getStudentCourses(studentId: string) {
+  // Get user's groups
+  const userGroups = await getStudentGroups(studentId);
+  
+  if (!userGroups?.length) {
+    return [];
+  }
+
+  const groupIds = userGroups.map((ug) => ug.group_id);
+
+  // Get courses assigned to these groups
+  const { data: groupCourses, error } = await supabase
+    .from('group_courses')
+    .select('course_id, courses(id, title, description, thumbnail_url, created_at, updated_at)')
+    .in('group_id', groupIds)
+    .order('order_index', { ascending: true });
+
+  if (error) throw error;
+  
+  return groupCourses?.map((gc: any) => gc.courses).filter(Boolean) || [];
+}
+
+/**
+ * Get module progress for a student
+ * Returns a Map of module_id to progress_percentage
+ */
+export async function getStudentModuleProgress(studentId: string, moduleIds: string[]) {
+  if (!moduleIds?.length) {
+    return new Map<string, number>();
+  }
+
+  const { data, error } = await supabase
+    .from('student_module_progress')
+    .select('module_id, progress_percentage')
+    .eq('student_id', studentId)
+    .in('module_id', moduleIds);
+
+  if (error) throw error;
+
+  return new Map(
+    data?.map((mp) => [mp.module_id, mp.progress_percentage]) || []
+  );
+}
+
+/**
+ * Get visible modules for a course across user's groups
+ * Returns modules with visibility and unlock information
+ */
+export async function getCourseVisibleModules(userId: string, courseId: string, groupIds: string[]) {
+  const { data: moduleVisibility, error } = await supabase
+    .from('group_module_visibility')
+    .select('module_id, is_visible, unlocked_at, modules(*)')
+    .in('group_id', groupIds)
+    .eq('modules.course_id', courseId)
+    .eq('is_visible', true);
+
+  if (error) throw error;
+
+  return moduleVisibility || [];
+}

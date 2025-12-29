@@ -7,18 +7,10 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Card from '@mui/material/Card';
 
-import { Iconify } from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { TopicViewer } from 'src/sections/learning/topic-viewer';
 import { paths } from 'src/routes/paths';

@@ -12,11 +12,16 @@ import LinearProgress from '@mui/material/LinearProgress';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { paths } from 'src/routes/paths';
-import { supabase } from 'src/lib/supabase';
 import { DashboardContent } from 'src/layouts/dashboard';
+import { isModuleUnlocked } from 'src/lib/visibility-utils';
+import { 
+  getStudentGroups, 
+  getStudentCourses, 
+  getStudentModuleProgress,
+  getCourseVisibleModules 
+} from 'src/lib/database';
 
 import { Iconify } from 'src/components/iconify';
-import { SplashScreen } from 'src/components/loading-screen';
 import { Image } from 'src/components/image';
 
 import { useAuthContext } from 'src/auth/hooks';
@@ -56,79 +61,48 @@ export function DashboardView() {
     try {
       setLoading(true);
 
-      // Get user's groups
-      const { data: groupStudents } = await supabase
-        .from('group_students')
-        .select('group_id')
-        .eq('student_id', user.id);
+      // Use database helper functions
+      const userGroups = await getStudentGroups(user.id);
 
-      if (!groupStudents?.length) {
+      if (!userGroups?.length) {
         setCourses([]);
         return;
       }
 
-      const groupIds = groupStudents.map((gs) => gs.group_id);
+      const groupIds = userGroups.map((ug) => ug.group_id);
 
-      // Get courses assigned to these groups
-      const { data: groupCourses } = await supabase
-        .from('group_courses')
-        .select('course_id, courses(id, title, description, thumbnail_url, created_at, updated_at)')
-        .in('group_id', groupIds)
-        .order('order_index', { ascending: true });
+      // Get courses assigned to student
+      const studentCourses = await getStudentCourses(user.id);
 
-      if (!groupCourses) {
+      if (!studentCourses?.length) {
         setCourses([]);
         return;
       }
 
       // Get modules for each course with visibility and progress
       const coursesWithModules = await Promise.all(
-        groupCourses.map(async (gc: any) => {
-          const course = gc.courses;
-          
-          // Ensure course has an id
-          if (!course || !course.id) {
-            console.error('Course missing id:', gc);
+        studentCourses.map(async (course: any) => {
+          if (!course?.id) {
+            console.error('Course missing id:', course);
             return null;
           }
 
-          // Get modules with visibility through group_module_visibility
-          // Fetch all visible modules, then determine locked/unlocked state based on unlocked_at
-          const { data: moduleVisibility, error: modulesError } = await supabase
-            .from('group_module_visibility')
-            .select('module_id, is_visible, unlocked_at, modules(*)')
-            .in('group_id', groupIds)
-            .eq('modules.course_id', course.id)
-            .eq('is_visible', true);
-
-          console.log('Fetching modules for course:', course.id);
-          console.log('Module visibility:', moduleVisibility);
-          console.log('Modules error:', modulesError);
+          // Use database helper for module visibility
+          const moduleVisibility = await getCourseVisibleModules(user.id, course.id, groupIds);
 
           if (!moduleVisibility?.length) {
             return { ...course, modules: [] };
           }
 
           const moduleIds = moduleVisibility.map((mv) => mv.module_id);
-          
-          console.log('Course object before return:', course);
-          console.log('Course ID:', course.id);
 
-          // Get module progress
-          const { data: moduleProgress } = await supabase
-            .from('student_module_progress')
-            .select('module_id, progress_percentage')
-            .eq('student_id', user.id)
-            .in('module_id', moduleIds);
-
-          const progressMap = new Map(
-            moduleProgress?.map((mp) => [mp.module_id, mp.progress_percentage]) || []
-          );
+          // Use database helper function for progress
+          const progressMap = await getStudentModuleProgress(user.id, moduleIds);
 
           const modules: Module[] = moduleVisibility
             .map((mv: any) => {
-              // Module is unlocked if unlocked_at is set and in the past
-              const isUnlocked = mv.unlocked_at && new Date(mv.unlocked_at) <= new Date();
+              // Use consistent unlock logic
+              const isUnlocked = isModuleUnlocked(mv.unlocked_at, mv.is_visible);
               
               return {
                 ...mv.modules,
