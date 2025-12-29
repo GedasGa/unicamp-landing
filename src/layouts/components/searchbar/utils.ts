@@ -13,15 +13,17 @@ type ItemProps = {
 export function getAllItems({ data }: { data: NavSectionProps['data'] }) {
   const reduceItems = data.map((list) => handleLoop(list.items, list.subheader)).flat();
 
-  const items = flattenArray(reduceItems).map((option) => {
-    const group = splitPath(reduceItems, option.path);
+  const items = flattenArray(reduceItems)
+    .filter((option) => !option.disabled) // Filter out locked/disabled items
+    .map((option) => {
+      const group = splitPath(reduceItems, option.path);
 
-    return {
-      group: group && group.length > 1 ? group[0] : option.subheader,
-      title: option.title,
-      path: option.path,
-    };
-  });
+      return {
+        group: group && group.length > 1 ? group[0] : option.subheader,
+        title: option.title,
+        path: option.path,
+      };
+    });
 
   return items;
 }

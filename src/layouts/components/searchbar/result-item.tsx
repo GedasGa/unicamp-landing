@@ -26,6 +26,7 @@ export function ResultItem({ title, path, groupLabel, onClickItem }: Props) {
     <ListItemButton
       onClick={onClickItem}
       sx={{
+        gap: 2,
         borderWidth: 1,
         borderStyle: 'dashed',
         borderColor: 'transparent',
@@ -43,7 +44,6 @@ export function ResultItem({ title, path, groupLabel, onClickItem }: Props) {
     >
       <ListItemText
         primaryTypographyProps={{ typography: 'subtitle2', sx: { textTransform: 'capitalize' } }}
-        secondaryTypographyProps={{ typography: 'caption', noWrap: true }}
         primary={title.map((part, index) => (
           <Box
             key={index}
@@ -53,18 +53,13 @@ export function ResultItem({ title, path, groupLabel, onClickItem }: Props) {
             {part.text}
           </Box>
         ))}
-        secondary={path.map((part, index) => (
-          <Box
-            key={index}
-            component="span"
-            sx={{ color: part.highlight ? 'primary.main' : 'text.secondary' }}
-          >
-            {part.text}
-          </Box>
-        ))}
       />
 
-      {groupLabel && <Label color="info">{groupLabel}</Label>}
+      {groupLabel && (
+        <Label color="info" sx={{ flexShrink: 0 }}>
+          {groupLabel}
+        </Label>
+      )}
     </ListItemButton>
   );
 }

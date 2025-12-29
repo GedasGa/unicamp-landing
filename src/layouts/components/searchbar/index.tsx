@@ -2,8 +2,9 @@
 
 import type { BoxProps } from '@mui/material/Box';
 import type { NavSectionProps } from 'src/components/nav-section';
+import type { SearchableItem } from 'src/lib/search-utils';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 
@@ -22,6 +23,8 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { useEventListener } from 'src/hooks/use-event-listener';
 
 import { varAlpha } from 'src/theme/styles';
+import { useAuthContext } from 'src/auth/hooks';
+import { getSearchableContent } from 'src/lib/search-utils';
 
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
@@ -39,12 +42,23 @@ export type SearchbarProps = BoxProps & {
 
 export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps) {
   const theme = useTheme();
-
   const router = useRouter();
-
+  const { user } = useAuthContext();
   const search = useBoolean();
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchableItems, setSearchableItems] = useState<SearchableItem[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  // Fetch all searchable content when component mounts or user changes
+  useEffect(() => {
+    if (user?.id) {
+      setLoading(true);
+      getSearchableContent(user.id)
+        .then(setSearchableItems)
+        .finally(() => setLoading(false));
+    }
+  }, [user?.id]);
 
   const handleClose = useCallback(() => {
     search.onFalse();
@@ -76,33 +90,45 @@ export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps)
     setSearchQuery(event.target.value);
   }, []);
 
-  const dataFiltered = applyFilter({
-    inputData: getAllItems({ data: navItems }),
-    query: searchQuery,
+  // Filter searchable items based on query
+  const dataFiltered = searchableItems.filter((item) => {
+    if (!searchQuery) return false;
+    const query = searchQuery.toLowerCase();
+    return (
+      item.title.toLowerCase().includes(query) ||
+      item.description?.toLowerCase().includes(query) ||
+      item.courseName.toLowerCase().includes(query)
+    );
   });
 
   const notFound = searchQuery && !dataFiltered.length;
 
   const renderItems = () => {
-    const dataGroups = groupItems(dataFiltered);
+    // Group by course name
+    const grouped = dataFiltered.reduce((acc, item) => {
+      if (!acc[item.courseName]) {
+        acc[item.courseName] = [];
+      }
+      acc[item.courseName].push(item);
+      return acc;
+    }, {} as Record<string, SearchableItem[]>);
 
-    return Object.keys(dataGroups)
-      .sort((a, b) => -b.localeCompare(a))
-      .map((group, index) => (
-        <Box component="ul" key={`${group}-${index}`}>
-          {dataGroups[group].map((item) => {
-            const { title, path } = item;
+    return Object.entries(grouped)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([courseName, items], index) => (
+        <Box component="ul" key={`${courseName}-${index}`}>
+          {items.map((item) => {
+            const { title, path, type } = item;
 
             const partsTitle = parse(title, match(title, searchQuery));
-
             const partsPath = parse(path, match(path, searchQuery));
 
             return (
-              <Box component="li" key={`${title}${path}`} sx={{ display: 'flex' }}>
+              <Box component="li" key={item.id} sx={{ display: 'flex' }}>
                 <ResultItem
                   path={partsPath}
                   title={partsTitle}
-                  groupLabel={searchQuery && group}
+                  groupLabel={searchQuery && `${courseName} • ${type}`}
                   onClickItem={() => handleClick(path)}
                 />
               </Box>
