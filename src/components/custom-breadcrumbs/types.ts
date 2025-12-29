@@ -13,6 +13,7 @@ export type BreadcrumbsLinkProps = {
 export type CustomBreadcrumbsProps = BoxProps &
   BreadcrumbsProps & {
     heading?: string;
+    subtitle?: string;
     moreLink?: string[];
     activeLast?: boolean;
     action?: React.ReactNode;
@@ -20,6 +21,7 @@ export type CustomBreadcrumbsProps = BoxProps &
     slotProps?: {
       action: SxProps<Theme>;
       heading: SxProps<Theme>;
+      subtitle: SxProps<Theme>;
       moreLink: SxProps<Theme>;
       breadcrumbs: SxProps<Theme>;
     };

@@ -192,27 +192,17 @@ export default function ModuleDetailPage({ params }: Props) {
 
   return (
     <DashboardContent maxWidth="lg">
-      {/* Breadcrumbs */}
+      {/* Breadcrumbs with heading and subtitle */}
       {course && module && (
         <CustomBreadcrumbs
           links={[
             { name: 'My learning', href: paths.app.root },
             { name: course.title },
           ]}
-          sx={{ mb: 3 }}
+          heading={module.title}
+          subtitle={module.description}
+          sx={{ mb: 5 }}
         />
-      )}
-
-      {/* Module Title */}
-      <Typography variant="h3" sx={{ mb: 2 }}>
-        {module?.title}
-      </Typography>
-
-      {/* Module Description */}
-      {module?.description && (
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 5 }}>
-          {module.description}
-        </Typography>
       )}
 
       {lessons.length === 0 ? (
