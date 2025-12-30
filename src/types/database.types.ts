@@ -181,6 +181,72 @@ export type Database = {
           },
         ]
       }
+      group_schedule: {
+        Row: {
+          address: string | null
+          city: string | null
+          created_at: string | null
+          description: string | null
+          end_time: string
+          group_id: string
+          id: string
+          instructions: string | null
+          lesson_id: string | null
+          meeting_link: string | null
+          mode: string
+          start_time: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          created_at?: string | null
+          description?: string | null
+          end_time: string
+          group_id: string
+          id?: string
+          instructions?: string | null
+          lesson_id?: string | null
+          meeting_link?: string | null
+          mode?: string
+          start_time: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          created_at?: string | null
+          description?: string | null
+          end_time?: string
+          group_id?: string
+          id?: string
+          instructions?: string | null
+          lesson_id?: string | null
+          meeting_link?: string | null
+          mode?: string
+          start_time?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_schedule_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_schedule_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       group_students: {
         Row: {
           created_at: string | null
@@ -492,54 +558,6 @@ export type Database = {
           },
           {
             foreignKeyName: "student_lesson_progress_student_id_fkey"
-            columns: ["student_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      student_module_progress: {
-        Row: {
-          completed: boolean | null
-          completed_at: string | null
-          created_at: string | null
-          id: string
-          module_id: string
-          progress_percentage: number | null
-          student_id: string
-          updated_at: string | null
-        }
-        Insert: {
-          completed?: boolean | null
-          completed_at?: string | null
-          created_at?: string | null
-          id?: string
-          module_id: string
-          progress_percentage?: number | null
-          student_id: string
-          updated_at?: string | null
-        }
-        Update: {
-          completed?: boolean | null
-          completed_at?: string | null
-          created_at?: string | null
-          id?: string
-          module_id?: string
-          progress_percentage?: number | null
-          student_id?: string
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "student_module_progress_module_id_fkey"
-            columns: ["module_id"]
-            isOneToOne: false
-            referencedRelation: "modules"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "student_module_progress_student_id_fkey"
             columns: ["student_id"]
             isOneToOne: false
             referencedRelation: "profiles"

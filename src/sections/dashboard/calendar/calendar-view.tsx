@@ -21,6 +21,7 @@ import { varAlpha } from 'src/theme/styles';
 
 import { getUserSchedule } from 'src/lib/database';
 import { useAuthContext } from 'src/auth/hooks';
+import { fDateTime } from 'src/utils/format-time';
 
 import type { CalendarEvent } from 'src/types/schedule';
 import type { EventClickArg } from '@fullcalendar/core';
@@ -383,6 +384,16 @@ export function CalendarView() {
             height="auto"
             slotMinTime="08:00:00"
             slotMaxTime="22:00:00"
+            eventTimeFormat={{
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false,
+            }}
+            slotLabelFormat={{
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false,
+            }}
           />
         </StyledCalendar>
       </Card>
@@ -421,24 +432,14 @@ export function CalendarView() {
                   <Stack direction="row" alignItems="center" spacing={1}>
                     <Iconify icon="mdi:clock-outline" width={20} />
                     <Typography variant="body2">
-                      {selectedEvent.start.toLocaleString('en-US', {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}
+                      {fDateTime(selectedEvent.start, 'dddd, DD MMMM YYYY HH:mm')}
                     </Typography>
                   </Stack>
 
                   <Stack direction="row" alignItems="center" spacing={1}>
                     <Iconify icon="mdi:clock-end" width={20} />
                     <Typography variant="body2">
-                      {selectedEvent.end.toLocaleString('en-US', {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}
+                      {fDateTime(selectedEvent.end, 'dddd, DD MMMM YYYY HH:mm')}
                     </Typography>
                   </Stack>
 

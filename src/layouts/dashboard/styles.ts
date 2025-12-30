@@ -1,4 +1,3 @@
-import type { SettingsState } from 'src/components/settings';
 import type { Theme, CSSObject } from '@mui/material/styles';
 
 import { useMemo } from 'react';
@@ -6,8 +5,6 @@ import { useMemo } from 'react';
 import { styled } from '@mui/material/styles';
 
 import { varAlpha, stylesMode } from 'src/theme/styles';
-
-import { bulletColor } from 'src/components/nav-section';
 
 // ----------------------------------------------------------------------
 
@@ -39,8 +36,7 @@ export const StyledDivider = styled('span')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export function useNavColorVars(
-  theme: Theme,
-  settings: SettingsState
+  theme: Theme
 ): Record<'layout' | 'section', CSSObject> {
   const {
     vars: { palette },

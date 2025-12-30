@@ -10,6 +10,8 @@ export type SettingsDrawerProps = {
   hideFont?: boolean;
   hideCompact?: boolean;
   hidePresets?: boolean;
+  hideNavColor?: boolean;
+  hideNavLayout?: boolean;
   hideContrast?: boolean;
   hideColorScheme?: boolean;
 };
@@ -20,6 +22,8 @@ export type SettingsState = {
   compactLayout: boolean;
   colorScheme: ThemeColorScheme;
   contrast: 'default' | 'hight';
+  navColor: 'integrate' | 'apparent';
+  navLayout: 'vertical' | 'horizontal' | 'mini';
   primaryColor: 'default' | 'black' | 'daltonism';
 };
 

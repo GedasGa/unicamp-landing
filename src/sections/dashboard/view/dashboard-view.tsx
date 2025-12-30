@@ -22,7 +22,8 @@ import {
   getStudentCourses, 
   getStudentModuleProgress,
   getCourseVisibleModules,
-  getLastAccessedContent 
+  getLastAccessedContent,
+  getUserSchedule
 } from 'src/lib/database';
 
 import { Iconify } from 'src/components/iconify';
@@ -31,8 +32,10 @@ import { Image } from 'src/components/image';
 import { useAuthContext } from 'src/auth/hooks';
 import { CalendarView } from 'src/sections/dashboard/calendar';
 import { CONFIG } from 'src/config-global';
+import { fDateTime } from 'src/utils/format-time';
 
 import type { Database } from 'src/types/database.types';
+import type { CalendarEvent } from 'src/types/schedule';
 
 // ----------------------------------------------------------------------
 
@@ -55,11 +58,35 @@ export function DashboardView() {
   const [courses, setCourses] = useState<CourseWithModules[]>([]);
   const [loading, setLoading] = useState(true);
   const [continueData, setContinueData] = useState<any>(null);
+  const [activeMeeting, setActiveMeeting] = useState<CalendarEvent | null>(null);
 
   useEffect(() => {
     fetchCourses();
     fetchContinueData();
+    fetchActiveMeeting();
   }, [user]);
+
+  const fetchActiveMeeting = async () => {
+    if (!user?.id) return;
+
+    try {
+      const schedule = await getUserSchedule(user.id);
+      const now = new Date();
+      const tenMinutesFromNow = new Date(now.getTime() + 10 * 60 * 1000);
+      
+      // Find meeting that is currently active or starting within 10 minutes
+      const active = schedule.find((event) => {
+        const start = new Date(event.start);
+        const end = new Date(event.end);
+        // Show if meeting is active (started but not ended) or starts within 10 minutes
+        return (start <= now && end >= now) || (start > now && start <= tenMinutesFromNow);
+      });
+      
+      setActiveMeeting(active || null);
+    } catch (error) {
+      console.error('Error fetching active meeting:', error);
+    }
+  };
 
   const fetchContinueData = async () => {
     if (!user?.id) return;
@@ -221,6 +248,88 @@ export function DashboardView() {
               </Typography>
             </Box>
 
+            {/* Active Meeting Section */}
+            {activeMeeting && (() => {
+              const now = new Date();
+              const startTime = new Date(activeMeeting.start);
+              const isStartingSoon = startTime > now;
+              const minutesUntilStart = isStartingSoon ? Math.round((startTime.getTime() - now.getTime()) / (1000 * 60)) : 0;
+              
+              return (
+                <Box>
+                  <Typography variant="h5" sx={{ mb: 2 }}>
+                    {isStartingSoon ? 'Meeting starting soon' : 'Meeting in progress'}
+                  </Typography>
+                  <Card 
+                    sx={{ 
+                      p: 3,
+                      background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
+                      color: 'common.white',
+                    }}
+                  >
+                    <Stack spacing={2}>
+                      <Stack direction="row" alignItems="center" spacing={1}>
+                        <Iconify 
+                          icon={activeMeeting.mode === 'online' ? 'mdi:monitor' : 'mdi:map-marker'} 
+                          width={24}
+                        />
+                        <Typography variant="h6">
+                          {activeMeeting.title}
+                        </Typography>
+                      </Stack>
+                      
+                      {activeMeeting.description && (
+                        <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                          {activeMeeting.description}
+                        </Typography>
+                      )}
+                      
+                      <Stack direction="row" alignItems="center" spacing={1}>
+                        <Iconify icon="mdi:clock-outline" width={20} />
+                        <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                          {isStartingSoon 
+                            ? `Starts in ${minutesUntilStart} minute${minutesUntilStart !== 1 ? 's' : ''} at ${fDateTime(activeMeeting.start, 'HH:mm')}`
+                            : `${fDateTime(activeMeeting.start, 'HH:mm')} - ${fDateTime(activeMeeting.end, 'HH:mm')}`
+                          }
+                        </Typography>
+                      </Stack>
+
+                      {activeMeeting.mode === 'online' && activeMeeting.meetingLink && (
+                        <Button
+                          variant="contained"
+                          size="large"
+                          startIcon={<Iconify icon="mdi:video" />}
+                          href={activeMeeting.meetingLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          sx={{ 
+                            mt: 1,
+                            bgcolor: 'common.white',
+                            color: 'primary.main',
+                            '&:hover': {
+                              bgcolor: 'grey.100',
+                            },
+                          }}
+                        >
+                          {isStartingSoon ? 'Join Meeting' : 'Join Meeting Now'}
+                        </Button>
+                      )}
+
+                      {activeMeeting.mode === 'live' && activeMeeting.address && (
+                        <Stack spacing={0.5}>
+                          <Typography variant="subtitle2">Location:</Typography>
+                          <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                            {activeMeeting.address}
+                            {activeMeeting.city && `, ${activeMeeting.city}`}
+                          </Typography>
+                        </Stack>
+                      )}
+                    </Stack>
+                  </Card>
+                </Box>
+              );
+            })()}
+
             {/* Continue Section */}
             {continueData && (
               <Box>
@@ -252,7 +361,6 @@ export function DashboardView() {
                         {continueData.lesson?.title}
                       </Typography>
                       <Stack direction="row" spacing={1} alignItems="center">
-                        <Iconify icon="solar:book-2-outline" width={16} sx={{ color: 'text.secondary' }} />
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                           {continueData.lesson?.module?.course?.title} • {continueData.lesson?.module?.title}
                         </Typography>

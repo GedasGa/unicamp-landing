@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import { useTranslate } from 'src/locales';
 import { MotionViewport } from 'src/components/animate';
 
-import { SectionTitle } from './components/section-title';
+import { SectionTitle } from '../privacy-policy/components/section-title';
 
 // ----------------------------------------------------------------------
 

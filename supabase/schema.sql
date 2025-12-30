@@ -30,7 +30,6 @@ DROP FUNCTION IF EXISTS public.link_invitations_on_signup() CASCADE;
 DROP FUNCTION IF EXISTS public.update_updated_at_column() CASCADE;
 
 -- Drop tables (in correct order due to foreign keys)
-DROP TABLE IF EXISTS student_module_progress CASCADE;
 DROP TABLE IF EXISTS student_lesson_progress CASCADE;
 DROP TABLE IF EXISTS student_topic_progress CASCADE;
 DROP TABLE IF EXISTS group_lesson_visibility CASCADE;
@@ -39,7 +38,6 @@ DROP TABLE IF EXISTS group_courses CASCADE;
 DROP TABLE IF EXISTS lessons CASCADE;
 DROP TABLE IF EXISTS modules CASCADE;
 DROP TABLE IF EXISTS courses CASCADE;
-DROP TABLE IF EXISTS group_invitations CASCADE;
 DROP TABLE IF EXISTS group_schedule CASCADE;
 DROP TABLE IF EXISTS group_teachers CASCADE;
 DROP TABLE IF EXISTS group_students CASCADE;
@@ -263,19 +261,6 @@ CREATE TABLE student_lesson_progress (
   UNIQUE(student_id, lesson_id)
 );
 
--- Track student progress on modules (auto-calculated from lessons)
-CREATE TABLE student_module_progress (
-  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-  student_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
-  module_id UUID REFERENCES modules(id) ON DELETE CASCADE NOT NULL,
-  completed BOOLEAN DEFAULT FALSE,
-  completed_at TIMESTAMPTZ,
-  progress_percentage INTEGER DEFAULT 0 CHECK (progress_percentage >= 0 AND progress_percentage <= 100),
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ DEFAULT NOW(),
-  UNIQUE(student_id, module_id)
-);
-
 -- =============================================
 -- 7. INDEXES FOR PERFORMANCE
 -- =============================================
@@ -316,8 +301,6 @@ CREATE INDEX idx_student_topic_progress_lesson_id ON student_topic_progress(less
 CREATE INDEX idx_student_topic_progress_confluence_page_id ON student_topic_progress(confluence_page_id);
 CREATE INDEX idx_student_lesson_progress_student_id ON student_lesson_progress(student_id);
 CREATE INDEX idx_student_lesson_progress_lesson_id ON student_lesson_progress(lesson_id);
-CREATE INDEX idx_student_module_progress_student_id ON student_module_progress(student_id);
-CREATE INDEX idx_student_module_progress_module_id ON student_module_progress(module_id);
 
 -- =============================================
 -- 8. HELPER FUNCTIONS
@@ -358,7 +341,6 @@ ALTER TABLE group_module_visibility ENABLE ROW LEVEL SECURITY;
 ALTER TABLE group_lesson_visibility ENABLE ROW LEVEL SECURITY;
 ALTER TABLE student_topic_progress ENABLE ROW LEVEL SECURITY;
 ALTER TABLE student_lesson_progress ENABLE ROW LEVEL SECURITY;
-ALTER TABLE student_module_progress ENABLE ROW LEVEL SECURITY;
 
 -- Profiles: Users can read their own profile, teachers can read all
 CREATE POLICY "Users can view own profile" ON profiles
@@ -485,12 +467,6 @@ CREATE POLICY "Students manage own lesson progress" ON student_lesson_progress
   FOR ALL USING (student_id = auth.uid());
 
 CREATE POLICY "Teachers view all lesson progress" ON student_lesson_progress
-  FOR SELECT USING (is_teacher());
-
-CREATE POLICY "Students manage own module progress" ON student_module_progress
-  FOR ALL USING (student_id = auth.uid());
-
-CREATE POLICY "Teachers view all module progress" ON student_module_progress
   FOR SELECT USING (is_teacher());
 
 -- Visibility tables: Teachers manage

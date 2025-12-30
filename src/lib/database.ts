@@ -129,11 +129,10 @@ export async function addStudentToGroup(groupId: string, studentIdOrEmail: strin
   const isEmail = studentIdOrEmail.includes('@');
   
   const { data, error } = await supabase
-    .from('group_members')
+    .from('group_students')
     .insert({ 
       group_id: groupId, 
-      student_id: isEmail ? null : studentIdOrEmail,
-      email: isEmail ? studentIdOrEmail : null
+      student_id: isEmail ? studentIdOrEmail : studentIdOrEmail
     })
     .select()
     .single();
@@ -144,11 +143,11 @@ export async function addStudentToGroup(groupId: string, studentIdOrEmail: strin
 
 export async function inviteStudentToGroupByEmail(groupId: string, email: string) {
   const { data, error } = await supabase
-    .from('group_members')
+    .from('invitations')
     .insert({ 
       group_id: groupId, 
       email,
-      student_id: null
+      role: 'student'
     })
     .select()
     .single();
@@ -159,7 +158,7 @@ export async function inviteStudentToGroupByEmail(groupId: string, email: string
 
 export async function removeStudentFromGroup(groupId: string, studentId: string) {
   const { error } = await supabase
-    .from('group_members')
+    .from('group_students')
     .delete()
     .eq('group_id', groupId)
     .eq('student_id', studentId);
@@ -169,7 +168,7 @@ export async function removeStudentFromGroup(groupId: string, studentId: string)
 
 export async function getGroupMembers(groupId: string) {
   const { data, error } = await supabase
-    .from('group_members')
+    .from('group_students')
     .select(`
       *,
       student:profiles!student_id(*)

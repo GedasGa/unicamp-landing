@@ -11,6 +11,8 @@ export const defaultSettings: SettingsState = {
   contrast: 'default',
   primaryColor: 'default',
   compactLayout: true,
+  navColor: 'integrate',
+  navLayout: 'vertical',
   fontFamily: defaultFont,
   fontSize: 'normal',
 } as const;
