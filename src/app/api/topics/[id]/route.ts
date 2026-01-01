@@ -16,12 +16,9 @@ export async function GET(
   try {
     const topicId = params.id;
     
-    console.log('=== Topic Content API Called ===');
-    console.log('Topic ID:', topicId);
-    console.log('Request URL:', request.url);
+    console.log(`[Topic Content] Fetching topic: ${topicId}`);
 
     const url = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}?expand=body.atlas_doc_format,history.lastUpdated`;
-    console.log('Fetching topic from:', url);
 
     const response = await fetch(
       url,
@@ -36,12 +33,10 @@ export async function GET(
     );
 
     if (!response.ok) {
-      console.error('Failed to fetch topic:', response.status, response.statusText);
       throw new Error(`Failed to fetch topic content: ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log('Topic fetched:', data.id, data.title);
     
     // Parse the ADF content - Confluence returns it as a JSON string
     const adfContent = typeof data.body.atlas_doc_format.value === 'string' 
@@ -55,14 +50,9 @@ export async function GET(
       lastUpdated: data.history.lastUpdated,
     };
 
-    console.log('Returning topic content');
-    console.log('=== Topic Content API Complete ===\n');
-
     return NextResponse.json(result);
   } catch (error) {
-    console.error('=== Topic Content API Error ===');
-    console.error('Error fetching topic content:', error);
-    console.error('Error stack:', error instanceof Error ? error.stack : 'N/A');
+    console.error('[Topic Content] Error:', error instanceof Error ? error.message : error);
     return NextResponse.json(
       { error: 'Failed to fetch topic content' },
       { status: 500 }

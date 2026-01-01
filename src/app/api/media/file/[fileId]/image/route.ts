@@ -21,19 +21,14 @@ export async function GET(
     const topicId = searchParams.get('collection')?.replace('contentId-', '');
     
     if (!topicId) {
-      console.error('Missing topicId in query params');
+      console.error('[Media Image] Missing topicId in query params');
       return NextResponse.json({ error: 'Missing collection/topicId' }, { status: 400 });
     }
     
-    console.log('=== Media Image API Called ===');
-    console.log('Topic ID:', topicId);
-    console.log('File ID:', fileId);
-    console.log('Request URL:', request.url);
-    console.log('Query params:', Object.fromEntries(searchParams.entries()));
+    console.log(`[Media Image] Fetching file ${fileId} for topic ${topicId}`);
 
     // First, get the attachment list to find the attachment ID
     const attachmentUrl = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}/child/attachment`;
-    console.log('Fetching attachments from:', attachmentUrl);
     
     const attachmentResponse = await fetch(attachmentUrl, {
       method: 'GET',
@@ -44,42 +39,22 @@ export async function GET(
     });
 
     if (!attachmentResponse.ok) {
-      console.error('Failed to fetch attachments:', attachmentResponse.status, attachmentResponse.statusText);
       throw new Error(`Failed to fetch attachments: ${attachmentResponse.statusText}`);
     }
 
     const attachmentData = await attachmentResponse.json();
-    console.log('Attachments found:', attachmentData.results.length);
-    console.log('Looking for fileId:', fileId);
-    
-    // Log all attachments for debugging
-    attachmentData.results.forEach((att: any, index: number) => {
-      console.log(`Attachment ${index}:`, {
-        id: att.id,
-        title: att.title,
-        fileId: att.extensions?.fileId,
-        mediaType: att.extensions?.mediaType,
-      });
-    });
     
     const attachment = attachmentData.results.find(
       (result: any) => result.extensions.fileId === fileId
     );
 
     if (!attachment) {
-      console.error('Attachment not found for fileId:', fileId);
+      console.error(`[Media Image] Attachment not found: ${fileId}`);
       return NextResponse.json({ error: 'Attachment not found' }, { status: 404 });
     }
 
-    console.log('Found attachment:', {
-      id: attachment.id,
-      title: attachment.title,
-      fileId: attachment.extensions?.fileId,
-    });
-
     // Now download the actual file
     const downloadUrl = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}/child/attachment/${attachment.id}/download`;
-    console.log('Downloading from:', downloadUrl);
     
     const fileResponse = await fetch(downloadUrl, {
       method: 'GET',
@@ -89,17 +64,11 @@ export async function GET(
     });
 
     if (!fileResponse.ok) {
-      console.error('Failed to download file:', fileResponse.status, fileResponse.statusText);
       throw new Error(`Failed to download file: ${fileResponse.statusText}`);
     }
 
-    console.log('File download successful');
-    console.log('Content-Type:', fileResponse.headers.get('content-type'));
-    console.log('Content-Length:', fileResponse.headers.get('content-length'));
-
     // Get the file content
     const fileBuffer = await fileResponse.arrayBuffer();
-    console.log('File buffer size:', fileBuffer.byteLength);
 
     // Create response with appropriate headers
     const headers = new Headers();
@@ -115,17 +84,12 @@ export async function GET(
 
     headers.set('Cache-Control', 'public, max-age=31536000, immutable');
 
-    console.log('Returning file with headers:', Object.fromEntries(headers.entries()));
-    console.log('=== Media Image API Complete ===\n');
-
     return new NextResponse(fileBuffer, {
       status: 200,
       headers,
     });
   } catch (error) {
-    console.error('=== Media Image API Error ===');
-    console.error('Error fetching file:', error);
-    console.error('Error stack:', error instanceof Error ? error.stack : 'N/A');
+    console.error('[Media Image] Error:', error instanceof Error ? error.message : error);
     return NextResponse.json({ error: 'Failed to fetch file' }, { status: 500 });
   }
 }

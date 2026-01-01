@@ -13,8 +13,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
     }
 
-    console.log('=== Link Preview API Called ===');
-    console.log('URL:', url);
+    console.log('[Link Preview] Fetching:', url);
 
     // Fetch the page
     const response = await fetch(url, {
@@ -37,14 +36,9 @@ export async function GET(request: NextRequest) {
       icon: extractIcon(html, url),
     };
 
-    console.log('Extracted metadata:', metadata);
-    console.log('=== Link Preview API Complete ===\n');
-
     return NextResponse.json(metadata);
   } catch (error) {
-    console.error('=== Link Preview API Error ===');
-    console.error('Error fetching link preview:', error);
-    console.error('Error stack:', error instanceof Error ? error.stack : 'N/A');
+    console.error('[Link Preview] Error:', error instanceof Error ? error.message : error);
     
     // Return basic fallback metadata
     const url = new URL(request.url).searchParams.get('url');
@@ -119,4 +113,4 @@ function extractIcon(html: string, baseUrl: string): string | undefined {
   }
 }
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';

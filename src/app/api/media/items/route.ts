@@ -18,8 +18,7 @@ export async function POST(request: NextRequest) {
     const descriptors = body.descriptors;
     
     if (!Array.isArray(descriptors) || descriptors.length === 0 || !descriptors[0].collection) {
-      console.error('Invalid request body format');
-      console.error('Request body:', body);
+      console.error('[Media Items] Invalid request body format');
       return NextResponse.json({ error: 'Invalid request body format' }, { status: 400 });
     }
     
@@ -28,18 +27,13 @@ export async function POST(request: NextRequest) {
     const topicId = match ? match[1] : null;
     
     if (!topicId) {
-      console.error('Missing topicId in collection field');
-      console.error('Collection:', descriptors[0].collection);
+      console.error('[Media Items] Missing topicId in collection field');
       return NextResponse.json({ error: 'Missing topicId' }, { status: 400 });
     }
     
-    console.log('=== Media Items API Called ===');
-    console.log('Topic ID:', topicId);
-    console.log('Request URL:', request.url);
-    console.log('Request body:', body);
+    console.log(`[Media Items] Fetching attachments for topic: ${topicId}`);
 
     const url = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}/child/attachment`;
-    console.log('Fetching attachments from:', url);
 
     const response = await fetch(url, {
       method: 'GET',
@@ -50,12 +44,10 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
-      console.error('Failed to fetch attachments:', response.status, response.statusText);
       throw new Error(`Failed to fetch attachments: ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log('Found attachments:', data.results.length);
     
     const items = data.results.map((result: any) => {
       const item = {
@@ -81,18 +73,8 @@ export async function POST(request: NextRequest) {
         },
       };
       
-      console.log('Mapped item:', {
-        id: item.id,
-        name: item.details.name,
-        mediaType: item.details.mediaType,
-        mimeType: item.details.mimeType,
-      });
-      
       return item;
     });
-
-    console.log('Returning items:', items.length);
-    console.log('=== Media Items API Complete ===\n');
 
     return NextResponse.json({
       data: {
@@ -100,9 +82,7 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('=== Media Items API Error ===');
-    console.error('Error fetching topic attachments:', error);
-    console.error('Error stack:', error instanceof Error ? error.stack : 'N/A');
+    console.error('[Media Items] Error:', error instanceof Error ? error.message : error);
     return NextResponse.json(
       { error: 'Failed to fetch attachments' },
       { status: 500 }

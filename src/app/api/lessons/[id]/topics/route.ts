@@ -16,12 +16,9 @@ export async function GET(
   try {
     const lessonId = params.id;
     
-    console.log('=== Lesson Topics API Called ===');
-    console.log('Lesson ID:', lessonId);
-    console.log('Request URL:', request.url);
+    console.log(`[Lesson Topics] Fetching for lesson: ${lessonId}`);
 
     const url = `${CONFLUENCE_CONFIG.baseUrl}/content/${lessonId}/child/page`;
-    console.log('Fetching topics from:', url);
 
     const response = await fetch(
       url,
@@ -36,26 +33,19 @@ export async function GET(
     );
 
     if (!response.ok) {
-      console.error('Failed to fetch topics:', response.status, response.statusText);
       throw new Error(`Failed to fetch topics: ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log('Topics found:', data.results.length);
     
     const topics = data.results.map((result: any) => ({
       id: result.id,
       title: result.title,
     }));
 
-    console.log('Returning topics:', topics.length);
-    console.log('=== Lesson Topics API Complete ===\n');
-
     return NextResponse.json(topics);
   } catch (error) {
-    console.error('=== Lesson Topics API Error ===');
-    console.error('Error fetching lesson topics:', error);
-    console.error('Error stack:', error instanceof Error ? error.stack : 'N/A');
+    console.error('[Lesson Topics] Error:', error instanceof Error ? error.message : error);
     return NextResponse.json(
       { error: 'Failed to fetch topics' },
       { status: 500 }
