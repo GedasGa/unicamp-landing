@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
 
 import { usePathname } from 'src/routes/hooks';
+import { paths } from 'src/routes/paths';
 
 import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';
@@ -24,6 +25,9 @@ type NavMobileProps = NavSectionProps & {
 
 export function NavMobile({ data, open, onClose, slots, sx, ...other }: NavMobileProps) {
   const pathname = usePathname();
+  
+  // Redirect to /app if user is on any /app page, otherwise redirect to home
+  const logoHref = pathname?.startsWith('/app') ? paths.app.root : '/';
 
   useEffect(() => {
     if (open) {
@@ -47,7 +51,7 @@ export function NavMobile({ data, open, onClose, slots, sx, ...other }: NavMobil
     >
       {slots?.topArea ?? (
         <Box sx={{ pl: 3.5, pt: 2.5, pb: 1 }}>
-          <Logo onlyLogo={false} />
+          <Logo onlyLogo={false} href={logoHref} />
         </Box>
       )}
 

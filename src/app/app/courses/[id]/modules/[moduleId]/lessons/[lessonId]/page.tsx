@@ -281,7 +281,7 @@ export default function LessonPage({ params }: Props) {
         <CustomBreadcrumbs
           heading={lesson.title}
           links={[
-            { name: 'My learning', href: paths.app.root },
+            { name: 'Home', href: paths.app.root },
             { name: module.title, href: paths.app.courses.module(params.id, params.moduleId) },
             { name: lesson.title }
           ]}

@@ -33,7 +33,6 @@ DECLARE
   v_module1_id UUID;
   v_module2_id UUID;
   v_module3_id UUID;
-  v_module4_id UUID;
   v_lesson1_id UUID;
   v_lesson2_id UUID;
   v_lesson3_id UUID;
@@ -42,7 +41,6 @@ DECLARE
   v_lesson6_id UUID;
   v_lesson7_id UUID;
   v_lesson8_id UUID;
-  v_lesson9_id UUID;
 BEGIN
   -- Get the course and group IDs
   SELECT id INTO v_course_id FROM courses WHERE title = 'UX/UI Web Design basics with Figma';
@@ -117,15 +115,9 @@ BEGIN
 
   INSERT INTO lessons (module_id, title, description, confluence_parent_page_id, order_index, created_at)
   VALUES 
-    (v_module1_id, 'Introduction to Layouts', 
-     'Learn the basics of layout design', '8520123', 7, NOW())
-  RETURNING id INTO v_lesson8_id;
-
-  INSERT INTO lessons (module_id, title, description, confluence_parent_page_id, order_index, created_at)
-  VALUES 
     (v_module1_id, 'Layout', 
      'Advanced layout techniques and best practices', '49971204', 8, NOW())
-  RETURNING id INTO v_lesson9_id;
+  RETURNING id INTO v_lesson8_id;
 
   -- Assign course to group
   INSERT INTO group_courses (group_id, course_id, order_index, created_at)
@@ -137,8 +129,7 @@ BEGIN
   VALUES 
     (v_group_id, v_module1_id, true, NOW(), NOW()),
     (v_group_id, v_module2_id, true, NULL, NOW()),
-    (v_group_id, v_module3_id, true, NULL, NOW()),
-    (v_group_id, v_module4_id, true, NULL, NOW());
+    (v_group_id, v_module3_id, true, NULL, NOW());
 
   -- Set lesson visibility
   -- All lessons are visible, but only the first one is unlocked
@@ -152,7 +143,7 @@ BEGIN
     (v_group_id, v_lesson6_id, true, NULL, NOW()),
     (v_group_id, v_lesson7_id, true, NULL, NOW()),
     (v_group_id, v_lesson8_id, true, NULL, NOW()),
-    (v_group_id, v_lesson9_id, true, NULL, NOW());
+    (v_group_id, v_lesson8_id, true, NULL, NOW());
 
   -- Invite student to group (will be linked when they sign up)
   INSERT INTO invitations (email, role, group_id, invited_at)

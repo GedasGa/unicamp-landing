@@ -4,6 +4,9 @@ import type { NavSectionProps } from 'src/components/nav-section';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 
+import { usePathname } from 'src/routes/hooks';
+import { paths } from 'src/routes/paths';
+
 import { varAlpha, hideScrollY } from 'src/theme/styles';
 
 import { Logo } from 'src/components/logo';
@@ -30,6 +33,10 @@ export function NavVertical({
   ...other
 }: NavVerticalProps) {
   const theme = useTheme();
+  const pathname = usePathname();
+  
+  // Redirect to /app if user is on any /app page, otherwise redirect to home
+  const logoHref = pathname?.startsWith('/app') ? paths.app.root : '/';
 
   return (
     <Box
@@ -57,7 +64,7 @@ export function NavVertical({
       <>
         {slots?.topArea ?? (
           <Box sx={{ pl: 3.5, pt: 2.5, pb: 1 }}>
-            <Logo onlyLogo={false} />
+            <Logo onlyLogo={false} href={logoHref} />
           </Box>
         )}
 

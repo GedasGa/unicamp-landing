@@ -285,7 +285,7 @@ export function DashboardView() {
                       )}
                       
                       <Stack direction="row" alignItems="center" spacing={1}>
-                        <Iconify icon="mdi:clock-outline" width={20} />
+                        <Iconify icon="eva:clock-outline" width={20} />
                         <Typography variant="body2" sx={{ opacity: 0.9 }}>
                           {isStartingSoon 
                             ? `Starts in ${minutesUntilStart} minute${minutesUntilStart !== 1 ? 's' : ''} at ${fDateTime(activeMeeting.start, 'HH:mm')}`
@@ -298,7 +298,7 @@ export function DashboardView() {
                         <Button
                           variant="contained"
                           size="large"
-                          startIcon={<Iconify icon="mdi:video" />}
+                          startIcon={<Iconify icon="eva:video-fill" />}
                           href={activeMeeting.meetingLink}
                           target="_blank"
                           rel="noopener noreferrer"

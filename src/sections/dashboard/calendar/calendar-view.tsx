@@ -412,17 +412,18 @@ export function CalendarView() {
       >
         {selectedEvent && (
           <>
-            <DialogTitle sx={{ pb: 2 }}>
-              <Stack direction="row" alignItems="center" spacing={1}>
-                <Iconify 
-                  icon={selectedEvent.mode === 'online' ? 'mdi:monitor' : 'mdi:map-marker'} 
-                  width={24}
-                />
+            <DialogTitle component='div' sx={{ pb: 2 }}>
+              <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
                 <Typography variant="h6">{selectedEvent.title}</Typography>
+                <IconButton
+                  onClick={handleCloseDialog}
+                >
+                  <Iconify icon="mingcute:close-line" />
+                </IconButton>
               </Stack>
             </DialogTitle>
-            
-            <DialogContent sx={{ typography: 'body2' }}>
+          
+            <DialogContent sx={{ typography: 'body2', pb: 3 }}>
               <Stack spacing={3}>
                 {selectedEvent.description && (
                   <Typography variant="body2" color="text.secondary">
@@ -432,22 +433,22 @@ export function CalendarView() {
 
                 <Stack spacing={1}>
                   <Stack direction="row" alignItems="center" spacing={1}>
-                    <Iconify icon="mdi:clock-outline" width={20} />
+                    <Iconify icon="eva:flag-outline" width={20} />
                     <Typography variant="body2">
-                      {fDateTime(selectedEvent.start, 'dddd, DD MMMM YYYY HH:mm')}
-                    </Typography>
+                      {fDateTime(selectedEvent.start, 'dddd, MMMM DD HH:mm')}
+                     </Typography>
                   </Stack>
 
                   <Stack direction="row" alignItems="center" spacing={1}>
-                    <Iconify icon="mdi:clock-end" width={20} />
+                    <Iconify icon="material-symbols:location-on-outline" width={20} />
                     <Typography variant="body2">
-                      {fDateTime(selectedEvent.end, 'dddd, DD MMMM YYYY HH:mm')}
+                      {fDateTime(selectedEvent.end, 'dddd, MMMM DD HH:mm')}
                     </Typography>
                   </Stack>
 
                   <Stack direction="row" alignItems="center" spacing={1}>
                     <Iconify 
-                      icon={selectedEvent.mode === 'online' ? 'mdi:monitor' : 'mdi:map-marker'} 
+                      icon={selectedEvent.mode === 'online' ? 'eva:video-outline' : 'mdi:map-marker'} 
                       width={20} 
                     />
                     <Typography variant="body2">
@@ -459,7 +460,7 @@ export function CalendarView() {
                 {selectedEvent.meetingLink && (
                   <Button
                     variant="contained"
-                    startIcon={<Iconify icon="mdi:video" />}
+                    startIcon={<Iconify icon="eva:video-fill" />}
                     href={selectedEvent.meetingLink}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -489,10 +490,6 @@ export function CalendarView() {
                 )}
               </Stack>
             </DialogContent>
-
-            <DialogActions>
-              <Button onClick={handleCloseDialog}>Close</Button>
-            </DialogActions>
           </>
         )}
       </Dialog>

@@ -220,7 +220,7 @@ export default function ModuleDetailPage({ params }: Props) {
       {course && module && (
         <CustomBreadcrumbs
           links={[
-            { name: 'My learning', href: paths.app.root },
+            { name: 'Home', href: paths.app.root },
             { name: course.title },
           ]}
           heading={module.title}

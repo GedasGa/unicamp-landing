@@ -5,11 +5,11 @@ import { Iconify } from 'src/components/iconify';
 // ----------------------------------------------------------------------
 
 export const _account = [
-  {
-    label: 'Home',
-    href: '/',
-    icon: <Iconify icon="solar:home-angle-bold-duotone" />,
-  },
+  // {
+  //   label: 'Home',
+  //   href: '/',
+  //   icon: <Iconify icon="solar:home-angle-bold-duotone" />,
+  // },
   // TODO: Uncomment when profile and settings page is ready
   // {
   //   label: 'Profile',

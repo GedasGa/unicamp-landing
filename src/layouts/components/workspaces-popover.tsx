@@ -44,7 +44,7 @@ export function WorkspacesPopover({ sx, ...other }: WorkspacesPopoverProps) {
     );
   }
 
-  if (groups.length === 0) {
+  if (groups.length === 0 || groups.length === 1) {
     return null;
   }
 
