@@ -166,7 +166,7 @@ export default function LessonPage({ params }: Props) {
       // Pass topics array to avoid redundant Confluence API call
       await markTopicCompleteWithCascade(user.id, params.lessonId, currentTopic.id, topics);
       
-      // Update local state
+      // Update local state - this will trigger re-render and show "Next" button
       setTopicProgress(prev => {
         const newMap = new Map(prev);
         newMap.set(currentTopic.id, { 
@@ -180,17 +180,13 @@ export default function LessonPage({ params }: Props) {
       const currentIndex = topics.findIndex(t => t.id === selectedTopicId);
       const isLastTopic = currentIndex === topics.length - 1;
       
+      // If last topic, redirect to module page after a short delay
       if (isLastTopic) {
-        // Redirect to module page after completing last topic
-        router.push(paths.app.courses.module(params.id, params.moduleId));
-      } else if (currentIndex !== -1) {
-        // Move to next topic if available
-        const nextTopic = topics[currentIndex + 1];
-        setSelectedTopicId(nextTopic.id);
-        // Update URL without navigation
-        const url = `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${nextTopic.id}`;
-        window.history.pushState({}, '', url);
+        setTimeout(() => {
+          router.push(paths.app.courses.module(params.id, params.moduleId));
+        }, 1500);
       }
+      // Don't auto-navigate to next topic - let user click "Next" button
     } catch (err) {
       console.error('Error marking topic complete:', err);
     }

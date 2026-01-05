@@ -136,9 +136,9 @@ BEGIN
   INSERT INTO group_module_visibility (group_id, module_id, is_visible, unlocked_at, created_at)
   VALUES 
     (v_group_id, v_module1_id, true, NOW(), NOW()),
-    (v_group_id, v_module2_id, false, NULL, NOW()),
-    (v_group_id, v_module3_id, false, NULL, NOW()),
-    (v_group_id, v_module4_id, false, NULL, NOW());
+    (v_group_id, v_module2_id, true, NULL, NOW()),
+    (v_group_id, v_module3_id, true, NULL, NOW()),
+    (v_group_id, v_module4_id, true, NULL, NOW());
 
   -- Set lesson visibility
   -- All lessons are visible, but only the first one is unlocked

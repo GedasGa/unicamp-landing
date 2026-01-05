@@ -725,19 +725,24 @@ export async function markTopicComplete(
 ) {
   const { data, error } = await supabase
     .from('student_topic_progress')
-    .upsert({ 
-      student_id: studentId, 
-      lesson_id: lessonId,
-      confluence_page_id: confluencePageId,
-      completed: true,
-      completed_at: new Date().toISOString(),
-      last_accessed_at: new Date().toISOString()
-    })
-    .select()
-    .single();
+    .upsert(
+      { 
+        student_id: studentId, 
+        lesson_id: lessonId,
+        confluence_page_id: confluencePageId,
+        completed: true,
+        completed_at: new Date().toISOString(),
+        last_accessed_at: new Date().toISOString()
+      },
+      {
+        onConflict: 'student_id,lesson_id,confluence_page_id',
+        ignoreDuplicates: false
+      }
+    )
+    .select();
 
   if (error) throw error;
-  return data;
+  return data?.[0] || data;
 }
 
 export async function getTopicProgress(studentId: string, lessonId: string, confluencePageId: string) {
@@ -772,18 +777,24 @@ export async function updateLessonProgress(
 ) {
   const { data, error } = await supabase
     .from('student_lesson_progress')
-    .upsert({ 
-      student_id: studentId, 
-      lesson_id: lessonId,
-      progress_percentage: progressPercentage,
-      completed,
-      completed_at: completed ? new Date().toISOString() : null
-    })
-    .select()
-    .single();
+    .upsert(
+      { 
+        student_id: studentId, 
+        lesson_id: lessonId,
+        progress_percentage: progressPercentage,
+        completed,
+        completed_at: completed ? new Date().toISOString() : null,
+        updated_at: new Date().toISOString()
+      },
+      {
+        onConflict: 'student_id,lesson_id',
+        ignoreDuplicates: false
+      }
+    )
+    .select();
 
   if (error) throw error;
-  return data;
+  return data?.[0] || data;
 }
 
 /**

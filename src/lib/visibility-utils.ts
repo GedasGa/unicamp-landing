@@ -26,8 +26,7 @@ export function isModuleUnlocked(unlocked_at: string | null, is_visible: boolean
  */
 export function isLessonUnlocked(unlocked_at: string | null, is_visible: boolean | null): boolean {
   if (!is_visible) return false;
-  // Lessons without unlocked_at are accessible by default (backwards compatibility)
-  if (!unlocked_at) return true;
+  if (!unlocked_at) return false;
   return new Date(unlocked_at) <= new Date();
 }
 

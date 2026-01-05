@@ -107,25 +107,34 @@ export default function ModuleDetailPage({ params }: Props) {
       const accessibleLess = await getAccessibleLessons(user.id, params.moduleId);
       setAccessibleLessons(accessibleLess);
       
-      // Get progress for each accessible lesson from student_lesson_progress table
+      // Get progress for all accessible lessons in a single batch query
       const progressMap = new Map<string, { progress: number; completed: boolean }>();
-      for (const lesson of lessonsData) {
-        if (accessibleLess.has(lesson.id)) {
-          const { data: lessonProgress } = await supabase
-            .from('student_lesson_progress')
-            .select('progress_percentage, completed')
-            .eq('student_id', user.id)
-            .eq('lesson_id', lesson.id)
-            .single();
-          
-          if (lessonProgress) {
-            progressMap.set(lesson.id, {
-              progress: lessonProgress.progress_percentage || 0,
-              completed: lessonProgress.completed || false
-            });
-          } else {
-            progressMap.set(lesson.id, { progress: 0, completed: false });
-          }
+      const accessibleLessonIds = Array.from(accessibleLess);
+      
+      if (accessibleLessonIds.length > 0) {
+        const { data: allLessonProgress } = await supabase
+          .from('student_lesson_progress')
+          .select('lesson_id, progress_percentage, completed')
+          .eq('student_id', user.id)
+          .in('lesson_id', accessibleLessonIds);
+        
+        // Create a map of lesson progress
+        const progressLookup = new Map(
+          (allLessonProgress || []).map(lp => [
+            lp.lesson_id,
+            {
+              progress: lp.progress_percentage || 0,
+              completed: lp.completed || false
+            }
+          ])
+        );
+        
+        // Add progress for each accessible lesson (including 0 progress for new lessons)
+        for (const lessonId of accessibleLessonIds) {
+          progressMap.set(
+            lessonId,
+            progressLookup.get(lessonId) || { progress: 0, completed: false }
+          );
         }
       }
       setLessonProgress(progressMap);

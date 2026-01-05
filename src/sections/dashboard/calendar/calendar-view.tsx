@@ -223,6 +223,7 @@ const StyledCalendar = styled('div')(({ theme }) => ({
     '& .fc-list-event-time': { color: theme.vars.palette.text.secondary },
   },
   '& .fc .fc-list-table': { '& th, td': { borderColor: 'transparent' } },
+  '& .fc .fc-list-event-dot': { display: 'none' },
 }));
 
 // ----------------------------------------------------------------------
@@ -371,6 +372,7 @@ export function CalendarView() {
             editable={false}
             selectable={false}
             dayMaxEvents={3}
+            eventDisplay="block"
             weekends
             events={events.map((event) => ({
               id: event.id,
