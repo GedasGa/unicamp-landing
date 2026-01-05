@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "unicamp-dev",
+  "name": "unicamp-prod",
   "compatibility_date": "2025-12-31",
   "compatibility_flags": [
     "nodejs_compat"
