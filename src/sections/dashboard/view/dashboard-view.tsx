@@ -530,7 +530,7 @@ export function DashboardView() {
                       <Typography variant="subtitle2">Wednesdays</Typography>
                     </Box>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      18:30 – 21:00
+                      18:30 – 21:45
                     </Typography>
                   </Stack>
                 </Card>
@@ -554,7 +554,7 @@ export function DashboardView() {
                       <Typography variant="subtitle2">Saturdays</Typography>
                     </Box>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      09:00 – 12:00
+                      09:00 – 13:30
                     </Typography>
                   </Stack>
                 </Card>
