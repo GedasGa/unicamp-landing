@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "next dev -p 8082",
     "start": "next start -p 8082",
+    "serve": "npx serve@latest out -p 8082",
     "build": "next build",
     "build:opennext": "opennextjs-cloudflare build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
@@ -22,8 +23,7 @@
     "re:build": "npm run rm:all && npm install && npm run build",
     "dev:tsc": "npm run dev & npm run tsc:watch",
     "tsc": "tsc --noEmit --incremental",
-    "tsc:watch": "npm run tsc -- --watch",
-    "start:out": "npx serve@latest out -p 8082"
+    "tsc:watch": "npm run tsc -- --watch"
   },
   "engines": {
     "node": "20.x"

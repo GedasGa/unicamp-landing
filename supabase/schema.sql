@@ -123,33 +123,6 @@ CREATE TABLE group_students (
 );
 
 -- =============================================
--- 3.1. GROUP SCHEDULE
--- =============================================
-
--- Group schedule for lessons (individual events)
-CREATE TABLE group_schedule (
-  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-  group_id UUID REFERENCES groups(id) ON DELETE CASCADE NOT NULL,
-  lesson_id UUID REFERENCES lessons(id) ON DELETE SET NULL,
-  title TEXT NOT NULL,
-  description TEXT,
-  start_time TIMESTAMPTZ NOT NULL,
-  end_time TIMESTAMPTZ NOT NULL,
-  mode TEXT NOT NULL DEFAULT 'online' CHECK (mode IN ('online', 'live')),
-  meeting_link TEXT,
-  address TEXT,
-  city TEXT,
-  instructions TEXT,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-
-CREATE INDEX idx_group_schedule_group_id ON group_schedule(group_id);
-CREATE INDEX idx_group_schedule_lesson_id ON group_schedule(lesson_id);
-CREATE INDEX idx_group_schedule_start_time ON group_schedule(start_time);
-CREATE INDEX idx_group_schedule_end_time ON group_schedule(end_time);
-
--- =============================================
 -- 4. COURSES, MODULES, LESSONS
 -- =============================================
 
@@ -191,6 +164,33 @@ CREATE TABLE lessons (
   UNIQUE(module_id, order_index),
   UNIQUE(module_id, confluence_parent_page_id)
 );
+
+-- =============================================
+-- 3.1. GROUP SCHEDULE
+-- =============================================
+
+-- Group schedule for lessons (individual events)
+CREATE TABLE group_schedule (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  group_id UUID REFERENCES groups(id) ON DELETE CASCADE NOT NULL,
+  lesson_id UUID REFERENCES lessons(id) ON DELETE SET NULL,
+  title TEXT NOT NULL,
+  description TEXT,
+  start_time TIMESTAMPTZ NOT NULL,
+  end_time TIMESTAMPTZ NOT NULL,
+  mode TEXT NOT NULL DEFAULT 'online' CHECK (mode IN ('online', 'live')),
+  meeting_link TEXT,
+  address TEXT,
+  city TEXT,
+  instructions TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_group_schedule_group_id ON group_schedule(group_id);
+CREATE INDEX idx_group_schedule_lesson_id ON group_schedule(lesson_id);
+CREATE INDEX idx_group_schedule_start_time ON group_schedule(start_time);
+CREATE INDEX idx_group_schedule_end_time ON group_schedule(end_time);
 
 -- =============================================
 -- 5. GROUP-COURSE ASSIGNMENTS & VISIBILITY
