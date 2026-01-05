@@ -112,5 +112,3 @@ function extractIcon(html: string, baseUrl: string): string | undefined {
     return undefined;
   }
 }
-
-export const runtime = 'edge';

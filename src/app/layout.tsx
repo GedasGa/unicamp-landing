@@ -45,8 +45,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const runtime = 'edge';
-
 export default async function RootLayout({ children }: Props) {
   const lang = CONFIG.isStaticExport ? 'lt' : await detectLanguage();
 
