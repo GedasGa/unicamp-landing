@@ -9,7 +9,7 @@
     "start": "next start -p 8082",
     "build": "next build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy -- --keep-vars",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,json}\"",
     "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx,json}\"",

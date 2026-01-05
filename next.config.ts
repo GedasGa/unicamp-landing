@@ -1,10 +1,8 @@
-/**
- * @type {import('next').NextConfig}
- */
+import type { NextConfig } from "next";
 
-const isStaticExport = 'false';
+const isStaticExport = process.env.BUILD_STATIC_EXPORT ?? 'false'
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   trailingSlash: false,
   env: {
     BUILD_STATIC_EXPORT: isStaticExport,

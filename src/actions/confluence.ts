@@ -1,5 +1,7 @@
 'use server';
 
+import { CONFIG } from "src/config-global";
+
 // =============================================
 // Server Actions for Confluence Content
 // =============================================
@@ -10,7 +12,7 @@
 export async function getConfluenceLessonTopics(lessonConfluenceId: string) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/lessons/${lessonConfluenceId}/topics`,
+      `${CONFIG.serverUrl}/api/lessons/${lessonConfluenceId}/topics`,
       {
         method: 'GET',
         cache: 'no-store',
@@ -38,7 +40,7 @@ export async function getConfluenceLessonTopics(lessonConfluenceId: string) {
 export async function getConfluenceTopicContent(topicId: string) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/topics/${topicId}`,
+      `${CONFIG.serverUrl}/api/topics/${topicId}`,
       {
         method: 'GET',
         cache: 'no-store',
@@ -66,7 +68,7 @@ export async function getConfluenceTopicContent(topicId: string) {
 export async function getConfluenceTopicAttachments(topicId: string) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/topics/${topicId}/attachments`,
+      `${CONFIG.serverUrl}/api/topics/${topicId}/attachments`,
       {
         method: 'GET',
         cache: 'no-store',
