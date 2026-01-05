@@ -8,6 +8,7 @@
     "dev": "next dev -p 8082",
     "start": "next start -p 8082",
     "build": "next build",
+    "build:opennext": "opennextjs-cloudflare build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "upload": "opennextjs-cloudflare upload",
     "deploy": "opennextjs-cloudflare deploy -- --keep-vars",
