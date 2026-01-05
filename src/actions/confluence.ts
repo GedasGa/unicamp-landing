@@ -1,20 +1,37 @@
 'use server';
 
-import { CONFIG } from "src/config-global";
-
 // =============================================
 // Server Actions for Confluence Content
+// SECURITY: These functions run ONLY on the server
+// The CONFLUENCE_API_TOKEN is never exposed to the client
 // =============================================
+
+// Server-side only configuration
+// IMPORTANT: CONFLUENCE_API_TOKEN must NOT have NEXT_PUBLIC_ prefix
+const CONFLUENCE_CONFIG = {
+  baseUrl: process.env.NEXT_PUBLIC_CONFLUENCE_BASE_URL, // Public - just the Confluence URL
+  accessToken: process.env.CONFLUENCE_API_TOKEN,        // Private - server-side only
+};
 
 /**
  * Server action to fetch topics for a lesson from Confluence
  */
 export async function getConfluenceLessonTopics(lessonConfluenceId: string) {
   try {
+    if (!CONFLUENCE_CONFIG.baseUrl || !CONFLUENCE_CONFIG.accessToken) {
+      throw new Error('Confluence configuration is missing');
+    }
+
+    const url = `${CONFLUENCE_CONFIG.baseUrl}/content/${lessonConfluenceId}/child/page`;
+
     const response = await fetch(
-      `${CONFIG.serverUrl}/api/lessons/${lessonConfluenceId}/topics`,
+      url,
       {
         method: 'GET',
+        headers: {
+          Authorization: `Basic ${CONFLUENCE_CONFIG.accessToken}`,
+          Accept: 'application/json',
+        },
         cache: 'no-store',
       }
     );
@@ -23,7 +40,13 @@ export async function getConfluenceLessonTopics(lessonConfluenceId: string) {
       throw new Error(`Failed to fetch topics: ${response.statusText}`);
     }
 
-    const topics = await response.json();
+    const data = await response.json();
+    
+    const topics = data.results.map((result: any) => ({
+      id: result.id,
+      title: result.title,
+    }));
+
     return { success: true, data: topics };
   } catch (error) {
     console.error('Error fetching lesson topics:', error);
@@ -39,10 +62,20 @@ export async function getConfluenceLessonTopics(lessonConfluenceId: string) {
  */
 export async function getConfluenceTopicContent(topicId: string) {
   try {
+    if (!CONFLUENCE_CONFIG.baseUrl || !CONFLUENCE_CONFIG.accessToken) {
+      throw new Error('Confluence configuration is missing');
+    }
+
+    const url = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}?expand=body.atlas_doc_format,history.lastUpdated`;
+
     const response = await fetch(
-      `${CONFIG.serverUrl}/api/topics/${topicId}`,
+      url,
       {
         method: 'GET',
+        headers: {
+          Authorization: `Basic ${CONFLUENCE_CONFIG.accessToken}`,
+          Accept: 'application/json',
+        },
         cache: 'no-store',
       }
     );
@@ -51,8 +84,21 @@ export async function getConfluenceTopicContent(topicId: string) {
       throw new Error(`Failed to fetch topic content: ${response.statusText}`);
     }
 
-    const content = await response.json();
-    return { success: true, data: content };
+    const data = await response.json();
+    
+    // Parse the ADF content - Confluence returns it as a JSON string
+    const adfContent = typeof data.body.atlas_doc_format.value === 'string' 
+      ? JSON.parse(data.body.atlas_doc_format.value)
+      : data.body.atlas_doc_format.value;
+    
+    const result = {
+      id: data.id,
+      title: data.title,
+      content: adfContent,
+      lastUpdated: data.history.lastUpdated,
+    };
+
+    return { success: true, data: result };
   } catch (error) {
     console.error('Error fetching topic content:', error);
     return { 
@@ -67,10 +113,20 @@ export async function getConfluenceTopicContent(topicId: string) {
  */
 export async function getConfluenceTopicAttachments(topicId: string) {
   try {
+    if (!CONFLUENCE_CONFIG.baseUrl || !CONFLUENCE_CONFIG.accessToken) {
+      throw new Error('Confluence configuration is missing');
+    }
+
+    const url = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}/child/attachment`;
+
     const response = await fetch(
-      `${CONFIG.serverUrl}/api/topics/${topicId}/attachments`,
+      url,
       {
         method: 'GET',
+        headers: {
+          Authorization: `Basic ${CONFLUENCE_CONFIG.accessToken}`,
+          Accept: 'application/json',
+        },
         cache: 'no-store',
       }
     );
@@ -79,8 +135,8 @@ export async function getConfluenceTopicAttachments(topicId: string) {
       throw new Error(`Failed to fetch attachments: ${response.statusText}`);
     }
 
-    const attachments = await response.json();
-    return { success: true, data: attachments };
+    const data = await response.json();
+    return { success: true, data: data.results };
   } catch (error) {
     console.error('Error fetching topic attachments:', error);
     return { 
