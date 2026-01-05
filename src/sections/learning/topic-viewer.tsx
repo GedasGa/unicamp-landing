@@ -29,6 +29,7 @@ import { useSettingsContext } from 'src/components/settings';
 
 import { getConfluenceTopicContent } from 'src/actions/confluence';
 import { fDate } from 'src/utils/format-time';
+import { CONFIG } from 'src/config-global';
 
 interface TopicViewerProps {
   confluencePageId: string;
@@ -58,7 +59,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
   const initialAuth = {
     clientId: 'f41dff68-9c65-4def-803a-13a0b73f3986',
     token: 'confluence-media-token',
-    baseUrl: 'http://localhost:8082/api/media',
+    baseUrl: `${CONFIG.serverUrl}/api/media`,
   };
   const mediaClientConfig: MediaClientConfig = {
     initialAuth,
