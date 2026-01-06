@@ -52,11 +52,7 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang={lang ?? 'lt'} dir="ltr" suppressHydrationWarning>
-      <script
-        id="usercentrics-cmp"
-        data-settings-id="tGqJjqeAyiUam6"
-        src="https://web.cmp.usercentrics.eu/ui/loader.js"
-       />
+      <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="3fa518db-b45e-4654-ac5e-93704112569d" data-blockingmode="auto" type="text/javascript" />
 
       <GoogleTagManager gtmId="GTM-MFMRN6WN" />
 
