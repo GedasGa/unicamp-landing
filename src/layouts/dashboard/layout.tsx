@@ -1,0 +1,179 @@
+'use client';
+
+import type { NavSectionProps } from 'src/components/nav-section';
+import type { Theme, SxProps, Breakpoint } from '@mui/material/styles';
+
+import { usePathname } from 'next/navigation';
+
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import { useTheme } from '@mui/material/styles';
+
+import { paths } from 'src/routes/paths';
+
+import { useBoolean } from 'src/hooks/use-boolean';
+
+import { Logo } from 'src/components/logo';
+
+import { Main } from './main';
+import { NavMobile } from './nav-mobile';
+import { layoutClasses } from '../classes';
+import { useNavColorVars } from './styles';
+import { NavVertical } from './nav-vertical';
+import { _account } from '../config-nav-account';
+import { Searchbar } from '../components/searchbar';
+import { MenuButton } from '../components/menu-button';
+import { LayoutSection } from '../core/layout-section';
+import { HeaderSection } from '../core/header-section';
+import { useNavigationContext } from './navigation-context';
+import { AccountDrawer } from '../components/account-drawer';
+import { SettingsButton } from '../components/settings-button';
+import { WorkspacesPopover } from '../components/workspaces-popover';
+import { navData as dashboardNavData } from '../config-nav-dashboard';
+
+// ----------------------------------------------------------------------
+
+export type DashboardLayoutProps = {
+  sx?: SxProps<Theme>;
+  children: React.ReactNode;
+  header?: {
+    sx?: SxProps<Theme>;
+  };
+  data?: {
+    nav?: NavSectionProps['data'];
+  };
+};
+
+export function DashboardLayout({ sx, children, header, data }: DashboardLayoutProps) {
+  const theme = useTheme();
+  const pathname = usePathname();
+  const mobileNavOpen = useBoolean();
+  const { navData: contextNavData } = useNavigationContext();
+  const navColorVars = useNavColorVars(theme);
+
+  const layoutQuery: Breakpoint = 'lg';
+
+  // Use context nav data if available, otherwise fall back to default
+  const navData = contextNavData ?? data?.nav ?? dashboardNavData;
+  
+  // Hide navigation on dashboard page (/app)
+  const shouldShowNav = !pathname?.match(/^\/app\/?$/);
+
+  return (
+    <LayoutSection
+      /** **************************************
+       * Header
+       *************************************** */
+      headerSection={
+        <HeaderSection
+          layoutQuery={layoutQuery}
+          disableElevation
+          slotProps={{
+            toolbar: {
+              sx: {},
+            },
+            container: {
+              maxWidth: false,
+              sx: {
+                px: { [layoutQuery]: 5 },
+              },
+            },
+          }}
+          sx={header?.sx}
+          slots={{
+            topArea: (
+              <Alert severity="info" sx={{ display: 'none', borderRadius: 0 }}>
+                This is an info Alert.
+              </Alert>
+            ),
+            leftArea: (
+              <>
+                {/* -- Logo (shown when nav is hidden) -- */}
+                {!shouldShowNav && (
+                  <Logo onlyLogo={false} href={paths.app.root} sx={{ mr: 2 }} />
+                )}
+                {/* -- Nav mobile -- */}
+                {shouldShowNav && (
+                  <>
+                    <MenuButton
+                      onClick={mobileNavOpen.onTrue}
+                      sx={{
+                        mr: 1,
+                        ml: -1,
+                        [theme.breakpoints.up(layoutQuery)]: { display: 'none' },
+                      }}
+                    />
+                    <NavMobile
+                      data={navData}
+                      open={mobileNavOpen.value}
+                      onClose={mobileNavOpen.onFalse}
+                      cssVars={navColorVars.section}
+                    />
+                  </>
+                )}
+                {/* -- Workspace popover -- */}
+                <WorkspacesPopover
+                  sx={{ color: 'var(--layout-nav-text-primary-color)' }}
+                />
+              </>
+            ),
+            rightArea: (
+              <Box display="flex" alignItems="center" gap={{ xs: 0, sm: 0.75 }}>
+                {/* -- Searchbar -- */}
+                <Searchbar data={navData} />
+                {/* -- Settings button -- */}
+                <SettingsButton />
+                {/* -- Account drawer -- */}
+                <AccountDrawer data={_account} />
+              </Box>
+            ),
+          }}
+        />
+      }
+      /** **************************************
+       * Sidebar
+       *************************************** */
+      sidebarSection={
+        shouldShowNav ? (
+          <NavVertical
+            data={navData}
+            layoutQuery={layoutQuery}
+            cssVars={navColorVars.section}
+            onToggleNav={() => {}}
+          />
+        ) : null
+      }
+      /** **************************************
+       * Footer
+       *************************************** */
+      footerSection={null}
+      /** **************************************
+       * Style
+       *************************************** */
+      cssVars={{
+        ...navColorVars.layout,
+        '--layout-transition-easing': 'linear',
+        '--layout-transition-duration': '120ms',
+        '--layout-nav-vertical-width': '300px',
+        '--layout-nav-horizontal-height': '64px',
+        '--layout-dashboard-content-pt': theme.spacing(1),
+        '--layout-dashboard-content-pb': theme.spacing(8),
+        '--layout-dashboard-content-px': theme.spacing(5),
+      }}
+      sx={{
+        [`& .${layoutClasses.hasSidebar}`]: {
+          [theme.breakpoints.up(layoutQuery)]: {
+            transition: theme.transitions.create(['padding-left'], {
+              easing: 'var(--layout-transition-easing)',
+              duration: 'var(--layout-transition-duration)',
+            }),
+            pl: shouldShowNav ? 'var(--layout-nav-vertical-width)' : 0,
+          },
+        },
+        ...sx,
+      }}
+    >
+      <Main isNavHorizontal={false}>{children}</Main>
+    </LayoutSection>
+  );
+}

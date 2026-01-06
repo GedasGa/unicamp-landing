@@ -4,11 +4,11 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+
 import { MotionViewport } from 'src/components/animate';
 
-import { SectionTitle } from './components/section-title';
 import { useTranslate } from '../../locales';
-import { Icon } from '@iconify/react';
+import { SectionTitle } from './components/section-title';
 
 // ----------------------------------------------------------------------
 
@@ -90,7 +90,7 @@ export function PrivacyPolicyText({ sx, ...other }: BoxProps) {
       <Stack spacing={2}>
         <Typography variant="h6">{t('effectiveDate')}: 2024-11-11</Typography>
         <Typography variant="h6">{t('updatedDate')}: 2025-01-26</Typography>
-        <Typography variant="body1"></Typography>
+        <Typography variant="body1" />
       </Stack>
 
       <Stack spacing={4}>

@@ -4,6 +4,7 @@ import type { IPostItem } from 'src/types/blog';
 
 import { useState, useCallback } from 'react';
 
+import { Stack } from '@mui/material';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
@@ -11,8 +12,6 @@ import { orderBy } from 'src/utils/helper';
 
 import { PostList } from '../post-list';
 import { PostSort } from '../post-sort';
-import { Stack } from '@mui/material';
-
 import { useTranslate } from '../../../locales';
 
 // ----------------------------------------------------------------------

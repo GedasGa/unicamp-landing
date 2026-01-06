@@ -8,7 +8,6 @@ import Rating from '@mui/material/Rating';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { useTranslate } from '../../locales';
 import { maxLine } from 'src/theme/styles';
 
 import { varFade, MotionViewport } from 'src/components/animate';
@@ -20,8 +19,9 @@ import {
   CarouselArrowBasicButtons,
 } from 'src/components/carousel';
 
-import { SectionTitle } from './components/section-title';
+import { useTranslate } from '../../locales';
 import { Label } from '../../components/label';
+import { SectionTitle } from './components/section-title';
 
 // ----------------------------------------------------------------------
 

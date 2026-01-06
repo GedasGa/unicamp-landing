@@ -42,7 +42,7 @@
     },
     "yourRights": {
       "header": "10. Jūsų BDAR teisės",
-      "content": "Pagal BDAR jūs turite šias teises:\n- Prieiga: Prašyti savo asmens duomenų kopijos.\n- Taisymas: Ištaisyti netikslius ar neišsamius duomenis.\n- Ištrynimas (\"teisė būti pamirštam\"): Prašyti ištrinti jūsų duomenis.\n- Apribojimas: Apriboti, kaip jūsų duomenys tvarkomi.\n- Duomenų perkeliamumas: Gauti savo duomenis mašininiu būdu skaitomu formatu.\n- Prieštaravimas: Atsisakyti tam tikros tvarkymo veiklos, pvz., tiesioginės rinkodaros.\n- Sutikimo atšaukimas: Bet kada atšaukti sutikimą, kai tai taikoma.\n\nNorėdami pasinaudoti šiomis teisėmis, susisiekite su mumis el. paštu info@unicamp.lt."
+      "content": "Pagal BDAR jūs turite šias teises:\n- Prieiga: Prašyti savo asmens duomenų kopijos.\n- Taisymas: Ištaisyti netikslius ar neišsamius duomenis.\n- Ištrynimas (teisė būti pamirštam): Prašyti ištrinti jūsų duomenis.\n- Apribojimas: Apriboti, kaip jūsų duomenys tvarkomi.\n- Duomenų perkeliamumas: Gauti savo duomenis mašininiu būdu skaitomu formatu.\n- Prieštaravimas: Atsisakyti tam tikros tvarkymo veiklos, pvz., tiesioginės rinkodaros.\n- Sutikimo atšaukimas: Bet kada atšaukti sutikimą, kai tai taikoma.\n\nNorėdami pasinaudoti šiomis teisėmis, susisiekite su mumis el. paštu info@unicamp.lt."
     },
     "childrenPrivacy": {
       "header": "11. Vaikų privatumas",

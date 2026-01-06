@@ -1,5 +1,4 @@
 import type { IPostItem } from 'src/types/blog';
-import type { BoxProps } from '@mui/material/Box';
 import type { CardProps } from '@mui/material/Card';
 
 import Box from '@mui/material/Box';
@@ -13,13 +12,11 @@ import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import { fDate } from 'src/utils/format-time';
-import { fShortenNumber } from 'src/utils/format-number';
 
 import { maxLine, varAlpha } from 'src/theme/styles';
 import { AvatarShape } from 'src/assets/illustrations';
 
 import { Image } from 'src/components/image';
-import { Iconify } from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 

@@ -1,10 +1,11 @@
+import type { Metadata, ResolvingMetadata } from 'next';
+
 import { paramCase } from 'src/utils/change-case';
 
 import { CONFIG } from 'src/config-global';
-import { getPost, getLatestPosts, getPosts } from 'src/actions/blog-ssr';
+import { getPost, getPosts, getLatestPosts } from 'src/actions/blog-ssr';
 
 import { PostDetailsHomeView } from 'src/sections/blog/view';
-import { Metadata, ResolvingMetadata } from 'next';
 
 // ----------------------------------------------------------------------
 

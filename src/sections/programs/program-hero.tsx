@@ -1,15 +1,15 @@
 import type { BoxProps } from '@mui/material/Box';
 
 import Box from '@mui/material/Box';
+import { Chip } from '@mui/material';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+
 import { MotionViewport } from 'src/components/animate';
 
 import { useTranslate } from '../../locales';
-import Button from '@mui/material/Button';
-import posthog from 'posthog-js';
-import { Chip } from '@mui/material';
 import { Iconify } from '../../components/iconify';
 
 // ----------------------------------------------------------------------

@@ -1,6 +1,8 @@
 {
   "cta": {
-    "text": "Peržiūrėkite programas"
+    "text": "Peržiūrėkite programas",
+    "goToPlatform": "Eiti į platformą",
+    "signIn": "Prisijungti"
   },
   "dismiss": "Uždaryti",
   "here": "kursuok.lt",

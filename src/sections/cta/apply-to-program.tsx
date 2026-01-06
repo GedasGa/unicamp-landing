@@ -1,18 +1,22 @@
 import { z as zod } from 'zod';
-import { useTranslate } from '../../locales';
-import { ConfirmDialog } from '../../components/custom-dialog';
-import { ConfirmDialogProps } from '../../components/custom-dialog/types';
-import { Form, Field } from 'src/components/hook-form';
-import { Box, Link } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useMemo, useState, useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { useEffect, useMemo, useState } from 'react';
+import { sendGAEvent } from '@next/third-parties/google';
+
 import Alert from '@mui/material/Alert';
-import { paths } from '../../routes/paths';
+import { Box, Link } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import { sendGAEvent, sendGTMEvent } from '@next/third-parties/google';
+import LoadingButton from '@mui/lab/LoadingButton';
+
+import { Form, Field } from 'src/components/hook-form';
+
+import { paths } from '../../routes/paths';
+import { useTranslate } from '../../locales';
+import { ConfirmDialog } from '../../components/custom-dialog';
+
+import type { ConfirmDialogProps } from '../../components/custom-dialog/types';
 
 // ----------------------------------------------------------------------
 
@@ -147,9 +151,9 @@ export function ApplyToProgram({ open, onClose, course, ...other }: ApplyToProgr
           <Field.Phone
             name="phone"
             label={t('phone')}
-            placeholder={'61008080'}
+            placeholder="61008080"
             InputLabelProps={{ shrink: true }}
-            country={'LT'}
+            country="LT"
           />
 
           <Field.Text
@@ -182,7 +186,7 @@ export function ApplyToProgram({ open, onClose, course, ...other }: ApplyToProgr
 
   const action = (
     <LoadingButton
-      form={'apply-program-form'}
+      form="apply-program-form"
       fullWidth
       color="inherit"
       type="submit"

@@ -6,13 +6,12 @@ import { ScrollProgress, useScrollProgress } from 'src/components/animate/scroll
 
 import { HomeHero } from '../home-hero';
 import { HomeFAQs } from '../home-faqs';
+import { HomeTeam } from '../home-team';
+import { HomeUnicamp } from '../home-unicamp';
 import { HomeFeatures } from '../home-features';
 import { HomePrograms } from '../home-programs';
-import { HomeTeam } from '../home-team';
-import { HomeContact } from '../home-contact';
-import { HomeUnicamp } from '../home-unicamp';
-import { HomeTestimonials } from '../home-testimonials';
 import { HomeCompanies } from '../home-companies';
+import { HomeTestimonials } from '../home-testimonials';
 
 // ----------------------------------------------------------------------
 
@@ -36,7 +35,7 @@ export function HomeView() {
         <HomePrograms id="courses" />
         <HomeTestimonials />
         <HomeTeam />
-        {/*<HomeContact />*/}
+        {/* <HomeContact /> */}
         <HomeFAQs />
       </Stack>
     </>

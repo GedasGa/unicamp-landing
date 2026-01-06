@@ -1,6 +1,13 @@
 .idea
 .next
 .vercel
-.env
+.open-next
+.wrangler
+
 node_modules
 tsconfig.tsbuildinfo
+
+.env
+.env.prod
+
+supabase/.temp

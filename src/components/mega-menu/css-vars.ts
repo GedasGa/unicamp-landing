@@ -32,32 +32,6 @@ function verticalVars(theme: Theme) {
 
 // ----------------------------------------------------------------------
 
-function horizontalVars(theme: Theme) {
-  const {
-    shape,
-    spacing,
-    vars: { palette },
-  } = theme;
-
-  return {
-    '--nav-item-gap': theme.spacing(2.5),
-    '--nav-item-radius': `${shape.borderRadius}px`,
-    '--nav-item-height': '32px',
-    '--nav-item-padding': spacing(0.5, 1),
-    // hover
-    '--nav-item-hover-bg': palette.action.hover,
-    // active
-    '--nav-item-active-color': palette.primary.main,
-    // open
-    '--nav-item-open-bg': palette.action.hover,
-    // icon
-    '--nav-icon-size': '22px',
-    '--nav-icon-margin': spacing(0, 1, 0, 0),
-  };
-}
-
-// ----------------------------------------------------------------------
-
 function mobileVars(theme: Theme) {
   const {
     spacing,
@@ -89,6 +63,5 @@ function mobileVars(theme: Theme) {
 
 export const megaMenuCssVars = {
   vertical: verticalVars,
-  horizontal: horizontalVars,
   mobile: mobileVars,
 };

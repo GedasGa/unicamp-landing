@@ -1,8 +1,10 @@
 'use client';
 
+import type { UseTranslationOptions } from 'react-i18next';
+
 import dayjs from 'dayjs';
 import { useCallback } from 'react';
-import { useTranslation, UseTranslationOptions } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { useRouter } from 'src/routes/hooks';
 

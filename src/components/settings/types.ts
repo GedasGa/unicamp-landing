@@ -1,5 +1,5 @@
-import type { Theme, SxProps } from '@mui/material/styles';
 import type { ThemeColorScheme } from 'src/theme/types';
+import type { Theme, SxProps } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
@@ -11,19 +11,20 @@ export type SettingsDrawerProps = {
   hideCompact?: boolean;
   hidePresets?: boolean;
   hideNavColor?: boolean;
-  hideContrast?: boolean;
   hideNavLayout?: boolean;
+  hideContrast?: boolean;
   hideColorScheme?: boolean;
 };
 
 export type SettingsState = {
   fontFamily: string;
+  fontSize: 'small' | 'normal' | 'large';
   compactLayout: boolean;
   colorScheme: ThemeColorScheme;
   contrast: 'default' | 'hight';
   navColor: 'integrate' | 'apparent';
   navLayout: 'vertical' | 'horizontal' | 'mini';
-  primaryColor: 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red';
+  primaryColor: 'default' | 'black' | 'daltonism';
 };
 
 export type SettingsContextValue = SettingsState & {

@@ -2,16 +2,16 @@ import { useState, useCallback } from 'react';
 
 import Collapse from '@mui/material/Collapse';
 
-import { isExternalLink, removeLastSlash } from 'src/routes/utils';
 import { useActiveLink } from 'src/routes/hooks/use-active-link';
+import { isExternalLink, removeLastSlash } from 'src/routes/utils';
 
-import { NavLi, navSectionClasses, NavSectionVertical, NavUl } from 'src/components/nav-section';
+import { NavLi, NavUl } from 'src/components/nav-section';
 
 import { NavItem } from './nav-mobile-item';
-
-import type { NavListProps } from '../types';
 import { useTranslate } from '../../../../locales';
 import { usePathname } from '../../../../routes/hooks';
+
+import type { NavListProps } from '../types';
 
 // ----------------------------------------------------------------------
 

@@ -13,6 +13,7 @@ import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from 'src/asse
 import { Image } from 'src/components/image';
 import { varFade, MotionViewport } from 'src/components/animate';
 import { Carousel, useCarousel, CarouselArrowFloatButtons } from 'src/components/carousel';
+
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
 import { Logo } from '../../components/logo';

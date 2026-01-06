@@ -1,12 +1,12 @@
 import type { BoxProps } from '@mui/material/Box';
 
 import Box from '@mui/material/Box';
-
-import { useTranslate } from '../../locales';
 import { Chip, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { Iconify } from '../../components/iconify';
 import Card, { type CardProps } from '@mui/material/Card';
+
+import { useTranslate } from '../../locales';
+import { Iconify } from '../../components/iconify';
 
 // ---------------------------------------------------------------------
 const PRICES = [
@@ -57,7 +57,7 @@ export function ProgramPricing({ programId, sx, ...other }: ProgramPricingProps)
           sx={{ width: { xs: '100%' } }}
         >
           {PRICES.map((price) => (
-            <PriceCardProps
+            <PriceCard
               key={price.title}
               price={price}
               programId={programId}
@@ -77,16 +77,16 @@ type PriceCardProps = CardProps & {
   programId: string;
 };
 
-const PriceCardProps = ({ price, programId, sx, ...other }: PriceCardProps) => {
+const PriceCard = ({ price, programId, sx, ...other }: PriceCardProps) => {
   const { t } = useTranslate(programId, { keyPrefix: 'pricing' });
 
   return (
     <Card sx={{ p: 3, bgcolor: 'grey.100', ...sx }} {...other}>
-      <Stack spacing={1.5} alignItems={'flex-start'}>
-        <Stack flexDirection={'row'} justifyContent={'space-between'} sx={{ width: '100%' }}>
+      <Stack spacing={1.5} alignItems="flex-start">
+        <Stack flexDirection="row" justifyContent="space-between" sx={{ width: '100%' }}>
           <Typography variant="h4">{t(price.title)}</Typography>
         </Stack>
-        <Stack spacing={1} flexDirection={'row'} alignItems={'end'}>
+        <Stack spacing={1} flexDirection="row" alignItems="end">
           <Box
             sx={(theme) => ({
               px: 1,

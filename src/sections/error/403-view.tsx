@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import { RouterLink } from 'src/routes/components';
 
 import { SimpleLayout } from 'src/layouts/simple';
-import { ForbiddenIllustration } from 'src/assets/illustrations';
 
 import { varBounce, MotionContainer } from 'src/components/animate';
 
@@ -32,9 +31,9 @@ export function View403() {
           </Typography>
         </m.div>
 
-        {/*<m.div variants={varBounce().in}>*/}
-        {/*  <ForbiddenIllustration sx={{ my: { xs: 5, sm: 10 } }} />*/}
-        {/*</m.div>*/}
+        {/* <m.div variants={varBounce().in}> */}
+        {/*  <ForbiddenIllustration sx={{ my: { xs: 5, sm: 10 } }} /> */}
+        {/* </m.div> */}
 
         <Button
           component={RouterLink}

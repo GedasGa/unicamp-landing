@@ -13,6 +13,7 @@ export function CustomBreadcrumbs({
   links,
   action,
   heading,
+  subtitle,
   moreLink,
   activeLast,
   slotProps,
@@ -21,14 +22,8 @@ export function CustomBreadcrumbs({
 }: CustomBreadcrumbsProps) {
   const lastLink = links[links.length - 1].name;
 
-  const renderHeading = (
-    <Typography variant="h4" sx={{ mb: 2, ...slotProps?.heading }}>
-      {heading}
-    </Typography>
-  );
-
   const renderLinks = (
-    <Breadcrumbs separator={<Separator />} sx={slotProps?.breadcrumbs} {...other}>
+    <Breadcrumbs separator={<Separator />} sx={{ ...slotProps?.breadcrumbs }} {...other}>
       {links.map((link, index) => (
         <BreadcrumbsLink
           key={link.name ?? index}
@@ -38,6 +33,18 @@ export function CustomBreadcrumbs({
         />
       ))}
     </Breadcrumbs>
+  );
+
+  const renderHeading = (
+    <Typography variant="h3" sx={slotProps?.heading}>
+      {heading}
+    </Typography>
+  );
+
+  const renderSubtitle = (
+    <Typography variant="body1" color="text.secondary" sx={{ mt: 1, ...slotProps?.subtitle }}>
+      {subtitle}
+    </Typography>
   );
 
   const renderAction = <Box sx={{ flexShrink: 0, ...slotProps?.action }}> {action} </Box>;
@@ -56,11 +63,14 @@ export function CustomBreadcrumbs({
 
   return (
     <Box gap={2} display="flex" flexDirection="column" sx={sx} {...other}>
-      <Box display="flex" alignItems="center">
+      {/* Breadcrumbs first */}
+      {!!links.length && renderLinks}
+
+      {/* Heading and action in same row */}
+      <Box display="flex" alignItems="flex-start" justifyContent="space-between" gap={2}>
         <Box sx={{ flexGrow: 1 }}>
           {heading && renderHeading}
-
-          {!!links.length && renderLinks}
+          {subtitle && renderSubtitle}
         </Box>
 
         {action && renderAction}

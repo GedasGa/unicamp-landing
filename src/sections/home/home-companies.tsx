@@ -1,15 +1,10 @@
 import type { BoxProps } from '@mui/material/Box';
 
-import { m } from 'framer-motion';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 
 import { CONFIG } from 'src/config-global';
-import { MotionViewport } from 'src/components/animate';
 
 import { useTranslate } from '../../locales';
 

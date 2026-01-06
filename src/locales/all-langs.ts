@@ -1,4 +1,5 @@
 'use client';
+
 import { frFR as frFRCore } from '@mui/material/locale';
 import { enUS as enUSDate, frFR as frFRDate } from '@mui/x-date-pickers/locales';
 import { enUS as enUSDataGrid, frFR as frFRDataGrid } from '@mui/x-data-grid/locales';

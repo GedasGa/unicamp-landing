@@ -16,12 +16,12 @@ import PRIMARY_COLOR from 'src/theme/with-settings/primary-color.json';
 
 import { Iconify } from '../../iconify';
 import { BaseOption } from './base-option';
-import { NavOptions } from './nav-options';
 import { Scrollbar } from '../../scrollbar';
 import { FontOptions } from './font-options';
 import { useSettingsContext } from '../context';
 import { PresetsOptions } from './presets-options';
 import { defaultSettings } from '../config-settings';
+import { FontSizeOptions } from './font-size-options';
 import { FullScreenButton } from './fullscreen-button';
 
 import type { SettingsDrawerProps } from '../types';
@@ -33,15 +33,11 @@ export function SettingsDrawer({
   hideFont,
   hideCompact,
   hidePresets,
-  hideNavColor,
   hideContrast,
-  hideNavLayout,
   hideColorScheme,
 }: SettingsDrawerProps) {
   const theme = useTheme();
-
   const settings = useSettingsContext();
-
   const { mode, setMode } = useColorScheme();
 
   const renderHead = (
@@ -49,9 +45,7 @@ export function SettingsDrawer({
       <Typography variant="h6" sx={{ flexGrow: 1 }}>
         Settings
       </Typography>
-
       <FullScreenButton />
-
       <Tooltip title="Reset">
         <IconButton
           onClick={() => {
@@ -64,7 +58,6 @@ export function SettingsDrawer({
           </Badge>
         </IconButton>
       </Tooltip>
-
       <Tooltip title="Close">
         <IconButton onClick={settings.onCloseDrawer}>
           <Iconify icon="mingcute:close-line" />
@@ -112,31 +105,9 @@ export function SettingsDrawer({
       onClickOption={(newValue) => settings.onUpdateField('primaryColor', newValue)}
       options={[
         { name: 'default', value: COLORS.primary.main },
-        { name: 'cyan', value: PRIMARY_COLOR.cyan.main },
-        { name: 'purple', value: PRIMARY_COLOR.purple.main },
-        { name: 'blue', value: PRIMARY_COLOR.blue.main },
-        { name: 'orange', value: PRIMARY_COLOR.orange.main },
-        { name: 'red', value: PRIMARY_COLOR.red.main },
+        { name: 'black', value: PRIMARY_COLOR.black.main },
+        { name: 'daltonism', value: PRIMARY_COLOR.cyan.main },
       ]}
-    />
-  );
-
-  const renderNav = (
-    <NavOptions
-      value={{
-        color: settings.navColor,
-        layout: settings.navLayout,
-      }}
-      onClickOption={{
-        color: (newValue) => settings.onUpdateField('navColor', newValue),
-        layout: (newValue) => settings.onUpdateField('navLayout', newValue),
-      }}
-      options={{
-        colors: ['integrate', 'apparent'],
-        layouts: ['vertical', 'horizontal', 'mini'],
-      }}
-      hideNavColor={hideNavColor}
-      hideNavLayout={hideNavLayout}
     />
   );
 
@@ -144,7 +115,32 @@ export function SettingsDrawer({
     <FontOptions
       value={settings.fontFamily}
       onClickOption={(newValue) => settings.onUpdateField('fontFamily', newValue)}
-      options={[defaultFont, 'Inter Variable', 'DM Sans Variable', 'Nunito Sans Variable']}
+      options={[
+        { 
+          name: defaultFont, 
+          tooltip: 'Default font' 
+        },
+        { 
+          name: 'Lexend Variable', 
+          tooltip: 'Designed to improve reading proficiency and reduce visual stress for all readers' 
+        },
+        { 
+          name: 'Atkinson Hyperlegible', 
+          tooltip: 'Created for low vision readers with distinct letterforms, helpful for dyslexia' 
+        },
+        { 
+          name: 'OpenDyslexic', 
+          tooltip: 'Specially designed typeface for people with dyslexia with weighted bottoms and unique shapes' 
+        },
+      ]}
+    />
+  );
+
+  const renderFontSize = (
+    <FontSizeOptions
+      value={settings.fontSize}
+      onClickOption={(newValue) => settings.onUpdateField('fontSize', newValue)}
+      options={['small', 'normal', 'large']}
     />
   );
 
@@ -174,9 +170,10 @@ export function SettingsDrawer({
             {!hideContrast && renderContrast}
             {!hideCompact && renderCompact}
           </Box>
-          {!(hideNavLayout && hideNavColor) && renderNav}
+
           {!hidePresets && renderPresets}
           {!hideFont && renderFont}
+          {renderFontSize}
         </Stack>
       </Scrollbar>
     </Drawer>

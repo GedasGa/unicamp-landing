@@ -2,10 +2,13 @@
  * @type {import('next').NextConfig}
  */
 
-const isStaticExport = 'false';
+const isStaticExport = process.env.BUILD_STATIC_EXPORT ?? 'false';
 
 const nextConfig = {
-  trailingSlash: true,
+  trailingSlash: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   env: {
     BUILD_STATIC_EXPORT: isStaticExport,
   },

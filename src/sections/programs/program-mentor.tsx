@@ -1,11 +1,11 @@
 import type { BoxProps } from '@mui/material/Box';
 
 import Box from '@mui/material/Box';
+import { Stack } from '@mui/material';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 import { useTranslate } from '../../locales';
-import { Stack } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { CONFIG } from '../../config-global';
 
 // ----------------------------------------------------------------------

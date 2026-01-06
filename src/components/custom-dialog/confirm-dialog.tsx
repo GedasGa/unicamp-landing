@@ -1,11 +1,14 @@
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
+import IconButton from '@mui/material/IconButton';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 
-import type { ConfirmDialogProps } from './types';
+import { Iconify } from '../iconify';
 import { useTranslate } from '../../locales';
+
+import type { ConfirmDialogProps } from './types';
 
 // ----------------------------------------------------------------------
 
@@ -21,7 +24,21 @@ export function ConfirmDialog({
   const { t } = useTranslate('common');
   return (
     <Dialog fullWidth maxWidth="xs" open={open} onClose={onClose} {...other}>
-      <DialogTitle sx={{ pb: 2 }}>{title}</DialogTitle>
+      <DialogTitle sx={{ pb: 2, display: 'flex', alignItems: 'center', pr: 6 }}>
+        {title}
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <Iconify icon="mingcute:close-line" />
+        </IconButton>
+      </DialogTitle>
 
       {content && <DialogContent sx={{ typography: 'body2' }}> {content} </DialogContent>}
 

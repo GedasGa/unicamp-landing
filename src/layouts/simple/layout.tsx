@@ -7,12 +7,12 @@ import Alert from '@mui/material/Alert';
 
 import { Logo } from 'src/components/logo';
 
+import { Footer } from '../main/footer';
+import { allLangs } from '../../locales';
 import { Main, CompactContent } from './main';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
-import { Footer } from '../main/footer';
 import { LanguagePopover } from '../components/language-popover';
-import { allLangs } from '../../locales';
 
 // ----------------------------------------------------------------------
 

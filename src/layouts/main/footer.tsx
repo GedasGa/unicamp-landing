@@ -16,6 +16,7 @@ import { RouterLink } from 'src/routes/components';
 import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from 'src/assets/icons';
 
 import { Logo } from 'src/components/logo';
+
 import { useTranslate } from '../../locales';
 
 // ----------------------------------------------------------------------
@@ -23,7 +24,10 @@ import { useTranslate } from '../../locales';
 const LINKS = [
   {
     headline: 'links.legal.headline',
-    children: [{ name: 'links.legal.children.privacy', href: paths.privacyPolicy }],
+    children: [
+      { name: 'links.legal.children.terms', href: paths.termsOfService },
+      { name: 'links.legal.children.privacy', href: paths.privacyPolicy },
+    ],
   },
   {
     headline: 'links.contact.headline',
