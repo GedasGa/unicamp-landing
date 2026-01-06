@@ -1014,6 +1014,7 @@ export async function getLastAccessedContent(studentId: string) {
         title,
         description,
         confluence_parent_page_id,
+        order_index,
         module:modules!inner(
           id,
           title,
@@ -1035,6 +1036,103 @@ export async function getLastAccessedContent(studentId: string) {
   }
   
   return data;
+}
+
+/**
+ * Get the lesson to continue for a student
+ * If the last accessed lesson is complete and next lesson is unlocked, returns the next lesson
+ * Otherwise returns the last accessed lesson (if still accessible)
+ */
+export async function getContinueLesson(studentId: string, groupIds: string[]) {
+  // First get the last accessed content
+  const lastAccessed = await getLastAccessedContent(studentId);
+  
+  if (!lastAccessed?.lesson) {
+    return null;
+  }
+  
+  const currentLesson = lastAccessed.lesson;
+  const moduleId = currentLesson.module?.id;
+  
+  if (!moduleId) {
+    return null;
+  }
+  
+  // Helper function to check if a lesson is accessible
+  const isLessonAccessible = async (lessonId: string): Promise<boolean> => {
+    const { data: visibility } = await supabase
+      .from('group_lesson_visibility')
+      .select('is_visible, unlocked_at')
+      .in('group_id', groupIds)
+      .eq('lesson_id', lessonId)
+      .eq('is_visible', true);
+    
+    // Check if any visibility record shows the lesson as unlocked
+    return visibility?.some(v => {
+      if (!v.is_visible) return false;
+      if (!v.unlocked_at) return false; // NULL unlocked_at means locked
+      return new Date(v.unlocked_at) <= new Date();
+    }) ?? false;
+  };
+  
+  // First check if current lesson is still accessible
+  const isCurrentAccessible = await isLessonAccessible(currentLesson.id);
+  
+  if (!isCurrentAccessible) {
+    // Current lesson is no longer accessible, don't show continue section
+    return null;
+  }
+  
+  // Check if current lesson is completed
+  const { data: lessonProgress } = await supabase
+    .from('student_lesson_progress')
+    .select('completed')
+    .eq('student_id', studentId)
+    .eq('lesson_id', currentLesson.id)
+    .single();
+  
+  // If lesson is not completed, return the current lesson
+  if (!lessonProgress?.completed) {
+    return lastAccessed;
+  }
+  
+  // Lesson is complete, find the next lesson in the module
+  const { data: allLessons } = await supabase
+    .from('lessons')
+    .select('id, title, description, order_index, confluence_parent_page_id')
+    .eq('module_id', moduleId)
+    .order('order_index', { ascending: true });
+  
+  if (!allLessons || allLessons.length === 0) {
+    return lastAccessed;
+  }
+  
+  // Find the next lesson by order_index
+  const currentIndex = allLessons.findIndex(l => l.id === currentLesson.id);
+  
+  if (currentIndex === -1 || currentIndex === allLessons.length - 1) {
+    // Current lesson not found or it's the last lesson
+    return lastAccessed;
+  }
+  
+  const nextLesson = allLessons[currentIndex + 1];
+  
+  // Check if the next lesson is unlocked
+  const isNextLessonUnlocked = await isLessonAccessible(nextLesson.id);
+  
+  if (!isNextLessonUnlocked) {
+    // Next lesson is not unlocked, return current lesson
+    return lastAccessed;
+  }
+  
+  // Return the next lesson with the same structure as lastAccessed
+  return {
+    ...lastAccessed,
+    lesson: {
+      ...nextLesson,
+      module: currentLesson.module,
+    },
+  };
 }
 
 /**

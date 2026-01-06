@@ -95,7 +95,7 @@ function CalendarToolbar({
           </IconButton>
         </Stack>
 
-        <Button size="small" color="primary" variant="contained" onClick={onToday}>
+        <Button size="small" color="primary" variant="outlined" onClick={onToday}>
           Today
         </Button>
       </Stack>
@@ -136,7 +136,7 @@ const StyledCalendar = styled('div')(({ theme }) => ({
   '& .fc': {
     '--fc-border-color': varAlpha(theme.vars.palette.grey['500Channel'], 0.16),
     '--fc-now-indicator-color': theme.vars.palette.error.main,
-    '--fc-today-bg-color': varAlpha(theme.vars.palette.grey['500Channel'], 0.08),
+    '--fc-today-bg-color': varAlpha(theme.vars.palette.primary.mainChannel, 0.16),
     '--fc-page-bg-color': theme.vars.palette.background.default,
     '--fc-neutral-bg-color': theme.vars.palette.background.neutral,
     '--fc-list-event-hover-bg-color': theme.vars.palette.action.hover,
@@ -164,6 +164,7 @@ const StyledCalendar = styled('div')(({ theme }) => ({
   '& .fc .fc-event': {
     borderColor: 'transparent !important',
     backgroundColor: 'transparent !important',
+    cursor: 'pointer',
   },
   '& .fc .fc-event .fc-event-main': {
     padding: '2px 4px',

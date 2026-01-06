@@ -14,7 +14,9 @@ import { getStudentGroups, getLessons } from 'src/lib/database';
  */
 export function isModuleUnlocked(unlocked_at: string | null, is_visible: boolean | null): boolean {
   if (!is_visible) return false;
+  // If no unlock date is set, module is visible but locked
   if (!unlocked_at) return false;
+  // Only unlocked if unlock date has passed
   return new Date(unlocked_at) <= new Date();
 }
 
@@ -26,7 +28,9 @@ export function isModuleUnlocked(unlocked_at: string | null, is_visible: boolean
  */
 export function isLessonUnlocked(unlocked_at: string | null, is_visible: boolean | null): boolean {
   if (!is_visible) return false;
+  // If no unlock date is set, lesson is visible but locked
   if (!unlocked_at) return false;
+  // Only unlocked if unlock date has passed
   return new Date(unlocked_at) <= new Date();
 }
 
@@ -114,9 +118,8 @@ export async function getAccessibleLessons(
           .single();
 
         if (!visibility) {
-          // No visibility record means accessible by default
-          hasAccessInAnyGroup = true;
-          break;
+          // No visibility record means not accessible
+          continue;
         }
 
         // Check if lesson is visible and unlocked

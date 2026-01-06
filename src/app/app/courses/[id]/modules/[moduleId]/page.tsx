@@ -23,6 +23,9 @@ import { DashboardContent } from 'src/layouts/dashboard';
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
 import { getCourseNavigation } from 'src/layouts/dashboard/nav-utils';
+import { toast } from 'src/components/snackbar';
+import { fDateTime } from 'src/utils/format-time';
+import { useGroupContext } from 'src/contexts/group-context';
 import { 
   getAccessibleModules, 
   getAccessibleLessons, 
@@ -47,6 +50,7 @@ type Props = {
 export default function ModuleDetailPage({ params }: Props) {
   const router = useRouter();
   const { user } = useAuthContext();
+  const { selectedGroup } = useGroupContext();
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -155,9 +159,25 @@ export default function ModuleDetailPage({ params }: Props) {
     fetchModuleData();
   };
 
-  const handleLessonClick = (lessonId: string) => {
+  const handleLessonClick = async (lessonId: string) => {
     if (accessibleLessons.has(lessonId)) {
       router.push(paths.app.courses.lesson(params.id, params.moduleId, lessonId));
+    } else {
+      // Lesson is locked, fetch visibility data to get unlocked_at
+      if (!selectedGroup?.id) return;
+      
+      const { data: visibilityData } = await supabase
+        .from('group_lesson_visibility')
+        .select('unlocked_at')
+        .eq('group_id', selectedGroup.id)
+        .eq('lesson_id', lessonId)
+        .single();
+      
+      if (visibilityData?.unlocked_at) {
+        toast.error(`Lesson is locked. It will be unlocked at ${fDateTime(visibilityData.unlocked_at)}`);
+      } else {
+        toast.error('Lesson is locked. It will be unlocked by your lecturer when the time comes.');
+      }
     }
   };
 
@@ -249,7 +269,7 @@ export default function ModuleDetailPage({ params }: Props) {
                 key={lesson.id}
                 sx={{
                   p: 3,
-                  cursor: isAccessible ? 'pointer' : 'default',
+                  cursor: 'pointer',
                   border: 2,
                   borderColor: isInProgress ? 'primary.main' : 'divider',
                   bgcolor: isLocked ? 'action.hover' : 'background.paper',
@@ -261,7 +281,7 @@ export default function ModuleDetailPage({ params }: Props) {
                       }
                     : {},
                 }}
-                onClick={() => !isLocked && handleLessonClick(lesson.id)}
+                onClick={() => handleLessonClick(lesson.id)}
               >
                 <Stack direction="row" alignItems="center" spacing={2}>
                   <Box sx={{ flex: 1 }}>
@@ -333,13 +353,13 @@ export default function ModuleDetailPage({ params }: Props) {
                         width: 40,
                         height: 40,
                         borderRadius: '50%',
-                        bgcolor: 'action.hover',
+                        bgcolor: 'action.selected',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}
                     >
-                      <Iconify icon="eva:lock-fill" width={24} sx={{ color: 'text.disabled' }} />
+                      <Iconify icon="eva:lock-fill" width={20} sx={{ color: 'text.disabled' }} />
                     </Box>
                   )}
                 </Stack>

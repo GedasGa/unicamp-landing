@@ -121,7 +121,7 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
             </Typography>
           </Stack>
 
-          <Stack
+          {/* <Stack
             sx={{
               py: 3,
               px: 2.5,
@@ -155,7 +155,7 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
                 </MenuItem>
               );
             })}
-          </Stack>
+          </Stack> */}
         </Scrollbar>
 
         <Box sx={{ p: 2.5 }}>

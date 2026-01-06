@@ -22,17 +22,20 @@ import {
   getStudentCourses, 
   getStudentModuleProgress,
   getCourseVisibleModules,
-  getLastAccessedContent,
+  getContinueLesson,
   getUserSchedule
 } from 'src/lib/database';
 
 import { Iconify } from 'src/components/iconify';
 import { Image } from 'src/components/image';
+import { toast } from 'src/components/snackbar';
 
 import { useAuthContext } from 'src/auth/hooks';
+import { useGroupContext } from 'src/contexts/group-context';
 import { CalendarView } from 'src/sections/dashboard/calendar';
 import { CONFIG } from 'src/config-global';
 import { fDateTime } from 'src/utils/format-time';
+import { supabase } from 'src/lib/supabase';
 
 import type { Database } from 'src/types/database.types';
 import type { CalendarEvent } from 'src/types/schedule';
@@ -55,6 +58,7 @@ interface CourseWithModules extends Course {
 export function DashboardView() {
   const router = useRouter();
   const { user } = useAuthContext();
+  const { selectedGroup } = useGroupContext();
   const [courses, setCourses] = useState<CourseWithModules[]>([]);
   const [loading, setLoading] = useState(true);
   const [continueData, setContinueData] = useState<any>(null);
@@ -92,7 +96,12 @@ export function DashboardView() {
     if (!user?.id) return;
 
     try {
-      const data = await getLastAccessedContent(user.id);
+      // Get user's groups first
+      const userGroups = await getStudentGroups(user.id);
+      const groupIds = userGroups?.map((ug) => ug.group_id) || [];
+      
+      // Get continue lesson (with next lesson logic if current is complete)
+      const data = await getContinueLesson(user.id, groupIds);
       setContinueData(data);
     } catch (error) {
       console.error('Error fetching continue data:', error);
@@ -411,7 +420,7 @@ export function DashboardView() {
                         key={module.id}
                         sx={{
                           p: 3,
-                          cursor: module.is_visible ? 'pointer' : 'default',
+                          cursor: 'pointer',
                           bgcolor: module.is_visible
                             ? 'background.paper'
                             : 'action.disabledBackground',
@@ -419,9 +428,27 @@ export function DashboardView() {
                           position: 'relative',
                           '&:hover': module.is_visible ? { bgcolor: 'action.hover' } : {},
                         }}
-                        onClick={() =>
-                          module.is_visible && router.push(paths.app.courses.module(course.id, module.id))
-                        }
+                        onClick={async () => {
+                          if (module.is_visible) {
+                            router.push(paths.app.courses.module(course.id, module.id));
+                          } else {
+                            // Module is locked, fetch visibility data to get unlocked_at
+                            if (!selectedGroup?.id) return;
+                            
+                            const { data: visibilityData } = await supabase
+                              .from('group_module_visibility')
+                              .select('unlocked_at')
+                              .eq('group_id', selectedGroup.id)
+                              .eq('module_id', module.id)
+                              .single();
+                            
+                            if (visibilityData?.unlocked_at) {
+                              toast.error(`Module is locked. It will be unlocked at ${fDateTime(visibilityData.unlocked_at)}`);
+                            } else {
+                              toast.error('Module is locked. It will be unlocked by your lecturer when the time comes.');
+                            }
+                          }
+                        }}
                       >
                         <Stack spacing={2}>
                           <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -441,7 +468,7 @@ export function DashboardView() {
                                   justifyContent: 'center',
                                 }}
                               >
-                                <Iconify icon="solar:lock-bold" width={20} sx={{ color: 'text.disabled' }} />
+                                <Iconify icon="eva:lock-fill" width={20} sx={{ color: 'text.disabled' }} />
                               </Box>
                             )}
                             {module.is_visible && module.progress_percentage === 100 && (

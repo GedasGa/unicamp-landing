@@ -11,6 +11,9 @@ import { useTheme } from '@mui/material/styles';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
+import { Logo } from 'src/components/logo';
+import { paths } from 'src/routes/paths';
+
 import { useNavigationContext } from './navigation-context';
 
 import { Main } from './main';
@@ -85,6 +88,10 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
             ),
             leftArea: (
               <>
+                {/* -- Logo (shown when nav is hidden) -- */}
+                {!shouldShowNav && (
+                  <Logo onlyLogo={false} href={paths.app.root} sx={{ mr: 2 }} />
+                )}
                 {/* -- Nav mobile -- */}
                 {shouldShowNav && (
                   <>
