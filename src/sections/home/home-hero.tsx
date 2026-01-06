@@ -1,15 +1,16 @@
 import type { MotionValue } from 'framer-motion';
 import type { BoxProps } from '@mui/material/Box';
 
+import posthog from 'posthog-js';
 import { useRef, useState } from 'react';
 import { m, useScroll, useSpring, useTransform, useMotionValueEvent } from 'framer-motion';
-import posthog from 'posthog-js';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
@@ -18,7 +19,6 @@ import { varFade, MotionContainer } from 'src/components/animate';
 
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
-import Typography from '@mui/material/Typography';
 
 // ----------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
 
   const renderViewCoursesButton = (
     <AnimatedDiv>
-      <Typography variant={'subtitle2'} gutterBottom>
+      <Typography variant="subtitle2" gutterBottom>
         {t('hero.cta.viewCourses.description')}
       </Typography>
       <Button
@@ -80,7 +80,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
   const renderFreeConsultation = (
     <Box display="flex" flexWrap="wrap" gap={{ xs: 1.5, md: 2 }}>
       <AnimatedDiv>
-        <Typography variant={'subtitle2'} gutterBottom>
+        <Typography variant="subtitle2" gutterBottom>
           {t('hero.cta.consultation.description')}
         </Typography>
         <Button

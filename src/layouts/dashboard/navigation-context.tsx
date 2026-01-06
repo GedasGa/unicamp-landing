@@ -2,7 +2,7 @@
 
 import type { NavSectionProps } from 'src/components/nav-section';
 
-import { createContext, useContext, useState, useMemo, useEffect, useRef } from 'react';
+import { useRef, useMemo, useState, useEffect, useContext, createContext } from 'react';
 
 // ----------------------------------------------------------------------
 

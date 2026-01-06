@@ -1,7 +1,5 @@
-import { useState, useCallback } from 'react';
 
 import Stack from '@mui/material/Stack';
-import Collapse from '@mui/material/Collapse';
 import { useTheme } from '@mui/material/styles';
 
 import { NavList } from './nav-list';

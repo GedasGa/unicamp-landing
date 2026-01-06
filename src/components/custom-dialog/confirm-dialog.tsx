@@ -1,13 +1,14 @@
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
+import IconButton from '@mui/material/IconButton';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import IconButton from '@mui/material/IconButton';
+
 import { Iconify } from '../iconify';
+import { useTranslate } from '../../locales';
 
 import type { ConfirmDialogProps } from './types';
-import { useTranslate } from '../../locales';
 
 // ----------------------------------------------------------------------
 

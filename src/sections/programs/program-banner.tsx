@@ -4,10 +4,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import { bgBlur } from '../../theme/styles';
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
-import { bgBlur, varAlpha } from '../../theme/styles';
-import { useTheme } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
@@ -16,7 +15,6 @@ interface ProgramBannerProps extends BoxProps {
 }
 
 export function ProgramBanner({ sx, programId, ...other }: ProgramBannerProps) {
-  const theme = useTheme();
   const { t } = useTranslate(programId);
 
   return (

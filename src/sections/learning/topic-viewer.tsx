@@ -5,31 +5,31 @@
 // =============================================
 
 import type { FC } from 'react';
+import type { MediaClientConfig } from '@atlaskit/media-core';
+
 import { useState, useEffect } from 'react';
+import { IntlProvider } from 'react-intl-next';
+import { setGlobalTheme } from '@atlaskit/tokens';
+import { ReactRenderer } from '@atlaskit/renderer';
+import { SmartCardProvider } from '@atlaskit/link-provider';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Skeleton from '@mui/material/Skeleton';
-import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import Skeleton from '@mui/material/Skeleton';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
 
-import { ReactRenderer } from '@atlaskit/renderer';
-import { SmartCardProvider } from '@atlaskit/link-provider';
-import type { MediaClientConfig } from '@atlaskit/media-core';
-import { setGlobalTheme } from '@atlaskit/tokens';
-import { IntlProvider } from 'react-intl-next';
+import { fDate } from 'src/utils/format-time';
+
+import { CONFIG } from 'src/config-global';
+import { LinkPreviewClient } from 'src/lib/link-preview-client';
+import { getConfluenceTopicContent } from 'src/actions/confluence';
 
 import { Iconify } from 'src/components/iconify';
-import { LinkPreviewClient } from 'src/lib/link-preview-client';
 import { useSettingsContext } from 'src/components/settings';
-
-import { getConfluenceTopicContent } from 'src/actions/confluence';
-import { fDate } from 'src/utils/format-time';
-import { CONFIG } from 'src/config-global';
 
 interface TopicViewerProps {
   confluencePageId: string;

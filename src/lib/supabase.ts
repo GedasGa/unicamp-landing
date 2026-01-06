@@ -1,8 +1,8 @@
+import type { Database } from 'src/types/database.types';
+
 import { createClient } from '@supabase/supabase-js';
 
 import { CONFIG } from 'src/config-global';
-
-import type { Database } from 'src/types/database.types';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
-import type { Theme, SxProps } from '@mui/material/styles';
 import type { ThemeColorScheme } from 'src/theme/types';
+import type { Theme, SxProps } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 

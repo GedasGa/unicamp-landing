@@ -1,5 +1,6 @@
-import { IPostItem } from '../types/blog';
 import { CONFIG } from '../config-global';
+
+import type { IPostItem } from '../types/blog';
 // ----------------------------------------------------------------------
 
 const POSTS: IPostItem[] = [
@@ -33,14 +34,10 @@ const slugify = (text: string): string =>
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-');
 
-export const getPosts = (): IPostItem[] => {
-  return POSTS;
-};
+export const getPosts = (): IPostItem[] => POSTS;
 
 // ----------------------------------------------------------------------
-export const getPost = async (titleSlug: string): Promise<IPostItem | undefined> => {
-  return POSTS.find((post) => slugify(post.title || '') === titleSlug.toLowerCase());
-};
+export const getPost = async (titleSlug: string): Promise<IPostItem | undefined> => POSTS.find((post) => slugify(post.title || '') === titleSlug.toLowerCase());
 
 // ----------------------------------------------------------------------
 

@@ -9,23 +9,23 @@ import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
 
+import { paths } from 'src/routes/paths';
+
 import { useBoolean } from 'src/hooks/use-boolean';
 
 import { Logo } from 'src/components/logo';
-import { paths } from 'src/routes/paths';
-
-import { useNavigationContext } from './navigation-context';
 
 import { Main } from './main';
 import { NavMobile } from './nav-mobile';
 import { layoutClasses } from '../classes';
+import { useNavColorVars } from './styles';
 import { NavVertical } from './nav-vertical';
 import { _account } from '../config-nav-account';
 import { Searchbar } from '../components/searchbar';
 import { MenuButton } from '../components/menu-button';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
-import { useNavColorVars } from './styles';
+import { useNavigationContext } from './navigation-context';
 import { AccountDrawer } from '../components/account-drawer';
 import { SettingsButton } from '../components/settings-button';
 import { WorkspacesPopover } from '../components/workspaces-popover';

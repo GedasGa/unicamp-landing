@@ -12,9 +12,9 @@ import { CONFIG } from 'src/config-global';
 
 import { varFade, MotionViewport } from 'src/components/animate';
 
-import { SectionTitle } from './components/section-title';
 import { useTranslate } from '../../locales';
 import { Iconify } from '../../components/iconify';
+import { SectionTitle } from './components/section-title';
 
 // ----------------------------------------------------------------------
 

@@ -2,8 +2,9 @@
 // Link Preview Client for Smart Cards
 // =============================================
 
-import { CardClient } from '@atlaskit/link-provider';
 import type { JsonLd } from '@atlaskit/json-ld-types';
+
+import { CardClient } from '@atlaskit/link-provider';
 
 type SupportedProviders = 'YouTube' | 'CodeSandbox' | 'JSitor' | 'Figma';
 
@@ -256,7 +257,7 @@ export class LinkPreviewClient extends CardClient {
   async fetchData(url: string): Promise<JsonLd.Response> {
     const provider = LinkPreviewClient.getProvider(url);
     if (provider) {
-      return await LinkPreviewClient.generateLinkPreviewResponse(provider, url);
+      return LinkPreviewClient.generateLinkPreviewResponse(provider, url);
     }
     
     // For generic URLs, fetch actual metadata
@@ -272,7 +273,7 @@ export class LinkPreviewClient extends CardClient {
   async prefetchData(url: string): Promise<JsonLd.Response | undefined> {
     const provider = LinkPreviewClient.getProvider(url);
     if (provider) {
-      return await LinkPreviewClient.generateLinkPreviewResponse(provider, url);
+      return LinkPreviewClient.generateLinkPreviewResponse(provider, url);
     }
     
     // For generic URLs, try to fetch metadata

@@ -11,10 +11,11 @@ import MenuItem from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import CircularProgress from '@mui/material/CircularProgress';
 
+import { useGroupContext } from 'src/contexts/group-context';
+
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
-import { useGroupContext } from 'src/contexts/group-context';
 
 // ----------------------------------------------------------------------
 

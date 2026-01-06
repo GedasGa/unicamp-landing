@@ -14,8 +14,8 @@ import { PasswordIcon } from 'src/assets/icons';
 
 import { Form, Field } from 'src/components/hook-form';
 
-import { FormHead } from '../components/form-head';
 import { resetPassword } from '../context';
+import { FormHead } from '../components/form-head';
 import { FormReturnLink } from '../components/form-return-link';
 
 // ----------------------------------------------------------------------

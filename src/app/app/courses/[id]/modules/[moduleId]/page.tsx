@@ -4,41 +4,42 @@
 // Module Detail Page - Shows Lessons
 // =============================================
 
-import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
+import { useMemo, useState, useEffect } from 'react';
 
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
-import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Skeleton from '@mui/material/Skeleton';
+import Typography from '@mui/material/Typography';
 
-import { Iconify } from 'src/components/iconify';
-import { useAuthContext } from 'src/auth/hooks';
 import { paths } from 'src/routes/paths';
-import { DashboardContent } from 'src/layouts/dashboard';
-import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
-import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
-import { getCourseNavigation } from 'src/layouts/dashboard/nav-utils';
-import { toast } from 'src/components/snackbar';
-import { fDateTime } from 'src/utils/format-time';
-import { useGroupContext } from 'src/contexts/group-context';
-import { 
-  getAccessibleModules, 
-  getAccessibleLessons, 
-} from 'src/lib/visibility-utils';
 
+import { fDateTime } from 'src/utils/format-time';
+
+import { supabase } from 'src/lib/supabase';
+import { DashboardContent } from 'src/layouts/dashboard';
+import { useGroupContext } from 'src/contexts/group-context';
+import { getCourseNavigation } from 'src/layouts/dashboard/nav-utils';
+import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
 import { 
   getCourse,
   getModule,
   getModules,
   getLessons,
 } from 'src/lib/database';
+import { 
+  getAccessibleModules, 
+  getAccessibleLessons, 
+} from 'src/lib/visibility-utils';
 
-import { supabase } from 'src/lib/supabase';
+import { toast } from 'src/components/snackbar';
+import { Iconify } from 'src/components/iconify';
+import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
+
+import { useAuthContext } from 'src/auth/hooks';
 
 type Props = {
   params: { 

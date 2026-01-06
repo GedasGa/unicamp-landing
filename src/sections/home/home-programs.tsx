@@ -1,39 +1,37 @@
 import type { BoxProps } from '@mui/material/Box';
+import type { CardProps } from '@mui/material/Card';
+
+import { m } from 'framer-motion';
+import { useState, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
+import { Chip } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
+import Rating from '@mui/material/Rating';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import type { CardProps } from '@mui/material/Card';
-
-import { maxLine, stylesMode } from 'src/theme/styles';
+import { maxLine , varAlpha, stylesMode } from 'src/theme/styles';
 
 import { Label } from 'src/components/label';
-import { varAlpha } from 'src/theme/styles';
-import { Iconify } from 'src/components/iconify';
-import { MotionViewport, varFade } from 'src/components/animate';
 import { Image } from 'src/components/image';
+import { Iconify } from 'src/components/iconify';
+import { varFade, MotionViewport } from 'src/components/animate';
 
-import { SectionTitle } from './components/section-title';
+import { paths } from '../../routes/paths';
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
 import { SvgColor } from '../../components/svg-color';
-import { paths } from '../../routes/paths';
-import { useCallback, useState } from 'react';
 import { ApplyToProgram } from '../cta/apply-to-program';
-import Rating from '@mui/material/Rating';
-import { Chip } from '@mui/material';
+import { SectionTitle } from './components/section-title';
 import {
   Carousel,
-  CarouselArrowBasicButtons,
-  carouselBreakpoints,
-  CarouselDotButtons,
   useCarousel,
+  CarouselDotButtons,
+  carouselBreakpoints,
+  CarouselArrowBasicButtons,
 } from '../../components/carousel';
-import { m } from 'framer-motion';
 
 // ----------------------------------------------------------------------
 
@@ -276,7 +274,7 @@ export function ProgramCard({ program, sx, ...other }: Props) {
 
   const renderIcon = (
     <Stack direction="row" alignItems="center" justifyContent="space-between">
-      <SvgColor src={icon} width={76} bgcolor={'primary'} />
+      <SvgColor src={icon} width={76} bgcolor="primary" />
 
       <Stack direction="row" alignItems="center" spacing={1}>
         <Image alt={`${t(level)} icon`} src={levelIcon} width={24} height={24} />
@@ -492,7 +490,7 @@ export function ProgramCard({ program, sx, ...other }: Props) {
       {renderCTA}
 
       {/* FIXME: Fix display and uncomment */}
-      {/*{renderTestimonials}*/}
+      {/* {renderTestimonials} */}
     </Stack>
   );
 }

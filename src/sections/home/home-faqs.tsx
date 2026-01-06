@@ -1,10 +1,10 @@
+import type { TFunction } from 'i18next';
 import type { BoxProps } from '@mui/material/Box';
 
 import { useState } from 'react';
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -18,10 +18,8 @@ import { varAlpha } from 'src/theme/styles';
 import { Iconify } from 'src/components/iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
 
-import { SectionTitle } from './components/section-title';
-import { FloatLine, FloatPlusIcon, FloatTriangleDownIcon } from './components/svg-elements';
 import { useTranslate } from '../../locales';
-import { TFunction } from 'i18next';
+import { SectionTitle } from './components/section-title';
 
 // ----------------------------------------------------------------------
 

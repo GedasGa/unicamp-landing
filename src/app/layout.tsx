@@ -4,6 +4,8 @@ import 'src/global.css';
 
 import type { Viewport } from 'next';
 
+import { GoogleTagManager } from '@next/third-parties/google';
+
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 import { CONFIG } from 'src/config-global';
@@ -13,16 +15,16 @@ import { detectLanguage } from 'src/locales/server';
 import { schemeConfig } from 'src/theme/scheme-config';
 import { I18nProvider } from 'src/locales/i18n-provider';
 import { ThemeProvider } from 'src/theme/theme-provider';
+import { GroupProvider } from 'src/contexts/group-context';
 
 import { Snackbar } from 'src/components/snackbar';
 import { ProgressBar } from 'src/components/progress-bar';
 import { MotionLazy } from 'src/components/animate/motion-lazy';
 import { SettingsDrawer, defaultSettings, SettingsProvider } from 'src/components/settings';
-import { CSPostHogProvider } from './providers';
-import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 
 import { AuthProvider } from 'src/auth/context';
-import { GroupProvider } from 'src/contexts/group-context';
+
+import { CSPostHogProvider } from './providers';
 
 // ----------------------------------------------------------------------
 
@@ -54,7 +56,7 @@ export default async function RootLayout({ children }: Props) {
         id="usercentrics-cmp"
         data-settings-id="tGqJjqeAyiUam6"
         src="https://web.cmp.usercentrics.eu/ui/loader.js"
-      ></script>
+       />
 
       <GoogleTagManager gtmId="GTM-MFMRN6WN" />
 

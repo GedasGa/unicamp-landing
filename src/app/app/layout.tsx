@@ -1,7 +1,7 @@
 import { CONFIG } from 'src/config-global';
 import { DashboardLayout } from 'src/layouts/dashboard';
-import { NavigationProvider } from 'src/layouts/dashboard/navigation-context';
 import { I18nProvider } from 'src/locales/i18n-provider';
+import { NavigationProvider } from 'src/layouts/dashboard/navigation-context';
 
 import { AuthGuard } from 'src/auth/guard';
 

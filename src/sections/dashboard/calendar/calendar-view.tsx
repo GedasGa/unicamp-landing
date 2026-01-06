@@ -1,36 +1,37 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import type { CalendarEvent } from 'src/types/schedule';
+import type { EventClickArg } from '@fullcalendar/core';
+
+import listPlugin from '@fullcalendar/list';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import { useRef, useState, useEffect, useCallback } from 'react';
 
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
+import Skeleton from '@mui/material/Skeleton';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import Skeleton from '@mui/material/Skeleton';
-import { useTheme, styled } from '@mui/material/styles';
-import { varAlpha } from 'src/theme/styles';
+import { styled, useTheme } from '@mui/material/styles';
 
-import { getUserSchedule } from 'src/lib/database';
-import { useAuthContext } from 'src/auth/hooks';
 import { fDateTime } from 'src/utils/format-time';
 
-import type { CalendarEvent } from 'src/types/schedule';
-import type { EventClickArg } from '@fullcalendar/core';
+import { varAlpha } from 'src/theme/styles';
+import { getUserSchedule } from 'src/lib/database';
 
 import { Iconify } from 'src/components/iconify';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
+
+import { useAuthContext } from 'src/auth/hooks';
 
 // ----------------------------------------------------------------------
 

@@ -6,7 +6,7 @@ import type {} from '@mui/x-data-grid/themeAugmentation';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 
-import { useMemo, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
@@ -53,8 +53,8 @@ export function ThemeProvider({ children }: Props) {
         // modeStorageKey={schemeConfig.modeStorageKey} Force light theme
       >
         <CssBaseline />
-        {/*TODO: Figure out why it doesn't load without it*/}
-        <RTL direction={'lrt'}>{children}</RTL>
+        {/* TODO: Figure out why it doesn't load without it */}
+        <RTL direction="lrt">{children}</RTL>
       </CssVarsProvider>
     </AppRouterCacheProvider>
   );

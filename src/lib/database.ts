@@ -2,10 +2,10 @@
 // Database Helper Functions
 // =============================================
 
-import { supabase } from 'src/lib/supabase';
-
 import type { Database } from 'src/types/database.types';
 import type { GroupSchedule, CalendarEvent } from 'src/types/schedule';
+
+import { supabase } from 'src/lib/supabase';
 
 type Tables = Database['public']['Tables'];
 type Profile = Tables['profiles']['Row'];

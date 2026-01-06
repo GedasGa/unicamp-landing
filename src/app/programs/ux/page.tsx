@@ -32,5 +32,5 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <ProgramView programId={'productDesign'} />;
+  return <ProgramView programId="productDesign" />;
 }

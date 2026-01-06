@@ -4,7 +4,7 @@
 // =============================================
 
 import { supabase } from 'src/lib/supabase';
-import { getStudentGroups, getLessons } from 'src/lib/database';
+import { getLessons, getStudentGroups } from 'src/lib/database';
 
 /**
  * Check if a module is unlocked based on visibility settings

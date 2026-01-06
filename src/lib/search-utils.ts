@@ -1,7 +1,7 @@
 import { paths } from 'src/routes/paths';
-import { supabase } from 'src/lib/supabase';
+
+import { getModules, getLessons, getStudentCourses } from 'src/lib/database';
 import { getAccessibleModules, getAccessibleLessons } from 'src/lib/visibility-utils';
-import { getStudentCourses, getModules, getLessons } from 'src/lib/database';
 
 // ----------------------------------------------------------------------
 

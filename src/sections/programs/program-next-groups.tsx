@@ -1,17 +1,13 @@
 import type { BoxProps } from '@mui/material/Box';
 
 import Box from '@mui/material/Box';
-
-import { useTranslate } from '../../locales';
+import Button from '@mui/material/Button';
 import { Stack, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { Iconify } from '../../components/iconify';
 import Card, { type CardProps } from '@mui/material/Card';
-import Link from '@mui/material/Link';
-import { paths } from '../../routes/paths';
+
+import { useTranslate } from '../../locales';
 import { bgBlur, varAlpha } from '../../theme/styles';
-import posthog from 'posthog-js';
 
 // ---------------------------------------------------------------------
 const NEXT_GROUPS = [

@@ -16,6 +16,7 @@ import { RouterLink } from 'src/routes/components';
 import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from 'src/assets/icons';
 
 import { Logo } from 'src/components/logo';
+
 import { useTranslate } from '../../locales';
 
 // ----------------------------------------------------------------------

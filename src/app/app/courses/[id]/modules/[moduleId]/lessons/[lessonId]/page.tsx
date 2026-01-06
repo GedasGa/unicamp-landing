@@ -4,33 +4,34 @@
 // Lesson Page - Topics handled via ?topic= query param
 // =============================================
 
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Skeleton from '@mui/material/Skeleton';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
+import Skeleton from '@mui/material/Skeleton';
 
-import { useAuthContext } from 'src/auth/hooks';
-import { TopicViewer } from 'src/sections/learning/topic-viewer';
 import { paths } from 'src/routes/paths';
-import { DashboardContent } from 'src/layouts/dashboard';
-import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
-import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
-import { getLessonNavigation } from 'src/layouts/dashboard/nav-utils';
 
+import { DashboardContent } from 'src/layouts/dashboard';
+import { getConfluenceLessonTopics } from 'src/actions/confluence';
+import { getLessonNavigation } from 'src/layouts/dashboard/nav-utils';
+import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
 import { 
   getModule,
   getLesson,
+  trackTopicAccess,
+  checkLessonAccess,
   getLessonTopicProgress,
   markTopicCompleteWithCascade,
-  checkLessonAccess,
-  trackTopicAccess,
 } from 'src/lib/database';
 
-import { getConfluenceLessonTopics } from 'src/actions/confluence';
+import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
+
+import { TopicViewer } from 'src/sections/learning/topic-viewer';
+
+import { useAuthContext } from 'src/auth/hooks';
 
 type Props = {
   params: { 

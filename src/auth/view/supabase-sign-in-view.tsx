@@ -1,8 +1,8 @@
 'use client';
 
 import { z as zod } from 'zod';
-import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useState, useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import Box from '@mui/material/Box';
@@ -13,8 +13,8 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import InputAdornment from '@mui/material/InputAdornment';
 
 import { paths } from 'src/routes/paths';
-import { useRouter, useSearchParams } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
+import { useRouter, useSearchParams } from 'src/routes/hooks';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
@@ -25,7 +25,7 @@ import { useAuthContext } from '../hooks';
 import { FormHead } from '../components/form-head';
 import { FormDivider } from '../components/form-divider';
 import { FormSocials } from '../components/form-socials';
-import { signInWithPassword, signInWithOAuth } from '../context';
+import { signInWithOAuth, signInWithPassword } from '../context';
 
 // ----------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ export function SupabaseSignInView() {
 
   // Parse error from URL hash (Supabase redirects with errors in hash)
   useEffect(() => {
-    const hash = window.location.hash;
+    const {hash} = window.location;
     if (hash) {
       const params = new URLSearchParams(hash.substring(1));
       const error = params.get('error');

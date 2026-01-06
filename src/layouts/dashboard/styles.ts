@@ -42,8 +42,7 @@ export function useNavColorVars(
     vars: { palette },
   } = theme;
 
-  return useMemo(() => {
-    return {
+  return useMemo(() => ({
       layout: {
         '--layout-nav-bg': palette.background.default,
         '--layout-nav-horizontal-bg': varAlpha(palette.background.defaultChannel, 0.8),
@@ -57,13 +56,10 @@ export function useNavColorVars(
         },
       },
       section: {},
-    };
-  }, [
+    }), [
     palette.background.default,
     palette.background.defaultChannel,
-    palette.common.white,
     palette.grey,
-    palette.primary.light,
     palette.text.disabled,
     palette.text.primary,
     palette.text.secondary,

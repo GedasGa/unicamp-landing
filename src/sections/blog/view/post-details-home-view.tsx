@@ -9,12 +9,13 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import { paths } from 'src/routes/paths';
+
 import { Markdown } from 'src/components/markdown';
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 
 import { PostItem } from '../post-item';
-import { PostDetailsHero } from '../post-details-hero';
 import { useTranslate } from '../../../locales';
+import { PostDetailsHero } from '../post-details-hero';
 
 // ----------------------------------------------------------------------
 

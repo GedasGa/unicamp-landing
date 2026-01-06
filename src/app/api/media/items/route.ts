@@ -2,7 +2,9 @@
 // API Route: Get Confluence Media Items
 // =============================================
 
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest} from 'next/server';
+
+import { NextResponse } from 'next/server';
 
 const CONFLUENCE_CONFIG = {
   baseUrl: process.env.NEXT_PUBLIC_CONFLUENCE_BASE_URL,
@@ -15,7 +17,7 @@ export async function POST(request: NextRequest) {
     // Body format: { descriptors: [{ collection: "contentId-8486936", ... }] }
     const body = await request.json();
     
-    const descriptors = body.descriptors;
+    const {descriptors} = body;
     
     if (!Array.isArray(descriptors) || descriptors.length === 0 || !descriptors[0].collection) {
       console.error('[Media Items] Invalid request body format');

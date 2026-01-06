@@ -4,8 +4,9 @@ import type { ReactNode } from 'react';
 
 import { useMemo, useState, useEffect, useContext, useCallback, createContext } from 'react';
 
-import { useAuthContext } from 'src/auth/hooks';
 import { getUserGroups } from 'src/lib/database';
+
+import { useAuthContext } from 'src/auth/hooks';
 
 // ----------------------------------------------------------------------
 

@@ -1,4 +1,3 @@
-import { MainLayout } from 'src/layouts/main';
 import { SimpleLayout } from '../../layouts/simple';
 
 // ----------------------------------------------------------------------

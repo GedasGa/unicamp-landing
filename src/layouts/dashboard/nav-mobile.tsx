@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
 
-import { usePathname } from 'src/routes/hooks';
 import { paths } from 'src/routes/paths';
+import { usePathname } from 'src/routes/hooks';
 
 import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';

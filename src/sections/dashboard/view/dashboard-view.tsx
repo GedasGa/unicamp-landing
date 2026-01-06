@@ -1,5 +1,8 @@
 'use client';
 
+import type { CalendarEvent } from 'src/types/schedule';
+import type { Database } from 'src/types/database.types';
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -8,37 +11,35 @@ import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
-import Skeleton from '@mui/material/Skeleton';
-import CircularProgress from '@mui/material/CircularProgress';
-import IconButton from '@mui/material/IconButton';
 
 import { paths } from 'src/routes/paths';
+
+import { fDateTime } from 'src/utils/format-time';
+
+import { CONFIG } from 'src/config-global';
+import { supabase } from 'src/lib/supabase';
 import { DashboardContent } from 'src/layouts/dashboard';
 import { isModuleUnlocked } from 'src/lib/visibility-utils';
+import { useGroupContext } from 'src/contexts/group-context';
 import { 
+  getUserSchedule, 
   getStudentGroups, 
-  getStudentCourses, 
-  getStudentModuleProgress,
-  getCourseVisibleModules,
+  getStudentCourses,
   getContinueLesson,
-  getUserSchedule
+  getCourseVisibleModules,
+  getStudentModuleProgress
 } from 'src/lib/database';
 
-import { Iconify } from 'src/components/iconify';
 import { Image } from 'src/components/image';
 import { toast } from 'src/components/snackbar';
+import { Iconify } from 'src/components/iconify';
+
+import { CalendarView } from 'src/sections/dashboard/calendar';
 
 import { useAuthContext } from 'src/auth/hooks';
-import { useGroupContext } from 'src/contexts/group-context';
-import { CalendarView } from 'src/sections/dashboard/calendar';
-import { CONFIG } from 'src/config-global';
-import { fDateTime } from 'src/utils/format-time';
-import { supabase } from 'src/lib/supabase';
-
-import type { Database } from 'src/types/database.types';
-import type { CalendarEvent } from 'src/types/schedule';
 
 // ----------------------------------------------------------------------
 
@@ -46,9 +47,6 @@ type Course = Database['public']['Tables']['courses']['Row'];
 type Module = Database['public']['Tables']['modules']['Row'] & {
   is_visible: boolean;
   progress_percentage: number;
-};
-type Lesson = Database['public']['Tables']['lessons']['Row'] & {
-  is_visible: boolean;
 };
 
 interface CourseWithModules extends Course {
@@ -354,7 +352,7 @@ export function DashboardView() {
                     },
                   }}
                   onClick={() => {
-                    const lesson = continueData.lesson;
+                    const {lesson} = continueData;
                     const moduleId = lesson.module?.id;
                     const courseId = lesson.module?.course?.id;
                     const lessonId = lesson.id;
@@ -381,7 +379,7 @@ export function DashboardView() {
                       endIcon={<Iconify icon="eva:arrow-forward-fill" />}
                       onClick={(e) => {
                         e.stopPropagation();
-                        const lesson = continueData.lesson;
+                        const {lesson} = continueData;
                         const moduleId = lesson.module?.id;
                         const courseId = lesson.module?.course?.id;
                         const lessonId = lesson.id;

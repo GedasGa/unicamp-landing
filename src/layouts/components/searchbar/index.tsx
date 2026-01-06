@@ -1,12 +1,12 @@
 'use client';
 
 import type { BoxProps } from '@mui/material/Box';
-import type { NavSectionProps } from 'src/components/nav-section';
 import type { SearchableItem } from 'src/lib/search-utils';
+import type { NavSectionProps } from 'src/components/nav-section';
 
-import { useState, useCallback, useEffect } from 'react';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
+import { useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import SvgIcon from '@mui/material/SvgIcon';
@@ -23,7 +23,6 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { useEventListener } from 'src/hooks/use-event-listener';
 
 import { varAlpha } from 'src/theme/styles';
-import { useAuthContext } from 'src/auth/hooks';
 import { getSearchableContent } from 'src/lib/search-utils';
 
 import { Label } from 'src/components/label';
@@ -31,8 +30,9 @@ import { Iconify } from 'src/components/iconify';
 import { Scrollbar } from 'src/components/scrollbar';
 import { SearchNotFound } from 'src/components/search-not-found';
 
+import { useAuthContext } from 'src/auth/hooks';
+
 import { ResultItem } from './result-item';
-import { groupItems, applyFilter, getAllItems } from './utils';
 
 // ----------------------------------------------------------------------
 

@@ -1,13 +1,13 @@
 import type { BoxProps } from '@mui/material/Box';
 
 import Box from '@mui/material/Box';
-
-import { useTranslate } from '../../locales';
 import { Chip, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Card, { type CardProps } from '@mui/material/Card';
-import { Image } from '../../components/image';
+
+import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
+import { Image } from '../../components/image';
 
 // ----------------------------------------------------------------------
 
@@ -175,18 +175,18 @@ export function ProgramSyllabus({ programId, sx, ...other }: ProgramSyllabusProp
             spacing={2}
             sx={{ width: { xs: '100%', sm: 'inherit' } }}
           >
-            {/* TODO: Re-enable once ready*/}
-            {/*<Button*/}
-            {/*  variant="outlined"*/}
-            {/*  size="large"*/}
-            {/*  startIcon={<Iconify icon="solar:download-bold" />}*/}
-            {/*  sx={{ px: 4 }}*/}
-            {/*>*/}
-            {/*  {t('syllabus.cta.download')}*/}
-            {/*</Button>*/}
-            {/*<Button variant="contained" size="large" sx={{ px: 4 }}>*/}
-            {/*  {t('syllabus.cta.register')}*/}
-            {/*</Button>*/}
+            {/* TODO: Re-enable once ready */}
+            {/* <Button */}
+            {/*  variant="outlined" */}
+            {/*  size="large" */}
+            {/*  startIcon={<Iconify icon="solar:download-bold" />} */}
+            {/*  sx={{ px: 4 }} */}
+            {/* > */}
+            {/*  {t('syllabus.cta.download')} */}
+            {/* </Button> */}
+            {/* <Button variant="contained" size="large" sx={{ px: 4 }}> */}
+            {/*  {t('syllabus.cta.register')} */}
+            {/* </Button> */}
           </Stack>
         </Stack>
         <Stack spacing={4}>

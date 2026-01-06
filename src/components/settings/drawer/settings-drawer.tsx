@@ -19,9 +19,9 @@ import { BaseOption } from './base-option';
 import { Scrollbar } from '../../scrollbar';
 import { FontOptions } from './font-options';
 import { useSettingsContext } from '../context';
-import { FontSizeOptions } from './font-size-options';
 import { PresetsOptions } from './presets-options';
 import { defaultSettings } from '../config-settings';
+import { FontSizeOptions } from './font-size-options';
 import { FullScreenButton } from './fullscreen-button';
 
 import type { SettingsDrawerProps } from '../types';

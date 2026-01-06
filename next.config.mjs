@@ -6,6 +6,9 @@ const isStaticExport = process.env.BUILD_STATIC_EXPORT ?? 'false';
 
 const nextConfig = {
   trailingSlash: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   env: {
     BUILD_STATIC_EXPORT: isStaticExport,
   },

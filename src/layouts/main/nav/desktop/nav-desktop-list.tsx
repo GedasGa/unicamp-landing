@@ -1,5 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 
+import { Paper } from '@mui/material';
+import Popover from '@mui/material/Popover';
 import { useTheme } from '@mui/material/styles';
 
 import { usePathname } from 'src/routes/hooks';
@@ -8,14 +10,12 @@ import { isExternalLink, removeLastSlash } from 'src/routes/utils';
 
 import { paper } from 'src/theme/styles';
 
-import { NavLi, navSectionClasses, NavUl } from 'src/components/nav-section';
+import { NavLi, NavUl, navSectionClasses } from 'src/components/nav-section';
 
 import { NavItem } from './nav-desktop-item';
+import { useTranslate } from '../../../../locales';
 
 import type { NavListProps } from '../types';
-import Popover from '@mui/material/Popover';
-import { Paper } from '@mui/material';
-import { useTranslate } from '../../../../locales';
 
 // ----------------------------------------------------------------------
 

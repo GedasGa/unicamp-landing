@@ -2,9 +2,7 @@ import { useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 
-import { paths } from 'src/routes/paths';
 import { usePathname } from 'src/routes/hooks';
 
 import { Logo } from 'src/components/logo';
@@ -12,9 +10,9 @@ import { NavUl } from 'src/components/nav-section';
 import { Scrollbar } from 'src/components/scrollbar';
 
 import { NavList } from './nav-mobile-list';
+import { useTranslate } from '../../../../locales';
 
 import type { NavMainProps } from '../types';
-import { useTranslate } from '../../../../locales';
 
 // ----------------------------------------------------------------------
 
