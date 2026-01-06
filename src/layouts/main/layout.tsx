@@ -21,6 +21,7 @@ import { MenuButton } from '../components/menu-button';
 import type { NavMainProps } from './nav/types';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import { NavMobile } from './nav/mobile';
 import { LanguagePopover } from '../components/language-popover';
 import { allLangs, useTranslate } from '../../locales';
@@ -51,7 +52,6 @@ export type LayoutState = {
 
 export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
   const theme = useTheme();
-  const pathname = usePathname();
   const mobileNavOpen = useBoolean();
   const { t } = useTranslate('nav');
   const { authenticated } = useAuthContext();
@@ -59,7 +59,6 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
   // Disabled until next kursuok.lt financing round
   const [showAlert, setShowAlert] = useState(false);
 
-  const homePage = pathname === '/';
   const layoutQuery: Breakpoint = 'md';
   const navData = data?.nav ?? defaultNavData;
 
@@ -113,6 +112,15 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                   data={navData}
                   open={mobileNavOpen.value}
                   onClose={mobileNavOpen.onFalse}
+                  slots={{
+                    bottomArea: (
+                      <Box gap={1.5} display="flex" sx={{ px: 2.5, py: 3 }}>
+                        <Button fullWidth variant="contained" href={authenticated ? paths.app.root : paths.auth.signIn}>
+                          {authenticated ? t('cta.goToPlatform') : t('cta.signIn')}
+                        </Button>
+                      </Box>
+                    ),
+                  }}
                 />
                 <Logo onlyLogo={false} width={160} />
               </>
