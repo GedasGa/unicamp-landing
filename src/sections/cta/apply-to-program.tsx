@@ -30,7 +30,7 @@ export type ApplyToProgramProps = Omit<ConfirmDialogProps, 'title' | 'action' | 
 export type ApplyToProgramSchemaType = zod.infer<typeof ApplyToProgramSchema>;
 
 export const ApplyToProgramSchema = zod.object({
-  course: zod.string().optional(),
+  course: zod.string().min(1, { message: 'Course is required' }),
   name: zod.string().min(2, { message: 'apply-form:name_required' }),
   email: zod
     .string()
