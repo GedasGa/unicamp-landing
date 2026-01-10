@@ -517,6 +517,36 @@ export type Database = {
         }
         Relationships: []
       }
+      program_applications: {
+        Row: {
+          course: string
+          created_at: string | null
+          email: string
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+        }
+        Insert: {
+          course: string
+          created_at?: string | null
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+        }
+        Update: {
+          course?: string
+          created_at?: string | null
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
       student_lesson_progress: {
         Row: {
           completed: boolean | null

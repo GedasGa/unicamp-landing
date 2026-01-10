@@ -623,3 +623,28 @@ DROP TRIGGER IF EXISTS on_user_signup_link_groups ON auth.users;
 CREATE TRIGGER on_user_signup_link_groups
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION public.link_invitations_on_signup();
+
+-- =============================================
+-- PROGRAM APPLICATIONS (Public form submissions)
+-- =============================================
+
+CREATE TABLE IF NOT EXISTS program_applications (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  course TEXT NOT NULL,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  message TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable RLS on program_applications
+ALTER TABLE program_applications ENABLE ROW LEVEL SECURITY;
+
+-- Allow anonymous inserts (for public form submissions)
+CREATE POLICY "Allow anonymous inserts on program_applications"
+  ON program_applications
+  FOR INSERT
+  TO anon
+  WITH CHECK (true);
+

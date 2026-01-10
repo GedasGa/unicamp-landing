@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { Form, Field } from 'src/components/hook-form';
+import { submitProgramApplication } from 'src/actions/program-application';
 
 import { paths } from '../../routes/paths';
 import { useTranslate } from '../../locales';
@@ -87,22 +88,12 @@ export function ApplyToProgram({ open, onClose, course, ...other }: ApplyToProgr
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const response = await fetch('https://www.formbackend.com/f/1606cadb8b273519', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      const result = await submitProgramApplication(data);
 
-      if (response.status === 422) {
-        throw new Error(t('validation_error'));
-      } else if (!response.ok) {
-        throw new Error(t('something_went_wrong'));
+      if (!result.success) {
+        throw new Error(result.error || t('something_went_wrong'));
       }
 
-      const responseData = await response.json();
       setIsSubmitted(true);
       sendGAEvent('event', 'conversion', {
         send_to: 'AW-16969899641/8LsECNyz1rIaEPm88Js_',
