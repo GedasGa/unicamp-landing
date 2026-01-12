@@ -1,7 +1,10 @@
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
+
+import { Iconify } from 'src/components/iconify';
 
 import { BreadcrumbsLink } from './breadcrumb-link';
 
@@ -21,6 +24,22 @@ export function CustomBreadcrumbs({
   ...other
 }: CustomBreadcrumbsProps) {
   const lastLink = links[links.length - 1].name;
+
+  const handleBack = () => {
+    window.history.back();
+  };
+
+  const renderBackButton = (
+    <Button
+      variant="outlined"
+      size="small"
+      startIcon={<Iconify icon="eva:arrow-back-fill" />}
+      onClick={handleBack}
+      sx={{ alignSelf: 'flex-start' }}
+    >
+      Back
+    </Button>
+  );
 
   const renderLinks = (
     <Breadcrumbs separator={<Separator />} sx={{ ...slotProps?.breadcrumbs }} {...other}>
@@ -63,7 +82,10 @@ export function CustomBreadcrumbs({
 
   return (
     <Box gap={2} display="flex" flexDirection="column" sx={sx} {...other}>
-      {/* Breadcrumbs first */}
+      {/* Back button */}
+      {renderBackButton}
+
+      {/* Breadcrumbs */}
       {!!links.length && renderLinks}
 
       {/* Heading and action in same row */}
