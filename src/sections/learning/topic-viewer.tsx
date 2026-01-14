@@ -26,7 +26,7 @@ import { fDate } from 'src/utils/format-time';
 
 import { CONFIG } from 'src/config-global';
 import { LinkPreviewClient } from 'src/lib/link-preview-client';
-import { getConfluenceTopicContent } from 'src/actions/confluence';
+import { useCourseDataContext } from 'src/contexts/course-data-context';
 
 import { Iconify } from 'src/components/iconify';
 import { useSettingsContext } from 'src/components/settings';
@@ -51,6 +51,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
   isCompleted = false,
 }) => {
   const settings = useSettingsContext();
+  const { getTopicContent } = useCourseDataContext();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<any>(null);
@@ -80,11 +81,12 @@ export const TopicViewer: FC<TopicViewerProps> = ({
       setError(null);
       
       try {
-        const result = await getConfluenceTopicContent(confluencePageId);
-        if (result.success && result.data) {
-          setContent(result.data);
+        // Use cached content from context (fetched on demand)
+        const contentData = await getTopicContent(confluencePageId);
+        if (contentData) {
+          setContent(contentData);
         } else {
-          setError(result.error || 'Failed to load content');
+          setError('Failed to load content');
         }
       } catch (err) {
         setError('An unexpected error occurred');
@@ -95,6 +97,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
     };
 
     fetchContent();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [confluencePageId]);
 
   if (loading) {

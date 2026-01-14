@@ -132,8 +132,6 @@ export function DashboardView() {
     );
   }
 
-  console.log('Courses on dashboard:', courses);
-
   return (
     <DashboardContent maxWidth="xl">
       <Grid container spacing={3}>

@@ -5,19 +5,16 @@ import type { BoxProps } from '@mui/material/Box';
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
-import Portal from '@mui/material/Portal';
 import LinearProgress from '@mui/material/LinearProgress';
 
 import { Logo } from 'src/components/logo';
 
 // ----------------------------------------------------------------------
 
-type Props = BoxProps & {
-  portal?: boolean;
-};
+type Props = BoxProps;
 
-export function SplashScreen({ portal = true, sx, ...other }: Props) {
-  const content = (
+export function SplashScreen({ sx, ...other }: Props) {
+  return (
     <Box sx={{ overflow: 'hidden' }}>
       <Box
         sx={{
@@ -75,11 +72,5 @@ export function SplashScreen({ portal = true, sx, ...other }: Props) {
       </Box>
     </Box>
   );
-
-  if (portal) {
-    return <Portal>{content}</Portal>;
-  }
-
-  return content;
 }
 

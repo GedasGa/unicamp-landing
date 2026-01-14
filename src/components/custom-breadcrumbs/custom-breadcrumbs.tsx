@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 
+import { RouterLink } from 'src/routes/components';
+
 import { Iconify } from 'src/components/iconify';
 
 import { BreadcrumbsLink } from './breadcrumb-link';
@@ -19,6 +21,7 @@ export function CustomBreadcrumbs({
   subtitle,
   moreLink,
   backButtonText,
+  backHref,
   activeLast,
   slotProps,
   sx,
@@ -26,16 +29,23 @@ export function CustomBreadcrumbs({
 }: CustomBreadcrumbsProps) {
   const lastLink = links[links.length - 1].name;
 
-  const handleBack = () => {
-    window.history.back();
-  };
-
-  const renderBackButton = (
+  const renderBackButton = backHref ? (
+    <Button
+      component={RouterLink}
+      href={backHref}
+      variant="outlined"
+      size="small"
+      startIcon={<Iconify icon="eva:arrow-back-fill" />}
+      sx={{ alignSelf: 'flex-start' }}
+    >
+      {backButtonText || 'Back'} 
+    </Button>
+  ) : (
     <Button
       variant="outlined"
       size="small"
       startIcon={<Iconify icon="eva:arrow-back-fill" />}
-      onClick={handleBack}
+      onClick={() => window.history.back()}
       sx={{ alignSelf: 'flex-start' }}
     >
       {backButtonText || 'Back'} 

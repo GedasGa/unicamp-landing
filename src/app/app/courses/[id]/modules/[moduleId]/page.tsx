@@ -224,6 +224,7 @@ export default function ModuleDetailPage({ params }: Props) {
           ]}
           heading={module.title}
           subtitle={module.description}
+          backHref={paths.app.root}
           backButtonText='Back to Home'
           sx={{ mb: 5 }}
         />

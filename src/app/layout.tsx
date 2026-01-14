@@ -52,7 +52,16 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang={lang ?? 'lt'} dir="ltr" suppressHydrationWarning>
-      <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="3fa518db-b45e-4654-ac5e-93704112569d" data-blockingmode="auto" type="text/javascript" />
+      <head>
+        <script 
+          id="Cookiebot" 
+          src="https://consent.cookiebot.com/uc.js" 
+          data-cbid="3fa518db-b45e-4654-ac5e-93704112569d" 
+          data-blockingmode="auto" 
+          type="text/javascript"
+          defer
+        />
+      </head>
 
       <GoogleTagManager gtmId="GTM-MFMRN6WN" />
 

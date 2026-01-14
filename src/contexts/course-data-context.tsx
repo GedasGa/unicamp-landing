@@ -3,9 +3,10 @@
 import type { ReactNode } from 'react';
 import type { Database } from 'src/types/database.types';
 
-import { useMemo, useState, useEffect, useContext, useCallback, createContext } from 'react';
+import { useRef, useMemo, useState, useEffect, useContext, useCallback, createContext } from 'react';
 
 import { supabase } from 'src/lib/supabase';
+import { getConfluenceLessonTopics, getConfluenceTopicContent } from 'src/actions/confluence';
 import { isModuleUnlocked, getAccessibleModules, getAccessibleLessons } from 'src/lib/visibility-utils';
 import {
   getCourse,
@@ -60,6 +61,16 @@ interface LessonProgressData {
   completed: boolean;
 }
 
+interface TopicData {
+  id: string;
+  title: string;
+  [key: string]: any;
+}
+
+interface TopicContentData {
+  [key: string]: any;
+}
+
 export type CourseDataContextValue = {
   // Courses data (for dashboard)
   courses: CourseWithModules[];
@@ -80,6 +91,8 @@ export type CourseDataContextValue = {
   
   // Lesson data
   getLessonData: (lessonId: string) => Promise<LessonData | null>;
+  getTopicsForLesson: (lessonId: string, confluencePageId: string) => Promise<TopicData[]>;
+  getTopicContent: (topicId: string) => Promise<TopicContentData | null>;
   
   // Cache invalidation
   invalidateModuleProgress: (moduleId: string) => void;
@@ -115,15 +128,17 @@ export function CourseDataProvider({ children }: Props) {
   const [coursesLoading, setCoursesLoading] = useState(false);
   const [continueData, setContinueData] = useState<any>(null);
   
-  // Caches for course/module/lesson data
-  const [courseCache, setCourseCache] = useState<Map<string, Course>>(new Map());
-  const [moduleCache, setModuleCache] = useState<Map<string, ModuleData>>(new Map());
-  const [modulesForCourseCache, setModulesForCourseCache] = useState<Map<string, ModuleData[]>>(new Map());
-  const [accessibleModulesCache, setAccessibleModulesCache] = useState<Map<string, Set<string>>>(new Map());
-  const [lessonsCache, setLessonsCache] = useState<Map<string, LessonData[]>>(new Map());
-  const [lessonCache, setLessonCache] = useState<Map<string, LessonData>>(new Map());
-  const [accessibleLessonsCache, setAccessibleLessonsCache] = useState<Map<string, Set<string>>>(new Map());
-  const [lessonProgressCache, setLessonProgressCache] = useState<Map<string, Map<string, LessonProgressData>>>(new Map());
+  // Caches for course/module/lesson data (using refs to avoid re-renders on cache updates)
+  const courseCacheRef = useRef<Map<string, Course>>(new Map());
+  const moduleCacheRef = useRef<Map<string, ModuleData>>(new Map());
+  const modulesForCourseCacheRef = useRef<Map<string, ModuleData[]>>(new Map());
+  const accessibleModulesCacheRef = useRef<Map<string, Set<string>>>(new Map());
+  const lessonsCacheRef = useRef<Map<string, LessonData[]>>(new Map());
+  const lessonCacheRef = useRef<Map<string, LessonData>>(new Map());
+  const accessibleLessonsCacheRef = useRef<Map<string, Set<string>>>(new Map());
+  const lessonProgressCacheRef = useRef<Map<string, Map<string, LessonProgressData>>>(new Map());
+  const topicsCacheRef = useRef<Map<string, TopicData[]>>(new Map());
+  const topicContentCacheRef = useRef<Map<string, TopicContentData>>(new Map());
 
   // ----------------------------------------------------------------------
   // Dashboard data fetching
@@ -228,112 +243,112 @@ export function CourseDataProvider({ children }: Props) {
 
   const getCourseData = useCallback(async (courseId: string): Promise<Course | null> => {
     // Check cache first
-    if (courseCache.has(courseId)) {
-      return courseCache.get(courseId)!;
+    if (courseCacheRef.current.has(courseId)) {
+      return courseCacheRef.current.get(courseId)!;
     }
 
     try {
       const courseData = await getCourse(courseId);
       if (courseData) {
-        setCourseCache((prev) => new Map(prev).set(courseId, courseData));
+        courseCacheRef.current.set(courseId, courseData);
       }
       return courseData;
     } catch (error) {
       console.error('Error fetching course:', error);
       return null;
     }
-  }, [courseCache]);
+  }, []);
 
   const getModuleData = useCallback(async (moduleId: string): Promise<ModuleData | null> => {
-    if (moduleCache.has(moduleId)) {
-      return moduleCache.get(moduleId)!;
+    if (moduleCacheRef.current.has(moduleId)) {
+      return moduleCacheRef.current.get(moduleId)!;
     }
 
     try {
       const moduleData = await getModule(moduleId);
       if (moduleData) {
-        setModuleCache((prev) => new Map(prev).set(moduleId, moduleData));
+        moduleCacheRef.current.set(moduleId, moduleData);
       }
       return moduleData;
     } catch (error) {
       console.error('Error fetching module:', error);
       return null;
     }
-  }, [moduleCache]);
+  }, []);
 
   const getModulesForCourse = useCallback(async (courseId: string): Promise<ModuleData[]> => {
-    if (modulesForCourseCache.has(courseId)) {
-      return modulesForCourseCache.get(courseId)!;
+    if (modulesForCourseCacheRef.current.has(courseId)) {
+      return modulesForCourseCacheRef.current.get(courseId)!;
     }
 
     try {
       const modulesData = await getModules(courseId);
-      setModulesForCourseCache((prev) => new Map(prev).set(courseId, modulesData || []));
+      modulesForCourseCacheRef.current.set(courseId, modulesData || []);
       return modulesData || [];
     } catch (error) {
       console.error('Error fetching modules:', error);
       return [];
     }
-  }, [modulesForCourseCache]);
+  }, []);
 
   const getAccessibleModulesForCourse = useCallback(async (courseId: string): Promise<Set<string>> => {
     if (!user?.id) return new Set();
 
-    if (accessibleModulesCache.has(courseId)) {
-      return accessibleModulesCache.get(courseId)!;
+    if (accessibleModulesCacheRef.current.has(courseId)) {
+      return accessibleModulesCacheRef.current.get(courseId)!;
     }
 
     try {
       const accessibleMods = await getAccessibleModules(user.id, courseId);
-      setAccessibleModulesCache((prev) => new Map(prev).set(courseId, accessibleMods));
+      accessibleModulesCacheRef.current.set(courseId, accessibleMods);
       return accessibleMods;
     } catch (error) {
       console.error('Error fetching accessible modules:', error);
       return new Set();
     }
-  }, [user?.id, accessibleModulesCache]);
+  }, [user?.id]);
 
   // ----------------------------------------------------------------------
   // Module data getters (with caching)
   // ----------------------------------------------------------------------
 
   const getLessonsForModule = useCallback(async (moduleId: string): Promise<LessonData[]> => {
-    if (lessonsCache.has(moduleId)) {
-      return lessonsCache.get(moduleId)!;
+    if (lessonsCacheRef.current.has(moduleId)) {
+      return lessonsCacheRef.current.get(moduleId)!;
     }
 
     try {
       const lessonsData = await getLessons(moduleId);
-      setLessonsCache((prev) => new Map(prev).set(moduleId, lessonsData || []));
+      lessonsCacheRef.current.set(moduleId, lessonsData || []);
       return lessonsData || [];
     } catch (error) {
       console.error('Error fetching lessons:', error);
       return [];
     }
-  }, [lessonsCache]);
+  }, []);
 
   const getAccessibleLessonsForModule = useCallback(async (moduleId: string): Promise<Set<string>> => {
     if (!user?.id) return new Set();
 
-    if (accessibleLessonsCache.has(moduleId)) {
-      return accessibleLessonsCache.get(moduleId)!;
+    if (accessibleLessonsCacheRef.current.has(moduleId)) {
+      return accessibleLessonsCacheRef.current.get(moduleId)!;
     }
 
     try {
       const accessibleLess = await getAccessibleLessons(user.id, moduleId);
-      setAccessibleLessonsCache((prev) => new Map(prev).set(moduleId, accessibleLess));
+      accessibleLessonsCacheRef.current.set(moduleId, accessibleLess);
       return accessibleLess;
     } catch (error) {
       console.error('Error fetching accessible lessons:', error);
       return new Set();
     }
-  }, [user?.id, accessibleLessonsCache]);
+  }, [user?.id]);
 
   const getLessonProgressForModule = useCallback(async (moduleId: string): Promise<Map<string, LessonProgressData>> => {
     if (!user?.id) return new Map();
 
-    if (lessonProgressCache.has(moduleId)) {
-      return lessonProgressCache.get(moduleId)!;
+    if (lessonProgressCacheRef.current.has(moduleId)) {
+      return lessonProgressCacheRef.current.get(moduleId)!;
     }
 
     try {
@@ -369,45 +384,87 @@ export function CourseDataProvider({ children }: Props) {
         );
       });
 
-      setLessonProgressCache((prev) => new Map(prev).set(moduleId, progressMap));
+      lessonProgressCacheRef.current.set(moduleId, progressMap);
       return progressMap;
     } catch (error) {
       console.error('Error fetching lesson progress:', error);
       return new Map();
     }
-  }, [user?.id, lessonProgressCache, getAccessibleLessonsForModule]);
+  }, [user?.id, getAccessibleLessonsForModule]);
 
   // ----------------------------------------------------------------------
   // Lesson data getters (with caching)
   // ----------------------------------------------------------------------
 
   const getLessonData = useCallback(async (lessonId: string): Promise<LessonData | null> => {
-    if (lessonCache.has(lessonId)) {
-      return lessonCache.get(lessonId)!;
+    if (lessonCacheRef.current.has(lessonId)) {
+      return lessonCacheRef.current.get(lessonId)!;
     }
 
     try {
       const lessonData = await getLesson(lessonId);
       if (lessonData) {
-        setLessonCache((prev) => new Map(prev).set(lessonId, lessonData));
+        lessonCacheRef.current.set(lessonId, lessonData);
       }
       return lessonData;
     } catch (error) {
       console.error('Error fetching lesson:', error);
       return null;
     }
-  }, [lessonCache]);
+  }, []);
+
+  const getTopicsForLesson = useCallback(async (lessonId: string, confluencePageId: string): Promise<TopicData[]> => {
+    // Cache key is lessonId (more stable than confluencePageId)
+    if (topicsCacheRef.current.has(lessonId)) {
+      return topicsCacheRef.current.get(lessonId)!;
+    }
+
+    try {
+      const topicsResult = await getConfluenceLessonTopics(confluencePageId);
+      
+      if (!topicsResult.success || !topicsResult.data) {
+        console.error('Error fetching topics:', topicsResult.error);
+        return [];
+      }
+      
+      const topics = topicsResult.data;
+      topicsCacheRef.current.set(lessonId, topics);
+      return topics;
+    } catch (error) {
+      console.error('Error fetching topics:', error);
+      return [];
+    }
+  }, []);
+
+  const getTopicContent = useCallback(async (topicId: string): Promise<TopicContentData | null> => {
+    // Check cache first - only fetch on demand
+    if (topicContentCacheRef.current.has(topicId)) {
+      return topicContentCacheRef.current.get(topicId)!;
+    }
+
+    try {
+      const result = await getConfluenceTopicContent(topicId);
+      
+      if (!result.success || !result.data) {
+        console.error('Error fetching topic content:', result.error);
+        return null;
+      }
+      
+      const contentData = result.data;
+      topicContentCacheRef.current.set(topicId, contentData);
+      return contentData;
+    } catch (error) {
+      console.error('Error fetching topic content:', error);
+      return null;
+    }
+  }, []);
 
   // ----------------------------------------------------------------------
   // Cache invalidation
   // ----------------------------------------------------------------------
 
   const invalidateModuleProgress = useCallback((moduleId: string) => {
-    setLessonProgressCache((prev) => {
-      const newCache = new Map(prev);
-      newCache.delete(moduleId);
-      return newCache;
-    });
+    lessonProgressCacheRef.current.delete(moduleId);
     // Also invalidate dashboard courses to refresh progress
     fetchCourses();
   }, [fetchCourses]);
@@ -415,19 +472,21 @@ export function CourseDataProvider({ children }: Props) {
   const invalidateLessonProgress = useCallback((lessonId: string) => {
     // Find which module this lesson belongs to and invalidate that module's cache
     // For simplicity, we'll invalidate all lesson progress caches
-    setLessonProgressCache(new Map());
+    lessonProgressCacheRef.current.clear();
     fetchCourses();
   }, [fetchCourses]);
 
   const invalidateAll = useCallback(() => {
-    setCourseCache(new Map());
-    setModuleCache(new Map());
-    setModulesForCourseCache(new Map());
-    setAccessibleModulesCache(new Map());
-    setLessonsCache(new Map());
-    setLessonCache(new Map());
-    setAccessibleLessonsCache(new Map());
-    setLessonProgressCache(new Map());
+    courseCacheRef.current.clear();
+    moduleCacheRef.current.clear();
+    modulesForCourseCacheRef.current.clear();
+    accessibleModulesCacheRef.current.clear();
+    lessonsCacheRef.current.clear();
+    lessonCacheRef.current.clear();
+    accessibleLessonsCacheRef.current.clear();
+    lessonProgressCacheRef.current.clear();
+    topicsCacheRef.current.clear();
+    topicContentCacheRef.current.clear();
     refetchCourses();
   }, [refetchCourses]);
 
@@ -456,6 +515,8 @@ export function CourseDataProvider({ children }: Props) {
       
       // Lesson data
       getLessonData,
+      getTopicsForLesson,
+      getTopicContent,
       
       // Cache invalidation
       invalidateModuleProgress,
@@ -475,6 +536,8 @@ export function CourseDataProvider({ children }: Props) {
       getAccessibleLessonsForModule,
       getLessonProgressForModule,
       getLessonData,
+      getTopicsForLesson,
+      getTopicContent,
       invalidateModuleProgress,
       invalidateLessonProgress,
       invalidateAll,

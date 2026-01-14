@@ -15,7 +15,6 @@ import Skeleton from '@mui/material/Skeleton';
 import { paths } from 'src/routes/paths';
 
 import { DashboardContent } from 'src/layouts/dashboard';
-import { getConfluenceLessonTopics } from 'src/actions/confluence';
 import { getLessonNavigation } from 'src/layouts/dashboard/nav-utils';
 import { useCourseDataContext } from 'src/contexts/course-data-context';
 import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
@@ -44,7 +43,7 @@ export default function LessonPage({ params }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuthContext();
-  const { getModuleData, getLessonData, invalidateLessonProgress } = useCourseDataContext();
+  const { getModuleData, getLessonData, getTopicsForLesson, invalidateLessonProgress } = useCourseDataContext();
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -54,8 +53,14 @@ export default function LessonPage({ params }: Props) {
   const [topicProgress, setTopicProgress] = useState<Map<string, any>>(new Map());
   const [hasAccess, setHasAccess] = useState(false);
   
-  // Local state for selected topic (doesn't trigger refetch)
-  const [selectedTopicId, setSelectedTopicId] = useState<string | null>(null);
+  // Topic from URL is the source of truth
+  const topicFromUrl = searchParams.get('topic');
+  
+  // Fallback state only used when auto-selecting (no topic in URL)
+  const [autoSelectedTopicId, setAutoSelectedTopicId] = useState<string | null>(null);
+  
+  // Use URL topic if present, otherwise use auto-selected
+  const selectedTopicId = topicFromUrl || autoSelectedTopicId;
 
   // Memoize navigation to prevent infinite updates
   const navigation = useMemo(
@@ -67,19 +72,13 @@ export default function LessonPage({ params }: Props) {
 
   // Set navigation: Lesson name + topics list
   useSetNavigation(navigation);
-
-  // Initialize selected topic from URL on mount
+  
+  // Track topic access when topic changes
   useEffect(() => {
-    const topicFromUrl = searchParams.get('topic');
-    if (topicFromUrl) {
-      setSelectedTopicId(topicFromUrl);
-      
-      // Track topic access when viewing
-      if (user?.id && params.lessonId) {
-        trackTopicAccess(user.id, params.lessonId, topicFromUrl);
-      }
+    if (selectedTopicId && user?.id && params.lessonId) {
+      trackTopicAccess(user.id, params.lessonId, selectedTopicId);
     }
-  }, [searchParams, user?.id, params.lessonId]);
+  }, [selectedTopicId, user?.id, params.lessonId]);
 
   const fetchLessonData = useCallback(async () => {
     if (!user?.id) {
@@ -116,17 +115,16 @@ export default function LessonPage({ params }: Props) {
         throw new Error('Lesson not found');
       }
       
-      // Fetch topics from Confluence (lesson-specific, not cached in context)
+      // Fetch topics from Confluence (now cached in context)
       if (!lessonData.confluence_parent_page_id) {
         throw new Error('Lesson has no Confluence page configured');
       }
-      const topicsResult = await getConfluenceLessonTopics(lessonData.confluence_parent_page_id);
+      const topicsList = await getTopicsForLesson(params.lessonId, lessonData.confluence_parent_page_id);
       
-      if (!topicsResult.success || !topicsResult.data) {
-        throw new Error(topicsResult.error || 'Failed to fetch topics');
+      if (!topicsList.length) {
+        throw new Error('Failed to fetch topics');
       }
       
-      const topicsList = topicsResult.data;
       setTopics(topicsList);
       
       // Fetch progress for all topics (lesson-specific)
@@ -137,19 +135,21 @@ export default function LessonPage({ params }: Props) {
       });
       setTopicProgress(progressMap);
       
-      // Auto-select first topic if none selected
-      const topicFromUrl = searchParams.get('topic');
-      if (!topicFromUrl && topicsList.length > 0) {
+      // Auto-select first topic if none in URL
+      const currentTopicFromUrl = searchParams.get('topic');
+      if (!currentTopicFromUrl && topicsList.length > 0) {
         // Find first incomplete topic or default to first
         const firstIncomplete = topicsList.find(
           (topic: any) => !progressMap.get(topic.id)?.completed
         );
         const defaultTopic = firstIncomplete || topicsList[0];
         
-        // Set local state and update URL without navigation
-        setSelectedTopicId(defaultTopic.id);
-        const url = `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${defaultTopic.id}`;
-        window.history.replaceState({}, '', url);
+        // Set fallback state (URL will be updated, then topicFromUrl takes over)
+        setAutoSelectedTopicId(defaultTopic.id);
+        router.replace(
+          `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${defaultTopic.id}`,
+          { scroll: false }
+        );
       }
       
     } catch (err) {
@@ -158,7 +158,7 @@ export default function LessonPage({ params }: Props) {
     } finally {
       setLoading(false);
     }
-  }, [user?.id, params.lessonId, params.moduleId, params.id, getModuleData, getLessonData, searchParams]);
+  }, [user?.id, params.lessonId, params.moduleId, params.id, getModuleData, getLessonData, getTopicsForLesson, router, searchParams]);
 
   useEffect(() => {
     fetchLessonData();
@@ -210,10 +210,10 @@ export default function LessonPage({ params }: Props) {
     const currentIndex = topics.findIndex(t => t.id === selectedTopicId);
     if (currentIndex > 0) {
       const previousTopic = topics[currentIndex - 1];
-      setSelectedTopicId(previousTopic.id);
-      // Update URL without navigation
-      const url = `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${previousTopic.id}`;
-      window.history.pushState({}, '', url);
+      router.replace(
+        `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${previousTopic.id}`,
+        { scroll: false }
+      );
     }
   };
 
@@ -223,10 +223,10 @@ export default function LessonPage({ params }: Props) {
     const currentIndex = topics.findIndex(t => t.id === selectedTopicId);
     if (currentIndex !== -1 && currentIndex < topics.length - 1) {
       const nextTopic = topics[currentIndex + 1];
-      setSelectedTopicId(nextTopic.id);
-      // Update URL without navigation
-      const url = `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${nextTopic.id}`;
-      window.history.pushState({}, '', url);
+      router.replace(
+        `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${nextTopic.id}`,
+        { scroll: false }
+      );
     }
   };
 
@@ -297,6 +297,7 @@ export default function LessonPage({ params }: Props) {
             { name: module.title, href: paths.app.courses.module(params.id, params.moduleId) },
             { name: lesson.title }
           ]}
+          backHref={paths.app.courses.module(params.id, params.moduleId)}
           backButtonText='Back to Module'
           sx={{ mb: 5 }}
         />

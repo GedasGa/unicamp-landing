@@ -18,6 +18,7 @@ export type CustomBreadcrumbsProps = BoxProps &
     activeLast?: boolean;
     action?: React.ReactNode;
     backButtonText?: string;
+    backHref?: string;
     links: BreadcrumbsLinkProps[];
     slotProps?: {
       action: SxProps<Theme>;
