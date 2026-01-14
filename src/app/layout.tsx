@@ -20,7 +20,6 @@ import { GroupProvider } from 'src/contexts/group-context';
 import { Snackbar } from 'src/components/snackbar';
 import { ProgressBar } from 'src/components/progress-bar';
 import { MotionLazy } from 'src/components/animate/motion-lazy';
-import { ThirdPartyScripts } from 'src/components/third-party-scripts';
 import { SettingsDrawer, defaultSettings, SettingsProvider } from 'src/components/settings';
 
 import { AuthProvider } from 'src/auth/context';
@@ -72,7 +71,6 @@ export default async function RootLayout({ children }: Props) {
                         <Snackbar />
                         <ProgressBar />
                         <SettingsDrawer />
-                        <ThirdPartyScripts />
                         {children}
                       </MotionLazy>
                     </ThemeProvider>
