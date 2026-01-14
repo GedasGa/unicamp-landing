@@ -53,7 +53,7 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang={lang ?? 'lt'} dir="ltr" suppressHydrationWarning>
-      <GoogleTagManager gtmId="GTM-MFMRN6WN" />
+      <GoogleTagManager gtmId="GTM-W4NRM7KT" />
 
       <body>
         <InitColorSchemeScript
