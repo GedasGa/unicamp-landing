@@ -10,8 +10,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import { Form, Field } from 'src/components/hook-form';
 import { submitProgramApplication } from 'src/actions/program-application';
+
+import { Form, Field } from 'src/components/hook-form';
 
 import { paths } from '../../routes/paths';
 import { useTranslate } from '../../locales';
