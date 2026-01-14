@@ -61,7 +61,8 @@ export default function ModuleDetailPage({ params }: Props) {
   const [accessibleModules, setAccessibleModules] = useState<Set<string>>(new Set());
   const [lessons, setLessons] = useState<any[]>([]);
   const [accessibleLessons, setAccessibleLessons] = useState<Set<string>>(new Set());
-      const [lessonProgress, setLessonProgress] = useState<Map<string, { progress: number; completed: boolean }>>(new Map());
+  const [lessonProgress, setLessonProgress] = useState<Map<string, { progress: number; completed: boolean }>>(new Map());
+  
   // Show course modules in navigation
   const navigation = useMemo(() => {
     if (!course || modules.length === 0) return null;
@@ -228,7 +229,7 @@ export default function ModuleDetailPage({ params }: Props) {
             startIcon={<Iconify icon="eva:arrow-back-fill" />}
             onClick={() => router.push(paths.app.root)}
           >
-            Back to Dashboard
+            Back to Home
           </Button>
         </Stack>
       </DashboardContent>
@@ -246,6 +247,7 @@ export default function ModuleDetailPage({ params }: Props) {
           ]}
           heading={module.title}
           subtitle={module.description}
+          backButtonText='Back to Home'
           sx={{ mb: 5 }}
         />
       )}
@@ -286,6 +288,11 @@ export default function ModuleDetailPage({ params }: Props) {
               >
                 <Stack direction="row" alignItems="center" spacing={2}>
                   <Box sx={{ flex: 1 }}>
+                    <Typography variant="subtitle2"           sx={{
+                        color: isLocked ? 'text.disabled' : 'text.primary',
+                      }}>
+                      Lesson {index + 1}
+                    </Typography>
                     <Typography
                       variant="h6"
                       sx={{

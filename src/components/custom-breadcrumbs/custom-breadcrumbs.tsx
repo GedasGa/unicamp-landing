@@ -18,6 +18,7 @@ export function CustomBreadcrumbs({
   heading,
   subtitle,
   moreLink,
+  backButtonText,
   activeLast,
   slotProps,
   sx,
@@ -37,7 +38,7 @@ export function CustomBreadcrumbs({
       onClick={handleBack}
       sx={{ alignSelf: 'flex-start' }}
     >
-      Back
+      {backButtonText || 'Back'} 
     </Button>
   );
 

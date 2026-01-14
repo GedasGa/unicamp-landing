@@ -251,7 +251,7 @@ export default function LessonPage({ params }: Props) {
               </Button>
             ) : (
               <Button color="inherit" size="small" onClick={() => router.push(paths.app.root)}>
-                Back to Dashboard
+                Back to Home
               </Button>
             )
           }
@@ -286,6 +286,7 @@ export default function LessonPage({ params }: Props) {
             { name: module.title, href: paths.app.courses.module(params.id, params.moduleId) },
             { name: lesson.title }
           ]}
+          backButtonText='Back to Module'
           sx={{ mb: 5 }}
         />
       )}
