@@ -12,7 +12,6 @@ export type ConfigValue = {
   isStaticExport: boolean;
   auth: {
     method: 'supabase';
-    skip: boolean;
     redirectPath: string;
   };
   supabase: { url: string; key: string };
@@ -32,7 +31,6 @@ export const CONFIG: ConfigValue = {
    */
   auth: {
     method: 'supabase',
-    skip: false,
     redirectPath: paths.app.root,
   },
   /**

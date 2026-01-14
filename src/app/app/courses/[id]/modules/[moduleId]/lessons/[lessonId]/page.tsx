@@ -4,8 +4,8 @@
 // Lesson Page - Topics handled via ?topic= query param
 // =============================================
 
-import { useMemo, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
@@ -17,10 +17,9 @@ import { paths } from 'src/routes/paths';
 import { DashboardContent } from 'src/layouts/dashboard';
 import { getConfluenceLessonTopics } from 'src/actions/confluence';
 import { getLessonNavigation } from 'src/layouts/dashboard/nav-utils';
+import { useCourseDataContext } from 'src/contexts/course-data-context';
 import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
 import { 
-  getModule,
-  getLesson,
   trackTopicAccess,
   checkLessonAccess,
   getLessonTopicProgress,
@@ -45,6 +44,7 @@ export default function LessonPage({ params }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuthContext();
+  const { getModuleData, getLessonData, invalidateLessonProgress } = useCourseDataContext();
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -81,80 +81,88 @@ export default function LessonPage({ params }: Props) {
     }
   }, [searchParams, user?.id, params.lessonId]);
 
-  useEffect(() => {
-    const fetchLessonData = async () => {
-      if (!user?.id) {
-        setError('Please sign in to access this content');
+  const fetchLessonData = useCallback(async () => {
+    if (!user?.id) {
+      setError('Please sign in to access this content');
+      setLoading(false);
+      return;
+    }
+    
+    try {
+      setLoading(true);
+      
+      // Check lesson access first (this is lesson-specific, not cached)
+      const accessCheck = await checkLessonAccess(user.id, params.lessonId);
+      
+      if (!accessCheck.accessible) {
+        setError(accessCheck.reason || 'You do not have access to this lesson');
+        setHasAccess(false);
         setLoading(false);
         return;
       }
       
-      try {
-        setLoading(true);
-        
-        // Check lesson access first
-        const accessCheck = await checkLessonAccess(user.id, params.lessonId);
-        
-        if (!accessCheck.accessible) {
-          setError(accessCheck.reason || 'You do not have access to this lesson');
-          setHasAccess(false);
-          setLoading(false);
-          return;
-        }
-        
-        setHasAccess(true);
-        
-        // Fetch module for breadcrumbs
-        const moduleData = await getModule(params.moduleId);
-        setModule(moduleData);
-        
-        // Fetch lesson
-        const lessonData = await getLesson(params.lessonId);
-        setLesson(lessonData);
-        
-        // Fetch topics from Confluence
-        const topicsResult = await getConfluenceLessonTopics(lessonData.confluence_parent_page_id);
-        
-        if (!topicsResult.success || !topicsResult.data) {
-          throw new Error(topicsResult.error || 'Failed to fetch topics');
-        }
-        
-        const topicsList = topicsResult.data;
-        setTopics(topicsList);
-        
-        // Fetch progress for all topics
-        const progressData = await getLessonTopicProgress(user.id, params.lessonId);
-        const progressMap = new Map();
-        progressData.forEach((progress) => {
-          progressMap.set(progress.confluence_page_id, progress);
-        });
-        setTopicProgress(progressMap);
-        
-        // Auto-select first topic if none selected
-        const topicFromUrl = searchParams.get('topic');
-        if (!topicFromUrl && topicsList.length > 0) {
-          // Find first incomplete topic or default to first
-          const firstIncomplete = topicsList.find(
-            (topic: any) => !progressMap.get(topic.id)?.completed
-          );
-          const defaultTopic = firstIncomplete || topicsList[0];
-          
-          // Set local state and update URL without navigation
-          setSelectedTopicId(defaultTopic.id);
-          const url = `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${defaultTopic.id}`;
-          window.history.replaceState({}, '', url);
-        }
-        
-      } catch (err) {
-        console.error('Error fetching lesson data:', err);
-        setError('Failed to load lesson');
-      } finally {
-        setLoading(false);
+      setHasAccess(true);
+      
+      // Fetch module and lesson using context (with caching)
+      const [moduleData, lessonData] = await Promise.all([
+        getModuleData(params.moduleId),
+        getLessonData(params.lessonId),
+      ]);
+      
+      setModule(moduleData);
+      setLesson(lessonData);
+      
+      if (!lessonData) {
+        throw new Error('Lesson not found');
       }
-    };
+      
+      // Fetch topics from Confluence (lesson-specific, not cached in context)
+      if (!lessonData.confluence_parent_page_id) {
+        throw new Error('Lesson has no Confluence page configured');
+      }
+      const topicsResult = await getConfluenceLessonTopics(lessonData.confluence_parent_page_id);
+      
+      if (!topicsResult.success || !topicsResult.data) {
+        throw new Error(topicsResult.error || 'Failed to fetch topics');
+      }
+      
+      const topicsList = topicsResult.data;
+      setTopics(topicsList);
+      
+      // Fetch progress for all topics (lesson-specific)
+      const progressData = await getLessonTopicProgress(user.id, params.lessonId);
+      const progressMap = new Map();
+      progressData.forEach((progress) => {
+        progressMap.set(progress.confluence_page_id, progress);
+      });
+      setTopicProgress(progressMap);
+      
+      // Auto-select first topic if none selected
+      const topicFromUrl = searchParams.get('topic');
+      if (!topicFromUrl && topicsList.length > 0) {
+        // Find first incomplete topic or default to first
+        const firstIncomplete = topicsList.find(
+          (topic: any) => !progressMap.get(topic.id)?.completed
+        );
+        const defaultTopic = firstIncomplete || topicsList[0];
+        
+        // Set local state and update URL without navigation
+        setSelectedTopicId(defaultTopic.id);
+        const url = `${paths.app.courses.lesson(params.id, params.moduleId, params.lessonId)}?topic=${defaultTopic.id}`;
+        window.history.replaceState({}, '', url);
+      }
+      
+    } catch (err) {
+      console.error('Error fetching lesson data:', err);
+      setError('Failed to load lesson');
+    } finally {
+      setLoading(false);
+    }
+  }, [user?.id, params.lessonId, params.moduleId, params.id, getModuleData, getLessonData, searchParams]);
 
+  useEffect(() => {
     fetchLessonData();
-  }, [params.lessonId, user?.id, params.id, params.moduleId, searchParams]);
+  }, [fetchLessonData]);
 
   const handleTopicComplete = async () => {
     if (!user?.id || !lesson || !selectedTopicId) return;
@@ -176,6 +184,9 @@ export default function LessonPage({ params }: Props) {
         });
         return newMap;
       });
+      
+      // Invalidate cache so dashboard/module pages show updated progress
+      invalidateLessonProgress(params.lessonId);
       
       // Check if this was the last topic
       const currentIndex = topics.findIndex(t => t.id === selectedTopicId);

@@ -5,7 +5,7 @@
 // =============================================
 
 import { useRouter } from 'next/navigation';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -23,17 +23,8 @@ import { supabase } from 'src/lib/supabase';
 import { DashboardContent } from 'src/layouts/dashboard';
 import { useGroupContext } from 'src/contexts/group-context';
 import { getCourseNavigation } from 'src/layouts/dashboard/nav-utils';
+import { useCourseDataContext } from 'src/contexts/course-data-context';
 import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
-import { 
-  getCourse,
-  getModule,
-  getModules,
-  getLessons,
-} from 'src/lib/database';
-import { 
-  getAccessibleModules, 
-  getAccessibleLessons, 
-} from 'src/lib/visibility-utils';
 
 import { toast } from 'src/components/snackbar';
 import { Iconify } from 'src/components/iconify';
@@ -52,6 +43,15 @@ export default function ModuleDetailPage({ params }: Props) {
   const router = useRouter();
   const { user } = useAuthContext();
   const { selectedGroup } = useGroupContext();
+  const {
+    getCourseData,
+    getModuleData,
+    getModulesForCourse,
+    getAccessibleModulesForCourse,
+    getLessonsForModule,
+    getAccessibleLessonsForModule,
+    getLessonProgressForModule,
+  } = useCourseDataContext();
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -79,7 +79,7 @@ export default function ModuleDetailPage({ params }: Props) {
   // Set navigation: Course modules list
   useSetNavigation(navigation);
 
-  const fetchModuleData = async () => {
+  const fetchModuleData = useCallback(async () => {
     if (!user?.id) {
       setError('Please sign in to access this content');
       setLoading(false);
@@ -90,59 +90,25 @@ export default function ModuleDetailPage({ params }: Props) {
       setLoading(true);
       setError(null);
       
-      // Fetch course for breadcrumbs
-      const courseData = await getCourse(params.id);
+      // Fetch data using context (with caching)
+      const [courseData, allModules, moduleData, lessonsData, accessibleMods, accessibleLess] = await Promise.all([
+        getCourseData(params.id),
+        getModulesForCourse(params.id),
+        getModuleData(params.moduleId),
+        getLessonsForModule(params.moduleId),
+        getAccessibleModulesForCourse(params.id),
+        getAccessibleLessonsForModule(params.moduleId),
+      ]);
+      
       setCourse(courseData);
-      
-      // Fetch all modules in the course for navigation
-      const allModules = await getModules(params.id);
       setModules(allModules);
-      
-      // Fetch current module
-      const moduleData = await getModule(params.moduleId);
       setModule(moduleData);
-      
-      // Fetch lessons for this module
-      const lessonsData = await getLessons(params.moduleId);
       setLessons(lessonsData);
-      
-      // Use centralized visibility logic
-      const accessibleMods = await getAccessibleModules(user.id, params.id);
       setAccessibleModules(accessibleMods);
-      
-      const accessibleLess = await getAccessibleLessons(user.id, params.moduleId);
       setAccessibleLessons(accessibleLess);
       
-      // Get progress for all accessible lessons in a single batch query
-      const progressMap = new Map<string, { progress: number; completed: boolean }>();
-      const accessibleLessonIds = Array.from(accessibleLess);
-      
-      if (accessibleLessonIds.length > 0) {
-        const { data: allLessonProgress } = await supabase
-          .from('student_lesson_progress')
-          .select('lesson_id, progress_percentage, completed')
-          .eq('student_id', user.id)
-          .in('lesson_id', accessibleLessonIds);
-        
-        // Create a map of lesson progress
-        const progressLookup = new Map(
-          (allLessonProgress || []).map(lp => [
-            lp.lesson_id,
-            {
-              progress: lp.progress_percentage || 0,
-              completed: lp.completed || false
-            }
-          ])
-        );
-        
-        // Add progress for each accessible lesson (including 0 progress for new lessons)
-        for (const lessonId of accessibleLessonIds) {
-          progressMap.set(
-            lessonId,
-            progressLookup.get(lessonId) || { progress: 0, completed: false }
-          );
-        }
-      }
+      // Get progress for lessons (also cached in context)
+      const progressMap = await getLessonProgressForModule(params.moduleId);
       setLessonProgress(progressMap);
       
     } catch (err) {
@@ -151,11 +117,22 @@ export default function ModuleDetailPage({ params }: Props) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [
+    user?.id,
+    params.id,
+    params.moduleId,
+    getCourseData,
+    getModulesForCourse,
+    getModuleData,
+    getLessonsForModule,
+    getAccessibleModulesForCourse,
+    getAccessibleLessonsForModule,
+    getLessonProgressForModule,
+  ]);
 
   useEffect(() => {
     fetchModuleData();
-  }, [params.moduleId, params.id, user?.id]);
+  }, [fetchModuleData]);
 
   const handleRetry = () => {
     fetchModuleData();

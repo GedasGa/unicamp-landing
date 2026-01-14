@@ -1,7 +1,6 @@
 'use client';
 
 import type { CalendarEvent } from 'src/types/schedule';
-import type { Database } from 'src/types/database.types';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -23,17 +22,10 @@ import { fDateTime } from 'src/utils/format-time';
 
 import { CONFIG } from 'src/config-global';
 import { supabase } from 'src/lib/supabase';
+import { getUserSchedule } from 'src/lib/database';
 import { DashboardContent } from 'src/layouts/dashboard';
-import { isModuleUnlocked } from 'src/lib/visibility-utils';
 import { useGroupContext } from 'src/contexts/group-context';
-import { 
-  getUserSchedule, 
-  getStudentGroups, 
-  getStudentCourses,
-  getContinueLesson,
-  getCourseVisibleModules,
-  getStudentModuleProgress
-} from 'src/lib/database';
+import { useCourseDataContext } from 'src/contexts/course-data-context';
 
 import { Image } from 'src/components/image';
 import { toast } from 'src/components/snackbar';
@@ -46,30 +38,16 @@ import { useAuthContext } from 'src/auth/hooks';
 
 // ----------------------------------------------------------------------
 
-type Course = Database['public']['Tables']['courses']['Row'];
-type Module = Database['public']['Tables']['modules']['Row'] & {
-  is_visible: boolean;
-  progress_percentage: number;
-};
-
-interface CourseWithModules extends Course {
-  modules: Module[];
-}
-
 export function DashboardView() {
   const router = useRouter();
   const { user } = useAuthContext();
   const { selectedGroup, groups } = useGroupContext();
-  const [courses, setCourses] = useState<CourseWithModules[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [continueData, setContinueData] = useState<any>(null);
+  const { courses, coursesLoading: loading, continueData } = useCourseDataContext();
   const [activeMeeting, setActiveMeeting] = useState<CalendarEvent | null>(null);
   
   const hasNoGroups = groups.length === 0;
 
   useEffect(() => {
-    fetchCourses();
-    fetchContinueData();
     fetchActiveMeeting();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -93,95 +71,6 @@ export function DashboardView() {
       setActiveMeeting(active || null);
     } catch (error) {
       console.error('Error fetching active meeting:', error);
-    }
-  };
-
-  const fetchContinueData = async () => {
-    if (!user?.id) return;
-
-    try {
-      // Get user's groups first
-      const userGroups = await getStudentGroups(user.id);
-      const groupIds = userGroups?.map((ug) => ug.group_id) || [];
-      
-      // Get continue lesson (with next lesson logic if current is complete)
-      const data = await getContinueLesson(user.id, groupIds);
-      setContinueData(data);
-    } catch (error) {
-      console.error('Error fetching continue data:', error);
-    }
-  };
-
-  const fetchCourses = async () => {
-    if (!user?.id) return;
-
-    try {
-      setLoading(true);
-
-      // Use database helper functions
-      const userGroups = await getStudentGroups(user.id);
-
-      if (!userGroups?.length) {
-        setCourses([]);
-        return;
-      }
-
-      const groupIds = userGroups.map((ug) => ug.group_id);
-
-      // Get courses assigned to student
-      const studentCourses = await getStudentCourses(user.id);
-
-      if (!studentCourses?.length) {
-        setCourses([]);
-        return;
-      }
-
-      // Get modules for each course with visibility and progress
-      const coursesWithModules = await Promise.all(
-        studentCourses.map(async (course: any) => {
-          if (!course?.id) {
-            console.error('Course missing id:', course);
-            return null;
-          }
-
-          // Use database helper for module visibility
-          const moduleVisibility = await getCourseVisibleModules(user.id, course.id, groupIds);
-
-          if (!moduleVisibility?.length) {
-            return { ...course, modules: [] };
-          }
-
-          const moduleIds = moduleVisibility.map((mv) => mv.module_id);
-
-          // Use database helper function for progress
-          const progressMap = await getStudentModuleProgress(user.id, moduleIds);
-
-          const modules: Module[] = moduleVisibility
-            .map((mv: any) => {
-              // Use consistent unlock logic
-              const isUnlocked = isModuleUnlocked(mv.unlocked_at, mv.is_visible);
-              
-              return {
-                ...mv.modules,
-                is_visible: isUnlocked, // Use this to determine if clickable
-                unlocked_at: mv.unlocked_at, // Keep this for display
-                progress_percentage: progressMap.get(mv.module_id) || 0,
-              };
-            })
-            .sort((a, b) => a.order_index - b.order_index);
-
-          return {
-            ...course,
-            modules,
-          };
-        })
-      );
-
-      setCourses(coursesWithModules.filter(Boolean) as CourseWithModules[]);
-    } catch (error) {
-      console.error('Error fetching courses:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
