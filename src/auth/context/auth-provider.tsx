@@ -1,5 +1,6 @@
 'use client';
 
+import posthog from 'posthog-js';
 import { useMemo, useEffect, useCallback } from 'react';
 
 import { useSetState } from 'src/hooks/use-set-state';
@@ -62,9 +63,23 @@ export function AuthProvider({ children }: Props) {
           loading: false 
         });
         axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+        
+        // Identify user in PostHog
+        if (typeof window !== 'undefined') {
+          posthog.identify(session.user.id, {
+            email: session.user.email,
+            name: profile?.full_name,
+            role: profile?.role,
+          });
+        }
       } else {
         setState({ user: null, loading: false });
         delete axios.defaults.headers.common.Authorization;
+        
+        // Reset PostHog on logout
+        if (typeof window !== 'undefined') {
+          posthog.reset();
+        }
       }
     } catch (error) {
       console.error(error);
