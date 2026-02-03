@@ -1,7 +1,7 @@
 'use client';
 
 import i18next from 'i18next';
-import { useMemo } from 'react';
+import { useEffect } from 'react';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next, I18nextProvider as Provider } from 'react-i18next';
@@ -45,7 +45,7 @@ type Props = {
 };
 
 export function I18nProvider({ lang, children }: Props) {
-  useMemo(() => {
+  useEffect(() => {
     if (lang) {
       i18next.changeLanguage(lang);
     }
