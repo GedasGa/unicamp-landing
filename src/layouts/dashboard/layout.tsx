@@ -30,6 +30,9 @@ import { AccountDrawer } from '../components/account-drawer';
 import { SettingsButton } from '../components/settings-button';
 import { WorkspacesPopover } from '../components/workspaces-popover';
 import { navData as dashboardNavData } from '../config-nav-dashboard';
+import { allLangs } from 'src/locales';
+import { LanguagePopover } from '../components/language-popover';
+import { AITranslateButton } from 'src/components/ai-translate-button';
 
 // ----------------------------------------------------------------------
 
@@ -121,6 +124,10 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
               <Box display="flex" alignItems="center" gap={{ xs: 0, sm: 0.75 }}>
                 {/* -- Searchbar -- */}
                 <Searchbar data={navData} />
+                {/* -- Language selector -- */}
+                <LanguagePopover data={allLangs} />
+                {/* -- AI Translate button -- */}
+                <AITranslateButton />
                 {/* -- Settings button -- */}
                 <SettingsButton />
                 {/* -- Account drawer -- */}

@@ -1,4 +1,7 @@
+'use client';
+
 import Box from '@mui/material/Box';
+import { useTranslation } from 'react-i18next';
 
 import { Block, BlockOption } from './styles';
 
@@ -13,8 +16,9 @@ type Props = {
 };
 
 export function FontSizeOptions({ value, options, onClickOption }: Props) {
+  const { t } = useTranslation('app');
   return (
-    <Block title="Font size">
+    <Block title={t('settings.fontSize')}>
       <Box component="ul" gap={1.5} display="grid" gridTemplateColumns="repeat(3, 1fr)">
         {options.map((option) => {
           const selected = value === option;
@@ -36,7 +40,7 @@ export function FontSizeOptions({ value, options, onClickOption }: Props) {
                     A
                   </Box>
                 }
-                label={option.charAt(0).toUpperCase() + option.slice(1)}
+                label={t(`settings.fontSizeOptions.${option}`)}
                 sx={{
                   py: 2,
                   gap: 0.75,

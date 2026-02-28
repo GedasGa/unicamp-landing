@@ -4,6 +4,7 @@ import type { CalendarEvent } from 'src/types/schedule';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -40,6 +41,7 @@ import { useAuthContext } from 'src/auth/hooks';
 
 export function DashboardView() {
   const router = useRouter();
+  const { t } = useTranslation('app');
   const { user } = useAuthContext();
   const { selectedGroup, groups } = useGroupContext();
   const { courses, coursesLoading: loading, continueData } = useCourseDataContext();
@@ -141,10 +143,10 @@ export function DashboardView() {
             {/* Greeting */}
             <Box>
               <Typography variant="h3" sx={{ mb: 1 }}>
-                Hi, {user?.displayName || user?.email?.split('@')[0] || 'there'} 👋
+                {t('dashboard.greeting', { name: user?.displayName || user?.email?.split('@')[0] || 'there' })}
               </Typography>
               <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-                Let&apos;s learn something today!
+                {t('dashboard.greetingSubtitle')}
               </Typography>
             </Box>
 
@@ -158,7 +160,7 @@ export function DashboardView() {
               return (
                 <Box>
                   <Typography variant="h5" sx={{ mb: 2 }}>
-                    {isStartingSoon ? 'Meeting starting soon' : 'Meeting in progress'}
+                    {isStartingSoon ? t('dashboard.meetingStartingSoon') : t('dashboard.meetingInProgress')}
                   </Typography>
                   <Card 
                     sx={{ 
@@ -188,7 +190,11 @@ export function DashboardView() {
                         <Iconify icon="eva:clock-outline" width={20} />
                         <Typography variant="body2" sx={{ opacity: 0.9 }}>
                           {isStartingSoon 
-                            ? `Starts in ${minutesUntilStart} minute${minutesUntilStart !== 1 ? 's' : ''} at ${fDateTime(activeMeeting.start, 'HH:mm')}`
+                            ? t('dashboard.startsIn', { 
+                                minutes: minutesUntilStart,
+                                plural: minutesUntilStart !== 1 ? 's' : '',
+                                time: fDateTime(activeMeeting.start, 'HH:mm')
+                              })
                             : `${fDateTime(activeMeeting.start, 'HH:mm')} - ${fDateTime(activeMeeting.end, 'HH:mm')}`
                           }
                         </Typography>
@@ -211,13 +217,13 @@ export function DashboardView() {
                             },
                           }}
                         >
-                          {isStartingSoon ? 'Join Meeting' : 'Join Meeting Now'}
+                          {isStartingSoon ? t('dashboard.joinMeeting') : t('dashboard.joinMeetingNow')}
                         </Button>
                       )}
 
                       {activeMeeting.mode === 'live' && activeMeeting.address && (
                         <Stack spacing={0.5}>
-                          <Typography variant="subtitle2">Location:</Typography>
+                          <Typography variant="subtitle2">{t('dashboard.location')}</Typography>
                           <Typography variant="body2" sx={{ opacity: 0.9 }}>
                             {activeMeeting.address}
                             {activeMeeting.city && `, ${activeMeeting.city}`}
@@ -234,7 +240,7 @@ export function DashboardView() {
             {continueData && (
               <Box>
                 <Typography variant="h5" sx={{ mb: 2 }}>
-                  Continue...
+                  {t('dashboard.continue')}
                 </Typography>
                 <Card 
                   sx={{ 
@@ -282,7 +288,7 @@ export function DashboardView() {
                         }
                       }}
                     >
-                      Resume
+                      {t('dashboard.resume')}
                     </Button>
                   </Stack>
                 </Card>
@@ -292,12 +298,12 @@ export function DashboardView() {
             {/* Course Modules Section */}
             <Box>
               <Typography variant="h5" sx={{ mb: 2 }}>
-                Course modules
+                {t('dashboard.courseModules')}
               </Typography>
               {courses.length === 0 ? (
                 <Card sx={{ p: 5, textAlign: 'center' }}>
                   <Typography variant="h6" sx={{ color: 'text.secondary' }}>
-                    No courses assigned yet
+                    {t('dashboard.noCoursesAssigned')}
                   </Typography>
                   <Typography variant="body2" sx={{ color: 'text.disabled', mt: 1 }}>
                     Explore our available programs and contact us to get started. If you&apos;ve already purchased a course, please reach out to your lecturer to be added to a group.
@@ -427,7 +433,7 @@ export function DashboardView() {
             {hasNoGroups ? (
               <Box>
                 <Typography variant="h5" sx={{ mb: 2 }}>
-                  Available Programs
+                  {t('dashboard.selectGroup')}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3 }}>
                   Choose a program to start your learning journey
@@ -657,7 +663,7 @@ export function DashboardView() {
                 {/* Schedule - Only shown if user has groups */}
                 <Box>
                   <Typography variant="h5" sx={{ mb: 2 }}>
-                    Schedule
+                    {t('dashboard.schedule')}
                   </Typography>
                   <Stack spacing={1.5}>
                     <Card sx={{ p: 2 }}>
@@ -676,7 +682,7 @@ export function DashboardView() {
                           <Iconify icon="solar:moon-bold" width={20} sx={{ color: 'info.main' }} />
                         </Box>
                         <Box sx={{ flex: 1 }}>
-                          <Typography variant="subtitle2">Wednesdays</Typography>
+                          <Typography variant="subtitle2">{t('dashboard.wednesdays')}</Typography>
                         </Box>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                           18:30 – 21:45
@@ -700,7 +706,7 @@ export function DashboardView() {
                           <Iconify icon="solar:sun-bold" width={20} sx={{ color: 'warning.main' }} />
                         </Box>
                         <Box sx={{ flex: 1 }}>
-                          <Typography variant="subtitle2">Saturdays</Typography>
+                          <Typography variant="subtitle2">{t('dashboard.saturdays')}</Typography>
                         </Box>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                           09:00 – 13:30
@@ -718,7 +724,7 @@ export function DashboardView() {
                 {/* Lecturer - Only shown if user has groups */}
                 <Box>
                   <Typography variant="h5" sx={{ mb: 2 }}>
-                    Lecturer
+                    {t('dashboard.lecturer')}
                   </Typography>
                   <Card
                     sx={{
@@ -744,7 +750,7 @@ export function DashboardView() {
                       <Box sx={{ flex: 1 }}>
                         <Typography variant="subtitle1">Aistė Gerdzevičiūtė</Typography>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                          Contact me on Slack 👍
+                          {t('dashboard.contactOnSlack')}
                         </Typography>
                       </Box>
                     </Stack>

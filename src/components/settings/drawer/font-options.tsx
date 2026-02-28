@@ -1,5 +1,8 @@
+'use client';
+
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
+import { useTranslation } from 'react-i18next';
 
 import { CONFIG } from 'src/config-global';
 import { setFont } from 'src/theme/styles';
@@ -22,8 +25,9 @@ type Props = {
 };
 
 export function FontOptions({ value, options, onClickOption }: Props) {
+  const { t } = useTranslation('app');
   return (
-    <Block title="Font">
+    <Block title={t('settings.font')}>
       <Box component="ul" gap={1.5} display="grid" gridTemplateColumns="repeat(2, 1fr)">
         {options.map((option) => {
           const selected = value === option.name;

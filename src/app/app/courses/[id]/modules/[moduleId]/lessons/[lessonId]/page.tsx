@@ -30,6 +30,7 @@ import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 import { TopicViewer } from 'src/sections/learning/topic-viewer';
 
 import { useAuthContext } from 'src/auth/hooks';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   params: { 
@@ -43,6 +44,7 @@ export default function LessonPage({ params }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuthContext();
+  const { t } = useTranslation('app');
   const { getModuleData, getLessonData, getTopicsForLesson, invalidateLessonProgress } = useCourseDataContext();
   
   const [loading, setLoading] = useState(true);
@@ -262,7 +264,7 @@ export default function LessonPage({ params }: Props) {
               </Button>
             ) : (
               <Button color="inherit" size="small" onClick={() => router.push(paths.app.root)}>
-                Back to Home
+                {t('nav.backToHome')}
               </Button>
             )
           }
@@ -293,12 +295,12 @@ export default function LessonPage({ params }: Props) {
         <CustomBreadcrumbs
           heading={lesson.title}
           links={[
-            { name: 'Home', href: paths.app.root },
+            { name: t('nav.home'), href: paths.app.root },
             { name: module.title, href: paths.app.courses.module(params.id, params.moduleId) },
             { name: lesson.title }
           ]}
           backHref={paths.app.courses.module(params.id, params.moduleId)}
-          backButtonText='Back to Module'
+          backButtonText={t('nav.backToModule')}
           sx={{ mb: 5 }}
         />
       )}

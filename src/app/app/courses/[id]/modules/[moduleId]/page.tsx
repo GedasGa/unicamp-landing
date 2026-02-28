@@ -31,6 +31,7 @@ import { Iconify } from 'src/components/iconify';
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 
 import { useAuthContext } from 'src/auth/hooks';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   params: { 
@@ -42,6 +43,7 @@ type Props = {
 export default function ModuleDetailPage({ params }: Props) {
   const router = useRouter();
   const { user } = useAuthContext();
+  const { t } = useTranslation('app');
   const { selectedGroup } = useGroupContext();
   const {
     getCourseData,
@@ -206,7 +208,7 @@ export default function ModuleDetailPage({ params }: Props) {
             startIcon={<Iconify icon="eva:arrow-back-fill" />}
             onClick={() => router.push(paths.app.root)}
           >
-            Back to Home
+            {t('nav.backToHome')}
           </Button>
         </Stack>
       </DashboardContent>
@@ -219,13 +221,13 @@ export default function ModuleDetailPage({ params }: Props) {
       {course && module && (
         <CustomBreadcrumbs
           links={[
-            { name: 'Home', href: paths.app.root },
+            { name: t('nav.home'), href: paths.app.root },
             { name: course.title },
           ]}
           heading={module.title}
           subtitle={module.description}
           backHref={paths.app.root}
-          backButtonText='Back to Home'
+          backButtonText={t('nav.backToHome')}
           sx={{ mb: 5 }}
         />
       )}

@@ -1,7 +1,10 @@
+'use client';
+
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import ButtonBase from '@mui/material/ButtonBase';
 import { alpha as hexAlpha } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 
 import { CONFIG } from 'src/config-global';
 
@@ -21,15 +24,17 @@ type Props = {
   onClickOption: (newValue: Value) => void;
 };
 
-const COLOR_TOOLTIPS = {
-  default: 'Brand blue color with excellent contrast',
-  black: 'High contrast monochrome for maximum accessibility',
-  daltonism: 'Optimized cyan palette for color blindness (deuteranopia, protanopia)',
-};
-
 export function PresetsOptions({ value, options, onClickOption }: Props) {
+  const { t } = useTranslation('app');
+
+  const colorTooltips: Record<string, string> = {
+    default: t('settings.colorTooltips.default'),
+    black: t('settings.colorTooltips.black'),
+    daltonism: t('settings.colorTooltips.daltonism'),
+  };
+
   return (
-    <Block title="Presets">
+    <Block title={t('settings.presets')}>
       <Box component="ul" gap={1.5} display="grid" gridTemplateColumns="repeat(3, 1fr)">
         {options.map((option) => {
           const selected = value === option.name;
@@ -55,7 +60,7 @@ export function PresetsOptions({ value, options, onClickOption }: Props) {
                 />
               </ButtonBase>
               <Tooltip
-                title={COLOR_TOOLTIPS[option.name]}
+                title={colorTooltips[option.name]}
                 placement="top"
                 arrow
                 slotProps={{

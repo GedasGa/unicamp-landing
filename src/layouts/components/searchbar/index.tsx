@@ -29,6 +29,7 @@ import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
 import { Scrollbar } from 'src/components/scrollbar';
 import { SearchNotFound } from 'src/components/search-not-found';
+import { useTranslation } from 'react-i18next';
 
 import { useAuthContext } from 'src/auth/hooks';
 
@@ -45,6 +46,7 @@ export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps)
   const router = useRouter();
   const { user } = useAuthContext();
   const search = useBoolean();
+  const { t } = useTranslation('app');
 
   const [searchQuery, setSearchQuery] = useState('');
   const [searchableItems, setSearchableItems] = useState<SearchableItem[]>([]);
@@ -194,7 +196,7 @@ export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps)
           <InputBase
             fullWidth
             autoFocus
-            placeholder="Search..."
+            placeholder={t('search.placeholder')}
             value={searchQuery}
             onChange={handleSearch}
             startAdornment={
