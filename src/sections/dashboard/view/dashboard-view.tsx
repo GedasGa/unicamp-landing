@@ -44,7 +44,7 @@ export function DashboardView() {
   const { t } = useTranslation('app');
   const { user } = useAuthContext();
   const { selectedGroup, groups } = useGroupContext();
-  const { courses, coursesLoading: loading, continueData } = useCourseDataContext();
+  const { courses, coursesLoading: loading, continueData, getLessonsForModule, getAccessibleLessonsForModule, getLessonProgressForModule } = useCourseDataContext();
   const [activeMeeting, setActiveMeeting] = useState<CalendarEvent | null>(null);
   
   const hasNoGroups = groups.length === 0;
@@ -327,7 +327,36 @@ export function DashboardView() {
                         }}
                         onClick={async () => {
                           if (module.is_visible) {
-                            router.push(paths.app.courses.module(course.id, module.id));
+                            const [lessons, accessibleLessonIds, progressMap] = await Promise.all([
+                              getLessonsForModule(module.id),
+                              getAccessibleLessonsForModule(module.id),
+                              getLessonProgressForModule(module.id),
+                            ]);
+                            const accessibleLessons = lessons.filter((l: any) => accessibleLessonIds.has(l.id));
+
+                            if (accessibleLessons.length === 0) return;
+
+                            let targetLesson;
+
+                            if (module.progress_percentage === 100) {
+                              // Completed → last lesson
+                              targetLesson = accessibleLessons[accessibleLessons.length - 1];
+                            } else if (module.progress_percentage === 0) {
+                              // Not started → first lesson
+                              targetLesson = accessibleLessons[0];
+                            } else {
+                              // In progress → last completed lesson, or first incomplete
+                              const lastCompleted = [...accessibleLessons]
+                                .reverse()
+                                .find((l: any) => progressMap.get(l.id)?.completed);
+                              targetLesson = lastCompleted || accessibleLessons.find(
+                                (l: any) => !progressMap.get(l.id)?.completed
+                              ) || accessibleLessons[0];
+                            }
+
+                            if (targetLesson) {
+                              router.push(paths.app.courses.lesson(course.id, module.id, targetLesson.id));
+                            }
                           } else {
                             // Module is locked, fetch visibility data to get unlocked_at
                             if (!selectedGroup?.id) return;

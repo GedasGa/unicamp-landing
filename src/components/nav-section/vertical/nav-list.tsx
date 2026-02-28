@@ -12,13 +12,10 @@ import type { NavListProps, NavSubListProps } from '../types';
 // ----------------------------------------------------------------------
 
 export function NavList({ data, render, depth, slotProps, enabledRootRedirect }: NavListProps) {
-  // Only modules (depth 1) use deep/prefix matching; lessons use exact matching
+  // Only use deep (prefix) matching for modules (depth 1 with children)
   const active = useActiveLink(data.path, depth === 1 && !!data.children);
 
   const [openMenu, setOpenMenu] = useState(active);
-
-  // Modules (depth 1) navigate on click via RouterLink
-  const isNavigableParent = depth === 1 && !!data.children && !!enabledRootRedirect;
 
   // Keep a ref to onExpand callback so the effect always has the latest version
   const onExpandRef = useRef<(() => void) | undefined>((data as any).onExpand);
@@ -37,16 +34,14 @@ export function NavList({ data, render, depth, slotProps, enabledRootRedirect }:
   }, [openMenu]);
 
   // Parent items: single click = toggle expand/collapse
-  // Active navigable parents (modules): prevent collapsing while on the page
   const handleToggleMenu = useCallback(() => {
     if (data.children) {
-      if (isNavigableParent && active) {
-        setOpenMenu(true);
-      } else {
-        setOpenMenu((prev) => !prev);
-      }
+      setOpenMenu((prev) => !prev);
     }
-  }, [data.children, isNavigableParent, active]);
+  }, [data.children]);
+
+  // All parent items render as div (expand only). Only leaf items render as RouterLink.
+  const isLeafItem = !data.children;
 
   const renderNavItem = (
     <NavItem
@@ -64,8 +59,8 @@ export function NavList({ data, render, depth, slotProps, enabledRootRedirect }:
       hasChild={!!data.children}
       open={data.children && openMenu}
       externalLink={isExternalLink(data.path)}
-      // Navigable parents (modules): render as RouterLink. Others: render as div.
-      enabledRootRedirect={isNavigableParent || !data.children ? enabledRootRedirect : false}
+      // Leaf items: RouterLink. Parent items: div (expand only, no navigation).
+      enabledRootRedirect={isLeafItem ? enabledRootRedirect : false}
       // styles
       slotProps={depth === 1 ? slotProps?.rootItem : slotProps?.subItem}
       // Parent items: click toggles expand/collapse

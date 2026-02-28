@@ -7,7 +7,6 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useMemo, useState, useEffect, useCallback } from 'react';
 
-import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import Skeleton from '@mui/material/Skeleton';
@@ -16,7 +15,7 @@ import { paths } from 'src/routes/paths';
 
 import { DashboardContent } from 'src/layouts/dashboard';
 import { useCourseDataContext } from 'src/contexts/course-data-context';
-import { getLessonPageNavigation } from 'src/layouts/dashboard/nav-utils';
+import { getCourseNavigation } from 'src/layouts/dashboard/nav-utils';
 import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
 import { 
   trackTopicAccess,
@@ -24,12 +23,9 @@ import {
   markTopicCompleteWithCascade,
 } from 'src/lib/database';
 
-import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
-
 import { TopicViewer } from 'src/sections/learning/topic-viewer';
 
 import { useAuthContext } from 'src/auth/hooks';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
   params: { 
@@ -43,10 +39,8 @@ export default function LessonPage({ params }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuthContext();
-  const { t } = useTranslation('app');
   const {
     getCourseData,
-    getModuleData,
     getModulesForCourse,
     getAccessibleModulesForCourse,
     getLessonData,
@@ -61,13 +55,14 @@ export default function LessonPage({ params }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [course, setCourse] = useState<any>(null);
-  const [module, setModule] = useState<any>(null);
   const [modules, setModules] = useState<any[]>([]);
   const [accessibleModules, setAccessibleModules] = useState<Set<string>>(new Set());
   const [lesson, setLesson] = useState<any>(null);
-  const [lessonsForModule, setLessonsForModule] = useState<any[]>([]);
-  const [accessibleLessons, setAccessibleLessons] = useState<Set<string>>(new Set());
-  const [lessonProgress, setLessonProgress] = useState<Map<string, { progress: number; completed: boolean }>>(new Map());
+
+  // All lessons/accessibility/progress indexed by moduleId — powers the full nav
+  const [allLessonsMap, setAllLessonsMap] = useState<Map<string, any[]>>(new Map());
+  const [allAccessibleLessonsMap, setAllAccessibleLessonsMap] = useState<Map<string, Set<string>>>(new Map());
+  const [allLessonProgressMap, setAllLessonProgressMap] = useState<Map<string, Map<string, { progress: number; completed: boolean }>>>(new Map());
   const [hasAccess, setHasAccess] = useState(false);
 
   // Topics and progress per lesson — current lesson seeded on load, others fetched on demand
@@ -87,6 +82,26 @@ export default function LessonPage({ params }: Props) {
   // Derived: current lesson's topics and progress from the maps
   const topics = useMemo(() => allTopicsMap.get(params.lessonId) ?? [], [allTopicsMap, params.lessonId]);
   const topicProgress = useMemo(() => allTopicProgressMap.get(params.lessonId) ?? new Map(), [allTopicProgressMap, params.lessonId]);
+
+  // On-demand: fetch lessons for a module when its lessons aren't loaded yet
+  const fetchingModulesRef = useRef<Set<string>>(new Set());
+  const handleModuleExpand = useCallback(
+    async (moduleId: string) => {
+      if (fetchingModulesRef.current.has(moduleId)) return;
+      fetchingModulesRef.current.add(moduleId);
+
+      const [lessonsData, accessibleLess, progressMap] = await Promise.all([
+        getLessonsForModule(moduleId),
+        getAccessibleLessonsForModule(moduleId),
+        getLessonProgressForModule(moduleId),
+      ]);
+
+      setAllLessonsMap((prev) => new Map(prev).set(moduleId, lessonsData));
+      setAllAccessibleLessonsMap((prev) => new Map(prev).set(moduleId, accessibleLess));
+      setAllLessonProgressMap((prev) => new Map(prev).set(moduleId, progressMap));
+    },
+    [getLessonsForModule, getAccessibleLessonsForModule, getLessonProgressForModule]
+  );
 
   // On-demand topic fetching: called when a lesson is expanded in the nav
   const handleLessonExpand = useCallback(
@@ -122,35 +137,35 @@ export default function LessonPage({ params }: Props) {
   const navigation = useMemo(
     () =>
       course && modules.length > 0 && lesson
-        ? getLessonPageNavigation(
+        ? getCourseNavigation(
             params.id,
             course.title,
             modules,
             accessibleModules,
-            params.moduleId,
-            lessonsForModule,
-            accessibleLessons,
-            lessonProgress,
+            allLessonsMap,
+            allAccessibleLessonsMap,
+            allLessonProgressMap,
             allTopicsMap,
             allTopicProgressMap,
             selectedTopicId,
-            handleLessonExpand
+            handleLessonExpand,
+            handleModuleExpand
           )
         : null,
     [
       course,
       modules,
       accessibleModules,
-      lessonsForModule,
-      accessibleLessons,
-      lessonProgress,
+      allLessonsMap,
+      allAccessibleLessonsMap,
+      allLessonProgressMap,
       lesson,
       allTopicsMap,
       allTopicProgressMap,
       selectedTopicId,
       params.id,
-      params.moduleId,
       handleLessonExpand,
+      handleModuleExpand,
     ]
   );
 
@@ -186,27 +201,45 @@ export default function LessonPage({ params }: Props) {
       
       setHasAccess(true);
       
-      // Fetch all data in parallel (module-level data is cached from module page visit)
-      const [courseData, allModules, accessibleMods, moduleData, lessonData, lessonsData, accessibleLess, lessonProgressMap] =
+      // Fetch all data in parallel
+      const [courseData, allModules, accessibleMods, lessonData] =
         await Promise.all([
           getCourseData(params.id),
           getModulesForCourse(params.id),
           getAccessibleModulesForCourse(params.id),
-          getModuleData(params.moduleId),
           getLessonData(params.lessonId),
-          getLessonsForModule(params.moduleId),
-          getAccessibleLessonsForModule(params.moduleId),
-          getLessonProgressForModule(params.moduleId),
         ]);
 
       setCourse(courseData);
       setModules(allModules);
       setAccessibleModules(accessibleMods);
-      setModule(moduleData);
       setLesson(lessonData);
-      setLessonsForModule(lessonsData);
-      setAccessibleLessons(accessibleLess);
-      setLessonProgress(lessonProgressMap);
+
+      // Fetch lessons/accessibility/progress for ALL modules in parallel
+      const perModuleResults = await Promise.all(
+        allModules.map((mod: any) =>
+          Promise.all([
+            getLessonsForModule(mod.id),
+            getAccessibleLessonsForModule(mod.id),
+            getLessonProgressForModule(mod.id),
+          ])
+        )
+      );
+
+      const newLessonsMap = new Map<string, any[]>();
+      const newAccessibleMap = new Map<string, Set<string>>();
+      const newProgressMap = new Map<string, Map<string, { progress: number; completed: boolean }>>();
+
+      allModules.forEach((mod: any, i: number) => {
+        const [modLessons, modAccessible, modProgress] = perModuleResults[i];
+        newLessonsMap.set(mod.id, modLessons);
+        newAccessibleMap.set(mod.id, modAccessible);
+        newProgressMap.set(mod.id, modProgress);
+      });
+
+      setAllLessonsMap(newLessonsMap);
+      setAllAccessibleLessonsMap(newAccessibleMap);
+      setAllLessonProgressMap(newProgressMap);
       
       if (!lessonData) {
         throw new Error('Lesson not found');
@@ -263,7 +296,6 @@ export default function LessonPage({ params }: Props) {
     getCourseData,
     getModulesForCourse,
     getAccessibleModulesForCourse,
-    getModuleData,
     getLessonData,
     getLessonsForModule,
     getAccessibleLessonsForModule,
@@ -299,17 +331,17 @@ export default function LessonPage({ params }: Props) {
         return new Map(prev).set(params.lessonId, lessonMap);
       });
       
-      // Invalidate cache so dashboard/module pages show updated progress
+      // Invalidate cache so dashboard shows updated progress
       invalidateLessonProgress(params.lessonId);
       
       // Check if this was the last topic
       const currentIndex = topics.findIndex(t => t.id === selectedTopicId);
       const isLastTopic = currentIndex === topics.length - 1;
       
-      // If last topic, redirect to module page after a short delay
+      // If last topic, redirect to home after a short delay
       if (isLastTopic) {
         setTimeout(() => {
-          router.push(paths.app.courses.module(params.id, params.moduleId));
+          router.push(paths.app.root);
         }, 1500);
       }
       // Don't auto-navigate to next topic - let user click "Next" button
@@ -347,18 +379,8 @@ export default function LessonPage({ params }: Props) {
   if (loading) {
     return (
       <DashboardContent maxWidth="lg">
-        {/* Breadcrumbs skeleton */}
-        <Box sx={{ mb: 2 }}>
-          <Skeleton variant="text" width="40%" height={20} />
-        </Box>
-        
-        {/* Heading skeleton */}
-        <Skeleton variant="text" width="60%" height={48} sx={{ mb: 3 }} />
-        
-        {/* Topic selector skeleton */}
-        <Skeleton variant="rectangular" height={56} sx={{ borderRadius: 1, mb: 3 }} />
-        
         {/* Content area skeleton */}
+        <Skeleton variant="rectangular" height={56} sx={{ borderRadius: 1, mb: 3 }} />
         <Skeleton variant="rectangular" height={500} sx={{ borderRadius: 2 }} />
       </DashboardContent>
     );
@@ -376,7 +398,7 @@ export default function LessonPage({ params }: Props) {
               </Button>
             ) : (
               <Button color="inherit" size="small" onClick={() => router.push(paths.app.root)}>
-                {t('nav.backToHome')}
+                Back to Home
               </Button>
             )
           }
@@ -402,21 +424,6 @@ export default function LessonPage({ params }: Props) {
 
   return (
     <DashboardContent maxWidth="lg">
-      {/* Breadcrumbs */}
-      {module && lesson && (
-        <CustomBreadcrumbs
-          heading={lesson.title}
-          links={[
-            { name: t('nav.home'), href: paths.app.root },
-            { name: module.title, href: paths.app.courses.module(params.id, params.moduleId) },
-            { name: lesson.title }
-          ]}
-          backHref={paths.app.courses.module(params.id, params.moduleId)}
-          backButtonText={t('nav.backToModule')}
-          sx={{ mb: 5 }}
-        />
-      )}
-
       {/* Topic Content */}
       {selectedTopic ? (
         <TopicViewer
