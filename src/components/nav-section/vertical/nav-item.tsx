@@ -78,9 +78,11 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
 
         {title && (
           <Box component="span" className={navSectionClasses.item.texts}>
-            <Box component="span" className={navSectionClasses.item.title}>
-              {title}
-            </Box>
+            <Tooltip title={title} placement="right" enterDelay={600} enterNextDelay={600}>
+              <Box component="span" className={navSectionClasses.item.title}>
+                {title}
+              </Box>
+            </Tooltip>
 
             {caption && (
               <Tooltip title={caption} placement="top-start">
@@ -99,10 +101,13 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
         )}
 
         {hasChild && (
-          <Iconify
-            icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
-            className={navSectionClasses.item.arrow}
-          />
+          <Box component="span" className={navSectionClasses.item.arrow}>
+            <Iconify
+              icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
+              width={16}
+              height={16}
+            />
+          </Box>
         )}
       </StyledNavItem>
     );
@@ -214,10 +219,6 @@ const StyledNavItem = styled(ButtonBase, {
       ...(active && {
         color: 'var(--nav-item-sub-active-color)',
         backgroundColor: 'var(--nav-item-sub-active-bg)',
-      }),
-      ...(open && {
-        color: 'var(--nav-item-sub-open-color)',
-        backgroundColor: 'var(--nav-item-sub-open-bg)',
       }),
     }),
     /**

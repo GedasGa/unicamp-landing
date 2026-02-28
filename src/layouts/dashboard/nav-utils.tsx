@@ -13,106 +13,195 @@ const icon = (name: string) => (
 
 const ICONS = {
   module: icon('ic-course'),
-  lesson: icon('ic-kanban'),
-  topic: icon('ic-file'),
 };
 
 // ----------------------------------------------------------------------
 
-/**
- * Generate navigation for course page (showing modules)
- */
-export function getCourseNavigation(
-  courseId: string, 
-  courseName: string, 
-  modules: any[],
-  currentModuleId?: string
-) {
-  return [
-    {
-      subheader: courseName,
-      items: modules.map((module) => ({
-        title: module.title,
-        path: paths.app.courses.module(courseId, module.id),
-        icon: module.locked ? (
-          <Iconify icon="eva:lock-fill" sx={{ color: 'text.disabled' }} />
-        ) : (
-          ICONS.module
-        ),
-        disabled: module.locked,
-      })),
-    },
-  ];
+function getLessonIcon(locked: boolean, progress?: { progress: number; completed: boolean }) {
+  if (locked) {
+    return <Iconify icon="eva:lock-fill" sx={{ color: 'text.disabled' }} />;
+  }
+  if (progress?.completed) {
+    return <Iconify icon="eva:checkmark-circle-2-fill" sx={{ color: 'success.main' }} />;
+  }
+  if (progress && progress.progress > 0) {
+    return <Iconify icon="eva:clock-fill" sx={{ color: 'primary.main' }} />;
+  }
+  return <Iconify icon="eva:radio-button-off-outline" sx={{ color: 'text.secondary' }} />;
 }
 
+// ----------------------------------------------------------------------
+
 /**
- * Generate navigation for module page (showing lessons)
+ * Full 3-level navigation for the module page.
+ * Level 1: modules — click navigates to module page.
+ * Level 2: lessons — click expands/collapses only (topics fetched on demand via onExpand).
+ * Level 3: topics — click navigates to lesson page with ?topic= query param.
  */
-export function getModuleNavigation(
+export function getModuleFullNavigation(
   courseId: string,
-  moduleId: string,
   courseName: string,
-  moduleName: string,
-  lessons: any[],
-  accessibleLessons?: Set<string>
+  modules: any[],
+  accessibleModules: Set<string>,
+  allLessonsMap: Map<string, any[]>,
+  allAccessibleLessonsMap: Map<string, Set<string>>,
+  allLessonProgressMap: Map<string, Map<string, { progress: number; completed: boolean }>>,
+  allTopicsMap: Map<string, any[]>,
+  allTopicProgressMap: Map<string, Map<string, any>>,
+  onLessonExpand?: (lessonId: string) => void
 ) {
   return [
     {
       subheader: courseName,
-      items: lessons.map((lesson) => {
-        const isLocked = accessibleLessons ? !accessibleLessons.has(lesson.id) : lesson.locked;
-        
+      items: modules.map((module) => {
+        const isLocked = !accessibleModules.has(module.id);
+        const lessons = allLessonsMap.get(module.id) ?? [];
+        const accessibleLessons = allAccessibleLessonsMap.get(module.id) ?? new Set<string>();
+        const lessonProgress = allLessonProgressMap.get(module.id) ?? new Map<string, any>();
+
+        const lessonChildren =
+          !isLocked && lessons.length > 0
+            ? lessons.map((lesson) => {
+                const isLessonLocked = !accessibleLessons.has(lesson.id);
+                const progress = lessonProgress.get(lesson.id);
+                const topicsList = allTopicsMap.get(lesson.id) ?? [];
+                const topicProgressForLesson = allTopicProgressMap.get(lesson.id) ?? new Map();
+
+                const topicChildren =
+                  topicsList.length > 0
+                    ? topicsList.map((topic) => {
+                        const isCompleted = topicProgressForLesson.get(topic.id)?.completed;
+
+                        return {
+                          title: topic.title,
+                          path: `${paths.app.courses.lesson(courseId, module.id, lesson.id)}?topic=${topic.id}`,
+                          icon: (
+                            <Iconify
+                              icon={
+                                isCompleted
+                                  ? 'eva:checkmark-circle-outline'
+                                  : 'eva:radio-button-off-outline'
+                              }
+                              sx={{ color: isCompleted ? 'success.main' : 'text.secondary' }}
+                            />
+                          ),
+                        };
+                      })
+                    : undefined;
+
+                // All lessons are expandable — topics load on demand when expanded
+                return {
+                  title: lesson.title,
+                  path: paths.app.courses.lesson(courseId, module.id, lesson.id),
+                  icon: getLessonIcon(isLessonLocked, progress),
+                  disabled: isLessonLocked,
+                  children: topicChildren ?? [],
+                  onExpand: !isLessonLocked
+                    ? () => onLessonExpand?.(lesson.id)
+                    : undefined,
+                };
+              })
+            : undefined;
+
         return {
-          title: lesson.title,
-          path: paths.app.courses.lesson(courseId, moduleId, lesson.id),
+          title: module.title,
+          path: paths.app.courses.module(courseId, module.id),
           icon: isLocked ? (
             <Iconify icon="eva:lock-fill" sx={{ color: 'text.disabled' }} />
           ) : (
-            ICONS.lesson
+            ICONS.module
           ),
           disabled: isLocked,
+          children: lessonChildren,
         };
       }),
     },
   ];
 }
 
+// ----------------------------------------------------------------------
+
 /**
- * Generate navigation for lesson page (showing topics)
- * Topics use query params, so path includes ?topic=
+ * 3-level navigation for the lesson page.
+ * Level 1: all course modules (locked ones disabled).
+ * Level 2: lessons under the active module — click expands/collapses (topics fetched on demand).
+ * Level 3: topics — click navigates with ?topic= query param.
  */
-export function getLessonNavigation(
+export function getLessonPageNavigation(
   courseId: string,
-  moduleId: string,
-  lessonId: string,
-  lessonName: string,
-  topics: any[],
-  topicProgress?: Map<string, any>,
-  selectedTopicId?: string | null
+  courseName: string,
+  modules: any[],
+  accessibleModules: Set<string>,
+  currentModuleId: string,
+  lessons: any[],
+  accessibleLessons: Set<string>,
+  lessonProgress: Map<string, { progress: number; completed: boolean }>,
+  allTopicsMap: Map<string, any[]>,
+  allTopicProgressMap: Map<string, Map<string, any>>,
+  selectedTopicId: string | null,
+  onLessonExpand?: (lessonId: string) => void
 ) {
   return [
     {
-      subheader: lessonName,
-      items: topics.map((topic) => {
-        const isCompleted = topicProgress?.get(topic.id)?.completed;
-        const isActive = topic.id === selectedTopicId;
-        
+      subheader: courseName,
+      items: modules.map((module) => {
+        const isLocked = !accessibleModules.has(module.id);
+        const isCurrentModule = module.id === currentModuleId;
+
+        const lessonChildren =
+          isCurrentModule && !isLocked
+            ? lessons.map((lesson) => {
+                const isLessonLocked = !accessibleLessons.has(lesson.id);
+                const progress = lessonProgress.get(lesson.id);
+                const topicsList = allTopicsMap.get(lesson.id) ?? [];
+                const topicProgressForLesson = allTopicProgressMap.get(lesson.id) ?? new Map();
+
+                const topicChildren =
+                  topicsList.length > 0
+                    ? topicsList.map((topic) => {
+                        const isCompleted = topicProgressForLesson.get(topic.id)?.completed;
+
+                        return {
+                          title: topic.title,
+                          path: `${paths.app.courses.lesson(courseId, currentModuleId, lesson.id)}?topic=${topic.id}`,
+                          active: topic.id === selectedTopicId,
+                          icon: (
+                            <Iconify
+                              icon={
+                                isCompleted
+                                  ? 'eva:checkmark-circle-outline'
+                                  : 'eva:radio-button-off-outline'
+                              }
+                              sx={{ color: isCompleted ? 'success.main' : 'text.secondary' }}
+                            />
+                          ),
+                        };
+                      })
+                    : undefined;
+
+                return {
+                  title: lesson.title,
+                  path: paths.app.courses.lesson(courseId, currentModuleId, lesson.id),
+                  icon: getLessonIcon(isLessonLocked, progress),
+                  disabled: isLessonLocked,
+                  children: topicChildren ?? [],
+                  onExpand: !isLessonLocked
+                    ? () => onLessonExpand?.(lesson.id)
+                    : undefined,
+                };
+              })
+            : undefined;
+
         return {
-          title: topic.title,
-          path: `${paths.app.courses.lesson(courseId, moduleId, lessonId)}?topic=${topic.id}`,
-          active: isActive,
-          icon: (
-            <Iconify 
-              icon={
-                isCompleted 
-                  ? 'eva:checkmark-circle-2-fill' 
-                  : 'eva:radio-button-off-outline'
-              }
-              sx={{
-                color: isCompleted ? 'success.main' : 'text.secondary',
-              }}
-            />
+          title: module.title,
+          path: paths.app.courses.module(courseId, module.id),
+          icon: isLocked ? (
+            <Iconify icon="eva:lock-fill" sx={{ color: 'text.disabled' }} />
+          ) : (
+            ICONS.module
           ),
+          disabled: isLocked,
+          children: lessonChildren,
         };
       }),
     },

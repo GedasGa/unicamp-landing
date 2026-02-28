@@ -19,6 +19,7 @@ import {
   getContinueLesson,
   getCourseVisibleModules,
   getStudentModuleProgress,
+  getLessonTopicProgress as dbGetLessonTopicProgress,
 } from 'src/lib/database';
 
 import { useAuthContext } from 'src/auth/hooks';
@@ -92,6 +93,7 @@ export type CourseDataContextValue = {
   // Lesson data
   getLessonData: (lessonId: string) => Promise<LessonData | null>;
   getTopicsForLesson: (lessonId: string, confluencePageId: string) => Promise<TopicData[]>;
+  getLessonTopicProgress: (lessonId: string) => Promise<any[]>;
   getTopicContent: (topicId: string) => Promise<TopicContentData | null>;
   
   // Cache invalidation
@@ -138,6 +140,7 @@ export function CourseDataProvider({ children }: Props) {
   const accessibleLessonsCacheRef = useRef<Map<string, Set<string>>>(new Map());
   const lessonProgressCacheRef = useRef<Map<string, Map<string, LessonProgressData>>>(new Map());
   const topicsCacheRef = useRef<Map<string, TopicData[]>>(new Map());
+  const topicProgressCacheRef = useRef<Map<string, any[]>>(new Map());
   const topicContentCacheRef = useRef<Map<string, TopicContentData>>(new Map());
 
   // ----------------------------------------------------------------------
@@ -436,6 +439,24 @@ export function CourseDataProvider({ children }: Props) {
     }
   }, []);
 
+  const getLessonTopicProgress = useCallback(async (lessonId: string): Promise<any[]> => {
+    if (!user?.id) return [];
+
+    if (topicProgressCacheRef.current.has(lessonId)) {
+      return topicProgressCacheRef.current.get(lessonId)!;
+    }
+
+    try {
+      const data = await dbGetLessonTopicProgress(user.id, lessonId);
+      const result = data || [];
+      topicProgressCacheRef.current.set(lessonId, result);
+      return result;
+    } catch (error) {
+      console.error('Error fetching topic progress:', error);
+      return [];
+    }
+  }, [user?.id]);
+
   const getTopicContent = useCallback(async (topicId: string): Promise<TopicContentData | null> => {
     // Check cache first - only fetch on demand
     if (topicContentCacheRef.current.has(topicId)) {
@@ -470,9 +491,8 @@ export function CourseDataProvider({ children }: Props) {
   }, [fetchCourses]);
 
   const invalidateLessonProgress = useCallback((lessonId: string) => {
-    // Find which module this lesson belongs to and invalidate that module's cache
-    // For simplicity, we'll invalidate all lesson progress caches
     lessonProgressCacheRef.current.clear();
+    topicProgressCacheRef.current.delete(lessonId);
     fetchCourses();
   }, [fetchCourses]);
 
@@ -486,6 +506,7 @@ export function CourseDataProvider({ children }: Props) {
     accessibleLessonsCacheRef.current.clear();
     lessonProgressCacheRef.current.clear();
     topicsCacheRef.current.clear();
+    topicProgressCacheRef.current.clear();
     topicContentCacheRef.current.clear();
     refetchCourses();
   }, [refetchCourses]);
@@ -516,8 +537,9 @@ export function CourseDataProvider({ children }: Props) {
       // Lesson data
       getLessonData,
       getTopicsForLesson,
+      getLessonTopicProgress,
       getTopicContent,
-      
+
       // Cache invalidation
       invalidateModuleProgress,
       invalidateLessonProgress,
@@ -537,6 +559,7 @@ export function CourseDataProvider({ children }: Props) {
       getLessonProgressForModule,
       getLessonData,
       getTopicsForLesson,
+      getLessonTopicProgress,
       getTopicContent,
       invalidateModuleProgress,
       invalidateLessonProgress,

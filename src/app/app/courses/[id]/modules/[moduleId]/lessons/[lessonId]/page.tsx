@@ -5,7 +5,7 @@
 // =============================================
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useMemo, useState, useEffect, useCallback } from 'react';
+import { useRef, useMemo, useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
@@ -15,13 +15,12 @@ import Skeleton from '@mui/material/Skeleton';
 import { paths } from 'src/routes/paths';
 
 import { DashboardContent } from 'src/layouts/dashboard';
-import { getLessonNavigation } from 'src/layouts/dashboard/nav-utils';
 import { useCourseDataContext } from 'src/contexts/course-data-context';
+import { getLessonPageNavigation } from 'src/layouts/dashboard/nav-utils';
 import { useSetNavigation } from 'src/layouts/dashboard/navigation-context';
 import { 
   trackTopicAccess,
   checkLessonAccess,
-  getLessonTopicProgress,
   markTopicCompleteWithCascade,
 } from 'src/lib/database';
 
@@ -45,15 +44,36 @@ export default function LessonPage({ params }: Props) {
   const searchParams = useSearchParams();
   const { user } = useAuthContext();
   const { t } = useTranslation('app');
-  const { getModuleData, getLessonData, getTopicsForLesson, invalidateLessonProgress } = useCourseDataContext();
+  const {
+    getCourseData,
+    getModuleData,
+    getModulesForCourse,
+    getAccessibleModulesForCourse,
+    getLessonData,
+    getLessonsForModule,
+    getAccessibleLessonsForModule,
+    getLessonProgressForModule,
+    getTopicsForLesson,
+    getLessonTopicProgress,
+    invalidateLessonProgress,
+  } = useCourseDataContext();
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [course, setCourse] = useState<any>(null);
   const [module, setModule] = useState<any>(null);
+  const [modules, setModules] = useState<any[]>([]);
+  const [accessibleModules, setAccessibleModules] = useState<Set<string>>(new Set());
   const [lesson, setLesson] = useState<any>(null);
-  const [topics, setTopics] = useState<any[]>([]);
-  const [topicProgress, setTopicProgress] = useState<Map<string, any>>(new Map());
+  const [lessonsForModule, setLessonsForModule] = useState<any[]>([]);
+  const [accessibleLessons, setAccessibleLessons] = useState<Set<string>>(new Set());
+  const [lessonProgress, setLessonProgress] = useState<Map<string, { progress: number; completed: boolean }>>(new Map());
   const [hasAccess, setHasAccess] = useState(false);
+
+  // Topics and progress per lesson — current lesson seeded on load, others fetched on demand
+  const [allTopicsMap, setAllTopicsMap] = useState<Map<string, any[]>>(new Map());
+  const [allTopicProgressMap, setAllTopicProgressMap] = useState<Map<string, Map<string, any>>>(new Map());
+  const fetchingLessonsRef = useRef<Set<string>>(new Set());
   
   // Topic from URL is the source of truth
   const topicFromUrl = searchParams.get('topic');
@@ -64,12 +84,74 @@ export default function LessonPage({ params }: Props) {
   // Use URL topic if present, otherwise use auto-selected
   const selectedTopicId = topicFromUrl || autoSelectedTopicId;
 
+  // Derived: current lesson's topics and progress from the maps
+  const topics = useMemo(() => allTopicsMap.get(params.lessonId) ?? [], [allTopicsMap, params.lessonId]);
+  const topicProgress = useMemo(() => allTopicProgressMap.get(params.lessonId) ?? new Map(), [allTopicProgressMap, params.lessonId]);
+
+  // On-demand topic fetching: called when a lesson is expanded in the nav
+  const handleLessonExpand = useCallback(
+    (lessonId: string) => {
+      if (!user?.id) return;
+      if (fetchingLessonsRef.current.has(lessonId)) return;
+      fetchingLessonsRef.current.add(lessonId);
+
+      getLessonData(lessonId)
+        .then(async (lessonData) => {
+          if (!lessonData?.confluence_parent_page_id) return;
+
+          const [topicsList, progressData] = await Promise.all([
+            getTopicsForLesson(lessonId, lessonData.confluence_parent_page_id),
+            getLessonTopicProgress(lessonId),
+          ]);
+
+          const progressMap = new Map<string, any>();
+          progressData.forEach((p: any) => progressMap.set(p.confluence_page_id, p));
+
+          setAllTopicsMap((prev) => new Map(prev).set(lessonId, topicsList));
+          setAllTopicProgressMap((prev) => new Map(prev).set(lessonId, progressMap));
+        })
+        .catch((err) => {
+          console.error('Error fetching topics for lesson:', err);
+          fetchingLessonsRef.current.delete(lessonId);
+        });
+    },
+    [user?.id, getLessonData, getTopicsForLesson, getLessonTopicProgress]
+  );
+
   // Memoize navigation to prevent infinite updates
   const navigation = useMemo(
-    () => lesson && topics.length > 0
-      ? getLessonNavigation(params.id, params.moduleId, params.lessonId, lesson.title, topics, topicProgress, selectedTopicId)
-      : null,
-    [lesson, topics, topicProgress, selectedTopicId, params.id, params.moduleId, params.lessonId]
+    () =>
+      course && modules.length > 0 && lesson
+        ? getLessonPageNavigation(
+            params.id,
+            course.title,
+            modules,
+            accessibleModules,
+            params.moduleId,
+            lessonsForModule,
+            accessibleLessons,
+            lessonProgress,
+            allTopicsMap,
+            allTopicProgressMap,
+            selectedTopicId,
+            handleLessonExpand
+          )
+        : null,
+    [
+      course,
+      modules,
+      accessibleModules,
+      lessonsForModule,
+      accessibleLessons,
+      lessonProgress,
+      lesson,
+      allTopicsMap,
+      allTopicProgressMap,
+      selectedTopicId,
+      params.id,
+      params.moduleId,
+      handleLessonExpand,
+    ]
   );
 
   // Set navigation: Lesson name + topics list
@@ -104,14 +186,27 @@ export default function LessonPage({ params }: Props) {
       
       setHasAccess(true);
       
-      // Fetch module and lesson using context (with caching)
-      const [moduleData, lessonData] = await Promise.all([
-        getModuleData(params.moduleId),
-        getLessonData(params.lessonId),
-      ]);
-      
+      // Fetch all data in parallel (module-level data is cached from module page visit)
+      const [courseData, allModules, accessibleMods, moduleData, lessonData, lessonsData, accessibleLess, lessonProgressMap] =
+        await Promise.all([
+          getCourseData(params.id),
+          getModulesForCourse(params.id),
+          getAccessibleModulesForCourse(params.id),
+          getModuleData(params.moduleId),
+          getLessonData(params.lessonId),
+          getLessonsForModule(params.moduleId),
+          getAccessibleLessonsForModule(params.moduleId),
+          getLessonProgressForModule(params.moduleId),
+        ]);
+
+      setCourse(courseData);
+      setModules(allModules);
+      setAccessibleModules(accessibleMods);
       setModule(moduleData);
       setLesson(lessonData);
+      setLessonsForModule(lessonsData);
+      setAccessibleLessons(accessibleLess);
+      setLessonProgress(lessonProgressMap);
       
       if (!lessonData) {
         throw new Error('Lesson not found');
@@ -127,15 +222,15 @@ export default function LessonPage({ params }: Props) {
         throw new Error('Failed to fetch topics');
       }
       
-      setTopics(topicsList);
-      
-      // Fetch progress for all topics (lesson-specific)
-      const progressData = await getLessonTopicProgress(user.id, params.lessonId);
+      // Seed the current lesson's topics into the maps
+      const progressData = await getLessonTopicProgress(params.lessonId);
       const progressMap = new Map();
       progressData.forEach((progress) => {
         progressMap.set(progress.confluence_page_id, progress);
       });
-      setTopicProgress(progressMap);
+      
+      setAllTopicsMap((prev) => new Map(prev).set(params.lessonId, topicsList));
+      setAllTopicProgressMap((prev) => new Map(prev).set(params.lessonId, progressMap));
       
       // Auto-select first topic if none in URL
       const currentTopicFromUrl = searchParams.get('topic');
@@ -160,7 +255,24 @@ export default function LessonPage({ params }: Props) {
     } finally {
       setLoading(false);
     }
-  }, [user?.id, params.lessonId, params.moduleId, params.id, getModuleData, getLessonData, getTopicsForLesson, router, searchParams]);
+  }, [
+    user?.id,
+    params.lessonId,
+    params.moduleId,
+    params.id,
+    getCourseData,
+    getModulesForCourse,
+    getAccessibleModulesForCourse,
+    getModuleData,
+    getLessonData,
+    getLessonsForModule,
+    getAccessibleLessonsForModule,
+    getLessonProgressForModule,
+    getTopicsForLesson,
+    getLessonTopicProgress,
+    router,
+    searchParams,
+  ]);
 
   useEffect(() => {
     fetchLessonData();
@@ -178,13 +290,13 @@ export default function LessonPage({ params }: Props) {
       await markTopicCompleteWithCascade(user.id, params.lessonId, currentTopic.id, topics);
       
       // Update local state - this will trigger re-render and show "Next" button
-      setTopicProgress(prev => {
-        const newMap = new Map(prev);
-        newMap.set(currentTopic.id, { 
+      setAllTopicProgressMap((prev) => {
+        const lessonMap = new Map(prev.get(params.lessonId) ?? new Map());
+        lessonMap.set(currentTopic.id, { 
           completed: true, 
           completed_at: new Date().toISOString() 
         });
-        return newMap;
+        return new Map(prev).set(params.lessonId, lessonMap);
       });
       
       // Invalidate cache so dashboard/module pages show updated progress

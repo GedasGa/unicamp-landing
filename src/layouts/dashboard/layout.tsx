@@ -13,7 +13,10 @@ import { paths } from 'src/routes/paths';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
+import { allLangs } from 'src/locales';
+
 import { Logo } from 'src/components/logo';
+import { AITranslateButton } from 'src/components/ai-translate-button';
 
 import { Main } from './main';
 import { NavMobile } from './nav-mobile';
@@ -28,11 +31,9 @@ import { HeaderSection } from '../core/header-section';
 import { useNavigationContext } from './navigation-context';
 import { AccountDrawer } from '../components/account-drawer';
 import { SettingsButton } from '../components/settings-button';
+import { LanguagePopover } from '../components/language-popover';
 import { WorkspacesPopover } from '../components/workspaces-popover';
 import { navData as dashboardNavData } from '../config-nav-dashboard';
-import { allLangs } from 'src/locales';
-import { LanguagePopover } from '../components/language-popover';
-import { AITranslateButton } from 'src/components/ai-translate-button';
 
 // ----------------------------------------------------------------------
 
@@ -147,6 +148,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
             layoutQuery={layoutQuery}
             cssVars={navColorVars.section}
             onToggleNav={() => {}}
+            enabledRootRedirect
           />
         ) : null
       }

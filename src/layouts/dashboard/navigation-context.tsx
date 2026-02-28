@@ -2,7 +2,7 @@
 
 import type { NavSectionProps } from 'src/components/nav-section';
 
-import { useRef, useMemo, useState, useEffect, useContext, createContext } from 'react';
+import { useMemo, useState, useEffect, useContext, createContext } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -53,18 +53,17 @@ export function useNavigationContext() {
  */
 export function useSetNavigation(data: NavSectionProps['data'] | null) {
   const { setNavData } = useNavigationContext();
-  const dataRef = useRef(data);
 
-  // Update ref
-  dataRef.current = data;
-
-  // Set navigation data on mount and when data reference changes
+  // Update nav data whenever it changes (no cleanup between updates)
   useEffect(() => {
-    setNavData(dataRef.current);
-
-    // Clear on unmount
-    return () => {
-      setNavData(null);
-    };
+    setNavData(data);
   }, [data, setNavData]);
+
+  // Clear navigation only on actual unmount (page leaves)
+  useEffect(
+    () => () => {
+      setNavData(null);
+    },
+    [setNavData]
+  );
 }
