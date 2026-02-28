@@ -8,6 +8,7 @@ import type { FC } from 'react';
 import type { MediaClientConfig } from '@atlaskit/media-core';
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IntlProvider } from 'react-intl-next';
 import { setGlobalTheme } from '@atlaskit/tokens';
 import { ReactRenderer } from '@atlaskit/renderer';
@@ -51,6 +52,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
   isCompleted = false,
 }) => {
   const settings = useSettingsContext();
+  const { t } = useTranslation('app');
   const { getTopicContent } = useCourseDataContext();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -148,9 +150,9 @@ export const TopicViewer: FC<TopicViewerProps> = ({
           </Typography>
           {isCompleted && (
             <Chip 
-              label="Completed" 
+              label={t('dashboard.completed')} 
               color="success" 
-              icon={<Iconify icon="eva:checkmark-circle-2-fill" />}
+              icon={<Iconify icon="eva:checkmark-circle-fill" />}
             />
           )}
         </Box>
@@ -224,7 +226,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
               startIcon={<Iconify icon="eva:arrow-back-fill" />}
               onClick={onPrevious}
             >
-              Previous
+              {t('dashboard.previous')}
             </Button>
           ) : (
             <Box sx={{ width: 140 }} />
@@ -238,7 +240,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
                 endIcon={<Iconify icon="eva:checkmark-circle-2-fill" />}
                 onClick={onComplete}
               >
-                Mark as Complete
+                {t('dashboard.markAsComplete')}
               </Button>
             )}
             
@@ -249,7 +251,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
                 endIcon={<Iconify icon="eva:arrow-forward-fill" />}
                 onClick={onNext}
               >
-                Next
+                {t('dashboard.next')}
               </Button>
             )}
           </Box>

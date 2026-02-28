@@ -42,6 +42,7 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
       path,
       icon,
       info,
+      open,
       depth,
       render,
       hasChild,

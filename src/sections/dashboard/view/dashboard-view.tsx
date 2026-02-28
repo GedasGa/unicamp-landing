@@ -398,19 +398,11 @@ export function DashboardView() {
                               </Box>
                             )}
                             {module.is_visible && module.progress_percentage === 100 && (
-                              <Box
-                                sx={{
-                                  px: 1.5,
-                                  py: 0.5,
-                                  borderRadius: 1,
-                                  bgcolor: 'success.lighter',
-                                  color: 'success.dark',
-                                }}
-                              >
-                                <Typography variant="caption" fontWeight="bold">
-                                  Completed
-                                </Typography>
-                              </Box>
+                              <Chip
+                                label={t('dashboard.completed')}
+                                color="success"
+                                icon={<Iconify icon="eva:checkmark-circle-2-fill" />}
+                              />
                             )}
                           </Stack>
 

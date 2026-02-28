@@ -1,19 +1,6 @@
 import { paths } from 'src/routes/paths';
 
-import { CONFIG } from 'src/config-global';
-
 import { Iconify } from 'src/components/iconify';
-import { SvgColor } from 'src/components/svg-color';
-
-// ----------------------------------------------------------------------
-
-const icon = (name: string) => (
-  <SvgColor src={`${CONFIG.assetsDir}/assets/icons/navbar/${name}.svg`} />
-);
-
-const ICONS = {
-  module: icon('ic-course'),
-};
 
 // ----------------------------------------------------------------------
 
@@ -27,7 +14,7 @@ function getLessonIcon(locked: boolean, progress?: { progress: number; completed
   if (progress && progress.progress > 0) {
     return <Iconify icon="eva:clock-fill" sx={{ color: 'primary.main' }} />;
   }
-  return <Iconify icon="eva:radio-button-off-outline" sx={{ color: 'text.secondary' }} />;
+  return <Iconify icon="eva:radio-button-on-outline" sx={{ color: 'text.secondary' }} />;
 }
 
 // ----------------------------------------------------------------------
@@ -82,7 +69,7 @@ export function getCourseNavigation(
                             <Iconify
                               icon={
                                 isCompleted
-                                  ? 'eva:checkmark-circle-outline'
+                                  ? 'eva:checkmark-circle-fill'
                                   : 'eva:radio-button-off-outline'
                               }
                               sx={{ color: isCompleted ? 'success.main' : 'text.secondary' }}
@@ -108,11 +95,9 @@ export function getCourseNavigation(
         return {
           title: module.title,
           path: paths.app.courses.module(courseId, module.id),
-          icon: isLocked ? (
-            <Iconify icon="eva:lock-fill" sx={{ color: 'text.disabled' }} />
-          ) : (
-            ICONS.module
-          ),
+          icon: isLocked
+            ? <Iconify icon="eva:lock-fill" sx={{ color: 'text.disabled' }} />
+            : (open: boolean) => <Iconify icon={open ? 'eva:book-open-fill' : 'eva:book-fill'} />,
           disabled: isLocked,
           children: lessonChildren,
           onExpand: !isLocked
