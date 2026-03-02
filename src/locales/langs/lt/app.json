@@ -14,7 +14,7 @@
     "darkMode": "Tamsus režimas",
     "contrast": "Kontrastas",
     "compact": "Kompaktiškas",
-    "compactTooltip": "Tik prietaisų skydeliui, pasiekiama esant didelei rezoliucijai > 1600px (xl)",
+    "compactTooltip": "Tik prietaisų skydeliui, naudojame esant didelei rezoliucijai > 1600px (xl)",
     "presets": "Išankstiniai nustatymai",
     "font": "Šriftas",
     "fontSize": "Šrifto dydis",
@@ -22,14 +22,14 @@
     "exitFullScreen": "Išeiti",
     "fontTooltips": {
       "default": "Numatytasis šriftas",
-      "lexend": "Sukurtas pagerinti skaitymo įgūdžius ir sumažinti regos stresą visiems skaitytojams",
-      "atkinson": "Sukurtas silpnaregių skaitytojams su aiškiais raidžių formomis, naudingas disleksijai",
-      "openDyslexic": "Specialiai sukurtas šriftas disleksija sergantiems žmonėms su sunkintu apačiu ir unikaliais formomis"
+      "lexend": "Sukurtas pagerinti skaitomumą ir sumažinti regos stresą visiems skaitytojams",
+      "atkinson": "Sukurtas  skaitytojams su aiškiomis raidžių formomis",
+      "openDyslexic": "Specialiai sukurtas šriftas disleksija sergantiems žmonėms"
     },
     "colorTooltips": {
-      "default": "Prekės ženklo mėlyna spalva su puikiu kontrastu",
-      "black": "Didelio kontrasto monochromas maksimaliam prieinamumui",
-      "daltonism": "Optimizuota žydra paletė daltonizmui (deuteranopija, protanopija)"
+      "default": "Pagrindinė Unicamp mėlyna spalva",
+      "black": "Monochromatinės spalvos maksimaliam kontrastui",
+      "daltonism": "Optimizuota paletė daltonizmui (deuteranopija, protanopija)"
     },
     "fontSizeOptions": {
       "small": "Mažas",
@@ -42,14 +42,14 @@
     "greetingSubtitle": "Išmokime šiandien ką nors naujo!",
     "meetingStartingSoon": "Susitikimas greitai prasidės",
     "meetingInProgress": "Susitikimas vyksta",
-    "startsIn": "Prasideda po {{minutes}} minutė{{plural}} per {{time}}",
+    "startsIn": "Prasideda po {{minutes}} minutė{{plural}} ({{time}})",
     "joinMeeting": "Prisijungti prie susitikimo",
     "joinMeetingNow": "Prisijungti prie susitikimo dabar",
     "location": "Vieta:",
     "continue": "Tęsti...",
     "resume": "Tęsti",
     "courseModules": "Kurso moduliai",
-    "noCoursesAssigned": "Jums dar nėra priskirti kursai",
+    "noCoursesAssigned": "Jums dar nėra priskirtų kursų",
     "exploreAllCourses": "Peržiūrėti visus kursus",
     "schedule": "Grafikas",
     "noUpcomingEvents": "Nenumatoma naujų susitikimų",
@@ -64,12 +64,12 @@
     "rating": "Įvertinimas",
     "noRatingYet": "Dar nėra įvertinimo",
     "rateLesson": "Įvertinkite šią pamoką",
-    "contactOnSlack": "Susisiekite su manim Slack 👍",
+    "contactOnSlack": "Susisiekite su manimi per Slack 👍",
     "wednesdays": "Trečiadieniais",
     "saturdays": "Šeštadieniais",
     "completed": "Baigta",
-    "previous": "Ankstesnis",
-    "next": "Kitas",
+    "previous": "Atgal",
+    "next": "Toliau",
     "markAsComplete": "Pažymėti kaip atliktą"
   },
   "calendar": {
@@ -83,5 +83,8 @@
     "joinMeeting": "Prisijungti prie susitikimo",
     "location": "Vieta:",
     "instructions": "Nurodymai:"
+  },
+  "auth": {
+    "logout": "Atsijungti"
   }
 }

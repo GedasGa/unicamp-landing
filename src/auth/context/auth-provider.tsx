@@ -54,16 +54,16 @@ export function AuthProvider({ children }: Props) {
           .eq('id', session.user.id)
           .single();
 
-        setState({ 
-          user: { 
-            ...session, 
+        setState({
+          user: {
+            ...session,
             ...session?.user,
-            profile // Add profile data
-          }, 
-          loading: false 
+            profile, // Add profile data
+          },
+          loading: false,
         });
         axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-        
+
         // Identify user in PostHog
         if (typeof window !== 'undefined') {
           posthog.identify(session.user.id, {
@@ -75,7 +75,7 @@ export function AuthProvider({ children }: Props) {
       } else {
         setState({ user: null, loading: false });
         delete axios.defaults.headers.common.Authorization;
-        
+
         // Reset PostHog on logout
         if (typeof window !== 'undefined') {
           posthog.reset();

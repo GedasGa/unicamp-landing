@@ -85,9 +85,7 @@ export function getCourseNavigation(
                   icon: getLessonIcon(isLessonLocked, progress),
                   disabled: isLessonLocked,
                   children: topicChildren ?? [],
-                  onExpand: !isLessonLocked
-                    ? () => onLessonExpand?.(lesson.id)
-                    : undefined,
+                  onExpand: !isLessonLocked ? () => onLessonExpand?.(lesson.id) : undefined,
                 };
               })
             : undefined;
@@ -95,14 +93,14 @@ export function getCourseNavigation(
         return {
           title: module.title,
           path: paths.app.courses.module(courseId, module.id),
-          icon: isLocked
-            ? <Iconify icon="eva:lock-fill" sx={{ color: 'text.disabled' }} />
-            : (open: boolean) => <Iconify icon={open ? 'eva:book-open-fill' : 'eva:book-fill'} />,
+          icon: isLocked ? (
+            <Iconify icon="eva:lock-fill" sx={{ color: 'text.disabled' }} />
+          ) : (
+            (open: boolean) => <Iconify icon={open ? 'eva:book-open-fill' : 'eva:book-fill'} />
+          ),
           disabled: isLocked,
           children: lessonChildren,
-          onExpand: !isLocked
-            ? () => onModuleExpand?.(module.id)
-            : undefined,
+          onExpand: !isLocked ? () => onModuleExpand?.(module.id) : undefined,
         };
       }),
     },

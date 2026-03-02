@@ -59,7 +59,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
 
   // Use context nav data if available, otherwise fall back to default
   const navData = contextNavData ?? data?.nav ?? dashboardNavData;
-  
+
   // Hide navigation on dashboard page (/app)
   const shouldShowNav = !pathname?.match(/^\/app\/?$/);
 
@@ -93,9 +93,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
             leftArea: (
               <>
                 {/* -- Logo (shown when nav is hidden) -- */}
-                {!shouldShowNav && (
-                  <Logo onlyLogo={false} href={paths.app.root} sx={{ mr: 2 }} />
-                )}
+                {!shouldShowNav && <Logo onlyLogo={false} href={paths.app.root} sx={{ mr: 2 }} />}
                 {/* -- Nav mobile -- */}
                 {shouldShowNav && (
                   <>
@@ -116,9 +114,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
                   </>
                 )}
                 {/* -- Workspace popover -- */}
-                <WorkspacesPopover
-                  sx={{ color: 'var(--layout-nav-text-primary-color)' }}
-                />
+                <WorkspacesPopover sx={{ color: 'var(--layout-nav-text-primary-color)' }} />
               </>
             ),
             rightArea: (

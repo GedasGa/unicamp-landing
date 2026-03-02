@@ -25,7 +25,7 @@ type NavMobileProps = NavSectionProps & {
 
 export function NavMobile({ data, open, onClose, slots, sx, ...other }: NavMobileProps) {
   const pathname = usePathname();
-  
+
   // Redirect to /app if user is on any /app page, otherwise redirect to home
   const logoHref = pathname?.startsWith('/app') ? paths.app.root : '/';
 

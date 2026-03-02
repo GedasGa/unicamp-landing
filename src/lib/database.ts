@@ -19,11 +19,7 @@ type Lesson = Tables['lessons']['Row'];
 // =============================================
 
 export async function getProfile(userId: string) {
-  const { data, error } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('id', userId)
-    .single();
+  const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single();
 
   if (error) throw error;
   return data;
@@ -79,21 +75,14 @@ export async function createGroup(name: string, description?: string, createdBy?
 }
 
 export async function getGroups() {
-  const { data, error } = await supabase
-    .from('groups')
-    .select('*')
-    .order('name');
+  const { data, error } = await supabase.from('groups').select('*').order('name');
 
   if (error) throw error;
   return data;
 }
 
 export async function getGroup(groupId: string) {
-  const { data, error } = await supabase
-    .from('groups')
-    .select('*')
-    .eq('id', groupId)
-    .single();
+  const { data, error } = await supabase.from('groups').select('*').eq('id', groupId).single();
 
   if (error) throw error;
   return data;
@@ -112,10 +101,7 @@ export async function updateGroup(groupId: string, updates: Partial<Group>) {
 }
 
 export async function deleteGroup(groupId: string) {
-  const { error } = await supabase
-    .from('groups')
-    .delete()
-    .eq('id', groupId);
+  const { error } = await supabase.from('groups').delete().eq('id', groupId);
 
   if (error) throw error;
 }
@@ -127,12 +113,12 @@ export async function deleteGroup(groupId: string) {
 export async function addStudentToGroup(groupId: string, studentIdOrEmail: string) {
   // Check if it's an email or user ID
   const isEmail = studentIdOrEmail.includes('@');
-  
+
   const { data, error } = await supabase
     .from('group_students')
-    .insert({ 
-      group_id: groupId, 
-      student_id: isEmail ? studentIdOrEmail : studentIdOrEmail
+    .insert({
+      group_id: groupId,
+      student_id: isEmail ? studentIdOrEmail : studentIdOrEmail,
     })
     .select()
     .single();
@@ -144,10 +130,10 @@ export async function addStudentToGroup(groupId: string, studentIdOrEmail: strin
 export async function inviteStudentToGroupByEmail(groupId: string, email: string) {
   const { data, error } = await supabase
     .from('invitations')
-    .insert({ 
-      group_id: groupId, 
+    .insert({
+      group_id: groupId,
       email,
-      role: 'student'
+      role: 'student',
     })
     .select()
     .single();
@@ -169,10 +155,12 @@ export async function removeStudentFromGroup(groupId: string, studentId: string)
 export async function getGroupMembers(groupId: string) {
   const { data, error } = await supabase
     .from('group_students')
-    .select(`
+    .select(
+      `
       *,
       student:profiles!student_id(*)
-    `)
+    `
+    )
     .eq('group_id', groupId);
 
   if (error) throw error;
@@ -182,10 +170,12 @@ export async function getGroupMembers(groupId: string) {
 export async function getStudentGroups(studentId: string) {
   const { data, error } = await supabase
     .from('group_students')
-    .select(`
+    .select(
+      `
       *,
       group:groups(*)
-    `)
+    `
+    )
     .eq('student_id', studentId);
 
   if (error) throw error;
@@ -195,10 +185,12 @@ export async function getStudentGroups(studentId: string) {
 export async function getTeacherGroups(teacherId: string) {
   const { data, error } = await supabase
     .from('group_teachers')
-    .select(`
+    .select(
+      `
       *,
       group:groups(*)
-    `)
+    `
+    )
     .eq('teacher_id', teacherId);
 
   if (error) throw error;
@@ -211,7 +203,7 @@ export async function getUserGroups(userId: string) {
   if (studentGroups && studentGroups.length > 0) {
     return studentGroups;
   }
-  
+
   // If no student groups, try as teacher
   const teacherGroups = await getTeacherGroups(userId);
   return teacherGroups || [];
@@ -269,12 +261,10 @@ export async function getUserSchedule(userId: string): Promise<CalendarEvent[]> 
   return events;
 }
 
-export async function createScheduleEvent(event: Omit<GroupSchedule, 'id' | 'created_at' | 'updated_at'>) {
-  const { data, error } = await supabase
-    .from('group_schedule')
-    .insert(event)
-    .select()
-    .single();
+export async function createScheduleEvent(
+  event: Omit<GroupSchedule, 'id' | 'created_at' | 'updated_at'>
+) {
+  const { data, error } = await supabase.from('group_schedule').insert(event).select().single();
 
   if (error) throw error;
   return data as GroupSchedule;
@@ -293,10 +283,7 @@ export async function updateScheduleEvent(eventId: string, updates: Partial<Grou
 }
 
 export async function deleteScheduleEvent(eventId: string) {
-  const { error } = await supabase
-    .from('group_schedule')
-    .delete()
-    .eq('id', eventId);
+  const { error } = await supabase.from('group_schedule').delete().eq('id', eventId);
 
   if (error) throw error;
 }
@@ -313,11 +300,11 @@ export async function createCourse(
 ) {
   const { data, error } = await supabase
     .from('courses')
-    .insert({ 
-      title, 
-      description, 
+    .insert({
+      title,
+      description,
       thumbnail_url: thumbnailUrl,
-      created_by: createdBy 
+      created_by: createdBy,
     })
     .select()
     .single();
@@ -327,10 +314,7 @@ export async function createCourse(
 }
 
 export async function getCourses() {
-  const { data, error } = await supabase
-    .from('courses')
-    .select('*')
-    .order('title');
+  const { data, error } = await supabase.from('courses').select('*').order('title');
 
   if (error) throw error;
   return data;
@@ -339,22 +323,26 @@ export async function getCourses() {
 export async function getCoursesByGroup(groupId: string) {
   const { data, error } = await supabase
     .from('group_courses')
-    .select(`
+    .select(
+      `
       course:courses(*)
-    `)
+    `
+    )
     .eq('group_id', groupId);
 
   if (error) throw error;
-  return data.map(row => row.course).filter(Boolean);
+  return data.map((row) => row.course).filter(Boolean);
 }
 
 export async function getCourse(courseId: string) {
   const { data, error } = await supabase
     .from('courses')
-    .select(`
+    .select(
+      `
       *,
       modules(*)
-    `)
+    `
+    )
     .eq('id', courseId)
     .single();
 
@@ -375,10 +363,7 @@ export async function updateCourse(courseId: string, updates: Partial<Course>) {
 }
 
 export async function deleteCourse(courseId: string) {
-  const { error } = await supabase
-    .from('courses')
-    .delete()
-    .eq('id', courseId);
+  const { error } = await supabase.from('courses').delete().eq('id', courseId);
 
   if (error) throw error;
 }
@@ -396,12 +381,12 @@ export async function createModule(
 ) {
   const { data, error } = await supabase
     .from('modules')
-    .insert({ 
-      course_id: courseId, 
-      title, 
+    .insert({
+      course_id: courseId,
+      title,
       description,
       thumbnail_url: thumbnailUrl,
-      order_index: orderIndex ?? 0
+      order_index: orderIndex ?? 0,
     })
     .select()
     .single();
@@ -424,10 +409,12 @@ export async function getModules(courseId: string) {
 export async function getModule(moduleId: string) {
   const { data, error } = await supabase
     .from('modules')
-    .select(`
+    .select(
+      `
       *,
       lessons(*)
-    `)
+    `
+    )
     .eq('id', moduleId)
     .single();
 
@@ -448,10 +435,7 @@ export async function updateModule(moduleId: string, updates: Partial<Module>) {
 }
 
 export async function deleteModule(moduleId: string) {
-  const { error } = await supabase
-    .from('modules')
-    .delete()
-    .eq('id', moduleId);
+  const { error } = await supabase.from('modules').delete().eq('id', moduleId);
 
   if (error) throw error;
 }
@@ -469,12 +453,12 @@ export async function createLesson(
 ) {
   const { data, error } = await supabase
     .from('lessons')
-    .insert({ 
-      module_id: moduleId, 
-      title, 
+    .insert({
+      module_id: moduleId,
+      title,
       confluence_parent_page_id: confluenceParentPageId,
       description,
-      order_index: orderIndex ?? 0
+      order_index: orderIndex ?? 0,
     })
     .select()
     .single();
@@ -495,11 +479,7 @@ export async function getLessons(moduleId: string) {
 }
 
 export async function getLesson(lessonId: string) {
-  const { data, error } = await supabase
-    .from('lessons')
-    .select('*')
-    .eq('id', lessonId)
-    .single();
+  const { data, error } = await supabase.from('lessons').select('*').eq('id', lessonId).single();
 
   if (error) throw error;
   return data;
@@ -518,10 +498,7 @@ export async function updateLesson(lessonId: string, updates: Partial<Lesson>) {
 }
 
 export async function deleteLesson(lessonId: string) {
-  const { error } = await supabase
-    .from('lessons')
-    .delete()
-    .eq('id', lessonId);
+  const { error } = await supabase.from('lessons').delete().eq('id', lessonId);
 
   if (error) throw error;
 }
@@ -539,10 +516,10 @@ export async function deleteLesson(lessonId: string) {
 export async function assignCourseToGroup(groupId: string, courseId: string, orderIndex?: number) {
   const { data, error } = await supabase
     .from('group_courses')
-    .insert({ 
-      group_id: groupId, 
+    .insert({
+      group_id: groupId,
       course_id: courseId,
-      order_index: orderIndex ?? 0
+      order_index: orderIndex ?? 0,
     })
     .select()
     .single();
@@ -564,10 +541,12 @@ export async function removeCourseFromGroup(groupId: string, courseId: string) {
 export async function getGroupCourses(groupId: string) {
   const { data, error } = await supabase
     .from('group_courses')
-    .select(`
+    .select(
+      `
       *,
       course:courses(*)
-    `)
+    `
+    )
     .eq('group_id', groupId)
     .order('order_index');
 
@@ -579,18 +558,14 @@ export async function getGroupCourses(groupId: string) {
 // VISIBILITY FUNCTIONS
 // =============================================
 
-export async function setModuleVisibility(
-  groupId: string,
-  moduleId: string,
-  isVisible: boolean
-) {
+export async function setModuleVisibility(groupId: string, moduleId: string, isVisible: boolean) {
   const { data, error } = await supabase
     .from('group_module_visibility')
-    .upsert({ 
-      group_id: groupId, 
+    .upsert({
+      group_id: groupId,
       module_id: moduleId,
       is_visible: isVisible,
-      unlocked_at: isVisible ? new Date().toISOString() : null
+      unlocked_at: isVisible ? new Date().toISOString() : null,
     })
     .select()
     .single();
@@ -599,18 +574,14 @@ export async function setModuleVisibility(
   return data;
 }
 
-export async function setLessonVisibility(
-  groupId: string,
-  lessonId: string,
-  isVisible: boolean
-) {
+export async function setLessonVisibility(groupId: string, lessonId: string, isVisible: boolean) {
   const { data, error } = await supabase
     .from('group_lesson_visibility')
-    .upsert({ 
-      group_id: groupId, 
+    .upsert({
+      group_id: groupId,
       lesson_id: lessonId,
       is_visible: isVisible,
-      unlocked_at: isVisible ? new Date().toISOString() : null
+      unlocked_at: isVisible ? new Date().toISOString() : null,
     })
     .select()
     .single();
@@ -649,13 +620,15 @@ export async function checkLessonAccess(userId: string, lessonId: string) {
     // Get lesson with module and course info
     const { data: lessonData, error: lessonError } = await supabase
       .from('lessons')
-      .select(`
+      .select(
+        `
         *,
         module:modules!inner(
           *,
           course:courses!inner(*)
         )
-      `)
+      `
+      )
       .eq('id', lessonId)
       .single();
 
@@ -675,7 +648,7 @@ export async function checkLessonAccess(userId: string, lessonId: string) {
       return { accessible: false, reason: 'Not assigned to any groups' };
     }
 
-    const groupIds = userGroups.map(g => g.group_id);
+    const groupIds = userGroups.map((g) => g.group_id);
 
     // Check if course is assigned to any of user's groups
     const { data: groupCourses, error: courseError } = await supabase
@@ -702,11 +675,11 @@ export async function checkLessonAccess(userId: string, lessonId: string) {
       return { accessible: false, reason: 'Lesson not unlocked' };
     }
 
-    return { 
-      accessible: true, 
+    return {
+      accessible: true,
       lesson: lessonData,
       course: lessonData.module.course,
-      module: lessonData.module
+      module: lessonData.module,
     };
   } catch (error) {
     console.error('Error checking lesson access:', error);
@@ -719,24 +692,24 @@ export async function checkLessonAccess(userId: string, lessonId: string) {
 // =============================================
 
 export async function markTopicComplete(
-  studentId: string, 
+  studentId: string,
   lessonId: string,
   confluencePageId: string
 ) {
   const { data, error } = await supabase
     .from('student_topic_progress')
     .upsert(
-      { 
-        student_id: studentId, 
+      {
+        student_id: studentId,
         lesson_id: lessonId,
         confluence_page_id: confluencePageId,
         completed: true,
         completed_at: new Date().toISOString(),
-        last_accessed_at: new Date().toISOString()
+        last_accessed_at: new Date().toISOString(),
       },
       {
         onConflict: 'student_id,lesson_id,confluence_page_id',
-        ignoreDuplicates: false
+        ignoreDuplicates: false,
       }
     )
     .select();
@@ -745,7 +718,11 @@ export async function markTopicComplete(
   return data?.[0] || data;
 }
 
-export async function getTopicProgress(studentId: string, lessonId: string, confluencePageId: string) {
+export async function getTopicProgress(
+  studentId: string,
+  lessonId: string,
+  confluencePageId: string
+) {
   const { data, error } = await supabase
     .from('student_topic_progress')
     .select('*')
@@ -778,17 +755,17 @@ export async function updateLessonProgress(
   const { data, error } = await supabase
     .from('student_lesson_progress')
     .upsert(
-      { 
-        student_id: studentId, 
+      {
+        student_id: studentId,
         lesson_id: lessonId,
         progress_percentage: progressPercentage,
         completed,
         completed_at: completed ? new Date().toISOString() : null,
-        updated_at: new Date().toISOString()
+        updated_at: new Date().toISOString(),
       },
       {
         onConflict: 'student_id,lesson_id',
-        ignoreDuplicates: false
+        ignoreDuplicates: false,
       }
     )
     .select();
@@ -809,7 +786,9 @@ export async function updateModuleProgress(
   completed: boolean
 ) {
   // No-op: Module progress is now calculated dynamically
-  console.warn('updateModuleProgress is deprecated. Module progress is calculated dynamically from lesson progress.');
+  console.warn(
+    'updateModuleProgress is deprecated. Module progress is calculated dynamically from lesson progress.'
+  );
   return null;
 }
 
@@ -819,16 +798,16 @@ export async function updateModuleProgress(
  */
 export async function getStudentCourseProgress(studentId: string, courseId: string) {
   console.warn('getStudentCourseProgress is deprecated. Use getStudentModuleProgress() instead.');
-  
+
   // Get modules for course
   const modules = await getModules(courseId);
-  const moduleIds = modules.map(m => m.id);
-  
+  const moduleIds = modules.map((m) => m.id);
+
   // Calculate progress dynamically
   const progressMap = await getStudentModuleProgress(studentId, moduleIds);
-  
+
   // Return data in similar format for compatibility
-  return modules.map(module => ({
+  return modules.map((module) => ({
     student_id: studentId,
     module_id: module.id,
     progress_percentage: progressMap.get(module.id) || 0,
@@ -847,7 +826,7 @@ export async function getStudentCourseProgress(studentId: string, courseId: stri
  * This will:
  * 1. Mark the topic as complete in student_topic_progress
  * 2. Recalculate and update the lesson progress in student_lesson_progress
- * 
+ *
  * @param topics - Optional array of topics to avoid fetching from Confluence
  */
 export async function markTopicCompleteWithCascade(
@@ -866,11 +845,11 @@ export async function markTopicCompleteWithCascade(
 /**
  * Recalculate and update lesson progress based on completed topics
  * Fetches actual topic count from Confluence and compares with completed topics
- * 
+ *
  * @param topics - Optional array of topics to avoid fetching from Confluence
  */
 export async function updateLessonProgressFromTopics(
-  studentId: string, 
+  studentId: string,
   lessonId: string,
   topics?: Array<{ id: string; title: string }>
 ) {
@@ -882,11 +861,11 @@ export async function updateLessonProgressFromTopics(
   } else {
     // Get lesson to access Confluence ID
     const lesson = await getLesson(lessonId);
-    
+
     // Import Confluence action dynamically
     const { getConfluenceLessonTopics } = await import('src/actions/confluence');
     const topicsResult = await getConfluenceLessonTopics(lesson.confluence_parent_page_id);
-    
+
     if (!topicsResult.success || !topicsResult.data || topicsResult.data.length === 0) {
       return;
     }
@@ -899,7 +878,7 @@ export async function updateLessonProgressFromTopics(
   // Get student's progress
   const topicProgress = await getLessonTopicProgress(studentId, lessonId);
   const completedTopicsMap = new Map(
-    topicProgress.filter(tp => tp.completed).map(tp => [tp.confluence_page_id, true])
+    topicProgress.filter((tp) => tp.completed).map((tp) => [tp.confluence_page_id, true])
   );
 
   const completedCount = completedTopicsMap.size;
@@ -921,7 +900,7 @@ export async function updateLessonProgressFromTopics(
 export async function getStudentCourses(studentId: string) {
   // Get user's groups
   const userGroups = await getStudentGroups(studentId);
-  
+
   if (!userGroups?.length) {
     return [];
   }
@@ -936,7 +915,7 @@ export async function getStudentCourses(studentId: string) {
     .order('order_index', { ascending: true });
 
   if (error) throw error;
-  
+
   return groupCourses?.map((gc: any) => gc.courses).filter(Boolean) || [];
 }
 
@@ -955,7 +934,7 @@ export async function getStudentModuleProgress(studentId: string, moduleIds: str
   // For each module, get its lessons and calculate progress based on completed lessons
   for (const moduleId of moduleIds) {
     const lessons = await getLessons(moduleId);
-    
+
     if (!lessons?.length) {
       progressMap.set(moduleId, 0);
       continue;
@@ -966,7 +945,10 @@ export async function getStudentModuleProgress(studentId: string, moduleIds: str
       .from('student_lesson_progress')
       .select('completed')
       .eq('student_id', studentId)
-      .in('lesson_id', lessons.map(l => l.id));
+      .in(
+        'lesson_id',
+        lessons.map((l) => l.id)
+      );
 
     if (error) throw error;
 
@@ -974,7 +956,7 @@ export async function getStudentModuleProgress(studentId: string, moduleIds: str
     if (!lessonProgressData || lessonProgressData.length === 0) {
       progressMap.set(moduleId, 0);
     } else {
-      const completedLessons = lessonProgressData.filter(lp => lp.completed).length;
+      const completedLessons = lessonProgressData.filter((lp) => lp.completed).length;
       const progressPercentage = Math.round((completedLessons / lessons.length) * 100);
       progressMap.set(moduleId, progressPercentage);
     }
@@ -987,7 +969,11 @@ export async function getStudentModuleProgress(studentId: string, moduleIds: str
  * Get visible modules for a course across user's groups
  * Returns modules with visibility and unlock information
  */
-export async function getCourseVisibleModules(userId: string, courseId: string, groupIds: string[]) {
+export async function getCourseVisibleModules(
+  userId: string,
+  courseId: string,
+  groupIds: string[]
+) {
   const { data: moduleVisibility, error } = await supabase
     .from('group_module_visibility')
     .select('module_id, is_visible, unlocked_at, modules(*)')
@@ -1007,7 +993,8 @@ export async function getCourseVisibleModules(userId: string, courseId: string, 
 export async function getLastAccessedContent(studentId: string) {
   const { data, error } = await supabase
     .from('student_topic_progress')
-    .select(`
+    .select(
+      `
       *,
       lesson:lessons!inner(
         id,
@@ -1024,7 +1011,8 @@ export async function getLastAccessedContent(studentId: string) {
           )
         )
       )
-    `)
+    `
+    )
     .eq('student_id', studentId)
     .order('last_accessed_at', { ascending: false })
     .limit(1)
@@ -1034,7 +1022,7 @@ export async function getLastAccessedContent(studentId: string) {
     console.error('Error fetching last accessed content:', error);
     return null;
   }
-  
+
   return data;
 }
 
@@ -1046,18 +1034,18 @@ export async function getLastAccessedContent(studentId: string) {
 export async function getContinueLesson(studentId: string, groupIds: string[]) {
   // First get the last accessed content
   const lastAccessed = await getLastAccessedContent(studentId);
-  
+
   if (!lastAccessed?.lesson) {
     return null;
   }
-  
+
   const currentLesson = lastAccessed.lesson;
   const moduleId = currentLesson.module?.id;
-  
+
   if (!moduleId) {
     return null;
   }
-  
+
   // Helper function to check if a lesson is accessible
   const isLessonAccessible = async (lessonId: string): Promise<boolean> => {
     const { data: visibility } = await supabase
@@ -1066,23 +1054,25 @@ export async function getContinueLesson(studentId: string, groupIds: string[]) {
       .in('group_id', groupIds)
       .eq('lesson_id', lessonId)
       .eq('is_visible', true);
-    
+
     // Check if any visibility record shows the lesson as unlocked
-    return visibility?.some(v => {
-      if (!v.is_visible) return false;
-      if (!v.unlocked_at) return false; // NULL unlocked_at means locked
-      return new Date(v.unlocked_at) <= new Date();
-    }) ?? false;
+    return (
+      visibility?.some((v) => {
+        if (!v.is_visible) return false;
+        if (!v.unlocked_at) return false; // NULL unlocked_at means locked
+        return new Date(v.unlocked_at) <= new Date();
+      }) ?? false
+    );
   };
-  
+
   // First check if current lesson is still accessible
   const isCurrentAccessible = await isLessonAccessible(currentLesson.id);
-  
+
   if (!isCurrentAccessible) {
     // Current lesson is no longer accessible, don't show continue section
     return null;
   }
-  
+
   // Check if current lesson is completed
   const { data: lessonProgress } = await supabase
     .from('student_lesson_progress')
@@ -1090,41 +1080,41 @@ export async function getContinueLesson(studentId: string, groupIds: string[]) {
     .eq('student_id', studentId)
     .eq('lesson_id', currentLesson.id)
     .single();
-  
+
   // If lesson is not completed, return the current lesson
   if (!lessonProgress?.completed) {
     return lastAccessed;
   }
-  
+
   // Lesson is complete, find the next lesson in the module
   const { data: allLessons } = await supabase
     .from('lessons')
     .select('id, title, description, order_index, confluence_parent_page_id')
     .eq('module_id', moduleId)
     .order('order_index', { ascending: true });
-  
+
   if (!allLessons || allLessons.length === 0) {
     return lastAccessed;
   }
-  
+
   // Find the next lesson by order_index
-  const currentIndex = allLessons.findIndex(l => l.id === currentLesson.id);
-  
+  const currentIndex = allLessons.findIndex((l) => l.id === currentLesson.id);
+
   if (currentIndex === -1 || currentIndex === allLessons.length - 1) {
     // Current lesson not found or it's the last lesson
     return lastAccessed;
   }
-  
+
   const nextLesson = allLessons[currentIndex + 1];
-  
+
   // Check if the next lesson is unlocked
   const isNextLessonUnlocked = await isLessonAccessible(nextLesson.id);
-  
+
   if (!isNextLessonUnlocked) {
     // Next lesson is not unlocked, return current lesson
     return lastAccessed;
   }
-  
+
   // Return the next lesson with the same structure as lastAccessed
   return {
     ...lastAccessed,
@@ -1144,20 +1134,18 @@ export async function trackTopicAccess(
   lessonId: string,
   confluencePageId: string
 ) {
-  const { error } = await supabase
-    .from('student_topic_progress')
-    .upsert(
-      {
-        student_id: studentId,
-        lesson_id: lessonId,
-        confluence_page_id: confluencePageId,
-        last_accessed_at: new Date().toISOString(),
-      },
-      {
-        onConflict: 'student_id,lesson_id,confluence_page_id',
-        ignoreDuplicates: false,
-      }
-    );
+  const { error } = await supabase.from('student_topic_progress').upsert(
+    {
+      student_id: studentId,
+      lesson_id: lessonId,
+      confluence_page_id: confluencePageId,
+      last_accessed_at: new Date().toISOString(),
+    },
+    {
+      onConflict: 'student_id,lesson_id,confluence_page_id',
+      ignoreDuplicates: false,
+    }
+  );
 
   if (error) {
     console.error('Error tracking topic access:', error);

@@ -1,8 +1,9 @@
 'use client';
 
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
-import { useTranslation } from 'react-i18next';
 
 import { CONFIG } from 'src/config-global';
 import { setFont } from 'src/theme/styles';
@@ -36,7 +37,11 @@ export function FontOptions({ value, options, onClickOption }: Props) {
             : option.name;
 
           return (
-            <Box component="li" key={option.name} sx={{ display: 'inline-flex', position: 'relative' }}>
+            <Box
+              component="li"
+              key={option.name}
+              sx={{ display: 'inline-flex', position: 'relative' }}
+            >
               <BlockOption
                 selected={selected}
                 onClick={() => onClickOption(option.name)}

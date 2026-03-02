@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-import { useTranslation } from 'react-i18next';
 
 import { Iconify } from 'src/components/iconify';
 

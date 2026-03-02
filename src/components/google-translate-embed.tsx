@@ -51,10 +51,7 @@ export function GoogleTranslateEmbed() {
   // Must remain in the DOM (not display:none) so Google Translate renders its select.
   // Positioned off-screen so it's invisible.
   return (
-    <div
-      id="google_translate_element"
-      style={{ position: 'fixed', left: '-9999px', top: 0 }}
-    />
+    <div id="google_translate_element" style={{ position: 'fixed', left: '-9999px', top: 0 }} />
   );
 }
 

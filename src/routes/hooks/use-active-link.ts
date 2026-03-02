@@ -28,7 +28,7 @@ export function useActiveLink(itemPath: string, deep: boolean = true): boolean {
     const [itemPathBase, itemQuery] = itemPath.split('?');
     const itemTopicMatch = itemQuery.match(/topic=([^&]+)/);
     const currentTopic = searchParams.get('topic');
-    
+
     if (itemTopicMatch && itemTopicMatch[1]) {
       const itemTopic = itemTopicMatch[1];
       // Match if pathname matches and topic parameter matches

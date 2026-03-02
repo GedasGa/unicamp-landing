@@ -37,7 +37,8 @@ const slugify = (text: string): string =>
 export const getPosts = (): IPostItem[] => POSTS;
 
 // ----------------------------------------------------------------------
-export const getPost = async (titleSlug: string): Promise<IPostItem | undefined> => POSTS.find((post) => slugify(post.title || '') === titleSlug.toLowerCase());
+export const getPost = async (titleSlug: string): Promise<IPostItem | undefined> =>
+  POSTS.find((post) => slugify(post.title || '') === titleSlug.toLowerCase());
 
 // ----------------------------------------------------------------------
 

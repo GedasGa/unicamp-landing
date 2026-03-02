@@ -1,10 +1,11 @@
 'use client';
 
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import ButtonBase from '@mui/material/ButtonBase';
 import { alpha as hexAlpha } from '@mui/material/styles';
-import { useTranslation } from 'react-i18next';
 
 import { CONFIG } from 'src/config-global';
 

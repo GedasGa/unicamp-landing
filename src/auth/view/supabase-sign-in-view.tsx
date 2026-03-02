@@ -57,14 +57,14 @@ export function SupabaseSignInView() {
 
   // Parse error from URL hash (Supabase redirects with errors in hash)
   useEffect(() => {
-    const {hash} = window.location;
+    const { hash } = window.location;
     if (hash) {
       const params = new URLSearchParams(hash.substring(1));
       const error = params.get('error');
       const errorDescription = params.get('error_description');
-      
+
       if (error) {
-        const message = errorDescription 
+        const message = errorDescription
           ? decodeURIComponent(errorDescription.replace(/\+/g, ' '))
           : error;
         setErrorMsg(message);

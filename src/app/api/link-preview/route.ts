@@ -2,7 +2,7 @@
 // API Route: Fetch Link Preview Metadata
 // =============================================
 
-import type { NextRequest} from 'next/server';
+import type { NextRequest } from 'next/server';
 
 import { NextResponse } from 'next/server';
 
@@ -32,8 +32,14 @@ export async function GET(request: NextRequest) {
 
     // Extract metadata using regex patterns
     const metadata = {
-      title: extractMetaTag(html, 'og:title') || extractMetaTag(html, 'twitter:title') || extractTitle(html),
-      description: extractMetaTag(html, 'og:description') || extractMetaTag(html, 'twitter:description') || extractMetaTag(html, 'description'),
+      title:
+        extractMetaTag(html, 'og:title') ||
+        extractMetaTag(html, 'twitter:title') ||
+        extractTitle(html),
+      description:
+        extractMetaTag(html, 'og:description') ||
+        extractMetaTag(html, 'twitter:description') ||
+        extractMetaTag(html, 'description'),
       image: extractMetaTag(html, 'og:image') || extractMetaTag(html, 'twitter:image'),
       icon: extractIcon(html, url),
     };
@@ -41,7 +47,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(metadata);
   } catch (error) {
     console.error('[Link Preview] Error:', error instanceof Error ? error.message : error);
-    
+
     // Return basic fallback metadata
     const url = new URL(request.url).searchParams.get('url');
     return NextResponse.json({
@@ -57,25 +63,35 @@ export async function GET(request: NextRequest) {
 function extractMetaTag(html: string, property: string): string | undefined {
   // Check if property already has a prefix (og:, twitter:)
   const hasPrefix = property.includes(':');
-  
+
   if (!hasPrefix) {
     // Try Open Graph tags
-    const ogMatch = html.match(new RegExp(`<meta\\s+property=["']og:${property}["']\\s+content=["']([^"']+)["']`, 'i'));
+    const ogMatch = html.match(
+      new RegExp(`<meta\\s+property=["']og:${property}["']\\s+content=["']([^"']+)["']`, 'i')
+    );
     if (ogMatch) return ogMatch[1];
 
     // Try Twitter tags
-    const twitterMatch = html.match(new RegExp(`<meta\\s+name=["']twitter:${property}["']\\s+content=["']([^"']+)["']`, 'i'));
+    const twitterMatch = html.match(
+      new RegExp(`<meta\\s+name=["']twitter:${property}["']\\s+content=["']([^"']+)["']`, 'i')
+    );
     if (twitterMatch) return twitterMatch[1];
 
     // Try standard meta tags
-    const metaMatch = html.match(new RegExp(`<meta\\s+name=["']${property}["']\\s+content=["']([^"']+)["']`, 'i'));
+    const metaMatch = html.match(
+      new RegExp(`<meta\\s+name=["']${property}["']\\s+content=["']([^"']+)["']`, 'i')
+    );
     if (metaMatch) return metaMatch[1];
   } else {
     // Property already has prefix, use it directly
-    const propertyMatch = html.match(new RegExp(`<meta\\s+property=["']${property}["']\\s+content=["']([^"']+)["']`, 'i'));
+    const propertyMatch = html.match(
+      new RegExp(`<meta\\s+property=["']${property}["']\\s+content=["']([^"']+)["']`, 'i')
+    );
     if (propertyMatch) return propertyMatch[1];
-    
-    const nameMatch = html.match(new RegExp(`<meta\\s+name=["']${property}["']\\s+content=["']([^"']+)["']`, 'i'));
+
+    const nameMatch = html.match(
+      new RegExp(`<meta\\s+name=["']${property}["']\\s+content=["']([^"']+)["']`, 'i')
+    );
     if (nameMatch) return nameMatch[1];
   }
 
@@ -89,7 +105,9 @@ function extractTitle(html: string): string {
 
 function extractIcon(html: string, baseUrl: string): string | undefined {
   // Try to find favicon
-  const iconMatch = html.match(/<link[^>]+rel=["'](?:icon|shortcut icon)["'][^>]+href=["']([^"']+)["']/i);
+  const iconMatch = html.match(
+    /<link[^>]+rel=["'](?:icon|shortcut icon)["'][^>]+href=["']([^"']+)["']/i
+  );
   if (iconMatch) {
     const iconUrl = iconMatch[1];
     // Convert relative URL to absolute

@@ -38,10 +38,7 @@ export function isLessonUnlocked(unlocked_at: string | null, is_visible: boolean
  * Get accessible modules for a user across all their groups
  * Returns a Set of module IDs that are unlocked
  */
-export async function getAccessibleModules(
-  userId: string,
-  courseId: string
-): Promise<Set<string>> {
+export async function getAccessibleModules(userId: string, courseId: string): Promise<Set<string>> {
   try {
     // Use database helper function
     const userGroups = await getStudentGroups(userId);
@@ -81,10 +78,7 @@ export async function getAccessibleModules(
  * Get accessible lessons for a user in a specific module
  * Returns a Set of lesson IDs that are unlocked
  */
-export async function getAccessibleLessons(
-  userId: string,
-  moduleId: string
-): Promise<Set<string>> {
+export async function getAccessibleLessons(userId: string, moduleId: string): Promise<Set<string>> {
   try {
     // Use database helper functions
     const userGroups = await getStudentGroups(userId);

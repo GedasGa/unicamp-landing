@@ -1,7 +1,8 @@
 'use client';
 
-import Box from '@mui/material/Box';
 import { useTranslation } from 'react-i18next';
+
+import Box from '@mui/material/Box';
 
 import { Block, BlockOption } from './styles';
 

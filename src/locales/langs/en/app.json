@@ -83,5 +83,8 @@
     "joinMeeting": "Join Meeting",
     "location": "Location:",
     "instructions": "Instructions:"
+  },
+  "auth": {
+    "logout": "Logout"
   }
 }

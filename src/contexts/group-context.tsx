@@ -65,15 +65,15 @@ export function GroupProvider({ children }: Props) {
         setLoading(true);
         const groupMembers = await getUserGroups(user.id);
         const userGroups = groupMembers.map((gm: any) => gm.group).filter(Boolean);
-        
+
         setGroups(userGroups);
-        
+
         // Load selected group from localStorage or default to first group
         const savedGroupId = localStorage.getItem('selectedGroupId');
-        const defaultGroup = savedGroupId 
+        const defaultGroup = savedGroupId
           ? userGroups.find((g: any) => g.id === savedGroupId) || userGroups[0]
           : userGroups[0];
-        
+
         setSelectedGroup(defaultGroup || null);
       } catch (error) {
         console.error('Error fetching groups:', error);

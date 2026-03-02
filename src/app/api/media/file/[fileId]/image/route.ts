@@ -2,7 +2,7 @@
 // API Route: Get Confluence Image/File
 // =============================================
 
-import type { NextRequest} from 'next/server';
+import type { NextRequest } from 'next/server';
 
 import { NextResponse } from 'next/server';
 
@@ -11,27 +11,24 @@ const CONFLUENCE_CONFIG = {
   accessToken: process.env.CONFLUENCE_API_TOKEN,
 };
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { fileId: string } }
-) {
+export async function GET(request: NextRequest, { params }: { params: { fileId: string } }) {
   try {
     const { fileId } = params;
-    
+
     // Extract topic ID from query params
     const { searchParams } = new URL(request.url);
     const topicId = searchParams.get('collection')?.replace('contentId-', '');
-    
+
     if (!topicId) {
       console.error('[Media Image] Missing topicId in query params');
       return NextResponse.json({ error: 'Missing collection/topicId' }, { status: 400 });
     }
-    
+
     console.log(`[Media Image] Fetching file ${fileId} for topic ${topicId}`);
 
     // First, get the attachment list to find the attachment ID
     const attachmentUrl = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}/child/attachment`;
-    
+
     const attachmentResponse = await fetch(attachmentUrl, {
       method: 'GET',
       headers: {
@@ -45,7 +42,7 @@ export async function GET(
     }
 
     const attachmentData = await attachmentResponse.json();
-    
+
     const attachment = attachmentData.results.find(
       (result: any) => result.extensions.fileId === fileId
     );
@@ -57,7 +54,7 @@ export async function GET(
 
     // Now download the actual file
     const downloadUrl = `${CONFLUENCE_CONFIG.baseUrl}/content/${topicId}/child/attachment/${attachment.id}/download`;
-    
+
     const fileResponse = await fetch(downloadUrl, {
       method: 'GET',
       headers: {
@@ -78,7 +75,7 @@ export async function GET(
     if (contentType) {
       headers.set('Content-Type', contentType);
     }
-    
+
     const contentLength = fileResponse.headers.get('content-length');
     if (contentLength) {
       headers.set('Content-Length', contentLength);

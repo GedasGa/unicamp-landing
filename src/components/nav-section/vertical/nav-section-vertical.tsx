@@ -1,4 +1,3 @@
-
 import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
 
@@ -66,10 +65,7 @@ function Group({ items, render, subheader, slotProps, enabledRootRedirect }: Nav
     <NavLi>
       {subheader ? (
         <>
-          <Subheader
-            data-title={subheader}
-            sx={slotProps?.subheader}
-          >
+          <Subheader data-title={subheader} sx={slotProps?.subheader}>
             {subheader}
           </Subheader>
 

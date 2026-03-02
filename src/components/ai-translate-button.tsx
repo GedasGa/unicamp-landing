@@ -64,7 +64,7 @@ export function AITranslateButton() {
   }
 
   return (
-    <Tooltip title="Versti puslapį į lietuvių kalbą">
+    <Tooltip title="Versti puslapio turinį į lietuvių kalbą">
       <Button
         onClick={handleTranslate}
         variant="outlined"

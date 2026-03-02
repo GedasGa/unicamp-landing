@@ -13,7 +13,7 @@ export function CSPostHogProvider({ children }: Props) {
   const pathname = usePathname();
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const isAppRoute = pathname?.startsWith('/app') 
+  const isAppRoute = pathname?.startsWith('/app');
 
   useEffect(() => {
     if (typeof window !== 'undefined' && pathname && !pathname.startsWith('/api')) {

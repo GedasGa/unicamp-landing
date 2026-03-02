@@ -48,11 +48,11 @@ interface ModuleListProps {
 
 export const ModuleList: FC<ModuleListProps> = ({ modules, onLessonClick }) => {
   const [expandedModules, setExpandedModules] = useState<Set<string>>(
-    new Set(modules.filter(m => !m.locked).map(m => m.id))
+    new Set(modules.filter((m) => !m.locked).map((m) => m.id))
   );
 
   const toggleModule = (moduleId: string) => {
-    setExpandedModules(prev => {
+    setExpandedModules((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(moduleId)) {
         newSet.delete(moduleId);
@@ -68,7 +68,7 @@ export const ModuleList: FC<ModuleListProps> = ({ modules, onLessonClick }) => {
       {modules.map((module, index) => {
         const isExpanded = expandedModules.has(module.id);
         const isLocked = module.locked;
-        
+
         return (
           <Card key={module.id} sx={{ mb: 2 }}>
             <ListItem
@@ -78,9 +78,9 @@ export const ModuleList: FC<ModuleListProps> = ({ modules, onLessonClick }) => {
                   {isLocked ? (
                     <Chip label="Locked" size="small" icon={<Iconify icon="eva:lock-fill" />} />
                   ) : (
-                    <Chip 
-                      label={`${module.progress || 0}%`} 
-                      size="small" 
+                    <Chip
+                      label={`${module.progress || 0}%`}
+                      size="small"
                       color={module.progress === 100 ? 'success' : 'primary'}
                       variant="outlined"
                     />
@@ -90,14 +90,12 @@ export const ModuleList: FC<ModuleListProps> = ({ modules, onLessonClick }) => {
                     onClick={() => !isLocked && toggleModule(module.id)}
                     disabled={isLocked}
                   >
-                    <Iconify 
-                      icon={isExpanded ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} 
-                    />
+                    <Iconify icon={isExpanded ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
                   </IconButton>
                 </Box>
               }
             >
-              <ListItemButton 
+              <ListItemButton
                 onClick={() => !isLocked && toggleModule(module.id)}
                 disabled={isLocked}
               >
@@ -120,7 +118,10 @@ export const ModuleList: FC<ModuleListProps> = ({ modules, onLessonClick }) => {
                 </ListItemIcon>
                 <ListItemText
                   primary={
-                    <Typography variant="h6" sx={{ color: isLocked ? 'text.disabled' : 'text.primary' }}>
+                    <Typography
+                      variant="h6"
+                      sx={{ color: isLocked ? 'text.disabled' : 'text.primary' }}
+                    >
                       {module.title}
                     </Typography>
                   }
@@ -132,11 +133,11 @@ export const ModuleList: FC<ModuleListProps> = ({ modules, onLessonClick }) => {
                         </Typography>
                       )}
                       {!isLocked && (
-                        <LinearProgress 
-                          variant="determinate" 
-                          value={module.progress || 0} 
-                          sx={{ 
-                            height: 4, 
+                        <LinearProgress
+                          variant="determinate"
+                          value={module.progress || 0}
+                          sx={{
+                            height: 4,
                             borderRadius: 2,
                             bgcolor: 'action.hover',
                             mt: 0.5,
@@ -153,7 +154,7 @@ export const ModuleList: FC<ModuleListProps> = ({ modules, onLessonClick }) => {
               <List component="div" disablePadding>
                 {module.lessons.map((lesson, lessonIndex) => {
                   const isLessonLocked = lesson.locked;
-                  
+
                   return (
                     <ListItemButton
                       key={lesson.id}
@@ -162,27 +163,27 @@ export const ModuleList: FC<ModuleListProps> = ({ modules, onLessonClick }) => {
                       onClick={() => !isLessonLocked && onLessonClick?.(module.id, lesson.id)}
                     >
                       <ListItemIcon>
-                        <Iconify 
+                        <Iconify
                           icon={
-                            lesson.completed 
-                              ? 'eva:checkmark-circle-2-fill' 
+                            lesson.completed
+                              ? 'eva:checkmark-circle-2-fill'
                               : isLessonLocked
-                              ? 'eva:lock-fill'
-                              : 'eva:radio-button-off-outline'
+                                ? 'eva:lock-fill'
+                                : 'eva:radio-button-off-outline'
                           }
                           color={
-                            lesson.completed 
-                              ? 'success.main' 
+                            lesson.completed
+                              ? 'success.main'
                               : isLessonLocked
-                              ? 'text.disabled'
-                              : 'text.secondary'
+                                ? 'text.disabled'
+                                : 'text.secondary'
                           }
                         />
                       </ListItemIcon>
                       <ListItemText
                         primary={
-                          <Typography 
-                            variant="body1" 
+                          <Typography
+                            variant="body1"
                             sx={{ color: isLessonLocked ? 'text.disabled' : 'text.primary' }}
                           >
                             {lessonIndex + 1}. {lesson.title}
@@ -191,9 +192,9 @@ export const ModuleList: FC<ModuleListProps> = ({ modules, onLessonClick }) => {
                         secondary={lesson.description}
                       />
                       {!isLessonLocked && lesson.progress !== undefined && (
-                        <Chip 
-                          label={`${lesson.progress}%`} 
-                          size="small" 
+                        <Chip
+                          label={`${lesson.progress}%`}
+                          size="small"
                           variant="outlined"
                           color={lesson.completed ? 'success' : 'default'}
                         />

@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Badge from '@mui/material/Badge';
@@ -8,7 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
 import { useTheme, useColorScheme } from '@mui/material/styles';
-import { useTranslation } from 'react-i18next';
 
 import COLORS from 'src/theme/core/colors.json';
 import { paper, varAlpha } from 'src/theme/styles';
@@ -118,21 +119,21 @@ export function SettingsDrawer({
       value={settings.fontFamily}
       onClickOption={(newValue) => settings.onUpdateField('fontFamily', newValue)}
       options={[
-        { 
-          name: defaultFont, 
-          tooltip: t('settings.fontTooltips.default')
+        {
+          name: defaultFont,
+          tooltip: t('settings.fontTooltips.default'),
         },
-        { 
-          name: 'Lexend Variable', 
-          tooltip: t('settings.fontTooltips.lexend')
+        {
+          name: 'Lexend Variable',
+          tooltip: t('settings.fontTooltips.lexend'),
         },
-        { 
-          name: 'Atkinson Hyperlegible', 
-          tooltip: t('settings.fontTooltips.atkinson')
+        {
+          name: 'Atkinson Hyperlegible',
+          tooltip: t('settings.fontTooltips.atkinson'),
         },
-        { 
-          name: 'OpenDyslexic', 
-          tooltip: t('settings.fontTooltips.openDyslexic')
+        {
+          name: 'OpenDyslexic',
+          tooltip: t('settings.fontTooltips.openDyslexic'),
         },
       ]}
     />

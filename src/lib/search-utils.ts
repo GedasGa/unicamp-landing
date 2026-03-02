@@ -31,7 +31,7 @@ export async function getSearchableContent(userId: string): Promise<SearchableIt
     for (const course of courses) {
       // Get all modules in this course
       const modules = await getModules(course.id);
-      
+
       // Get accessible modules for this student
       const accessibleModuleIds = await getAccessibleModules(userId, course.id);
 
@@ -40,7 +40,7 @@ export async function getSearchableContent(userId: string): Promise<SearchableIt
         if (accessibleModuleIds.has(module.id)) {
           // Get lessons for this module
           const lessons = await getLessons(module.id);
-          
+
           // Get accessible lessons for this module
           const accessibleLessonIds = await getAccessibleLessons(userId, module.id);
 
