@@ -113,7 +113,11 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                   slots={{
                     bottomArea: (
                       <Box gap={1.5} display="flex" sx={{ px: 2.5, py: 3 }}>
-                        <Button fullWidth variant="contained" href={authenticated ? paths.app.root : paths.auth.signIn}>
+                        <Button
+                          fullWidth
+                          variant="contained"
+                          href={authenticated ? paths.app.root : paths.auth.signIn}
+                        >
                           {authenticated ? t('cta.goToPlatform') : t('cta.signIn')}
                         </Button>
                       </Box>

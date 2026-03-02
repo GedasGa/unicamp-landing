@@ -57,12 +57,7 @@ export function ProgramPricing({ programId, sx, ...other }: ProgramPricingProps)
           sx={{ width: { xs: '100%' } }}
         >
           {PRICES.map((price) => (
-            <PriceCard
-              key={price.title}
-              price={price}
-              programId={programId}
-              sx={{ flex: 1 }}
-            />
+            <PriceCard key={price.title} price={price} programId={programId} sx={{ flex: 1 }} />
           ))}
         </Stack>
       </Stack>

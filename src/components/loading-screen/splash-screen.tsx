@@ -45,21 +45,16 @@ export function SplashScreen({ sx, ...other }: Props) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           >
-            <Logo 
-              disableLink 
-              onlyLogo={false}
-              width={240} 
-              height={72}
-            />
+            <Logo disableLink onlyLogo={false} width={240} height={72} />
           </m.div>
-          
+
           <Box sx={{ width: 240 }}>
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <LinearProgress 
+              <LinearProgress
                 color="primary"
                 sx={{
                   height: 2,
@@ -73,4 +68,3 @@ export function SplashScreen({ sx, ...other }: Props) {
     </Box>
   );
 }
-

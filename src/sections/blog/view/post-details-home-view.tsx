@@ -61,7 +61,9 @@ export function PostDetailsHomeView({ post, latestPosts }: Props) {
             }}
           >
             <Stack direction="row" flexWrap="wrap" spacing={1}>
-              {post?.tags.map((tag) => <Chip key={tag} label={tag} variant="soft" />)}
+              {post?.tags.map((tag) => (
+                <Chip key={tag} label={tag} variant="soft" />
+              ))}
             </Stack>
           </Stack>
         </Stack>

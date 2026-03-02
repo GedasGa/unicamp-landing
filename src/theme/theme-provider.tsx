@@ -18,7 +18,6 @@ import { useSettingsContext } from 'src/components/settings';
 
 import { createTheme } from './create-theme';
 import { schemeConfig } from './scheme-config';
-import { RTL } from './with-settings/right-to-left';
 
 // ----------------------------------------------------------------------
 
@@ -53,8 +52,7 @@ export function ThemeProvider({ children }: Props) {
         // modeStorageKey={schemeConfig.modeStorageKey} Force light theme
       >
         <CssBaseline />
-        {/* TODO: Figure out why it doesn't load without it */}
-        <RTL direction="lrt">{children}</RTL>
+        {children}
       </CssVarsProvider>
     </AppRouterCacheProvider>
   );

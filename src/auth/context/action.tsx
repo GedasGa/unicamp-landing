@@ -75,7 +75,7 @@ export const signUp = async ({
     password,
     options: {
       emailRedirectTo: `${window.location.origin}${paths.auth.verify}`,
-      data: { 
+      data: {
         first_name: firstName,
         last_name: lastName,
       },

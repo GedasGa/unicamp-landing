@@ -72,19 +72,19 @@ export class LinkPreviewClient extends CardClient {
     // - https://www.youtube.com/watch?v=VIDEO_ID&other=params
     // - https://youtu.be/VIDEO_ID
     // - https://www.youtube.com/embed/VIDEO_ID
-    
+
     // Try watch URL format first
     const watchMatch = url.match(/[?&]v=([^&]+)/);
     if (watchMatch && watchMatch[1]) {
       return watchMatch[1];
     }
-    
+
     // Try short URL or embed format
     const shortMatch = url.match(/(?:youtu\.be\/|youtube\.com\/embed\/)([^?&/]+)/);
     if (shortMatch && shortMatch[1]) {
       return shortMatch[1];
     }
-    
+
     return null;
   }
 
@@ -110,7 +110,7 @@ export class LinkPreviewClient extends CardClient {
     url: string
   ): Promise<JsonLd.Response> {
     const embedUrl = LinkPreviewClient.generateEmbedUrl(provider, url);
-    
+
     // Fetch actual metadata for YouTube to get video title and thumbnail
     if (provider === 'YouTube') {
       try {
@@ -148,13 +148,15 @@ export class LinkPreviewClient extends CardClient {
               '@type': 'Image',
               url: ICONS[provider],
             },
-            image: metadata.image ? {
-              '@type': 'Image',
-              url: metadata.image,
-            } : {
-              '@type': 'Image',
-              url: IMAGES[provider],
-            },
+            image: metadata.image
+              ? {
+                  '@type': 'Image',
+                  url: metadata.image,
+                }
+              : {
+                  '@type': 'Image',
+                  url: IMAGES[provider],
+                },
             preview: {
               '@type': 'Link',
               href: embedUrl,
@@ -168,7 +170,7 @@ export class LinkPreviewClient extends CardClient {
         // Fallback to basic response
       }
     }
-    
+
     // Default response for other providers or YouTube fallback
     return {
       meta: {
@@ -215,7 +217,7 @@ export class LinkPreviewClient extends CardClient {
 
   private static async generateGenericLinkResponse(url: string): Promise<JsonLd.Response> {
     const metadata = await fetchLinkMetadata(url);
-    
+
     return {
       meta: {
         access: 'granted',
@@ -237,19 +239,25 @@ export class LinkPreviewClient extends CardClient {
         generator: {
           '@type': 'Object',
           name: new URL(url).hostname,
-          icon: metadata.icon ? {
-            '@type': 'Image',
-            url: metadata.icon,
-          } : undefined,
+          icon: metadata.icon
+            ? {
+                '@type': 'Image',
+                url: metadata.icon,
+              }
+            : undefined,
         },
-        icon: metadata.icon ? {
-          '@type': 'Image',
-          url: metadata.icon,
-        } : undefined,
-        image: metadata.image ? {
-          '@type': 'Image',
-          url: metadata.image,
-        } : undefined,
+        icon: metadata.icon
+          ? {
+              '@type': 'Image',
+              url: metadata.icon,
+            }
+          : undefined,
+        image: metadata.image
+          ? {
+              '@type': 'Image',
+              url: metadata.image,
+            }
+          : undefined,
       },
     } as JsonLd.Response;
   }
@@ -259,7 +267,7 @@ export class LinkPreviewClient extends CardClient {
     if (provider) {
       return LinkPreviewClient.generateLinkPreviewResponse(provider, url);
     }
-    
+
     // For generic URLs, fetch actual metadata
     try {
       return await LinkPreviewClient.generateGenericLinkResponse(url);
@@ -275,7 +283,7 @@ export class LinkPreviewClient extends CardClient {
     if (provider) {
       return LinkPreviewClient.generateLinkPreviewResponse(provider, url);
     }
-    
+
     // For generic URLs, try to fetch metadata
     try {
       return await LinkPreviewClient.generateGenericLinkResponse(url);

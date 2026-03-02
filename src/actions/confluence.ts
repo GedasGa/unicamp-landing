@@ -8,13 +8,10 @@
  */
 export async function getConfluenceLessonTopics(lessonConfluenceId: string) {
   try {
-    const response = await fetch(
-      `/api/lessons/${lessonConfluenceId}/topics`,
-      {
-        method: 'GET',
-        cache: 'no-store',
-      }
-    );
+    const response = await fetch(`/api/lessons/${lessonConfluenceId}/topics`, {
+      method: 'GET',
+      cache: 'no-store',
+    });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
@@ -25,9 +22,9 @@ export async function getConfluenceLessonTopics(lessonConfluenceId: string) {
     return { success: true, data: topics };
   } catch (error) {
     console.error('Error fetching lesson topics:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Failed to fetch topics' 
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to fetch topics',
     };
   }
 }
@@ -37,13 +34,10 @@ export async function getConfluenceLessonTopics(lessonConfluenceId: string) {
  */
 export async function getConfluenceTopicContent(topicId: string) {
   try {
-    const response = await fetch(
-      `/api/topics/${topicId}`,
-      {
-        method: 'GET',
-        cache: 'no-store',
-      }
-    );
+    const response = await fetch(`/api/topics/${topicId}`, {
+      method: 'GET',
+      cache: 'no-store',
+    });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
@@ -54,9 +48,9 @@ export async function getConfluenceTopicContent(topicId: string) {
     return { success: true, data: content };
   } catch (error) {
     console.error('Error fetching topic content:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Failed to fetch topic content' 
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to fetch topic content',
     };
   }
 }

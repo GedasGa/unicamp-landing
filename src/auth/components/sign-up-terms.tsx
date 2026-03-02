@@ -23,11 +23,21 @@ export function SignUpTerms({ sx, ...other }: BoxProps) {
       {...other}
     >
       {'By signing up, I agree to '}
-      <Link component={RouterLink} href={paths.termsOfService} underline="always" color="text.primary">
+      <Link
+        component={RouterLink}
+        href={paths.termsOfService}
+        underline="always"
+        color="text.primary"
+      >
         Terms of service
       </Link>
       {' and '}
-      <Link component={RouterLink} href={paths.privacyPolicy} underline="always" color="text.primary">
+      <Link
+        component={RouterLink}
+        href={paths.privacyPolicy}
+        underline="always"
+        color="text.primary"
+      >
         Privacy policy
       </Link>
       .

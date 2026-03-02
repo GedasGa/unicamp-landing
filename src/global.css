@@ -67,3 +67,27 @@ input[type='number']::-webkit-inner-spin-button {
   margin: 0;
   -webkit-appearance: none;
 }
+
+/** **************************************
+* Google Translate — accommodate banner
+*************************************** */
+/* Google injects a 38px iframe banner and sets body { top: -38px } which clips content.
+   Override: keep body at top:0 and shift content down with margin instead. */
+/* .translated-ltr body {
+  margin-top: 38px !important;
+} */
+.translated-ltr layout__root {
+  margin-top: 38px !important;
+}
+/* Shift sticky header down so it sticks below the Google Translate bar */
+.translated-ltr .layout__header {
+  top: 38px !important;
+}
+/* Shift fixed sidebar down to match the Google Translate bar height */
+body.translated-ltr .layout__nav--vertical {
+  top: 38px !important;
+}
+/* Hide the "Translated by Google" tooltip/popup */
+.goog-te-balloon-frame {
+  display: none !important;
+}

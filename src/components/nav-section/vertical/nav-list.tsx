@@ -1,6 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 
-import { usePathname } from 'src/routes/hooks';
 import { isExternalLink } from 'src/routes/utils';
 import { useActiveLink } from 'src/routes/hooks/use-active-link';
 
@@ -13,28 +12,36 @@ import type { NavListProps, NavSubListProps } from '../types';
 // ----------------------------------------------------------------------
 
 export function NavList({ data, render, depth, slotProps, enabledRootRedirect }: NavListProps) {
-  const pathname = usePathname();
-
-  const active = useActiveLink(data.path, !!data.children);
+  // Only use deep (prefix) matching for modules (depth 1 with children)
+  const active = useActiveLink(data.path, depth === 1 && !!data.children);
 
   const [openMenu, setOpenMenu] = useState(active);
 
-  useEffect(() => {
-    if (!active) {
-      handleCloseMenu();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  // Keep a ref to onExpand callback so the effect always has the latest version
+  const onExpandRef = useRef<(() => void) | undefined>((data as any).onExpand);
+  onExpandRef.current = (data as any).onExpand;
 
+  // Sync open state with active state (open when active, close when no longer active)
+  useEffect(() => {
+    setOpenMenu(active);
+  }, [active]);
+
+  // Fire onExpand callback when opened (for on-demand data fetching)
+  useEffect(() => {
+    if (openMenu) {
+      onExpandRef.current?.();
+    }
+  }, [openMenu]);
+
+  // Parent items: single click = toggle expand/collapse
   const handleToggleMenu = useCallback(() => {
     if (data.children) {
       setOpenMenu((prev) => !prev);
     }
   }, [data.children]);
 
-  const handleCloseMenu = useCallback(() => {
-    setOpenMenu(false);
-  }, []);
+  // All parent items render as div (expand only). Only leaf items render as RouterLink.
+  const isLeafItem = !data.children;
 
   const renderNavItem = (
     <NavItem
@@ -52,11 +59,13 @@ export function NavList({ data, render, depth, slotProps, enabledRootRedirect }:
       hasChild={!!data.children}
       open={data.children && openMenu}
       externalLink={isExternalLink(data.path)}
-      enabledRootRedirect={enabledRootRedirect}
+      // Leaf items: RouterLink. Parent items: div (expand only, no navigation).
+      enabledRootRedirect={isLeafItem ? enabledRootRedirect : false}
       // styles
       slotProps={depth === 1 ? slotProps?.rootItem : slotProps?.subItem}
-      // actions
-      onClick={handleToggleMenu}
+      // Parent items: click toggles expand/collapse
+      // Leaf items: default RouterLink click navigation
+      onClick={data.children ? handleToggleMenu : undefined}
     />
   );
 

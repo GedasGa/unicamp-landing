@@ -31,28 +31,34 @@ export async function getSearchableContent(userId: string): Promise<SearchableIt
     for (const course of courses) {
       // Get all modules in this course
       const modules = await getModules(course.id);
-      
+
       // Get accessible modules for this student
       const accessibleModuleIds = await getAccessibleModules(userId, course.id);
 
       // Add accessible modules to search
       for (const module of modules) {
         if (accessibleModuleIds.has(module.id)) {
+          // Get lessons for this module
+          const lessons = await getLessons(module.id);
+
+          // Get accessible lessons for this module
+          const accessibleLessonIds = await getAccessibleLessons(userId, module.id);
+
+          // Find first accessible lesson to link to
+          const firstLesson = lessons.find((l) => accessibleLessonIds.has(l.id));
+          const modulePath = firstLesson
+            ? paths.app.courses.lesson(course.id, module.id, firstLesson.id)
+            : paths.app.root;
+
           items.push({
             id: module.id,
             title: module.title,
             description: module.description,
-            path: paths.app.courses.module(course.id, module.id),
+            path: modulePath,
             type: 'module',
             courseName: course.title,
             courseId: course.id,
           });
-
-          // Get lessons for this module
-          const lessons = await getLessons(module.id);
-          
-          // Get accessible lessons for this module
-          const accessibleLessonIds = await getAccessibleLessons(userId, module.id);
 
           // Add accessible lessons to search
           for (const lesson of lessons) {

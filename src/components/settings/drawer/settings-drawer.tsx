@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Badge from '@mui/material/Badge';
@@ -39,14 +41,15 @@ export function SettingsDrawer({
   const theme = useTheme();
   const settings = useSettingsContext();
   const { mode, setMode } = useColorScheme();
+  const { t } = useTranslation('app');
 
   const renderHead = (
     <Box display="flex" alignItems="center" sx={{ py: 2, pr: 1, pl: 2.5 }}>
       <Typography variant="h6" sx={{ flexGrow: 1 }}>
-        Settings
+        {t('settings.title')}
       </Typography>
       <FullScreenButton />
-      <Tooltip title="Reset">
+      <Tooltip title={t('settings.reset')}>
         <IconButton
           onClick={() => {
             settings.onReset();
@@ -58,7 +61,7 @@ export function SettingsDrawer({
           </Badge>
         </IconButton>
       </Tooltip>
-      <Tooltip title="Close">
+      <Tooltip title={t('settings.close')}>
         <IconButton onClick={settings.onCloseDrawer}>
           <Iconify icon="mingcute:close-line" />
         </IconButton>
@@ -68,7 +71,7 @@ export function SettingsDrawer({
 
   const renderMode = (
     <BaseOption
-      label="Dark mode"
+      label={t('settings.darkMode')}
       icon="moon"
       selected={settings.colorScheme === 'dark'}
       onClick={() => {
@@ -80,7 +83,7 @@ export function SettingsDrawer({
 
   const renderContrast = (
     <BaseOption
-      label="Contrast"
+      label={t('settings.contrast')}
       icon="contrast"
       selected={settings.contrast === 'hight'}
       onClick={() =>
@@ -91,8 +94,8 @@ export function SettingsDrawer({
 
   const renderCompact = (
     <BaseOption
-      tooltip="Dashboard only and available at large resolutions > 1600px (xl)"
-      label="Compact"
+      tooltip={t('settings.compactTooltip')}
+      label={t('settings.compact')}
       icon="autofit-width"
       selected={settings.compactLayout}
       onClick={() => settings.onUpdateField('compactLayout', !settings.compactLayout)}
@@ -116,21 +119,21 @@ export function SettingsDrawer({
       value={settings.fontFamily}
       onClickOption={(newValue) => settings.onUpdateField('fontFamily', newValue)}
       options={[
-        { 
-          name: defaultFont, 
-          tooltip: 'Default font' 
+        {
+          name: defaultFont,
+          tooltip: t('settings.fontTooltips.default'),
         },
-        { 
-          name: 'Lexend Variable', 
-          tooltip: 'Designed to improve reading proficiency and reduce visual stress for all readers' 
+        {
+          name: 'Lexend Variable',
+          tooltip: t('settings.fontTooltips.lexend'),
         },
-        { 
-          name: 'Atkinson Hyperlegible', 
-          tooltip: 'Created for low vision readers with distinct letterforms, helpful for dyslexia' 
+        {
+          name: 'Atkinson Hyperlegible',
+          tooltip: t('settings.fontTooltips.atkinson'),
         },
-        { 
-          name: 'OpenDyslexic', 
-          tooltip: 'Specially designed typeface for people with dyslexia with weighted bottoms and unique shapes' 
+        {
+          name: 'OpenDyslexic',
+          tooltip: t('settings.fontTooltips.openDyslexic'),
         },
       ]}
     />

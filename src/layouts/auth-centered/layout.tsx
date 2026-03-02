@@ -39,9 +39,7 @@ export function AuthCenteredLayout({ sx, children, header }: AuthCenteredLayoutP
           slotProps={{ container: { maxWidth: false } }}
           sx={{ position: { [layoutQuery]: 'fixed' }, ...header?.sx }}
           slots={{
-            leftArea: (
-              <Logo onlyLogo={false} width={160} />
-            ),
+            leftArea: <Logo onlyLogo={false} width={160} />,
             rightArea: (
               <Box display="flex" alignItems="center" gap={{ xs: 1, sm: 1.5 }}>
                 {/* -- Settings button -- */}

@@ -1,0 +1,90 @@
+{
+  "search": {
+    "placeholder": "Search..."
+  },
+  "nav": {
+    "home": "Home",
+    "backToHome": "Back to Home",
+    "backToModule": "Back to Module"
+  },
+  "settings": {
+    "title": "Settings",
+    "reset": "Reset",
+    "close": "Close",
+    "darkMode": "Dark mode",
+    "contrast": "Contrast",
+    "compact": "Compact",
+    "compactTooltip": "Dashboard only and available at large resolutions > 1600px (xl)",
+    "presets": "Presets",
+    "font": "Font",
+    "fontSize": "Font size",
+    "fullScreen": "Full Screen",
+    "exitFullScreen": "Exit",
+    "fontTooltips": {
+      "default": "Default font",
+      "lexend": "Designed to improve reading proficiency and reduce visual stress for all readers",
+      "atkinson": "Created for low vision readers with distinct letterforms, helpful for dyslexia",
+      "openDyslexic": "Specially designed typeface for people with dyslexia with weighted bottoms and unique shapes"
+    },
+    "colorTooltips": {
+      "default": "Brand blue color with excellent contrast",
+      "black": "High contrast monochrome for maximum accessibility",
+      "daltonism": "Optimized cyan palette for color blindness (deuteranopia, protanopia)"
+    },
+    "fontSizeOptions": {
+      "small": "Small",
+      "normal": "Normal",
+      "large": "Large"
+    }
+  },
+  "dashboard": {
+    "greeting": "Hi, {{name}} 👋",
+    "greetingSubtitle": "Let's learn something today!",
+    "meetingStartingSoon": "Meeting starting soon",
+    "meetingInProgress": "Meeting in progress",
+    "startsIn": "Starts in {{minutes}} minute{{plural}} at {{time}}",
+    "joinMeeting": "Join Meeting",
+    "joinMeetingNow": "Join Meeting Now",
+    "location": "Location:",
+    "continue": "Continue...",
+    "resume": "Resume",
+    "courseModules": "Course modules",
+    "noCoursesAssigned": "No courses assigned yet",
+    "exploreAllCourses": "Explore all courses",
+    "schedule": "Schedule",
+    "noUpcomingEvents": "No upcoming events",
+    "lecturer": "Lecturer",
+    "yourGroup": "Your group",
+    "selectGroup": "Select a group",
+    "youHaveNoGroups": "You have no groups assigned",
+    "contactInstructor": "Contact your instructor",
+    "lessonStartsSoon": "Lesson starts soon",
+    "startLesson": "Start Lesson",
+    "progress": "Progress",
+    "rating": "Rating",
+    "noRatingYet": "No rating yet",
+    "rateLesson": "Rate this lesson",
+    "contactOnSlack": "Contact me on Slack 👍",
+    "wednesdays": "Wednesdays",
+    "saturdays": "Saturdays",
+    "completed": "Completed",
+    "previous": "Previous",
+    "next": "Next",
+    "markAsComplete": "Mark as Complete"
+  },
+  "calendar": {
+    "month": "Month",
+    "week": "Week",
+    "day": "Day",
+    "agenda": "Agenda",
+    "today": "Today",
+    "online": "Online",
+    "inPerson": "In Person",
+    "joinMeeting": "Join Meeting",
+    "location": "Location:",
+    "instructions": "Instructions:"
+  },
+  "auth": {
+    "logout": "Logout"
+  }
+}

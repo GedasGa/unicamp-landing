@@ -4,6 +4,7 @@ import type { CalendarEvent } from 'src/types/schedule';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -40,16 +41,24 @@ import { useAuthContext } from 'src/auth/hooks';
 
 export function DashboardView() {
   const router = useRouter();
+  const { t } = useTranslation('app');
   const { user } = useAuthContext();
   const { selectedGroup, groups } = useGroupContext();
-  const { courses, coursesLoading: loading, continueData } = useCourseDataContext();
+  const {
+    courses,
+    coursesLoading: loading,
+    continueData,
+    getLessonsForModule,
+    getAccessibleLessonsForModule,
+    getLessonProgressForModule,
+  } = useCourseDataContext();
   const [activeMeeting, setActiveMeeting] = useState<CalendarEvent | null>(null);
-  
+
   const hasNoGroups = groups.length === 0;
 
   useEffect(() => {
     fetchActiveMeeting();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const fetchActiveMeeting = async () => {
@@ -59,7 +68,7 @@ export function DashboardView() {
       const schedule = await getUserSchedule(user.id);
       const now = new Date();
       const tenMinutesFromNow = new Date(now.getTime() + 10 * 60 * 1000);
-      
+
       // Find meeting that is currently active or starting within 10 minutes
       const active = schedule.find((event) => {
         const start = new Date(event.start);
@@ -67,7 +76,7 @@ export function DashboardView() {
         // Show if meeting is active (started but not ended) or starts within 10 minutes
         return (start <= now && end >= now) || (start > now && start <= tenMinutesFromNow);
       });
-      
+
       setActiveMeeting(active || null);
     } catch (error) {
       console.error('Error fetching active meeting:', error);
@@ -141,103 +150,116 @@ export function DashboardView() {
             {/* Greeting */}
             <Box>
               <Typography variant="h3" sx={{ mb: 1 }}>
-                Hi, {user?.displayName || user?.email?.split('@')[0] || 'there'} 👋
+                {t('dashboard.greeting', {
+                  name: user?.displayName || user?.email?.split('@')[0] || 'there',
+                })}
               </Typography>
               <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-                Let&apos;s learn something today!
+                {t('dashboard.greetingSubtitle')}
               </Typography>
             </Box>
 
             {/* Active Meeting Section */}
-            {activeMeeting && (() => {
-              const now = new Date();
-              const startTime = new Date(activeMeeting.start);
-              const isStartingSoon = startTime > now;
-              const minutesUntilStart = isStartingSoon ? Math.round((startTime.getTime() - now.getTime()) / (1000 * 60)) : 0;
-              
-              return (
-                <Box>
-                  <Typography variant="h5" sx={{ mb: 2 }}>
-                    {isStartingSoon ? 'Meeting starting soon' : 'Meeting in progress'}
-                  </Typography>
-                  <Card 
-                    sx={{ 
-                      p: 3,
-                      background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
-                      color: 'common.white',
-                    }}
-                  >
-                    <Stack spacing={2}>
-                      <Stack direction="row" alignItems="center" spacing={1}>
-                        <Iconify 
-                          icon={activeMeeting.mode === 'online' ? 'mdi:monitor' : 'mdi:map-marker'} 
-                          width={24}
-                        />
-                        <Typography variant="h6">
-                          {activeMeeting.title}
-                        </Typography>
-                      </Stack>
-                      
-                      {activeMeeting.description && (
-                        <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                          {activeMeeting.description}
-                        </Typography>
-                      )}
-                      
-                      <Stack direction="row" alignItems="center" spacing={1}>
-                        <Iconify icon="eva:clock-outline" width={20} />
-                        <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                          {isStartingSoon 
-                            ? `Starts in ${minutesUntilStart} minute${minutesUntilStart !== 1 ? 's' : ''} at ${fDateTime(activeMeeting.start, 'HH:mm')}`
-                            : `${fDateTime(activeMeeting.start, 'HH:mm')} - ${fDateTime(activeMeeting.end, 'HH:mm')}`
-                          }
-                        </Typography>
-                      </Stack>
+            {activeMeeting &&
+              (() => {
+                const now = new Date();
+                const startTime = new Date(activeMeeting.start);
+                const isStartingSoon = startTime > now;
+                const minutesUntilStart = isStartingSoon
+                  ? Math.round((startTime.getTime() - now.getTime()) / (1000 * 60))
+                  : 0;
 
-                      {activeMeeting.mode === 'online' && activeMeeting.meetingLink && (
-                        <Button
-                          variant="contained"
-                          size="large"
-                          startIcon={<Iconify icon="eva:video-fill" />}
-                          href={activeMeeting.meetingLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          sx={{ 
-                            mt: 1,
-                            bgcolor: 'common.white',
-                            color: 'primary.main',
-                            '&:hover': {
-                              bgcolor: 'grey.100',
-                            },
-                          }}
-                        >
-                          {isStartingSoon ? 'Join Meeting' : 'Join Meeting Now'}
-                        </Button>
-                      )}
+                return (
+                  <Box>
+                    <Typography variant="h5" sx={{ mb: 2 }}>
+                      {isStartingSoon
+                        ? t('dashboard.meetingStartingSoon')
+                        : t('dashboard.meetingInProgress')}
+                    </Typography>
+                    <Card
+                      sx={{
+                        p: 3,
+                        background: (theme) =>
+                          `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
+                        color: 'common.white',
+                      }}
+                    >
+                      <Stack spacing={2}>
+                        <Stack direction="row" alignItems="center" spacing={1}>
+                          <Iconify
+                            icon={
+                              activeMeeting.mode === 'online' ? 'mdi:monitor' : 'mdi:map-marker'
+                            }
+                            width={24}
+                          />
+                          <Typography variant="h6">{activeMeeting.title}</Typography>
+                        </Stack>
 
-                      {activeMeeting.mode === 'live' && activeMeeting.address && (
-                        <Stack spacing={0.5}>
-                          <Typography variant="subtitle2">Location:</Typography>
+                        {activeMeeting.description && (
                           <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                            {activeMeeting.address}
-                            {activeMeeting.city && `, ${activeMeeting.city}`}
+                            {activeMeeting.description}
+                          </Typography>
+                        )}
+
+                        <Stack direction="row" alignItems="center" spacing={1}>
+                          <Iconify icon="eva:clock-outline" width={20} />
+                          <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                            {isStartingSoon
+                              ? t('dashboard.startsIn', {
+                                  minutes: minutesUntilStart,
+                                  plural: minutesUntilStart !== 1 ? 's' : '',
+                                  time: fDateTime(activeMeeting.start, 'HH:mm'),
+                                })
+                              : `${fDateTime(activeMeeting.start, 'HH:mm')} - ${fDateTime(activeMeeting.end, 'HH:mm')}`}
                           </Typography>
                         </Stack>
-                      )}
-                    </Stack>
-                  </Card>
-                </Box>
-              );
-            })()}
+
+                        {activeMeeting.mode === 'online' && activeMeeting.meetingLink && (
+                          <Button
+                            variant="contained"
+                            size="large"
+                            startIcon={<Iconify icon="eva:video-fill" />}
+                            href={activeMeeting.meetingLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{
+                              mt: 1,
+                              bgcolor: 'common.white',
+                              color: 'primary.main',
+                              '&:hover': {
+                                bgcolor: 'grey.100',
+                              },
+                            }}
+                          >
+                            {isStartingSoon
+                              ? t('dashboard.joinMeeting')
+                              : t('dashboard.joinMeetingNow')}
+                          </Button>
+                        )}
+
+                        {activeMeeting.mode === 'live' && activeMeeting.address && (
+                          <Stack spacing={0.5}>
+                            <Typography variant="subtitle2">{t('dashboard.location')}</Typography>
+                            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                              {activeMeeting.address}
+                              {activeMeeting.city && `, ${activeMeeting.city}`}
+                            </Typography>
+                          </Stack>
+                        )}
+                      </Stack>
+                    </Card>
+                  </Box>
+                );
+              })()}
 
             {/* Continue Section */}
             {continueData && (
               <Box>
                 <Typography variant="h5" sx={{ mb: 2 }}>
-                  Continue...
+                  {t('dashboard.continue')}
                 </Typography>
-                <Card 
-                  sx={{ 
+                <Card
+                  sx={{
                     p: 3,
                     cursor: 'pointer',
                     '&:hover': {
@@ -245,11 +267,11 @@ export function DashboardView() {
                     },
                   }}
                   onClick={() => {
-                    const {lesson} = continueData;
+                    const { lesson } = continueData;
                     const moduleId = lesson.module?.id;
                     const courseId = lesson.module?.course?.id;
                     const lessonId = lesson.id;
-                    
+
                     if (courseId && moduleId && lessonId) {
                       router.push(paths.app.courses.lesson(courseId, moduleId, lessonId));
                     }
@@ -262,7 +284,8 @@ export function DashboardView() {
                       </Typography>
                       <Stack direction="row" spacing={1} alignItems="center">
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                          {continueData.lesson?.module?.course?.title} • {continueData.lesson?.module?.title}
+                          {continueData.lesson?.module?.course?.title} •{' '}
+                          {continueData.lesson?.module?.title}
                         </Typography>
                       </Stack>
                     </Box>
@@ -272,17 +295,17 @@ export function DashboardView() {
                       endIcon={<Iconify icon="eva:arrow-forward-fill" />}
                       onClick={(e) => {
                         e.stopPropagation();
-                        const {lesson} = continueData;
+                        const { lesson } = continueData;
                         const moduleId = lesson.module?.id;
                         const courseId = lesson.module?.course?.id;
                         const lessonId = lesson.id;
-                        
+
                         if (courseId && moduleId && lessonId) {
                           router.push(paths.app.courses.lesson(courseId, moduleId, lessonId));
                         }
                       }}
                     >
-                      Resume
+                      {t('dashboard.resume')}
                     </Button>
                   </Stack>
                 </Card>
@@ -292,15 +315,17 @@ export function DashboardView() {
             {/* Course Modules Section */}
             <Box>
               <Typography variant="h5" sx={{ mb: 2 }}>
-                Course modules
+                {t('dashboard.courseModules')}
               </Typography>
               {courses.length === 0 ? (
                 <Card sx={{ p: 5, textAlign: 'center' }}>
                   <Typography variant="h6" sx={{ color: 'text.secondary' }}>
-                    No courses assigned yet
+                    {t('dashboard.noCoursesAssigned')}
                   </Typography>
                   <Typography variant="body2" sx={{ color: 'text.disabled', mt: 1 }}>
-                    Explore our available programs and contact us to get started. If you&apos;ve already purchased a course, please reach out to your lecturer to be added to a group.
+                    Explore our available programs and contact us to get started. If you&apos;ve
+                    already purchased a course, please reach out to your lecturer to be added to a
+                    group.
                   </Typography>
                 </Card>
               ) : (
@@ -321,22 +346,62 @@ export function DashboardView() {
                         }}
                         onClick={async () => {
                           if (module.is_visible) {
-                            router.push(paths.app.courses.module(course.id, module.id));
+                            const [lessons, accessibleLessonIds, progressMap] = await Promise.all([
+                              getLessonsForModule(module.id),
+                              getAccessibleLessonsForModule(module.id),
+                              getLessonProgressForModule(module.id),
+                            ]);
+                            const accessibleLessons = lessons.filter((l: any) =>
+                              accessibleLessonIds.has(l.id)
+                            );
+
+                            if (accessibleLessons.length === 0) return;
+
+                            let targetLesson;
+
+                            if (module.progress_percentage === 100) {
+                              // Completed → last lesson
+                              targetLesson = accessibleLessons[accessibleLessons.length - 1];
+                            } else if (module.progress_percentage === 0) {
+                              // Not started → first lesson
+                              targetLesson = accessibleLessons[0];
+                            } else {
+                              // In progress → last completed lesson, or first incomplete
+                              const lastCompleted = [...accessibleLessons]
+                                .reverse()
+                                .find((l: any) => progressMap.get(l.id)?.completed);
+                              targetLesson =
+                                lastCompleted ||
+                                accessibleLessons.find(
+                                  (l: any) => !progressMap.get(l.id)?.completed
+                                ) ||
+                                accessibleLessons[0];
+                            }
+
+                            if (targetLesson) {
+                              router.push(
+                                paths.app.courses.lesson(course.id, module.id, targetLesson.id)
+                              );
+                            }
                           } else {
                             // Module is locked, fetch visibility data to get unlocked_at
                             if (!selectedGroup?.id) return;
-                            
+
                             const { data: visibilityData } = await supabase
                               .from('group_module_visibility')
                               .select('unlocked_at')
                               .eq('group_id', selectedGroup.id)
                               .eq('module_id', module.id)
                               .single();
-                            
+
                             if (visibilityData?.unlocked_at) {
-                              toast.error(`Module is locked. It will be unlocked at ${fDateTime(visibilityData.unlocked_at)}`);
+                              toast.error(
+                                `Module is locked. It will be unlocked at ${fDateTime(visibilityData.unlocked_at)}`
+                              );
                             } else {
-                              toast.error('Module is locked. It will be unlocked by your lecturer when the time comes.');
+                              toast.error(
+                                'Module is locked. It will be unlocked by your lecturer when the time comes.'
+                              );
                             }
                           }
                         }}
@@ -359,29 +424,30 @@ export function DashboardView() {
                                   justifyContent: 'center',
                                 }}
                               >
-                                <Iconify icon="eva:lock-fill" width={20} sx={{ color: 'text.disabled' }} />
+                                <Iconify
+                                  icon="eva:lock-fill"
+                                  width={20}
+                                  sx={{ color: 'text.disabled' }}
+                                />
                               </Box>
                             )}
                             {module.is_visible && module.progress_percentage === 100 && (
-                              <Box
-                                sx={{
-                                  px: 1.5,
-                                  py: 0.5,
-                                  borderRadius: 1,
-                                  bgcolor: 'success.lighter',
-                                  color: 'success.dark',
-                                }}
-                              >
-                                <Typography variant="caption" fontWeight="bold">
-                                  Completed
-                                </Typography>
-                              </Box>
+                              <Chip
+                                label={t('dashboard.completed')}
+                                color="success"
+                                icon={<Iconify icon="eva:checkmark-circle-2-fill" />}
+                              />
                             )}
                           </Stack>
 
                           {module.is_visible && (
                             <Box>
-                              <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
+                              <Stack
+                                direction="row"
+                                alignItems="center"
+                                spacing={1}
+                                sx={{ mb: 0.5 }}
+                              >
                                 <LinearProgress
                                   variant="determinate"
                                   value={module.progress_percentage}
@@ -396,8 +462,8 @@ export function DashboardView() {
                                         module.progress_percentage === 100
                                           ? 'success.main'
                                           : index === 1
-                                          ? 'secondary.main'
-                                          : 'primary.main',
+                                            ? 'secondary.main'
+                                            : 'primary.main',
                                     },
                                   }}
                                 />
@@ -427,7 +493,7 @@ export function DashboardView() {
             {hasNoGroups ? (
               <Box>
                 <Typography variant="h5" sx={{ mb: 2 }}>
-                  Available Programs
+                  {t('dashboard.selectGroup')}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3 }}>
                   Choose a program to start your learning journey
@@ -448,17 +514,17 @@ export function DashboardView() {
                     <Stack spacing={2.5}>
                       {/* Icon and Level */}
                       <Stack direction="row" alignItems="center" justifyContent="space-between">
-                        <SvgColor 
+                        <SvgColor
                           src={`${CONFIG.assetsDir}/assets/icons/programs/web-development.svg`}
                           width={56}
                           sx={{ color: 'primary.main' }}
                         />
                         <Stack direction="row" alignItems="center" spacing={0.5}>
-                          <Image 
-                            alt="Beginner icon" 
+                          <Image
+                            alt="Beginner icon"
                             src={`${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`}
-                            width={20} 
-                            height={20} 
+                            width={20}
+                            height={20}
                           />
                           <Typography variant="caption" color="text.secondary">
                             Beginner
@@ -476,9 +542,7 @@ export function DashboardView() {
 
                       {/* Title and Description */}
                       <Stack spacing={1}>
-                        <Typography variant="h6">
-                          Web Development
-                        </Typography>
+                        <Typography variant="h6">Web Development</Typography>
                         <Typography variant="body2" color="text.secondary">
                           Frontend & Full-Stack Development
                         </Typography>
@@ -524,18 +588,14 @@ export function DashboardView() {
 
                       {/* CTA Buttons */}
                       <Stack spacing={1.5}>
-                        <Button 
-                          fullWidth 
+                        <Button
+                          fullWidth
                           variant="contained"
                           onClick={() => window.open(paths.programs.fe, '_blank')}
                         >
                           Apply Now
                         </Button>
-                        <Button 
-                          fullWidth 
-                          variant="outlined"
-                          href={paths.programs.fe}
-                        >
+                        <Button fullWidth variant="outlined" href={paths.programs.fe}>
                           View Program
                         </Button>
                       </Stack>
@@ -557,17 +617,17 @@ export function DashboardView() {
                     <Stack spacing={2.5}>
                       {/* Icon and Level */}
                       <Stack direction="row" alignItems="center" justifyContent="space-between">
-                        <SvgColor 
+                        <SvgColor
                           src={`${CONFIG.assetsDir}/assets/icons/programs/product-design.svg`}
                           width={56}
                           sx={{ color: 'primary.main' }}
                         />
                         <Stack direction="row" alignItems="center" spacing={0.5}>
-                          <Image 
-                            alt="Beginner icon" 
+                          <Image
+                            alt="Beginner icon"
                             src={`${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`}
-                            width={20} 
-                            height={20} 
+                            width={20}
+                            height={20}
                           />
                           <Typography variant="caption" color="text.secondary">
                             Beginner
@@ -585,9 +645,7 @@ export function DashboardView() {
 
                       {/* Title and Description */}
                       <Stack spacing={1}>
-                        <Typography variant="h6">
-                          UX/UI Design
-                        </Typography>
+                        <Typography variant="h6">UX/UI Design</Typography>
                         <Typography variant="body2" color="text.secondary">
                           User Experience & Interface Design
                         </Typography>
@@ -633,18 +691,14 @@ export function DashboardView() {
 
                       {/* CTA Buttons */}
                       <Stack spacing={1.5}>
-                        <Button 
-                          fullWidth 
+                        <Button
+                          fullWidth
                           variant="contained"
                           onClick={() => window.open(paths.programs.ux, '_blank')}
                         >
                           Apply Now
                         </Button>
-                        <Button 
-                          fullWidth 
-                          variant="outlined"
-                          href={paths.programs.ux}
-                        >
+                        <Button fullWidth variant="outlined" href={paths.programs.ux}>
                           View Program
                         </Button>
                       </Stack>
@@ -657,7 +711,7 @@ export function DashboardView() {
                 {/* Schedule - Only shown if user has groups */}
                 <Box>
                   <Typography variant="h5" sx={{ mb: 2 }}>
-                    Schedule
+                    {t('dashboard.schedule')}
                   </Typography>
                   <Stack spacing={1.5}>
                     <Card sx={{ p: 2 }}>
@@ -676,7 +730,7 @@ export function DashboardView() {
                           <Iconify icon="solar:moon-bold" width={20} sx={{ color: 'info.main' }} />
                         </Box>
                         <Box sx={{ flex: 1 }}>
-                          <Typography variant="subtitle2">Wednesdays</Typography>
+                          <Typography variant="subtitle2">{t('dashboard.wednesdays')}</Typography>
                         </Box>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                           18:30 – 21:45
@@ -697,10 +751,14 @@ export function DashboardView() {
                             justifyContent: 'center',
                           }}
                         >
-                          <Iconify icon="solar:sun-bold" width={20} sx={{ color: 'warning.main' }} />
+                          <Iconify
+                            icon="solar:sun-bold"
+                            width={20}
+                            sx={{ color: 'warning.main' }}
+                          />
                         </Box>
                         <Box sx={{ flex: 1 }}>
-                          <Typography variant="subtitle2">Saturdays</Typography>
+                          <Typography variant="subtitle2">{t('dashboard.saturdays')}</Typography>
                         </Box>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                           09:00 – 13:30
@@ -718,7 +776,7 @@ export function DashboardView() {
                 {/* Lecturer - Only shown if user has groups */}
                 <Box>
                   <Typography variant="h5" sx={{ mb: 2 }}>
-                    Lecturer
+                    {t('dashboard.lecturer')}
                   </Typography>
                   <Card
                     sx={{
@@ -729,7 +787,9 @@ export function DashboardView() {
                         bgcolor: 'action.hover',
                       },
                     }}
-                    onClick={() => window.open('https://unicamplt.slack.com/archives/D07QFV0UJNQ', '_blank')}
+                    onClick={() =>
+                      window.open('https://unicamplt.slack.com/archives/D07QFV0UJNQ', '_blank')
+                    }
                   >
                     <Stack direction="row" spacing={2} alignItems="center">
                       <Image
@@ -744,7 +804,7 @@ export function DashboardView() {
                       <Box sx={{ flex: 1 }}>
                         <Typography variant="subtitle1">Aistė Gerdzevičiūtė</Typography>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                          Contact me on Slack 👍
+                          {t('dashboard.contactOnSlack')}
                         </Typography>
                       </Box>
                     </Stack>

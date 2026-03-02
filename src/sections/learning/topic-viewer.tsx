@@ -8,6 +8,7 @@ import type { FC } from 'react';
 import type { MediaClientConfig } from '@atlaskit/media-core';
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IntlProvider } from 'react-intl-next';
 import { setGlobalTheme } from '@atlaskit/tokens';
 import { ReactRenderer } from '@atlaskit/renderer';
@@ -51,6 +52,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
   isCompleted = false,
 }) => {
   const settings = useSettingsContext();
+  const { t } = useTranslation('app');
   const { getTopicContent } = useCourseDataContext();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -79,7 +81,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
     const fetchContent = async () => {
       setLoading(true);
       setError(null);
-      
+
       try {
         // Use cached content from context (fetched on demand)
         const contentData = await getTopicContent(confluencePageId);
@@ -97,7 +99,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
     };
 
     fetchContent();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [confluencePageId]);
 
   if (loading) {
@@ -136,7 +138,15 @@ export const TopicViewer: FC<TopicViewerProps> = ({
   return (
     <Card>
       <CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'top', justifyContent: 'space-between', gap: 2, mb: 3 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'top',
+            justifyContent: 'space-between',
+            gap: 2,
+            mb: 3,
+          }}
+        >
           <Typography variant="h4">
             {content?.title || topicTitle}
             {content?.lastUpdated && (
@@ -147,10 +157,10 @@ export const TopicViewer: FC<TopicViewerProps> = ({
             )}
           </Typography>
           {isCompleted && (
-            <Chip 
-              label="Completed" 
-              color="success" 
-              icon={<Iconify icon="eva:checkmark-circle-2-fill" />}
+            <Chip
+              label={t('dashboard.completed')}
+              color="success"
+              icon={<Iconify icon="eva:checkmark-circle-fill" />}
             />
           )}
         </Box>
@@ -158,7 +168,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
         {/* Render Confluence content using Atlassian ReactRenderer */}
         {content?.content && (
           <IntlProvider locale="en">
-            <SmartCardProvider client={new LinkPreviewClient()} >
+            <SmartCardProvider client={new LinkPreviewClient()}>
               <ReactRenderer
                 document={content.content}
                 appearance="full-width"
@@ -172,14 +182,14 @@ export const TopicViewer: FC<TopicViewerProps> = ({
                 allowUgcScrubber={false}
                 allowSelectAllTrap={false}
                 analyticsEventSeverityTracking={{
-                    enabled: false,
-                    severityNormalThreshold: 0,
-                    severityDegradedThreshold: 0,
+                  enabled: false,
+                  severityNormalThreshold: 0,
+                  severityDegradedThreshold: 0,
                 }}
                 enableSsrInlineScripts={false}
                 noOpSSRInlineScript={false}
                 unsupportedContentLevelsTracking={{
-                    enabled: false,
+                  enabled: false,
                 }}
                 eventHandlers={{
                   link: {
@@ -216,7 +226,15 @@ export const TopicViewer: FC<TopicViewerProps> = ({
           </IntlProvider>
         )}
 
-        <Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
+        <Box
+          sx={{
+            mt: 4,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: 2,
+          }}
+        >
           {onPrevious ? (
             <Button
               variant="outlined"
@@ -224,12 +242,12 @@ export const TopicViewer: FC<TopicViewerProps> = ({
               startIcon={<Iconify icon="eva:arrow-back-fill" />}
               onClick={onPrevious}
             >
-              Previous
+              {t('dashboard.previous')}
             </Button>
           ) : (
             <Box sx={{ width: 140 }} />
           )}
-          
+
           <Box sx={{ display: 'flex', gap: 2 }}>
             {onComplete && !isCompleted && (
               <Button
@@ -238,10 +256,10 @@ export const TopicViewer: FC<TopicViewerProps> = ({
                 endIcon={<Iconify icon="eva:checkmark-circle-2-fill" />}
                 onClick={onComplete}
               >
-                Mark as Complete
+                {t('dashboard.markAsComplete')}
               </Button>
             )}
-            
+
             {isCompleted && onNext && (
               <Button
                 variant="contained"
@@ -249,7 +267,7 @@ export const TopicViewer: FC<TopicViewerProps> = ({
                 endIcon={<Iconify icon="eva:arrow-forward-fill" />}
                 onClick={onNext}
               >
-                Next
+                {t('dashboard.next')}
               </Button>
             )}
           </Box>

@@ -38,7 +38,7 @@ export function CustomBreadcrumbs({
       startIcon={<Iconify icon="eva:arrow-back-fill" />}
       sx={{ alignSelf: 'flex-start' }}
     >
-      {backButtonText || 'Back'} 
+      {backButtonText || 'Back'}
     </Button>
   ) : (
     <Button
@@ -48,7 +48,7 @@ export function CustomBreadcrumbs({
       onClick={() => window.history.back()}
       sx={{ alignSelf: 'flex-start' }}
     >
-      {backButtonText || 'Back'} 
+      {backButtonText || 'Back'}
     </Button>
   );
 

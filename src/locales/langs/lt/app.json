@@ -1,0 +1,90 @@
+{
+  "search": {
+    "placeholder": "Ieškoti..."
+  },
+  "nav": {
+    "home": "Pradinis",
+    "backToHome": "Grįžti į pradžią",
+    "backToModule": "Grįžti į modulį"
+  },
+  "settings": {
+    "title": "Nustatymai",
+    "reset": "Atstatyti",
+    "close": "Uždaryti",
+    "darkMode": "Tamsus režimas",
+    "contrast": "Kontrastas",
+    "compact": "Kompaktiškas",
+    "compactTooltip": "Tik prietaisų skydeliui, naudojame esant didelei rezoliucijai > 1600px (xl)",
+    "presets": "Išankstiniai nustatymai",
+    "font": "Šriftas",
+    "fontSize": "Šrifto dydis",
+    "fullScreen": "Visas ekranas",
+    "exitFullScreen": "Išeiti",
+    "fontTooltips": {
+      "default": "Numatytasis šriftas",
+      "lexend": "Sukurtas pagerinti skaitomumą ir sumažinti regos stresą visiems skaitytojams",
+      "atkinson": "Sukurtas  skaitytojams su aiškiomis raidžių formomis",
+      "openDyslexic": "Specialiai sukurtas šriftas disleksija sergantiems žmonėms"
+    },
+    "colorTooltips": {
+      "default": "Pagrindinė Unicamp mėlyna spalva",
+      "black": "Monochromatinės spalvos maksimaliam kontrastui",
+      "daltonism": "Optimizuota paletė daltonizmui (deuteranopija, protanopija)"
+    },
+    "fontSizeOptions": {
+      "small": "Mažas",
+      "normal": "Normalus",
+      "large": "Didelis"
+    }
+  },
+  "dashboard": {
+    "greeting": "Sveiki, {{name}} 👋",
+    "greetingSubtitle": "Išmokime šiandien ką nors naujo!",
+    "meetingStartingSoon": "Susitikimas greitai prasidės",
+    "meetingInProgress": "Susitikimas vyksta",
+    "startsIn": "Prasideda po {{minutes}} minutė{{plural}} ({{time}})",
+    "joinMeeting": "Prisijungti prie susitikimo",
+    "joinMeetingNow": "Prisijungti prie susitikimo dabar",
+    "location": "Vieta:",
+    "continue": "Tęsti...",
+    "resume": "Tęsti",
+    "courseModules": "Kurso moduliai",
+    "noCoursesAssigned": "Jums dar nėra priskirtų kursų",
+    "exploreAllCourses": "Peržiūrėti visus kursus",
+    "schedule": "Grafikas",
+    "noUpcomingEvents": "Nenumatoma naujų susitikimų",
+    "lecturer": "Lektorius",
+    "yourGroup": "Jūsų grupė",
+    "selectGroup": "Pasirinkti grupę",
+    "youHaveNoGroups": "Jums nėra priskirta grupių",
+    "contactInstructor": "Susisiekite su instruktoriumi",
+    "lessonStartsSoon": "Pamoka greitai prasidės",
+    "startLesson": "Pradėti pamoką",
+    "progress": "Progresas",
+    "rating": "Įvertinimas",
+    "noRatingYet": "Dar nėra įvertinimo",
+    "rateLesson": "Įvertinkite šią pamoką",
+    "contactOnSlack": "Susisiekite su manimi per Slack 👍",
+    "wednesdays": "Trečiadieniais",
+    "saturdays": "Šeštadieniais",
+    "completed": "Baigta",
+    "previous": "Atgal",
+    "next": "Toliau",
+    "markAsComplete": "Pažymėti kaip atliktą"
+  },
+  "calendar": {
+    "month": "Mėnuo",
+    "week": "Savaitė",
+    "day": "Diena",
+    "agenda": "Darbotvarkė",
+    "today": "Šiandien",
+    "online": "Nuotoliniu būdu",
+    "inPerson": "Gyvai",
+    "joinMeeting": "Prisijungti prie susitikimo",
+    "location": "Vieta:",
+    "instructions": "Nurodymai:"
+  },
+  "auth": {
+    "logout": "Atsijungti"
+  }
+}

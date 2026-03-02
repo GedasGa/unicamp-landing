@@ -5,8 +5,10 @@ import type { EventClickArg } from '@fullcalendar/core';
 
 import listPlugin from '@fullcalendar/list';
 import FullCalendar from '@fullcalendar/react';
+import { useTranslation } from 'react-i18next';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import ltLocale from '@fullcalendar/core/locales/lt';
 import interactionPlugin from '@fullcalendar/interaction';
 import { useRef, useState, useEffect, useCallback } from 'react';
 
@@ -36,10 +38,10 @@ import { useAuthContext } from 'src/auth/hooks';
 // ----------------------------------------------------------------------
 
 const VIEW_OPTIONS = [
-  { value: 'dayGridMonth', label: 'Month', icon: 'mingcute:calendar-month-line' },
-  { value: 'timeGridWeek', label: 'Week', icon: 'mingcute:calendar-week-line' },
-  { value: 'timeGridDay', label: 'Day', icon: 'mingcute:calendar-day-line' },
-  { value: 'listWeek', label: 'Agenda', icon: 'fluent:calendar-agenda-24-regular' },
+  { value: 'dayGridMonth', labelKey: 'calendar.month', icon: 'mingcute:calendar-month-line' },
+  { value: 'timeGridWeek', labelKey: 'calendar.week', icon: 'mingcute:calendar-week-line' },
+  { value: 'timeGridDay', labelKey: 'calendar.day', icon: 'mingcute:calendar-day-line' },
+  { value: 'listWeek', labelKey: 'calendar.agenda', icon: 'fluent:calendar-agenda-24-regular' },
 ] as const;
 
 type CalendarView = 'dayGridMonth' | 'timeGridWeek' | 'timeGridDay' | 'listWeek';
@@ -62,6 +64,7 @@ function CalendarToolbar({
   onChangeView,
 }: CalendarToolbarProps) {
   const popover = usePopover();
+  const { t } = useTranslation('app');
 
   const selectedItem = VIEW_OPTIONS.find((item) => item.value === view) || VIEW_OPTIONS[0];
 
@@ -81,7 +84,7 @@ function CalendarToolbar({
           endIcon={<Iconify icon="eva:arrow-ios-downward-fill" sx={{ ml: -0.5 }} />}
           sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
         >
-          {selectedItem.label}
+          {t(selectedItem.labelKey)}
         </Button>
 
         <Stack direction="row" alignItems="center" spacing={1}>
@@ -97,7 +100,7 @@ function CalendarToolbar({
         </Stack>
 
         <Button size="small" color="primary" variant="outlined" onClick={onToday}>
-          Today
+          {t('calendar.today')}
         </Button>
       </Stack>
 
@@ -118,7 +121,7 @@ function CalendarToolbar({
               }}
             >
               <Iconify icon={viewOption.icon} />
-              {viewOption.label}
+              {t(viewOption.labelKey)}
             </MenuItem>
           ))}
         </MenuList>
@@ -233,6 +236,7 @@ const StyledCalendar = styled('div')(({ theme }) => ({
 export function CalendarView() {
   const theme = useTheme();
   const { user } = useAuthContext();
+  const { t, i18n } = useTranslation('app');
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
@@ -259,13 +263,16 @@ export function CalendarView() {
     }
   };
 
-  const handleEventClick = useCallback((clickInfo: EventClickArg) => {
-    const event = events.find((e) => e.id === clickInfo.event.id);
-    if (event) {
-      setSelectedEvent(event);
-      setDialogOpen(true);
-    }
-  }, [events]);
+  const handleEventClick = useCallback(
+    (clickInfo: EventClickArg) => {
+      const event = events.find((e) => e.id === clickInfo.event.id);
+      if (event) {
+        setSelectedEvent(event);
+        setDialogOpen(true);
+      }
+    },
+    [events]
+  );
 
   const handleCloseDialog = () => {
     setDialogOpen(false);
@@ -315,21 +322,22 @@ export function CalendarView() {
 
   // Format date based on view
   const getFormattedDate = () => {
+    const locale = i18n.language === 'lt' ? 'lt-LT' : 'en-US';
     if (view === 'dayGridMonth') {
-      return date.toLocaleDateString('en-US', { 
-        month: 'long', 
-        year: 'numeric' 
+      return date.toLocaleDateString(locale, {
+        month: 'long',
+        year: 'numeric',
       });
     }
-    
+
     if (view === 'timeGridDay') {
-      return date.toLocaleDateString('en-US', {
-        month: 'long', 
+      return date.toLocaleDateString(locale, {
+        month: 'long',
         day: 'numeric',
-        year: 'numeric' 
+        year: 'numeric',
       });
     }
-    
+
     if (view === 'timeGridWeek' || view === 'listWeek') {
       const calendarApi = calendarRef.current?.getApi();
       if (calendarApi) {
@@ -337,17 +345,21 @@ export function CalendarView() {
         const start = new Date(currentView.activeStart);
         const end = new Date(currentView.activeEnd);
         end.setDate(end.getDate() - 1); // Adjust end date
-        
-        const startMonth = start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-        const endDate = end.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        
+
+        const startMonth = start.toLocaleDateString(locale, { month: 'short', day: 'numeric' });
+        const endDate = end.toLocaleDateString(locale, {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        });
+
         return `${startMonth} - ${endDate}`;
       }
     }
-    
-    return date.toLocaleDateString('en-US', { 
-      month: 'long', 
-      year: 'numeric' 
+
+    return date.toLocaleDateString(locale, {
+      month: 'long',
+      year: 'numeric',
     });
   };
 
@@ -371,6 +383,7 @@ export function CalendarView() {
             headerToolbar={false}
             initialView="dayGridMonth"
             firstDay={1}
+            locale={i18n.language === 'lt' ? ltLocale : undefined}
             editable={false}
             selectable={false}
             dayMaxEvents={3}
@@ -402,10 +415,10 @@ export function CalendarView() {
         </StyledCalendar>
       </Card>
 
-      <Dialog 
+      <Dialog
         fullWidth
         maxWidth="xs"
-        open={dialogOpen} 
+        open={dialogOpen}
         onClose={handleCloseDialog}
         transitionDuration={{
           enter: theme.transitions.duration.shortest,
@@ -414,17 +427,15 @@ export function CalendarView() {
       >
         {selectedEvent && (
           <>
-            <DialogTitle component='div' sx={{ pb: 2 }}>
+            <DialogTitle component="div" sx={{ pb: 2 }}>
               <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
                 <Typography variant="h6">{selectedEvent.title}</Typography>
-                <IconButton
-                  onClick={handleCloseDialog}
-                >
+                <IconButton onClick={handleCloseDialog}>
                   <Iconify icon="mingcute:close-line" />
                 </IconButton>
               </Stack>
             </DialogTitle>
-          
+
             <DialogContent sx={{ typography: 'body2', pb: 3 }}>
               <Stack spacing={3}>
                 {selectedEvent.description && (
@@ -438,7 +449,7 @@ export function CalendarView() {
                     <Iconify icon="eva:flag-outline" width={20} />
                     <Typography variant="body2">
                       {fDateTime(selectedEvent.start, 'dddd, MMMM DD HH:mm')}
-                     </Typography>
+                    </Typography>
                   </Stack>
 
                   <Stack direction="row" alignItems="center" spacing={1}>
@@ -449,12 +460,16 @@ export function CalendarView() {
                   </Stack>
 
                   <Stack direction="row" alignItems="center" spacing={1}>
-                    <Iconify 
-                      icon={selectedEvent.mode === 'online' ? 'eva:video-outline' : 'mdi:map-marker'} 
-                      width={20} 
+                    <Iconify
+                      icon={
+                        selectedEvent.mode === 'online' ? 'eva:video-outline' : 'mdi:map-marker'
+                      }
+                      width={20}
                     />
                     <Typography variant="body2">
-                      {selectedEvent.mode === 'online' ? 'Online' : 'In Person'}
+                      {selectedEvent.mode === 'online'
+                        ? t('calendar.online')
+                        : t('calendar.inPerson')}
                     </Typography>
                   </Stack>
                 </Stack>
@@ -468,13 +483,13 @@ export function CalendarView() {
                     rel="noopener noreferrer"
                     fullWidth
                   >
-                    Join Meeting
+                    {t('calendar.joinMeeting')}
                   </Button>
                 )}
 
                 {selectedEvent.mode === 'live' && selectedEvent.address && (
                   <Stack spacing={0.5}>
-                    <Typography variant="subtitle2">Location:</Typography>
+                    <Typography variant="subtitle2">{t('calendar.location')}</Typography>
                     <Typography variant="body2" color="text.secondary">
                       {selectedEvent.address}
                       {selectedEvent.city && `, ${selectedEvent.city}`}
@@ -484,7 +499,7 @@ export function CalendarView() {
 
                 {selectedEvent.instructions && (
                   <Stack spacing={0.5}>
-                    <Typography variant="subtitle2">Instructions:</Typography>
+                    <Typography variant="subtitle2">{t('calendar.instructions')}</Typography>
                     <Typography variant="body2" color="text.secondary">
                       {selectedEvent.instructions}
                     </Typography>

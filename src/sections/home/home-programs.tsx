@@ -12,7 +12,7 @@ import Rating from '@mui/material/Rating';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { maxLine , varAlpha, stylesMode } from 'src/theme/styles';
+import { maxLine, varAlpha, stylesMode } from 'src/theme/styles';
 
 import { Label } from 'src/components/label';
 import { Image } from 'src/components/image';

@@ -4,6 +4,7 @@ import type { BoxProps } from '@mui/material/Box';
 import type { SearchableItem } from 'src/lib/search-utils';
 import type { NavSectionProps } from 'src/components/nav-section';
 
+import { useTranslation } from 'react-i18next';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 import { useState, useEffect, useCallback } from 'react';
@@ -45,6 +46,7 @@ export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps)
   const router = useRouter();
   const { user } = useAuthContext();
   const search = useBoolean();
+  const { t } = useTranslation('app');
 
   const [searchQuery, setSearchQuery] = useState('');
   const [searchableItems, setSearchableItems] = useState<SearchableItem[]>([]);
@@ -105,13 +107,16 @@ export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps)
 
   const renderItems = () => {
     // Group by course name
-    const grouped = dataFiltered.reduce((acc, item) => {
-      if (!acc[item.courseName]) {
-        acc[item.courseName] = [];
-      }
-      acc[item.courseName].push(item);
-      return acc;
-    }, {} as Record<string, SearchableItem[]>);
+    const grouped = dataFiltered.reduce(
+      (acc, item) => {
+        if (!acc[item.courseName]) {
+          acc[item.courseName] = [];
+        }
+        acc[item.courseName].push(item);
+        return acc;
+      },
+      {} as Record<string, SearchableItem[]>
+    );
 
     return Object.entries(grouped)
       .sort(([a], [b]) => a.localeCompare(b))
@@ -194,7 +199,7 @@ export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps)
           <InputBase
             fullWidth
             autoFocus
-            placeholder="Search..."
+            placeholder={t('search.placeholder')}
             value={searchQuery}
             onChange={handleSearch}
             startAdornment={

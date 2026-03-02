@@ -2,7 +2,9 @@
 
 import type { NavSectionProps } from 'src/components/nav-section';
 
-import { useRef, useMemo, useState, useEffect, useContext, createContext } from 'react';
+import { useMemo, useState, useEffect, useContext, createContext } from 'react';
+
+import { applyLanguage } from 'src/components/google-translate-embed';
 
 // ----------------------------------------------------------------------
 
@@ -53,18 +55,22 @@ export function useNavigationContext() {
  */
 export function useSetNavigation(data: NavSectionProps['data'] | null) {
   const { setNavData } = useNavigationContext();
-  const dataRef = useRef(data);
 
-  // Update ref
-  dataRef.current = data;
-
-  // Set navigation data on mount and when data reference changes
+  // Update nav data whenever it changes (no cleanup between updates)
   useEffect(() => {
-    setNavData(dataRef.current);
-
-    // Clear on unmount
-    return () => {
-      setNavData(null);
-    };
+    setNavData(data);
+    // Re-apply translation after new nav items are rendered — Google Translate only
+    // runs once on page load, so dynamically added nav nodes need a nudge.
+    if (data && data.length > 0 && /googtrans=\/en\/lt/.test(document.cookie)) {
+      setTimeout(() => applyLanguage('lt'), 500);
+    }
   }, [data, setNavData]);
+
+  // Clear navigation only on actual unmount (page leaves)
+  useEffect(
+    () => () => {
+      setNavData(null);
+    },
+    [setNavData]
+  );
 }

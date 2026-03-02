@@ -6,4 +6,5 @@ export const layoutClasses = {
   header: 'layout__header',
   content: 'layout__main__content',
   hasSidebar: 'layout__has__sidebar',
+  navVertical: 'layout__nav--vertical',
 };

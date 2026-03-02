@@ -53,9 +53,9 @@ export const paths = {
     courses: {
       root: `${ROOTS.APP}/courses`,
       details: (id: string) => `${ROOTS.APP}/courses/${id}`,
-      module: (courseId: string, moduleId: string) => 
+      module: (courseId: string, moduleId: string) =>
         `${ROOTS.APP}/courses/${courseId}/modules/${moduleId}`,
-      lesson: (courseId: string, moduleId: string, lessonId: string) => 
+      lesson: (courseId: string, moduleId: string, lessonId: string) =>
         `${ROOTS.APP}/courses/${courseId}/modules/${moduleId}/lessons/${lessonId}`,
       // Topic handled via query param: ?topic=<topicId>
     },

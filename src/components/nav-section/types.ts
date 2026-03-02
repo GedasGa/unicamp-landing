@@ -44,7 +44,7 @@ export type NavItemBaseProps = {
   disabled?: boolean;
   render?: NavItemRenderProps;
   slotProps?: NavItemSlotProps;
-  icon?: string | React.ReactNode;
+  icon?: string | React.ReactNode | ((open: boolean) => React.ReactNode);
   info?: string[] | React.ReactNode;
 };
 

@@ -35,14 +35,13 @@ export const StyledDivider = styled('span')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export function useNavColorVars(
-  theme: Theme
-): Record<'layout' | 'section', CSSObject> {
+export function useNavColorVars(theme: Theme): Record<'layout' | 'section', CSSObject> {
   const {
     vars: { palette },
   } = theme;
 
-  return useMemo(() => ({
+  return useMemo(
+    () => ({
       layout: {
         '--layout-nav-bg': palette.background.default,
         '--layout-nav-horizontal-bg': varAlpha(palette.background.defaultChannel, 0.8),
@@ -56,12 +55,14 @@ export function useNavColorVars(
         },
       },
       section: {},
-    }), [
-    palette.background.default,
-    palette.background.defaultChannel,
-    palette.grey,
-    palette.text.disabled,
-    palette.text.primary,
-    palette.text.secondary,
-  ]);
+    }),
+    [
+      palette.background.default,
+      palette.background.defaultChannel,
+      palette.grey,
+      palette.text.disabled,
+      palette.text.primary,
+      palette.text.secondary,
+    ]
+  );
 }

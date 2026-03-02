@@ -13,6 +13,8 @@ import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';
 import { NavSectionVertical } from 'src/components/nav-section';
 
+import { layoutClasses } from '../classes';
+
 // ----------------------------------------------------------------------
 
 export type NavVerticalProps = NavSectionProps & {
@@ -34,12 +36,13 @@ export function NavVertical({
 }: NavVerticalProps) {
   const theme = useTheme();
   const pathname = usePathname();
-  
+
   // Redirect to /app if user is on any /app page, otherwise redirect to home
   const logoHref = pathname?.startsWith('/app') ? paths.app.root : '/';
 
   return (
     <Box
+      className={layoutClasses.navVertical}
       sx={{
         top: 0,
         left: 0,

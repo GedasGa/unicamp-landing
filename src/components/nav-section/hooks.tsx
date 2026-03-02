@@ -19,6 +19,7 @@ export type UseNavItemProps = {
   path: NavItemProps['path'];
   icon?: NavItemProps['icon'];
   info?: NavItemProps['info'];
+  open?: boolean;
   depth?: NavItemProps['depth'];
   render?: NavItemProps['render'];
   hasChild?: NavItemProps['hasChild'];
@@ -30,6 +31,7 @@ export function useNavItem({
   path,
   icon,
   info,
+  open,
   depth,
   render,
   hasChild,
@@ -55,6 +57,8 @@ export function useNavItem({
 
   if (icon && render?.navIcon && typeof icon === 'string') {
     renderIcon = render?.navIcon[icon];
+  } else if (typeof icon === 'function') {
+    renderIcon = icon(open ?? false);
   } else {
     renderIcon = icon;
   }

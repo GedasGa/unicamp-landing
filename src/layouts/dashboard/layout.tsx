@@ -13,7 +13,10 @@ import { paths } from 'src/routes/paths';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
+import { allLangs } from 'src/locales';
+
 import { Logo } from 'src/components/logo';
+import { AITranslateButton } from 'src/components/ai-translate-button';
 
 import { Main } from './main';
 import { NavMobile } from './nav-mobile';
@@ -28,6 +31,7 @@ import { HeaderSection } from '../core/header-section';
 import { useNavigationContext } from './navigation-context';
 import { AccountDrawer } from '../components/account-drawer';
 import { SettingsButton } from '../components/settings-button';
+import { LanguagePopover } from '../components/language-popover';
 import { WorkspacesPopover } from '../components/workspaces-popover';
 import { navData as dashboardNavData } from '../config-nav-dashboard';
 
@@ -55,7 +59,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
 
   // Use context nav data if available, otherwise fall back to default
   const navData = contextNavData ?? data?.nav ?? dashboardNavData;
-  
+
   // Hide navigation on dashboard page (/app)
   const shouldShowNav = !pathname?.match(/^\/app\/?$/);
 
@@ -89,9 +93,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
             leftArea: (
               <>
                 {/* -- Logo (shown when nav is hidden) -- */}
-                {!shouldShowNav && (
-                  <Logo onlyLogo={false} href={paths.app.root} sx={{ mr: 2 }} />
-                )}
+                {!shouldShowNav && <Logo onlyLogo={false} href={paths.app.root} sx={{ mr: 2 }} />}
                 {/* -- Nav mobile -- */}
                 {shouldShowNav && (
                   <>
@@ -112,15 +114,17 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
                   </>
                 )}
                 {/* -- Workspace popover -- */}
-                <WorkspacesPopover
-                  sx={{ color: 'var(--layout-nav-text-primary-color)' }}
-                />
+                <WorkspacesPopover sx={{ color: 'var(--layout-nav-text-primary-color)' }} />
               </>
             ),
             rightArea: (
               <Box display="flex" alignItems="center" gap={{ xs: 0, sm: 0.75 }}>
                 {/* -- Searchbar -- */}
                 <Searchbar data={navData} />
+                {/* -- Language selector -- */}
+                <LanguagePopover data={allLangs} />
+                {/* -- AI Translate button -- */}
+                <AITranslateButton />
                 {/* -- Settings button -- */}
                 <SettingsButton />
                 {/* -- Account drawer -- */}
@@ -140,6 +144,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
             layoutQuery={layoutQuery}
             cssVars={navColorVars.section}
             onToggleNav={() => {}}
+            enabledRootRedirect
           />
         ) : null
       }
