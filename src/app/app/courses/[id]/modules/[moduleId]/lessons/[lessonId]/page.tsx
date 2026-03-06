@@ -350,16 +350,6 @@ export default function LessonPage({ params }: Props) {
       // Invalidate cache so dashboard shows updated progress
       invalidateLessonProgress(params.lessonId);
 
-      // Check if this was the last topic
-      const currentIndex = topics.findIndex((t) => t.id === selectedTopicId);
-      const isLastTopic = currentIndex === topics.length - 1;
-
-      // If last topic, redirect to home after a short delay
-      if (isLastTopic) {
-        setTimeout(() => {
-          router.push(paths.app.root);
-        }, 1500);
-      }
       // Don't auto-navigate to next topic - let user click "Next" button
     } catch (err) {
       console.error('Error marking topic complete:', err);
