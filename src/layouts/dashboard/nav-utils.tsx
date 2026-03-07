@@ -14,7 +14,7 @@ function getLessonIcon(locked: boolean, progress?: { progress: number; completed
   if (progress && progress.progress > 0) {
     return <Iconify icon="eva:clock-fill" sx={{ color: 'primary.main' }} />;
   }
-  return <Iconify icon="eva:radio-button-on-outline" sx={{ color: 'text.secondary' }} />;
+  return <Iconify icon="eva:radio-button-off-outline" sx={{ color: 'text.secondary' }} />;
 }
 
 // ----------------------------------------------------------------------
