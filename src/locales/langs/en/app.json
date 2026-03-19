@@ -43,6 +43,7 @@
     "meetingStartingSoon": "Meeting starting soon",
     "meetingInProgress": "Meeting in progress",
     "startsIn": "Starts in {{minutes}} minute{{plural}} at {{time}}",
+    "startingNow": "Will start soon at {{time}}",
     "joinMeeting": "Join Meeting",
     "joinMeetingNow": "Join Meeting Now",
     "location": "Location:",

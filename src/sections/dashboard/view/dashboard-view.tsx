@@ -205,11 +205,15 @@ export function DashboardView() {
                           <Iconify icon="eva:clock-outline" width={20} />
                           <Typography variant="body2" sx={{ opacity: 0.9 }}>
                             {isStartingSoon
-                              ? t('dashboard.startsIn', {
-                                  minutes: minutesUntilStart,
-                                  plural: minutesUntilStart !== 1 ? 's' : '',
-                                  time: fDateTime(activeMeeting.start, 'HH:mm'),
-                                })
+                              ? minutesUntilStart < 1
+                                ? t('dashboard.startingNow', {
+                                    time: fDateTime(activeMeeting.start, 'HH:mm'),
+                                  })
+                                : t('dashboard.startsIn', {
+                                    minutes: minutesUntilStart,
+                                    plural: minutesUntilStart !== 1 ? 's' : '',
+                                    time: fDateTime(activeMeeting.start, 'HH:mm'),
+                                  })
                               : `${fDateTime(activeMeeting.start, 'HH:mm')} - ${fDateTime(activeMeeting.end, 'HH:mm')}`}
                           </Typography>
                         </Stack>

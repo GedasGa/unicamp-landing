@@ -43,6 +43,7 @@
     "meetingStartingSoon": "Susitikimas greitai prasidės",
     "meetingInProgress": "Susitikimas vyksta",
     "startsIn": "Prasideda po {{minutes}} minutė{{plural}} ({{time}})",
+    "startingNow": "Greitai prasidės ({{time}})",
     "joinMeeting": "Prisijungti prie susitikimo",
     "joinMeetingNow": "Prisijungti prie susitikimo dabar",
     "location": "Vieta:",
