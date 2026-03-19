@@ -111,67 +111,22 @@ export class LinkPreviewClient extends CardClient {
   ): Promise<JsonLd.Response> {
     const embedUrl = LinkPreviewClient.generateEmbedUrl(provider, url);
 
-    // Fetch actual metadata for YouTube to get video title and thumbnail
-    if (provider === 'YouTube') {
-      try {
-        // Convert to watch URL for metadata fetching
-        const videoId = LinkPreviewClient.extractYouTubeVideoId(url);
-        const watchUrl = videoId ? `https://www.youtube.com/watch?v=${videoId}` : url;
-        const metadata = await fetchLinkMetadata(watchUrl);
-        return {
-          meta: {
-            access: 'granted',
-            visibility: 'public',
-            auth: [],
-            definitionId: 'custom-embed-provider',
-            key: 'custom-embed-provider',
-          },
-          data: {
-            '@type': 'Object',
-            '@context': {
-              '@vocab': 'https://www.w3.org/ns/activitystreams#',
-              atlassian: 'https://schema.atlassian.com/ns/vocabulary#',
-              schema: 'http://schema.org/',
-            },
-            url,
-            name: metadata.title || provider,
-            summary: metadata.description,
-            generator: {
-              '@type': 'Object',
-              name: provider,
-              icon: {
-                '@type': 'Image',
-                url: ICONS[provider],
-              },
-            },
-            icon: {
-              '@type': 'Image',
-              url: ICONS[provider],
-            },
-            image: metadata.image
-              ? {
-                  '@type': 'Image',
-                  url: metadata.image,
-                }
-              : {
-                  '@type': 'Image',
-                  url: IMAGES[provider],
-                },
-            preview: {
-              '@type': 'Link',
-              href: embedUrl,
-              'atlassian:supportedPlatforms': ['web', 'mobile'],
-              'atlassian:aspectRatio': 2,
-            },
-          },
-        } as JsonLd.Response;
-      } catch (error) {
-        console.error('Error fetching YouTube metadata:', error);
-        // Fallback to basic response
-      }
+    // For YouTube, normalise to a watch URL before fetching metadata
+    const metadataUrl =
+      provider === 'YouTube'
+        ? (() => {
+            const videoId = LinkPreviewClient.extractYouTubeVideoId(url);
+            return videoId ? `https://www.youtube.com/watch?v=${videoId}` : url;
+          })()
+        : url;
+
+    let metadata: { title?: string; description?: string; image?: string } = {};
+    try {
+      metadata = await fetchLinkMetadata(metadataUrl);
+    } catch (error) {
+      console.error(`Error fetching ${provider} metadata:`, error);
     }
 
-    // Default response for other providers or YouTube fallback
     return {
       meta: {
         access: 'granted',
@@ -188,7 +143,8 @@ export class LinkPreviewClient extends CardClient {
           schema: 'http://schema.org/',
         },
         url,
-        name: provider,
+        name: metadata.title || provider,
+        summary: metadata.description,
         generator: {
           '@type': 'Object',
           name: provider,
@@ -203,7 +159,7 @@ export class LinkPreviewClient extends CardClient {
         },
         image: {
           '@type': 'Image',
-          url: IMAGES[provider],
+          url: metadata.image ?? IMAGES[provider],
         },
         preview: {
           '@type': 'Link',
