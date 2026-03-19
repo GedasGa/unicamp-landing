@@ -60,7 +60,7 @@ export class LinkPreviewClient extends CardClient {
     if (url.match(/jsitor.com/)) {
       return 'JSitor';
     }
-    if (url.match(/figma.com/)) {
+    if (url.match(/figma\.com\/(design|file|proto)\//)) {
       return 'Figma';
     }
     return undefined;
