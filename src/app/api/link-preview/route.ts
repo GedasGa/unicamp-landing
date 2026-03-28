@@ -7,30 +7,51 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const url = searchParams.get('url');
+  const { searchParams } = new URL(request.url);
+  const url = searchParams.get('url');
 
-    if (!url) {
-      return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
+  if (!url) {
+    return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
+  }
+
+  console.log('[Link Preview] Fetching:', url);
+
+  // YouTube: use oEmbed API — reliable, public, works everywhere
+  const youtubeMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?.*v=|embed\/|shorts\/))([^?&/]+)/);
+  if (youtubeMatch) {
+    try {
+      const oembedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
+      const res = await fetch(oembedUrl);
+      if (res.ok) {
+        const data = await res.json();
+        return NextResponse.json({
+          title: data.title,
+          description: data.author_name ? `By ${data.author_name}` : undefined,
+          image: data.thumbnail_url,
+          icon: 'https://www.youtube.com/s/desktop/ce262d3b/img/favicon_32x32.png',
+        });
+      }
+    } catch (error) {
+      console.error('[Link Preview] YouTube oEmbed error:', error instanceof Error ? error.message : error);
     }
+    return NextResponse.json({ error: 'Failed to fetch YouTube metadata' }, { status: 502 });
+  }
 
-    console.log('[Link Preview] Fetching:', url);
-
-    // Fetch the page
+  // Generic: scrape OG/twitter meta tags
+  try {
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; LinkPreviewBot/1.0)',
+        'User-Agent':
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
       },
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch URL: ${response.statusText}`);
+      throw new Error(`Failed to fetch URL: ${response.status} ${response.statusText}`);
     }
 
     const html = await response.text();
 
-    // Extract metadata using regex patterns
     const metadata = {
       title:
         extractMetaTag(html, 'og:title') ||
@@ -42,60 +63,55 @@ export async function GET(request: NextRequest) {
         extractMetaTag(html, 'description'),
       image: extractMetaTag(html, 'og:image') || extractMetaTag(html, 'twitter:image'),
       icon: extractIcon(html, url),
+      siteName: extractMetaTag(html, 'og:site_name'),
     };
 
     return NextResponse.json(metadata);
   } catch (error) {
     console.error('[Link Preview] Error:', error instanceof Error ? error.message : error);
-
-    // Return basic fallback metadata
-    const url = new URL(request.url).searchParams.get('url');
-    return NextResponse.json({
-      title: url ? new URL(url).hostname : 'Unknown',
-      description: undefined,
-      image: undefined,
-      icon: undefined,
-    });
+    return NextResponse.json({ error: 'Failed to fetch metadata' }, { status: 502 });
   }
 }
 
 // Helper functions to extract metadata from HTML
+
+/**
+ * Extract the content attribute from a <meta> tag that has a matching
+ * property or name attribute. Handles any attribute order.
+ */
+function extractMetaContent(
+  html: string,
+  attrName: 'property' | 'name',
+  attrValue: string
+): string | undefined {
+  // Match ALL self-closing <meta ... > tags containing the target attribute, return the last one
+  const escapedValue = attrValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const tagPattern = new RegExp(
+    `<meta\\b[^>]*?\\b${attrName}=["']${escapedValue}["'][^>]*?>`,
+    'gi'
+  );
+  const matches = Array.from(html.matchAll(tagPattern));
+  if (matches.length === 0) return undefined;
+  const lastTag = matches[matches.length - 1][0];
+  const contentMatch = lastTag.match(/\bcontent=["']([^"']*)["']/i);
+  return contentMatch ? contentMatch[1] : undefined;
+}
+
 function extractMetaTag(html: string, property: string): string | undefined {
-  // Check if property already has a prefix (og:, twitter:)
   const hasPrefix = property.includes(':');
 
   if (!hasPrefix) {
-    // Try Open Graph tags
-    const ogMatch = html.match(
-      new RegExp(`<meta\\s+property=["']og:${property}["']\\s+content=["']([^"']+)["']`, 'i')
+    return (
+      extractMetaContent(html, 'property', `og:${property}`) ??
+      extractMetaContent(html, 'name', `twitter:${property}`) ??
+      extractMetaContent(html, 'name', property)
     );
-    if (ogMatch) return ogMatch[1];
-
-    // Try Twitter tags
-    const twitterMatch = html.match(
-      new RegExp(`<meta\\s+name=["']twitter:${property}["']\\s+content=["']([^"']+)["']`, 'i')
-    );
-    if (twitterMatch) return twitterMatch[1];
-
-    // Try standard meta tags
-    const metaMatch = html.match(
-      new RegExp(`<meta\\s+name=["']${property}["']\\s+content=["']([^"']+)["']`, 'i')
-    );
-    if (metaMatch) return metaMatch[1];
-  } else {
-    // Property already has prefix, use it directly
-    const propertyMatch = html.match(
-      new RegExp(`<meta\\s+property=["']${property}["']\\s+content=["']([^"']+)["']`, 'i')
-    );
-    if (propertyMatch) return propertyMatch[1];
-
-    const nameMatch = html.match(
-      new RegExp(`<meta\\s+name=["']${property}["']\\s+content=["']([^"']+)["']`, 'i')
-    );
-    if (nameMatch) return nameMatch[1];
   }
 
-  return undefined;
+  return (
+    extractMetaContent(html, 'property', property) ??
+    extractMetaContent(html, 'name', property)
+  );
 }
 
 function extractTitle(html: string): string {

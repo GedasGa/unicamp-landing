@@ -33,19 +33,11 @@ async function fetchLinkMetadata(url: string): Promise<{
   image?: string;
   icon?: string;
 }> {
-  try {
-    const response = await fetch(`/api/link-preview?url=${encodeURIComponent(url)}`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch link metadata');
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching link metadata:', error);
-    // Fallback to basic metadata
-    return {
-      title: new URL(url).hostname,
-    };
+  const response = await fetch(`/api/link-preview?url=${encodeURIComponent(url)}`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch link metadata: ${response.status}`);
   }
+  return response.json();
 }
 
 // Setup custom client which handles YouTube and other embed providers
@@ -171,8 +163,12 @@ export class LinkPreviewClient extends CardClient {
     } as JsonLd.Response;
   }
 
-  private static async generateGenericLinkResponse(url: string): Promise<JsonLd.Response> {
-    const metadata = await fetchLinkMetadata(url);
+  private static buildGenericLinkResponse(
+    url: string,
+    metadata: { title?: string; description?: string; image?: string; icon?: string; siteName?: string }
+  ): JsonLd.Response {
+    const { hostname } = new URL(url);
+    const name = metadata.siteName || hostname;
 
     return {
       meta: {
@@ -190,11 +186,11 @@ export class LinkPreviewClient extends CardClient {
           schema: 'http://schema.org/',
         },
         url,
-        name: metadata.title,
+        name: metadata.title || hostname,
         summary: metadata.description,
         generator: {
           '@type': 'Object',
-          name: new URL(url).hostname,
+          name,
           icon: metadata.icon
             ? {
                 '@type': 'Image',
@@ -218,35 +214,31 @@ export class LinkPreviewClient extends CardClient {
     } as JsonLd.Response;
   }
 
-  async fetchData(url: string): Promise<JsonLd.Response> {
-    const provider = LinkPreviewClient.getProvider(url);
-    if (provider) {
-      return LinkPreviewClient.generateLinkPreviewResponse(provider, url);
-    }
-
-    // For generic URLs, fetch actual metadata
+  private static async generateGenericLinkResponse(url: string): Promise<JsonLd.Response> {
+    let metadata: { title?: string; description?: string; image?: string; icon?: string; siteName?: string } = {};
     try {
-      return await LinkPreviewClient.generateGenericLinkResponse(url);
+      metadata = await fetchLinkMetadata(url);
     } catch (error) {
-      console.error('Error fetching link preview:', error);
-      // Fallback to parent class implementation
-      return super.fetchData(url);
+      console.warn('[LinkPreview] scrape failed, using hostname fallback for', url, error);
     }
+    return LinkPreviewClient.buildGenericLinkResponse(url, metadata);
   }
 
-  async prefetchData(url: string): Promise<JsonLd.Response | undefined> {
+  // eslint-disable-next-line class-methods-use-this
+  override async fetchData(url: string): Promise<JsonLd.Response> {
     const provider = LinkPreviewClient.getProvider(url);
     if (provider) {
       return LinkPreviewClient.generateLinkPreviewResponse(provider, url);
     }
+    return LinkPreviewClient.generateGenericLinkResponse(url);
+  }
 
-    // For generic URLs, try to fetch metadata
-    try {
-      return await LinkPreviewClient.generateGenericLinkResponse(url);
-    } catch (error) {
-      console.error('Error prefetching link preview:', error);
-      // Fallback to parent class implementation
-      return super.prefetchData(url);
+  // eslint-disable-next-line class-methods-use-this
+  override async prefetchData(url: string): Promise<JsonLd.Response | undefined> {
+    const provider = LinkPreviewClient.getProvider(url);
+    if (provider) {
+      return LinkPreviewClient.generateLinkPreviewResponse(provider, url);
     }
+    return LinkPreviewClient.generateGenericLinkResponse(url);
   }
 }
