@@ -99,7 +99,7 @@ const ExpectationsCard = ({ expectation, programId, sx, ...other }: Expectations
   return (
     <Card sx={{ p: 3, bgcolor: 'grey.100', ...sx }} {...other}>
       <Stack spacing={2}>
-        <Iconify icon={expectation.icon} />
+        <Iconify icon={expectation.icon} width={32} />
         <Stack spacing={0.75} alignItems="flex-start">
           <Typography variant="h4">{t(expectation.title)}</Typography>
           <Typography variant="body1" color="text.secondary">

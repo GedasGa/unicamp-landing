@@ -10,27 +10,38 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
 
+import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
 
+import { varAlpha } from 'src/theme/styles';
+
 import { Iconify } from 'src/components/iconify';
-import { varFade, MotionContainer } from 'src/components/animate';
+import { Grainient } from 'src/components/grainient';
+import { varFade, AnimateHearts, MotionContainer } from 'src/components/animate';
 
 import { useTranslate } from '../../locales';
-import { CONFIG } from '../../config-global';
+import { SaveSpotDialog } from '../cta/save-spot-dialog';
+import { renderEmphasis } from './components/section-title';
 
 // ----------------------------------------------------------------------
 
 const smKey = 'sm';
 const mdKey = 'md';
-const lgKey = 'lg';
+
+// Gradient colours (color1 / color2 / color3 of the Grainient background).
+const HERO_COLORS = {
+  light: '#7178b5',
+  accent: '#c69760',
+  base: '#B497CF',
+};
 
 export function HomeHero({ sx, ...other }: BoxProps) {
   const { t } = useTranslate('home');
   const theme = useTheme();
   const scroll = useScrollPercent();
   const mdUp = useResponsive('up', mdKey);
+  const saveSpotDialog = useBoolean();
 
   const distance = mdUp ? scroll.percent : 0;
 
@@ -38,68 +49,73 @@ export function HomeHero({ sx, ...other }: BoxProps) {
     <AnimatedDiv>
       <Box
         component="h1"
-        display="flex"
-        flexWrap="wrap"
-        flexDirection="column"
         sx={{
           ...theme.typography.h2,
-          mt: 10,
+          mt: 0,
           mb: 0,
+          textAlign: 'center',
           fontFamily: theme.typography.fontSecondaryFamily,
-          [theme.breakpoints.up(lgKey)]: { fontSize: 72, lineHeight: '90px' },
+          // Written on the same breakpoint keys as the h2 variant so these sizes replace its own.
+          fontSize: 44,
+          [theme.breakpoints.up('sm')]: { fontSize: 64 },
+          [theme.breakpoints.up(mdKey)]: { fontSize: 80 },
+          [theme.breakpoints.up('lg')]: { fontSize: 96 },
+          lineHeight: 1.1,
+          // Soft shadow lifts the white text off bright parts of the video.
+          textShadow: `0 2px 24px ${varAlpha(theme.vars.palette.common.blackChannel, 0.32)}`,
         }}
       >
-        <Box component="span">{t('hero.heading.firstLine')}</Box>
-        <Box component="span">{t('hero.heading.secondLine')}</Box>
+        {renderEmphasis(t('hero.heading.title'))}
       </Box>
+    </AnimatedDiv>
+  );
+
+  const renderSaveSpotButton = (
+    <AnimatedDiv>
+      <Button
+        onClick={() => {
+          posthog.capture('save_spot_clicked');
+          saveSpotDialog.onTrue();
+        }}
+        size="large"
+        startIcon={<AnimateHearts size={18} />}
+        endIcon={<Iconify icon="eva:arrow-forward-fill" width={20} />}
+        sx={{
+          px: 2,
+          color: 'common.white',
+          border: `1px solid ${varAlpha(theme.vars.palette.common.whiteChannel, 0.24)}`,
+          bgcolor: varAlpha(theme.vars.palette.grey['900Channel'], 0.32),
+          backdropFilter: 'blur(8px)',
+          boxShadow: `0 8px 24px ${varAlpha(theme.vars.palette.common.blackChannel, 0.16)}`,
+          '&:hover': { bgcolor: varAlpha(theme.vars.palette.grey['900Channel'], 0.48) },
+        }}
+      >
+        {t('hero.cta.saveSpot')}
+      </Button>
     </AnimatedDiv>
   );
 
   const renderViewCoursesButton = (
     <AnimatedDiv>
-      <Typography variant="subtitle2" gutterBottom>
-        {t('hero.cta.viewCourses.description')}
-      </Typography>
       <Button
         size="large"
         variant="contained"
         href="/#courses"
         onClick={() => posthog.capture('hero_cta_clicked')}
-        endIcon={<Iconify icon="ic:round-arrow-downward" />}
+        endIcon={<Iconify icon="eva:arrow-downward-fill" width={20} />}
         sx={{
           color: 'common.black',
           bgcolor: 'common.white',
-          '&:hover': { bgcolor: 'grey.200' },
+          boxShadow: `0 8px 24px ${varAlpha(theme.vars.palette.common.blackChannel, 0.24)}`,
+          '&:hover': {
+            bgcolor: 'grey.200',
+            boxShadow: `0 8px 24px ${varAlpha(theme.vars.palette.common.blackChannel, 0.24)}`,
+          },
         }}
       >
         {t('hero.cta.viewCourses.buttonText')}
       </Button>
     </AnimatedDiv>
-  );
-
-  const renderFreeConsultation = (
-    <Box display="flex" flexWrap="wrap" gap={{ xs: 1.5, md: 2 }}>
-      <AnimatedDiv>
-        <Typography variant="subtitle2" gutterBottom>
-          {t('hero.cta.consultation.description')}
-        </Typography>
-        <Button
-          color="inherit"
-          size="large"
-          variant="contained"
-          target="_blank"
-          href="https://calendly.com/gedas-gardauskas/15min"
-          onClick={() => posthog.capture('hero_cta_clicked')}
-          sx={{
-            color: 'common.black',
-            bgcolor: 'common.white',
-            '&:hover': { bgcolor: 'grey.200' },
-          }}
-        >
-          {t('hero.cta.consultation.buttonText')}
-        </Button>
-      </AnimatedDiv>
-    </Box>
   );
 
   return (
@@ -109,10 +125,8 @@ export function HomeHero({ sx, ...other }: BoxProps) {
       sx={{
         overflow: 'hidden',
         position: 'relative',
-        backgroundImage: `url(${CONFIG.assetsDir}/assets/illustrations/illustration-hero.png)`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'top',
+        // Fallback colour behind the gradient (e.g. before WebGL starts).
+        bgcolor: HERO_COLORS.base,
         color: 'common.white',
         [theme.breakpoints.up(mdKey)]: {
           minHeight: 760,
@@ -126,6 +140,27 @@ export function HomeHero({ sx, ...other }: BoxProps) {
       }}
       {...other}
     >
+      <Grainient
+        aria-hidden
+        paused
+        color1={HERO_COLORS.light}
+        color2={HERO_COLORS.accent}
+        color3={HERO_COLORS.base}
+        timeSpeed={0.25}
+        warpStrength={1}
+        warpFrequency={5}
+        warpSpeed={2}
+        warpAmplitude={50}
+        blendSoftness={0.05}
+        rotationAmount={500}
+        noiseScale={2}
+        grainAmount={0.1}
+        grainScale={2}
+        contrast={1.5}
+        zoom={0.9}
+        sx={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+      />
+
       <Box
         component={m.div}
         sx={{
@@ -134,13 +169,18 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           position: 'relative',
           flexDirection: 'column',
           transition: theme.transitions.create(['opacity']),
-          [theme.breakpoints.up(mdKey)]: { height: 1, position: 'fixed', maxHeight: 'inherit' },
+          [theme.breakpoints.up(mdKey)]: {
+            // Same height as the section, so the content centres within the hero.
+            height: 'clamp(760px, 80vh, 1280px)',
+            position: 'fixed',
+          },
         }}
       >
         <Container
           component={MotionContainer}
           sx={{
-            py: 3,
+            // Equal space above and below keeps the content centred in the gradient.
+            py: 'calc(var(--layout-header-mobile-height) + 48px)',
             gap: 5,
             zIndex: 9,
             display: 'flex',
@@ -149,17 +189,19 @@ export function HomeHero({ sx, ...other }: BoxProps) {
             [theme.breakpoints.up(mdKey)]: {
               flexDirection: 'row',
               flex: '1 1 auto',
-              justifyContent: 'start',
-              alignItems: 'start',
-              my: 'var(--layout-header-desktop-height)',
+              justifyContent: 'center',
+              alignItems: 'center',
+              py: 3,
             },
           }}
         >
-          <Stack spacing={3}>
+          <Stack spacing={3} alignItems="center">
+            {renderSaveSpotButton}
             {renderHeading}
             {renderViewCoursesButton}
-            {renderFreeConsultation}
           </Stack>
+
+          <SaveSpotDialog open={saveSpotDialog.value} onClose={saveSpotDialog.onFalse} />
         </Container>
       </Box>
     </Box>

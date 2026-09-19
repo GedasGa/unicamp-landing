@@ -147,6 +147,11 @@ export function CarouselArrowFloatButtons({
     ...sx,
   } as CSSObject;
 
+  // All slides fit in view, so there is nothing to scroll to.
+  if (disablePrev && disableNext) {
+    return null;
+  }
+
   return (
     <>
       <ArrowButton

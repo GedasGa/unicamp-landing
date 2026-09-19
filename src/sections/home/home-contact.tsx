@@ -38,7 +38,6 @@ export function HomeContact({ sx, ...other }: HomeContactProps) {
           >
             <Grid xs={12} md={6} lg={7} order={{ xs: 1 }}>
               <SectionTitle
-                caption={t('features.caption')}
                 title={t('feature.title')}
                 sx={{
                   mb: { xs: 5, md: 8 },

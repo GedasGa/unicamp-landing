@@ -1,8 +1,7 @@
 {
   "hero": {
     "heading": {
-      "firstLine": "Išmokite skaitmeninių įgūdžių ",
-      "secondLine": "Pakilkite karjeros laiptais"
+      "title": "Išmokite *naujausių* IT įgūdžių"
     },
     "cta": {
       "viewCourses": {
@@ -10,13 +9,18 @@
         "buttonText": "Peržiūrėti programas"
       },
       "consultation": {
-        "description": "Nežinote nuo ko pradėti? Registruokitės ir padėsime",
-        "buttonText": "Registruotis NEMOKAMAI konsultacijai"
-      }
+        "description": "Nežinote ką pasirinkti? Pasikalbėkime",
+        "buttonText": "Registruotis konsultacijai",
+        "free": "Nemokamai"
+      },
+      "saveSpot": "Rezervuokite vietą"
     },
     "svg": {
       "text": "unicamp akademija"
     }
+  },
+  "companies": {
+    "caption": "Mūsų mentoriai dalijasi patirtimi, įgyta tokiose įmonėse ir universitetuose kaip:"
   },
   "unicamp": {
     "title": "Kodėl Unicamp?",
@@ -29,10 +33,9 @@
     }
   },
   "features": {
-    "caption": "Unicamp siūlo",
     "sections": {
       "realProjects": {
-        "heading": "Realūs projektai",
+        "heading": "Realūs *projektai*",
         "items": [
           {
             "title": "Įgaukite praktinės patirties",
@@ -49,7 +52,7 @@
         ]
       },
       "teamWork": {
-        "heading": "Mokykitės dirbdami komandoje",
+        "heading": "Mokykitės dirbdami *komandoje*",
         "items": [
           {
             "title": "Prisijunkite prie smalsių ir motyvuotų žmonių",
@@ -66,7 +69,7 @@
         ]
       },
       "1on1": {
-        "heading": "Asmeninės konsultacijos su mentoriumi",
+        "heading": "Asmeninės konsultacijos su *mentoriumi*",
         "items": [
           {
             "title": "Dedikuotas mentorius",
@@ -81,7 +84,7 @@
     }
   },
   "team": {
-    "heading": "Unicamp komanda",
+    "heading": "Unicamp *komanda*",
     "description": "Esame IT entuziastų komanda, siekianti dalintis žiniomis ir padėti kiekvienam atrasti savo vietą technologijų pasaulyje.",
     "mentor": "Mentorius",
     "members": [
@@ -101,61 +104,106 @@
         "name": "Toshi",
         "role": "Mindės draugas"
       }
-    ]
+    ],
+    "viewProfile": "Peržiūrėti {{network}}"
   },
   "programs": {
-    "title": "Unicamp programos",
-    "description": "Pasirinkite programą ir pradėkite savo geriausią žingsnį į IT karjerą.",
-    "reviews": "atsiliepimai",
-    "cta": {
-      "apply": "Registruokitės dabar",
-      "viewProgram": "Daugiau apie šią programą"
+    "title": "Unicamp *programos*",
+    "description": "Praktinės 12 savaičių programos tiems, kurie nori pereiti į IT. Ankstesnės patirties nereikia.",
+    "meta": {
+      "duration": "12 savaičių · 108 val.",
+      "format": "Nuotoliu",
+      "group": "Grupėje iki 20 žmonių"
     },
-    "chips": {
-      "moneyBackGuarantee": "7 dienų pinigų grąžinimo garantija",
-      "approvedByKursuok": "Patvirtinta Kursuok.lt",
-      "availableFinancing": "Finansuojama Kursuok.lt",
-      "limitedSpaces": "Vietų skaičius ribotas"
-    },
-    "levels": {
-      "beginner": "Pradedantiesiems",
-      "intermediate": "Pažengusiems",
-      "advanced": "Ekspertams"
-    },
+    "learnTitle": "Ką išmoksite",
+    "includesTitle": "Programa apima",
+    "includes": [
+      "Baigiamąjį komandinį projektą jūsų portfoliui",
+      "1-on-1 konsultacijas su mentoriumi",
+      "Unicamp sertifikatą",
+      "6 mėn. prieigą prie visos medžiagos",
+      "Nemokamą kurso pakartojimą"
+    ],
     "pricing": {
-      "paidMonthly": "x3 mėn."
+      "installments": "arba 3 įmokos po {{amount}} €",
+      "financing": "Galimas Kursuok.lt finansavimas",
+      "guarantee": "7 dienų pinigų grąžinimo garantija"
+    },
+    "cta": {
+      "apply": "Registruotis",
+      "viewProgram": "Peržiūrėti programą"
     },
     "programs": {
       "webDevelopment": {
         "title": "Web programavimas",
-        "caption": "108 valandos (3 mėn.) | Registracija nuo lapkričio",
-        "features": [
-          "35+ paskaitos ir realūs projektai",
-          "1-on-1 konsultacijos",
-          "AI įrankiai",
-          "6 mėn. pasiekiama visa mokymosi medžiaga",
-          "Nemokamas kurso pakartojimas"
+        "outcome": "Tapkite Frontend programuotoju",
+        "description": "Išmokite kurti šiuolaikiškas svetaines – nuo pirmos kodo eilutės iki veikiančio projekto internete.",
+        "skills": [
+          "JavaScript",
+          "React ir Next.js",
+          "HTML ir CSS",
+          "Git ir GitHub",
+          "Prisitaikantis dizainas",
+          "DI įrankiai"
         ]
       },
       "productDesign": {
         "title": "UX/UI dizainas",
-        "caption": "108 valandos (3 mėn.) | Registracija nuo lapkričio",
-        "features": [
-          "35+ paskaitos ir realūs projektai",
-          "1-on-1 konsultacijos",
-          "AI įrankiai",
-          "6 mėn. pasiekiama visa mokymosi medžiaga",
-          "Nemokamas kurso pakartojimas"
+        "outcome": "Tapkite UX/UI dizaineriu",
+        "description": "Jūsų marketingo ar produkto patirtis – puikus pagrindas. Išmoksite tyrinėti naudotojus ir kurti sąsajas, kurias malonu naudoti.",
+        "skills": [
+          "Figma",
+          "UX tyrimai",
+          "Prototipavimas",
+          "Dizaino sistemos",
+          "Prieinamumas",
+          "DI įrankiai"
         ]
       }
     }
   },
+  "tools": {
+    "title": "Išmoksite dirbti su šiuolaikiniais *įrankiais*",
+    "description": "Nuo dizaino iki programavimo ir dirbtinio intelekto – mokotės su tais pačiais įrankiais, kuriuos kasdien naudoja IT komandos.",
+    "items": {
+      "cursor": "DI pagrįstas kodo redaktorius",
+      "lovable": "Web programėlių kūrimas aprašant jas žodžiais",
+      "figma": "Sąsajų dizainas ir prototipai komandoje",
+      "slack": "Komandos susirašinėjimas ir bendradarbiavimas",
+      "unicampLearning": "Mūsų mokymosi platforma su pamokomis ir užduotimis",
+      "claude": "DI asistentas rašymui, programavimui ir analizei",
+      "zapier": "Darbų automatizavimas tarp programų",
+      "hostinger": "Svetainių talpinimas ir domenai",
+      "google": "Docs, Drive, Meet ir Gemini",
+      "openai": "ChatGPT ir DI modeliai",
+      "github": "Kodo saugykla ir versijų kontrolė",
+      "supabase": "Duomenų bazė, autentifikacija ir backend",
+      "canva": "Greitas grafinis dizainas",
+      "n8n": "Darbo eigų automatizavimas su DI agentais",
+      "openclaw": "Atvirojo kodo asmeninis DI agentas",
+      "hermes": "Atvirojo kodo DI agentas",
+      "elevenlabs": "DI balso generavimas",
+      "speechify": "Teksto įgarsinimas"
+    }
+  },
   "testimonials": {
-    "title": "Sklinda kalbos..."
+    "title": "Ką sako mūsų *studentai*",
+    "description": "Tikri atsiliepimai žmonių, kurie jau baigė mūsų programas.",
+    "items": [
+      "Viskas super! Kaip tik ieškojau kursų kur galėčiau pasibandyti. Tikrai tiem kas dar bandotes ir ieškote savęs labai rekomenduoju.",
+      "Realiai neisivaizdavau, kad taip itrauks:)) Kursai nebuvo sausi, viskas su pavyzdziais ir praktika.",
+      "Prieš mokymus nežinojau, kad ux yra tokia plati sritis..wow. Supratau, kad svarbu testuoti savo dizainus, o ne tiesiog „gražiai padaryti“.",
+      "Didelis ačiū Gedui. Labai patogu, kad viskas buvo online, galėjau mokytis iš namų ir dar dirbt.",
+      "Patiko, kad dirbom prie savo projektų, kam kas įdomu, o ne šiaip sausos užduotėlės kaip kitur.",
+      "Patiko! Ačiū! 😍",
+      "Kartais būdavo sunku. Tikrai nemeluosiu 😄 Bet dėstytojas Gedas viską ramiai dar kartą paaiškindavo ir pavykdavo. Tas jausmas nerealus 🙏",
+      "Kursai labai geri, bet sakyčiau reikia turėt šiek tiek kantrybės, kol pradedi jaust progresą.",
+      "Pati pradžia buvo kosmosas, galvojau kad neištempsiu, bet paskui susigaudžiau ir dabar dėkoju sau kad nesustojau:)"
+    ]
   },
   "faqs": {
-    "caption": "DUK",
-    "title": "Atsakymai į dažnus klausimus",
+    "title": "Atsakymai į dažnus *klausimus*",
+    "description": "Viskas, ką verta žinoti apie programas, finansavimą ir mokymosi eigą.",
     "contact": {
       "heading": "Vis dar kyla klausimų?",
       "description": "Užduokite rūpimus klausimus ir gaukite atsakymą per 12 valandų.",
@@ -164,7 +212,7 @@
     "questions": [
       {
         "question": "Kokios yra finansavimo galimybės?",
-        "answer": "Kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenims (pagal darbo sutartį, vykdantiems individualią veiklą arba turintiems verslo liudijimą). Tačiau šiuo metu atliekamas Kursuok auditas ir finansavimas yra sustabdytas. Kursuok finansavimas bus atnaujintas 2025 m. rudenį (https://kursuok.lt/naujienos/paaiskejo-kada-bus-papildytas-kursuok-biudzetas). Jei norite gauti finansavimą, užpildykite paraišką ir mes su jumis susisieksime, kai tik finansavimas bus atnaujintas."
+        "answer": "Kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenims (pagal darbo sutartį, vykdantiems individualią veiklą arba turintiems verslo liudijimą). Finansavimo galimybės priklauso nuo Kursuok biudžeto – aktualią informaciją rasite kursuok.lt. Jei norite gauti finansavimą, užpildykite paraišką ir mes padėsime ją pateikti."
       },
       {
         "question": "Kaip vyksta kursai?",

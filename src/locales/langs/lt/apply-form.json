@@ -19,5 +19,14 @@
   "form_submitted": {
     "title": "Registracija išsiųsta!",
     "description": "Ačiū, kad susisiekėte. Gavome jūsų duomenis ir netrukus susisieksime – įprastai atsakome per valandą."
+  },
+  "saveSpot": {
+    "title": "Rezervuokite vietą",
+    "description": "Palikite el. paštą ir pranešime, kai tik prasidės registracija į kitą srautą.",
+    "submit": "Rezervuoti vietą",
+    "submitted": {
+      "title": "Jūs sąraše!",
+      "description": "Parašysime jums, kai tik prasidės registracija."
+    }
   }
 }

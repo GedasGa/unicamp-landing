@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { varAlpha, textGradient } from 'src/theme/styles';
+import { varAlpha, textEmphasis, textGradient } from 'src/theme/styles';
 
 import { varFade } from 'src/components/animate';
 
@@ -31,6 +31,24 @@ type Props = StackProps & {
     description?: Omit<TextProps, 'title'>;
   };
 };
+
+/**
+ * Renders text with words wrapped in *asterisks* in the italic serif emphasis style,
+ * e.g. "Unicamp *programos*". Used for every heading so emphasis works the same everywhere.
+ */
+export function renderEmphasis(text: string) {
+  return text.split(/\*([^*]+)\*/).map((part, index) =>
+    index % 2 === 1 ? (
+      <Box key={index} component="span" sx={textEmphasis}>
+        {part}
+      </Box>
+    ) : (
+      part
+    )
+  );
+}
+
+// ----------------------------------------------------------------------
 
 // TODO: Move to root components/
 export function SectionTitle({
@@ -57,7 +75,7 @@ export function SectionTitle({
         variants={slotProps?.title?.variants ?? varFade({ distance: 24 }).inUp}
         sx={slotProps?.title?.sx}
       >
-        {`${title}`}
+        {typeof title === 'string' ? renderEmphasis(title) : title}
         <Box
           component="span"
           sx={(theme) => ({

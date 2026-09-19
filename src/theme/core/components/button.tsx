@@ -4,7 +4,7 @@ import type { Theme, CSSObject, Components, ComponentsVariants } from '@mui/mate
 import { buttonClasses } from '@mui/material/Button';
 import { loadingButtonClasses } from '@mui/lab/LoadingButton';
 
-import { varAlpha, stylesMode } from '../../styles';
+import { RADIUS, varAlpha, stylesMode } from '../../styles';
 
 // ----------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ const MuiButton: Components<Theme>['MuiButton'] = {
    *************************************** */
   styleOverrides: {
     root: {
-      borderRadius: '500px',
+      borderRadius: RADIUS.pill,
     },
     /**
      * @variant contained

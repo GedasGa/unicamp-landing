@@ -15,6 +15,7 @@ import { varFade, MotionViewport } from 'src/components/animate';
 import { useTranslate } from '../../locales';
 import { Iconify } from '../../components/iconify';
 import { SectionTitle } from './components/section-title';
+import { SECTION_PADDING, SECTION_CONTENT_GAP } from './components/section-spacing';
 
 // ----------------------------------------------------------------------
 
@@ -92,81 +93,88 @@ export function HomeFeatures({ sx, ...other }: HomeFeaturesProps) {
       sx={{
         overflow: 'hidden',
         position: 'relative',
-        pt: { xs: 10, md: 20 },
+        py: SECTION_PADDING,
         ...sx,
       }}
       {...other}
     >
       <MotionViewport>
         <Container sx={{ position: 'relative' }}>
-          {FEATURES.map((feature, index) => {
-            const isEven = index % 2 === 0;
-            return (
-              <Grid
-                container
-                key={feature.title}
-                columnSpacing={{ xs: 0, md: 8 }}
-                rowGap={{ xs: 2, md: 0 }}
-                sx={{ position: 'relative', zIndex: 9, mb: { xs: 10, md: 20 } }}
-              >
-                <Grid xs={12} md={6} lg={7} order={{ xs: 1, md: isEven ? 1 : 2 }}>
-                  <SectionTitle
-                    caption={t('features.caption')}
-                    title={t(feature.title)}
-                    sx={{
-                      mb: { xs: 5, md: 8 },
-                      textAlign: { xs: 'center', md: 'left' },
-                    }}
-                  />
-                  <Stack spacing={6}>
-                    {feature.items.map((item) => (
-                      <Box
-                        component={m.div}
-                        key={item.title}
-                        variants={varFade({ distance: 24 }).inUp}
-                        display="flex"
-                        gap={3}
-                      >
-                        <Iconify icon={item.icon} width={40} />
-                        <Stack spacing={1}>
-                          <Typography variant="h5" component="h6">
-                            {t(item.title)}
-                          </Typography>
-                          <Typography sx={{ color: 'text.secondary' }}>
-                            {t(item.description)}
-                          </Typography>
-                        </Stack>
-                      </Box>
-                    ))}
-                  </Stack>
-                </Grid>
+          <Stack gap={{ xs: 10, md: 15 }}>
+            {FEATURES.map((feature, index) => {
+              const isEven = index % 2 === 0;
+              return (
                 <Grid
-                  xs={12}
-                  md={6}
-                  lg={5}
-                  order={{ xs: 2, md: isEven ? 2 : 1 }}
-                  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  container
+                  key={feature.title}
+                  columnSpacing={{ xs: 0, md: 8 }}
+                  rowGap={{ xs: 2, md: 0 }}
+                  sx={{ position: 'relative', zIndex: 9 }}
                 >
-                  <Stack
-                    component={m.div}
-                    variants={
-                      isEven ? varFade({ distance: 24 }).inRight : varFade({ distance: 24 }).inLeft
-                    }
-                    alignItems="center"
-                    justifyContent="center"
-                    sx={{ width: '100%', maxWidth: 720, position: 'relative' }}
-                  >
-                    <Box
-                      component="img"
-                      alt={t(feature.title)}
-                      src={feature.illustration}
-                      sx={{ width: '100%' }}
+                  <Grid xs={12} md={6} lg={7} order={{ xs: 1, md: isEven ? 1 : 2 }}>
+                    <SectionTitle
+                      title={t(feature.title)}
+                      sx={{
+                        mb: SECTION_CONTENT_GAP,
+                        textAlign: { xs: 'center', md: 'left' },
+                      }}
                     />
-                  </Stack>
+                    <Stack spacing={6}>
+                      {feature.items.map((item) => (
+                        <Box
+                          component={m.div}
+                          key={item.title}
+                          variants={varFade({ distance: 24 }).inUp}
+                          display="flex"
+                          gap={3}
+                        >
+                          <Iconify
+                            icon={item.icon}
+                            width={32}
+                            sx={{ color: 'text.primary', flexShrink: 0 }}
+                          />
+                          <Stack spacing={1}>
+                            <Typography variant="h5" component="h6">
+                              {t(item.title)}
+                            </Typography>
+                            <Typography sx={{ color: 'text.secondary' }}>
+                              {t(item.description)}
+                            </Typography>
+                          </Stack>
+                        </Box>
+                      ))}
+                    </Stack>
+                  </Grid>
+                  <Grid
+                    xs={12}
+                    md={6}
+                    lg={5}
+                    order={{ xs: 2, md: isEven ? 2 : 1 }}
+                    sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <Stack
+                      component={m.div}
+                      variants={
+                        isEven
+                          ? varFade({ distance: 24 }).inRight
+                          : varFade({ distance: 24 }).inLeft
+                      }
+                      alignItems="center"
+                      justifyContent="center"
+                      sx={{ width: '100%', maxWidth: 720, position: 'relative' }}
+                    >
+                      <Box
+                        component="img"
+                        alt={t(feature.title)}
+                        src={feature.illustration}
+                        sx={{ width: '100%' }}
+                      />
+                    </Stack>
+                  </Grid>
                 </Grid>
-              </Grid>
-            );
-          })}
+              );
+            })}
+          </Stack>
         </Container>
       </MotionViewport>
     </Box>

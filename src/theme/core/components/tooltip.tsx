@@ -17,24 +17,22 @@ const MuiTooltip: Components<Theme>['MuiTooltip'] = {
         backgroundColor: theme.vars.palette.grey[700],
       },
     }),
-    arrow: ({ theme }) => ({
-      color: theme.vars.palette.grey[800],
-      [stylesMode.dark]: {
-        color: theme.vars.palette.grey[700],
-      },
-    }),
+    // Tooltips are shown without the pointer triangle.
+    arrow: {
+      display: 'none',
+    },
     popper: {
       [`&.${tooltipClasses.popper}[data-popper-placement*="bottom"] .${tooltipClasses.tooltip}`]: {
-        marginTop: 12,
+        marginTop: 8,
       },
       [`&.${tooltipClasses.popper}[data-popper-placement*="top"] .${tooltipClasses.tooltip}`]: {
-        marginBottom: 12,
+        marginBottom: 8,
       },
       [`&.${tooltipClasses.popper}[data-popper-placement*="right"] .${tooltipClasses.tooltip}`]: {
-        marginLeft: 12,
+        marginLeft: 8,
       },
       [`&.${tooltipClasses.popper}[data-popper-placement*="left"] .${tooltipClasses.tooltip}`]: {
-        marginRight: 12,
+        marginRight: 8,
       },
     },
   },

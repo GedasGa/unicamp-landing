@@ -121,7 +121,12 @@ const MuiChip: Components<Theme>['MuiChip'] = {
         },
       };
 
-      return { ...styled.colors, ...styled.disabled };
+      // Give the icon the same space from the edge as the label has on the other side.
+      const iconSpacing = {
+        [`& .${chipClasses.icon}`]: { marginLeft: ownerState.size === 'small' ? 8 : 12 },
+      };
+
+      return { ...styled.colors, ...styled.disabled, ...iconSpacing };
     },
     label: ({ theme }) => ({ fontWeight: theme.typography.fontWeightMedium }),
     icon: { color: 'currentColor' },

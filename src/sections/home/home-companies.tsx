@@ -1,19 +1,18 @@
 import type { BoxProps } from '@mui/material/Box';
 
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 import { CONFIG } from 'src/config-global';
 
 import { useTranslate } from '../../locales';
+import { SECTION_PADDING } from './components/section-spacing';
 
 // ----------------------------------------------------------------------
 
 const COMPANIES = [
-  'speechify.svg',
   'european-commission.svg',
-  'ovoko.svg',
   'eeas.svg',
   'khu.svg',
   'ipl.svg',
@@ -34,19 +33,31 @@ export function HomeCompanies({ sx, ...other }: HomeCompaniesProps) {
       sx={{
         overflow: 'hidden',
         position: 'relative',
-        py: { xs: 4, md: 6 },
+        py: SECTION_PADDING,
         ...sx,
       }}
       {...other}
     >
       <Container sx={{ position: 'relative' }} maxWidth="xl">
-        <Box component="section" {...other}>
-          <Stack
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
+        <Box>
+          <Typography
+            variant="body2"
+            sx={{ mb: { xs: 4, md: 5 }, textAlign: 'center', color: 'text.secondary' }}
+          >
+            {t('companies.caption')}
+          </Typography>
+
+          <Box
             sx={{
-              flexWrap: 'wrap',
+              display: 'grid',
+              // Column counts divide the 6 logos evenly, so no row is left with a single logo.
+              gridTemplateColumns: {
+                xs: 'repeat(2, 1fr)',
+                sm: 'repeat(3, 1fr)',
+                lg: 'repeat(6, 1fr)',
+              },
+              alignItems: 'center',
+              justifyItems: 'center',
               rowGap: 4,
               columnGap: 8,
             }}
@@ -62,7 +73,7 @@ export function HomeCompanies({ sx, ...other }: HomeCompaniesProps) {
                 }}
               />
             ))}
-          </Stack>
+          </Box>
         </Box>
       </Container>
     </Box>

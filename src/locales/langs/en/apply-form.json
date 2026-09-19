@@ -19,5 +19,14 @@
   "form_submitted": {
     "title": "Application submitted!",
     "description": "Thank you for getting in touch. We’ve received your details and will get back to you soon, usually within an hour."
+  },
+  "saveSpot": {
+    "title": "Save your spot",
+    "description": "Leave your email and we'll let you know as soon as registration for the next intake opens.",
+    "submit": "Save my spot",
+    "submitted": {
+      "title": "You're on the list!",
+      "description": "We'll email you as soon as registration opens."
+    }
   }
 }

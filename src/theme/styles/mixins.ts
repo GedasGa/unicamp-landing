@@ -34,6 +34,17 @@ export const hideScrollY: CSSObject = {
  * Usage:
  * ...textGradient(`to right, ${theme.vars.palette.text.primary}, ${alpha(theme.vars.palette.text.primary, 0.2)}`
  */
+/**
+ * Italic serif used to emphasise a word inside a heading.
+ */
+export const textEmphasis: CSSObject = {
+  fontFamily: 'Georgia, "Times New Roman", serif',
+  fontStyle: 'italic',
+  fontWeight: 400,
+};
+
+// ----------------------------------------------------------------------
+
 export function textGradient(color: string): CSSObject {
   return {
     background: `linear-gradient(${color})`,

@@ -1,22 +1,26 @@
 {
   "hero": {
     "heading": {
-      "firstLine": "Learn tech skills ",
-      "secondLine": "Advance your career"
+      "title": "Learn *newest* tech skills"
     },
     "cta": {
       "viewCourses": {
         "description": "Choose your desired program.",
-        "buttonText": "View Courses"
+        "buttonText": "View courses"
       },
       "consultation": {
-        "description": "Don't know where to start? Register and we'll help you.",
-        "buttonText": "Get a FREE Consultation"
-      }
+        "description": "Not sure which to choose? Let's talk",
+        "buttonText": "Book a consultation",
+        "free": "Free"
+      },
+      "saveSpot": "Save your spot"
     },
     "svg": {
       "text": "Unicamp Academy"
     }
+  },
+  "companies": {
+    "caption": "Our mentors bring first-hand experience from companies and universities such as:"
   },
   "unicamp": {
     "title": "Why Unicamp?",
@@ -29,51 +33,50 @@
     }
   },
   "features": {
-    "caption": "Unicamp Offers",
     "sections": {
       "realProjects": {
-        "heading": "Real-World Projects",
+        "heading": "Real-world *projects*",
         "items": [
           {
-            "title": "Gain Hands-on Experience",
+            "title": "Gain hands-on experience",
             "description": "Work on projects that reflect real-world challenges using the most popular tools and technologies."
           },
           {
-            "title": "Showcase Your Work",
+            "title": "Showcase your work",
             "description": "Present your project to real users and impress employers with tangible results. No other academy offers this opportunity."
           },
           {
-            "title": "Enhance Your Portfolio",
+            "title": "Enhance your portfolio",
             "description": "Add real, professional projects to your LinkedIn and attract employers."
           }
         ]
       },
       "teamWork": {
-        "heading": "Learn Through Teamwork",
+        "heading": "Learn through *teamwork*",
         "items": [
           {
-            "title": "Join Curious and Motivated People",
+            "title": "Join curious and motivated people",
             "description": "Surround yourself with those who inspire growth and ambition."
           },
           {
-            "title": "Collaborate with Developers and UX Designers",
+            "title": "Collaborate with developers and UX designers",
             "description": "Work in cross-functional teams with other developers and designers."
           },
           {
-            "title": "Expand Your Network",
+            "title": "Expand your network",
             "description": "Build connections with like-minded individuals who support, inspire, and help you grow professionally and personally."
           }
         ]
       },
       "1on1": {
-        "heading": "Personal Mentorship Sessions",
+        "heading": "Personal *mentorship* sessions",
         "items": [
           {
-            "title": "Dedicated Mentor",
+            "title": "Dedicated mentor",
             "description": "A mentor to share your victories and challenges with, providing support throughout the course."
           },
           {
-            "title": "Career Advice",
+            "title": "Career advice",
             "description": "Discuss your goals, plan your next steps, and get valuable insights into breaking into the IT industry."
           }
         ]
@@ -81,7 +84,7 @@
     }
   },
   "team": {
-    "heading": "Unicamp Team",
+    "heading": "Unicamp *team*",
     "description": "We are a team of IT enthusiasts passionate about sharing knowledge and helping everyone find their place in the world of technology.",
     "mentor": "Mentor",
     "members": [
@@ -91,82 +94,125 @@
       },
       {
         "name": "Mindaugas Pažereckas",
-        "role": "Co-Founder | Operations"
+        "role": "Co-founder | Operations"
       },
       {
         "name": "Aistė Gerdzevičiūtė",
-        "role": "Co-Founder | Product Designer"
+        "role": "Co-founder | Product designer"
       },
       {
         "name": "Toshi",
         "role": "Mindaugas' dawg"
       }
-    ]
+    ],
+    "viewProfile": "View {{network}}"
   },
   "programs": {
-    "title": "Unicamp Programs",
-    "description": "Choose a course and start your best IT career today.",
-    "reviews": "reviews",
-    "cta": {
-      "apply": "Register Now",
-      "viewProgram": "View Program"
+    "title": "Unicamp *programs*",
+    "description": "Hands-on 12-week programs for people moving into tech. No prior experience needed.",
+    "meta": {
+      "duration": "12 weeks · 108 hrs",
+      "format": "Online",
+      "group": "Groups of up to 20"
     },
-    "levels": {
-      "beginner": "Beginner",
-      "intermediate": "Intermediate",
-      "advanced": "Advanced"
-    },
-    "chips": {
-      "moneyBackGuarantee": "7-Day Money-Back Guarantee",
-      "approvedByKursuok": "Verified by Kursuok.lt",
-      "availableFinancing": "Financed by kursuok.lt",
-      "limitedSpaces": "Limited Spaces"
-    },
+    "learnTitle": "What you'll learn",
+    "includesTitle": "Included",
+    "includes": [
+      "A final team project for your portfolio",
+      "1-on-1 sessions with a mentor",
+      "Unicamp certificate",
+      "6 months of access to all materials",
+      "Repeat the course for free"
+    ],
     "pricing": {
-      "paidMonthly": "x3 months"
+      "installments": "or 3 payments of {{amount}} €",
+      "financing": "Kursuok.lt financing available",
+      "guarantee": "7-day money-back guarantee"
+    },
+    "cta": {
+      "apply": "Apply now",
+      "viewProgram": "View program"
     },
     "programs": {
       "webDevelopment": {
         "title": "Web Development",
-        "caption": "108 hrs (3 months) | Registration from November",
-        "features": [
-          "35+ lectures and real-world projects",
-          "1-on-1 consultations",
-          "AI tools",
-          "Unlimited access to all course materials for 6 months",
-          "Repeat the course for FREE once"
+        "outcome": "Become a frontend developer",
+        "description": "Learn to build modern websites – from your first line of code to a live project on the web.",
+        "skills": [
+          "JavaScript",
+          "React & Next.js",
+          "HTML & CSS",
+          "Git & GitHub",
+          "Responsive design",
+          "AI tools"
         ]
       },
       "productDesign": {
         "title": "UX/UI Design",
-        "caption": "108 hrs (3 months) | Registration from November",
-        "specializations": ["UX/UI Designer", "UX Researcher", "Product Designer"],
-        "tools": ["Figma", "FigJam", "AI Tools"],
-        "features": [
-          "35+ lectures and real-world projects",
-          "1-on-1 consultations",
-          "AI tools",
-          "Unlimited access to all course materials for 6 months",
-          "Repeat the course for FREE once"
+        "outcome": "Become a UX/UI designer",
+        "description": "Your marketing or product experience is a great foundation. Learn to research users and design interfaces people enjoy.",
+        "skills": [
+          "Figma",
+          "UX research",
+          "Prototyping",
+          "Design systems",
+          "Accessibility",
+          "AI tools"
         ]
       }
     }
   },
+  "tools": {
+    "title": "You'll learn to work with modern *tools*",
+    "description": "From design to code to AI – you learn with the same tools IT teams use every day.",
+    "items": {
+      "cursor": "AI-powered code editor",
+      "lovable": "Build web apps by describing them",
+      "figma": "Collaborative interface design and prototyping",
+      "slack": "Team chat and collaboration",
+      "unicampLearning": "Our learning platform with lessons and tasks",
+      "claude": "AI assistant for writing, coding and analysis",
+      "zapier": "Automate work between apps",
+      "hostinger": "Website hosting and domains",
+      "google": "Docs, Drive, Meet and Gemini",
+      "openai": "ChatGPT and AI models",
+      "github": "Code hosting and version control",
+      "supabase": "Database, auth and backend",
+      "canva": "Quick graphic design",
+      "n8n": "Workflow automation with AI agents",
+      "openclaw": "Open-source personal AI agent",
+      "hermes": "Open-source AI agent",
+      "elevenlabs": "AI voice generation",
+      "speechify": "Text to speech"
+    }
+  },
   "testimonials": {
-    "title": "Students saying..."
+    "title": "What our *students* say",
+    "description": "Real reviews from people who have completed our programs.",
+    "items": [
+      "Everything was great! I was looking for a course where I could try something new. I really recommend it to anyone who's still searching for their path.",
+      "I honestly didn't expect it to be so engaging :)) The course wasn't dry – everything came with examples and practice.",
+      "Before the course I didn't know UX was such a broad field... wow. I learned that it's important to test your designs, not just make them look pretty.",
+      "Big thanks to Gedas. It was really convenient that everything was online – I could study from home and keep working.",
+      "I liked that we worked on our own projects, on whatever interested each of us, instead of dry little assignments like elsewhere.",
+      "Loved it! Thank you! 😍",
+      "It was hard at times, I won't lie 😄 But our teacher Gedas calmly explained everything again and it worked out. That feeling is amazing 🙏",
+      "The course is really good, but I'd say you need a bit of patience before you start to feel progress.",
+      "The very beginning was wild – I thought I wouldn't make it, but then I got the hang of it and now I'm grateful to myself for not giving up :)"
+    ]
   },
   "faqs": {
-    "caption": "FAQs",
-    "title": "We Have Answers",
+    "title": "We have *answers*",
+    "description": "Everything worth knowing about our programs, funding and how learning works.",
     "contact": {
-      "heading": "Still Have Questions?",
+      "heading": "Still have questions?",
       "description": "Ask us anything and get a reply within 12 hours.",
-      "cta": "Contact Us"
+      "cta": "Contact us"
     },
     "questions": [
       {
         "question": "What are the funding options?",
-        "answer": "The kursuok.lt platform offers funding up to 500 EUR for employed individuals (under an employment contract, self-employed, or with a business license).\n\n However, Kursuok is currently undergoing an audit, and funding has been paused. Kursuok funding will be renewed in the fall of 2025 (https://kursuok.lt/naujienos/paaiskejo-kada-bus-papildytas-kursuok-biudzetas).\n\nIf you would like to receive funding, please fill out the application, and we will contact you as soon as funding is renewed."
+        "answer": "The kursuok.lt platform offers funding of up to 500 EUR for employed individuals (under an employment contract, self-employed, or with a business license). Availability depends on the Kursuok budget – see kursuok.lt for the current status. If you'd like to receive funding, fill out the application and we'll help you submit it."
       },
       {
         "question": "How are the courses conducted?",

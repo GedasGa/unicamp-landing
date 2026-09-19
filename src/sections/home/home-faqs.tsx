@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -13,13 +14,14 @@ import Accordion, { accordionClasses } from '@mui/material/Accordion';
 import AccordionDetails, { accordionDetailsClasses } from '@mui/material/AccordionDetails';
 import AccordionSummary, { accordionSummaryClasses } from '@mui/material/AccordionSummary';
 
-import { varAlpha } from 'src/theme/styles';
+import { RADIUS } from 'src/theme/styles';
 
 import { Iconify } from 'src/components/iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 import { useTranslate } from '../../locales';
 import { SectionTitle } from './components/section-title';
+import { SECTION_PADDING, SECTION_CONTENT_GAP } from './components/section-spacing';
 
 // ----------------------------------------------------------------------
 
@@ -85,19 +87,20 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
 
   const renderDescription = (
     <SectionTitle
-      caption={t('faqs.caption')}
       title={t('faqs.title')}
+      description={t('faqs.description')}
       sx={{ textAlign: 'center' }}
     />
   );
 
   const renderContent = (
     <Stack
-      spacing={1}
+      spacing={2}
       sx={{
         mx: 'auto',
         maxWidth: 720,
-        my: { xs: 5, md: 10 },
+        mt: SECTION_CONTENT_GAP,
+        mb: { xs: 5, md: 10 },
       }}
     >
       {questions.map((item, index) => (
@@ -108,21 +111,16 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
           expanded={expanded === item.question}
           onChange={handleChange(item.question)}
           sx={{
-            borderRadius: 2,
-            transition: (theme) =>
-              theme.transitions.create(['background-color'], {
-                duration: theme.transitions.duration.short,
-              }),
+            // Styled like the shared Card so FAQ items match the other cards on the page.
+            borderRadius: RADIUS.lg,
+            bgcolor: 'background.paper',
+            boxShadow: (theme) => theme.customShadows.card,
             '&::before': { display: 'none' },
-            '&:hover': {
-              bgcolor: (theme) => varAlpha(theme.vars.palette.grey['500Channel'], 0.16),
-            },
-            '&:first-of-type, &:last-of-type': { borderRadius: 2 },
+            '&:first-of-type, &:last-of-type': { borderRadius: RADIUS.lg },
             [`&.${accordionClasses.expanded}`]: {
               m: 0,
-              borderRadius: 2,
-              boxShadow: 'none',
-              bgcolor: (theme) => varAlpha(theme.vars.palette.grey['500Channel'], 0.08),
+              borderRadius: RADIUS.lg,
+              boxShadow: (theme) => theme.customShadows.card,
             },
             [`& .${accordionSummaryClasses.root}`]: {
               py: 3,
@@ -155,14 +153,16 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
   );
 
   const renderContact = (
-    <Stack
-      alignItems="center"
+    <Card
       sx={{
         px: 3,
         py: 8,
+        mx: 'auto',
+        maxWidth: 720,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
         textAlign: 'center',
-        background: (theme) =>
-          `linear-gradient(270deg, ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)}, ${varAlpha(theme.vars.palette.grey['500Channel'], 0)})`,
       }}
     >
       <m.div variants={varFade().in}>
@@ -178,22 +178,22 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
       <m.div variants={varFade().in}>
         <Button
           color="inherit"
+          size="large"
           variant="contained"
           onClick={() => {
             // @ts-ignore Injected to document object
             OpenWidget.call('maximize', { feature: 'form-contact' });
           }}
-          startIcon={<Iconify icon="fluent:mail-24-filled" />}
         >
           {t('faqs.contact.cta')}
         </Button>
       </m.div>
-    </Stack>
+    </Card>
   );
 
   return (
-    <Box component="section" sx={{ ...sx }} {...other}>
-      <MotionViewport sx={{ py: 10, position: 'relative' }}>
+    <Box component="section" sx={{ py: SECTION_PADDING, ...sx }} {...other}>
+      <MotionViewport sx={{ position: 'relative' }}>
         <Container>
           {renderDescription}
           {renderContent}

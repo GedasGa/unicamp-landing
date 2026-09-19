@@ -4,20 +4,29 @@ import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
-import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from 'src/assets/icons';
+import { RADIUS } from 'src/theme/styles';
 
 import { Image } from 'src/components/image';
 import { varFade, MotionViewport } from 'src/components/animate';
-import { Carousel, useCarousel, CarouselArrowFloatButtons } from 'src/components/carousel';
 
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
-import { Logo } from '../../components/logo';
 import { Label } from '../../components/label';
+import { SectionTitle } from './components/section-title';
+import { SECTION_PADDING, SECTION_CONTENT_GAP } from './components/section-spacing';
+
+// ----------------------------------------------------------------------
+
+const SOCIAL_NAMES: Record<string, string> = {
+  facebook: 'Facebook',
+  instagram: 'Instagram',
+  linkedin: 'LinkedIn',
+  twitter: 'X',
+};
 
 // ----------------------------------------------------------------------
 
@@ -81,45 +90,31 @@ const MEMBERS = [
 export function HomeTeam({ sx, ...other }: BoxProps) {
   const { t } = useTranslate('home');
 
-  const carousel = useCarousel({
-    align: 'start',
-    slideSpacing: '24px',
-    slidesToShow: { xs: 1, sm: 2, md: 3, lg: 4 },
-  });
-
   return (
-    <Box component="section" sx={{ overflow: 'hidden', ...sx }} {...other}>
-      <Container component={MotionViewport} sx={{ textAlign: 'center', pt: { xs: 10, md: 0 } }}>
-        <m.div variants={varFade().inDown}>
-          <Logo />
-        </m.div>
-        <m.div variants={varFade().inUp}>
-          <Typography variant="h2" sx={{ my: 3 }}>
-            {t('team.heading')}
-          </Typography>
-        </m.div>
+    <Box component="section" sx={{ py: SECTION_PADDING, overflow: 'hidden', ...sx }} {...other}>
+      <Container component={MotionViewport} sx={{ textAlign: 'center' }}>
+        <SectionTitle
+          title={t('team.heading')}
+          description={t('team.description')}
+          sx={{ maxWidth: 640, mx: 'auto' }}
+        />
 
-        <m.div variants={varFade().inUp}>
-          <Typography sx={{ mx: 'auto', maxWidth: 640, color: 'text.secondary' }}>
-            {t('team.description')}
-          </Typography>
-        </m.div>
-
-        <Box sx={{ position: 'relative' }}>
-          <CarouselArrowFloatButtons {...carousel.arrows} options={carousel.options} />
-
-          <Carousel carousel={carousel} sx={{ px: 0.5 }}>
-            {MEMBERS.map((member) => (
-              <Box
-                key={member.name}
-                component={m.div}
-                variants={varFade().in}
-                sx={{ py: { xs: 8, md: 10 } }}
-              >
-                <MemberCard member={member} />
-              </Box>
-            ))}
-          </Carousel>
+        {/* All members are always visible, so nobody is hidden behind a carousel. */}
+        <Box
+          sx={{
+            mt: SECTION_CONTENT_GAP,
+            gap: 3,
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
+            maxWidth: { xs: 360, sm: 1 },
+            mx: 'auto',
+          }}
+        >
+          {MEMBERS.map((member) => (
+            <Box key={member.name} component={m.div} variants={varFade().in}>
+              <MemberCard member={member} />
+            </Box>
+          ))}
         </Box>
       </Container>
     </Box>
@@ -136,20 +131,12 @@ const MemberCard = ({ member }: MemberCardProps) => {
   const { t } = useTranslate('home');
   return (
     <Card>
-      <Typography variant="subtitle1" sx={{ mt: 2.5, mb: 0.5 }}>
-        {t(member.name)}
-      </Typography>
-
-      <Typography variant="body2" sx={{ mb: 2.5, color: 'text.secondary' }}>
-        {t(member.role)}
-      </Typography>
-
-      <Box sx={{ position: 'relative', px: 1 }}>
+      <Box sx={{ position: 'relative', px: 1, pt: 1 }}>
         {member.isMentor && (
           <Label
             sx={{
               position: 'absolute',
-              top: 10,
+              top: 20,
               left: 20,
               zIndex: 1,
             }}
@@ -162,24 +149,31 @@ const MemberCard = ({ member }: MemberCardProps) => {
           alt={t(member.name)}
           src={member.avatarUrl}
           ratio="1/1.25"
-          sx={{ borderRadius: 2 }}
+          sx={{ borderRadius: RADIUS.md }}
         />
       </Box>
 
-      <Box display="flex" alignItems="center" justifyContent="center" sx={{ p: 2 }}>
+      <Typography variant="subtitle1" sx={{ mt: 2.5, mb: 0.5 }}>
+        {t(member.name)}
+      </Typography>
+
+      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        {t(member.role)}
+      </Typography>
+
+      <Box display="flex" flexDirection="column" gap={1} sx={{ p: 2 }}>
         {member.socials.map((social) => (
-          <IconButton
+          <Button
             key={social.label}
-            href={social.link}
+            fullWidth
+            variant="outlined"
             color="inherit"
+            href={social.link}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {social.value === 'facebook' && <FacebookIcon />}
-            {social.value === 'instagram' && <InstagramIcon />}
-            {social.value === 'linkedin' && <LinkedinIcon />}
-            {social.value === 'twitter' && <TwitterIcon />}
-          </IconButton>
+            {t('team.viewProfile', { network: SOCIAL_NAMES[social.value] ?? social.label })}
+          </Button>
         ))}
       </Box>
     </Card>

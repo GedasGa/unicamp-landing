@@ -1,4 +1,3 @@
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -6,7 +5,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 
 import { Iconify } from '../iconify';
-import { useTranslate } from '../../locales';
 
 import type { ConfirmDialogProps } from './types';
 
@@ -21,7 +19,6 @@ export function ConfirmDialog({
   showActions = true,
   ...other
 }: ConfirmDialogProps) {
-  const { t } = useTranslate('common');
   return (
     <Dialog fullWidth maxWidth="xs" open={open} onClose={onClose} {...other}>
       <DialogTitle sx={{ pb: 2, display: 'flex', alignItems: 'center', pr: 6 }}>
@@ -42,14 +39,7 @@ export function ConfirmDialog({
 
       {content && <DialogContent sx={{ typography: 'body2' }}> {content} </DialogContent>}
 
-      {showActions && (
-        <DialogActions>
-          <Button variant="outlined" color="inherit" onClick={onClose}>
-            {t('cancel')}
-          </Button>
-          {action}
-        </DialogActions>
-      )}
+      {showActions && <DialogActions>{action}</DialogActions>}
     </Dialog>
   );
 }

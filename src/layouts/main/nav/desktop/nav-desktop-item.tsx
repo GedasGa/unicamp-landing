@@ -48,17 +48,6 @@ const StyledNavItem = styled(ButtonBase, {
         duration: theme.transitions.duration.shorter,
       }),
     },
-    dot: {
-      width: 6,
-      height: 6,
-      left: -12,
-      opacity: 0.64,
-      content: '""',
-      borderRadius: '50%',
-      position: 'absolute',
-      backgroundColor: theme.vars.palette.text.disabled,
-      ...(active && { opacity: 1, backgroundColor: theme.vars.palette.primary.main }),
-    },
   };
 
   return {
@@ -68,13 +57,12 @@ const StyledNavItem = styled(ButtonBase, {
     ...(rootItem && {
       ...baseStyles.item,
       height: '100%',
-      '&:hover': { opacity: 0.64, '&::before': baseStyles.dot },
+      '&:hover': { opacity: 0.64 },
       ...(active && {
         color: theme.vars.palette.primary.main,
         fontWeight: theme.typography.fontWeightSemiBold,
-        '&::before': baseStyles.dot,
       }),
-      ...(open && { opacity: 0.64, '&::before': baseStyles.dot }),
+      ...(open && { opacity: 0.64 }),
     }),
 
     /**
@@ -85,11 +73,10 @@ const StyledNavItem = styled(ButtonBase, {
       justifyContent: 'flex-start',
       color: theme.vars.palette.text.secondary,
       fontSize: theme.typography.pxToRem(13),
-      '&:hover': { color: theme.vars.palette.text.primary, '&::before': baseStyles.dot },
+      '&:hover': { color: theme.vars.palette.text.primary },
       ...(active && {
         color: theme.vars.palette.text.primary,
         fontWeight: theme.typography.fontWeightSemiBold,
-        '&::before': baseStyles.dot,
       }),
     }),
   };

@@ -3,6 +3,7 @@ import type { BoxProps } from '@mui/material/Box';
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Container from '@mui/material/Container';
@@ -22,62 +23,55 @@ import {
 import { useTranslate } from '../../locales';
 import { Label } from '../../components/label';
 import { SectionTitle } from './components/section-title';
+import { SECTION_PADDING, SECTION_CONTENT_GAP } from './components/section-spacing';
 
 // ----------------------------------------------------------------------
 
+// Quotes live in the translations (`testimonials.items`), in the same order as this list.
 const TESTIMONIALS = [
   {
     name: 'Aleksandra Z.',
     rating: 5,
-    content: `Viskas super! Kaip tik ieškojau kursų kur galėčiau pasibandyti. Tikrai tiem kas dar bandotes ir ieškote savęs labai rekomenduoju.`,
     course: 'UX/UI',
   },
   {
     name: 'Monika J.',
     rating: 5,
-    content: `Realiai neisivaizdavau, kad taip itrauks:)) Kursai nebuvo sausi, viskas su pavyzdziais ir praktika.`,
     course: 'UX/UI',
   },
   {
     name: 'Simona G.',
     rating: 5,
-    content: `Prieš mokymus nežinojau, kad ux yra tokia plati sritis..wow. Supratau, kad svarbu testuoti savo dizainus, o ne tiesiog „gražiai padaryti“.`,
     course: 'Frontend',
   },
   {
     name: 'Edgaras K.',
     rating: 5,
-    content: `Didelis ačiū Gedui. Labai patogu, kad viskas buvo online, galėjau mokytis iš namų ir dar dirbt.`,
     course: 'Frontend',
   },
   {
     name: 'Julius V.',
     rating: 5,
-    content: `Patiko, kad dirbom prie savo projektų, kam kas įdomu, o ne šiaip sausos užduotėlės kaip kitur.`,
     course: 'Frontend',
   },
   {
     name: 'Justė P.',
     rating: 5,
-    content: `Patiko! Ačiū! 😍`,
     course: 'UX/UI',
   },
   {
     name: 'Evelina Ž.',
     rating: 5,
-    content: `Kartais būdavo sunku. Tikrai nemeluosiu 😄 Bet dėstytojas Gedas viską ramiai dar kartą paaiškindavo ir pavykdavo. Tas jausmas nerealus 🙏`,
     course: 'Frontend',
   },
   {
     name: 'Giedrius Č.',
     rating: 5,
-    content: `Kursai labai geri, bet sakyčiau reikia turėt šiek tiek kantrybės, kol pradedi jaust progresą.`,
     course: 'Frontend',
   },
   {
     name: 'Liepa P.',
     rating: 5,
-    content: `Pati pradžia buvo kosmosas, galvojau kad neištempsiu, bet paskui susigaudžiau ir dabar dėkoju sau kad nesustojau:)`,
     course: 'UX/UI',
   },
 ];
@@ -98,18 +92,24 @@ export function HomeTestimonials({ sx, ...other }: BoxProps) {
   });
 
   return (
-    <Box component="section" sx={{ py: 10, position: 'relative', ...sx }} {...other}>
+    <Box component="section" sx={{ py: SECTION_PADDING, position: 'relative', ...sx }} {...other}>
       <MotionViewport>
         <Container>
           <SectionTitle
             title={t('testimonials.title')}
-            sx={{ mb: { xs: 5, md: 8 }, textAlign: 'center' }}
+            description={t('testimonials.description')}
+            sx={{ mb: SECTION_CONTENT_GAP, textAlign: 'center' }}
           />
 
-          <Stack sx={{ position: 'relative', py: { xs: 5, md: 8 } }}>
+          <Stack sx={{ position: 'relative' }}>
             <Carousel carousel={carousel}>
-              {TESTIMONIALS.map((item) => (
-                <Stack key={item.name} component={m.div} variants={varFade().in}>
+              {TESTIMONIALS.map((item, index) => (
+                <Card
+                  key={item.name}
+                  component={m.div}
+                  variants={varFade().in}
+                  sx={{ p: 3, height: 1, display: 'flex', flexDirection: 'column' }}
+                >
                   <Stack spacing={1} sx={{ typography: 'subtitle2' }}>
                     <Rating
                       size="small"
@@ -127,19 +127,16 @@ export function HomeTestimonials({ sx, ...other }: BoxProps) {
                       mb: 3,
                     })}
                   >
-                    {item.content}
+                    {t(`testimonials.items.${index}`)}
                   </Typography>
 
                   <Stack direction="column" spacing={2}>
                     <Typography variant="subtitle1">{item.name}</Typography>
-                    <Label
-                      color={item.course === 'UX/UI' ? 'primary' : 'default'}
-                      sx={{ alignSelf: 'start', width: 'auto' }}
-                    >
+                    <Label color="default" sx={{ alignSelf: 'start', width: 'auto' }}>
                       {item.course}
                     </Label>
                   </Stack>
-                </Stack>
+                </Card>
               ))}
             </Carousel>
 
