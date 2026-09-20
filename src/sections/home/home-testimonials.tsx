@@ -3,93 +3,55 @@ import type { BoxProps } from '@mui/material/Box';
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { maxLine } from 'src/theme/styles';
+import { maxLine, SECTION_PADDING, SECTION_CONTENT_GAP } from 'src/theme/styles';
 
 import { varFade, MotionViewport } from 'src/components/animate';
 import {
   Carousel,
   useCarousel,
   CarouselDotButtons,
+  carouselShadowRoom,
   carouselBreakpoints,
   CarouselArrowBasicButtons,
 } from 'src/components/carousel';
 
 import { useTranslate } from '../../locales';
-import { Label } from '../../components/label';
 import { SectionTitle } from './components/section-title';
 
 // ----------------------------------------------------------------------
 
-const TESTIMONIALS = [
-  {
-    name: 'Aleksandra Z.',
-    rating: 5,
-    content: `Viskas super! Kaip tik ieškojau kursų kur galėčiau pasibandyti. Tikrai tiem kas dar bandotes ir ieškote savęs labai rekomenduoju.`,
-    course: 'UX/UI',
-  },
-  {
-    name: 'Monika J.',
-    rating: 5,
-    content: `Realiai neisivaizdavau, kad taip itrauks:)) Kursai nebuvo sausi, viskas su pavyzdziais ir praktika.`,
-    course: 'UX/UI',
-  },
-  {
-    name: 'Simona G.',
-    rating: 5,
-    content: `Prieš mokymus nežinojau, kad ux yra tokia plati sritis..wow. Supratau, kad svarbu testuoti savo dizainus, o ne tiesiog „gražiai padaryti“.`,
-    course: 'Frontend',
-  },
-  {
-    name: 'Edgaras K.',
-    rating: 5,
-    content: `Didelis ačiū Gedui. Labai patogu, kad viskas buvo online, galėjau mokytis iš namų ir dar dirbt.`,
-    course: 'Frontend',
-  },
-  {
-    name: 'Julius V.',
-    rating: 5,
-    content: `Patiko, kad dirbom prie savo projektų, kam kas įdomu, o ne šiaip sausos užduotėlės kaip kitur.`,
-    course: 'Frontend',
-  },
-  {
-    name: 'Justė P.',
-    rating: 5,
-    content: `Patiko! Ačiū! 😍`,
-    course: 'UX/UI',
-  },
-  {
-    name: 'Evelina Ž.',
-    rating: 5,
-    content: `Kartais būdavo sunku. Tikrai nemeluosiu 😄 Bet dėstytojas Gedas viską ramiai dar kartą paaiškindavo ir pavykdavo. Tas jausmas nerealus 🙏`,
-    course: 'Frontend',
-  },
-  {
-    name: 'Giedrius Č.',
-    rating: 5,
-    content: `Kursai labai geri, bet sakyčiau reikia turėt šiek tiek kantrybės, kol pradedi jaust progresą.`,
-    course: 'Frontend',
-  },
-  {
-    name: 'Liepa P.',
-    rating: 5,
-    content: `Pati pradžia buvo kosmosas, galvojau kad neištempsiu, bet paskui susigaudžiau ir dabar dėkoju sau kad nesustojau:)`,
-    course: 'UX/UI',
-  },
-];
+// The programme page on Kursuok.lt, where these reviews were posted.
+const KURSUOK_REVIEWS_URL =
+  'https://www.kursuok.lt/mokymai/programa/ux-ui-web-dizaino-pagrindai-su-figma/';
+
+// Quotes live in the translations (`testimonials.items`), in the same order as these ratings.
+const TESTIMONIAL_RATINGS = [5, 5, 5, 4, 5, 5, 4];
 
 // ----------------------------------------------------------------------
 
-export function HomeTestimonials({ sx, ...other }: BoxProps) {
+type HomeTestimonialsProps = BoxProps & {
+  /** Reviews to leave out here, by index, when they are already quoted on the page. */
+  omit?: number[];
+};
+
+export function HomeTestimonials({ omit = [], sx, ...other }: HomeTestimonialsProps) {
   const { t } = useTranslate('home');
+
+  const reviews = TESTIMONIAL_RATINGS.map((rating, index) => ({ rating, index })).filter(
+    (review) => !omit.includes(review.index)
+  );
 
   const carousel = useCarousel({
     align: 'start',
-    slidesToShow: { xs: 1, sm: 2, md: 3, lg: 4 },
+    // Three across at most: the reviews are long, and narrower cards cut them short.
+    slidesToShow: { xs: 1, sm: 2, md: 3 },
     breakpoints: {
       [carouselBreakpoints.sm]: { slideSpacing: '24px' },
       [carouselBreakpoints.md]: { slideSpacing: '40px' },
@@ -98,48 +60,49 @@ export function HomeTestimonials({ sx, ...other }: BoxProps) {
   });
 
   return (
-    <Box component="section" sx={{ py: 10, position: 'relative', ...sx }} {...other}>
+    <Box component="section" sx={{ py: SECTION_PADDING, position: 'relative', ...sx }} {...other}>
       <MotionViewport>
         <Container>
           <SectionTitle
             title={t('testimonials.title')}
-            sx={{ mb: { xs: 5, md: 8 }, textAlign: 'center' }}
+            description={
+              <>
+                {/* "Real reviews" links out, so a visitor can check them at the source. */}
+                <Link
+                  href={KURSUOK_REVIEWS_URL}
+                  target="_blank"
+                  rel="noopener"
+                  underline="always"
+                  color="inherit"
+                >
+                  {t('testimonials.descriptionLink')}
+                </Link>{' '}
+                {t('testimonials.description')}
+              </>
+            }
+            sx={{ mb: SECTION_CONTENT_GAP, textAlign: 'center' }}
           />
 
-          <Stack sx={{ position: 'relative', py: { xs: 5, md: 8 } }}>
-            <Carousel carousel={carousel}>
-              {TESTIMONIALS.map((item) => (
-                <Stack key={item.name} component={m.div} variants={varFade().in}>
-                  <Stack spacing={1} sx={{ typography: 'subtitle2' }}>
-                    <Rating
-                      size="small"
-                      name="read-only"
-                      value={item.rating}
-                      precision={0.5}
-                      readOnly
-                    />
-                  </Stack>
+          <Stack sx={{ position: 'relative' }}>
+            <Carousel carousel={carousel} sx={carouselShadowRoom}>
+              {reviews.map(({ rating, index }) => (
+                <Card
+                  key={index}
+                  component={m.div}
+                  variants={varFade().in}
+                  sx={{ p: 3, height: 1, display: 'flex', flexDirection: 'column' }}
+                >
+                  <Rating size="small" name="read-only" value={rating} precision={0.5} readOnly />
 
                   <Typography
                     sx={(theme) => ({
-                      ...maxLine({ line: 4, persistent: theme.typography.body1 }),
+                      ...maxLine({ line: 10, persistent: theme.typography.body1 }),
                       mt: 2,
-                      mb: 3,
                     })}
                   >
-                    {item.content}
+                    {t(`testimonials.items.${index}`)}
                   </Typography>
-
-                  <Stack direction="column" spacing={2}>
-                    <Typography variant="subtitle1">{item.name}</Typography>
-                    <Label
-                      color={item.course === 'UX/UI' ? 'primary' : 'default'}
-                      sx={{ alignSelf: 'start', width: 'auto' }}
-                    >
-                      {item.course}
-                    </Label>
-                  </Stack>
-                </Stack>
+                </Card>
               ))}
             </Carousel>
 

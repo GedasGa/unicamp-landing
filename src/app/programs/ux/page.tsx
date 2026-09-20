@@ -1,7 +1,7 @@
 import { ProgramView } from '../../../sections/programs/view';
 
 export const metadata = {
-  title: 'UX/UI Web Dizaino Pagrindai su Figma - tapkite sertifikuotu UX dizaino profesionalu',
+  title: 'UX/UI Web Dizaino Pagrindai su Figma | Unicamp IT akademija',
   description:
     '108 valandų kursas, apimantis UX/UI dizaino pagrindus, Figma įrankio naudojimą, prototipų kūrimą ir prieinamumo geriausias praktikas. Įgykite praktinių įgūdžių kuriant sklandžias ir patogias naudotojo patirtis.',
   keywords:

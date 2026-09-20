@@ -40,7 +40,7 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
         {hasChild && (
           <Iconify
             width={16}
-            icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
+            icon={open ? 'iconmind:chevron-down-outline-thin' : 'iconmind:chevron-right-outline-thin'}
           />
         )}
       </StyledNavItem>

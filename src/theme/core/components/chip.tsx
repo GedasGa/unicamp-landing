@@ -121,7 +121,12 @@ const MuiChip: Components<Theme>['MuiChip'] = {
         },
       };
 
-      return { ...styled.colors, ...styled.disabled };
+      // Give the icon the same space from the edge as the label has on the other side.
+      const iconSpacing = {
+        [`& .${chipClasses.icon}`]: { marginLeft: ownerState.size === 'small' ? 8 : 12 },
+      };
+
+      return { ...styled.colors, ...styled.disabled, ...iconSpacing };
     },
     label: ({ theme }) => ({ fontWeight: theme.typography.fontWeightMedium }),
     icon: { color: 'currentColor' },
@@ -130,7 +135,9 @@ const MuiChip: Components<Theme>['MuiChip'] = {
       color: 'currentColor',
       '&:hover': { opacity: 1, color: 'currentColor' },
     },
-    sizeMedium: ({ theme }) => ({ borderRadius: theme.shape.borderRadius * 1.25 }),
+    // Both sizes sit on the 8px step of the radius scale (RADIUS.sm), the one
+    // meant for small elements, so every chip on the site has the same corners.
+    sizeMedium: ({ theme }) => ({ borderRadius: theme.shape.borderRadius }),
     sizeSmall: ({ theme }) => ({ borderRadius: theme.shape.borderRadius }),
     /**
      * @variant filled

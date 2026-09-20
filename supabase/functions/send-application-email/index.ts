@@ -4,6 +4,7 @@ import { SMTPClient } from 'https://deno.land/x/denomailer@1.6.0/mod.ts';
 const COURSE_NAMES: Record<string, string> = {
   webDevelopment: 'Web Development',
   productDesign: 'Product Design',
+  saveSpot: 'Save your spot (waitlist)',
 };
 
 interface ApplicationRecord {

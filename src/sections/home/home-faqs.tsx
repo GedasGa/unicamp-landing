@@ -5,20 +5,22 @@ import { useState } from 'react';
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import Accordion from '@mui/material/Accordion';
 import Typography from '@mui/material/Typography';
-import Accordion, { accordionClasses } from '@mui/material/Accordion';
-import AccordionDetails, { accordionDetailsClasses } from '@mui/material/AccordionDetails';
-import AccordionSummary, { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
 
-import { varAlpha } from 'src/theme/styles';
+import { SECTION_PADDING, SECTION_CONTENT_GAP } from 'src/theme/styles';
 
 import { Iconify } from 'src/components/iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 import { useTranslate } from '../../locales';
+import { BrandGlow } from './components/brand-glow';
 import { SectionTitle } from './components/section-title';
 
 // ----------------------------------------------------------------------
@@ -72,10 +74,15 @@ const FAQs = (t: TFunction<string | 'translation', undefined>) => [
 
 // ----------------------------------------------------------------------
 
-export function HomeFAQs({ sx, ...other }: BoxProps) {
+type HomeFAQsProps = BoxProps & {
+  /** Indexes of questions a page already answers in full, so the FAQ does not repeat it. */
+  omit?: number[];
+};
+
+export function HomeFAQs({ omit = [], sx, ...other }: HomeFAQsProps) {
   const { t } = useTranslate('home');
 
-  const questions = FAQs(t);
+  const questions = FAQs(t).filter((_, index) => !omit.includes(index));
 
   const [expanded, setExpanded] = useState<string | false>(questions[0].question);
 
@@ -85,19 +92,20 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
 
   const renderDescription = (
     <SectionTitle
-      caption={t('faqs.caption')}
       title={t('faqs.title')}
+      description={t('faqs.description')}
       sx={{ textAlign: 'center' }}
     />
   );
 
   const renderContent = (
     <Stack
-      spacing={1}
+      spacing={2}
       sx={{
         mx: 'auto',
         maxWidth: 720,
-        my: { xs: 5, md: 10 },
+        mt: SECTION_CONTENT_GAP,
+        mb: { xs: 5, md: 10 },
       }}
     >
       {questions.map((item, index) => (
@@ -107,40 +115,16 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
           variants={varFade({ distance: 24 }).inUp}
           expanded={expanded === item.question}
           onChange={handleChange(item.question)}
-          sx={{
-            borderRadius: 2,
-            transition: (theme) =>
-              theme.transitions.create(['background-color'], {
-                duration: theme.transitions.duration.short,
-              }),
-            '&::before': { display: 'none' },
-            '&:hover': {
-              bgcolor: (theme) => varAlpha(theme.vars.palette.grey['500Channel'], 0.16),
-            },
-            '&:first-of-type, &:last-of-type': { borderRadius: 2 },
-            [`&.${accordionClasses.expanded}`]: {
-              m: 0,
-              borderRadius: 2,
-              boxShadow: 'none',
-              bgcolor: (theme) => varAlpha(theme.vars.palette.grey['500Channel'], 0.08),
-            },
-            [`& .${accordionSummaryClasses.root}`]: {
-              py: 3,
-              px: 2.5,
-              minHeight: 'auto',
-              [`& .${accordionSummaryClasses.content}`]: {
-                m: 0,
-                [`&.${accordionSummaryClasses.expanded}`]: { m: 0 },
-              },
-            },
-            [`& .${accordionDetailsClasses.root}`]: { px: 2.5, pt: 0, pb: 3 },
-          }}
         >
           <AccordionSummary
             expandIcon={
               <Iconify
                 width={20}
-                icon={expanded === item.question ? 'mingcute:minimize-line' : 'mingcute:add-line'}
+                icon={
+                  expanded === item.question
+                    ? 'iconmind:minus-outline-thin'
+                    : 'iconmind:plus-outline-thin'
+                }
               />
             }
             aria-controls={`panel${index}bh-content`}
@@ -155,45 +139,60 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
   );
 
   const renderContact = (
-    <Stack
-      alignItems="center"
-      sx={{
-        px: 3,
-        py: 8,
-        textAlign: 'center',
-        background: (theme) =>
-          `linear-gradient(270deg, ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)}, ${varAlpha(theme.vars.palette.grey['500Channel'], 0)})`,
-      }}
-    >
-      <m.div variants={varFade().in}>
-        <Typography variant="h4">{t('faqs.contact.heading')}</Typography>
-      </m.div>
+    <Box sx={{ position: 'relative', mx: 'auto', maxWidth: 720 }}>
+      {/* A quieter version of the hero's glow, behind the card. */}
+      <BrandGlow
+        intensity={0.12}
+        sx={{
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          // Wider than the card, so the glow spills out around it instead of hiding behind.
+          width: { xs: 320, sm: 560, md: 880 },
+          height: { xs: 220, sm: 300, md: 380 },
+        }}
+      />
 
-      <m.div variants={varFade().in}>
-        <Typography sx={{ mt: 2, mb: 3, color: 'text.secondary' }}>
-          {t('faqs.contact.description')}
-        </Typography>
-      </m.div>
+      <Card
+        sx={{
+          px: 3,
+          py: 8,
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <m.div variants={varFade().in}>
+          <Typography variant="h4">{t('faqs.contact.heading')}</Typography>
+        </m.div>
 
-      <m.div variants={varFade().in}>
-        <Button
-          color="inherit"
-          variant="contained"
-          onClick={() => {
-            // @ts-ignore Injected to document object
-            OpenWidget.call('maximize', { feature: 'form-contact' });
-          }}
-          startIcon={<Iconify icon="fluent:mail-24-filled" />}
-        >
-          {t('faqs.contact.cta')}
-        </Button>
-      </m.div>
-    </Stack>
+        <m.div variants={varFade().in}>
+          <Typography sx={{ mt: 2, mb: 3, color: 'text.secondary' }}>
+            {t('faqs.contact.description')}
+          </Typography>
+        </m.div>
+
+        <m.div variants={varFade().in}>
+          <Button
+            color="inherit"
+            size="large"
+            variant="contained"
+            onClick={() => {
+              // @ts-ignore Injected to document object
+              OpenWidget.call('maximize', { feature: 'form-contact' });
+            }}
+          >
+            {t('faqs.contact.cta')}
+          </Button>
+        </m.div>
+      </Card>
+    </Box>
   );
 
   return (
-    <Box component="section" sx={{ ...sx }} {...other}>
-      <MotionViewport sx={{ py: 10, position: 'relative' }}>
+    <Box component="section" sx={{ py: SECTION_PADDING, ...sx }} {...other}>
+      <MotionViewport sx={{ position: 'relative' }}>
         <Container>
           {renderDescription}
           {renderContent}

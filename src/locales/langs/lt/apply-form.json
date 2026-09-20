@@ -1,5 +1,5 @@
 {
-  "title": "Registracija į programą",
+  "title": "Rezervuokite vietą",
   "course": "Programa",
   "webDevelopment": "Web programavimas",
   "productDesign": "UX/UI dizainas",
@@ -7,7 +7,7 @@
   "email": "El. paštas",
   "phone": "Telefono numeris",
   "message": "Žinutė",
-  "apply": "Registruotis",
+  "apply": "Rezervuokite vietą",
   "cancel": "Atšaukti",
   "loading": "Siunčiama...",
   "name_required": "Įveskite vardą",
@@ -18,6 +18,23 @@
   "privacy_policy": "Privatumo politika",
   "form_submitted": {
     "title": "Registracija išsiųsta!",
-    "description": "Ačiū, kad susisiekėte. Gavome jūsų duomenis ir netrukus susisieksime – įprastai atsakome per valandą."
+    "description": "Ačiū! Gavome jūsų užklausą ir susisieksime per 12 valandų darbo dienomis."
+  },
+  "saveSpot": {
+    "title": "Rezervuokite vietą",
+    "description": "Palikite el. paštą ir pranešime, kai tik prasidės registracija į kitą srautą.",
+    "submit": "Rezervuoti vietą",
+    "submitted": {
+      "title": "Jūs sąraše!",
+      "description": "Parašysime jums, kai tik prasidės registracija."
+    }
+  },
+  "next_steps": {
+    "title": "Kas bus toliau",
+    "items": [
+      "Užklausą gauna Unicamp komanda – ją perskaito žmogus, ne robotas",
+      "Susisiekiame su jumis per 12 valandų darbo dienomis",
+      "Atsakome į klausimus ir, jei reikia, padedame pateikti Kursuok.lt paraišką"
+    ]
   }
 }

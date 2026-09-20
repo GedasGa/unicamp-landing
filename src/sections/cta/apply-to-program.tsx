@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
 
+import { RADIUS, varAlpha } from 'src/theme/styles';
 import { submitProgramApplication } from 'src/actions/program-application';
 
 import { Form, Field } from 'src/components/hook-form';
@@ -48,6 +49,9 @@ const COURSES = ['webDevelopment', 'productDesign'];
 export function ApplyToProgram({ open, onClose, course, ...other }: ApplyToProgramProps) {
   const { t } = useTranslate('apply-form');
 
+  const nextSteps = (t('next_steps.items', { returnObjects: true, defaultValue: [] }) ??
+    []) as string[];
+
   const [errorMsg, setErrorMsg] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -75,17 +79,19 @@ export function ApplyToProgram({ open, onClose, course, ...other }: ApplyToProgr
   } = methods;
 
   useEffect(() => {
-    if (isSubmitted) {
-      const timer = setTimeout(() => {
-        // Reset form and close the modal after 5 seconds
-        onClose();
-        setIsSubmitted(false);
-        reset();
-      }, 6000);
-
-      return () => clearTimeout(timer); // Cleanup timeout if component unmounts
+    if (!isSubmitted) {
+      return undefined;
     }
-  }, [isSubmitted, onClose]);
+
+    const timer = setTimeout(() => {
+      // Close the dialog and clear the form once the confirmation has been read.
+      onClose();
+      setIsSubmitted(false);
+      reset();
+    }, 6000);
+
+    return () => clearTimeout(timer);
+  }, [isSubmitted, onClose, reset]);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -119,12 +125,34 @@ export function ApplyToProgram({ open, onClose, course, ...other }: ApplyToProgr
         </Alert>
       )}
 
+      {/* Say what happens after sending, so the form is not a black box. */}
+      {nextSteps.length > 0 && (
+        <Box
+          sx={(theme) => ({
+            p: 2,
+            mt: 3,
+            borderRadius: RADIUS.md,
+            bgcolor: varAlpha(theme.vars.palette.grey['500Channel'], 0.08),
+          })}
+        >
+          <Typography variant="subtitle2" sx={{ mb: 1 }}>
+            {t('next_steps.title')}
+          </Typography>
+
+          <Box component="ol" sx={{ m: 0, pl: 2.5, typography: 'body2', color: 'text.secondary' }}>
+            {nextSteps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </Box>
+        </Box>
+      )}
+
       <Form id="apply-program-form" methods={methods} onSubmit={onSubmit}>
         <Box gap={3} display="flex" flexDirection="column" sx={{ mt: 3 }}>
           <Field.Select name="course" label={t('course')}>
-            {COURSES.map((course) => (
-              <MenuItem key={course} value={course}>
-                {t(course)}
+            {COURSES.map((option) => (
+              <MenuItem key={option} value={option}>
+                {t(option)}
               </MenuItem>
             ))}
           </Field.Select>

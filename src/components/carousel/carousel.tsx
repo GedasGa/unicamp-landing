@@ -45,6 +45,24 @@ export const StyledContainer = styled(Box, {
 
 // ----------------------------------------------------------------------
 
+/**
+ * The root clips its content (`overflow: hidden`), which cuts the shadow off any card
+ * inside it. Pass this as the carousel's `sx` to open up room for that shadow without
+ * moving the carousel: the padding holds the shadow, the negative margins take the
+ * space back. Sized for `theme.customShadows.card` — 8px above, 32px below.
+ *
+ * Vertical only: the root is capped at `maxWidth: 100%`, so a negative side margin
+ * would shift it out of line with the rest of the page rather than widen it.
+ */
+export const carouselShadowRoom = {
+  pt: '8px',
+  pb: '32px',
+  mt: '-8px',
+  mb: '-32px',
+} as const;
+
+// ----------------------------------------------------------------------
+
 export function Carousel({
   carousel,
   children,

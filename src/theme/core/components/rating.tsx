@@ -10,10 +10,37 @@ import { varAlpha } from '../../styles';
 
 /**
  * Icons
+ *
+ * Iconoir `star` and `star-solid`, inlined rather than fetched through Iconify:
+ * a rating draws five of these, and they should not wait on a network request.
+ * The two share one outline; only the fill differs.
  */
+const STAR_PATH =
+  'm8.587 8.236l2.598-5.232a.911.911 0 0 1 1.63 0l2.598 5.232l5.808.844a.902.902 0 0 1 .503 1.542l-4.202 4.07l.992 5.75c.127.738-.653 1.3-1.32.952L12 18.678l-5.195 2.716c-.666.349-1.446-.214-1.319-.953l.992-5.75l-4.202-4.07a.902.902 0 0 1 .503-1.54z';
+
 export const RatingIcon = (props: SvgIconProps) => (
   <SvgIcon {...props}>
-    <path d="M17.56,21 C17.4000767,21.0006435 17.2423316,20.9629218 17.1,20.89 L12,18.22 L6.9,20.89 C6.56213339,21.067663 6.15259539,21.0374771 5.8444287,20.8121966 C5.53626201,20.5869161 5.38323252,20.2058459 5.45,19.83 L6.45,14.2 L2.33,10.2 C2.06805623,9.93860108 1.9718844,9.55391377 2.08,9.2 C2.19824414,8.83742187 2.51242293,8.57366684 2.89,8.52 L8.59,7.69 L11.1,2.56 C11.2670864,2.21500967 11.6166774,1.99588989 12,1.99588989 C12.3833226,1.99588989 12.7329136,2.21500967 12.9,2.56 L15.44,7.68 L21.14,8.51 C21.5175771,8.56366684 21.8317559,8.82742187 21.95,9.19 C22.0581156,9.54391377 21.9619438,9.92860108 21.7,10.19 L17.58,14.19 L18.58,19.82 C18.652893,20.2027971 18.4967826,20.5930731 18.18,20.82 C17.9989179,20.9468967 17.7808835,21.010197 17.56,21 L17.56,21 Z" />
+    <path
+      d={STAR_PATH}
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </SvgIcon>
+);
+
+export const RatingIconEmpty = (props: SvgIconProps) => (
+  <SvgIcon {...props}>
+    <path
+      d={STAR_PATH}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </SvgIcon>
 );
 
@@ -23,13 +50,15 @@ const MuiRating: Components<Theme>['MuiRating'] = {
   /** **************************************
    * DEFAULT PROPS
    *************************************** */
-  defaultProps: { emptyIcon: <RatingIcon />, icon: <RatingIcon /> },
+  defaultProps: { emptyIcon: <RatingIconEmpty />, icon: <RatingIcon /> },
 
   /** **************************************
    * STYLE
    *************************************** */
   styleOverrides: {
     root: { [`&.${ratingClasses.disabled}`]: { opacity: 0.48 } },
+    // Neutral stars: MUI's default amber is the only warm accent left on the page.
+    iconFilled: ({ theme }) => ({ color: theme.vars.palette.text.primary }),
     iconEmpty: ({ theme }) => ({ color: varAlpha(theme.vars.palette.grey['500Channel'], 0.48) }),
     sizeSmall: { [`& .${svgIconClasses.root}`]: { width: 20, height: 20 } },
     sizeMedium: { [`& .${svgIconClasses.root}`]: { width: 24, height: 24 } },

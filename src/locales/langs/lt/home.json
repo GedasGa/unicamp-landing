@@ -1,8 +1,24 @@
 {
   "hero": {
     "heading": {
-      "firstLine": "Išmokite skaitmeninių įgūdžių ",
-      "secondLine": "Pakilkite karjeros laiptais"
+      "title": "Išmokite *naujausių* IT įgūdžių"
+    },
+    "subtitle": "Praktinės 12 savaičių programos, kurias veda kasdien IT srityje dirbantys mentoriai.",
+    "form": {
+      "placeholder": "Jūsų el. paštas",
+      "submit": "Rezervuoti vietą",
+      "success": "Jūs sąraše! Parašysime, kai prasidės registracija.",
+      "error": "Nepavyko išsiųsti. Bandykite dar kartą.",
+      "note": "Pranešime tik apie registracijos pradžią. Jūsų duomenis saugome pagal",
+      "privacyPolicy": "privatumo politiką",
+      "emailRequired": "Įveskite el. pašto adresą",
+      "emailInvalid": "Įveskite galiojantį el. pašto adresą"
+    },
+    "cards": {
+      "certificate": "Unicamp sertifikatas",
+      "mentor": "Dedikuotas mentorius",
+      "project": "Realus projektas portfoliui",
+      "format": "Nuotoliu"
     },
     "cta": {
       "viewCourses": {
@@ -10,13 +26,18 @@
         "buttonText": "Peržiūrėti programas"
       },
       "consultation": {
-        "description": "Nežinote nuo ko pradėti? Registruokitės ir padėsime",
-        "buttonText": "Registruotis NEMOKAMAI konsultacijai"
-      }
+        "description": "Nežinote ką pasirinkti? Pasikalbėkime",
+        "buttonText": "Registruotis konsultacijai",
+        "free": "Nemokamai"
+      },
+      "saveSpot": "Rezervuokite vietą"
     },
     "svg": {
       "text": "unicamp akademija"
     }
+  },
+  "companies": {
+    "caption": "Mūsų mentoriai dalijasi patirtimi, įgyta tokiose įmonėse ir universitetuose kaip:"
   },
   "unicamp": {
     "title": "Kodėl Unicamp?",
@@ -29,27 +50,26 @@
     }
   },
   "features": {
-    "caption": "Unicamp siūlo",
     "sections": {
       "realProjects": {
-        "heading": "Realūs projektai",
+        "heading": "Realūs *projektai*",
         "items": [
           {
             "title": "Įgaukite praktinės patirties",
             "description": "Dirbkite su projektais, kurie atspindi realaus pasaulio iššūkius ir naudoja populiariausius įrankius bei technologijas."
           },
           {
-            "title": "Parodykite savo darbą kitiem",
+            "title": "Parodykite savo darbą kitiems",
             "description": "Pristatykite savo projektą realiems vartotojams ir sužavėkite darbdavius konkrečiais, apčiuopiamais rezultatais. Tokios galimybės nesiūlo jokia kita akademija."
           },
           {
             "title": "Sustiprinkite savo portfolio",
-            "description": "Papildykite savo LinkedIn tikrais, profesionaliais projektais ir patraukt darbdavių dėmesį."
+            "description": "Papildykite savo LinkedIn tikrais, profesionaliais projektais ir patraukite darbdavių dėmesį."
           }
         ]
       },
       "teamWork": {
-        "heading": "Mokykitės dirbdami komandoje",
+        "heading": "Mokykitės dirbdami *komandoje*",
         "items": [
           {
             "title": "Prisijunkite prie smalsių ir motyvuotų žmonių",
@@ -66,7 +86,7 @@
         ]
       },
       "1on1": {
-        "heading": "Asmeninės konsultacijos su mentoriumi",
+        "heading": "Asmeninės konsultacijos su *mentoriumi*",
         "items": [
           {
             "title": "Dedikuotas mentorius",
@@ -81,7 +101,7 @@
     }
   },
   "team": {
-    "heading": "Unicamp komanda",
+    "heading": "Unicamp *komanda*",
     "description": "Esame IT entuziastų komanda, siekianti dalintis žiniomis ir padėti kiekvienam atrasti savo vietą technologijų pasaulyje.",
     "mentor": "Mentorius",
     "members": [
@@ -101,74 +121,118 @@
         "name": "Toshi",
         "role": "Mindės draugas"
       }
-    ]
+    ],
+    "viewProfile": "Peržiūrėti {{network}}"
   },
   "programs": {
-    "title": "Unicamp programos",
-    "description": "Pasirinkite programą ir pradėkite savo geriausią žingsnį į IT karjerą.",
-    "reviews": "atsiliepimai",
-    "cta": {
-      "apply": "Registruokitės dabar",
-      "viewProgram": "Daugiau apie šią programą"
+    "title": "Unicamp *programos*",
+    "description": "Praktinės 12 savaičių programos tiems, kurie nori pereiti į IT. Ankstesnės patirties nereikia.",
+    "meta": {
+      "duration": "12 savaičių · 108 val.",
+      "format": "Nuotoliu",
+      "group": "Grupėje iki 20 žmonių"
     },
-    "chips": {
-      "moneyBackGuarantee": "7 dienų pinigų grąžinimo garantija",
-      "approvedByKursuok": "Patvirtinta Kursuok.lt",
-      "availableFinancing": "Finansuojama Kursuok.lt",
-      "limitedSpaces": "Vietų skaičius ribotas"
-    },
-    "levels": {
-      "beginner": "Pradedantiesiems",
-      "intermediate": "Pažengusiems",
-      "advanced": "Ekspertams"
-    },
+    "learnTitle": "Ką išmoksite",
+    "includesTitle": "Programa apima",
+    "includes": [
+      "Baigiamąjį komandinį projektą jūsų portfoliui",
+      "1-on-1 konsultacijas su mentoriumi",
+      "Unicamp sertifikatą",
+      "6 mėn. prieigą prie visos medžiagos",
+      "Nemokamą kurso pakartojimą"
+    ],
     "pricing": {
-      "paidMonthly": "x3 mėn."
+      "installments": "arba 3 įmokos po {{amount}} €",
+      "financing": "Galimas Kursuok.lt finansavimas",
+      "guarantee": "7 dienų pinigų grąžinimo garantija"
+    },
+    "cta": {
+      "apply": "Registruotis",
+      "viewProgram": "Peržiūrėti programą"
     },
     "programs": {
       "webDevelopment": {
         "title": "Web programavimas",
-        "caption": "108 valandos (3 mėn.) | Registracija nuo lapkričio",
-        "features": [
-          "35+ paskaitos ir realūs projektai",
-          "1-on-1 konsultacijos",
-          "AI įrankiai",
-          "6 mėn. pasiekiama visa mokymosi medžiaga",
-          "Nemokamas kurso pakartojimas"
+        "outcome": "Frontend",
+        "description": "Išmokite kurti šiuolaikiškas svetaines – nuo pirmos kodo eilutės iki veikiančio projekto internete.",
+        "skills": [
+          "JavaScript",
+          "React ir Next.js",
+          "HTML ir CSS",
+          "Git ir GitHub",
+          "Prisitaikantis dizainas",
+          "DI įrankiai"
         ]
       },
       "productDesign": {
         "title": "UX/UI dizainas",
-        "caption": "108 valandos (3 mėn.) | Registracija nuo lapkričio",
-        "features": [
-          "35+ paskaitos ir realūs projektai",
-          "1-on-1 konsultacijos",
-          "AI įrankiai",
-          "6 mėn. pasiekiama visa mokymosi medžiaga",
-          "Nemokamas kurso pakartojimas"
+        "outcome": "UX/UI",
+        "description": "Jūsų marketingo ar produkto patirtis – puikus pagrindas. Išmoksite tyrinėti naudotojus ir kurti sąsajas, kurias malonu naudoti.",
+        "skills": [
+          "Figma",
+          "UX tyrimai",
+          "Prototipavimas",
+          "Dizaino sistemos",
+          "Prieinamumas",
+          "DI įrankiai"
         ]
       }
     }
   },
+  "tools": {
+    "title": "Išmoksite dirbti su šiuolaikiniais *įrankiais*",
+    "description": "Nuo dizaino iki programavimo ir dirbtinio intelekto – mokotės su tais pačiais įrankiais, kuriuos kasdien naudoja IT komandos.",
+    "items": {
+      "cursor": "DI pagrįstas kodo redaktorius",
+      "lovable": "Web programėlių kūrimas aprašant jas žodžiais",
+      "figma": "Sąsajų dizainas ir prototipai komandoje",
+      "slack": "Komandos susirašinėjimas ir bendradarbiavimas",
+      "unicampLearning": "Mūsų mokymosi platforma su pamokomis ir užduotimis",
+      "claude": "DI asistentas rašymui, programavimui ir analizei",
+      "zapier": "Darbų automatizavimas tarp programų",
+      "hostinger": "Svetainių talpinimas ir domenai",
+      "google": "Docs, Drive, Meet ir Gemini",
+      "openai": "ChatGPT ir DI modeliai",
+      "github": "Kodo saugykla ir versijų kontrolė",
+      "supabase": "Duomenų bazė, autentifikacija ir backend",
+      "canva": "Greitas grafinis dizainas",
+      "n8n": "Darbo eigų automatizavimas su DI agentais",
+      "openclaw": "Atvirojo kodo asmeninis DI agentas",
+      "hermes": "Atvirojo kodo DI agentas",
+      "elevenlabs": "DI balso generavimas",
+      "speechify": "Teksto įgarsinimas"
+    }
+  },
   "testimonials": {
-    "title": "Sklinda kalbos..."
+    "title": "Ką sako mūsų *studentai*",
+    "description": "žmonių, kurie jau baigė mūsų programas.",
+    "descriptionLink": "Tikri atsiliepimai",
+    "items": [
+      "Mokymai viršijo mano lūkesčius. Visa programa buvo itin kokybiška ir profesionaliai parengta. Gavau daug vertingos medžiagos, naudingų nuorodų ir praktinių įžvalgų, kurias galima pritaikyti realiose situacijose. Labai patiko teorijos ir praktikos balansas. Taip pat noriu išskirti nepriekaištingą organizavimą ir jaukią, palaikančią atmosferą. Nuoširdžiai dėkoju visai Unicamp komandai ir Aistei už dalijimąsi žiniomis, patirtimi ir įkvėpimą. Labai džiaugiuosi pasirinkusi šiuos mokymus ir drąsiai rinktis",
+      "Programa viršijo lūkesčius, turinys buvo informatyvus, o lektorė - savo srities profesionalė. Įgytas žinias tikrai pritaikysiu savo darbe. Rekomenduoju!",
+      "Puikūs kursai, pranokę mano lūkesčius. Įgytos žinios padėjo jaustis drąsiau ir suteikė tvirtus pagrindus, kurie bus naudingi tolimesnėje karjeroje. Ačiū Aistei už perduotas žinias bei visada pozityvią ir ramią mokymosi aplinką!",
+      "Nei pastaba, nei pasiūlymas, bet lektoriaus darbas, specifika ir visas kelias kursų metu - 100 balų!",
+      "Pastabų neturiu, vien tik pagyrimai. Puiki dėstytoja Aistė, programa buvo stipri ir labai įdomi, labai geras praktikos ir teorijos suderinimas. Tikrai norėčiau toliau gilintis į šią sritį.",
+      "Kursas labai patiko. buvo tikrai įdomus. Norėtusi ilgesnio kurso. Labai maloni dėstytoja išmananti savo darbą ir sugebanti paaiškinti kylančius klausimus. Esu patenkinta, ką suteikė šie kursai. Ačiū dėstytojai ir komandai.",
+      "Viskas buvo profesionalu, į iškilusius papildomus klausimus nedelsiant atsakoma, komunikacija ir ne paskaitų metu vyko greitai ir sklandžiai"
+    ]
   },
   "faqs": {
-    "caption": "DUK",
-    "title": "Atsakymai į dažnus klausimus",
+    "title": "Atsakymai į dažnus *klausimus*",
+    "description": "Viskas, ką verta žinoti apie programas, finansavimą ir mokymosi eigą.",
     "contact": {
       "heading": "Vis dar kyla klausimų?",
-      "description": "Užduokite rūpimus klausimus ir gaukite atsakymą per 12 valandų.",
+      "description": "Klauskite drąsiai – mielai atsakysime per 12 valandų.",
       "cta": "Parašykite mums"
     },
     "questions": [
       {
         "question": "Kokios yra finansavimo galimybės?",
-        "answer": "Kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenims (pagal darbo sutartį, vykdantiems individualią veiklą arba turintiems verslo liudijimą). Tačiau šiuo metu atliekamas Kursuok auditas ir finansavimas yra sustabdytas. Kursuok finansavimas bus atnaujintas 2025 m. rudenį (https://kursuok.lt/naujienos/paaiskejo-kada-bus-papildytas-kursuok-biudzetas). Jei norite gauti finansavimą, užpildykite paraišką ir mes su jumis susisieksime, kai tik finansavimas bus atnaujintas."
+        "answer": "Kursuok.lt platforma siūlo finansavimą iki 500 EUR dirbantiems asmenims (pagal darbo sutartį, vykdantiems individualią veiklą arba turintiems verslo liudijimą). Finansavimo galimybės priklauso nuo Kursuok biudžeto – aktualią informaciją rasite kursuok.lt. Jei norite gauti finansavimą, užpildykite paraišką ir mes padėsime ją pateikti."
       },
       {
         "question": "Kaip vyksta kursai?",
-        "answer": "Kursai vyksta nuotoliniu būdu per Zoom su dėstytoju, todėl galite prisijungti iš bet kurios pasaulio vietos. Taip pat vyksta praktiniai užsiėmimai, kuriuose dirbsite su realiais projektai, 1:1 video susitikimai su mentoriais."
+        "answer": "Kursai vyksta nuotoliniu būdu per Google Meet su mentoriumi, todėl galite prisijungti iš bet kurios pasaulio vietos. Taip pat vyksta praktiniai užsiėmimai, kuriuose dirbsite su realiais projektais, 1:1 video susitikimai su mentoriais."
       },
       {
         "question": "Kiek trunka kursai?",
@@ -176,7 +240,7 @@
       },
       {
         "question": "Koks yra kursų tvarkaraštis?",
-        "answer": "Kursai vyksta 2–3 kartus per savaitę, priklausomai nuo programos. Įprastai paskaitos organizuojamos trečiadieniais 18:30–21:30 ir šeštadieniais 9:00–12:00 arba pirmadieniais, antradieniais ir ketvirtadieniais 18:30–21:30."
+        "answer": "Paskaitos vyksta 2–3 kartus per savaitę vakarais, 18:30–21:30. Tikslų kiekvienos grupės tvarkaraštį rasite tos programos puslapyje."
       },
       {
         "question": "Kokie mano įsipareigojimai prisijungus prie kursų?",
@@ -196,16 +260,114 @@
       },
       {
         "question": "Ar gausiu sertifikatą?",
-        "answer": "Taip! Baigę kursą gausite „Unicamp“ sertifikatą."
+        "answer": "Taip! Baigę kursą gausite Unicamp sertifikatą."
       },
       {
         "question": "Ką daryti, jei negaliu dalyvauti kai kuriose paskaitose?",
-        "answer": "Nesijaudinkite. Visos paskaitos yra įrašomos, todėl galėsite jas peržiūrėti vėliau. Jei prireiks papildomos pagalbos – padės mūsų dėstytojai."
+        "answer": "Nesijaudinkite. Visos paskaitos yra įrašomos, todėl galėsite jas peržiūrėti vėliau. Jei prireiks papildomos pagalbos – padės mūsų mentoriai."
       },
       {
         "question": "Ar galėsiu naudotis mokymosi medžiaga po kurso pabaigos?",
-        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias. Taip pat galėsite susisiekti su dėstytojais ir gauti atsakymus į klausimus."
+        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias. Taip pat galėsite susisiekti su mentoriais ir gauti atsakymus į klausimus."
       }
     ]
+  },
+  "comparison": {
+    "title": "Kuo *skiriamės* nuo kitų būdų mokytis",
+    "description": "Palyginome pagal tai, kas dažniausiai rūpi renkantis pirmąjį žingsnį į IT.",
+    "columns": [
+      "Unicamp",
+      "Universitetas",
+      "Kitos akademijos",
+      "Mokausi pats"
+    ],
+    "rows": [
+      {
+        "label": "Kaina",
+        "values": [
+          "500 € (arba nemokamai per Kursuok.lt)",
+          "Semestro kaina arba valstybės finansavimas",
+          "Kainos labai skiriasi",
+          "Beveik nemokama"
+        ]
+      },
+      {
+        "label": "Trukmė",
+        "values": [
+          "12 savaičių · 108 ak. val.",
+          "3–4 metai",
+          "Skiriasi",
+          "Neribota"
+        ]
+      },
+      {
+        "label": "Kas moko",
+        "values": [
+          "Mentoriai, kasdien dirbantys IT srityje",
+          "Dėstytojai su akademine patirtimi",
+          "Priklauso nuo dėstytojo",
+          "Niekas – mokotės vienas"
+        ]
+      },
+      {
+        "label": "Grupės dydis",
+        "values": [
+          "Iki 20 žmonių",
+          "Srautinės paskaitos",
+          "Skiriasi",
+          "—"
+        ]
+      },
+      {
+        "label": "Naujausi įrankiai ir DI",
+        "values": [
+          "yes",
+          "partial",
+          "partial",
+          "partial"
+        ]
+      },
+      {
+        "label": "1-on-1 mentorius",
+        "values": [
+          "yes",
+          "no",
+          "partial",
+          "no"
+        ]
+      },
+      {
+        "label": "Realus projektas portfoliui",
+        "values": [
+          "yes",
+          "Baigiamasis darbas",
+          "partial",
+          "Tik jei susikuriate patys"
+        ]
+      },
+      {
+        "label": "Kursuok.lt finansavimas",
+        "values": [
+          "yes",
+          "no",
+          "partial",
+          "no"
+        ]
+      },
+      {
+        "label": "Nuotoliu",
+        "values": [
+          "yes",
+          "partial",
+          "partial",
+          "yes"
+        ]
+      }
+    ],
+    "marks": {
+      "yes": "Taip",
+      "no": "Ne",
+      "partial": "Kartais"
+    }
   }
 }

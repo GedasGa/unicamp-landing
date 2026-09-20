@@ -1,22 +1,43 @@
 {
   "hero": {
     "heading": {
-      "firstLine": "Learn tech skills ",
-      "secondLine": "Advance your career"
+      "title": "Learn *newest* tech skills"
+    },
+    "subtitle": "Hands-on 12-week programs taught by mentors who work in tech every day.",
+    "form": {
+      "placeholder": "Your email",
+      "submit": "Save your spot",
+      "success": "You're on the list! We'll email you when registration opens.",
+      "error": "Something went wrong. Please try again.",
+      "note": "We only email about registration opening. We handle your data per our",
+      "privacyPolicy": "privacy policy",
+      "emailRequired": "Enter your email address",
+      "emailInvalid": "Enter a valid email address"
+    },
+    "cards": {
+      "certificate": "Unicamp certificate",
+      "mentor": "A dedicated mentor",
+      "project": "A real project for your portfolio",
+      "format": "Online"
     },
     "cta": {
       "viewCourses": {
         "description": "Choose your desired program.",
-        "buttonText": "View Courses"
+        "buttonText": "View courses"
       },
       "consultation": {
-        "description": "Don't know where to start? Register and we'll help you.",
-        "buttonText": "Get a FREE Consultation"
-      }
+        "description": "Not sure which to choose? Let's talk",
+        "buttonText": "Book a consultation",
+        "free": "Free"
+      },
+      "saveSpot": "Save your spot"
     },
     "svg": {
       "text": "Unicamp Academy"
     }
+  },
+  "companies": {
+    "caption": "Our mentors bring first-hand experience from companies and universities such as:"
   },
   "unicamp": {
     "title": "Why Unicamp?",
@@ -29,51 +50,50 @@
     }
   },
   "features": {
-    "caption": "Unicamp Offers",
     "sections": {
       "realProjects": {
-        "heading": "Real-World Projects",
+        "heading": "Real-world *projects*",
         "items": [
           {
-            "title": "Gain Hands-on Experience",
+            "title": "Gain hands-on experience",
             "description": "Work on projects that reflect real-world challenges using the most popular tools and technologies."
           },
           {
-            "title": "Showcase Your Work",
+            "title": "Showcase your work",
             "description": "Present your project to real users and impress employers with tangible results. No other academy offers this opportunity."
           },
           {
-            "title": "Enhance Your Portfolio",
+            "title": "Enhance your portfolio",
             "description": "Add real, professional projects to your LinkedIn and attract employers."
           }
         ]
       },
       "teamWork": {
-        "heading": "Learn Through Teamwork",
+        "heading": "Learn through *teamwork*",
         "items": [
           {
-            "title": "Join Curious and Motivated People",
+            "title": "Join curious and motivated people",
             "description": "Surround yourself with those who inspire growth and ambition."
           },
           {
-            "title": "Collaborate with Developers and UX Designers",
+            "title": "Collaborate with developers and UX designers",
             "description": "Work in cross-functional teams with other developers and designers."
           },
           {
-            "title": "Expand Your Network",
+            "title": "Expand your network",
             "description": "Build connections with like-minded individuals who support, inspire, and help you grow professionally and personally."
           }
         ]
       },
       "1on1": {
-        "heading": "Personal Mentorship Sessions",
+        "heading": "Personal *mentorship* sessions",
         "items": [
           {
-            "title": "Dedicated Mentor",
+            "title": "Dedicated mentor",
             "description": "A mentor to share your victories and challenges with, providing support throughout the course."
           },
           {
-            "title": "Career Advice",
+            "title": "Career advice",
             "description": "Discuss your goals, plan your next steps, and get valuable insights into breaking into the IT industry."
           }
         ]
@@ -81,7 +101,7 @@
     }
   },
   "team": {
-    "heading": "Unicamp Team",
+    "heading": "Unicamp *team*",
     "description": "We are a team of IT enthusiasts passionate about sharing knowledge and helping everyone find their place in the world of technology.",
     "mentor": "Mentor",
     "members": [
@@ -91,86 +111,128 @@
       },
       {
         "name": "Mindaugas Pažereckas",
-        "role": "Co-Founder | Operations"
+        "role": "Co-founder | Operations"
       },
       {
         "name": "Aistė Gerdzevičiūtė",
-        "role": "Co-Founder | Product Designer"
+        "role": "Co-founder | Product designer"
       },
       {
         "name": "Toshi",
         "role": "Mindaugas' dawg"
       }
-    ]
+    ],
+    "viewProfile": "View {{network}}"
   },
   "programs": {
-    "title": "Unicamp Programs",
-    "description": "Choose a course and start your best IT career today.",
-    "reviews": "reviews",
-    "cta": {
-      "apply": "Register Now",
-      "viewProgram": "View Program"
+    "title": "Unicamp *programs*",
+    "description": "Hands-on 12-week programs for people moving into tech. No prior experience needed.",
+    "meta": {
+      "duration": "12 weeks · 108 hrs",
+      "format": "Online",
+      "group": "Groups of up to 20"
     },
-    "levels": {
-      "beginner": "Beginner",
-      "intermediate": "Intermediate",
-      "advanced": "Advanced"
-    },
-    "chips": {
-      "moneyBackGuarantee": "7-Day Money-Back Guarantee",
-      "approvedByKursuok": "Verified by Kursuok.lt",
-      "availableFinancing": "Financed by kursuok.lt",
-      "limitedSpaces": "Limited Spaces"
-    },
+    "learnTitle": "What you'll learn",
+    "includesTitle": "Included",
+    "includes": [
+      "A final team project for your portfolio",
+      "1-on-1 sessions with a mentor",
+      "Unicamp certificate",
+      "6 months of access to all materials",
+      "Repeat the course for free"
+    ],
     "pricing": {
-      "paidMonthly": "x3 months"
+      "installments": "or 3 payments of {{amount}} €",
+      "financing": "Kursuok.lt financing available",
+      "guarantee": "7-day money-back guarantee"
+    },
+    "cta": {
+      "apply": "Apply now",
+      "viewProgram": "View program"
     },
     "programs": {
       "webDevelopment": {
         "title": "Web Development",
-        "caption": "108 hrs (3 months) | Registration from November",
-        "features": [
-          "35+ lectures and real-world projects",
-          "1-on-1 consultations",
-          "AI tools",
-          "Unlimited access to all course materials for 6 months",
-          "Repeat the course for FREE once"
+        "outcome": "Frontend",
+        "description": "Learn to build modern websites – from your first line of code to a live project on the web.",
+        "skills": [
+          "JavaScript",
+          "React & Next.js",
+          "HTML & CSS",
+          "Git & GitHub",
+          "Responsive design",
+          "AI tools"
         ]
       },
       "productDesign": {
         "title": "UX/UI Design",
-        "caption": "108 hrs (3 months) | Registration from November",
-        "specializations": ["UX/UI Designer", "UX Researcher", "Product Designer"],
-        "tools": ["Figma", "FigJam", "AI Tools"],
-        "features": [
-          "35+ lectures and real-world projects",
-          "1-on-1 consultations",
-          "AI tools",
-          "Unlimited access to all course materials for 6 months",
-          "Repeat the course for FREE once"
+        "outcome": "UX/UI",
+        "description": "Your marketing or product experience is a great foundation. Learn to research users and design interfaces people enjoy.",
+        "skills": [
+          "Figma",
+          "UX research",
+          "Prototyping",
+          "Design systems",
+          "Accessibility",
+          "AI tools"
         ]
       }
     }
   },
+  "tools": {
+    "title": "You'll learn to work with modern *tools*",
+    "description": "From design to code to AI – you learn with the same tools IT teams use every day.",
+    "items": {
+      "cursor": "AI-powered code editor",
+      "lovable": "Build web apps by describing them",
+      "figma": "Collaborative interface design and prototyping",
+      "slack": "Team chat and collaboration",
+      "unicampLearning": "Our learning platform with lessons and tasks",
+      "claude": "AI assistant for writing, coding and analysis",
+      "zapier": "Automate work between apps",
+      "hostinger": "Website hosting and domains",
+      "google": "Docs, Drive, Meet and Gemini",
+      "openai": "ChatGPT and AI models",
+      "github": "Code hosting and version control",
+      "supabase": "Database, auth and backend",
+      "canva": "Quick graphic design",
+      "n8n": "Workflow automation with AI agents",
+      "openclaw": "Open-source personal AI agent",
+      "hermes": "Open-source AI agent",
+      "elevenlabs": "AI voice generation",
+      "speechify": "Text to speech"
+    }
+  },
   "testimonials": {
-    "title": "Students saying..."
+    "title": "What our *students* say",
+    "description": "from people who have completed our programs.",
+    "descriptionLink": "Real reviews",
+    "items": [
+      "The training exceeded my expectations. The whole programme was of very high quality and professionally prepared. I received a lot of valuable material, useful references and practical insights that can be applied in real situations. I really liked the balance of theory and practice. I would also like to highlight the impeccable organisation and the warm, supportive atmosphere. My sincere thanks to the whole Unicamp team and to Aistė for sharing their knowledge, experience and inspiration. I am very glad I chose this training and encourage others to do the same.",
+      "The programme exceeded my expectations, the content was informative, and the lecturer is a professional in her field. I will definitely apply what I learned in my work. Recommended!",
+      "An excellent course that surpassed my expectations. What I learned helped me feel more confident and gave me solid foundations for my future career. Thank you, Aistė, for sharing your knowledge and for the consistently positive, calm learning environment!",
+      "Neither a criticism nor a suggestion: the lecturer's work, the specifics and the whole journey through the course — 100 out of 100!",
+      "I have no criticism, only praise. Aistė is a great teacher, the programme was strong and very interesting, with a very good mix of practice and theory. I would definitely like to go deeper into this field.",
+      "I really liked the course, it was genuinely interesting. I would have liked a longer one. A very pleasant teacher who knows her subject and can explain any question that comes up. I am happy with what this course gave me. Thank you to the teacher and the team.",
+      "Everything was professional, any extra questions were answered without delay, and communication outside the lectures was quick and smooth."
+    ]
   },
   "faqs": {
-    "caption": "FAQs",
-    "title": "We Have Answers",
+    "title": "We have *answers*",
+    "description": "Everything worth knowing about our programs, funding and how learning works.",
     "contact": {
-      "heading": "Still Have Questions?",
-      "description": "Ask us anything and get a reply within 12 hours.",
-      "cta": "Contact Us"
+      "heading": "Still have questions?",
+      "description": "Ask away – we'll gladly get back to you within 12 hours.",
+      "cta": "Contact us"
     },
     "questions": [
       {
         "question": "What are the funding options?",
-        "answer": "The kursuok.lt platform offers funding up to 500 EUR for employed individuals (under an employment contract, self-employed, or with a business license).\n\n However, Kursuok is currently undergoing an audit, and funding has been paused. Kursuok funding will be renewed in the fall of 2025 (https://kursuok.lt/naujienos/paaiskejo-kada-bus-papildytas-kursuok-biudzetas).\n\nIf you would like to receive funding, please fill out the application, and we will contact you as soon as funding is renewed."
+        "answer": "The kursuok.lt platform offers funding of up to 500 EUR for employed individuals (under an employment contract, self-employed, or with a business license). Availability depends on the Kursuok budget – see kursuok.lt for the current status. If you'd like to receive funding, fill out the application and we'll help you submit it."
       },
       {
         "question": "How are the courses conducted?",
-        "answer": "The courses are held remotely via Zoom with the course instructor. There are also practical sessions where you will work on real projects."
+        "answer": "The courses are held remotely via Google Meet with a mentor. There are also practical sessions where you will work on real projects."
       },
       {
         "question": "How long do the courses last?",
@@ -178,7 +240,7 @@
       },
       {
         "question": "What is the course schedule?",
-        "answer": "Courses take place 2–3 times a week, depending on the program. Typically, courses are held on Wednesdays from 18:30 to 21:30 and Saturdays from 9:00 to 12:00, or Mondays, Tuesdays, and Thursdays from 18:30 to 21:30."
+        "answer": "Classes run 2–3 times a week in the evening, 18:30–21:30. You'll find each group's exact schedule on its programme page."
       },
       {
         "question": "What are my obligations when joining the courses?",
@@ -202,12 +264,110 @@
       },
       {
         "question": "What if I cannot attend some of the lessons?",
-        "answer": "Don’t worry. All classes are recorded, so you can review them later. If you need additional help, our instructors will assist you."
+        "answer": "Don’t worry. All classes are recorded, so you can review them later. If you need additional help, our mentors will assist you."
       },
       {
         "question": "Will I be able to access the learning materials after the course ends?",
-        "answer": "Yes, after the course ends, you will have access to all the learning materials for another 180 days. This will allow you to review key topics and strengthen your acquired knowledge. Additionally, you will be able to contact the instructors and get answers to your questions."
+        "answer": "Yes, after the course ends, you will have access to all the learning materials for another 180 days. This will allow you to review key topics and strengthen your acquired knowledge. Additionally, you will be able to contact the mentors and get answers to your questions."
       }
     ]
+  },
+  "comparison": {
+    "title": "How we *compare* to the other ways in",
+    "description": "Compared on what people usually weigh up before their first step into tech.",
+    "columns": [
+      "Unicamp",
+      "University",
+      "Other academies",
+      "Self-study"
+    ],
+    "rows": [
+      {
+        "label": "Price",
+        "values": [
+          "€500 (or free through Kursuok.lt)",
+          "Semester fees or state funding",
+          "Varies widely",
+          "Almost free"
+        ]
+      },
+      {
+        "label": "Length",
+        "values": [
+          "12 weeks · 108 academic hours",
+          "3–4 years",
+          "Varies",
+          "Open-ended"
+        ]
+      },
+      {
+        "label": "Who teaches",
+        "values": [
+          "Mentors working in tech every day",
+          "Lecturers with academic experience",
+          "Depends on the teacher",
+          "Nobody – you are on your own"
+        ]
+      },
+      {
+        "label": "Group size",
+        "values": [
+          "Up to 20 people",
+          "Lecture halls",
+          "Varies",
+          "—"
+        ]
+      },
+      {
+        "label": "Current tools and AI",
+        "values": [
+          "yes",
+          "partial",
+          "partial",
+          "partial"
+        ]
+      },
+      {
+        "label": "1-on-1 mentor",
+        "values": [
+          "yes",
+          "no",
+          "partial",
+          "no"
+        ]
+      },
+      {
+        "label": "Real portfolio project",
+        "values": [
+          "yes",
+          "Final thesis",
+          "partial",
+          "Only if you set one yourself"
+        ]
+      },
+      {
+        "label": "Kursuok.lt funding",
+        "values": [
+          "yes",
+          "no",
+          "partial",
+          "no"
+        ]
+      },
+      {
+        "label": "Remote",
+        "values": [
+          "yes",
+          "partial",
+          "partial",
+          "yes"
+        ]
+      }
+    ],
+    "marks": {
+      "yes": "Yes",
+      "no": "No",
+      "partial": "Sometimes"
+    }
   }
 }

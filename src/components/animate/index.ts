@@ -1,3 +1,5 @@
+export * from './float';
+
 export * from './variants';
 
 export * from './back-to-top';
@@ -9,6 +11,8 @@ export * from './animate-logo';
 export * from './animate-avatar';
 
 export * from './animate-border';
+
+export * from './animate-hearts';
 
 export * from './motion-viewport';
 

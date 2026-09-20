@@ -1,138 +1,110 @@
+import type { Theme } from '@mui/material/styles';
 import type { BoxProps } from '@mui/material/Box';
 import type { CardProps } from '@mui/material/Card';
 
+import { useState } from 'react';
 import { m } from 'framer-motion';
-import { useState, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
-import { Chip } from '@mui/material';
+import Fab from '@mui/material/Fab';
+import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Rating from '@mui/material/Rating';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import CardActionArea from '@mui/material/CardActionArea';
 
-import { maxLine, varAlpha, stylesMode } from 'src/theme/styles';
+import { RADIUS, varAlpha, SECTION_PADDING, SECTION_CONTENT_GAP } from 'src/theme/styles';
 
-import { Label } from 'src/components/label';
-import { Image } from 'src/components/image';
 import { Iconify } from 'src/components/iconify';
+import { ProgramVideo } from 'src/components/program-video';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 import { paths } from '../../routes/paths';
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
-import { SvgColor } from '../../components/svg-color';
-import { ApplyToProgram } from '../cta/apply-to-program';
+import { ConsultationCard } from './consultation-card';
 import { SectionTitle } from './components/section-title';
-import {
-  Carousel,
-  useCarousel,
-  CarouselDotButtons,
-  carouselBreakpoints,
-  CarouselArrowBasicButtons,
-} from '../../components/carousel';
 
 // ----------------------------------------------------------------------
 
-export const PROGRAMS = [
+type Tool = {
+  name: string;
+  logo: string;
+  // Shown until the card-specific logo is uploaded, or if it fails to load.
+  fallback?: string;
+  // The logo is a full app icon (with its own background) and fills the tile.
+  fill?: boolean;
+};
+
+type Program = {
+  id: 'webDevelopment' | 'productDesign';
+  link: string;
+  // Card media; a placeholder is shown until one is added.
+  video?: string;
+  image?: string;
+  // Background of the media itself, so the frame blends with it when the media is letterboxed.
+  mediaBackground?: string;
+  // A few of the tools taught, shown as overlapping tiles.
+  tools?: Tool[];
+  // Ends the row with a "+" tile, for programmes that cover more than the tiles show.
+  moreTools?: boolean;
+};
+
+const VIDEOS_DIR = `${CONFIG.assetsDir}/assets/videos/programs`;
+// Card tiles have their own logos, sized for 32px, separate from the tools section's.
+const PROGRAM_TOOLS_DIR = `${CONFIG.assetsDir}/assets/images/home/program-tools`;
+const TOOLS_DIR = `${CONFIG.assetsDir}/assets/images/home/tools`;
+
+export const PROGRAMS: Program[] = [
   {
     id: 'webDevelopment',
-    title: 'programs.programs.webDevelopment.title',
-    caption: 'programs.programs.webDevelopment.caption',
-    icon: `${CONFIG.assetsDir}/assets/icons/programs/web-development.svg`,
-    levelIcon: `${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`,
-    level: 'programs.levels.beginner',
     link: paths.programs.fe,
-    monthlyPrice: 180,
-    price: 500,
-    originalPrice: 500,
-    reviews: 5,
-    features: [
-      'programs.programs.webDevelopment.features.0',
-      'programs.programs.webDevelopment.features.1',
-      'programs.programs.webDevelopment.features.2',
-      'programs.programs.webDevelopment.features.3',
-      'programs.programs.webDevelopment.features.4',
+    video: `${VIDEOS_DIR}/web-development.mp4`,
+    mediaBackground: '#FFFFFF',
+    tools: [
+      {
+        name: 'Cursor',
+        logo: `${PROGRAM_TOOLS_DIR}/cursor.png`,
+        fallback: `${TOOLS_DIR}/cursor.png`,
+      },
+      {
+        name: 'Lovable',
+        logo: `${PROGRAM_TOOLS_DIR}/lovable.png`,
+        fallback: `${TOOLS_DIR}/lovable.png`,
+      },
+      {
+        name: 'Supabase',
+        logo: `${PROGRAM_TOOLS_DIR}/supabase.png`,
+        fallback: `${TOOLS_DIR}/supabase.jpeg`,
+      },
+      { name: 'n8n', logo: `${PROGRAM_TOOLS_DIR}/n8n.png`, fallback: `${TOOLS_DIR}/n8n.png` },
     ],
-    testimonials: [
-      {
-        name: 'Simona G.',
-        rating: 5,
-        content: `Prieš mokymus nežinojau, kad ux yra tokia plati sritis..wow. Supratau, kad svarbu testuoti savo dizainus, o ne tiesiog „gražiai padaryti“.`,
-        course: 'Frontend',
-      },
-      {
-        name: 'Edgaras K.',
-        rating: 5,
-        content: `Didelis ačiū Gedui. Labai patogu, kad viskas buvo online, galėjau mokytis iš namų ir dar dirbt.`,
-        course: 'Frontend',
-      },
-      {
-        name: 'Julius V.',
-        rating: 5,
-        content: `Patiko, kad dirbom prie savo projektų, kam kas įdomu, o ne šiaip sausos užduotėlės kaip kitur.`,
-        course: 'Frontend',
-      },
-      {
-        name: 'Evelina Ž.',
-        rating: 5,
-        content: `Kartais būdavo sunku. Tikrai nemeluosiu 😄 Bet dėstytojas Gedas viską ramiai dar kartą paaiškindavo ir pavykdavo. Tas jausmas nerealus 🙏`,
-        course: 'Frontend',
-      },
-      {
-        name: 'Giedrius Č.',
-        rating: 5,
-        content: `Kursai labai geri, bet sakyčiau reikia turėt šiek tiek kantrybės, kol pradedi jaust progresą.`,
-        course: 'Frontend',
-      },
-    ],
+    moreTools: true,
   },
   {
     id: 'productDesign',
-    title: 'programs.programs.productDesign.title',
-    caption: 'programs.programs.productDesign.caption',
-    icon: `${CONFIG.assetsDir}/assets/icons/programs/product-design.svg`,
-    levelIcon: `${CONFIG.assetsDir}/assets/icons/programs/beginner.svg`,
-    level: 'programs.levels.beginner',
     link: paths.programs.ux,
-    monthlyPrice: 180,
-    price: 500,
-    originalPrice: 500,
-    reviews: 4,
-    features: [
-      'programs.programs.webDevelopment.features.0',
-      'programs.programs.webDevelopment.features.1',
-      'programs.programs.webDevelopment.features.2',
-      'programs.programs.webDevelopment.features.3',
-      'programs.programs.webDevelopment.features.4',
-    ],
-    testimonials: [
+    video: `${VIDEOS_DIR}/product-design.mp4`,
+    mediaBackground: '#E7E9ED',
+    tools: [
+      { name: 'Figma', logo: `${PROGRAM_TOOLS_DIR}/figma.png`, fallback: `${TOOLS_DIR}/figma.svg` },
       {
-        name: 'Aleksandra Z.',
-        rating: 5,
-        content: `Viskas super! Kaip tik ieškojau kursų kur galėčiau pasibandyti. Tikrai tiem kas dar bandotes ir ieškote savęs labai rekomenduoju.`,
-        course: 'UX/UI',
+        name: 'Claude',
+        logo: `${PROGRAM_TOOLS_DIR}/claude.png`,
+        fallback: `${TOOLS_DIR}/claude.png`,
       },
       {
-        name: 'Monika J.',
-        rating: 5,
-        content: `Realiai neisivaizdavau, kad taip itrauks:)) Kursai nebuvo sausi, viskas su pavyzdziais ir praktika.`,
-        course: 'UX/UI',
+        name: 'Lovable',
+        logo: `${PROGRAM_TOOLS_DIR}/lovable.png`,
+        fallback: `${TOOLS_DIR}/lovable.png`,
       },
       {
-        name: 'Justė P.',
-        rating: 5,
-        content: `Patiko! Ačiū! 😍`,
-        course: 'UX/UI',
-      },
-      {
-        name: 'Liepa P.',
-        rating: 5,
-        content: `Pati pradžia buvo kosmosas, galvojau kad neištempsiu, bet paskui susigaudžiau ir dabar dėkoju sau kad nesustojau:)`,
-        course: 'UX/UI',
+        name: 'Cursor',
+        logo: `${PROGRAM_TOOLS_DIR}/cursor.png`,
+        fallback: `${TOOLS_DIR}/cursor.png`,
       },
     ],
+    moreTools: true,
   },
 ];
 
@@ -142,64 +114,23 @@ export function HomePrograms({ sx, ...other }: BoxProps) {
   const { t } = useTranslate('home');
 
   return (
-    <Box
-      component="section"
-      sx={{
-        py: { xs: 10, md: 15 },
-        position: 'relative',
-        background: (theme) =>
-          `linear-gradient(270deg, ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)}, ${varAlpha(theme.vars.palette.grey['500Channel'], 0)})`,
-        ...sx,
-      }}
-      {...other}
-    >
+    <Box component="section" sx={{ py: SECTION_PADDING, position: 'relative', ...sx }} {...other}>
       <MotionViewport>
-        <Container sx={{ position: 'relative' }}>
-          <Stack gap={5}>
+        <Container>
+          <Stack gap={SECTION_CONTENT_GAP}>
             <SectionTitle
               title={t('programs.title')}
               description={t('programs.description')}
-              sx={{ mb: 5, textAlign: 'center' }}
+              sx={{ textAlign: 'center' }}
             />
 
-            <Box
-              gap={{ xs: 3, md: 0 }}
-              display="grid"
-              alignItems={{ md: 'center' }}
-              gridTemplateColumns={{ md: 'repeat(2, 1fr)' }}
-            >
-              {PROGRAMS.map((program, index) => (
-                <ProgramCard key={program.id} program={program} index={index} />
+            <Stack gap={3}>
+              {PROGRAMS.map((program) => (
+                <ProgramCard key={program.id} program={program} />
               ))}
-            </Box>
-
-            <Stack alignItems="center" pt={8} gap={5}>
-              <Typography variant="h4">Kursų metu naudosime</Typography>
-              <Stack sx={{ width: '100%' }}>
-                <Stack
-                  direction={{ sm: 'column', md: 'row' }}
-                  alignItems="center"
-                  justifyContent="space-between"
-                  gap={{ xs: 4, sm: 8 }}
-                >
-                  <Image
-                    alt="Slack"
-                    src={`${CONFIG.assetsDir}/assets/images/programs/tools/slack.png`}
-                    sx={{ height: { xs: 36, sm: 48, lg: 64 } }}
-                  />
-                  <Image
-                    alt="Unicamp learning platform"
-                    src={`${CONFIG.assetsDir}/assets/images/programs/tools/unicamp-learning.png`}
-                    sx={{ height: { xs: 36, sm: 48, lg: 64 } }}
-                  />
-                  <Image
-                    alt="Google Meet"
-                    src={`${CONFIG.assetsDir}/assets/images/programs/tools/google-meet.png`}
-                    sx={{ height: { xs: 36, sm: 48, lg: 64 } }}
-                  />
-                </Stack>
-              </Stack>
             </Stack>
+
+            <ConsultationCard />
           </Stack>
         </Container>
       </MotionViewport>
@@ -209,288 +140,173 @@ export function HomePrograms({ sx, ...other }: BoxProps) {
 
 // ----------------------------------------------------------------------
 
-type Props = CardProps & {
-  index: number;
-  program: {
-    id: string;
-    title: string;
-    caption: string;
-    icon: string;
-    levelIcon: string;
-    level: string;
-    link: string;
-    price: number;
-    monthlyPrice: number;
-    reviews: number;
-    originalPrice: number;
-    features: string[];
-    testimonials: {
-      name: string;
-      rating: number;
-      content: string;
-      course: string;
-    }[];
-  };
+type ProgramCardProps = CardProps & {
+  program: Program;
 };
 
-export function ProgramCard({ program, sx, ...other }: Props) {
+export function ProgramCard({ program, sx, ...other }: ProgramCardProps) {
   const { t } = useTranslate('home');
 
-  const carousel = useCarousel({
-    align: 'start',
-    slidesToShow: { xs: 1 },
-    breakpoints: {
-      [carouselBreakpoints.sm]: { slideSpacing: '24px' },
-      [carouselBreakpoints.md]: { slideSpacing: '32px' },
-      [carouselBreakpoints.lg]: { slideSpacing: '48px' },
-    },
-  });
+  const { id, link, video, image, mediaBackground, tools, moreTools } = program;
 
-  const [isApplyDialogOpen, setIsApplyDialogOpen] = useState<boolean>(false);
-
-  const openApplyDialog = useCallback(() => {
-    setIsApplyDialogOpen(true);
-  }, []);
-
-  const closeApplyDialog = useCallback(() => {
-    setIsApplyDialogOpen(false);
-  }, []);
-
-  const {
-    id,
-    title,
-    caption,
-    icon,
-    price,
-    monthlyPrice,
-    originalPrice,
-    features,
-    levelIcon,
-    level,
-    link,
-    reviews,
-    testimonials,
-  } = program;
-
-  const renderIcon = (
-    <Stack direction="row" alignItems="center" justifyContent="space-between">
-      <SvgColor src={icon} width={76} bgcolor="primary" />
-
-      <Stack direction="row" alignItems="center" spacing={1}>
-        <Image alt={`${t(level)} icon`} src={levelIcon} width={24} height={24} />
-        <Typography variant="subtitle1" color="text.secondary" autoCapitalize="on">
-          {t(level)}
-        </Typography>
-      </Stack>
-    </Stack>
+  const renderImage = (
+    <Box
+      sx={(theme) => ({
+        flexShrink: 0,
+        width: { xs: 1, sm: 200, md: 240 },
+        aspectRatio: '4 / 3',
+        borderRadius: RADIUS.md,
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'text.disabled',
+        border: `1px solid ${theme.vars.palette.divider}`,
+        bgcolor: mediaBackground ?? varAlpha(theme.vars.palette.grey['500Channel'], 0.08),
+      })}
+    >
+      {video ? (
+        <ProgramVideo src={video} />
+      ) : image ? (
+        <Box component="img" src={image} alt="" sx={{ width: 1, height: 1, objectFit: 'cover' }} />
+      ) : (
+        <Iconify icon="iconmind:gallery-outline-thin" width={40} />
+      )}
+    </Box>
   );
 
-  const renderRating = (
-    <Stack direction="row" alignItems="center" spacing={1} sx={{ typography: 'subtitle2' }}>
-      <Rating size="small" name="read-only" value={5} precision={0.5} readOnly />
-      <Typography variant="subtitle2" color="text.secondary">
-        ({reviews} {t('programs.reviews')})
+  const renderContent = (
+    <Stack spacing={1} sx={{ flex: '1 1 auto', minWidth: 0 }}>
+      <Typography variant="overline" sx={{ color: 'text.disabled' }}>
+        {[t('programs.meta.duration'), t('programs.meta.format'), t('programs.meta.group')].join(
+          ' · '
+        )}
       </Typography>
-    </Stack>
-  );
 
-  const renderSubscription = (
-    <Stack spacing={1}>
-      <Typography variant="h3" autoCapitalize="on">
-        {t(title)}
+      <Typography variant="h4" component="h3">
+        {t(`programs.programs.${id}.outcome`)}
       </Typography>
-      <Typography variant="h5" color="text.secondary">
-        {t(caption)}
-      </Typography>
-      <Stack
-        direction={{ xs: 'column', sm: 'row' }}
-        alignItems={{ xs: 'start', sm: 'center' }}
-        spacing={1}
-      >
-        <Chip
-          icon={<Iconify icon="solar:shield-check-bold" />}
-          label={t('programs.chips.moneyBackGuarantee')}
-          color="success"
-          sx={{ maxWidth: 'fit-content' }}
-        />
-        <Chip
-          icon={<Iconify icon="solar:verified-check-bold" />}
-          label={t('programs.chips.approvedByKursuok')}
-          color="primary"
-          sx={{ maxWidth: 'fit-content' }}
-        />
-      </Stack>
-    </Stack>
-  );
-
-  const renderPrice = (
-    <Stack direction="column" spacing={1.5}>
-      <Stack direction="row">
-        <Box
-          sx={(theme) => ({
-            px: 1,
-            borderRight: `3px solid ${theme.palette.error.main}`,
-            borderBottom: `3px solid ${theme.palette.error.main}`,
-            background: theme.palette.warning.light,
-          })}
-        >
-          <Typography variant="h2">{monthlyPrice}€</Typography>
-        </Box>
-
-        <Typography
-          component="span"
-          sx={{
-            alignSelf: 'flex-end',
-            color: 'text.secondary',
-            ml: 1,
-            typography: 'h5',
-          }}
-        >
-          {t('programs.pricing.paidMonthly')}
-        </Typography>
-      </Stack>
-      <Stack
-        direction={{ xs: 'column', sm: 'row' }}
-        alignItems={{ xs: 'start', sm: 'center' }}
-        spacing={1}
-      >
-        <Label
-          variant="filled"
-          color="error"
-          startIcon={<Iconify icon="eva:checkmark-fill" />}
-          sx={{ maxWidth: 'fit-content' }}
-        >
-          {t('programs.chips.limitedSpaces')}
-        </Label>
-        <Label
-          variant="soft"
-          color="success"
-          startIcon={<Iconify icon="eva:checkmark-fill" />}
-          sx={{ maxWidth: 'fit-content' }}
-        >
-          {t('programs.chips.availableFinancing')}
-        </Label>
-      </Stack>
-    </Stack>
-  );
-
-  const renderFeatures = (
-    <Stack spacing={2}>
-      {features.map((feature) => (
-        <Stack
-          key={feature}
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          sx={{ typography: 'body2' }}
-        >
-          <Iconify icon="eva:checkmark-fill" width={16} sx={{ mr: 1 }} />
-          {t(feature)}
-        </Stack>
-      ))}
-    </Stack>
-  );
-
-  const renderCTA = (
-    <Stack spacing={2}>
-      <ApplyToProgram open={isApplyDialogOpen} onClose={closeApplyDialog} course={program.id} />
-      <Button fullWidth size="large" variant="contained" onClick={openApplyDialog}>
-        {t('programs.cta.apply')}
-      </Button>
-
-      <Button fullWidth size="large" variant="outlined" href={link}>
-        {t('programs.cta.viewProgram')}
-      </Button>
-    </Stack>
-  );
-
-  const renderTestimonials = (
-    <Stack sx={{ position: 'relative', py: { xs: 5, md: 8 } }}>
-      <Carousel carousel={carousel}>
-        {testimonials.map((item) => (
-          <Stack key={item.name} component={m.div} variants={varFade().in}>
-            <Stack spacing={1} sx={{ typography: 'subtitle2' }}>
-              <Rating size="small" name="read-only" value={item.rating} precision={0.5} readOnly />
-            </Stack>
-
-            <Typography
-              sx={(theme) => ({
-                ...maxLine({ line: 4, persistent: theme.typography.body1 }),
-                mt: 2,
-                mb: 3,
-              })}
-            >
-              {item.content}
-            </Typography>
-
-            <Stack direction="column" spacing={2}>
-              <Typography variant="subtitle1">{item.name}</Typography>
-              <Label
-                color={item.course === 'UX/UI' ? 'primary' : 'default'}
-                sx={{ alignSelf: 'start', width: 'auto' }}
-              >
-                {item.course}
-              </Label>
-            </Stack>
-          </Stack>
-        ))}
-      </Carousel>
 
       <Stack
         direction="row"
+        spacing={1}
         alignItems="center"
-        justifyContent="space-between"
-        sx={{ mt: { xs: 5, md: 8 } }}
+        sx={{ typography: 'body2', color: 'text.secondary' }}
       >
-        <CarouselDotButtons
-          variant="rounded"
-          scrollSnaps={carousel.dots.scrollSnaps}
-          selectedIndex={carousel.dots.selectedIndex}
-          onClickDot={carousel.dots.onClickDot}
-        />
-
-        <CarouselArrowBasicButtons {...carousel.arrows} options={carousel.options} />
+        <Iconify icon="iconmind:check-outline-thin" width={20} sx={{ color: 'text.primary' }} />
+        <span>{t('programs.pricing.financing')}</span>
       </Stack>
+
+      {tools && <ProgramTools tools={tools} more={moreTools} />}
     </Stack>
   );
 
   return (
-    <Stack
-      spacing={4}
-      sx={{
-        p: 5,
-        borderRadius: 2,
-        bgcolor: 'background.default',
-        borderTopRightRadius: { md: 0 },
-        borderBottomRightRadius: { md: 0 },
-        boxShadow: (theme) => ({
-          xs: theme.customShadows.card,
-          md: `-40px 40px 80px 0px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.16)}`,
-        }),
-        [stylesMode.dark]: {
-          boxShadow: (theme) => ({
-            xs: theme.customShadows.card,
-            md: `-40px 40px 80px 0px ${varAlpha(theme.vars.palette.common.blackChannel, 0.16)}`,
-          }),
-        },
-        ...sx,
-      }}
-      {...other}
-    >
-      {renderIcon}
+    <Card component={m.div} variants={varFade({ distance: 24 }).inUp} sx={sx} {...other}>
+      <CardActionArea
+        href={link}
+        sx={{
+          p: { xs: 2, md: 2.5 },
+          gap: { xs: 2, sm: 3 },
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { xs: 'stretch', sm: 'center' },
+          '&:hover .program-card-arrow': { transform: 'translateX(4px)' },
+        }}
+      >
+        {renderImage}
+        {renderContent}
 
-      {renderRating}
+        {/* Decorative: the whole card is the link */}
+        <Fab
+          component="span"
+          color="inherit"
+          size="medium"
+          tabIndex={-1}
+          aria-hidden
+          className="program-card-arrow"
+          sx={(theme) => ({
+            flexShrink: 0,
+            alignSelf: { xs: 'flex-end', sm: 'center' },
+            transition: theme.transitions.create('transform'),
+          })}
+        >
+          <Iconify icon="iconmind:arrow-right-outline-thin" width={22} />
+        </Fab>
+      </CardActionArea>
+    </Card>
+  );
+}
 
-      {renderSubscription}
+// ----------------------------------------------------------------------
 
-      {renderPrice}
+const TOOL_TILE_SIZE = 32;
 
-      {renderFeatures}
+// Tilts cycle so neighbouring tiles lean opposite ways, like a loose pile.
+const TOOL_TILE_ANGLES = [-6, 4, -3, 6, -5];
 
-      {renderCTA}
+// Overlapping tiles, each ringed in the card colour so they read as a stack.
+function ProgramTools({ tools, more }: { tools: Tool[]; more?: boolean }) {
+  const tileSx = (index: number) => ({
+    width: TOOL_TILE_SIZE,
+    height: TOOL_TILE_SIZE,
+    flexShrink: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    borderRadius: RADIUS.sm,
+    bgcolor: 'background.paper',
+    zIndex: index,
+    ml: index === 0 ? 0 : -0.75,
+    transform: `rotate(${TOOL_TILE_ANGLES[index % TOOL_TILE_ANGLES.length]}deg)`,
+    border: (theme: Theme) => `1px solid ${theme.vars.palette.divider}`,
+    // A ring in the card colour keeps the tiles apart where they overlap.
+    boxShadow: (theme: Theme) => `0 0 0 2px ${theme.vars.palette.background.paper}`,
+  });
 
-      {/* FIXME: Fix display and uncomment */}
-      {/* {renderTestimonials} */}
+  return (
+    <Stack direction="row" alignItems="center" sx={{ py: 0.5 }}>
+      {tools.map((tool, index) => (
+        <Box key={tool.name} sx={tileSx(index)}>
+          <ToolLogo tool={tool} />
+        </Box>
+      ))}
+
+      {more && (
+        <Box
+          aria-hidden
+          sx={(theme) => ({
+            ...tileSx(tools.length),
+            color: 'text.secondary',
+            bgcolor: varAlpha(theme.vars.palette.grey['500Channel'], 0.12),
+          })}
+        >
+          <Iconify icon="iconmind:plus-outline-thin" width={16} />
+        </Box>
+      )}
     </Stack>
+  );
+}
+
+// ----------------------------------------------------------------------
+
+function ToolLogo({ tool }: { tool: Tool }) {
+  // Falls back to the tools section's logo until a card-specific one is uploaded.
+  const [src, setSrc] = useState(tool.logo);
+
+  return (
+    <Box
+      component="img"
+      src={src}
+      alt={tool.name}
+      loading="lazy"
+      onError={() => tool.fallback && src !== tool.fallback && setSrc(tool.fallback)}
+      sx={
+        tool.fill
+          ? { width: 1, height: 1, objectFit: 'cover' }
+          : { width: '68%', height: '68%', objectFit: 'contain' }
+      }
+    />
   );
 }

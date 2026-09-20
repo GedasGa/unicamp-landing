@@ -5,7 +5,7 @@ import type { Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
-import { varAlpha, stylesMode } from 'src/theme/styles';
+import { RADIUS, varAlpha, stylesMode } from 'src/theme/styles';
 
 import type { LabelColor, LabelVariant } from './types';
 
@@ -103,7 +103,7 @@ export const StyledLabel = styled(Box)(({
     padding: theme.spacing(0, 0.75),
     fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightBold,
-    borderRadius: theme.shape.borderRadius * 0.75,
+    borderRadius: theme.shape.borderRadius * RADIUS.sm,
     transition: theme.transitions.create('all', {
       duration: theme.transitions.duration.shorter,
     }),

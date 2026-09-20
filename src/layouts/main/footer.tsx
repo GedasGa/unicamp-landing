@@ -13,11 +13,18 @@ import Typography from '@mui/material/Typography';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
-import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from 'src/assets/icons';
-
 import { Logo } from 'src/components/logo';
+import { Iconify } from 'src/components/iconify';
 
 import { useTranslate } from '../../locales';
+
+// ----------------------------------------------------------------------
+
+const SOCIAL_ICONS: Record<string, string> = {
+  facebook: 'iconoir:facebook-tag',
+  instagram: 'iconoir:instagram',
+  linkedin: 'iconoir:linkedin',
+};
 
 // ----------------------------------------------------------------------
 
@@ -54,11 +61,6 @@ const SOCIALS = [
     label: 'Linkedin',
     link: 'https://www.linkedin.com/company/105553068',
   },
-  {
-    value: 'twitter',
-    label: 'Twitter',
-    link: 'https://x.com/unicamplt',
-  },
 ];
 
 // ----------------------------------------------------------------------
@@ -74,17 +76,18 @@ export function Footer({ layoutQuery, sx }: FooterProps) {
 
   return (
     <Box component="footer" sx={{ position: 'relative', bgcolor: 'background.default', ...sx }}>
-      <Divider />
-
       <Container
         sx={{
           pb: 5,
-          pt: 10,
           textAlign: 'center',
           [theme.breakpoints.up(layoutQuery)]: { textAlign: 'unset' },
         }}
       >
-        <Logo />
+        {/* Divider sits inside the container so it lines up with the content width. */}
+        <Divider sx={{ mb: 10 }} />
+
+        {/* Same logo and size as the header. */}
+        <Logo onlyLogo={false} width={160} />
 
         <Grid
           container
@@ -122,11 +125,10 @@ export function Footer({ layoutQuery, sx }: FooterProps) {
                   color="inherit"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={social.label}
                 >
-                  {social.value === 'twitter' && <TwitterIcon />}
-                  {social.value === 'facebook' && <FacebookIcon />}
-                  {social.value === 'instagram' && <InstagramIcon />}
-                  {social.value === 'linkedin' && <LinkedinIcon />}
+                  {/* Monochrome icons that follow the text colour, like the rest of the page. */}
+                  <Iconify icon={SOCIAL_ICONS[social.value]} width={22} />
                 </IconButton>
               ))}
             </Stack>

@@ -13,6 +13,8 @@ import Container from '@mui/material/Container';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
+import { bgBlur, RADIUS, varAlpha } from 'src/theme/styles';
+
 import { Logo } from 'src/components/logo';
 
 import { Main } from './main';
@@ -38,6 +40,8 @@ export type MainLayoutProps = {
   children: React.ReactNode;
   header?: {
     sx?: SxProps<Theme>;
+    /** Let page content start underneath the floating header. */
+    overlay?: boolean;
   };
   data?: {
     nav?: NavMainProps['data'];
@@ -66,15 +70,51 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
 
   return (
     <LayoutSection
+      cssVars={{
+        '--layout-header-mobile-height': '72px',
+        '--layout-header-desktop-height': '88px',
+      }}
       headerSection={
         <HeaderSection
           layoutQuery={layoutQuery}
-          sx={header?.sx}
+          disableOffset
+          disableElevation
+          sx={{
+            bgcolor: 'transparent',
+            ...(header?.overlay && {
+              mb: 'calc(var(--layout-header-mobile-height) * -1)',
+              [theme.breakpoints.up(layoutQuery)]: {
+                mb: 'calc(var(--layout-header-desktop-height) * -1)',
+              },
+            }),
+            ...header?.sx,
+          }}
+          slotProps={{
+            toolbar: {
+              sx: { alignItems: 'center' },
+            },
+            container: {
+              sx: {
+                width: { xs: 'calc(100% - 32px)', sm: 'calc(100% - 48px)' },
+                height: { xs: 56, [layoutQuery]: 64 },
+                // Set per breakpoint so Container's own gutters (24px from sm up) don't win.
+                pl: { xs: 1, sm: 1, [layoutQuery]: 2 },
+                pr: { xs: 1, sm: 1 },
+                borderRadius: RADIUS.pill,
+                border: `solid 1px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)}`,
+                boxShadow: `0 8px 24px -8px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.16)}`,
+                ...bgBlur({
+                  color: varAlpha(theme.vars.palette.background.neutralChannel, 0.8),
+                  blur: 12,
+                }),
+              },
+            },
+          }}
           slots={{
             bottomArea: showAlert && (
               <Container>
                 <Alert
-                  icon={<Iconify icon="ic:outline-campaign" />}
+                  icon={<Iconify icon="iconmind:power-up-outline-thin" />}
                   severity="warning"
                   action={
                     <Button color="inherit" size="small" onClick={dismissAlert}>
@@ -102,7 +142,6 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                   onClick={mobileNavOpen.onTrue}
                   sx={{
                     mr: 1,
-                    ml: -1,
                     [theme.breakpoints.up(layoutQuery)]: { display: 'none' },
                   }}
                 />
@@ -127,30 +166,33 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
                 <Logo onlyLogo={false} width={160} />
               </>
             ),
+            centerArea: (
+              <NavDesktop
+                data={navData}
+                sx={{
+                  display: 'none',
+                  [theme.breakpoints.up(layoutQuery)]: { display: 'flex' },
+                }}
+              />
+            ),
             rightArea: (
-              <>
-                <NavDesktop
-                  data={navData}
+              <Box display="flex" alignItems="center" gap={{ xs: 1, sm: 1.5 }}>
+                <LanguagePopover data={allLangs} />
+                <Button
+                  size="large"
+                  variant="contained"
+                  color="inherit"
+                  rel="noopener"
+                  href={authenticated ? paths.app.root : paths.auth.signIn}
                   sx={{
+                    px: 2.5,
                     display: 'none',
-                    [theme.breakpoints.up(layoutQuery)]: { mr: 2.5, display: 'flex' },
+                    [theme.breakpoints.up(layoutQuery)]: { display: 'inline-flex' },
                   }}
-                />
-                <Box display="flex" alignItems="center" gap={{ xs: 1, sm: 1.5 }}>
-                  <LanguagePopover data={allLangs} />
-                  <Button
-                    variant="outlined"
-                    rel="noopener"
-                    href={authenticated ? paths.app.root : paths.auth.signIn}
-                    sx={{
-                      display: 'none',
-                      [theme.breakpoints.up(layoutQuery)]: { display: 'inline-flex' },
-                    }}
-                  >
-                    {authenticated ? t('cta.goToPlatform') : t('cta.signIn')}
-                  </Button>
-                </Box>
-              </>
+                >
+                  {authenticated ? t('cta.goToPlatform') : t('cta.signIn')}
+                </Button>
+              </Box>
             ),
           }}
         />
