@@ -70,6 +70,10 @@ export function HomeCompanies({ sx, ...other }: HomeCompaniesProps) {
                 alt={`${logo.replace('.svg', '')} logo`}
                 sx={{
                   height: 36,
+                  // The logos come in clashing brand colours; grey lets them read as one set
+                  // and keeps the mentors' story, not the badges, in the foreground.
+                  filter: 'grayscale(1)',
+                  opacity: 0.6,
                 }}
               />
             ))}
