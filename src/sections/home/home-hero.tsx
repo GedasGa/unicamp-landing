@@ -17,7 +17,6 @@ import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import { BRAND } from 'src/theme/styles';
 import { submitSaveSpot } from 'src/actions/save-spot';
 
 import { Iconify } from 'src/components/iconify';
@@ -27,6 +26,7 @@ import { varFade, varFloat, MotionContainer } from 'src/components/animate';
 import { paths } from '../../routes/paths';
 import { CONFIG } from '../../config-global';
 import { useTranslate } from '../../locales';
+import { BrandGlow } from './components/brand-glow';
 import { renderEmphasis } from './components/section-title';
 
 // ----------------------------------------------------------------------
@@ -59,7 +59,7 @@ type FloatingCard = {
 const FLOATING_CARDS: FloatingCard[] = [
   {
     id: 'certificate',
-    icon: 'solar:diploma-verified-bold-duotone',
+    icon: 'iconmind:share-certificate-outline-thin',
     image: `${HERO_IMAGES_DIR}/certificate.png`,
     side: 'left',
     top: '12%',
@@ -67,14 +67,14 @@ const FLOATING_CARDS: FloatingCard[] = [
   },
   {
     id: 'mentor',
-    icon: 'solar:chat-round-line-bold-duotone',
+    icon: 'iconmind:personal-trainer-outline-thin',
     side: 'right',
     top: '16%',
     rotate: 5,
   },
   {
     id: 'project',
-    icon: 'solar:widget-5-bold-duotone',
+    icon: 'iconmind:assignment-outline-thin',
     image: `${HERO_IMAGES_DIR}/project.png`,
     side: 'right',
     bottom: '12%',
@@ -82,7 +82,7 @@ const FLOATING_CARDS: FloatingCard[] = [
   },
   {
     id: 'format',
-    icon: 'solar:laptop-minimalistic-bold-duotone',
+    icon: 'iconmind:video-outline-thin',
     side: 'left',
     bottom: '18%',
     rotate: -4,
@@ -124,22 +124,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
     >
       <Container component={MotionContainer} sx={{ position: 'relative' }}>
         {/* Soft glow behind the heading, in the brand gradient. */}
-        <Box
-          aria-hidden
-          sx={{
-            position: 'absolute',
-            top: { xs: -32, md: -48 },
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: { xs: 340, sm: 520, md: 720 },
-            height: { xs: 200, sm: 260, md: 320 },
-            borderRadius: '50%',
-            backgroundImage: `linear-gradient(180deg, ${BRAND.pink} 0%, ${BRAND.orange} 100%)`,
-            opacity: { xs: 0.18, md: 0.24 },
-            filter: 'blur(80px)',
-            pointerEvents: 'none',
-          }}
-        />
+        <BrandGlow sx={{ top: { xs: -32, md: -48 }, opacity: { xs: 0.18, md: 0.24 } }} />
 
         <Stack
           spacing={{ xs: 3, md: 4 }}
@@ -178,7 +163,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
               color="inherit"
               href="/#courses"
               onClick={() => posthog.capture('hero_cta_clicked')}
-              endIcon={<Iconify icon="eva:arrow-downward-fill" width={20} />}
+              endIcon={<Iconify icon="iconmind:arrow-down-outline-thin" width={20} />}
             >
               {t('hero.cta.viewCourses.buttonText')}
             </Button>
@@ -333,7 +318,7 @@ function SaveSpotForm() {
   if (isSubmitted) {
     return (
       <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
-        <Iconify icon="eva:checkmark-circle-2-fill" width={22} sx={{ color: 'success.main' }} />
+        <Iconify icon="iconmind:check-outline-thin" width={22} sx={{ color: 'success.main' }} />
         <Typography variant="subtitle1">{t('hero.form.success')}</Typography>
       </Stack>
     );

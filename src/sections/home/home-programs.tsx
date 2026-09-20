@@ -1,7 +1,8 @@
+import type { Theme } from '@mui/material/styles';
 import type { BoxProps } from '@mui/material/Box';
 import type { CardProps } from '@mui/material/Card';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { m, useInView, useReducedMotion } from 'framer-motion';
 
 import Box from '@mui/material/Box';
@@ -26,6 +27,15 @@ import { SECTION_PADDING, SECTION_CONTENT_GAP } from './components/section-spaci
 
 // ----------------------------------------------------------------------
 
+type Tool = {
+  name: string;
+  logo: string;
+  // Shown until the card-specific logo is uploaded, or if it fails to load.
+  fallback?: string;
+  // The logo is a full app icon (with its own background) and fills the tile.
+  fill?: boolean;
+};
+
 type Program = {
   id: 'webDevelopment' | 'productDesign';
   link: string;
@@ -34,9 +44,16 @@ type Program = {
   image?: string;
   // Background of the media itself, so the frame blends with it when the media is letterboxed.
   mediaBackground?: string;
+  // A few of the tools taught, shown as overlapping tiles.
+  tools?: Tool[];
+  // Ends the row with a "+" tile, for programmes that cover more than the tiles show.
+  moreTools?: boolean;
 };
 
 const VIDEOS_DIR = `${CONFIG.assetsDir}/assets/videos/programs`;
+// Card tiles have their own logos, sized for 32px, separate from the tools section's.
+const PROGRAM_TOOLS_DIR = `${CONFIG.assetsDir}/assets/images/home/program-tools`;
+const TOOLS_DIR = `${CONFIG.assetsDir}/assets/images/home/tools`;
 
 // Card videos replay this many times, then stay on their last frame until the page reloads.
 const MAX_VIDEO_PLAYS = 10;
@@ -47,12 +64,50 @@ export const PROGRAMS: Program[] = [
     link: paths.programs.fe,
     video: `${VIDEOS_DIR}/web-development.mp4`,
     mediaBackground: '#FFFFFF',
+    tools: [
+      {
+        name: 'Cursor',
+        logo: `${PROGRAM_TOOLS_DIR}/cursor.png`,
+        fallback: `${TOOLS_DIR}/cursor.png`,
+      },
+      {
+        name: 'Lovable',
+        logo: `${PROGRAM_TOOLS_DIR}/lovable.png`,
+        fallback: `${TOOLS_DIR}/lovable.png`,
+      },
+      {
+        name: 'Supabase',
+        logo: `${PROGRAM_TOOLS_DIR}/supabase.png`,
+        fallback: `${TOOLS_DIR}/supabase.jpeg`,
+      },
+      { name: 'n8n', logo: `${PROGRAM_TOOLS_DIR}/n8n.png`, fallback: `${TOOLS_DIR}/n8n.png` },
+    ],
+    moreTools: true,
   },
   {
     id: 'productDesign',
     link: paths.programs.ux,
     video: `${VIDEOS_DIR}/product-design.mp4`,
     mediaBackground: '#E7E9ED',
+    tools: [
+      { name: 'Figma', logo: `${PROGRAM_TOOLS_DIR}/figma.png`, fallback: `${TOOLS_DIR}/figma.svg` },
+      {
+        name: 'Claude',
+        logo: `${PROGRAM_TOOLS_DIR}/claude.png`,
+        fallback: `${TOOLS_DIR}/claude.png`,
+      },
+      {
+        name: 'Lovable',
+        logo: `${PROGRAM_TOOLS_DIR}/lovable.png`,
+        fallback: `${TOOLS_DIR}/lovable.png`,
+      },
+      {
+        name: 'Cursor',
+        logo: `${PROGRAM_TOOLS_DIR}/cursor.png`,
+        fallback: `${TOOLS_DIR}/cursor.png`,
+      },
+    ],
+    moreTools: true,
   },
 ];
 
@@ -95,7 +150,7 @@ type ProgramCardProps = CardProps & {
 export function ProgramCard({ program, sx, ...other }: ProgramCardProps) {
   const { t } = useTranslate('home');
 
-  const { id, link, video, image, mediaBackground } = program;
+  const { id, link, video, image, mediaBackground, tools, moreTools } = program;
 
   const mediaRef = useRef<HTMLDivElement>(null);
   const playCount = useRef(1);
@@ -143,7 +198,7 @@ export function ProgramCard({ program, sx, ...other }: ProgramCardProps) {
       ) : image ? (
         <Box component="img" src={image} alt="" sx={{ width: 1, height: 1, objectFit: 'cover' }} />
       ) : (
-        <Iconify icon="solar:gallery-wide-bold-duotone" width={40} />
+        <Iconify icon="iconmind:gallery-outline-thin" width={40} />
       )}
     </Box>
   );
@@ -166,9 +221,11 @@ export function ProgramCard({ program, sx, ...other }: ProgramCardProps) {
         alignItems="center"
         sx={{ typography: 'body2', color: 'text.secondary' }}
       >
-        <Iconify icon="solar:wallet-money-bold-duotone" width={20} sx={{ color: 'text.primary' }} />
+        <Iconify icon="iconmind:check-outline-thin" width={20} sx={{ color: 'text.primary' }} />
         <span>{t('programs.pricing.financing')}</span>
       </Stack>
+
+      {tools && <ProgramTools tools={tools} more={moreTools} />}
     </Stack>
   );
 
@@ -202,9 +259,82 @@ export function ProgramCard({ program, sx, ...other }: ProgramCardProps) {
             transition: theme.transitions.create('transform'),
           })}
         >
-          <Iconify icon="eva:arrow-forward-fill" width={22} />
+          <Iconify icon="iconmind:arrow-right-outline-thin" width={22} />
         </Fab>
       </CardActionArea>
     </Card>
+  );
+}
+
+// ----------------------------------------------------------------------
+
+const TOOL_TILE_SIZE = 32;
+
+// Tilts cycle so neighbouring tiles lean opposite ways, like a loose pile.
+const TOOL_TILE_ANGLES = [-6, 4, -3, 6, -5];
+
+// Overlapping tiles, each ringed in the card colour so they read as a stack.
+function ProgramTools({ tools, more }: { tools: Tool[]; more?: boolean }) {
+  const tileSx = (index: number) => ({
+    width: TOOL_TILE_SIZE,
+    height: TOOL_TILE_SIZE,
+    flexShrink: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    borderRadius: RADIUS.sm,
+    bgcolor: 'background.paper',
+    zIndex: index,
+    ml: index === 0 ? 0 : -0.75,
+    transform: `rotate(${TOOL_TILE_ANGLES[index % TOOL_TILE_ANGLES.length]}deg)`,
+    border: (theme: Theme) => `1px solid ${theme.vars.palette.divider}`,
+    // A ring in the card colour keeps the tiles apart where they overlap.
+    boxShadow: (theme: Theme) => `0 0 0 2px ${theme.vars.palette.background.paper}`,
+  });
+
+  return (
+    <Stack direction="row" alignItems="center" sx={{ py: 0.5 }}>
+      {tools.map((tool, index) => (
+        <Box key={tool.name} sx={tileSx(index)}>
+          <ToolLogo tool={tool} />
+        </Box>
+      ))}
+
+      {more && (
+        <Box
+          aria-hidden
+          sx={(theme) => ({
+            ...tileSx(tools.length),
+            color: 'text.secondary',
+            bgcolor: varAlpha(theme.vars.palette.grey['500Channel'], 0.12),
+          })}
+        >
+          <Iconify icon="iconmind:plus-outline-thin" width={16} />
+        </Box>
+      )}
+    </Stack>
+  );
+}
+
+// ----------------------------------------------------------------------
+
+function ToolLogo({ tool }: { tool: Tool }) {
+  // Falls back to the tools section's logo until a card-specific one is uploaded.
+  const [src, setSrc] = useState(tool.logo);
+
+  return (
+    <Box
+      component="img"
+      src={src}
+      alt={tool.name}
+      loading="lazy"
+      onError={() => tool.fallback && src !== tool.fallback && setSrc(tool.fallback)}
+      sx={
+        tool.fill
+          ? { width: 1, height: 1, objectFit: 'cover' }
+          : { width: '68%', height: '68%', objectFit: 'contain' }
+      }
+    />
   );
 }

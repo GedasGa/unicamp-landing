@@ -20,6 +20,7 @@ import { Iconify } from 'src/components/iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 import { useTranslate } from '../../locales';
+import { BrandGlow } from './components/brand-glow';
 import { SectionTitle } from './components/section-title';
 import { SECTION_PADDING, SECTION_CONTENT_GAP } from './components/section-spacing';
 
@@ -138,7 +139,11 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
             expandIcon={
               <Iconify
                 width={20}
-                icon={expanded === item.question ? 'mingcute:minimize-line' : 'mingcute:add-line'}
+                icon={
+                  expanded === item.question
+                    ? 'iconmind:minus-outline-thin'
+                    : 'iconmind:plus-outline-thin'
+                }
               />
             }
             aria-controls={`panel${index}bh-content`}
@@ -153,42 +158,55 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
   );
 
   const renderContact = (
-    <Card
-      sx={{
-        px: 3,
-        py: 8,
-        mx: 'auto',
-        maxWidth: 720,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-      }}
-    >
-      <m.div variants={varFade().in}>
-        <Typography variant="h4">{t('faqs.contact.heading')}</Typography>
-      </m.div>
+    <Box sx={{ position: 'relative', mx: 'auto', maxWidth: 720 }}>
+      {/* A quieter version of the hero's glow, behind the card. */}
+      <BrandGlow
+        intensity={0.12}
+        sx={{
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          // Wider than the card, so the glow spills out around it instead of hiding behind.
+          width: { xs: 320, sm: 560, md: 880 },
+          height: { xs: 220, sm: 300, md: 380 },
+        }}
+      />
 
-      <m.div variants={varFade().in}>
-        <Typography sx={{ mt: 2, mb: 3, color: 'text.secondary' }}>
-          {t('faqs.contact.description')}
-        </Typography>
-      </m.div>
+      <Card
+        sx={{
+          px: 3,
+          py: 8,
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <m.div variants={varFade().in}>
+          <Typography variant="h4">{t('faqs.contact.heading')}</Typography>
+        </m.div>
 
-      <m.div variants={varFade().in}>
-        <Button
-          color="inherit"
-          size="large"
-          variant="contained"
-          onClick={() => {
-            // @ts-ignore Injected to document object
-            OpenWidget.call('maximize', { feature: 'form-contact' });
-          }}
-        >
-          {t('faqs.contact.cta')}
-        </Button>
-      </m.div>
-    </Card>
+        <m.div variants={varFade().in}>
+          <Typography sx={{ mt: 2, mb: 3, color: 'text.secondary' }}>
+            {t('faqs.contact.description')}
+          </Typography>
+        </m.div>
+
+        <m.div variants={varFade().in}>
+          <Button
+            color="inherit"
+            size="large"
+            variant="contained"
+            onClick={() => {
+              // @ts-ignore Injected to document object
+              OpenWidget.call('maximize', { feature: 'form-contact' });
+            }}
+          >
+            {t('faqs.contact.cta')}
+          </Button>
+        </m.div>
+      </Card>
+    </Box>
   );
 
   return (
