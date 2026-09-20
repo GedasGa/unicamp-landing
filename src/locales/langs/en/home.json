@@ -232,7 +232,7 @@
       },
       {
         "question": "How are the courses conducted?",
-        "answer": "The courses are held remotely via Zoom with the course instructor. There are also practical sessions where you will work on real projects."
+        "answer": "The courses are held remotely via Google Meet with a mentor. There are also practical sessions where you will work on real projects."
       },
       {
         "question": "How long do the courses last?",
@@ -240,7 +240,7 @@
       },
       {
         "question": "What is the course schedule?",
-        "answer": "Courses take place 2–3 times a week, depending on the program. Typically, courses are held on Wednesdays from 18:30 to 21:30 and Saturdays from 9:00 to 12:00, or Mondays, Tuesdays, and Thursdays from 18:30 to 21:30."
+        "answer": "Classes run 2–3 times a week in the evening, 18:30–21:30. You'll find each group's exact schedule on its programme page."
       },
       {
         "question": "What are my obligations when joining the courses?",
@@ -264,12 +264,110 @@
       },
       {
         "question": "What if I cannot attend some of the lessons?",
-        "answer": "Don’t worry. All classes are recorded, so you can review them later. If you need additional help, our instructors will assist you."
+        "answer": "Don’t worry. All classes are recorded, so you can review them later. If you need additional help, our mentors will assist you."
       },
       {
         "question": "Will I be able to access the learning materials after the course ends?",
-        "answer": "Yes, after the course ends, you will have access to all the learning materials for another 180 days. This will allow you to review key topics and strengthen your acquired knowledge. Additionally, you will be able to contact the instructors and get answers to your questions."
+        "answer": "Yes, after the course ends, you will have access to all the learning materials for another 180 days. This will allow you to review key topics and strengthen your acquired knowledge. Additionally, you will be able to contact the mentors and get answers to your questions."
       }
     ]
+  },
+  "comparison": {
+    "title": "How we *compare* to the other ways in",
+    "description": "Compared on what people usually weigh up before their first step into tech.",
+    "columns": [
+      "Unicamp",
+      "University",
+      "Other academies",
+      "Self-study"
+    ],
+    "rows": [
+      {
+        "label": "Price",
+        "values": [
+          "€500 (or free through Kursuok.lt)",
+          "Semester fees or state funding",
+          "Varies widely",
+          "Almost free"
+        ]
+      },
+      {
+        "label": "Length",
+        "values": [
+          "12 weeks · 108 academic hours",
+          "3–4 years",
+          "Varies",
+          "Open-ended"
+        ]
+      },
+      {
+        "label": "Who teaches",
+        "values": [
+          "Mentors working in tech every day",
+          "Lecturers with academic experience",
+          "Depends on the teacher",
+          "Nobody – you are on your own"
+        ]
+      },
+      {
+        "label": "Group size",
+        "values": [
+          "Up to 20 people",
+          "Lecture halls",
+          "Varies",
+          "—"
+        ]
+      },
+      {
+        "label": "Current tools and AI",
+        "values": [
+          "yes",
+          "partial",
+          "partial",
+          "partial"
+        ]
+      },
+      {
+        "label": "1-on-1 mentor",
+        "values": [
+          "yes",
+          "no",
+          "partial",
+          "no"
+        ]
+      },
+      {
+        "label": "Real portfolio project",
+        "values": [
+          "yes",
+          "Final thesis",
+          "partial",
+          "Only if you set one yourself"
+        ]
+      },
+      {
+        "label": "Kursuok.lt funding",
+        "values": [
+          "yes",
+          "no",
+          "partial",
+          "no"
+        ]
+      },
+      {
+        "label": "Remote",
+        "values": [
+          "yes",
+          "partial",
+          "partial",
+          "yes"
+        ]
+      }
+    ],
+    "marks": {
+      "yes": "Yes",
+      "no": "No",
+      "partial": "Sometimes"
+    }
   }
 }

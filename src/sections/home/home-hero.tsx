@@ -16,7 +16,9 @@ import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
+import { RADIUS } from 'src/theme/styles';
 import { submitSaveSpot } from 'src/actions/save-spot';
 
 import { Iconify } from 'src/components/iconify';
@@ -28,6 +30,7 @@ import { CONFIG } from '../../config-global';
 import { useTranslate } from '../../locales';
 import { BrandGlow } from './components/brand-glow';
 import { renderEmphasis } from './components/section-title';
+import { CERTIFICATES } from '../programs/program-certificate';
 
 // ----------------------------------------------------------------------
 
@@ -60,7 +63,8 @@ const FLOATING_CARDS: FloatingCard[] = [
   {
     id: 'certificate',
     icon: 'iconmind:share-certificate-outline-thin',
-    image: `${HERO_IMAGES_DIR}/certificate.png`,
+    // The real UX/UI certificate, shared with that programme's page.
+    image: CERTIFICATES.productDesign,
     side: 'left',
     top: '12%',
     rotate: -6,
@@ -326,17 +330,42 @@ function SaveSpotForm() {
 
   return (
     <Form methods={methods} onSubmit={onSubmit}>
+      {/* One white surface holding the field and the button, so the pair reads as
+          a single control on the tinted hero. */}
       <Stack
         spacing={1.5}
         direction={{ xs: 'column', sm: 'row' }}
-        sx={{ maxWidth: 460, mx: 'auto' }}
+        sx={{
+          p: 1,
+          mx: 'auto',
+          maxWidth: 460,
+          bgcolor: 'background.paper',
+          borderRadius: { xs: RADIUS.lg, sm: RADIUS.pill },
+          boxShadow: (theme) => theme.customShadows.card,
+        }}
       >
         <Field.Text
           name="email"
           type="email"
           autoComplete="email"
           placeholder={t('hero.form.placeholder')}
-          sx={{ flex: '1 1 auto' }}
+          sx={{
+            flex: '1 1 auto',
+            // The container is the visible frame; the field only shows its own
+            // outline once it has focus.
+            [`& .${outlinedInputClasses.root}`]: {
+              // The same height as the large button beside it.
+              height: 48,
+              borderRadius: RADIUS.pill,
+              [`& .${outlinedInputClasses.notchedOutline}`]: { borderColor: 'transparent' },
+              [`&:hover .${outlinedInputClasses.notchedOutline}`]: { borderColor: 'transparent' },
+              // Keyboard focus still needs to be obvious against the white surface.
+              [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
+                borderWidth: 1,
+                borderColor: 'text.primary',
+              },
+            },
+          }}
         />
 
         <LoadingButton

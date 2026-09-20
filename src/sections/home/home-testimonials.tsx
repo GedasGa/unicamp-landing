@@ -10,7 +10,7 @@ import Rating from '@mui/material/Rating';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { maxLine } from 'src/theme/styles';
+import { maxLine, SECTION_PADDING, SECTION_CONTENT_GAP } from 'src/theme/styles';
 
 import { varFade, MotionViewport } from 'src/components/animate';
 import {
@@ -24,7 +24,6 @@ import {
 
 import { useTranslate } from '../../locales';
 import { SectionTitle } from './components/section-title';
-import { SECTION_PADDING, SECTION_CONTENT_GAP } from './components/section-spacing';
 
 // ----------------------------------------------------------------------
 
@@ -37,8 +36,17 @@ const TESTIMONIAL_RATINGS = [5, 5, 5, 4, 5, 5, 4];
 
 // ----------------------------------------------------------------------
 
-export function HomeTestimonials({ sx, ...other }: BoxProps) {
+type HomeTestimonialsProps = BoxProps & {
+  /** Reviews to leave out here, by index, when they are already quoted on the page. */
+  omit?: number[];
+};
+
+export function HomeTestimonials({ omit = [], sx, ...other }: HomeTestimonialsProps) {
   const { t } = useTranslate('home');
+
+  const reviews = TESTIMONIAL_RATINGS.map((rating, index) => ({ rating, index })).filter(
+    (review) => !omit.includes(review.index)
+  );
 
   const carousel = useCarousel({
     align: 'start',
@@ -77,7 +85,7 @@ export function HomeTestimonials({ sx, ...other }: BoxProps) {
 
           <Stack sx={{ position: 'relative' }}>
             <Carousel carousel={carousel} sx={carouselShadowRoom}>
-              {TESTIMONIAL_RATINGS.map((rating, index) => (
+              {reviews.map(({ rating, index }) => (
                 <Card
                   key={index}
                   component={m.div}

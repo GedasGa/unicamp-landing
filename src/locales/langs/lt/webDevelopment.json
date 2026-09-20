@@ -1,119 +1,161 @@
 {
   "hero": {
-    "title": "Tapkite sertifikuotu Frontend programuotoju",
+    "title": "Tapkite Frontend programuotoju",
+    "subtitle": "su dirbtinio intelekto įrankiais",
     "cta": {
       "title": "Rezervuokite vietą",
-      "subtitle": "Registracija per kursuok.lt prasideda lapkričio pabaigoje."
-    },
-    "skills": [
-      "JavaScript",
-      "OpenAI",
-      "React ir NextJS",
-      "Prisitaikantis dizainas",
-      "Domenai ir svetainių talpinimas"
-    ],
-    "features": {
-      "courseDuration": {
-        "title": "Programos trukmė",
-        "description": "12 savaičių (108 valandos)"
-      },
-      "groupSize": { "title": "Grupės dydis", "description": "20" },
-      "project": { "title": "Projektas", "description": "1", "chip": "Pasidalinsite LinkedIn" }
+      "subtitle": "Registracija dar neprasidėjo – rezervuokite vietą ir pranešime jums pirmiems."
     }
   },
   "certificate": {
-    "title": "Sertifikatas – jūsų įgūdžių įrodymas",
+    "title": "Sertifikatas – jūsų įgūdžių *įrodymas*",
     "description": "Įgykite ne tik įgūdžių, bet ir profesionalų Unicamp sertifikatą."
   },
-  "banner": {
-    "title": "Apie programą",
-    "description": "Ši programa yra orientuota į Front-End programavimą, ypatingą dėmesį skiriant vartotojo sąsajų (UI) programavimui ir JavaScript programavimo kalbos taikymui. JavaScript kalba yra nepakeičiama kuriant dinamiškas ir interaktyvias tinklalapių funkcijas, o kartu yra plačiai naudojama ir kitose srityse, pavyzdžiui, serverio ar mobiliųjų aplikacijų programavime. Mokymų metu įgysite teorinių žinių ir praktinių įgūdžių, reikalingų kurti funkcionalias ir šiuolaikiškas svetaines. Įsisavinsite HTML, CSS ir JavaScript naudojimo pagrindus. Išmoksite kurti prisitaikančio dizaino puslapius ir adaptuoti juos neįgaliesiems. Dirbsite su pažangiais įrankiais, tokiais kaip React ir Next.js. Be to, susipažinsite su dirbtinio intelekto (AI) sprendimais, kurie padės optimizuoti darbo procesus ir padidinti produktyvumą. Kurso baigiamasis projektas – pilnai funkcionalus tinklalapis, patalpintas internete, kurį sukursite su komanda naudojant Jira ir GitHub – taps Jūsų įgūdžių įrodymu."
-  },
   "syllabus": {
-    "title": "Programos turinys",
-    "cta": { "download": "Atsisiųsti visą programą", "register": "Registruokitės į programą" }
+    "title": "Programos *turinys*",
+    "cta": {
+      "download": "Atsisiųsti visą programą",
+      "register": "Rezervuokite vietą"
+    },
+    "description": "Išmoksite kurti svetaines nuo nulio – su HTML, CSS ir JavaScript bei dirbtiniu intelektu. Kursite puslapius, kurie gerai atrodo bet kokiame ekrane ir yra patogūs visiems naudotojams. Dirbsite su React, Next.js ir dirbtinio intelekto įrankiais, kurie padės dirbti greičiau. Kurso pabaigoje sukursite veikiančią svetainę ir paskelbsite ją internete, naudodami Jira ir GitHub. Šį projektą galėsite parodyti darbdaviui."
   },
   "modules": [
     {
       "title": "Trumpas įvadas į kompiuterių mokslą ir svetainių programavimą",
       "description": "Kompiuterių mokslo pagrindai, interneto veikimo principai ir svetainių programavimo svarba IT srityje. „Frontend“ vs „Backend“ bei programuotojų komandos sudėtis. Integruotos programavimo aplinkos (angl. IDE) diegimas ir konfigūravimas.",
-      "skills": ["Kompiuterių mokslas", "Frontend", "Backend", "IDE"]
+      "skills": [
+        "Kompiuterių mokslas",
+        "Frontend",
+        "Backend",
+        "IDE"
+      ]
     },
     {
       "title": "HTML ir CSS pagrindai",
       "description": "HTML ir CSS sintaksė, jų taikymas kuriant tinklalapius. Pagrindiniai HTML elementai, CSS taikymo taisyklės, naršyklių įrankiai ir kiti niuansai. AI įrankių naudojimas mokymuisi.",
-      "skills": ["HTML", "CSS", "Naršyklės įrankiai", "AI įrankiai"]
+      "skills": [
+        "HTML",
+        "CSS",
+        "Naršyklės įrankiai",
+        "AI įrankiai"
+      ]
     },
     {
       "title": "Prisitaikančio dizaino (angl. Responsive Design) programavimas",
       "description": "CSS „Flexbox“, „Grid“ ir „media queries“ naudojimas kuriant prisitaikantį dizainą, skirtą įvairių įrenginių ekranams. „Mobile-first“ dizainas.",
-      "skills": ["CSS Flexbox", "CSS Grid", "Media queries", "Mobile-first dizainas"]
+      "skills": [
+        "CSS Flexbox",
+        "CSS Grid",
+        "Media queries",
+        "Mobile-first dizainas"
+      ]
     },
     {
       "title": "Puslapio pritaikymas neįgaliesiams (WCAG standartai)",
       "description": "WCAG ir gerųjų praktikų taikymas vartotojo sąsajų pritaikymui neįgaliesiems.",
-      "skills": ["WCAG", "Prieinamumas"]
+      "skills": [
+        "WCAG",
+        "Prieinamumas"
+      ]
     },
     {
       "title": "JavaScript pagrindai",
       "description": "JavaScript sintaksė, kintamieji, sąlygos, masyvai ir ciklai, funkcijos, DOM manipuliacija, įvykių valdymas, dinaminių funkcionalumų kūrimas tinklalapiuose. Asinchroninis JavaScript ir išorinių API naudojimas.",
-      "skills": ["JavaScript", "DOM", "Asinchroninis JavaScript", "API"]
+      "skills": [
+        "JavaScript",
+        "DOM",
+        "Asinchroninis JavaScript",
+        "API"
+      ]
     },
     {
       "title": "Git versijų kontrolė ir terminalas",
       "description": "Terminalo naudojimos ir pagrindinės funkcijos. Git versijų kontrolės sistema: saugojimas, istorijos sekimas, konfliktų sprendimas. GitHub naudojimas dirbant komandose, kodo peržiūros.",
-      "skills": ["Git", "GitHub", "Terminalas", "Versijų kontrolė"]
+      "skills": [
+        "Git",
+        "GitHub",
+        "Terminalas",
+        "Versijų kontrolė"
+      ]
     },
     {
       "title": "React pagrindai",
       "description": "Įvadas į JavaScript karkasus ir ReactJS. React komponentų kūrimas, „state“, „props“ ir „hooks“ naudojimas, sąlyginis ir sąrašų atvaizdavimas.",
-      "skills": ["React", "State", "Props", "Hooks"]
+      "skills": [
+        "React",
+        "State",
+        "Props",
+        "Hooks"
+      ]
     },
     {
       "title": "Next.js pagrindai",
       "description": "Next.js privalumai ir pagrindinės savybės. „Server Side“ vs „Client Side Rendering“. Next.js maršrutizacijos ir duomenų valdymo principai.",
-      "skills": ["Next.js", "Server Side Rendering", "Client Side Rendering", "Maršrutizacija"]
+      "skills": [
+        "Next.js",
+        "Server Side Rendering",
+        "Client Side Rendering",
+        "Maršrutizacija"
+      ]
     },
     {
       "title": "Domenų administravimas ir svetainių talpinimas",
       "description": "Domenų įsigijimas, registravimas, DNS konfigūravimas, svetainių talpinimas naudojant platformas (pvz., „Vercel“, „Cloudflare“).",
-      "skills": ["Domenų administravimas", "DNS", "Vercel", "Cloudflare"]
+      "skills": [
+        "Domenų administravimas",
+        "DNS",
+        "Vercel",
+        "Cloudflare"
+      ]
     },
     {
       "title": "Projektinis darbas",
       "description": "Komandinis projektas, apjungiantis visas įgytas žinias ir gebėjimus, įskaitant dizaino, planavimo, programavimo, talpinimo ir testavimo etapus.",
-      "skills": ["Komandinis darbas", "Jira", "Planavimas", "Testavimas"]
+      "skills": [
+        "Komandinis darbas",
+        "Jira",
+        "Planavimas",
+        "Testavimas"
+      ]
     }
   ],
   "expectations": {
-    "title": "Ko tikėtis po kurso?",
-    "description": "Įgysite pagrindinius programavimo įgūdžius, mokėsite kurti ir talpinti svetaines, dirbti su JavaScript ir React, bei turėsite sertifikatą, patvirtinantį jūsų įgūdžius.",
-    "cta": "Registruokitės į programą",
+    "title": "Ko tikėtis po *kurso*",
+    "description": "Įgysite pagrindinius programavimo įgūdžius, mokėsite kurti ir talpinti svetaines bei dirbti su JavaScript ir React.",
+    "cta": "Rezervuokite vietą",
     "cards": [
       {
         "title": "Konkurencingas atlyginimas",
         "description": "Iki 3000 EUR per mėnesį",
         "link": {
           "url": "https://www.manoalga.lt/atlyginimu-informacija/informacijos-technologijos/javascript-programuotojas",
-          "text": "Mano alga duomenimis"
+          "text": "Patikrinti"
         }
       },
-      { "title": "Darbas top IT įmonėse", "description": "NordSecurity, Vinted, Surfshark, Hostinger" },
-      { "title": "Lankstumas", "description": "Darbas iš namų ar Seišelių? Tikrai nėra neįmanoma." }
+      {
+        "title": "Darbas top IT įmonėse",
+        "description": "NordSecurity, Vinted, Surfshark, Hostinger"
+      },
+      {
+        "title": "Lankstumas",
+        "description": "Darbas iš namų ar Seišelių? Tikrai nėra neįmanoma."
+      }
     ]
   },
   "mentor": {
-    "title": "Susipažinkite su mentoriumi",
+    "title": "Susipažinkite su *mentoriumi*",
     "name": "Gedas Gardauskas",
     "role": "Bendraįkūrėjas | Programuotojas ir Web programavimo mentorius",
     "description": "Gedas yra Unicamp bendraįkūrėjas ir patyręs programuotojas, turintis daugiau nei 7 metų patirtį IT srityje. Jo specializacijos sritys apima MLOps, GCP infrastruktūrą, Node.js, React.js ir kitas technologijas. Gedas turi patirties kuriant tekstų į kalbą (TTS) sistemas, valdant AI modelių diegimo procesus, duomenų sandėlius, duomenų apdorojimo sistemas, mokymosi platformas ir BI įrankius. Sukūrė puikiai vertinamas JavaScript ir Python programavimo programas, kurias naudoja CodeAcademy ir FastTrack akademijos.",
     "cta": {
       "text": "Peržiūrėti LinkedIn",
       "link": "https://www.linkedin.com/in/gedas-gardauskas/"
-    }
+    },
+    "credentialsTitle": "Patirtis",
+    "reviewLabel": "Kurso dalyvio atsiliepimas"
   },
   "pricing": {
-    "title": "Kaina",
+    "title": "Kiek tai *kainuoja*",
     "chip": "7 dienų pinigų grąžinimo garantija",
     "prices": [
       {
@@ -131,15 +173,85 @@
         "price": "Nemokamai",
         "description": "Pateikite paraišką finansinei pagalbai ir turėkite galimybę mokytis nemokamai."
       }
-    ]
+    ],
+    "recommended": "Rekomenduojama"
   },
   "nextGroups": {
-    "title": "Vietų skaičius ribotas. Rezervuokite vietą dabar!",
-    "subtitle": "Oficialios registracijos prasideda lapkričio pabaigoje per Kursuok.lt. Tačiau vietas galite rezervuoti iš anksto.",
-    "cta": "Reservuokite vietą",
-    "groups": [
-      { "date": "Gegužės 12d.", "deadline": "Paraiškų teikimo terminas: 2025-05-09" },
-      { "date": "lapkričio - gruodžio mėn.", "deadline": "Paraiškų teikimo terminas: 2025-05-12" }
+    "title": "Kada *prasideda*?",
+    "subtitle": "Rezervuokite vietą dabar – pranešime jums pirmiems, kai atsidarys registracija.",
+    "dates": [
+      {
+        "label": "Registracija per Kursuok.lt",
+        "value": "Numatoma 2026 m. rudens pabaigoje"
+      },
+      {
+        "label": "Mokymų pradžia",
+        "value": "Preliminariai 2027 m."
+      }
+    ],
+    "cta": "Rezervuokite vietą",
+    "steps": {
+      "title": "Kas vyksta toliau?",
+      "items": [
+        "Rezervuojate vietą čia arba pateikiate paraišką per Kursuok.lt",
+        "Susisiekiame su jumis per 12 valandų darbo dienomis",
+        "Atsakome į klausimus ir padedame pateikti finansavimo paraišką"
+      ]
+    }
+  },
+  "requirements": {
+    "title": "Ko reikia norint *pradėti*",
+    "items": [
+      {
+        "title": "Ankstesnės patirties nereikia",
+        "description": "Programa pritaikyta pradedantiesiems – pakanka bazinio kompiuterinio raštingumo."
+      },
+      {
+        "title": "Anglų kalba – privalumas",
+        "description": "B1 lygis padės lengviau skaityti medžiagą, bet jis nėra privalomas."
+      }
+    ]
+  },
+  "facts": {
+    "items": [
+      {
+        "value": "12 savaičių",
+        "label": "Programos trukmė · 108 ak. val."
+      },
+      {
+        "value": "Iki 20",
+        "label": "Žmonių grupėje"
+      },
+      {
+        "value": "100%",
+        "label": "Kursą baigusių dalyvių"
+      },
+      {
+        "value": "4,9 / 5",
+        "label": "Įvertinimas Kursuok.lt",
+        "link": true
+      }
+    ]
+  },
+  "format": {
+    "title": "Kaip vyksta *mokymai*",
+    "items": [
+      {
+        "title": "2–3 paskaitos per savaitę",
+        "description": "Vakarais; tikslų tvarkaraštį patvirtinsime prieš grupės startą."
+      },
+      {
+        "title": "Savarankiškas darbas",
+        "description": "Be paskaitų, praktikuositės savo tempu – tiek, kiek reikia jums."
+      },
+      {
+        "title": "Nuotoliu per Google Meet",
+        "description": "Gyvos paskaitos su mentoriumi – prisijungti galite iš bet kur."
+      },
+      {
+        "title": "Iki 20 žmonių grupėje",
+        "description": "Grupė pakankamai maža, kad spėtume atsakyti į visų klausimus."
+      }
     ]
   }
 }

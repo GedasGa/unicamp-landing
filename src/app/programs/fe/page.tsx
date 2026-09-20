@@ -1,7 +1,7 @@
 import { ProgramView } from '../../../sections/programs/view';
 
 export const metadata = {
-  title: 'Frontend Web Programavimo Pagrindai su JavaScript ir React',
+  title: 'Frontend Web Programavimo Pagrindai su JavaScript ir React | Unicamp IT akademija',
   description:
     '108 valandų kursas, skirtas sužinoti HTML, CSS, JavaScript ir React pagrindus bei įgyti praktinių Frontend programavimo įgūdžių su realiais projektais.',
   keywords:

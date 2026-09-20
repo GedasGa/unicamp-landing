@@ -2,8 +2,8 @@ import type { Theme } from '@mui/material/styles';
 import type { BoxProps } from '@mui/material/Box';
 import type { CardProps } from '@mui/material/Card';
 
-import { useRef, useState } from 'react';
-import { m, useInView, useReducedMotion } from 'framer-motion';
+import { useState } from 'react';
+import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
@@ -13,9 +13,10 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 
-import { RADIUS, varAlpha } from 'src/theme/styles';
+import { RADIUS, varAlpha, SECTION_PADDING, SECTION_CONTENT_GAP } from 'src/theme/styles';
 
 import { Iconify } from 'src/components/iconify';
+import { ProgramVideo } from 'src/components/program-video';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 import { paths } from '../../routes/paths';
@@ -23,7 +24,6 @@ import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
 import { ConsultationCard } from './consultation-card';
 import { SectionTitle } from './components/section-title';
-import { SECTION_PADDING, SECTION_CONTENT_GAP } from './components/section-spacing';
 
 // ----------------------------------------------------------------------
 
@@ -54,9 +54,6 @@ const VIDEOS_DIR = `${CONFIG.assetsDir}/assets/videos/programs`;
 // Card tiles have their own logos, sized for 32px, separate from the tools section's.
 const PROGRAM_TOOLS_DIR = `${CONFIG.assetsDir}/assets/images/home/program-tools`;
 const TOOLS_DIR = `${CONFIG.assetsDir}/assets/images/home/tools`;
-
-// Card videos replay this many times, then stay on their last frame until the page reloads.
-const MAX_VIDEO_PLAYS = 10;
 
 export const PROGRAMS: Program[] = [
   {
@@ -152,15 +149,8 @@ export function ProgramCard({ program, sx, ...other }: ProgramCardProps) {
 
   const { id, link, video, image, mediaBackground, tools, moreTools } = program;
 
-  const mediaRef = useRef<HTMLDivElement>(null);
-  const playCount = useRef(1);
-  // Only start loading the video once the card is close to the viewport.
-  const mediaInView = useInView(mediaRef, { once: true, margin: '200px' });
-  const reduceMotion = useReducedMotion();
-
   const renderImage = (
     <Box
-      ref={mediaRef}
       sx={(theme) => ({
         flexShrink: 0,
         width: { xs: 1, sm: 200, md: 240 },
@@ -175,26 +165,8 @@ export function ProgramCard({ program, sx, ...other }: ProgramCardProps) {
         bgcolor: mediaBackground ?? varAlpha(theme.vars.palette.grey['500Channel'], 0.08),
       })}
     >
-      {video && mediaInView ? (
-        <Box
-          component="video"
-          src={video}
-          muted
-          playsInline
-          onEnded={(event: React.SyntheticEvent<HTMLVideoElement>) => {
-            if (playCount.current >= MAX_VIDEO_PLAYS) return;
-            playCount.current += 1;
-            const player = event.currentTarget;
-            player.currentTime = 0;
-            player.play().catch(() => {});
-          }}
-          // With reduced motion, show the first frame without playing.
-          autoPlay={!reduceMotion}
-          preload={reduceMotion ? 'metadata' : 'auto'}
-          aria-hidden
-          // Show the whole video (no cropping); the frame background fills any leftover space.
-          sx={{ width: 1, height: 1, objectFit: 'contain' }}
-        />
+      {video ? (
+        <ProgramVideo src={video} />
       ) : image ? (
         <Box component="img" src={image} alt="" sx={{ width: 1, height: 1, objectFit: 'cover' }} />
       ) : (

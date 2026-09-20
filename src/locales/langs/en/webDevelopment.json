@@ -1,105 +1,135 @@
 {
   "hero": {
-    "title": "Become certified Frontend engineer",
+    "title": "Become a frontend developer",
+    "subtitle": "with AI tools",
     "cta": {
-      "title": "Reserve a seat",
-      "subtitle": "Registration on kursuok.lt opens late November."
-    },
-    "skills": ["JavaScript", "OpenAI", "React & NextJS", "Responsive design", "Domain & Hosting"],
-    "features": {
-      "courseDuration": {
-        "title": "Course duration",
-        "description": "12 weeks (108 hours)"
-      },
-      "groupSize": {
-        "title": "Group size",
-        "description": "20"
-      },
-      "project": {
-        "title": "Project",
-        "description": "1",
-        "chip": "Share on LinkedIn"
-      }
+      "title": "Reserve a spot",
+      "subtitle": "Registration hasn't opened yet – reserve a spot and we'll tell you first."
     }
   },
   "certificate": {
-    "title": "Certificate – Proof of Your Skills",
+    "title": "A certificate that *proves* your skills",
     "description": "Gain not only skills but also a professional Unicamp certificate."
   },
-  "banner": {
-    "title": "About the program",
-    "description": "This program focuses on Front-End development, emphasizing user interface (UI) programming and JavaScript programming language. JavaScript is indispensable for creating dynamic and interactive websites and is also widely used in other fields, such as server-side and mobile application development. During the training, you will gain theoretical knowledge and practical skills necessary for building functional and modern websites. You will master the basics of HTML, CSS, and JavaScript, learn to create responsive design pages, and make them accessible. You will work with advanced frameworks like React and Next.js. Additionally, you will explore artificial intelligence (AI) solutions that can optimise workflows and enhance productivity. The final project is a fully functional website that is hosted online, developed together with a team using Jira and GitHub. It will serve as evidence of your capabilities."
-  },
   "syllabus": {
-    "title": "Syllabus",
+    "title": "What the *programme* covers",
     "cta": {
       "download": "Download whole syllabus",
-      "register": "Register to program"
-    }
+      "register": "Reserve a spot"
+    },
+    "description": "You will learn to build websites from scratch – with HTML, CSS and JavaScript, alongside AI. You will create pages that look good on any screen and work well for everyone. You will work with React, Next.js and AI tools that help you move faster. By the end of the course you will build a working website and publish it online using Jira and GitHub. That project is yours to show an employer."
   },
   "modules": [
     {
       "title": "Brief Introduction to Computer Science and Web Programming",
       "description": "Fundamentals of computer science, principles of how the internet works, and the importance of web programming in the IT field. Frontend vs Backend and the composition of development teams. Installation and configuration of Integrated Development Environments (IDEs).",
-      "skills": ["Computer Science", "Frontend", "Backend", "IDE"]
+      "skills": [
+        "Computer Science",
+        "Frontend",
+        "Backend",
+        "IDE"
+      ]
     },
     {
       "title": "HTML and CSS Fundamentals",
       "description": "Syntax of HTML and CSS and their application in building websites. Key HTML elements, CSS application rules, browser tools, and other nuances. Utilization of AI tools for learning.",
-      "skills": ["HTML", "CSS", "Browser Tools", "AI Tools"]
+      "skills": [
+        "HTML",
+        "CSS",
+        "Browser Tools",
+        "AI Tools"
+      ]
     },
     {
       "title": "Responsive Design Programming",
       "description": "Using CSS Flexbox, Grid, and media queries to create responsive designs for various device screens. Mobile-first design approach.",
-      "skills": ["CSS Flexbox", "CSS Grid", "Media Queries", "Mobile-First Design"]
+      "skills": [
+        "CSS Flexbox",
+        "CSS Grid",
+        "Media Queries",
+        "Mobile-First Design"
+      ]
     },
     {
       "title": "Accessibility for Web Pages (WCAG Standards)",
       "description": "Application of WCAG and best practices for making user interfaces accessible to people with disabilities.",
-      "skills": ["WCAG", "Accessibility"]
+      "skills": [
+        "WCAG",
+        "Accessibility"
+      ]
     },
     {
       "title": "JavaScript Fundamentals",
       "description": "JavaScript syntax, variables, conditions, arrays, loops, functions, DOM manipulation, event handling, and creating dynamic website functionalities. Asynchronous JavaScript and using external APIs.",
-      "skills": ["JavaScript", "DOM", "Asynchronous JavaScript", "API"]
+      "skills": [
+        "JavaScript",
+        "DOM",
+        "Asynchronous JavaScript",
+        "API"
+      ]
     },
     {
       "title": "Git Version Control and Terminal",
       "description": "Using the terminal and its main functions. Git version control system: storage, history tracking, conflict resolution. Using GitHub for team collaboration and code reviews.",
-      "skills": ["Git", "GitHub", "Terminal", "Version Control"]
+      "skills": [
+        "Git",
+        "GitHub",
+        "Terminal",
+        "Version Control"
+      ]
     },
     {
       "title": "React Fundamentals",
       "description": "Introduction to JavaScript frameworks and ReactJS. Creating React components, using state, props, and hooks, as well as conditional and list rendering.",
-      "skills": ["React", "State", "Props", "Hooks"]
+      "skills": [
+        "React",
+        "State",
+        "Props",
+        "Hooks"
+      ]
     },
     {
       "title": "Next.js Fundamentals",
       "description": "Benefits and key features of Next.js. Server-Side vs Client-Side Rendering. Principles of routing and data management in Next.js.",
-      "skills": ["Next.js", "Server-Side Rendering", "Client-Side Rendering", "Routing"]
+      "skills": [
+        "Next.js",
+        "Server-Side Rendering",
+        "Client-Side Rendering",
+        "Routing"
+      ]
     },
     {
       "title": "Domain Management and Website Hosting",
       "description": "Acquiring and registering domains, DNS configuration, and website hosting using platforms like Vercel and Cloudflare.",
-      "skills": ["Domain Management", "DNS", "Vercel", "Cloudflare"]
+      "skills": [
+        "Domain Management",
+        "DNS",
+        "Vercel",
+        "Cloudflare"
+      ]
     },
     {
       "title": "Project Work",
       "description": "Team project that consolidates all acquired knowledge and skills, including design, planning, programming, hosting, and testing stages.",
-      "skills": ["Teamwork", "Jira", "Planning", "Testing"]
+      "skills": [
+        "Teamwork",
+        "Jira",
+        "Planning",
+        "Testing"
+      ]
     }
   ],
   "expectations": {
-    "title": "What to expect after the course?",
-    "description": "You know the fundamentals of UX/UI design, can create interactive prototypes, and have a certificate to prove your skills.",
-    "cta": "Register to program",
+    "title": "What to expect after the *course*",
+    "description": "You will gain core programming skills and be able to build and host websites with JavaScript and React.",
+    "cta": "Reserve a spot",
     "cards": [
       {
         "title": "Competitive salary",
         "description": "Up to 3000 EUR per month",
         "link": {
           "url": "https://www.manoalga.lt/en/salaryinfo/information-technology/javascript-programmer",
-          "text": "Based on manoalga data"
+          "text": "Check"
         }
       },
       {
@@ -113,17 +143,19 @@
     ]
   },
   "mentor": {
-    "title": "Meet your mentor",
+    "title": "Meet your *mentor*",
     "name": "Gedas Gardauskas",
     "role": "Co-founder | Software engineer and Frontend mentor",
     "description": "Gedas is a co-founder of Unicamp and an experienced programmer with over 7 years of experience in the IT field. His areas of expertise include MLOps, GCP infrastructure, Node.js, React.js, and other technologies. Gedas has experience in developing text-to-speech (TTS) systems, managing AI model deployment processes, data warehouses, data processing systems, learning platforms, and BI tools. He created highly regarded JavaScript and Python programming programs used by CodeAcademy and FastTrack academies.",
     "cta": {
       "text": "Connect on LinkedIn",
       "link": "https://www.linkedin.com/in/gedas-gardauskas/"
-    }
+    },
+    "credentialsTitle": "Experience",
+    "reviewLabel": "From a course review"
   },
   "pricing": {
-    "title": "Pricing",
+    "title": "What it *costs*",
     "chip": "7 days money back guarantee",
     "prices": [
       {
@@ -141,20 +173,84 @@
         "price": "Free",
         "description": "Apply for financial aid via Kursuok.lt and have opportunity to learn for free."
       }
-    ]
+    ],
+    "recommended": "Recommended"
   },
   "nextGroups": {
-    "title": "Limited seats. Reserve now!",
-    "subtitle": "Official registration opens late November via Kursuok.lt. However, you can reserve your spot in advance.",
-    "cta": "Reserve a seat now",
-    "groups": [
+    "title": "When does it *start*?",
+    "subtitle": "Reserve a spot now and we'll tell you first when registration opens.",
+    "dates": [
       {
-        "date": "May 12",
-        "deadline": "Deadline for applications: 2025-05-09"
+        "label": "Registration on Kursuok.lt",
+        "value": "Expected in late autumn 2026"
       },
       {
-        "date": "May 14",
-        "deadline": "Deadline for applications: 2025-05-12"
+        "label": "Classes start",
+        "value": "Provisionally in 2027"
+      }
+    ],
+    "cta": "Reserve a spot",
+    "steps": {
+      "title": "What happens next?",
+      "items": [
+        "Reserve a spot here or apply through Kursuok.lt",
+        "We get back to you within 12 hours on working days",
+        "We answer your questions and help you file the funding application"
+      ]
+    }
+  },
+  "requirements": {
+    "title": "What you need to *start*",
+    "items": [
+      {
+        "title": "No prior experience needed",
+        "description": "The programme is built for beginners – basic computer skills are enough."
+      },
+      {
+        "title": "English helps",
+        "description": "B1 makes the material easier to follow, but it is not required."
+      }
+    ]
+  },
+  "facts": {
+    "items": [
+      {
+        "value": "12 weeks",
+        "label": "Programme length · 108 academic hours"
+      },
+      {
+        "value": "Up to 20",
+        "label": "People in a group"
+      },
+      {
+        "value": "100%",
+        "label": "Of participants finish the course"
+      },
+      {
+        "value": "4.9 / 5",
+        "label": "Rating on Kursuok.lt",
+        "link": true
+      }
+    ]
+  },
+  "format": {
+    "title": "How the *classes* run",
+    "items": [
+      {
+        "title": "2–3 classes a week",
+        "description": "In the evening; we confirm the exact schedule before the group starts."
+      },
+      {
+        "title": "Independent work",
+        "description": "Outside class you practise at your own pace – as much as you need."
+      },
+      {
+        "title": "Online via Google Meet",
+        "description": "Live classes with your mentor – join from anywhere."
+      },
+      {
+        "title": "Up to 20 people in a group",
+        "description": "Small enough that everyone's questions get answered."
       }
     ]
   }

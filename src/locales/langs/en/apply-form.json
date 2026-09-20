@@ -1,5 +1,5 @@
 {
-  "title": "Apply to the course",
+  "title": "Reserve a spot",
   "course": "Course",
   "webDevelopment": "Web development",
   "productDesign": "UX/UI design",
@@ -7,7 +7,7 @@
   "email": "Email address",
   "phone": "Phone number",
   "message": "Message",
-  "apply": "Apply",
+  "apply": "Reserve a spot",
   "loading": "Submitting...",
   "name_required": "Enter your name",
   "email_required": "Enter your email address",
@@ -18,7 +18,7 @@
   "something_went_wrong": "Something went wrong. Please try again later.",
   "form_submitted": {
     "title": "Application submitted!",
-    "description": "Thank you for getting in touch. We’ve received your details and will get back to you soon, usually within an hour."
+    "description": "Thank you! We have your enquiry and will get back to you within 12 hours on working days."
   },
   "saveSpot": {
     "title": "Save your spot",
@@ -28,5 +28,13 @@
       "title": "You're on the list!",
       "description": "We'll email you as soon as registration opens."
     }
+  },
+  "next_steps": {
+    "title": "What happens next",
+    "items": [
+      "Your enquiry reaches the Unicamp team – a person reads it, not a robot",
+      "We get back to you within 12 hours on working days",
+      "We answer your questions and, if you need it, help you file the Kursuok.lt application"
+    ]
   }
 }

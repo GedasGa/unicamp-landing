@@ -9,12 +9,12 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import Accordion from '@mui/material/Accordion';
 import Typography from '@mui/material/Typography';
-import Accordion, { accordionClasses } from '@mui/material/Accordion';
-import AccordionDetails, { accordionDetailsClasses } from '@mui/material/AccordionDetails';
-import AccordionSummary, { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
 
-import { RADIUS } from 'src/theme/styles';
+import { SECTION_PADDING, SECTION_CONTENT_GAP } from 'src/theme/styles';
 
 import { Iconify } from 'src/components/iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
@@ -22,7 +22,6 @@ import { varFade, MotionViewport } from 'src/components/animate';
 import { useTranslate } from '../../locales';
 import { BrandGlow } from './components/brand-glow';
 import { SectionTitle } from './components/section-title';
-import { SECTION_PADDING, SECTION_CONTENT_GAP } from './components/section-spacing';
 
 // ----------------------------------------------------------------------
 
@@ -75,10 +74,15 @@ const FAQs = (t: TFunction<string | 'translation', undefined>) => [
 
 // ----------------------------------------------------------------------
 
-export function HomeFAQs({ sx, ...other }: BoxProps) {
+type HomeFAQsProps = BoxProps & {
+  /** Indexes of questions a page already answers in full, so the FAQ does not repeat it. */
+  omit?: number[];
+};
+
+export function HomeFAQs({ omit = [], sx, ...other }: HomeFAQsProps) {
   const { t } = useTranslate('home');
 
-  const questions = FAQs(t);
+  const questions = FAQs(t).filter((_, index) => !omit.includes(index));
 
   const [expanded, setExpanded] = useState<string | false>(questions[0].question);
 
@@ -111,29 +115,6 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
           variants={varFade({ distance: 24 }).inUp}
           expanded={expanded === item.question}
           onChange={handleChange(item.question)}
-          sx={{
-            // Styled like the shared Card so FAQ items match the other cards on the page.
-            borderRadius: RADIUS.lg,
-            bgcolor: 'background.paper',
-            boxShadow: (theme) => theme.customShadows.card,
-            '&::before': { display: 'none' },
-            '&:first-of-type, &:last-of-type': { borderRadius: RADIUS.lg },
-            [`&.${accordionClasses.expanded}`]: {
-              m: 0,
-              borderRadius: RADIUS.lg,
-              boxShadow: (theme) => theme.customShadows.card,
-            },
-            [`& .${accordionSummaryClasses.root}`]: {
-              py: 3,
-              px: 2.5,
-              minHeight: 'auto',
-              [`& .${accordionSummaryClasses.content}`]: {
-                m: 0,
-                [`&.${accordionSummaryClasses.expanded}`]: { m: 0 },
-              },
-            },
-            [`& .${accordionDetailsClasses.root}`]: { px: 2.5, pt: 0, pb: 3 },
-          }}
         >
           <AccordionSummary
             expandIcon={

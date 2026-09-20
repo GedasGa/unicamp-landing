@@ -59,12 +59,12 @@
             "description": "Dirbkite su projektais, kurie atspindi realaus pasaulio iššūkius ir naudoja populiariausius įrankius bei technologijas."
           },
           {
-            "title": "Parodykite savo darbą kitiem",
+            "title": "Parodykite savo darbą kitiems",
             "description": "Pristatykite savo projektą realiems vartotojams ir sužavėkite darbdavius konkrečiais, apčiuopiamais rezultatais. Tokios galimybės nesiūlo jokia kita akademija."
           },
           {
             "title": "Sustiprinkite savo portfolio",
-            "description": "Papildykite savo LinkedIn tikrais, profesionaliais projektais ir patraukt darbdavių dėmesį."
+            "description": "Papildykite savo LinkedIn tikrais, profesionaliais projektais ir patraukite darbdavių dėmesį."
           }
         ]
       },
@@ -232,7 +232,7 @@
       },
       {
         "question": "Kaip vyksta kursai?",
-        "answer": "Kursai vyksta nuotoliniu būdu per Zoom su dėstytoju, todėl galite prisijungti iš bet kurios pasaulio vietos. Taip pat vyksta praktiniai užsiėmimai, kuriuose dirbsite su realiais projektai, 1:1 video susitikimai su mentoriais."
+        "answer": "Kursai vyksta nuotoliniu būdu per Google Meet su mentoriumi, todėl galite prisijungti iš bet kurios pasaulio vietos. Taip pat vyksta praktiniai užsiėmimai, kuriuose dirbsite su realiais projektais, 1:1 video susitikimai su mentoriais."
       },
       {
         "question": "Kiek trunka kursai?",
@@ -240,7 +240,7 @@
       },
       {
         "question": "Koks yra kursų tvarkaraštis?",
-        "answer": "Kursai vyksta 2–3 kartus per savaitę, priklausomai nuo programos. Įprastai paskaitos organizuojamos trečiadieniais 18:30–21:30 ir šeštadieniais 9:00–12:00 arba pirmadieniais, antradieniais ir ketvirtadieniais 18:30–21:30."
+        "answer": "Paskaitos vyksta 2–3 kartus per savaitę vakarais, 18:30–21:30. Tikslų kiekvienos grupės tvarkaraštį rasite tos programos puslapyje."
       },
       {
         "question": "Kokie mano įsipareigojimai prisijungus prie kursų?",
@@ -260,16 +260,114 @@
       },
       {
         "question": "Ar gausiu sertifikatą?",
-        "answer": "Taip! Baigę kursą gausite „Unicamp“ sertifikatą."
+        "answer": "Taip! Baigę kursą gausite Unicamp sertifikatą."
       },
       {
         "question": "Ką daryti, jei negaliu dalyvauti kai kuriose paskaitose?",
-        "answer": "Nesijaudinkite. Visos paskaitos yra įrašomos, todėl galėsite jas peržiūrėti vėliau. Jei prireiks papildomos pagalbos – padės mūsų dėstytojai."
+        "answer": "Nesijaudinkite. Visos paskaitos yra įrašomos, todėl galėsite jas peržiūrėti vėliau. Jei prireiks papildomos pagalbos – padės mūsų mentoriai."
       },
       {
         "question": "Ar galėsiu naudotis mokymosi medžiaga po kurso pabaigos?",
-        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias. Taip pat galėsite susisiekti su dėstytojais ir gauti atsakymus į klausimus."
+        "answer": "Taip, po kurso pabaigos galėsite naudotis visa mokymosi medžiaga dar 180 dienų. Tai leis jums peržiūrėti svarbiausias temas ir sustiprinti įgytas žinias. Taip pat galėsite susisiekti su mentoriais ir gauti atsakymus į klausimus."
       }
     ]
+  },
+  "comparison": {
+    "title": "Kuo *skiriamės* nuo kitų būdų mokytis",
+    "description": "Palyginome pagal tai, kas dažniausiai rūpi renkantis pirmąjį žingsnį į IT.",
+    "columns": [
+      "Unicamp",
+      "Universitetas",
+      "Kitos akademijos",
+      "Mokausi pats"
+    ],
+    "rows": [
+      {
+        "label": "Kaina",
+        "values": [
+          "500 € (arba nemokamai per Kursuok.lt)",
+          "Semestro kaina arba valstybės finansavimas",
+          "Kainos labai skiriasi",
+          "Beveik nemokama"
+        ]
+      },
+      {
+        "label": "Trukmė",
+        "values": [
+          "12 savaičių · 108 ak. val.",
+          "3–4 metai",
+          "Skiriasi",
+          "Neribota"
+        ]
+      },
+      {
+        "label": "Kas moko",
+        "values": [
+          "Mentoriai, kasdien dirbantys IT srityje",
+          "Dėstytojai su akademine patirtimi",
+          "Priklauso nuo dėstytojo",
+          "Niekas – mokotės vienas"
+        ]
+      },
+      {
+        "label": "Grupės dydis",
+        "values": [
+          "Iki 20 žmonių",
+          "Srautinės paskaitos",
+          "Skiriasi",
+          "—"
+        ]
+      },
+      {
+        "label": "Naujausi įrankiai ir DI",
+        "values": [
+          "yes",
+          "partial",
+          "partial",
+          "partial"
+        ]
+      },
+      {
+        "label": "1-on-1 mentorius",
+        "values": [
+          "yes",
+          "no",
+          "partial",
+          "no"
+        ]
+      },
+      {
+        "label": "Realus projektas portfoliui",
+        "values": [
+          "yes",
+          "Baigiamasis darbas",
+          "partial",
+          "Tik jei susikuriate patys"
+        ]
+      },
+      {
+        "label": "Kursuok.lt finansavimas",
+        "values": [
+          "yes",
+          "no",
+          "partial",
+          "no"
+        ]
+      },
+      {
+        "label": "Nuotoliu",
+        "values": [
+          "yes",
+          "partial",
+          "partial",
+          "yes"
+        ]
+      }
+    ],
+    "marks": {
+      "yes": "Taip",
+      "no": "Ne",
+      "partial": "Kartais"
+    }
   }
 }

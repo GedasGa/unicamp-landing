@@ -1,83 +1,104 @@
 {
   "hero": {
-    "title": "Tapkite sertifikuotu UX dizaino profesionalu",
+    "title": "Tapkite UX/UI dizaineriu",
+    "subtitle": "su dirbtinio intelekto įrankiais",
     "cta": {
       "title": "Rezervuokite vietą",
-      "subtitle": "Registracija per kursuok.lt prasideda lapkričio pabaigoje."
-    },
-    "skills": ["Figma", "OpenAI", "UX tyrimai", "Prieinamumas", "Dizaino sistema"],
-    "features": {
-      "courseDuration": {
-        "title": "Programos trukmė",
-        "description": "12 savaičių (108 valandos)"
-      },
-      "groupSize": { "title": "Grupės dydis", "description": "20" },
-      "project": { "title": "Projektas", "description": "1", "chip": "Pasidalinsite LinkedIn" }
+      "subtitle": "Registracija dar neprasidėjo – rezervuokite vietą ir pranešime jums pirmiems."
     }
   },
   "certificate": {
-    "title": "Sertifikatas – jūsų įgūdžių įrodymas",
+    "title": "Sertifikatas – jūsų įgūdžių *įrodymas*",
     "description": "Įgykite ne tik įgūdžių, bet ir profesionalų Unicamp sertifikatą."
   },
-  "banner": {
-    "title": "Apie programą",
-    "description": "Ši programa apima visus pagrindinius UX/UI dizaino proceso etapus – nuo naudotojų poreikių analizės iki interaktyvių prototipų kūrimo. Programos metu įgysite teorinių žinių ir praktinių įgūdžių, reikalingų kurti šiuolaikiškus dizaino sprendimus. Taip pat, susipažinsite su dirbtinio intelekto (AI) sprendimais, kurie padės optimizuoti darbo procesus ir padidinti produktyvumą. Lavinsite komandinio darbo įgūdžius su Jira ir kitais projektų valdymo įrankiais. Po kiekvieno modulio atliksite praktines užduotis, kurios padės pritaikyti įgytas žinias, o kurso pabaigoje parengsite pilną UX/UI projektą, kurį įgyvendinsite kartu su mūsų programavimo studentais – tai taps Jūsų įgūdžių įrodymu."
-  },
   "syllabus": {
-    "title": "Programos turinys",
-    "cta": { "download": "Atsisiųsti visą programą", "register": "Registruokitės į programą" }
+    "title": "Programos *turinys*",
+    "cta": {
+      "download": "Atsisiųsti visą programą",
+      "register": "Rezervuokite vietą"
+    },
+    "description": "Išmoksite visą UX/UI dizaino kelią – nuo naudotojų poreikių iki interaktyvaus prototipo. Naudosite dirbtinio intelekto įrankius, o viso kurso metu dirbsite prie savo norimo projekto, kuriuo vėliau galėsite pasidalinti savo portfolio."
   },
   "modules": [
     {
       "title": "Skaitmeninio dizaino pagrindai",
       "description": "Susipažinsite su UX ir UI dizaino pagrindais bei skirtumais tarp jų. Išmoksite tipografijos principų ir jų taikymo kuriant profesionalų dizainą, spalvų psichologijos pagrindų, spalvų suderinamumo taisyklių bei AI įrankių, tokių kaip „Khroma“ ir „Huemint“, panaudojimo. Analizuosite geštalto principus ir jų svarbą UX/UI dizaine, įsisavinsite 8 pikselių taisyklę, padedančią kurti nuoseklų elementų tarpavimą. Be to, susipažinsite su Figma įrankio „Auto-layout“ funkcija ir praktinių užduočių metu išmoksite ją pritaikyti dizaino elementų išdėstymui.",
-      "skills": ["Figma", "Dizaino procesas"]
+      "skills": [
+        "Figma",
+        "Dizaino procesas"
+      ]
     },
     {
       "title": "Sklandžių patirčių kūrimas",
       "description": "Išmoksite svarbiausius UX dizaino aspektus ir tyrimų metodus, tokius kaip konkurentų analizė, „Double Diamond“ procesas bei prieinamumo geriausios praktikos. Kursite UX personas, vartotojų keliones ir taikysite „Crazy 8“ metodiką kūrybinėms idėjoms generuoti. Sužinosite, kaip kurti žemo detalumo „Wireframes“ maketusbei skirti dėmesį tiek low-fidelity, tiek high-fidelity prototipų ypatybėms. Galiausiai, atliksite panaudojamumo testavimus su savo kurtais dizaino maketais, siekdami pagerinti jų efektyvumą ir naudotojų patirtį.",
-      "skills": ["UX", "Prieinamumas", "Naudotojų personos"]
+      "skills": [
+        "UX",
+        "Prieinamumas",
+        "Naudotojų personos"
+      ]
     },
     {
       "title": "Vizualinių kalbų kūrimas",
       "description": "Sužinosite, kaip kurti aukšto detalumo dizaino maketus ir juos pritaikyti įvairiems įrenginiams, naudojant prisitaikančio dizaino principus. Išmoksite prototipavimo pagrindų, interakcijų kūrimo bei animavimo subtilybių, kurias pritaikysite praktinėse užduotyse. Gilinsitės į komponentų kūrimą ir jų savybes, įskaitant dinaminio mygtuko bei įvesties laukelio dizainą. Taip pat sužinosite apie dizaino sistemų privalumus bei jų taikymą, siekiant nuoseklumo ir efektyvumo. Galiausiai, pasitelksite dirbtinio intelekto įrankius, kurie padės optimizuoti dizaino procesus ir paspartinti darbą.",
-      "skills": ["UI", "Dizaino sistemos", "Spalvos"]
+      "skills": [
+        "UI",
+        "Dizaino sistemos",
+        "Spalvos"
+      ]
     },
     {
       "title": "Nuo idėjos iki realizacijos",
       "description": "Komandinis projektas apjungs visas įgytas žinias ir gebėjimus, įskaitant naudotojų poreikių analizės, vartotojo sąsajos projektavimo bei kūrimo etapus. Darbas atliekamas konsultuojantis su dėstytoju (-a), siekiant užtikrinti aukštą kokybę ir praktinį taikymą. Šį projektą vėliau įgyvendinsite kartu su programavimo studentais.",
-      "skills": ["Dirbtinio intelekto įrankiai", "Projektas"]
+      "skills": [
+        "Dirbtinio intelekto įrankiai",
+        "Projektas"
+      ]
     }
   ],
   "expectations": {
-    "title": "Ko tikėtis po kurso?",
-    "description": "Žinosite UX/UI dizaino pagrindus, gebėsite kurti interaktyvius prototipus ir turėsite sertifikatą, patvirtinantį jūsų įgūdžius.",
-    "cta": "Registruokitės į programą",
+    "title": "Ko tikėtis po *kurso*",
+    "description": "Žinosite UX/UI dizaino pagrindus ir gebėsite kurti interaktyvius prototipus.",
+    "cta": "Rezervuokite vietą",
     "cards": [
       {
         "title": "Konkurencingas atlyginimas",
         "description": "Iki 3000 EUR per mėnesį",
         "link": {
           "url": "https://www.manoalga.lt/atlyginimu-informacija/informacijos-technologijos/tinklalapiu-dizaineris",
-          "text": "Mano alga duomenimis"
+          "text": "Patikrinti"
         }
       },
-      { "title": "Darbas top IT įmonėse", "description": "NordSecurity, Vinted, Surfshark, Hostinger" },
-      { "title": "Lankstumas", "description": "Darbas iš namų ar Seišelių? Tikrai yra įmanoma." }
+      {
+        "title": "Darbas top IT įmonėse",
+        "description": "NordSecurity, Vinted, Surfshark, Hostinger"
+      },
+      {
+        "title": "Lankstumas",
+        "description": "Darbas iš namų ar Seišelių? Tikrai yra įmanoma."
+      }
     ]
   },
   "mentor": {
-    "title": "Susipažinkite su mentore",
+    "title": "Susipažinkite su *mentore*",
     "name": "Aistė Gerdzevičiūtė",
     "role": "Bendraįkūrėja | Produktų dizainerė ir UX/UI mentorė",
-    "description": "Aistė yra Unicamp bendraįkūrėja ir produktų dizainerė Ovoko. Ji turinti gilų supratimą apie skaitmeninių produktų dizainą, vartotojų tyrimus ir dizaino sistemų kūrimą sparčiai augančiose startuolio aplinkose. Ji kuravo ir sukūrė UX/UI dizaino kursą, kurį naudoja CodeAcademy ir FastTrack akademijos.",
+    "description": "Aistė yra Unicamp bendraįkūrėja ir produktų dizainerė. Kasdien dirba su skaitmeninių produktų dizainu, naudotojų tyrimais ir dizaino sistemomis sparčiai augančiose įmonėse. Ji sukūrė UX/UI dizaino kursą, kurį naudoja CodeAcademy ir FastTrack akademijos.",
+    "credentialsTitle": "Patirtis",
+    "credentials": [
+      "Produktų dizainerė – Hostinger",
+      "Produktų dizainerė – Ovoko",
+      "Mentorė – Women Go Tech",
+      "Dėstė UX/UI – CodeAcademy"
+    ],
     "cta": {
       "text": "Peržiūrėti LinkedIn",
       "link": "https://www.linkedin.com/in/aistegerd/"
-    }
+    },
+    "reviewLabel": "Kurso dalyvio atsiliepimas",
+    "review": "Puikūs kursai, pranokę mano lūkesčius. Įgytos žinios padėjo jaustis drąsiau ir suteikė tvirtus pagrindus, kurie bus naudingi tolimesnėje karjeroje. Ačiū Aistei už perduotas žinias bei visada pozityvią ir ramią mokymosi aplinką!"
   },
   "pricing": {
-    "title": "Kaina",
+    "title": "Kiek tai *kainuoja*",
     "chip": "7 dienų pinigų grąžinimo garantija",
     "prices": [
       {
@@ -95,15 +116,85 @@
         "price": "Nemokamai",
         "description": "Pateikite paraišką finansinei pagalbai per Kursuok.lt ir turėkite galimybę mokytis nemokamai."
       }
-    ]
+    ],
+    "recommended": "Rekomenduojama"
   },
   "nextGroups": {
-    "title": "Vietų skaičius ribotas. Rezervuokite vietą dabar!",
-    "subtitle": "Oficialios registracijos prasideda lapkričio pabaigoje per Kursuok.lt. Tačiau vietas galite rezervuoti iš anksto.",
-    "cta": "Reservuokite vietą",
-    "groups": [
-      { "date": "Gegužės 12d.", "deadline": "Paraiškų teikimo terminas: 2025-05-09" },
-      { "date": "lapkričio - gruodžio mėn.", "deadline": "Paraiškų teikimo terminas: 2025-05-12" }
+    "title": "Kada *prasideda*?",
+    "subtitle": "Rezervuokite vietą dabar – pranešime jums pirmiems, kai atsidarys registracija.",
+    "dates": [
+      {
+        "label": "Registracija per Kursuok.lt",
+        "value": "Numatoma 2026 m. rudens pabaigoje"
+      },
+      {
+        "label": "Mokymų pradžia",
+        "value": "Preliminariai 2027 m."
+      }
+    ],
+    "cta": "Rezervuokite vietą",
+    "steps": {
+      "title": "Kas vyksta toliau?",
+      "items": [
+        "Rezervuojate vietą čia arba pateikiate paraišką per Kursuok.lt",
+        "Susisiekiame su jumis per 12 valandų darbo dienomis",
+        "Atsakome į klausimus ir padedame pateikti finansavimo paraišką"
+      ]
+    }
+  },
+  "requirements": {
+    "title": "Ko reikia norint *pradėti*",
+    "items": [
+      {
+        "title": "Ankstesnės patirties nereikia",
+        "description": "Programa pritaikyta pradedantiesiems – pakanka bazinio kompiuterinio raštingumo."
+      },
+      {
+        "title": "Anglų kalba – privalumas",
+        "description": "B1 lygis padės lengviau skaityti medžiagą, bet jis nėra privalomas."
+      }
+    ]
+  },
+  "facts": {
+    "items": [
+      {
+        "value": "12 savaičių",
+        "label": "Programos trukmė · 108 ak. val."
+      },
+      {
+        "value": "Iki 20",
+        "label": "Žmonių grupėje"
+      },
+      {
+        "value": "100%",
+        "label": "Kursą baigusių dalyvių"
+      },
+      {
+        "value": "4,9 / 5",
+        "label": "Įvertinimas Kursuok.lt",
+        "link": true
+      }
+    ]
+  },
+  "format": {
+    "title": "Kaip vyksta *mokymai*",
+    "items": [
+      {
+        "title": "Antradieniais ir ketvirtadieniais",
+        "description": "Paskaitos vyksta 18:30–21:30 Lietuvos laiku."
+      },
+      {
+        "title": "6 val. per savaitę",
+        "description": "Dvi trijų valandų paskaitos, plius savarankiškas darbas savo tempu."
+      },
+      {
+        "title": "Nuotoliu per Google Meet",
+        "description": "Gyvos paskaitos su mentore – prisijungti galite iš bet kur."
+      },
+      {
+        "title": "Iki 20 žmonių grupėje",
+        "description": "Grupė pakankamai maža, kad spėtume atsakyti į visų klausimus."
+      }
     ]
   }
 }
