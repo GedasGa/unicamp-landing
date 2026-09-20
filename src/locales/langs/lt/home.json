@@ -153,7 +153,7 @@
     "programs": {
       "webDevelopment": {
         "title": "Web programavimas",
-        "outcome": "Tapkite Frontend programuotoju",
+        "outcome": "Frontend",
         "description": "Išmokite kurti šiuolaikiškas svetaines – nuo pirmos kodo eilutės iki veikiančio projekto internete.",
         "skills": [
           "JavaScript",
@@ -166,7 +166,7 @@
       },
       "productDesign": {
         "title": "UX/UI dizainas",
-        "outcome": "Tapkite UX/UI dizaineriu",
+        "outcome": "UX/UI",
         "description": "Jūsų marketingo ar produkto patirtis – puikus pagrindas. Išmoksite tyrinėti naudotojus ir kurti sąsajas, kurias malonu naudoti.",
         "skills": [
           "Figma",
@@ -205,17 +205,16 @@
   },
   "testimonials": {
     "title": "Ką sako mūsų *studentai*",
-    "description": "Tikri atsiliepimai žmonių, kurie jau baigė mūsų programas.",
+    "description": "žmonių, kurie jau baigė mūsų programas.",
+    "descriptionLink": "Tikri atsiliepimai",
     "items": [
-      "Viskas super! Kaip tik ieškojau kursų kur galėčiau pasibandyti. Tikrai tiem kas dar bandotes ir ieškote savęs labai rekomenduoju.",
-      "Realiai neisivaizdavau, kad taip itrauks:)) Kursai nebuvo sausi, viskas su pavyzdziais ir praktika.",
-      "Prieš mokymus nežinojau, kad ux yra tokia plati sritis..wow. Supratau, kad svarbu testuoti savo dizainus, o ne tiesiog „gražiai padaryti“.",
-      "Didelis ačiū Gedui. Labai patogu, kad viskas buvo online, galėjau mokytis iš namų ir dar dirbt.",
-      "Patiko, kad dirbom prie savo projektų, kam kas įdomu, o ne šiaip sausos užduotėlės kaip kitur.",
-      "Patiko! Ačiū! 😍",
-      "Kartais būdavo sunku. Tikrai nemeluosiu 😄 Bet dėstytojas Gedas viską ramiai dar kartą paaiškindavo ir pavykdavo. Tas jausmas nerealus 🙏",
-      "Kursai labai geri, bet sakyčiau reikia turėt šiek tiek kantrybės, kol pradedi jaust progresą.",
-      "Pati pradžia buvo kosmosas, galvojau kad neištempsiu, bet paskui susigaudžiau ir dabar dėkoju sau kad nesustojau:)"
+      "Mokymai viršijo mano lūkesčius. Visa programa buvo itin kokybiška ir profesionaliai parengta. Gavau daug vertingos medžiagos, naudingų nuorodų ir praktinių įžvalgų, kurias galima pritaikyti realiose situacijose. Labai patiko teorijos ir praktikos balansas. Taip pat noriu išskirti nepriekaištingą organizavimą ir jaukią, palaikančią atmosferą. Nuoširdžiai dėkoju visai Unicamp komandai ir Aistei už dalijimąsi žiniomis, patirtimi ir įkvėpimą. Labai džiaugiuosi pasirinkusi šiuos mokymus ir drąsiai rinktis",
+      "Programa viršijo lūkesčius, turinys buvo informatyvus, o lektorė - savo srities profesionalė. Įgytas žinias tikrai pritaikysiu savo darbe. Rekomenduoju!",
+      "Puikūs kursai, pranokę mano lūkesčius. Įgytos žinios padėjo jaustis drąsiau ir suteikė tvirtus pagrindus, kurie bus naudingi tolimesnėje karjeroje. Ačiū Aistei už perduotas žinias bei visada pozityvią ir ramią mokymosi aplinką!",
+      "Nei pastaba, nei pasiūlymas, bet lektoriaus darbas, specifika ir visas kelias kursų metu - 100 balų!",
+      "Pastabų neturiu, vien tik pagyrimai. Puiki dėstytoja Aistė, programa buvo stipri ir labai įdomi, labai geras praktikos ir teorijos suderinimas. Tikrai norėčiau toliau gilintis į šią sritį.",
+      "Kursas labai patiko. buvo tikrai įdomus. Norėtusi ilgesnio kurso. Labai maloni dėstytoja išmananti savo darbą ir sugebanti paaiškinti kylančius klausimus. Esu patenkinta, ką suteikė šie kursai. Ačiū dėstytojai ir komandai.",
+      "Viskas buvo profesionalu, į iškilusius papildomus klausimus nedelsiant atsakoma, komunikacija ir ne paskaitų metu vyko greitai ir sklandžiai"
     ]
   },
   "faqs": {
@@ -223,7 +222,7 @@
     "description": "Viskas, ką verta žinoti apie programas, finansavimą ir mokymosi eigą.",
     "contact": {
       "heading": "Vis dar kyla klausimų?",
-      "description": "Užduokite rūpimus klausimus ir gaukite atsakymą per 12 valandų.",
+      "description": "Klauskite drąsiai – mielai atsakysime per 12 valandų.",
       "cta": "Parašykite mums"
     },
     "questions": [

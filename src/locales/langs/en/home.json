@@ -153,7 +153,7 @@
     "programs": {
       "webDevelopment": {
         "title": "Web Development",
-        "outcome": "Become a frontend developer",
+        "outcome": "Frontend",
         "description": "Learn to build modern websites – from your first line of code to a live project on the web.",
         "skills": [
           "JavaScript",
@@ -166,7 +166,7 @@
       },
       "productDesign": {
         "title": "UX/UI Design",
-        "outcome": "Become a UX/UI designer",
+        "outcome": "UX/UI",
         "description": "Your marketing or product experience is a great foundation. Learn to research users and design interfaces people enjoy.",
         "skills": [
           "Figma",
@@ -205,17 +205,16 @@
   },
   "testimonials": {
     "title": "What our *students* say",
-    "description": "Real reviews from people who have completed our programs.",
+    "description": "from people who have completed our programs.",
+    "descriptionLink": "Real reviews",
     "items": [
-      "Everything was great! I was looking for a course where I could try something new. I really recommend it to anyone who's still searching for their path.",
-      "I honestly didn't expect it to be so engaging :)) The course wasn't dry – everything came with examples and practice.",
-      "Before the course I didn't know UX was such a broad field... wow. I learned that it's important to test your designs, not just make them look pretty.",
-      "Big thanks to Gedas. It was really convenient that everything was online – I could study from home and keep working.",
-      "I liked that we worked on our own projects, on whatever interested each of us, instead of dry little assignments like elsewhere.",
-      "Loved it! Thank you! 😍",
-      "It was hard at times, I won't lie 😄 But our teacher Gedas calmly explained everything again and it worked out. That feeling is amazing 🙏",
-      "The course is really good, but I'd say you need a bit of patience before you start to feel progress.",
-      "The very beginning was wild – I thought I wouldn't make it, but then I got the hang of it and now I'm grateful to myself for not giving up :)"
+      "The training exceeded my expectations. The whole programme was of very high quality and professionally prepared. I received a lot of valuable material, useful references and practical insights that can be applied in real situations. I really liked the balance of theory and practice. I would also like to highlight the impeccable organisation and the warm, supportive atmosphere. My sincere thanks to the whole Unicamp team and to Aistė for sharing their knowledge, experience and inspiration. I am very glad I chose this training and encourage others to do the same.",
+      "The programme exceeded my expectations, the content was informative, and the lecturer is a professional in her field. I will definitely apply what I learned in my work. Recommended!",
+      "An excellent course that surpassed my expectations. What I learned helped me feel more confident and gave me solid foundations for my future career. Thank you, Aistė, for sharing your knowledge and for the consistently positive, calm learning environment!",
+      "Neither a criticism nor a suggestion: the lecturer's work, the specifics and the whole journey through the course — 100 out of 100!",
+      "I have no criticism, only praise. Aistė is a great teacher, the programme was strong and very interesting, with a very good mix of practice and theory. I would definitely like to go deeper into this field.",
+      "I really liked the course, it was genuinely interesting. I would have liked a longer one. A very pleasant teacher who knows her subject and can explain any question that comes up. I am happy with what this course gave me. Thank you to the teacher and the team.",
+      "Everything was professional, any extra questions were answered without delay, and communication outside the lectures was quick and smooth."
     ]
   },
   "faqs": {
@@ -223,7 +222,7 @@
     "description": "Everything worth knowing about our programs, funding and how learning works.",
     "contact": {
       "heading": "Still have questions?",
-      "description": "Ask us anything and get a reply within 12 hours.",
+      "description": "Ask away – we'll gladly get back to you within 12 hours.",
       "cta": "Contact us"
     },
     "questions": [
