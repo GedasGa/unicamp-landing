@@ -21,7 +21,7 @@ const POSTS: IPostItem[] = [
     description: '',
     author: {
       name: 'Gedas Gardauskas',
-      avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Gedas.png`,
+      avatarUrl: `${CONFIG.assetsDir}/assets/images/programs/mentors/Gedas.jpg`,
     },
   },
 ];

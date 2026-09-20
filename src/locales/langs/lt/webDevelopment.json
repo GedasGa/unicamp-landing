@@ -171,13 +171,13 @@
       {
         "title": "Finansinė pagalba",
         "price": "Nemokamai",
-        "description": "Pateikite paraišką finansinei pagalbai ir turėkite galimybę mokytis nemokamai."
+        "description": "Pateikite paraišką ir turėkite galimybę mokytis nemokamai."
       }
     ],
     "recommended": "Rekomenduojama"
   },
   "nextGroups": {
-    "title": "Kada *prasideda*?",
+    "title": "Kada *prasideda*",
     "subtitle": "Rezervuokite vietą dabar – pranešime jums pirmiems, kai atsidarys registracija.",
     "dates": [
       {
@@ -224,7 +224,7 @@
       },
       {
         "value": "100%",
-        "label": "Kursą baigusių dalyvių"
+        "label": "Dalyvių baigia kursą"
       },
       {
         "value": "4,9 / 5",

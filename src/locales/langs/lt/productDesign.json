@@ -120,7 +120,7 @@
     "recommended": "Rekomenduojama"
   },
   "nextGroups": {
-    "title": "Kada *prasideda*?",
+    "title": "Kada *prasideda*",
     "subtitle": "Rezervuokite vietą dabar – pranešime jums pirmiems, kai atsidarys registracija.",
     "dates": [
       {
@@ -167,7 +167,7 @@
       },
       {
         "value": "100%",
-        "label": "Kursą baigusių dalyvių"
+        "label": "Dalyvių baigia kursą"
       },
       {
         "value": "4,9 / 5",
