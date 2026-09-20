@@ -31,7 +31,7 @@ const SOCIAL_NAMES: Record<string, string> = {
 
 const MEMBERS = [
   {
-    avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Gedas.png`,
+    avatarUrl: `${CONFIG.assetsDir}/assets/images/programs/mentors/Gedas.jpg`,
     name: 'team.members.0.name',
     role: 'team.members.0.role',
     isMentor: true,

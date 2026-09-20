@@ -11,8 +11,8 @@ export const defaultNavData = [
     path: paths.programs.root,
     icon: <Iconify width={22} icon="iconmind:book-open-outline-thin" />,
     children: [
-      { title: 'paths.uxProgram', path: paths.programs.ux },
       { title: 'paths.feProgram', path: paths.programs.fe },
+      { title: 'paths.uxProgram', path: paths.programs.ux },
     ],
   },
   {
