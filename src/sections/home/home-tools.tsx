@@ -6,14 +6,13 @@ import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import Container from '@mui/material/Container';
 
-import { RADIUS } from 'src/theme/styles';
+import { RADIUS, SECTION_PADDING } from 'src/theme/styles';
 
 import { varFade, varFloat, MotionViewport } from 'src/components/animate';
 
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
 import { SectionTitle } from './components/section-title';
-import { SECTION_PADDING } from './components/section-spacing';
 
 // ----------------------------------------------------------------------
 

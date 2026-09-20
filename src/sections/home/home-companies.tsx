@@ -5,9 +5,9 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import { CONFIG } from 'src/config-global';
+import { SECTION_PADDING } from 'src/theme/styles';
 
 import { useTranslate } from '../../locales';
-import { SECTION_PADDING } from './components/section-spacing';
 
 // ----------------------------------------------------------------------
 

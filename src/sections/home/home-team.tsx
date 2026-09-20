@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { RADIUS } from 'src/theme/styles';
+import { RADIUS, SECTION_PADDING, SECTION_CONTENT_GAP } from 'src/theme/styles';
 
 import { Image } from 'src/components/image';
 import { varFade, MotionViewport } from 'src/components/animate';
@@ -17,7 +17,6 @@ import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
 import { Label } from '../../components/label';
 import { SectionTitle } from './components/section-title';
-import { SECTION_PADDING, SECTION_CONTENT_GAP } from './components/section-spacing';
 
 // ----------------------------------------------------------------------
 

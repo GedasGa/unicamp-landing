@@ -1,4 +1,4 @@
-// Shared vertical rhythm for home page sections.
+// Shared vertical rhythm for every page section, on the home page and the programme pages.
 
 // Top and bottom padding of every section (64px mobile / 80px desktop),
 // so the gap between any two sections is always the same.
