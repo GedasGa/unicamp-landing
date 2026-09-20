@@ -45,7 +45,7 @@ export function ConsultationCard() {
           bgcolor: varAlpha(theme.vars.palette.grey['500Channel'], 0.08),
         })}
       >
-        <Iconify icon="solar:calendar-mark-bold-duotone" width={28} />
+        <Iconify icon="iconmind:calendar-outline-thin" width={28} />
       </Box>
 
       <Stack

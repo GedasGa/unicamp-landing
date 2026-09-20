@@ -114,7 +114,7 @@ export function MainLayout({ sx, data, children, header }: MainLayoutProps) {
             bottomArea: showAlert && (
               <Container>
                 <Alert
-                  icon={<Iconify icon="ic:outline-campaign" />}
+                  icon={<Iconify icon="iconmind:power-up-outline-thin" />}
                   severity="warning"
                   action={
                     <Button color="inherit" size="small" onClick={dismissAlert}>

@@ -25,17 +25,17 @@ const FEATURES = [
     title: 'features.sections.realProjects.heading',
     items: [
       {
-        icon: 'material-symbols:globe',
+        icon: 'iconmind:globe-outline-thin',
         title: 'features.sections.realProjects.items.0.title',
         description: 'features.sections.realProjects.items.0.description',
       },
       {
-        icon: `material-symbols:graphic-eq-rounded`,
+        icon: `iconmind:presenter-outline-thin`,
         title: 'features.sections.realProjects.items.1.title',
         description: 'features.sections.realProjects.items.1.description',
       },
       {
-        icon: `material-symbols:kid-star-outline`,
+        icon: `iconmind:night-stars-outline-thin`,
         title: 'features.sections.realProjects.items.2.title',
         description: 'features.sections.realProjects.items.2.description',
       },
@@ -46,17 +46,17 @@ const FEATURES = [
     title: 'features.sections.teamWork.heading',
     items: [
       {
-        icon: `material-symbols:emoji-objects-outline`,
+        icon: `iconmind:couple-outline-thin`,
         title: 'features.sections.teamWork.items.0.title',
         description: 'features.sections.teamWork.items.0.description',
       },
       {
-        icon: `material-symbols:workspaces-outline`,
+        icon: `iconmind:group-tour-outline-thin`,
         title: 'features.sections.teamWork.items.1.title',
         description: 'features.sections.teamWork.items.1.description',
       },
       {
-        icon: `material-symbols:rocket-launch-outline`,
+        icon: `iconmind:network-outline-thin`,
         title: 'features.sections.teamWork.items.2.title',
         description: 'features.sections.teamWork.items.2.description',
       },
@@ -67,12 +67,12 @@ const FEATURES = [
     title: 'features.sections.1on1.heading',
     items: [
       {
-        icon: `material-symbols:communication`,
+        icon: `iconmind:personal-trainer-outline-thin`,
         title: 'features.sections.1on1.items.0.title',
         description: 'features.sections.1on1.items.0.description',
       },
       {
-        icon: `material-symbols:chat-bubble-outline`,
+        icon: `iconmind:communication-outline-thin`,
         title: 'features.sections.1on1.items.1.title',
         description: 'features.sections.1on1.items.1.description',
       },

@@ -5,11 +5,11 @@ import { Iconify } from '../../../components/iconify';
 
 // TODO: update icons
 export const defaultNavData = [
-  { title: 'paths.home', path: '/', icon: <Iconify width={22} icon="solar:home-2-bold-duotone" /> },
+  { title: 'paths.home', path: '/', icon: <Iconify width={22} icon="iconmind:home-outline-thin" /> },
   {
     title: 'paths.courses',
     path: paths.programs.root,
-    icon: <Iconify width={22} icon="solar:notebook-bold-duotone" />,
+    icon: <Iconify width={22} icon="iconmind:book-open-outline-thin" />,
     children: [
       { title: 'paths.uxProgram', path: paths.programs.ux },
       { title: 'paths.feProgram', path: paths.programs.fe },
@@ -18,6 +18,6 @@ export const defaultNavData = [
   {
     title: 'paths.blog',
     path: paths.blog.root,
-    icon: <Iconify width={22} icon="solar:posts-carousel-vertical-bold-duotone" />,
+    icon: <Iconify width={22} icon="iconmind:read-article-outline-thin" />,
   },
 ];

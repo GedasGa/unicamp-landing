@@ -21,9 +21,9 @@ import { useTranslate } from '../../locales';
 // ----------------------------------------------------------------------
 
 const SOCIAL_ICONS: Record<string, string> = {
-  facebook: 'mdi:facebook',
-  instagram: 'mdi:instagram',
-  linkedin: 'mdi:linkedin',
+  facebook: 'iconoir:facebook-tag',
+  instagram: 'iconoir:instagram',
+  linkedin: 'iconoir:linkedin',
 };
 
 // ----------------------------------------------------------------------
