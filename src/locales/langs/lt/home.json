@@ -3,6 +3,23 @@
     "heading": {
       "title": "Išmokite *naujausių* IT įgūdžių"
     },
+    "subtitle": "Praktinės 12 savaičių programos, kurias veda kasdien IT srityje dirbantys mentoriai.",
+    "form": {
+      "placeholder": "Jūsų el. paštas",
+      "submit": "Rezervuoti vietą",
+      "success": "Jūs sąraše! Parašysime, kai prasidės registracija.",
+      "error": "Nepavyko išsiųsti. Bandykite dar kartą.",
+      "note": "Pranešime tik apie registracijos pradžią. Jūsų duomenis saugome pagal",
+      "privacyPolicy": "privatumo politiką",
+      "emailRequired": "Įveskite el. pašto adresą",
+      "emailInvalid": "Įveskite galiojantį el. pašto adresą"
+    },
+    "cards": {
+      "certificate": "Unicamp sertifikatas",
+      "mentor": "Dedikuotas mentorius",
+      "project": "Realus projektas portfoliui",
+      "format": "Nuotoliu"
+    },
     "cta": {
       "viewCourses": {
         "description": "Pasirinkite savo norimą programą",

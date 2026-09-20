@@ -59,8 +59,9 @@ const StyledNavItem = styled(ButtonBase, {
       height: '100%',
       '&:hover': { opacity: 0.64 },
       ...(active && {
-        color: theme.vars.palette.primary.main,
-        fontWeight: theme.typography.fontWeightSemiBold,
+        // Neutral accent: the current page is marked with weight, not colour.
+        color: theme.vars.palette.text.primary,
+        fontWeight: theme.typography.fontWeightBold,
       }),
       ...(open && { opacity: 0.64 }),
     }),
@@ -76,7 +77,7 @@ const StyledNavItem = styled(ButtonBase, {
       '&:hover': { color: theme.vars.palette.text.primary },
       ...(active && {
         color: theme.vars.palette.text.primary,
-        fontWeight: theme.typography.fontWeightSemiBold,
+        fontWeight: theme.typography.fontWeightBold,
       }),
     }),
   };

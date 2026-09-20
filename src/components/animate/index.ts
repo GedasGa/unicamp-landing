@@ -1,3 +1,5 @@
+export * from './float';
+
 export * from './variants';
 
 export * from './back-to-top';
@@ -10,6 +12,8 @@ export * from './animate-avatar';
 
 export * from './animate-border';
 
+export * from './animate-hearts';
+
 export * from './motion-viewport';
 
 export * from './scroll-progress';
@@ -17,5 +21,3 @@ export * from './scroll-progress';
 export * from './animate-count-up';
 
 export * from './motion-container';
-
-export * from './animate-hearts';

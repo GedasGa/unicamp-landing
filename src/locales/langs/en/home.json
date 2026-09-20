@@ -3,6 +3,23 @@
     "heading": {
       "title": "Learn *newest* tech skills"
     },
+    "subtitle": "Hands-on 12-week programs taught by mentors who work in tech every day.",
+    "form": {
+      "placeholder": "Your email",
+      "submit": "Save your spot",
+      "success": "You're on the list! We'll email you when registration opens.",
+      "error": "Something went wrong. Please try again.",
+      "note": "We only email about registration opening. We handle your data per our",
+      "privacyPolicy": "privacy policy",
+      "emailRequired": "Enter your email address",
+      "emailInvalid": "Enter a valid email address"
+    },
+    "cards": {
+      "certificate": "Unicamp certificate",
+      "mentor": "A dedicated mentor",
+      "project": "A real project for your portfolio",
+      "format": "Online"
+    },
     "cta": {
       "viewCourses": {
         "description": "Choose your desired program.",

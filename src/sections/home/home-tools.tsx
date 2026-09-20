@@ -8,7 +8,7 @@ import Container from '@mui/material/Container';
 
 import { RADIUS } from 'src/theme/styles';
 
-import { varFade, MotionViewport } from 'src/components/animate';
+import { varFade, varFloat, MotionViewport } from 'src/components/animate';
 
 import { useTranslate } from '../../locales';
 import { CONFIG } from '../../config-global';
@@ -245,15 +245,7 @@ function ToolTile({ tool, index }: { tool: Tool; index: number }) {
 
   return (
     <m.div variants={varFade().in}>
-      <m.div
-        animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
-        transition={{
-          duration: 4 + (index % 4),
-          delay: (index % 5) * 0.4,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      >
+      <m.div {...(reduceMotion ? {} : varFloat(index))}>
         <Tooltip
           enterTouchDelay={0}
           title={

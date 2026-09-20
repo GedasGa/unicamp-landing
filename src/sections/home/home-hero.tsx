@@ -1,208 +1,298 @@
-import type { MotionValue } from 'framer-motion';
 import type { BoxProps } from '@mui/material/Box';
 
+import { z as zod } from 'zod';
 import posthog from 'posthog-js';
-import { useRef, useState } from 'react';
-import { m, useScroll, useSpring, useTransform, useMotionValueEvent } from 'framer-motion';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { m, useReducedMotion } from 'framer-motion';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import LoadingButton from '@mui/lab/LoadingButton';
 
-import { useBoolean } from 'src/hooks/use-boolean';
-import { useResponsive } from 'src/hooks/use-responsive';
-
-import { varAlpha } from 'src/theme/styles';
+import { BRAND } from 'src/theme/styles';
+import { submitSaveSpot } from 'src/actions/save-spot';
 
 import { Iconify } from 'src/components/iconify';
-import { Grainient } from 'src/components/grainient';
-import { varFade, AnimateHearts, MotionContainer } from 'src/components/animate';
+import { Form, Field } from 'src/components/hook-form';
+import { varFade, varFloat, MotionContainer } from 'src/components/animate';
 
+import { paths } from '../../routes/paths';
+import { CONFIG } from '../../config-global';
 import { useTranslate } from '../../locales';
-import { SaveSpotDialog } from '../cta/save-spot-dialog';
 import { renderEmphasis } from './components/section-title';
 
 // ----------------------------------------------------------------------
 
-const smKey = 'sm';
 const mdKey = 'md';
 
-// Gradient colours (color1 / color2 / color3 of the Grainient background).
-const HERO_COLORS = {
-  light: '#7178b5',
-  accent: '#c69760',
-  base: '#B497CF',
+const HERO_IMAGES_DIR = `${CONFIG.assetsDir}/assets/images/home/hero`;
+
+/** Width of the text column; the floating cards are kept outside it. */
+const CONTENT_WIDTH = 640;
+/** Smallest gap between the text column and a floating card. */
+const CARD_GUTTER = 40;
+const CARD_WIDTH = 220;
+/** Below this the side columns are too narrow, so the cards move under the text instead. */
+const FLOATING_FROM = 'lg';
+
+type FloatingCard = {
+  id: string;
+  icon: string;
+  /** Shown instead of the icon + label pill; falls back to the pill if it fails to load. */
+  image?: string;
+  side: 'left' | 'right';
+  /** Vertical anchor, as a share of the section height. */
+  top?: string;
+  bottom?: string;
+  rotate: number;
 };
+
+// Cards floating beside the heading: which side they sit on, where, and their tilt.
+const FLOATING_CARDS: FloatingCard[] = [
+  {
+    id: 'certificate',
+    icon: 'solar:diploma-verified-bold-duotone',
+    image: `${HERO_IMAGES_DIR}/certificate.png`,
+    side: 'left',
+    top: '12%',
+    rotate: -6,
+  },
+  {
+    id: 'mentor',
+    icon: 'solar:chat-round-line-bold-duotone',
+    side: 'right',
+    top: '16%',
+    rotate: 5,
+  },
+  {
+    id: 'project',
+    icon: 'solar:widget-5-bold-duotone',
+    image: `${HERO_IMAGES_DIR}/project.png`,
+    side: 'right',
+    bottom: '12%',
+    rotate: 4,
+  },
+  {
+    id: 'format',
+    icon: 'solar:laptop-minimalistic-bold-duotone',
+    side: 'left',
+    bottom: '18%',
+    rotate: -4,
+  },
+];
+
+const SaveSpotSchema = zod.object({
+  email: zod
+    .string()
+    // Namespaced so the shared field can translate them with the home bundle.
+    .min(1, { message: 'home:hero.form.emailRequired' })
+    .email({ message: 'home:hero.form.emailInvalid' }),
+});
+
+type SaveSpotSchemaType = zod.infer<typeof SaveSpotSchema>;
+
+// ----------------------------------------------------------------------
 
 export function HomeHero({ sx, ...other }: BoxProps) {
   const { t } = useTranslate('home');
   const theme = useTheme();
-  const scroll = useScrollPercent();
-  const mdUp = useResponsive('up', mdKey);
-  const saveSpotDialog = useBoolean();
-
-  const distance = mdUp ? scroll.percent : 0;
-
-  const renderHeading = (
-    <AnimatedDiv>
-      <Box
-        component="h1"
-        sx={{
-          ...theme.typography.h2,
-          mt: 0,
-          mb: 0,
-          textAlign: 'center',
-          fontFamily: theme.typography.fontSecondaryFamily,
-          // Written on the same breakpoint keys as the h2 variant so these sizes replace its own.
-          fontSize: 44,
-          [theme.breakpoints.up('sm')]: { fontSize: 64 },
-          [theme.breakpoints.up(mdKey)]: { fontSize: 80 },
-          [theme.breakpoints.up('lg')]: { fontSize: 96 },
-          lineHeight: 1.1,
-          // Soft shadow lifts the white text off bright parts of the video.
-          textShadow: `0 2px 24px ${varAlpha(theme.vars.palette.common.blackChannel, 0.32)}`,
-        }}
-      >
-        {renderEmphasis(t('hero.heading.title'))}
-      </Box>
-    </AnimatedDiv>
-  );
-
-  const renderSaveSpotButton = (
-    <AnimatedDiv>
-      <Button
-        onClick={() => {
-          posthog.capture('save_spot_clicked');
-          saveSpotDialog.onTrue();
-        }}
-        size="large"
-        startIcon={<AnimateHearts size={18} />}
-        endIcon={<Iconify icon="eva:arrow-forward-fill" width={20} />}
-        sx={{
-          px: 2,
-          color: 'common.white',
-          border: `1px solid ${varAlpha(theme.vars.palette.common.whiteChannel, 0.24)}`,
-          bgcolor: varAlpha(theme.vars.palette.grey['900Channel'], 0.32),
-          backdropFilter: 'blur(8px)',
-          boxShadow: `0 8px 24px ${varAlpha(theme.vars.palette.common.blackChannel, 0.16)}`,
-          '&:hover': { bgcolor: varAlpha(theme.vars.palette.grey['900Channel'], 0.48) },
-        }}
-      >
-        {t('hero.cta.saveSpot')}
-      </Button>
-    </AnimatedDiv>
-  );
-
-  const renderViewCoursesButton = (
-    <AnimatedDiv>
-      <Button
-        size="large"
-        variant="contained"
-        href="/#courses"
-        onClick={() => posthog.capture('hero_cta_clicked')}
-        endIcon={<Iconify icon="eva:arrow-downward-fill" width={20} />}
-        sx={{
-          color: 'common.black',
-          bgcolor: 'common.white',
-          boxShadow: `0 8px 24px ${varAlpha(theme.vars.palette.common.blackChannel, 0.24)}`,
-          '&:hover': {
-            bgcolor: 'grey.200',
-            boxShadow: `0 8px 24px ${varAlpha(theme.vars.palette.common.blackChannel, 0.24)}`,
-          },
-        }}
-      >
-        {t('hero.cta.viewCourses.buttonText')}
-      </Button>
-    </AnimatedDiv>
-  );
 
   return (
     <Box
-      ref={scroll.elementRef}
       component="section"
       sx={{
-        overflow: 'hidden',
         position: 'relative',
-        // Fallback colour behind the gradient (e.g. before WebGL starts).
-        bgcolor: HERO_COLORS.base,
-        color: 'common.white',
+        overflow: 'hidden',
+        bgcolor: 'background.neutral',
+        // Extra top padding leaves room for the floating header.
+        pt: 'calc(var(--layout-header-mobile-height) + 48px)',
+        pb: { xs: 8, md: 14 },
         [theme.breakpoints.up(mdKey)]: {
-          minHeight: 760,
-          height: '80vh',
-          maxHeight: 1280,
-          display: 'block',
-          willChange: 'opacity',
-          pt: 'calc(var(--layout-header-desktop-height) * -1)',
+          pt: 'calc(var(--layout-header-desktop-height) + 112px)',
         },
         ...sx,
       }}
       {...other}
     >
-      <Grainient
-        aria-hidden
-        paused
-        color1={HERO_COLORS.light}
-        color2={HERO_COLORS.accent}
-        color3={HERO_COLORS.base}
-        timeSpeed={0.25}
-        warpStrength={1}
-        warpFrequency={5}
-        warpSpeed={2}
-        warpAmplitude={50}
-        blendSoftness={0.05}
-        rotationAmount={500}
-        noiseScale={2}
-        grainAmount={0.1}
-        grainScale={2}
-        contrast={1.5}
-        zoom={0.9}
-        sx={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
-      />
-
-      <Box
-        component={m.div}
-        sx={{
-          width: 1,
-          display: 'flex',
-          position: 'relative',
-          flexDirection: 'column',
-          transition: theme.transitions.create(['opacity']),
-          [theme.breakpoints.up(mdKey)]: {
-            // Same height as the section, so the content centres within the hero.
-            height: 'clamp(760px, 80vh, 1280px)',
-            position: 'fixed',
-          },
-        }}
-      >
-        <Container
-          component={MotionContainer}
+      <Container component={MotionContainer} sx={{ position: 'relative' }}>
+        {/* Soft glow behind the heading, in the brand gradient. */}
+        <Box
+          aria-hidden
           sx={{
-            // Equal space above and below keeps the content centred in the gradient.
-            py: 'calc(var(--layout-header-mobile-height) + 48px)',
-            gap: 5,
-            zIndex: 9,
-            display: 'flex',
-            alignItems: 'center',
-            flexDirection: 'column-reverse',
-            [theme.breakpoints.up(mdKey)]: {
-              flexDirection: 'row',
-              flex: '1 1 auto',
-              justifyContent: 'center',
-              alignItems: 'center',
-              py: 3,
-            },
+            position: 'absolute',
+            top: { xs: -32, md: -48 },
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: { xs: 340, sm: 520, md: 720 },
+            height: { xs: 200, sm: 260, md: 320 },
+            borderRadius: '50%',
+            backgroundImage: `linear-gradient(180deg, ${BRAND.pink} 0%, ${BRAND.orange} 100%)`,
+            opacity: { xs: 0.18, md: 0.24 },
+            filter: 'blur(80px)',
+            pointerEvents: 'none',
+          }}
+        />
+
+        <Stack
+          spacing={{ xs: 3, md: 4 }}
+          alignItems="center"
+          sx={{ position: 'relative', textAlign: 'center', maxWidth: 640, mx: 'auto' }}
+        >
+          <Box component={m.div} variants={varFade({ distance: 24 }).inUp}>
+            <Box
+              component="h1"
+              sx={{
+                ...theme.typography.h2,
+                m: 0,
+                fontFamily: theme.typography.fontSecondaryFamily,
+                fontSize: 36,
+                lineHeight: 1.15,
+                [theme.breakpoints.up('sm')]: { fontSize: 48 },
+                [theme.breakpoints.up(mdKey)]: { fontSize: 60 },
+              }}
+            >
+              {renderEmphasis(t('hero.heading.title'))}
+            </Box>
+          </Box>
+
+          <Box component={m.div} variants={varFade({ distance: 24 }).inUp}>
+            <Typography sx={{ color: 'text.secondary', maxWidth: 460, mx: 'auto' }}>
+              {t('hero.subtitle')}
+            </Typography>
+          </Box>
+
+          <Box component={m.div} variants={varFade({ distance: 24 }).inUp} sx={{ width: 1 }}>
+            <SaveSpotForm />
+          </Box>
+
+          <Box component={m.div} variants={varFade({ distance: 24 }).inUp}>
+            <Button
+              color="inherit"
+              href="/#courses"
+              onClick={() => posthog.capture('hero_cta_clicked')}
+              endIcon={<Iconify icon="eva:arrow-downward-fill" width={20} />}
+            >
+              {t('hero.cta.viewCourses.buttonText')}
+            </Button>
+          </Box>
+
+          {/* Narrow screens: the same four points, in a row under the text. */}
+          <Stack
+            component={m.div}
+            variants={varFade({ distance: 24 }).inUp}
+            direction="row"
+            useFlexGap
+            flexWrap="wrap"
+            spacing={1}
+            justifyContent="center"
+            sx={{ display: { xs: 'flex', [FLOATING_FROM]: 'none' } }}
+          >
+            {FLOATING_CARDS.map((card) => (
+              <HeroCardPill key={card.id} card={card} />
+            ))}
+          </Stack>
+        </Stack>
+
+        {/* Wide screens: cards float in the columns beside the text. */}
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            display: { xs: 'none', [FLOATING_FROM]: 'block' },
+            // This layer covers the whole section, so let clicks through to the form.
+            pointerEvents: 'none',
           }}
         >
-          <Stack spacing={3} alignItems="center">
-            {renderSaveSpotButton}
-            {renderHeading}
-            {renderViewCoursesButton}
-          </Stack>
+          {FLOATING_CARDS.map((card, index) => (
+            <FloatingCardItem key={card.id} card={card} index={index} />
+          ))}
+        </Box>
+      </Container>
+    </Box>
+  );
+}
 
-          <SaveSpotDialog open={saveSpotDialog.value} onClose={saveSpotDialog.onFalse} />
-        </Container>
+// ----------------------------------------------------------------------
+
+function HeroCardPill({ card }: { card: FloatingCard }) {
+  const { t } = useTranslate('home');
+
+  return (
+    <Card sx={{ px: 1.5, py: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Iconify icon={card.icon} width={20} sx={{ color: 'text.primary' }} />
+      <Typography variant="subtitle2">{t(`hero.cards.${card.id}`)}</Typography>
+    </Card>
+  );
+}
+
+// ----------------------------------------------------------------------
+
+function FloatingCardItem({ card, index }: { card: FloatingCard; index: number }) {
+  const { t } = useTranslate('home');
+  const reduceMotion = useReducedMotion();
+
+  // Until the image is uploaded (or if it fails), keep the icon + label pill.
+  const [imageFailed, setImageFailed] = useState(false);
+
+  const showImage = !!card.image && !imageFailed;
+
+  // Anchored to the edge of the text column, so a card can never reach the text,
+  // and it shrinks instead of overlapping when the side column gets tight.
+  const inset = `calc(50% + ${CONTENT_WIDTH / 2 + CARD_GUTTER}px)`;
+
+  return (
+    <Box
+      component={m.div}
+      variants={varFade({ distance: 24 }).in}
+      sx={{
+        position: 'absolute',
+        ...(card.side === 'left' ? { right: inset } : { left: inset }),
+        ...(card.top ? { top: card.top } : { bottom: card.bottom }),
+        display: 'flex',
+        justifyContent: card.side === 'left' ? 'flex-end' : 'flex-start',
+        width: `min(${CARD_WIDTH}px, calc(50% - ${CONTENT_WIDTH / 2 + CARD_GUTTER}px))`,
+        transform: `rotate(${card.rotate}deg)`,
+      }}
+    >
+      {/* Same gentle bobbing as the tool logos. */}
+      <Box component={m.div} {...(reduceMotion ? {} : varFloat(index))} sx={{ lineHeight: 0 }}>
+        {showImage ? (
+          // No card frame: these images already have their own rounded corners and shadow.
+          <Box
+            component="img"
+            src={card.image}
+            alt={t(`hero.cards.${card.id}`)}
+            loading="lazy"
+            onError={() => setImageFailed(true)}
+            // Landscape images keep their own ratio; taller ones are capped and cropped.
+            sx={{ width: 1, height: 'auto', maxHeight: 200, objectFit: 'cover', display: 'block' }}
+          />
+        ) : (
+          <Card
+            sx={{
+              px: 2,
+              py: 1.5,
+              gap: 1.5,
+              display: 'flex',
+              alignItems: 'center',
+              // Keep the label on one line even if it is wider than the side column.
+              flexShrink: 0,
+            }}
+          >
+            <Iconify icon={card.icon} width={24} sx={{ color: 'text.primary' }} />
+            <Typography variant="subtitle2" noWrap>
+              {t(`hero.cards.${card.id}`)}
+            </Typography>
+          </Card>
+        )}
       </Box>
     </Box>
   );
@@ -210,49 +300,86 @@ export function HomeHero({ sx, ...other }: BoxProps) {
 
 // ----------------------------------------------------------------------
 
-function AnimatedDiv({ children, component = m.div }: BoxProps & { children: React.ReactNode }) {
-  return (
-    <Box component={component} variants={varFade({ distance: 24 }).inUp}>
-      {children}
-    </Box>
-  );
-}
+function SaveSpotForm() {
+  const { t } = useTranslate('home');
 
-// ----------------------------------------------------------------------
+  const [errorMsg, setErrorMsg] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-function useTransformY(value: MotionValue<number>, distance: number) {
-  const physics = {
-    mass: 0.1,
-    damping: 20,
-    stiffness: 300,
-    restDelta: 0.001,
-  };
-
-  return useSpring(useTransform(value, [0, 1], [0, distance]), physics);
-}
-
-function useScrollPercent() {
-  const elementRef = useRef<HTMLDivElement>(null);
-
-  const { scrollY } = useScroll();
-
-  const [percent, setPercent] = useState(0);
-
-  useMotionValueEvent(scrollY, 'change', (scrollHeight) => {
-    let heroHeight = 0;
-
-    if (elementRef.current) {
-      heroHeight = elementRef.current.offsetHeight;
-    }
-
-    const scrollPercent = Math.floor((scrollHeight / heroHeight) * 100);
-
-    if (scrollPercent >= 100) {
-      setPercent(100);
-    } else {
-      setPercent(Math.floor(scrollPercent));
-    }
+  const methods = useForm<SaveSpotSchemaType>({
+    resolver: zodResolver(SaveSpotSchema),
+    defaultValues: { email: '' },
   });
 
-  return { elementRef, percent, scrollY };
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
+
+  const onSubmit = handleSubmit(async ({ email }) => {
+    setErrorMsg('');
+
+    const result = await submitSaveSpot(email);
+
+    if (!result.success) {
+      setErrorMsg(result.error || t('hero.form.error'));
+      return;
+    }
+
+    posthog.capture('save_spot_submitted');
+    setIsSubmitted(true);
+  });
+
+  if (isSubmitted) {
+    return (
+      <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
+        <Iconify icon="eva:checkmark-circle-2-fill" width={22} sx={{ color: 'success.main' }} />
+        <Typography variant="subtitle1">{t('hero.form.success')}</Typography>
+      </Stack>
+    );
+  }
+
+  return (
+    <Form methods={methods} onSubmit={onSubmit}>
+      <Stack
+        spacing={1.5}
+        direction={{ xs: 'column', sm: 'row' }}
+        sx={{ maxWidth: 460, mx: 'auto' }}
+      >
+        <Field.Text
+          name="email"
+          type="email"
+          autoComplete="email"
+          placeholder={t('hero.form.placeholder')}
+          sx={{ flex: '1 1 auto' }}
+        />
+
+        <LoadingButton
+          type="submit"
+          size="large"
+          color="inherit"
+          variant="contained"
+          loading={isSubmitting}
+          onClick={() => posthog.capture('save_spot_clicked')}
+          sx={{ flexShrink: 0 }}
+        >
+          {t('hero.form.submit')}
+        </LoadingButton>
+      </Stack>
+
+      <Typography
+        variant="caption"
+        sx={{ mt: 1.5, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+      >
+        {errorMsg || (
+          <>
+            {t('hero.form.note')}{' '}
+            <Link underline="always" color="text.secondary" href={paths.privacyPolicy}>
+              {t('hero.form.privacyPolicy')}
+            </Link>
+          </>
+        )}
+      </Typography>
+    </Form>
+  );
 }
