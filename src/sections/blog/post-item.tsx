@@ -25,7 +25,7 @@ type PostItemProps = CardProps & {
 };
 
 export function PostItem({ post, sx, ...other }: PostItemProps) {
-  const linkTo = paths.blog.details(post.title);
+  const linkTo = paths.blog.details(post.slug);
 
   return (
     <Card sx={sx} {...other}>
@@ -85,7 +85,7 @@ type PostItemLatestProps = {
 };
 
 export function PostItemLatest({ post, index }: PostItemLatestProps) {
-  const linkTo = paths.blog.details(post.title);
+  const linkTo = paths.blog.details(post.slug);
 
   const postSmall = index === 1 || index === 2;
 

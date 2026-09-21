@@ -1,5 +1,3 @@
-import { paramCase } from 'src/utils/change-case';
-
 // ----------------------------------------------------------------------
 
 const ROOTS = {
@@ -35,7 +33,7 @@ export const paths = {
 
   blog: {
     root: `/blog`,
-    details: (title: string) => `/blog/${paramCase(title)}`,
+    details: (slug: string) => `/blog/${slug}`,
   },
   // AUTH
   auth: {

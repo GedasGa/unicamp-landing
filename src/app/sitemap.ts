@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = STATIC_PAGES.map((path) => ({ url: toUrl(path) }));
 
   const posts = getPosts().map((post) => ({
-    url: toUrl(paths.blog.details(post.title)),
+    url: toUrl(paths.blog.details(post.slug)),
     lastModified: post.createdAt ? new Date(post.createdAt) : undefined,
   }));
 

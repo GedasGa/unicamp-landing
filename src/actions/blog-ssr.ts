@@ -6,6 +6,11 @@ import type { IPostItem } from '../types/blog';
 const POSTS: IPostItem[] = [
   {
     id: 'e99f09a7-dd88-49d5-b1c8-1daf80c2d7b1',
+    slug: 'nuo-destymo-kitose-akademijose-iki-unicamp',
+    // Generated from the title before Lithuanian letters were kept in URLs.
+    legacySlugs: [
+      'nuo-dstymo-kitose-akademijose-iki-unicamp-kaip-patirtis-formavo-ms-mokymosi-model',
+    ],
     publish: 'published',
     metaKeywords: ['Unicamp', 'IT mokymai', 'IT kursai', 'CodeAcademy', 'FastTrack'],
     content:
@@ -25,6 +30,7 @@ const POSTS: IPostItem[] = [
   },
   {
     id: '37c7e333-ad0b-4699-9312-f48d197a673a',
+    slug: 'ar-dirbtinis-intelektas-pakeis-programuotojus-ir-dizainerius',
     publish: 'published',
     metaKeywords: [
       'dirbtinis intelektas',
@@ -55,28 +61,25 @@ const POSTS: IPostItem[] = [
   },
 ];
 
-const slugify = (text: string): string =>
-  text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
-
 export const getPosts = (): IPostItem[] => POSTS;
 
 // ----------------------------------------------------------------------
-export const getPost = async (titleSlug: string): Promise<IPostItem | undefined> =>
-  POSTS.find((post) => slugify(post.title || '') === titleSlug.toLowerCase());
+
+export const getPost = (slug: string): IPostItem | undefined =>
+  POSTS.find((post) => post.slug === slug.toLowerCase());
+
+/** The post that used to live at this URL, if any, so old links can redirect. */
+export const getPostByLegacySlug = (slug: string): IPostItem | undefined =>
+  POSTS.find((post) => post.legacySlugs?.includes(slug.toLowerCase()));
 
 // ----------------------------------------------------------------------
 
-export const getLatestPosts = async (titleSlug: string): Promise<IPostItem[]> => {
+export const getLatestPosts = (slug: string): IPostItem[] => {
   const count = 18;
   let posts = POSTS;
 
-  if (titleSlug) {
-    posts = posts.filter((post) => slugify(post.title || '') !== titleSlug.toLowerCase());
+  if (slug) {
+    posts = posts.filter((post) => post.slug !== slug.toLowerCase());
   }
 
   return posts.slice(-count).reverse();
