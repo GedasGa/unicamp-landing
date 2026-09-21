@@ -2,6 +2,8 @@ import type { Theme, SxProps } from '@mui/material/styles';
 
 import Divider from '@mui/material/Divider';
 
+import { useTranslate } from 'src/locales';
+
 // ----------------------------------------------------------------------
 
 type FormDividerProps = {
@@ -9,7 +11,9 @@ type FormDividerProps = {
   label?: React.ReactNode;
 };
 
-export function FormDivider({ sx, label = 'OR' }: FormDividerProps) {
+export function FormDivider({ sx, label }: FormDividerProps) {
+  const { t } = useTranslate('auth');
+
   return (
     <Divider
       sx={{
@@ -20,7 +24,7 @@ export function FormDivider({ sx, label = 'OR' }: FormDividerProps) {
         ...sx,
       }}
     >
-      {label}
+      {label ?? t('common.or')}
     </Divider>
   );
 }

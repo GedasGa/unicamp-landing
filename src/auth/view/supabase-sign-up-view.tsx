@@ -18,9 +18,12 @@ import { RouterLink } from 'src/routes/components';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
+import { useTranslate } from 'src/locales';
+
 import { Iconify } from 'src/components/iconify';
 import { Form, Field } from 'src/components/hook-form';
 
+import { authErrorMessage } from '../auth-error';
 import { FormHead } from '../components/form-head';
 import { signUp, signInWithOAuth } from '../context';
 import { FormDivider } from '../components/form-divider';
@@ -32,21 +35,23 @@ import { SignUpTerms } from '../components/sign-up-terms';
 export type SignUpSchemaType = zod.infer<typeof SignUpSchema>;
 
 export const SignUpSchema = zod.object({
-  firstName: zod.string().min(1, { message: 'First name is required!' }),
-  lastName: zod.string().min(1, { message: 'Last name is required!' }),
+  firstName: zod.string().min(1, { message: 'auth:errors.firstNameRequired' }),
+  lastName: zod.string().min(1, { message: 'auth:errors.lastNameRequired' }),
   email: zod
     .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
+    .min(1, { message: 'auth:errors.emailRequired' })
+    .email({ message: 'auth:errors.emailInvalid' }),
   password: zod
     .string()
-    .min(1, { message: 'Password is required!' })
-    .min(6, { message: 'Password must be at least 6 characters!' }),
+    .min(1, { message: 'auth:errors.passwordRequired' })
+    .min(6, { message: 'auth:errors.passwordMin' }),
 });
 
 // ----------------------------------------------------------------------
 
 export function SupabaseSignUpView() {
+  const { t } = useTranslate('auth');
+
   const [errorMsg, setErrorMsg] = useState('');
 
   const router = useRouter();
@@ -65,10 +70,10 @@ export function SupabaseSignUpView() {
         const message = errorDescription
           ? decodeURIComponent(errorDescription.replace(/\+/g, ' '))
           : error;
-        setErrorMsg(message);
+        setErrorMsg(authErrorMessage(message, t));
       }
     }
-  }, []);
+  }, [t]);
 
   const defaultValues = {
     firstName: '',
@@ -99,7 +104,7 @@ export function SupabaseSignUpView() {
       router.push(paths.auth.verify);
     } catch (error) {
       console.error(error);
-      setErrorMsg(typeof error === 'string' ? error : error.message);
+      setErrorMsg(authErrorMessage(error, t));
     }
   });
 
@@ -108,23 +113,31 @@ export function SupabaseSignUpView() {
       await signInWithOAuth('google');
     } catch (error) {
       console.error(error);
-      setErrorMsg(typeof error === 'string' ? error : error.message);
+      setErrorMsg(authErrorMessage(error, t));
     }
   };
 
   const renderForm = (
     <Box gap={3} display="flex" flexDirection="column">
       <Box display="flex" gap={{ xs: 3, sm: 2 }} flexDirection={{ xs: 'column', sm: 'row' }}>
-        <Field.Text name="firstName" label="First name" InputLabelProps={{ shrink: true }} />
-        <Field.Text name="lastName" label="Last name" InputLabelProps={{ shrink: true }} />
+        <Field.Text
+          name="firstName"
+          label={t('fields.firstName')}
+          InputLabelProps={{ shrink: true }}
+        />
+        <Field.Text
+          name="lastName"
+          label={t('fields.lastName')}
+          InputLabelProps={{ shrink: true }}
+        />
       </Box>
 
-      <Field.Text name="email" label="Email address" InputLabelProps={{ shrink: true }} />
+      <Field.Text name="email" label={t('fields.email')} InputLabelProps={{ shrink: true }} />
 
       <Field.Text
         name="password"
-        label="Password"
-        placeholder="6+ characters"
+        label={t('fields.password')}
+        placeholder={t('fields.passwordPlaceholder')}
         type={password.value ? 'text' : 'password'}
         InputLabelProps={{ shrink: true }}
         InputProps={{
@@ -145,9 +158,9 @@ export function SupabaseSignUpView() {
         type="submit"
         variant="contained"
         loading={isSubmitting}
-        loadingIndicator="Create account..."
+        loadingIndicator={t('signUp.submitting')}
       >
-        Create account
+        {t('signUp.submit')}
       </LoadingButton>
     </Box>
   );
@@ -155,12 +168,12 @@ export function SupabaseSignUpView() {
   return (
     <>
       <FormHead
-        title="Sign up for free"
+        title={t('signUp.title')}
         description={
           <>
-            {`Already have an account? `}
+            {`${t('signUp.haveAccount')} `}
             <Link component={RouterLink} href={paths.auth.signIn} variant="subtitle2">
-              Sign in
+              {t('signUp.signIn')}
             </Link>
           </>
         }
@@ -173,7 +186,7 @@ export function SupabaseSignUpView() {
         </Alert>
       )}
 
-      <FormSocials signInWithGoogle={handleGoogleSignIn} googleButtonText="Sign up with Google" />
+      <FormSocials signInWithGoogle={handleGoogleSignIn} />
 
       <FormDivider />
 

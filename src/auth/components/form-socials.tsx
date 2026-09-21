@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
+import { useTranslate } from 'src/locales';
 import { GithubIcon, GoogleIcon, TwitterIcon } from 'src/assets/icons';
 
 // ----------------------------------------------------------------------
@@ -20,9 +21,11 @@ export function FormSocials({
   signInWithGoogle,
   signInWithGithub,
   signInWithTwitter,
-  googleButtonText = 'Sign in with Google',
+  googleButtonText,
   ...other
 }: FormSocialsProps) {
+  const { t } = useTranslate('auth');
+
   return (
     <Box gap={1.5} display="flex" justifyContent="center" sx={sx} {...other}>
       {signInWithGoogle && (
@@ -32,7 +35,7 @@ export function FormSocials({
           onClick={signInWithGoogle}
           startIcon={<GoogleIcon width={22} />}
         >
-          {googleButtonText}
+          {googleButtonText ?? t('common.continueWithGoogle')}
         </Button>
       )}
       {signInWithGithub && (

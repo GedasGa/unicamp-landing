@@ -1,10 +1,11 @@
-import { CONFIG } from 'src/config-global';
-
+import { authPageMetadata } from 'src/auth/page-metadata';
 import { SupabaseResetPasswordView } from 'src/auth/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `Reset password | ${CONFIG.appName}` };
+export function generateMetadata() {
+  return authPageMetadata('resetPassword');
+}
 
 export default function Page() {
   return <SupabaseResetPasswordView />;

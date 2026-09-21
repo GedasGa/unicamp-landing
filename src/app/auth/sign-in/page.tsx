@@ -1,10 +1,11 @@
-import { CONFIG } from 'src/config-global';
-
 import { SupabaseSignInView } from 'src/auth/view';
+import { authPageMetadata } from 'src/auth/page-metadata';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `Sign in | ${CONFIG.appName}` };
+export function generateMetadata() {
+  return authPageMetadata('signIn');
+}
 
 export default function Page() {
   return <SupabaseSignInView />;
