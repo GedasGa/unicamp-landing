@@ -4,6 +4,7 @@ import type { IPostItem } from 'src/types/blog';
 
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
@@ -52,25 +53,29 @@ export function PostDetailsHomeView({ post, latestPosts }: Props) {
 
           <Markdown children={post?.content} />
 
-          <Stack
-            spacing={3}
-            sx={{
-              py: 3,
-              borderTop: (theme) => `dashed 1px ${theme.vars.palette.divider}`,
-              borderBottom: (theme) => `dashed 1px ${theme.vars.palette.divider}`,
-            }}
-          >
-            <Stack direction="row" flexWrap="wrap" spacing={1}>
-              {post?.tags.map((tag) => (
-                <Chip key={tag} label={tag} variant="soft" />
-              ))}
+          {post?.tags.length ? (
+            <Stack
+              spacing={3}
+              sx={{
+                py: 3,
+                borderTop: (theme) => `dashed 1px ${theme.vars.palette.divider}`,
+                borderBottom: (theme) => `dashed 1px ${theme.vars.palette.divider}`,
+              }}
+            >
+              <Stack direction="row" flexWrap="wrap" spacing={1}>
+                {post.tags.map((tag) => (
+                  <Chip key={tag} label={tag} variant="soft" />
+                ))}
+              </Stack>
             </Stack>
-          </Stack>
+          ) : (
+            <Divider sx={{ borderStyle: 'dashed' }} />
+          )}
         </Stack>
       </Container>
 
       {!!latestPosts?.length && (
-        <Container sx={{ pb: 15 }}>
+        <Container sx={{ pt: 5, pb: 15 }}>
           <Typography variant="h4" sx={{ mb: 5 }}>
             {t('recent_posts')}
           </Typography>

@@ -13,8 +13,8 @@ import { RouterLink } from 'src/routes/components';
 
 import { fDate } from 'src/utils/format-time';
 
-import { maxLine, varAlpha } from 'src/theme/styles';
 import { AvatarShape } from 'src/assets/illustrations';
+import { maxLine, varAlpha, stretchedLink } from 'src/theme/styles';
 
 import { Image } from 'src/components/image';
 
@@ -67,6 +67,7 @@ export function PostItem({ post, sx, ...other }: PostItemProps) {
           variant="subtitle2"
           sx={(theme) => ({
             ...maxLine({ line: 2, persistent: theme.typography.subtitle2 }),
+            ...stretchedLink,
           })}
         >
           {post.title}
@@ -113,11 +114,13 @@ export function PostItemLatest({ post, index }: PostItemLatestProps) {
 
       <CardContent
         sx={{
-          width: 1,
+          inset: 0,
           zIndex: 9,
-          bottom: 0,
+          display: 'flex',
           position: 'absolute',
           color: 'common.white',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
         }}
       >
         <Typography variant="caption" component="div" sx={{ mb: 1, opacity: 0.64 }}>
@@ -134,6 +137,7 @@ export function PostItemLatest({ post, index }: PostItemLatestProps) {
               line: 2,
               persistent: postSmall ? theme.typography.subtitle2 : theme.typography.h5,
             }),
+            ...stretchedLink,
           })}
         >
           {post.title}

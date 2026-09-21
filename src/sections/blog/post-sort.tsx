@@ -32,7 +32,11 @@ export function PostSort({ sort, sortOptions, onSort }: Props) {
         onClick={popover.onOpen}
         endIcon={
           <Iconify
-            icon={popover.open ? 'eva:arrow-ios-upward-fill' : 'eva:arrow-ios-downward-fill'}
+            icon={
+              popover.open
+                ? 'iconmind:chevron-up-outline-thin'
+                : 'iconmind:chevron-down-outline-thin'
+            }
           />
         }
         sx={{ fontWeight: 'fontWeightSemiBold' }}

@@ -43,6 +43,19 @@ export const textEmphasis: CSSObject = {
   fontWeight: 400,
 };
 
+/**
+ * Stretches a link's click area over its nearest positioned ancestor (e.g. a Card),
+ * so the whole card is clickable while the link keeps its own text for a11y and SEO.
+ */
+export const stretchedLink: CSSObject = {
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    inset: 0,
+    zIndex: 10,
+  },
+};
+
 // ----------------------------------------------------------------------
 
 export function textGradient(color: string): CSSObject {
