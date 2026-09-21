@@ -95,7 +95,12 @@ export function TermsOfServiceText({ sx, ...other }: BoxProps) {
 
   return (
     <Box component="section" sx={{ ...sx }} {...other}>
-      <MotionViewport sx={{ my: 10, position: 'relative' }}>
+      {/* The page is one tall section that never reaches the default 30% in view,
+          so start the reveal as soon as any of it is visible. */}
+      <MotionViewport
+        viewport={{ once: true, amount: 'some' }}
+        sx={{ my: 10, position: 'relative' }}
+      >
         <Container>
           {renderDescription}
           {renderContent}

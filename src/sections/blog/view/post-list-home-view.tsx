@@ -42,7 +42,7 @@ export function PostListHomeView({ posts }: Props) {
 
   return (
     <Container sx={{ pb: SECTION_PADDING }}>
-      <Typography variant="h4" sx={{ my: { xs: 3, md: 5 } }}>
+      <Typography variant="h4" component="h1" sx={{ my: { xs: 3, md: 5 } }}>
         {t('title')}
       </Typography>
 
