@@ -1,6 +1,14 @@
 {
   "description": "IT mokymai naudojant naujausius šiandienos rinkos įgūdžius.",
   "links": {
+    "programs": {
+      "headline": "Programos",
+      "children": {
+        "frontend": "Frontend programavimas",
+        "ux": "UX/UI dizainas",
+        "kursuok": "Kursuok.lt finansavimas"
+      }
+    },
     "legal": {
       "headline": "Teisinė informacija",
       "children": {

@@ -11,6 +11,7 @@ export const paths = {
   lecturers: '#lecturers',
   privacyPolicy: '/privacy-policy',
   termsOfService: '/terms-of-service',
+  kursuok: '/kursuok',
 
   programs: {
     root: '/programs',

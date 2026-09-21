@@ -30,6 +30,14 @@ const SOCIAL_ICONS: Record<string, string> = {
 
 const LINKS = [
   {
+    headline: 'links.programs.headline',
+    children: [
+      { name: 'links.programs.children.frontend', href: paths.programs.fe },
+      { name: 'links.programs.children.ux', href: paths.programs.ux },
+      { name: 'links.programs.children.kursuok', href: paths.kursuok },
+    ],
+  },
+  {
     headline: 'links.legal.headline',
     children: [
       { name: 'links.legal.children.terms', href: paths.termsOfService },

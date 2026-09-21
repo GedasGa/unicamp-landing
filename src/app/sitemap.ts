@@ -12,6 +12,7 @@ const STATIC_PAGES = [
   '/',
   paths.programs.fe,
   paths.programs.ux,
+  paths.kursuok,
   paths.blog.root,
   paths.privacyPolicy,
   paths.termsOfService,
