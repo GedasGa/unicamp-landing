@@ -1,3 +1,9 @@
 {
-  "cancel": "Atšaukti"
+  "cancel": "Atšaukti",
+  "notFound": {
+    "title": "Puslapis nerastas",
+    "heading": "Tokio puslapio nėra",
+    "description": "Galbūt nuoroda pasenusi arba adrese įsivėlė klaida. Grįžkite į pradžią arba peržiūrėkite mūsų programas.",
+    "cta": "Grįžti į pradžią"
+  }
 }
