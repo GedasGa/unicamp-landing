@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
 
-import { AppProviders } from './app-providers';
-
 // ----------------------------------------------------------------------
 
-// The learning app sits behind sign-in; keep it out of search results.
+// Sign-in and account pages have nothing to rank for; keep them out of search results.
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
@@ -14,5 +12,5 @@ type Props = {
 };
 
 export default function Layout({ children }: Props) {
-  return <AppProviders>{children}</AppProviders>;
+  return children;
 }

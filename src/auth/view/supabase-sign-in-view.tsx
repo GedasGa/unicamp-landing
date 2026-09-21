@@ -18,10 +18,13 @@ import { useRouter, useSearchParams } from 'src/routes/hooks';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
+import { useTranslate } from 'src/locales';
+
 import { Iconify } from 'src/components/iconify';
 import { Form, Field } from 'src/components/hook-form';
 
 import { useAuthContext } from '../hooks';
+import { authErrorMessage } from '../auth-error';
 import { FormHead } from '../components/form-head';
 import { FormDivider } from '../components/form-divider';
 import { FormSocials } from '../components/form-socials';
@@ -34,17 +37,19 @@ export type SignInSchemaType = zod.infer<typeof SignInSchema>;
 export const SignInSchema = zod.object({
   email: zod
     .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
+    .min(1, { message: 'auth:errors.emailRequired' })
+    .email({ message: 'auth:errors.emailInvalid' }),
   password: zod
     .string()
-    .min(1, { message: 'Password is required!' })
-    .min(6, { message: 'Password must be at least 6 characters!' }),
+    .min(1, { message: 'auth:errors.passwordRequired' })
+    .min(6, { message: 'auth:errors.passwordMin' }),
 });
 
 // ----------------------------------------------------------------------
 
 export function SupabaseSignInView() {
+  const { t } = useTranslate('auth');
+
   const router = useRouter();
 
   const searchParams = useSearchParams();
@@ -67,10 +72,10 @@ export function SupabaseSignInView() {
         const message = errorDescription
           ? decodeURIComponent(errorDescription.replace(/\+/g, ' '))
           : error;
-        setErrorMsg(message);
+        setErrorMsg(authErrorMessage(message, t));
       }
     }
-  }, []);
+  }, [t]);
 
   const defaultValues = {
     email: '',
@@ -97,7 +102,7 @@ export function SupabaseSignInView() {
       router.push(returnTo);
     } catch (error) {
       console.error(error);
-      setErrorMsg(typeof error === 'string' ? error : error.message);
+      setErrorMsg(authErrorMessage(error, t));
     }
   });
 
@@ -106,13 +111,13 @@ export function SupabaseSignInView() {
       await signInWithOAuth('google');
     } catch (error) {
       console.error(error);
-      setErrorMsg(typeof error === 'string' ? error : error.message);
+      setErrorMsg(authErrorMessage(error, t));
     }
   };
 
   const renderForm = (
     <Box gap={3} display="flex" flexDirection="column">
-      <Field.Text name="email" label="Email address" InputLabelProps={{ shrink: true }} />
+      <Field.Text name="email" label={t('fields.email')} InputLabelProps={{ shrink: true }} />
 
       <Box gap={1.5} display="flex" flexDirection="column">
         <Link
@@ -122,13 +127,13 @@ export function SupabaseSignInView() {
           color="inherit"
           sx={{ alignSelf: 'flex-end' }}
         >
-          Forgot password?
+          {t('signIn.forgotPassword')}
         </Link>
 
         <Field.Text
           name="password"
-          label="Password"
-          placeholder="6+ characters"
+          label={t('fields.password')}
+          placeholder={t('fields.passwordPlaceholder')}
           type={password.value ? 'text' : 'password'}
           InputLabelProps={{ shrink: true }}
           InputProps={{
@@ -150,9 +155,9 @@ export function SupabaseSignInView() {
         type="submit"
         variant="contained"
         loading={isSubmitting}
-        loadingIndicator="Sign in..."
+        loadingIndicator={t('signIn.submitting')}
       >
-        Sign in
+        {t('signIn.submit')}
       </LoadingButton>
     </Box>
   );
@@ -160,12 +165,12 @@ export function SupabaseSignInView() {
   return (
     <>
       <FormHead
-        title="Sign in to your account"
+        title={t('signIn.title')}
         description={
           <>
-            {`Don't have an account? `}
+            {`${t('signIn.noAccount')} `}
             <Link component={RouterLink} href={paths.auth.signUp} variant="subtitle2">
-              Register
+              {t('signIn.register')}
             </Link>
           </>
         }
@@ -178,7 +183,7 @@ export function SupabaseSignInView() {
         </Alert>
       )}
 
-      <FormSocials signInWithGoogle={handleGoogleSignIn} googleButtonText="Sign in with Google" />
+      <FormSocials signInWithGoogle={handleGoogleSignIn} />
 
       <FormDivider />
 

@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 
 import { orderBy } from 'src/utils/helper';
 
+import { SECTION_PADDING } from 'src/theme/styles';
+
 import { PostList } from '../post-list';
 import { PostSort } from '../post-sort';
 import { useTranslate } from '../../../locales';
@@ -39,8 +41,8 @@ export function PostListHomeView({ posts }: Props) {
   }, []);
 
   return (
-    <Container>
-      <Typography variant="h4" sx={{ my: { xs: 3, md: 5 } }}>
+    <Container sx={{ pb: SECTION_PADDING }}>
+      <Typography variant="h4" component="h1" sx={{ my: { xs: 3, md: 5 } }}>
         {t('title')}
       </Typography>
 

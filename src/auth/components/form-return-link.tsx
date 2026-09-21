@@ -4,6 +4,8 @@ import Link from '@mui/material/Link';
 
 import { RouterLink } from 'src/routes/components';
 
+import { useTranslate } from 'src/locales';
+
 import { Iconify } from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
@@ -15,6 +17,8 @@ type FormReturnLinkProps = LinkProps & {
 };
 
 export function FormReturnLink({ sx, href, children, label, icon, ...other }: FormReturnLinkProps) {
+  const { t } = useTranslate('auth');
+
   return (
     <Link
       component={RouterLink}
@@ -32,7 +36,7 @@ export function FormReturnLink({ sx, href, children, label, icon, ...other }: Fo
       {...other}
     >
       {icon || <Iconify width={16} icon="eva:arrow-ios-back-fill" />}
-      {label || 'Return to sign in'}
+      {label || t('common.returnToSignIn')}
     </Link>
   );
 }

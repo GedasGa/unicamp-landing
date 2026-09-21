@@ -1,10 +1,11 @@
-import { CONFIG } from 'src/config-global';
-
 import { SupabaseVerifyView } from 'src/auth/view';
+import { authPageMetadata } from 'src/auth/page-metadata';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `Verify | ${CONFIG.appName}` };
+export function generateMetadata() {
+  return authPageMetadata('verify');
+}
 
 export default function Page() {
   return <SupabaseVerifyView />;

@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "badge": "Kursuok.lt funding",
+    "title": "Free tech courses with *Kursuok.lt*",
+    "subtitle": "Through Kursuok.lt, the state covers up to €500 of training – the full price of a Unicamp program. With funding, you learn frontend development or UX/UI design without paying anything.",
+    "status": "Next call expected in late autumn 2026",
+    "cta": "Save your spot",
+    "ctaCaption": "We'll let you know as soon as registration opens",
+    "secondaryCta": "View programs"
+  },
+  "facts": {
+    "items": [
+      { "value": "Up to €500", "label": "Kursuok.lt funding" },
+      { "value": "12 weeks", "label": "Program length · 108 academic hours" },
+      { "value": "100%", "label": "Of participants finish" },
+      { "value": "4.9 / 5", "label": "Rating on Kursuok.lt", "link": true }
+    ]
+  },
+  "eligibility": {
+    "title": "Who can get *funding*",
+    "description": "These were the conditions of the latest call (November 2025). Kursuok.lt will publish the conditions of the next one.",
+    "items": [
+      "You're 18–65 years old",
+      "You're employed – on an employment contract or equivalent, or self-employed",
+      "You're a Lithuanian citizen or hold a Lithuanian residence permit",
+      "You have a vocational or higher education qualification",
+      "You haven't used up your full €500 Kursuok.lt budget yet"
+    ],
+    "priority": {
+      "title": "Who gets priority",
+      "description": "If more people apply than there is funding, a queue is formed. Priority goes to people:",
+      "items": [
+        "with an assessed participation level of 55% or lower",
+        "living outside Vilnius, Kaunas, Klaipėda and Šiauliai",
+        "who got their education 10 or more years ago",
+        "in older age groups – starting with 50–65"
+      ]
+    },
+    "source": "Source: Ministry of Education, Science and Sport, 2025-11-27"
+  },
+  "nextGroups": {
+    "title": "How to get *funding*",
+    "subtitle": "Registration hasn't opened yet. Save your spot – we'll let you know as soon as Kursuok.lt opens a new call and help you apply.",
+    "dates": [
+      { "label": "Next Kursuok.lt call", "value": "Expected in late autumn 2026" },
+      { "label": "Classes start", "value": "Tentatively in 2027" }
+    ],
+    "cta": "Save your spot",
+    "steps": {
+      "title": "Step by step",
+      "items": [
+        "Save your spot with Unicamp – we'll tell you when registration opens",
+        "Sign in to Kursuok.lt through the e-government gateway – it checks your eligibility automatically",
+        "Choose a Unicamp program and submit your application",
+        "Once funded, you start learning – and pay nothing for the course"
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Common *questions* about Kursuok.lt",
+    "description": "How the funding works, and what to do if you don't get it.",
+    "questions": [
+      {
+        "question": "What is Kursuok.lt?",
+        "answer": "It's a state-funded adult learning platform. Employed people can get up to €500 through it for a training program of their choice, and Unicamp's programs are among those funded."
+      },
+      {
+        "question": "How much will a Unicamp program cost with Kursuok.lt funding?",
+        "answer": "A Unicamp program costs €500 and Kursuok.lt covers up to €500, so with funding you pay nothing for the course."
+      },
+      {
+        "question": "When does registration open?",
+        "answer": "Kursuok.lt says the next call is expected no earlier than autumn 2026, with training starting tentatively in 2027. Save your spot and we'll let you know as soon as registration opens."
+      },
+      {
+        "question": "Will you help me apply?",
+        "answer": "Yes. Once you save your spot, we'll email you when registration opens and, if you need it, help you fill in the Kursuok.lt application."
+      },
+      {
+        "question": "Can I get funding if I'm not working right now?",
+        "answer": "Kursuok.lt funding is for people in employment. The Employment Service runs its own training funding programs, and you can also join a Unicamp program paying yourself."
+      },
+      {
+        "question": "Can I take both programs?",
+        "answer": "The Kursuok.lt budget is up to €500, and one Unicamp program uses all of it. Once the full budget is used, you can only get funding again after 5 years, so you'd pay for a second program yourself."
+      },
+      {
+        "question": "What if I don't get funding?",
+        "answer": "You can pay yourself: €500 in one payment, or €180 a month for three months. There's a 7-day money-back guarantee."
+      },
+      {
+        "question": "Can I study while working?",
+        "answer": "Yes. Classes are online 2–3 evenings a week, 18:30–21:30, and every class is recorded, so you can catch up on one you miss."
+      }
+    ]
+  }
+}

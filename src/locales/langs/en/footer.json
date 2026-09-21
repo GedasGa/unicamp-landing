@@ -1,6 +1,14 @@
 {
   "description": "IT training built on the skills the market needs today.",
   "links": {
+    "programs": {
+      "headline": "Programs",
+      "children": {
+        "frontend": "Frontend development",
+        "ux": "UX/UI design",
+        "kursuok": "Kursuok.lt funding"
+      }
+    },
     "legal": {
       "headline": "Legal",
       "children": {

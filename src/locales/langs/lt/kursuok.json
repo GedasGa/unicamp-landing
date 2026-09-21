@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "badge": "Kursuok.lt finansavimas",
+    "title": "Nemokami IT kursai su *Kursuok.lt*",
+    "subtitle": "Valstybė per Kursuok.lt apmoka iki 500 € mokymų – tiek kainuoja visa Unicamp programa. Gavę finansavimą, Frontend programavimo ar UX/UI dizaino mokysitės nemokėdami nieko.",
+    "status": "Naujas kvietimas numatomas 2026 m. rudens pabaigoje",
+    "cta": "Rezervuoti vietą",
+    "ctaCaption": "Pranešime, kai tik atsidarys registracija",
+    "secondaryCta": "Peržiūrėti programas"
+  },
+  "facts": {
+    "items": [
+      { "value": "Iki 500 €", "label": "Kursuok.lt finansavimas" },
+      { "value": "12 savaičių", "label": "Programos trukmė · 108 ak. val." },
+      { "value": "100%", "label": "Dalyvių baigia kursą" },
+      { "value": "4,9 / 5", "label": "Įvertinimas Kursuok.lt", "link": true }
+    ]
+  },
+  "eligibility": {
+    "title": "Kas gali gauti *finansavimą*",
+    "description": "Tokios buvo paskutinio kvietimo (2025 m. lapkritis) sąlygos. Naujojo kvietimo sąlygas paskelbs Kursuok.lt.",
+    "items": [
+      "Esate 18–65 metų",
+      "Dirbate – pagal darbo sutartį ar jai prilygintus santykius arba savarankiškai",
+      "Esate Lietuvos pilietis arba turite leidimą gyventi Lietuvoje",
+      "Turite profesinį arba aukštąjį išsilavinimą",
+      "Dar nesate išnaudoję viso 500 € Kursuok.lt krepšelio"
+    ],
+    "priority": {
+      "title": "Kas gauna pirmenybę",
+      "description": "Jei norinčių daugiau nei lėšų, sudaroma eilė. Pirmenybė teikiama:",
+      "items": [
+        "turintiems nustatytą 55 % ar mažesnį dalyvumo lygį",
+        "gyvenantiems ne Vilniuje, Kaune, Klaipėdoje ar Šiauliuose",
+        "išsilavinimą įgijusiems prieš 10 ar daugiau metų",
+        "vyresniems dirbantiesiems – pirmiausia 50–65 metų"
+      ]
+    },
+    "source": "Šaltinis: Švietimo, mokslo ir sporto ministerija, 2025-11-27"
+  },
+  "nextGroups": {
+    "title": "Kaip gauti *finansavimą*",
+    "subtitle": "Registracija dar neprasidėjo. Rezervuokite vietą – pranešime, kai tik Kursuok.lt atvers naują kvietimą, ir padėsime pateikti paraišką.",
+    "dates": [
+      { "label": "Naujas Kursuok.lt kvietimas", "value": "Numatomas 2026 m. rudens pabaigoje" },
+      { "label": "Mokymų pradžia", "value": "Preliminariai 2027 m." }
+    ],
+    "cta": "Rezervuoti vietą",
+    "steps": {
+      "title": "Žingsnis po žingsnio",
+      "items": [
+        "Rezervuojate vietą Unicamp – pranešime, kai prasidės registracija",
+        "Prisijungiate prie Kursuok.lt per el. valdžios vartus – sistema pati patikrina, ar atitinkate sąlygas",
+        "Pasirenkate Unicamp programą ir pateikiate paraišką",
+        "Gavę finansavimą, pradedate mokytis – už mokymus nemokate"
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Dažni *klausimai* apie Kursuok.lt",
+    "description": "Kaip veikia finansavimas ir ką daryti, jei jo negausite.",
+    "questions": [
+      {
+        "question": "Kas yra Kursuok.lt?",
+        "answer": "Tai valstybės finansuojama suaugusiųjų mokymosi platforma. Per ją dirbantys žmonės gali gauti iki 500 € pasirinktai mokymo programai, o Unicamp programos yra tarp finansuojamų."
+      },
+      {
+        "question": "Kiek kainuos Unicamp programa su Kursuok.lt finansavimu?",
+        "answer": "Unicamp programa kainuoja 500 €, o Kursuok.lt finansavimas siekia iki 500 €. Gavę finansavimą, už mokymus nemokėsite nieko."
+      },
+      {
+        "question": "Kada prasidės registracija?",
+        "answer": "Kursuok.lt skelbia, kad naujas kvietimas numatomas ne anksčiau nei 2026 m. rudenį, o mokymai – preliminariai nuo 2027 m. Rezervuokite vietą ir pranešime, kai tik registracija prasidės."
+      },
+      {
+        "question": "Ar padėsite pateikti paraišką?",
+        "answer": "Taip. Rezervavę vietą, gausite mūsų laišką, kai prasidės registracija, o jei reikės – padėsime užpildyti paraišką Kursuok.lt."
+      },
+      {
+        "question": "Ar galiu gauti finansavimą, jei šiuo metu nedirbu?",
+        "answer": "Kursuok.lt finansavimas skirtas dirbantiems. Užimtumo tarnyba turi atskiras mokymų finansavimo programas, o Unicamp programose galite mokytis ir mokėdami patys."
+      },
+      {
+        "question": "Ar galiu mokytis abiejose programose?",
+        "answer": "Kursuok.lt krepšelis – iki 500 €, o viena Unicamp programa jį išnaudoja visą. Išnaudojus visą krepšelį, finansavimą vėl gauti galima tik po 5 metų, tad antrą programą galite rinktis mokėdami patys."
+      },
+      {
+        "question": "Ką daryti, jei finansavimo negausiu?",
+        "answer": "Galite mokytis mokėdami patys: 500 € vienu mokėjimu arba 180 € per mėnesį tris mėnesius. Taikoma 7 dienų pinigų grąžinimo garantija."
+      },
+      {
+        "question": "Ar galiu mokytis ir dirbti?",
+        "answer": "Taip. Paskaitos vyksta nuotoliniu būdu 2–3 kartus per savaitę vakarais, 18:30–21:30, o visos jos įrašomos – praleistą paskaitą galėsite peržiūrėti vėliau."
+      }
+    ]
+  }
+}

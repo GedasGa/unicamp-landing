@@ -1,4 +1,3 @@
-import type { TFunction } from 'i18next';
 import type { BoxProps } from '@mui/material/Box';
 
 import { useState } from 'react';
@@ -25,66 +24,28 @@ import { SectionTitle } from './components/section-title';
 
 // ----------------------------------------------------------------------
 
-const FAQs = (t: TFunction<string | 'translation', undefined>) => [
-  {
-    question: t('faqs.questions.0.question'),
-    answer: <Typography>{t('faqs.questions.0.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.1.question'),
-    answer: <Typography>{t('faqs.questions.1.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.2.question'),
-    answer: <Typography>{t('faqs.questions.2.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.3.question'),
-    answer: <Typography>{t('faqs.questions.3.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.4.question'),
-    answer: <Typography>{t('faqs.questions.4.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.5.question'),
-    answer: <Typography>{t('faqs.questions.5.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.6.question'),
-    answer: <Typography>{t('faqs.questions.6.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.7.question'),
-    answer: <Typography>{t('faqs.questions.7.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.8.question'),
-    answer: <Typography>{t('faqs.questions.8.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.9.question'),
-    answer: <Typography>{t('faqs.questions.9.answer')}</Typography>,
-  },
-  {
-    question: t('faqs.questions.10.question'),
-    answer: <Typography>{t('faqs.questions.10.answer')}</Typography>,
-  },
-];
+type FAQItem = { question: string; answer: string };
 
 // ----------------------------------------------------------------------
 
 type HomeFAQsProps = BoxProps & {
   /** Indexes of questions a page already answers in full, so the FAQ does not repeat it. */
   omit?: number[];
+  /** Namespace holding `faqs.title`, `faqs.description` and `faqs.questions`. */
+  ns?: string;
 };
 
-export function HomeFAQs({ omit = [], sx, ...other }: HomeFAQsProps) {
-  const { t } = useTranslate('home');
+export function HomeFAQs({ omit = [], ns = 'home', sx, ...other }: HomeFAQsProps) {
+  const { t } = useTranslate(ns);
 
-  const questions = FAQs(t).filter((_, index) => !omit.includes(index));
+  // The "still have questions?" card is the same on every page.
+  const { t: tHome } = useTranslate('home');
 
-  const [expanded, setExpanded] = useState<string | false>(questions[0].question);
+  const questions = (
+    (t('faqs.questions', { returnObjects: true, defaultValue: [] }) ?? []) as FAQItem[]
+  ).filter((_, index) => !omit.includes(index));
+
+  const [expanded, setExpanded] = useState<string | false>(questions[0]?.question ?? false);
 
   const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false);
@@ -132,7 +93,9 @@ export function HomeFAQs({ omit = [], sx, ...other }: HomeFAQsProps) {
           >
             <Typography variant="h6"> {item.question}</Typography>
           </AccordionSummary>
-          <AccordionDetails>{item.answer}</AccordionDetails>
+          <AccordionDetails>
+            <Typography>{item.answer}</Typography>
+          </AccordionDetails>
         </Accordion>
       ))}
     </Stack>
@@ -164,12 +127,12 @@ export function HomeFAQs({ omit = [], sx, ...other }: HomeFAQsProps) {
         }}
       >
         <m.div variants={varFade().in}>
-          <Typography variant="h4">{t('faqs.contact.heading')}</Typography>
+          <Typography variant="h4">{tHome('faqs.contact.heading')}</Typography>
         </m.div>
 
         <m.div variants={varFade().in}>
           <Typography sx={{ mt: 2, mb: 3, color: 'text.secondary' }}>
-            {t('faqs.contact.description')}
+            {tHome('faqs.contact.description')}
           </Typography>
         </m.div>
 
@@ -183,7 +146,7 @@ export function HomeFAQs({ omit = [], sx, ...other }: HomeFAQsProps) {
               OpenWidget.call('maximize', { feature: 'form-contact' });
             }}
           >
-            {t('faqs.contact.cta')}
+            {tHome('faqs.contact.cta')}
           </Button>
         </m.div>
       </Card>

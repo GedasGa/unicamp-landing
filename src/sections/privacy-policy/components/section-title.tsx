@@ -51,7 +51,7 @@ export function SectionTitle({
       )}
 
       <Typography
-        component={m.h2}
+        component={m.h1}
         variant="h2"
         variants={slotProps?.title?.variants ?? varFade({ distance: 24 }).inUp}
         sx={slotProps?.title?.sx}
