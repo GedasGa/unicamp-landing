@@ -70,7 +70,13 @@ export function PaymentNewCardForm({
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton onClick={showPassword.onToggle} edge="end">
-                  <Iconify icon={showPassword.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
+                  <Iconify
+                    icon={
+                      showPassword.value
+                        ? 'iconmind:observability-outline-thin'
+                        : 'iconmind:eye-off-outline-thin'
+                    }
+                  />
                 </IconButton>
               </InputAdornment>
             ),

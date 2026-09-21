@@ -3,7 +3,8 @@
 import { paths } from 'src/routes/paths';
 
 import { useTranslate } from 'src/locales';
-import { EmailInboxIcon } from 'src/assets/icons';
+
+import { Iconify } from 'src/components/iconify';
 
 import { FormHead } from '../components/form-head';
 import { FormReturnLink } from '../components/form-return-link';
@@ -16,7 +17,7 @@ export function SupabaseVerifyView() {
   return (
     <>
       <FormHead
-        icon={<EmailInboxIcon />}
+        icon={<Iconify icon="iconmind:mail-open-outline-thin" width={96} />}
         title={t('verify.title')}
         description={t('verify.description')}
       />
