@@ -22,6 +22,12 @@ export const metadata: Metadata = {
     title,
     description,
     path: '/',
+    image: {
+      url: '/assets/images/home/og-image.jpg',
+      width: 1200,
+      height: 604,
+      alt: 'Unicamp – praktinės IT programos su mentoriais',
+    },
   }),
 };
 
