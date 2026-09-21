@@ -15,9 +15,39 @@ const POSTS: IPostItem[] = [
       'Nuo dėstymo kitose akademijose iki Unicamp: kaip patirtis formavo mūsų mokymosi modelį',
     createdAt: '2025-04-26T10:26:43+00:00',
     title: 'Nuo dėstymo kitose akademijose iki Unicamp: kaip patirtis formavo mūsų mokymosi modelį',
-    coverUrl: `${CONFIG.assetsDir}/assets/images/blog/starting-our-own.png`,
+    coverUrl: `${CONFIG.assetsDir}/assets/images/blog/starting-our-own.jpg`,
     metaDescription:
       'Sužinokite, kaip tarptautinė patirtis Udacity, Coursera, Software Development Academy, buildup.am, CodeAcademy ir FastTrack leido Unicamp sukurti modernų, praktika grįstą mokymosi modelį, atitinkantį šiandienos IT rinkos reikalavimus.',
+    description: '',
+    author: {
+      name: 'Gedas Gardauskas',
+      avatarUrl: `${CONFIG.assetsDir}/assets/images/programs/mentors/Gedas.jpg`,
+    },
+  },
+  {
+    id: '37c7e333-ad0b-4699-9312-f48d197a673a',
+    publish: 'published',
+    metaKeywords: [
+      'dirbtinis intelektas',
+      'DI įrankiai',
+      'AI įrankiai',
+      'ar dirbtinis intelektas pakeis programuotojus',
+      'DI įrankiai programuotojams',
+      'DI įrankiai dizaineriams',
+      'IT karjera',
+      'frontend programavimas',
+      'UX/UI dizainas',
+      'Unicamp',
+    ],
+    content:
+      '<p>Jei svarstote keisti karjerą ir pereiti į IT, tikriausiai jau girdėjote: „Neverta – dirbtinis intelektas netrukus viską padarys pats.“ Klausimas teisingas, bet atsakymas sudėtingesnis. Šiame straipsnyje apžvelgiame, ką dirbtinis intelektas (DI) iš tikrųjų keičia IT rinkoje, kokius DI įrankius jau kasdien naudoja frontend programuotojai ir UX/UI dizaineriai ir kaip mokytis, kad DI taptų jūsų pranašumu, o ne konkurentu.</p><h2 class="nml__editor__content__heading">Trumpas atsakymas</h2><p>Ne, dirbtinis intelektas nepakeis programuotojų ir dizainerių, bet jis keičia jų darbą. Rutininės užduotys, kurias anksčiau atlikdavo pradedantieji, vis dažniau automatizuojamos. Todėl į IT šiandien ateinantiems neužtenka mokėti sintaksę ar žinoti, kur yra įrankio mygtukai: reikia gebėti spręsti problemas, suprasti naudotoją ir efektyviai dirbti kartu su DI.</p><h2 class="nml__editor__content__heading">Kas iš tikrųjų keičiasi IT rinkoje</h2><p>Didžiausias pokytis – ne tai, kad dingsta darbai, o tai, kad keičiasi pirmasis karjeros laiptelis. KTU mokslininkas dr. Mantas Lukauskas <a target="_blank" rel="noopener noreferrer" class="nml__editor__content__link" href="https://ktu.edu/news/kur-dingo-pradedantieji-it-specialistai-2026-aisiais-kodel-di-atima-ne-patirti-o-pirmaji-laipteli/">pastebi</a>, kad DI perima būtent tas paprastas užduotis, per kurias anksčiau mokydavosi pradedantieji. Jo cituojamais „Stanford AI Index“ duomenimis, JAV 22–25 metų programuotojų užimtumas sumažėjo maždaug penktadaliu, o patyrusių specialistų pozicijos išliko stabilios.</p><p>Tai nereiškia, kad pradedantiesiems vietos nebėra. Tai reiškia, kad darbdaviai tikisi daugiau nuo pirmos dienos: kad naujokas mokės naudotis DI įrankiais, kritiškai įvertins jų rezultatą ir galės parodyti realų, veikiantį projektą.</p><h2 class="nml__editor__content__heading">DI įrankiai, kuriuos naudoja frontend programuotojai</h2><p>Šiandien beveik kiekvienas programuotojas dirba bent su vienu DI asistentu. Dažniausiai naudojami:</p><ul><li><strong>GitHub Copilot</strong> – siūlo kodą tiesiai redaktoriuje ir padeda greičiau parašyti pasikartojančias dalis.</li><li><strong>Cursor</strong> – kodo redaktorius su integruotu DI, kuris mato visą projektą ir gali keisti kelis failus vienu metu.</li><li><strong>ChatGPT, Claude, Gemini</strong> – pokalbių asistentai, kurie paaiškina klaidas, padeda suprasti svetimą kodą ar naują technologiją.</li><li><strong>v0 ir panašūs įrankiai</strong> – iš teksto aprašymo sugeneruoja pirmą naudotojo sąsajos (UI) komponento versiją.</li></ul><p>Tačiau DI sugeneruotas kodas nėra savaime teisingas. Jis gali atrodyti įtikinamai, bet turėti klaidų, saugumo spragų ar būti sunkiai prižiūrimas. Programuotojo vertė – suprasti, ką tas kodas daro, ir nuspręsti, ar jis tinka.</p><h2 class="nml__editor__content__heading">DI įrankiai UX/UI dizaineriams</h2><p>Dizaino srityje DI labiausiai padeda greičiau pereiti nuo idėjos prie pirmo juodraščio:</p><ul><li><strong>Figma DI funkcijos</strong> – padeda sugeneruoti turinį maketams, sutvarkyti sluoksnius ar greitai sukurti pirmą ekrano variantą.</li><li><strong>ChatGPT ar Claude</strong> – padeda susisteminti naudotojų tyrimų užrašus, sugalvoti tekstų variantų ar interviu klausimų.</li><li><strong>Vaizdų generatoriai (pvz., Midjourney)</strong> – nuotaikų lentoms, iliustracijoms ir vizualinėms idėjoms.</li></ul><p>Svarbi riba: DI negali pakeisti tikrų pokalbių su naudotojais. Modeliai linkę atkartoti „vidutinę“ patirtį, o geras dizainas gimsta iš konkrečių žmonių poreikių supratimo.</p><h2 class="nml__editor__content__heading">Ko DI (dar) nemoka – ir kodėl tai jūsų pranašumas</h2><p>DI puikiai atlieka aiškiai apibrėžtas užduotis. Bet jam vis dar sunkiai sekasi tai, kas sudaro didžiąją dalį realaus darbo:</p><ul><li>suprasti, <strong>kokią problemą</strong> iš tikrųjų reikia spręsti ir kodėl;</li><li>susikalbėti su komanda, užsakovu ar naudotojais;</li><li>priimti sprendimus, kai trūksta informacijos arba reikalavimai prieštarauja vienas kitam;</li><li>matyti visą produktą, o ne pavienę užduotį;</li><li>prisiimti atsakomybę už rezultatą.</li></ul><p>Būtent šie gebėjimai skiria specialistą, kurį DI padaro greitesnį, nuo žmogaus, kurį DI gali pakeisti.</p><h2 class="nml__editor__content__heading">Kaip mokytis IT dirbtinio intelekto eroje: 5 patarimai</h2><ol><li><strong>Pirmą sprendimą parašykite patys.</strong> Tik tada paprašykite DI jį patikrinti ar patobulinti. Kitaip išmoksite kopijuoti, bet ne suprasti.</li><li><strong>Naudokite DI kaip mokytoją, o ne kaip atsakymų lapą.</strong> Klauskite „kodėl?“, prašykite paaiškinti klaidą ar sugalvoti papildomų užduočių.</li><li><strong>Kurkite vieną tikrą projektą, o ne dešimt atskirų pratimų.</strong> Darbdaviui daugiau pasako vienas veikiantis produktas nei sertifikatų rinkinys.</li><li><strong>Mokykitės iš žmonių, kurie dirba šiandien.</strong> Įrankiai keičiasi kas kelis mėnesius, o mentorius, kasdien dirbantis IT srityje, žino, kas aktualu dabar.</li><li><strong>Ugdykite minkštuosius įgūdžius.</strong> Gebėjimas paaiškinti savo sprendimą ir dirbti komandoje tampa dar svarbesnis, kai rutininių darbų lieka mažiau.</li></ol><h2 class="nml__editor__content__heading">Ar verta keisti karjerą į IT 2026 metais?</h2><p>Taip, jei ruošiatės ne tokiai IT rinkai, kokia buvo prieš penkerius metus, o tokiai, kokia yra dabar. Kelias į pirmą darbą tapo reiklesnis, bet įrankiai, padedantys greičiau mokytis, dar niekada nebuvo tokie galingi.</p><p>Unicamp programas kūrėme būtent tokiai realybei. Per 12 savaičių kuriate vieną nuoseklų projektą, mokotės su mentoriais, kurie kasdien dirba IT srityje, o naujausi įrankiai ir DI yra natūrali mokymosi dalis, o ne atskira tema.</p><ul><li><a class="nml__editor__content__link" href="/programs/fe">Frontend programavimo kursas</a> – web programavimo pagrindai su JavaScript ir React.</li><li><a class="nml__editor__content__link" href="/programs/ux">UX/UI dizaino kursas</a> – nuo naudotojų poreikių iki interaktyvaus prototipo, naudojant DI įrankius.</li></ul><h2 class="nml__editor__content__heading">Dažniausiai užduodami klausimai</h2><h3 class="nml__editor__content__heading">Ar dirbtinis intelektas pakeis programuotojus?</h3><p>Ne visiškai. DI automatizuoja dalį kodavimo užduočių, ypač paprastų ir pasikartojančių, tačiau problemų formulavimas, sistemų projektavimas ir atsakomybė už rezultatą lieka žmogaus darbas.</p><h3 class="nml__editor__content__heading">Ar dirbtinis intelektas pakeis UX/UI dizainerius?</h3><p>DI pagreitina juodraščių, tekstų ir vizualų kūrimą, bet nepakeičia naudotojų tyrimų, empatijos ir sprendimų, kurie remiasi realių žmonių poreikiais.</p><h3 class="nml__editor__content__heading">Kokius DI įrankius verta išmokti pradedančiajam?</h3><p>Programuotojams – GitHub Copilot arba Cursor ir vieną pokalbių asistentą (ChatGPT, Claude ar Gemini). Dizaineriams – Figma DI funkcijas ir pokalbių asistentą tyrimams bei tekstams. Svarbiau už konkretų įrankį – mokėti kritiškai įvertinti jo rezultatą.</p>',
+    tags: [],
+    metaTitle: 'Ar dirbtinis intelektas pakeis programuotojus ir dizainerius?',
+    createdAt: '2026-09-21T09:00:00+00:00',
+    title: 'Ar dirbtinis intelektas pakeis programuotojus ir dizainerius?',
+    coverUrl: `${CONFIG.assetsDir}/assets/images/blog/ai-tools-future.jpg`,
+    metaDescription:
+      'Ar DI pakeis programuotojus ir dizainerius? Kokius DI įrankius naudoja frontend ir UX/UI specialistai ir kaip pradėti IT karjerą dirbtinio intelekto eroje.',
     description: '',
     author: {
       name: 'Gedas Gardauskas',
@@ -47,7 +77,7 @@ export const getLatestPosts = async (titleSlug: string): Promise<IPostItem[]> =>
   let posts = POSTS;
 
   if (titleSlug) {
-    posts = posts.filter((post) => slugify(post.title || '') === titleSlug.toLowerCase());
+    posts = posts.filter((post) => slugify(post.title || '') !== titleSlug.toLowerCase());
   }
 
   return posts.slice(-count).reverse();
