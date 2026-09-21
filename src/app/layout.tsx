@@ -2,7 +2,7 @@ import 'src/global.css';
 
 // ----------------------------------------------------------------------
 
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 import { GoogleTagManager } from '@next/third-parties/google';
 
@@ -34,7 +34,10 @@ export const viewport: Viewport = {
   themeColor: primary.main,
 };
 
-export const metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL(CONFIG.siteUrl),
+  // './' resolves to each page's own path, so every route gets a self-referencing canonical.
+  alternates: { canonical: './' },
   icons: [
     {
       rel: 'icon',
