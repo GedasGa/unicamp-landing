@@ -144,7 +144,13 @@ export function SupabaseSignUpView() {
           endAdornment: (
             <InputAdornment position="end">
               <IconButton onClick={password.onToggle} edge="end">
-                <Iconify icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
+                <Iconify
+                  icon={
+                    password.value
+                      ? 'iconmind:observability-outline-thin'
+                      : 'iconmind:eye-off-outline-thin'
+                  }
+                />
               </IconButton>
             </InputAdornment>
           ),

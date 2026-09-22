@@ -27,7 +27,7 @@ export default function Error({
           <Button
             component={RouterLink}
             href={paths.blog.root}
-            startIcon={<Iconify width={16} icon="eva:arrow-ios-back-fill" />}
+            startIcon={<Iconify width={16} icon="iconmind:chevron-left-outline-thin" />}
             sx={{ mt: 3 }}
           >
             Back to list

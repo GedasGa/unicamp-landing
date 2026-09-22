@@ -35,7 +35,7 @@ export function FormReturnLink({ sx, href, children, label, icon, ...other }: Fo
       }}
       {...other}
     >
-      {icon || <Iconify width={16} icon="eva:arrow-ios-back-fill" />}
+      {icon || <Iconify width={16} icon="iconmind:chevron-left-outline-thin" />}
       {label || t('common.returnToSignIn')}
     </Link>
   );
