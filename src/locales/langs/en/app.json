@@ -38,7 +38,7 @@
     }
   },
   "dashboard": {
-    "greeting": "Hi, {{name}} 👋",
+    "greeting": "Hi, {{name}}",
     "greetingSubtitle": "Let's learn something today!",
     "meetingStartingSoon": "Meeting starting soon",
     "meetingInProgress": "Meeting in progress",
@@ -65,7 +65,7 @@
     "rating": "Rating",
     "noRatingYet": "No rating yet",
     "rateLesson": "Rate this lesson",
-    "contactOnSlack": "Contact me on Slack 👍",
+    "contactOnSlack": "Contact me on Slack",
     "wednesdays": "Wednesdays",
     "saturdays": "Saturdays",
     "completed": "Completed",
