@@ -38,7 +38,7 @@
     }
   },
   "dashboard": {
-    "greeting": "Sveiki, {{name}} 👋",
+    "greeting": "Sveiki, {{name}}",
     "greetingSubtitle": "Išmokime šiandien ką nors naujo!",
     "meetingStartingSoon": "Susitikimas greitai prasidės",
     "meetingInProgress": "Susitikimas vyksta",
@@ -65,7 +65,7 @@
     "rating": "Įvertinimas",
     "noRatingYet": "Dar nėra įvertinimo",
     "rateLesson": "Įvertinkite šią pamoką",
-    "contactOnSlack": "Susisiekite su manimi per Slack 👍",
+    "contactOnSlack": "Susisiekite su manimi per Slack",
     "wednesdays": "Trečiadieniais",
     "saturdays": "Šeštadieniais",
     "completed": "Baigta",

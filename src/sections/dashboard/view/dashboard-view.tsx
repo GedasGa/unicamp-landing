@@ -731,7 +731,11 @@ export function DashboardView() {
                             justifyContent: 'center',
                           }}
                         >
-                          <Iconify icon="solar:moon-bold" width={20} sx={{ color: 'info.main' }} />
+                          <Iconify
+                            icon="iconmind:moon-outline-thin"
+                            width={20}
+                            sx={{ color: 'info.main' }}
+                          />
                         </Box>
                         <Box sx={{ flex: 1 }}>
                           <Typography variant="subtitle2">{t('dashboard.wednesdays')}</Typography>
@@ -756,7 +760,7 @@ export function DashboardView() {
                           }}
                         >
                           <Iconify
-                            icon="solar:sun-bold"
+                            icon="iconmind:sun-outline-thin"
                             width={20}
                             sx={{ color: 'warning.main' }}
                           />
