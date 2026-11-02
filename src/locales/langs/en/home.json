@@ -110,16 +110,8 @@
         "role": "CEO | Development"
       },
       {
-        "name": "Mindaugas Pažereckas",
-        "role": "Co-founder | Operations"
-      },
-      {
         "name": "Aistė Gerdzevičiūtė",
         "role": "Co-founder | Product designer"
-      },
-      {
-        "name": "Toshi",
-        "role": "Mindaugas' dawg"
       }
     ],
     "viewProfile": "View {{network}}"

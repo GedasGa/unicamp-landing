@@ -36,6 +36,11 @@ export const paths = {
     root: `/blog`,
     details: (slug: string) => `/blog/${slug}`,
   },
+
+  certificate: {
+    verify: (token: string) => `/certificate/${token}`,
+  },
+
   // AUTH
   auth: {
     signIn: `${ROOTS.AUTH}/sign-in`,

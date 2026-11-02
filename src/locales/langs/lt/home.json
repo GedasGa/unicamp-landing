@@ -110,16 +110,8 @@
         "role": "CEO | Programuotojas"
       },
       {
-        "name": "Mindaugas Pažereckas",
-        "role": "Bendraįkūrėjas | Verslo administravimas"
-      },
-      {
         "name": "Aistė Gerdzevičiūtė",
         "role": "Bendraįkūrėja | Produkto dizainerė"
-      },
-      {
-        "name": "Toshi",
-        "role": "Mindės draugas"
       }
     ],
     "viewProfile": "Peržiūrėti {{network}}"
