@@ -1,6 +1,7 @@
 'use client';
 
 import type { CalendarEvent } from 'src/types/schedule';
+import type { CertificateData } from 'src/actions/certificate';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -26,6 +27,7 @@ import { supabase } from 'src/lib/supabase';
 import { getUserSchedule } from 'src/lib/database';
 import { DashboardContent } from 'src/layouts/dashboard';
 import { useGroupContext } from 'src/contexts/group-context';
+import { getStudentCertificates } from 'src/actions/certificate';
 import { useCourseDataContext } from 'src/contexts/course-data-context';
 
 import { Image } from 'src/components/image';
@@ -34,6 +36,7 @@ import { Iconify } from 'src/components/iconify';
 import { SvgColor } from 'src/components/svg-color';
 
 import { CalendarView } from 'src/sections/dashboard/calendar';
+import { DashboardCertificateCard } from 'src/sections/dashboard/certificate/dashboard-certificate-card';
 
 import { useAuthContext } from 'src/auth/hooks';
 
@@ -53,11 +56,15 @@ export function DashboardView() {
     getLessonProgressForModule,
   } = useCourseDataContext();
   const [activeMeeting, setActiveMeeting] = useState<CalendarEvent | null>(null);
+  const [certificates, setCertificates] = useState<CertificateData[]>([]);
 
   const hasNoGroups = groups.length === 0;
 
   useEffect(() => {
     fetchActiveMeeting();
+    if (user?.id) {
+      getStudentCertificates(user.id).then(({ data }) => setCertificates(data));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
@@ -487,6 +494,20 @@ export function DashboardView() {
                 </Stack>
               )}
             </Box>
+
+            {/* Certificates Section */}
+            {certificates.length > 0 && (
+              <Box>
+                <Typography variant="h5" sx={{ mb: 2 }}>
+                  {t('dashboard.certificates', 'My Certificates')}
+                </Typography>
+                <Stack spacing={2}>
+                  {certificates.map((cert) => (
+                    <DashboardCertificateCard key={cert.id} certificate={cert} />
+                  ))}
+                </Stack>
+              </Box>
+            )}
           </Stack>
         </Grid>
 

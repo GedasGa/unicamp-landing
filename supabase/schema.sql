@@ -30,6 +30,7 @@ DROP FUNCTION IF EXISTS public.link_invitations_on_signup() CASCADE;
 DROP FUNCTION IF EXISTS public.update_updated_at_column() CASCADE;
 
 -- Drop tables (in correct order due to foreign keys)
+DROP TABLE IF EXISTS certificates CASCADE;
 DROP TABLE IF EXISTS student_lesson_progress CASCADE;
 DROP TABLE IF EXISTS student_topic_progress CASCADE;
 DROP TABLE IF EXISTS group_lesson_visibility CASCADE;
@@ -262,6 +263,27 @@ CREATE TABLE student_lesson_progress (
 );
 
 -- =============================================
+-- 7. CERTIFICATES
+-- =============================================
+
+-- Issued completion certificates (one per student per group/program)
+CREATE TABLE certificates (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  student_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+  group_id UUID REFERENCES groups(id) ON DELETE CASCADE NOT NULL,
+  -- Storage path in the 'certificates' bucket, e.g. "{group_id}/{student_id}.pdf"
+  pdf_storage_path TEXT NOT NULL,
+  -- Unguessable UUID used as the public verification URL token
+  verification_token UUID DEFAULT uuid_generate_v4() UNIQUE NOT NULL,
+  issued_at TIMESTAMPTZ DEFAULT NOW(),
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(student_id, group_id)
+);
+
+CREATE INDEX idx_certificates_student_id ON certificates(student_id);
+CREATE INDEX idx_certificates_verification_token ON certificates(verification_token);
+
+-- =============================================
 -- 7. INDEXES FOR PERFORMANCE
 -- =============================================
 
@@ -341,6 +363,21 @@ ALTER TABLE group_module_visibility ENABLE ROW LEVEL SECURITY;
 ALTER TABLE group_lesson_visibility ENABLE ROW LEVEL SECURITY;
 ALTER TABLE student_topic_progress ENABLE ROW LEVEL SECURITY;
 ALTER TABLE student_lesson_progress ENABLE ROW LEVEL SECURITY;
+
+-- Certificates: public anon read (token is the secret), students read own, teachers manage
+ALTER TABLE certificates ENABLE ROW LEVEL SECURITY;
+
+-- Anyone (anon + authenticated) can SELECT — row is filtered by verification_token in the query
+CREATE POLICY "Anyone can verify certificate by token" ON certificates
+  FOR SELECT TO anon USING (true);
+
+-- Authenticated students can also read their own certificates (for dashboard)
+CREATE POLICY "Students read own certificates" ON certificates
+  FOR SELECT TO authenticated USING (student_id = auth.uid());
+
+-- Teachers can manage certificates
+CREATE POLICY "Teachers manage certificates" ON certificates
+  FOR ALL USING (is_teacher());
 
 -- Profiles: Users can read their own profile, teachers can read all
 CREATE POLICY "Users can view own profile" ON profiles
