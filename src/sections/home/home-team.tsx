@@ -44,41 +44,15 @@ const MEMBERS = [
     ],
   },
   {
-    avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Mindaugas.png`,
+    avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Aiste.png`,
     name: 'team.members.1.name',
     role: 'team.members.1.role',
-    isMentor: false,
-    socials: [
-      {
-        label: 'Linkedin',
-        value: 'linkedin',
-        link: 'https://www.linkedin.com/in/mindaugas-pazereckas',
-      },
-    ],
-  },
-  {
-    avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Aiste.png`,
-    name: 'team.members.2.name',
-    role: 'team.members.2.role',
     isMentor: true,
     socials: [
       {
         label: 'Linkedin',
         value: 'linkedin',
         link: 'https://www.linkedin.com/in/aistegerd/',
-      },
-    ],
-  },
-  {
-    avatarUrl: `${CONFIG.assetsDir}/assets/images/home/team/Toshi.png`,
-    name: 'team.members.3.name',
-    role: 'team.members.3.role',
-    isMentor: false,
-    socials: [
-      {
-        label: 'Instagram',
-        value: 'instagram',
-        link: 'https://www.instagram.com/',
       },
     ],
   },
@@ -104,8 +78,8 @@ export function HomeTeam({ sx, ...other }: BoxProps) {
             mt: SECTION_CONTENT_GAP,
             gap: 3,
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
-            maxWidth: { xs: 360, sm: 1 },
+            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' },
+            maxWidth: { xs: 360, sm: 600 },
             mx: 'auto',
           }}
         >
