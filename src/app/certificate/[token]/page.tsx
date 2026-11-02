@@ -10,12 +10,16 @@ type Props = {
   params: { token: string };
 };
 
+// Certificates are shared by link only; keep students' names out of search results.
+const robots: Metadata['robots'] = { index: false, follow: false };
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data } = await getCertificateByToken(params.token);
 
   if (!data) {
     return {
       title: 'Certificate Not Found | Unicamp',
+      robots,
     };
   }
 
@@ -27,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+    robots,
     openGraph: {
       title,
       description,
@@ -50,11 +55,6 @@ export default async function CertificateVerifyPage({ params }: Props) {
   const pdfUrl = data ? getCertificatePdfUrl(data.pdf_storage_path) : null;
 
   return (
-    <CertificateVerifyView
-      certificate={data}
-      pdfUrl={pdfUrl}
-      token={params.token}
-      error={error}
-    />
+    <CertificateVerifyView certificate={data} pdfUrl={pdfUrl} token={params.token} error={error} />
   );
 }
