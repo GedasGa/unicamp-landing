@@ -4,6 +4,8 @@ import { notFound, permanentRedirect } from 'next/navigation';
 
 import { paths } from 'src/routes/paths';
 
+import { JsonLd, breadcrumbSchema, blogPostingSchema } from 'src/utils/json-ld';
+
 import { CONFIG } from 'src/config-global';
 import { getPost, getPosts, getLatestPosts, getPostByLegacySlug } from 'src/actions/blog-ssr';
 
@@ -60,7 +62,21 @@ export default function Page({ params }: Props) {
 
   const latestPosts = getLatestPosts(post.slug);
 
-  return <PostDetailsHomeView post={post} latestPosts={latestPosts} />;
+  const jsonLd = [
+    blogPostingSchema(post),
+    breadcrumbSchema([
+      { name: 'Unicamp', path: '/' },
+      { name: 'Straipsniai', path: paths.blog.root },
+      { name: post.title, path: paths.blog.details(post.slug) },
+    ]),
+  ];
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <PostDetailsHomeView post={post} latestPosts={latestPosts} />
+    </>
+  );
 }
 
 // ----------------------------------------------------------------------

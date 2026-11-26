@@ -9,7 +9,7 @@ import { KursuokView } from 'src/sections/kursuok/view';
 const title = 'Nemokami IT kursai su Kursuok.lt finansavimu | Unicamp';
 
 const description =
-  'Gaukite iki 500 € Kursuok.lt finansavimą ir mokykitės Frontend programavimo ar UX/UI dizaino nemokamai. Sąlygos, registracijos datos ir pagalba teikiant paraišką.';
+  'Gaukite iki 500 € Kursuok.lt finansavimą ir mokykitės Frontend programavimo ar UX/UI dizaino nemokamai. Sąlygos, datos ir pagalba teikiant paraišką.';
 
 export const metadata: Metadata = {
   title,

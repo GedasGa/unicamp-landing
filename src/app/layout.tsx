@@ -8,6 +8,8 @@ import { GoogleTagManager } from '@next/third-parties/google';
 
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
+import { JsonLd, organizationSchema } from 'src/utils/json-ld';
+
 import { CONFIG } from 'src/config-global';
 import { primary } from 'src/theme/core/palette';
 import { LocalizationProvider } from 'src/locales';
@@ -58,6 +60,8 @@ export default async function RootLayout({ children }: Props) {
       <GoogleTagManager gtmId="GTM-W4NRM7KT" />
 
       <body>
+        <JsonLd data={organizationSchema()} />
+
         <InitColorSchemeScript
           defaultMode={schemeConfig.defaultMode}
           // modeStorageKey={schemeConfig.modeStorageKey} Force light theme

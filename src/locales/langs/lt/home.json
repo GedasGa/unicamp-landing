@@ -1,7 +1,7 @@
 {
   "hero": {
     "heading": {
-      "title": "Išmokite *naujausių* IT įgūdžių"
+      "title": "*Frontend* ir *UX/UI* dizaino kursai"
     },
     "subtitle": "Praktinės 12 savaičių programos, kurias veda kasdien IT srityje dirbantys mentoriai.",
     "form": {
@@ -361,5 +361,10 @@
       "no": "Ne",
       "partial": "Kartais"
     }
+  },
+  "blog": {
+    "title": "Naujausi *straipsniai*",
+    "description": "Mentorių patarimai, kaip pradėti IT karjerą ir mokytis efektyviau.",
+    "cta": "Visi straipsniai"
   }
 }
