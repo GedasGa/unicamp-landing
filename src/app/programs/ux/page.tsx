@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { socialMetadata } from 'src/utils/social-metadata';
+import { JsonLd, courseSchema, breadcrumbSchema } from 'src/utils/json-ld';
 
 import { ProgramView } from 'src/sections/programs/view';
 
@@ -14,8 +15,6 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  keywords:
-    'IT akademija, UX dizainas, UX kursai, UX mokymai, UI dizainas, UI kursai, UI mokymai, Figma kursai, web dizaino kursai internetu, UX/UI dizainas internetu, dizaino kursai internetu, dizaino mokymai, dizaino sistemos, prototipavimas, skaitmeninis dizainas, naudotojų testavimai, web programavimas, UX/UI dizaino kursai Lietuvoje, naudotojų patirtis',
   authors: [{ name: 'Unicamp IT Akademija' }],
   robots: 'index, follow',
   ...socialMetadata({
@@ -31,6 +30,26 @@ export const metadata: Metadata = {
   }),
 };
 
+const jsonLd = [
+  courseSchema({
+    name: 'UX/UI dizaino kursas',
+    description,
+    path: '/programs/ux',
+    price: 500,
+    hours: 108,
+    skills: ['UX tyrimai', 'UI dizainas', 'Figma', 'Prototipavimas', 'Prieinamumas'],
+  }),
+  breadcrumbSchema([
+    { name: 'Unicamp', path: '/' },
+    { name: 'UX/UI dizainas', path: '/programs/ux' },
+  ]),
+];
+
 export default function Page() {
-  return <ProgramView programId="productDesign" />;
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <ProgramView programId="productDesign" />
+    </>
+  );
 }

@@ -3,7 +3,7 @@
     "badge": "Kursuok.lt funding",
     "title": "Free tech courses with *Kursuok.lt*",
     "subtitle": "Through Kursuok.lt, the state covers up to €500 of training – the full price of a Unicamp program. With funding, you learn frontend development or UX/UI design without paying anything.",
-    "status": "Next call expected in late autumn 2026",
+    "status": "Next call expected no earlier than the end of 2026",
     "cta": "Save your spot",
     "ctaCaption": "We'll let you know as soon as registration opens",
     "secondaryCta": "View programs"
@@ -42,7 +42,7 @@
     "title": "How to get *funding*",
     "subtitle": "Registration hasn't opened yet. Save your spot – we'll let you know as soon as Kursuok.lt opens a new call and help you apply.",
     "dates": [
-      { "label": "Next Kursuok.lt call", "value": "Expected in late autumn 2026" },
+      { "label": "Next Kursuok.lt call", "value": "No earlier than the end of 2026" },
       { "label": "Classes start", "value": "Tentatively in 2027" }
     ],
     "cta": "Save your spot",
@@ -70,7 +70,7 @@
       },
       {
         "question": "When does registration open?",
-        "answer": "Kursuok.lt says the next call is expected no earlier than autumn 2026, with training starting tentatively in 2027. Save your spot and we'll let you know as soon as registration opens."
+        "answer": "Kursuok.lt says the next call is expected no earlier than the end of 2026, with training starting tentatively in 2027. Save your spot and we'll let you know as soon as registration opens."
       },
       {
         "question": "Will you help me apply?",

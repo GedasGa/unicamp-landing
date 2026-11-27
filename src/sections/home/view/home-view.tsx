@@ -1,9 +1,12 @@
 'use client';
 
+import type { IPostItem } from 'src/types/blog';
+
 import Stack from '@mui/material/Stack';
 
 import { HomeHero } from '../home-hero';
 import { HomeFAQs } from '../home-faqs';
+import { HomeBlog } from '../home-blog';
 import { HomeTeam } from '../home-team';
 import { HomeTools } from '../home-tools';
 import { HomeFeatures } from '../home-features';
@@ -13,7 +16,12 @@ import { HomeTestimonials } from '../home-testimonials';
 
 // ----------------------------------------------------------------------
 
-export function HomeView() {
+type Props = {
+  /** Latest articles, newest first. */
+  posts: IPostItem[];
+};
+
+export function HomeView({ posts }: Props) {
   return (
     <>
       <HomeHero />
@@ -25,6 +33,7 @@ export function HomeView() {
         <HomePrograms id="courses" />
         <HomeTestimonials />
         <HomeTeam />
+        <HomeBlog posts={posts} />
         {/* <HomeContact /> */}
         <HomeFAQs />
       </Stack>

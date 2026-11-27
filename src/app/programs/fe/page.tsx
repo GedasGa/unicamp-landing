@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { socialMetadata } from 'src/utils/social-metadata';
+import { JsonLd, courseSchema, breadcrumbSchema } from 'src/utils/json-ld';
 
 import { ProgramView } from 'src/sections/programs/view';
 
@@ -14,8 +15,6 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  keywords:
-    'IT akademija, Frontend kursai, Web programavimas, JavaScript kursai, React kursai, frontend mokymai, web programavimo mokymai, avaScript mokymai, React mokymai, Frontend programavimo kursai internetu, web programavimo kursai internetu, frontend mokymai internetu, HTML kursai, CSS kursai, React mokymai Lietuvoje, frontend dizainas, web dizaino kursai Lietuvoje',
   authors: [{ name: 'Unicamp IT Akademija' }],
   robots: 'index, follow',
   ...socialMetadata({
@@ -31,6 +30,26 @@ export const metadata: Metadata = {
   }),
 };
 
+const jsonLd = [
+  courseSchema({
+    name: 'Frontend programavimo kursas',
+    description,
+    path: '/programs/fe',
+    price: 500,
+    hours: 108,
+    skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Next.js', 'Git'],
+  }),
+  breadcrumbSchema([
+    { name: 'Unicamp', path: '/' },
+    { name: 'Frontend programavimas', path: '/programs/fe' },
+  ]),
+];
+
 export default function Page() {
-  return <ProgramView programId="webDevelopment" />;
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <ProgramView programId="webDevelopment" />
+    </>
+  );
 }
