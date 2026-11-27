@@ -10,6 +10,8 @@ import Rating from '@mui/material/Rating';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
+import { fNumber } from 'src/utils/format-number';
+
 import { maxLine, SECTION_PADDING, SECTION_CONTENT_GAP } from 'src/theme/styles';
 
 import { varFade, MotionViewport } from 'src/components/animate';
@@ -31,8 +33,9 @@ import { SectionTitle } from './components/section-title';
 const KURSUOK_REVIEWS_URL =
   'https://www.kursuok.lt/mokymai/programa/ux-ui-web-dizaino-pagrindai-su-figma/';
 
-// Quotes live in the translations (`testimonials.items`), in the same order as these ratings.
-const TESTIMONIAL_RATINGS = [5, 5, 5, 4, 5, 5, 4];
+// Each reviewer's average score on Kursuok.lt, out of 5. Quotes live in the translations
+// (`testimonials.items`), in the same order as these ratings.
+const TESTIMONIAL_RATINGS = [5, 5, 5, 4.8, 5, 5, 4.8];
 
 // ----------------------------------------------------------------------
 
@@ -92,7 +95,21 @@ export function HomeTestimonials({ omit = [], sx, ...other }: HomeTestimonialsPr
                   variants={varFade().in}
                   sx={{ p: 3, height: 1, display: 'flex', flexDirection: 'column' }}
                 >
-                  <Rating size="small" name="read-only" value={rating} precision={0.5} readOnly />
+                  {/* Score and stars, as Kursuok.lt shows them. */}
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography variant="subtitle2">
+                      {fNumber(rating, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+                    </Typography>
+                    <Rating
+                      size="small"
+                      name="read-only"
+                      value={rating}
+                      precision={0.1}
+                      readOnly
+                      // The Lithuanian MUI locale borrows French texts ("5 Etoiles"); use "5 / 5".
+                      getLabelText={(value: number) => `${fNumber(value)} / 5`}
+                    />
+                  </Stack>
 
                   <Typography
                     sx={(theme) => ({
