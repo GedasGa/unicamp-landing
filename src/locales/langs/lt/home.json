@@ -3,7 +3,7 @@
     "heading": {
       "title": "*Frontend* ir *UX/UI* dizaino kursai"
     },
-    "subtitle": "Praktinės 12 savaičių programos, kurias veda kasdien IT srityje dirbantys mentoriai.",
+    "subtitle": "Po 12 savaičių nebe svajosite apie darbą IT – kursite patys ir turėsite projektą, kurį drąsiai parodysite darbdaviui.",
     "form": {
       "placeholder": "Jūsų el. paštas",
       "submit": "Rezervuoti vietą",
@@ -15,10 +15,10 @@
       "emailInvalid": "Įveskite galiojantį el. pašto adresą"
     },
     "cards": {
-      "certificate": "Unicamp sertifikatas",
-      "mentor": "Dedikuotas mentorius",
-      "project": "Realus projektas portfoliui",
-      "format": "Nuotoliu"
+      "certificate": "Įgūdžiai, patvirtinti sertifikatu",
+      "mentor": "Asmeninis mentorius šalia",
+      "project": "Portfolio, kuris atveria duris",
+      "format": "Mokotės iš bet kur"
     },
     "cta": {
       "viewCourses": {
@@ -52,49 +52,49 @@
   "features": {
     "sections": {
       "realProjects": {
-        "heading": "Realūs *projektai*",
+        "heading": "Išeisite su darbu, kurį galima *parodyti*",
         "items": [
           {
-            "title": "Įgaukite praktinės patirties",
-            "description": "Dirbkite su projektais, kurie atspindi realaus pasaulio iššūkius ir naudoja populiariausius įrankius bei technologijas."
+            "title": "Mokėsite tai, ką daro tikros komandos",
+            "description": "Spręsite tuos pačius uždavinius ir naudosite tuos pačius įrankius kaip IT komandos – todėl pirmą darbo dieną jau žinosite, nuo ko pradėti."
           },
           {
-            "title": "Parodykite savo darbą kitiems",
-            "description": "Pristatykite savo projektą realiems vartotojams ir sužavėkite darbdavius konkrečiais, apčiuopiamais rezultatais. Tokios galimybės nesiūlo jokia kita akademija."
+            "title": "Kalbėsite rezultatais, ne pažadais",
+            "description": "Pokalbyje dėl darbo nereikės aiškinti, ką mokate. Tiesiog parodysite veikiantį projektą, kurį jau išbandė tikri naudotojai."
           },
           {
-            "title": "Sustiprinkite savo portfolio",
-            "description": "Papildykite savo LinkedIn tikrais, profesionaliais projektais ir patraukite darbdavių dėmesį."
+            "title": "Profilis, kurį pastebi darbdaviai",
+            "description": "Jūsų LinkedIn ir CV papildys tikri projektai, todėl atrankoje išsiskirsite iš tų, kurie turi tik kursų pažymėjimą."
           }
         ]
       },
       "teamWork": {
-        "heading": "Mokykitės dirbdami *komandoje*",
+        "heading": "Šiame kelyje nebūsite *vieni*",
         "items": [
           {
-            "title": "Prisijunkite prie smalsių ir motyvuotų žmonių",
-            "description": "Būkite apsuptas tų, kurie skatina augti ir siekti daugiau."
+            "title": "Aplinka, kuri neleidžia sustoti",
+            "description": "Būsite tarp smalsių ir motyvuotų žmonių. Kai jie juda pirmyn, judate ir jūs."
           },
           {
-            "title": "Bendradarbiaukite su programuotojais ir UX dizaineriais",
-            "description": "Dirbkite komandose su kitais programuotojais ir dizaineriais."
+            "title": "Išmoksite dirbti taip, kaip dirbama IT",
+            "description": "Kartu su programuotojais ir dizaineriais kursite vieną produktą – ir suprasite, kaip veikia tikra komanda, dar prieš į ją patekdami."
           },
           {
-            "title": "Plėskite savo pažinčių ratą",
-            "description": "Užmegzkite ryšius su bendraminčiais, kurie palaiko, įkvepia ir padeda tobulėti profesinėje bei asmeninėje srityse."
+            "title": "Pažintys, kurios lieka ilgam",
+            "description": "Bendraminčiai, kurie palaikys, įkvėps ir dalinsis galimybėmis dar ilgai po kurso pabaigos."
           }
         ]
       },
       "1on1": {
-        "heading": "Asmeninės konsultacijos su *mentoriumi*",
+        "heading": "Mentorius, kuris jau *nuėjo šį kelią*",
         "items": [
           {
-            "title": "Dedikuotas mentorius",
-            "description": "Mentorius, su kuriuo galėsite dalintis tiek pergalėmis, tiek iššūkiais, ir gausite palaikymą viso kurso metu."
+            "title": "Niekada neužstrigsite vieni",
+            "description": "Turėsite žmogų, kuriam galite parašyti, kai kas nors neveikia, ir kuris džiaugsis kartu su jumis, kai pagaliau suveiks."
           },
           {
-            "title": "Karjeros patarimai",
-            "description": "Aptarkite savo tikslus, suplanuokite ateities žingsnius ir gaukite vertingų įžvalgų, kaip įsitvirtinti IT srityje."
+            "title": "Aiškus planas, kaip patekti į IT",
+            "description": "Kartu aptarsite jūsų tikslus ir išeisite žinodami, kokie bus kiti žingsniai – be spėliojimų."
           }
         ]
       }
@@ -102,7 +102,7 @@
   },
   "team": {
     "heading": "Unicamp *komanda*",
-    "description": "Esame IT entuziastų komanda, siekianti dalintis žiniomis ir padėti kiekvienam atrasti savo vietą technologijų pasaulyje.",
+    "description": "Kasdien kuriame produktus IT įmonėse ir mokome to, ką patys naudojame darbe – kad jūs savo vietą technologijų pasaulyje rastumėte greičiau.",
     "mentor": "Mentorius",
     "members": [
       {
@@ -117,8 +117,8 @@
     "viewProfile": "Peržiūrėti {{network}}"
   },
   "programs": {
-    "title": "Unicamp *programos*",
-    "description": "Praktinės 12 savaičių programos tiems, kurie nori pereiti į IT. Ankstesnės patirties nereikia.",
+    "title": "Pasirinkite, kuo *tapsite*",
+    "description": "Dvi kryptys, vienas tikslas: per 12 savaičių iš pradedančiojo tapti žmogumi, kuris pats kuria skaitmeninius produktus. Ankstesnės patirties nereikia.",
     "meta": {
       "duration": "12 savaičių · 108 val.",
       "format": "Nuotoliu",
@@ -172,8 +172,8 @@
     }
   },
   "tools": {
-    "title": "Išmoksite dirbti su šiuolaikiniais *įrankiais*",
-    "description": "Nuo dizaino iki programavimo ir dirbtinio intelekto – mokotės su tais pačiais įrankiais, kuriuos kasdien naudoja IT komandos.",
+    "title": "Dirbsite su tais pačiais *įrankiais* kaip IT komandos",
+    "description": "Nuo Figma iki Cursor ir DI agentų – baigę kursą mokėsite įrankius, kurių prašoma darbo skelbimuose, o dirbtinis intelektas taps jūsų asistentu, ne konkurentu.",
     "items": {
       "cursor": "DI pagrįstas kodo redaktorius",
       "lovable": "Web programėlių kūrimas aprašant jas žodžiais",
@@ -196,7 +196,7 @@
     }
   },
   "testimonials": {
-    "title": "Ką sako mūsų *studentai*",
+    "title": "Jie jau *žengė šį žingsnį*",
     "description": "žmonių, kurie jau baigė mūsų programas.",
     "descriptionLink": "Tikri atsiliepimai",
     "items": [

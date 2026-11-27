@@ -9,7 +9,7 @@
   },
   "certificate": {
     "title": "A certificate that *proves* your skills",
-    "description": "Gain not only skills but also a professional Unicamp certificate."
+    "description": "Not a piece of paper for a drawer, but a link for your LinkedIn. Any employer can open it and see exactly what you can do."
   },
   "syllabus": {
     "title": "What the *programme* covers",
@@ -17,7 +17,7 @@
       "download": "Download whole syllabus",
       "register": "Reserve a spot"
     },
-    "description": "You will learn the whole UX/UI design path – from user needs to an interactive prototype. You will use AI tools, and throughout the course you will work on a project of your own choosing that you can later share in your portfolio."
+    "description": "You'll learn to see products through users' eyes and turn their problems into interfaces people enjoy using.\n\nYou'll go through the whole UX/UI designer's path – from user research to an interactive prototype in Figma. AI tools will help you work faster, and throughout the course you'll build a project of your choice to feature in your portfolio."
   },
   "modules": [
     {
@@ -56,8 +56,8 @@
     }
   ],
   "expectations": {
-    "title": "What to expect after the *course*",
-    "description": "You will know the basics of UX/UI design and be able to build interactive prototypes.",
+    "title": "What changes after the *course*",
+    "description": "You'll be able to research what users need, build an interactive prototype and back every design decision – exactly what employers expect from a junior UX/UI designer.",
     "cta": "Reserve a spot",
     "cards": [
       {
@@ -69,11 +69,11 @@
         }
       },
       {
-        "title": "Work at top companies",
+        "title": "A path to top tech companies",
         "description": "NordSecurity, Vinted, Surfshark, Hostinger"
       },
       {
-        "title": "Flexibility",
+        "title": "Freedom to work from anywhere",
         "description": "Work from home or Seychelles? It's definitely achievable."
       }
     ]

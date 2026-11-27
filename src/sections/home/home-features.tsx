@@ -165,7 +165,7 @@ export function HomeFeatures({ sx, ...other }: HomeFeaturesProps) {
                     >
                       <Box
                         component="img"
-                        alt={t(feature.title)}
+                        alt={t(feature.title).replace(/\*/g, '')}
                         src={feature.illustration}
                         sx={{ width: '100%' }}
                       />
