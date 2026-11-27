@@ -3,7 +3,7 @@
     "badge": "Kursuok.lt finansavimas",
     "title": "Nemokami IT kursai su *Kursuok.lt*",
     "subtitle": "Valstybė per Kursuok.lt apmoka iki 500 € mokymų – tiek kainuoja visa Unicamp programa. Gavę finansavimą, Frontend programavimo ar UX/UI dizaino mokysitės nemokėdami nieko.",
-    "status": "Naujas kvietimas numatomas 2026 m. rudens pabaigoje",
+    "status": "Naujas kvietimas numatomas ne anksčiau kaip 2026 m. pabaigoje",
     "cta": "Rezervuoti vietą",
     "ctaCaption": "Pranešime, kai tik atsidarys registracija",
     "secondaryCta": "Peržiūrėti programas"
@@ -42,7 +42,7 @@
     "title": "Kaip gauti *finansavimą*",
     "subtitle": "Registracija dar neprasidėjo. Rezervuokite vietą – pranešime, kai tik Kursuok.lt atvers naują kvietimą, ir padėsime pateikti paraišką.",
     "dates": [
-      { "label": "Naujas Kursuok.lt kvietimas", "value": "Numatomas 2026 m. rudens pabaigoje" },
+      { "label": "Naujas Kursuok.lt kvietimas", "value": "Ne anksčiau kaip 2026 m. pabaigoje" },
       { "label": "Mokymų pradžia", "value": "Preliminariai 2027 m." }
     ],
     "cta": "Rezervuoti vietą",
@@ -70,7 +70,7 @@
       },
       {
         "question": "Kada prasidės registracija?",
-        "answer": "Kursuok.lt skelbia, kad naujas kvietimas numatomas ne anksčiau nei 2026 m. rudenį, o mokymai – preliminariai nuo 2027 m. Rezervuokite vietą ir pranešime, kai tik registracija prasidės."
+        "answer": "Kursuok.lt skelbia, kad naujas kvietimas numatomas ne anksčiau kaip 2026 m. pabaigoje, o mokymai – preliminariai nuo 2027 m. Rezervuokite vietą ir pranešime, kai tik registracija prasidės."
       },
       {
         "question": "Ar padėsite pateikti paraišką?",
