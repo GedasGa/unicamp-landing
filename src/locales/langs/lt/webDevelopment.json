@@ -9,7 +9,7 @@
   },
   "certificate": {
     "title": "Sertifikatas – jūsų įgūdžių *įrodymas*",
-    "description": "Įgykite ne tik įgūdžių, bet ir profesionalų Unicamp sertifikatą."
+    "description": "Pridėkite jį prie LinkedIn – darbdavys, paspaudęs nuorodą, matys, kad kursą tikrai baigėte."
   },
   "syllabus": {
     "title": "Programos *turinys*",
@@ -17,7 +17,7 @@
       "download": "Atsisiųsti visą programą",
       "register": "Rezervuokite vietą"
     },
-    "description": "Išmoksite kurti svetaines nuo nulio – su HTML, CSS ir JavaScript bei dirbtiniu intelektu. Kursite puslapius, kurie gerai atrodo bet kokiame ekrane ir yra patogūs visiems naudotojams. Dirbsite su React, Next.js ir dirbtinio intelekto įrankiais, kurie padės dirbti greičiau. Kurso pabaigoje sukursite veikiančią svetainę ir paskelbsite ją internete, naudodami Jira ir GitHub. Šį projektą galėsite parodyti darbdaviui."
+    "description": "Pradėsite nuo pirmos kodo eilutės, o baigsite su savo svetaine internete.\n\nIšmoksite kurti puslapius, kurie gerai atrodo bet kuriame ekrane ir yra patogūs visiems naudotojams, dirbti su React ir Next.js bei naudoti DI įrankius, kad dirbtumėte greičiau. Baigiamąjį projektą kursite komandoje su Jira ir GitHub – taip pat, kaip dirbama IT įmonėse."
   },
   "modules": [
     {
@@ -120,8 +120,8 @@
     }
   ],
   "expectations": {
-    "title": "Ko tikėtis po *kurso*",
-    "description": "Įgysite pagrindinius programavimo įgūdžius, mokėsite kurti ir talpinti svetaines bei dirbti su JavaScript ir React.",
+    "title": "Ką mokėsite po *kurso*",
+    "description": "Mokėsite sukurti ir paleisti svetainę nuo nulio, dirbti su JavaScript ir React, ir turėsite projektą, su kuriuo galima kandidatuoti į pirmąją Frontend poziciją.",
     "cta": "Rezervuokite vietą",
     "cards": [
       {
@@ -133,11 +133,11 @@
         }
       },
       {
-        "title": "Darbas top IT įmonėse",
+        "title": "Kelias į top IT įmones",
         "description": "NordSecurity, Vinted, Surfshark, Hostinger"
       },
       {
-        "title": "Lankstumas",
+        "title": "Laisvė rinktis, iš kur dirbti",
         "description": "Darbas iš namų ar Seišelių? Tikrai nėra neįmanoma."
       }
     ]

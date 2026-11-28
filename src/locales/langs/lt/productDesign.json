@@ -9,7 +9,7 @@
   },
   "certificate": {
     "title": "Sertifikatas – jūsų įgūdžių *įrodymas*",
-    "description": "Įgykite ne tik įgūdžių, bet ir profesionalų Unicamp sertifikatą."
+    "description": "Pridėkite jį prie LinkedIn – darbdavys, paspaudęs nuorodą, matys, kad kursą tikrai baigėte."
   },
   "syllabus": {
     "title": "Programos *turinys*",
@@ -17,7 +17,7 @@
       "download": "Atsisiųsti visą programą",
       "register": "Rezervuokite vietą"
     },
-    "description": "Išmoksite visą UX/UI dizaino kelią – nuo naudotojų poreikių iki interaktyvaus prototipo. Naudosite dirbtinio intelekto įrankius, o viso kurso metu dirbsite prie savo norimo projekto, kuriuo vėliau galėsite pasidalinti savo portfolio."
+    "description": "Išmoksite suprasti, ko reikia naudotojams, ir paversti tai patogiomis sąsajomis.\n\nPereisite visą procesą – nuo naudotojų tyrimų iki interaktyvaus prototipo Figma. Naudosite DI įrankius, kad dirbtumėte greičiau, o viso kurso metu kursite savo pasirinktą projektą portfoliui."
   },
   "modules": [
     {
@@ -56,8 +56,8 @@
     }
   ],
   "expectations": {
-    "title": "Ko tikėtis po *kurso*",
-    "description": "Žinosite UX/UI dizaino pagrindus ir gebėsite kurti interaktyvius prototipus.",
+    "title": "Ką mokėsite po *kurso*",
+    "description": "Mokėsite ištirti naudotojų poreikius, sukurti interaktyvų prototipą ir paaiškinti savo dizaino sprendimus – to darbdaviai tikisi iš pradedančio UX/UI dizainerio.",
     "cta": "Rezervuokite vietą",
     "cards": [
       {
@@ -69,11 +69,11 @@
         }
       },
       {
-        "title": "Darbas top IT įmonėse",
+        "title": "Kelias į top IT įmones",
         "description": "NordSecurity, Vinted, Surfshark, Hostinger"
       },
       {
-        "title": "Lankstumas",
+        "title": "Laisvė rinktis, iš kur dirbti",
         "description": "Darbas iš namų ar Seišelių? Tikrai yra įmanoma."
       }
     ]

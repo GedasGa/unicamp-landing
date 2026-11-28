@@ -3,7 +3,7 @@
     "heading": {
       "title": "*Frontend* and *UX/UI* design courses"
     },
-    "subtitle": "Hands-on 12-week programs taught by mentors who work in tech every day.",
+    "subtitle": "In 12 weeks you'll learn to build websites or design digital products, and finish with a project you can show employers.",
     "form": {
       "placeholder": "Your email",
       "submit": "Save your spot",
@@ -15,10 +15,10 @@
       "emailInvalid": "Enter a valid email address"
     },
     "cards": {
-      "certificate": "Unicamp certificate",
-      "mentor": "A dedicated mentor",
-      "project": "A real project for your portfolio",
-      "format": "Online"
+      "certificate": "A certificate employers can verify",
+      "mentor": "A mentor for the whole course",
+      "project": "A project for your portfolio",
+      "format": "Online, from anywhere"
     },
     "cta": {
       "viewCourses": {
@@ -52,49 +52,49 @@
   "features": {
     "sections": {
       "realProjects": {
-        "heading": "Real-world *projects*",
+        "heading": "Finish with a real *project*",
         "items": [
           {
-            "title": "Gain hands-on experience",
-            "description": "Work on projects that reflect real-world challenges using the most popular tools and technologies."
+            "title": "Work like a tech team",
+            "description": "The same tasks and tools tech teams use, so you won't be starting from zero when you start working."
           },
           {
-            "title": "Showcase your work",
-            "description": "Present your project to real users and impress employers with tangible results. No other academy offers this opportunity."
+            "title": "A project you can show",
+            "description": "In a job interview you can show a working project that real users have already tried."
           },
           {
-            "title": "Enhance your portfolio",
-            "description": "Add real, professional projects to your LinkedIn and attract employers."
+            "title": "A stronger CV and LinkedIn",
+            "description": "Real projects on your CV and LinkedIn tell employers more than a list of courses."
           }
         ]
       },
       "teamWork": {
-        "heading": "Learn through *teamwork*",
+        "heading": "Learn in a *team*",
         "items": [
           {
-            "title": "Join curious and motivated people",
-            "description": "Surround yourself with those who inspire growth and ambition."
+            "title": "A group that keeps you going",
+            "description": "You learn alongside people who are also changing careers, which makes it easier to keep up the pace."
           },
           {
-            "title": "Collaborate with developers and UX designers",
-            "description": "Work in cross-functional teams with other developers and designers."
+            "title": "Developers and designers together",
+            "description": "You'll build your final project with students from the other programme – the way tech teams work."
           },
           {
-            "title": "Expand your network",
-            "description": "Build connections with like-minded individuals who support, inspire, and help you grow professionally and personally."
+            "title": "Contacts in tech",
+            "description": "You'll get to know like-minded people and mentors you can stay in touch with after the course."
           }
         ]
       },
       "1on1": {
-        "heading": "Personal *mentorship* sessions",
+        "heading": "Your own *mentor*",
         "items": [
           {
-            "title": "Dedicated mentor",
-            "description": "A mentor to share your victories and challenges with, providing support throughout the course."
+            "title": "Help when you're stuck",
+            "description": "A mentor you can message when something doesn't work or you're not sure what to do next."
           },
           {
-            "title": "Career advice",
-            "description": "Discuss your goals, plan your next steps, and get valuable insights into breaking into the IT industry."
+            "title": "A career plan",
+            "description": "Talk through your goals together and lay out concrete steps for getting into tech."
           }
         ]
       }
@@ -102,7 +102,7 @@
   },
   "team": {
     "heading": "Unicamp *team*",
-    "description": "We are a team of IT enthusiasts passionate about sharing knowledge and helping everyone find their place in the world of technology.",
+    "description": "We work at tech companies every day and teach what we use on the job.",
     "mentor": "Mentor",
     "members": [
       {
@@ -117,8 +117,8 @@
     "viewProfile": "View {{network}}"
   },
   "programs": {
-    "title": "Unicamp *programs*",
-    "description": "Hands-on 12-week programs for people moving into tech. No prior experience needed.",
+    "title": "Choose your *program*",
+    "description": "Two hands-on programs for people moving into tech. Both end with a project you can show employers. No prior experience needed.",
     "meta": {
       "duration": "12 weeks · 108 hrs",
       "format": "Online",
@@ -172,8 +172,8 @@
     }
   },
   "tools": {
-    "title": "You'll learn to work with modern *tools*",
-    "description": "From design to code to AI – you learn with the same tools IT teams use every day.",
+    "title": "Work with the same *tools* as tech teams",
+    "description": "Figma, Cursor, GitHub, AI agents and more – you'll finish knowing the tools job ads ask for.",
     "items": {
       "cursor": "AI-powered code editor",
       "lovable": "Build web apps by describing them",
