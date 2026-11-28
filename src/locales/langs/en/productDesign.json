@@ -9,7 +9,7 @@
   },
   "certificate": {
     "title": "A certificate that *proves* your skills",
-    "description": "Not a piece of paper for a drawer, but a link for your LinkedIn. Any employer can open it and see exactly what you can do."
+    "description": "Add it to LinkedIn – employers can click the link and see that you really finished the course."
   },
   "syllabus": {
     "title": "What the *programme* covers",
@@ -17,7 +17,7 @@
       "download": "Download whole syllabus",
       "register": "Reserve a spot"
     },
-    "description": "You'll learn to see products through users' eyes and turn their problems into interfaces people enjoy using.\n\nYou'll go through the whole UX/UI designer's path – from user research to an interactive prototype in Figma. AI tools will help you work faster, and throughout the course you'll build a project of your choice to feature in your portfolio."
+    "description": "You'll learn to understand what users need and turn it into interfaces that are easy to use.\n\nYou'll go through the whole process – from user research to an interactive prototype in Figma. You'll use AI tools to work faster and build a project of your choice for your portfolio throughout the course."
   },
   "modules": [
     {
@@ -56,8 +56,8 @@
     }
   ],
   "expectations": {
-    "title": "What changes after the *course*",
-    "description": "You'll be able to research what users need, build an interactive prototype and back every design decision – exactly what employers expect from a junior UX/UI designer.",
+    "title": "What you'll know after the *course*",
+    "description": "You'll be able to research user needs, build an interactive prototype and explain your design decisions – what employers expect from a junior UX/UI designer.",
     "cta": "Reserve a spot",
     "cards": [
       {

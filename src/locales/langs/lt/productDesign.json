@@ -9,7 +9,7 @@
   },
   "certificate": {
     "title": "Sertifikatas – jūsų įgūdžių *įrodymas*",
-    "description": "Ne popierius stalčiui, o nuoroda, kurią įdėsite į LinkedIn. Bet kuris darbdavys galės ją atidaryti ir įsitikinti, ką mokate."
+    "description": "Pridėkite jį prie LinkedIn – darbdavys, paspaudęs nuorodą, matys, kad kursą tikrai baigėte."
   },
   "syllabus": {
     "title": "Programos *turinys*",
@@ -17,7 +17,7 @@
       "download": "Atsisiųsti visą programą",
       "register": "Rezervuokite vietą"
     },
-    "description": "Išmoksite matyti produktus naudotojo akimis ir paversti jų problemas sąsajomis, kurias malonu naudoti.\n\nPereisite visą UX/UI dizainerio kelią – nuo naudotojų tyrimų iki interaktyvaus prototipo Figma. DI įrankiai padės dirbti greičiau, o viso kurso metu kursite savo pasirinktą projektą, kurį vėliau pristatysite savo portfolio."
+    "description": "Išmoksite suprasti, ko reikia naudotojams, ir paversti tai patogiomis sąsajomis.\n\nPereisite visą procesą – nuo naudotojų tyrimų iki interaktyvaus prototipo Figma. Naudosite DI įrankius, kad dirbtumėte greičiau, o viso kurso metu kursite savo pasirinktą projektą portfoliui."
   },
   "modules": [
     {
@@ -56,8 +56,8 @@
     }
   ],
   "expectations": {
-    "title": "Kas pasikeis po *kurso*",
-    "description": "Mokėsite ištirti, ko reikia naudotojams, sukurti interaktyvų prototipą ir pagrįsti kiekvieną dizaino sprendimą – būtent to darbdaviai tikisi iš pradedančio UX/UI dizainerio.",
+    "title": "Ką mokėsite po *kurso*",
+    "description": "Mokėsite ištirti naudotojų poreikius, sukurti interaktyvų prototipą ir paaiškinti savo dizaino sprendimus – to darbdaviai tikisi iš pradedančio UX/UI dizainerio.",
     "cta": "Rezervuokite vietą",
     "cards": [
       {

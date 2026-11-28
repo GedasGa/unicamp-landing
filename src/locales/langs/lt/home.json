@@ -3,7 +3,7 @@
     "heading": {
       "title": "*Frontend* ir *UX/UI* dizaino kursai"
     },
-    "subtitle": "Po 12 savaičių nebe svajosite apie darbą IT – kursite patys ir turėsite projektą, kurį drąsiai parodysite darbdaviui.",
+    "subtitle": "Per 12 savaičių išmoksite kurti svetaines arba projektuoti skaitmeninius produktus ir baigsite su projektu, kurį galėsite parodyti darbdaviui.",
     "form": {
       "placeholder": "Jūsų el. paštas",
       "submit": "Rezervuoti vietą",
@@ -15,10 +15,10 @@
       "emailInvalid": "Įveskite galiojantį el. pašto adresą"
     },
     "cards": {
-      "certificate": "Įgūdžiai, patvirtinti sertifikatu",
-      "mentor": "Asmeninis mentorius šalia",
-      "project": "Portfolio, kuris atveria duris",
-      "format": "Mokotės iš bet kur"
+      "certificate": "Sertifikatas, kurį galima patikrinti",
+      "mentor": "Mentorius visą kursą",
+      "project": "Projektas jūsų portfoliui",
+      "format": "Nuotoliu, iš bet kur"
     },
     "cta": {
       "viewCourses": {
@@ -52,49 +52,49 @@
   "features": {
     "sections": {
       "realProjects": {
-        "heading": "Išeisite su darbu, kurį galima *parodyti*",
+        "heading": "Baigsite su tikru *projektu*",
         "items": [
           {
-            "title": "Mokėsite tai, ką daro tikros komandos",
-            "description": "Spręsite tuos pačius uždavinius ir naudosite tuos pačius įrankius kaip IT komandos – todėl pirmą darbo dieną jau žinosite, nuo ko pradėti."
+            "title": "Dirbsite kaip IT komanda",
+            "description": "Užduotys ir įrankiai tokie patys, kokius naudoja IT komandos, todėl pradėję dirbti nepradėsite nuo nulio."
           },
           {
-            "title": "Kalbėsite rezultatais, ne pažadais",
-            "description": "Pokalbyje dėl darbo nereikės aiškinti, ką mokate. Tiesiog parodysite veikiantį projektą, kurį jau išbandė tikri naudotojai."
+            "title": "Projektas, kurį galima parodyti",
+            "description": "Pokalbyje dėl darbo galėsite parodyti veikiantį projektą, kurį jau išbandė tikri naudotojai."
           },
           {
-            "title": "Profilis, kurį pastebi darbdaviai",
-            "description": "Jūsų LinkedIn ir CV papildys tikri projektai, todėl atrankoje išsiskirsite iš tų, kurie turi tik kursų pažymėjimą."
+            "title": "Stipresnis CV ir LinkedIn",
+            "description": "Tikri projektai CV ir LinkedIn profilyje darbdaviui pasako daugiau nei išvardyti kursai."
           }
         ]
       },
       "teamWork": {
-        "heading": "Šiame kelyje nebūsite *vieni*",
+        "heading": "Mokysitės *komandoje*",
         "items": [
           {
-            "title": "Aplinka, kuri neleidžia sustoti",
-            "description": "Būsite tarp smalsių ir motyvuotų žmonių. Kai jie juda pirmyn, judate ir jūs."
+            "title": "Grupė, kuri motyvuoja",
+            "description": "Mokotės kartu su žmonėmis, kurie taip pat keičia karjerą, todėl lengviau išlaikyti tempą."
           },
           {
-            "title": "Išmoksite dirbti taip, kaip dirbama IT",
-            "description": "Kartu su programuotojais ir dizaineriais kursite vieną produktą – ir suprasite, kaip veikia tikra komanda, dar prieš į ją patekdami."
+            "title": "Programuotojai ir dizaineriai kartu",
+            "description": "Baigiamąjį projektą kursite kartu su kitos programos studentais – taip, kaip dirbama IT komandose."
           },
           {
-            "title": "Pažintys, kurios lieka ilgam",
-            "description": "Bendraminčiai, kurie palaikys, įkvėps ir dalinsis galimybėmis dar ilgai po kurso pabaigos."
+            "title": "Pažintys IT srityje",
+            "description": "Susipažinsite su bendraminčiais ir mentoriais, su kuriais galėsite palaikyti ryšį ir po kurso."
           }
         ]
       },
       "1on1": {
-        "heading": "Mentorius, kuris jau *nuėjo šį kelią*",
+        "heading": "Asmeninis *mentorius*",
         "items": [
           {
-            "title": "Niekada neužstrigsite vieni",
-            "description": "Turėsite žmogų, kuriam galite parašyti, kai kas nors neveikia, ir kuris džiaugsis kartu su jumis, kai pagaliau suveiks."
+            "title": "Pagalba, kai užstringate",
+            "description": "Turėsite mentorių, kuriam galite parašyti, kai kas nors neveikia arba neaišku, ką daryti toliau."
           },
           {
-            "title": "Aiškus planas, kaip patekti į IT",
-            "description": "Kartu aptarsite jūsų tikslus ir išeisite žinodami, kokie bus kiti žingsniai – be spėliojimų."
+            "title": "Karjeros planas",
+            "description": "Kartu aptarsite jūsų tikslus ir susidėliosite konkrečius žingsnius, kaip patekti į IT."
           }
         ]
       }
@@ -102,7 +102,7 @@
   },
   "team": {
     "heading": "Unicamp *komanda*",
-    "description": "Kasdien kuriame produktus IT įmonėse ir mokome to, ką patys naudojame darbe – kad jūs savo vietą technologijų pasaulyje rastumėte greičiau.",
+    "description": "Kasdien dirbame IT įmonėse ir mokome to, ką patys naudojame darbe.",
     "mentor": "Mentorius",
     "members": [
       {
@@ -117,8 +117,8 @@
     "viewProfile": "Peržiūrėti {{network}}"
   },
   "programs": {
-    "title": "Pasirinkite, kuo *tapsite*",
-    "description": "Dvi kryptys, vienas tikslas: per 12 savaičių iš pradedančiojo tapti žmogumi, kuris pats kuria skaitmeninius produktus. Ankstesnės patirties nereikia.",
+    "title": "Pasirinkite *programą*",
+    "description": "Dvi praktinės programos tiems, kurie nori pereiti į IT. Abi baigiasi projektu, kurį galėsite parodyti darbdaviui. Ankstesnės patirties nereikia.",
     "meta": {
       "duration": "12 savaičių · 108 val.",
       "format": "Nuotoliu",
@@ -173,7 +173,7 @@
   },
   "tools": {
     "title": "Dirbsite su tais pačiais *įrankiais* kaip IT komandos",
-    "description": "Nuo Figma iki Cursor ir DI agentų – baigę kursą mokėsite įrankius, kurių prašoma darbo skelbimuose, o dirbtinis intelektas taps jūsų asistentu, ne konkurentu.",
+    "description": "Figma, Cursor, GitHub, DI agentai ir kiti – baigę kursą mokėsite naudotis įrankiais, kurių prašoma darbo skelbimuose.",
     "items": {
       "cursor": "DI pagrįstas kodo redaktorius",
       "lovable": "Web programėlių kūrimas aprašant jas žodžiais",
@@ -196,7 +196,7 @@
     }
   },
   "testimonials": {
-    "title": "Jie jau *žengė šį žingsnį*",
+    "title": "Ką sako mūsų *studentai*",
     "description": "žmonių, kurie jau baigė mūsų programas.",
     "descriptionLink": "Tikri atsiliepimai",
     "items": [

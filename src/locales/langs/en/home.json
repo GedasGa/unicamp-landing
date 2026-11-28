@@ -3,7 +3,7 @@
     "heading": {
       "title": "*Frontend* and *UX/UI* design courses"
     },
-    "subtitle": "In 12 weeks you'll stop dreaming about a tech career and start building – with a project you can proudly show any employer.",
+    "subtitle": "In 12 weeks you'll learn to build websites or design digital products, and finish with a project you can show employers.",
     "form": {
       "placeholder": "Your email",
       "submit": "Save your spot",
@@ -15,10 +15,10 @@
       "emailInvalid": "Enter a valid email address"
     },
     "cards": {
-      "certificate": "Skills backed by a certificate",
-      "mentor": "Your own mentor by your side",
-      "project": "A portfolio that opens doors",
-      "format": "Learn from anywhere"
+      "certificate": "A certificate employers can verify",
+      "mentor": "A mentor for the whole course",
+      "project": "A project for your portfolio",
+      "format": "Online, from anywhere"
     },
     "cta": {
       "viewCourses": {
@@ -52,49 +52,49 @@
   "features": {
     "sections": {
       "realProjects": {
-        "heading": "Leave with work you can *show*",
+        "heading": "Finish with a real *project*",
         "items": [
           {
-            "title": "Do what real teams do",
-            "description": "You'll solve the same problems with the same tools tech teams use – so on day one of your new job, you'll already know where to start."
+            "title": "Work like a tech team",
+            "description": "The same tasks and tools tech teams use, so you won't be starting from zero when you start working."
           },
           {
-            "title": "Let results do the talking",
-            "description": "In an interview you won't have to explain what you can do. You'll show a working project that real users have already tried."
+            "title": "A project you can show",
+            "description": "In a job interview you can show a working project that real users have already tried."
           },
           {
-            "title": "A profile employers notice",
-            "description": "Real projects on your LinkedIn and CV set you apart from candidates who only have a course certificate."
+            "title": "A stronger CV and LinkedIn",
+            "description": "Real projects on your CV and LinkedIn tell employers more than a list of courses."
           }
         ]
       },
       "teamWork": {
-        "heading": "You won't do this *alone*",
+        "heading": "Learn in a *team*",
         "items": [
           {
-            "title": "Surroundings that keep you moving",
-            "description": "You'll be among curious, driven people. When they move forward, so do you."
+            "title": "A group that keeps you going",
+            "description": "You learn alongside people who are also changing careers, which makes it easier to keep up the pace."
           },
           {
-            "title": "Learn how tech teams really work",
-            "description": "You'll build one product together with developers and designers – and understand how a real team works before you even join one."
+            "title": "Developers and designers together",
+            "description": "You'll build your final project with students from the other programme – the way tech teams work."
           },
           {
-            "title": "Connections that last",
-            "description": "Like-minded people who will support you, inspire you and share opportunities long after the course ends."
+            "title": "Contacts in tech",
+            "description": "You'll get to know like-minded people and mentors you can stay in touch with after the course."
           }
         ]
       },
       "1on1": {
-        "heading": "A mentor who's *walked this path*",
+        "heading": "Your own *mentor*",
         "items": [
           {
-            "title": "Never stay stuck on your own",
-            "description": "You'll have someone to message when something breaks – and someone to celebrate with when it finally works."
+            "title": "Help when you're stuck",
+            "description": "A mentor you can message when something doesn't work or you're not sure what to do next."
           },
           {
-            "title": "A clear plan for getting into tech",
-            "description": "Talk through your goals together and walk away knowing your next steps – no guesswork."
+            "title": "A career plan",
+            "description": "Talk through your goals together and lay out concrete steps for getting into tech."
           }
         ]
       }
@@ -102,7 +102,7 @@
   },
   "team": {
     "heading": "Unicamp *team*",
-    "description": "We build products at tech companies every day and teach what we use at work – so you find your place in tech faster.",
+    "description": "We work at tech companies every day and teach what we use on the job.",
     "mentor": "Mentor",
     "members": [
       {
@@ -117,8 +117,8 @@
     "viewProfile": "View {{network}}"
   },
   "programs": {
-    "title": "Choose who you'll *become*",
-    "description": "Two paths, one goal: in 12 weeks go from beginner to someone who builds digital products. No prior experience needed.",
+    "title": "Choose your *program*",
+    "description": "Two hands-on programs for people moving into tech. Both end with a project you can show employers. No prior experience needed.",
     "meta": {
       "duration": "12 weeks · 108 hrs",
       "format": "Online",
@@ -173,7 +173,7 @@
   },
   "tools": {
     "title": "Work with the same *tools* as tech teams",
-    "description": "From Figma to Cursor and AI agents – you'll finish knowing the tools job ads ask for, with AI as your assistant rather than your competition.",
+    "description": "Figma, Cursor, GitHub, AI agents and more – you'll finish knowing the tools job ads ask for.",
     "items": {
       "cursor": "AI-powered code editor",
       "lovable": "Build web apps by describing them",
@@ -196,7 +196,7 @@
     }
   },
   "testimonials": {
-    "title": "They've already *taken the leap*",
+    "title": "What our *students* say",
     "description": "from people who have completed our programs.",
     "descriptionLink": "Real reviews",
     "items": [

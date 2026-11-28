@@ -9,7 +9,7 @@
   },
   "certificate": {
     "title": "A certificate that *proves* your skills",
-    "description": "Not a piece of paper for a drawer, but a link for your LinkedIn. Any employer can open it and see exactly what you can do."
+    "description": "Add it to LinkedIn – employers can click the link and see that you really finished the course."
   },
   "syllabus": {
     "title": "What the *programme* covers",
@@ -17,7 +17,7 @@
       "download": "Download whole syllabus",
       "register": "Reserve a spot"
     },
-    "description": "You'll start with your very first line of code and finish with a website of your own live on the internet – a link you can send to any employer.\n\nAlong the way you'll learn to build pages that look great on any screen and work for everyone, work with React and Next.js, and use AI as an assistant that helps you move faster. You'll build your final project in a team with Jira and GitHub – the way real tech companies work."
+    "description": "You'll start with your first line of code and finish with your own website live on the internet.\n\nYou'll learn to build pages that look good on any screen and work for everyone, work with React and Next.js, and use AI tools to work faster. You'll build your final project in a team with Jira and GitHub – the same way tech companies work."
   },
   "modules": [
     {
@@ -120,8 +120,8 @@
     }
   ],
   "expectations": {
-    "title": "What changes after the *course*",
-    "description": "You'll build and launch a website from scratch, speak developers' language and apply for your first Frontend role with confidence.",
+    "title": "What you'll know after the *course*",
+    "description": "You'll be able to build and launch a website from scratch, work with JavaScript and React, and have a project to apply for your first Frontend role with.",
     "cta": "Reserve a spot",
     "cards": [
       {
